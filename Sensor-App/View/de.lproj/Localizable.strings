@@ -1,0 +1,49 @@
+/* 
+  Localizable.strings
+  Sensor App
+
+  Created by Volker Schmitt on 23.05.19.
+  Copyright © 2019 Volker Schmitt. All rights reserved.
+*/
+
+
+// MARK: - LocationViewController.swift
+"Latitude:" = "Breitengrad:";
+"Longitude:" = "Längengrad:";
+"Altitude:" = "Höhe";
+"Direction:" = "Richtung";
+"Speed:" = "Geschwindigkeit";
+
+
+// MARK: - AccelerometerViewController.swift
+"X-Axis:" = "X-Achse:";
+"Y-Axis:" = "Y-Achse:";
+"Z-Axis:" = "Z-Achse:";
+"Frequency:" = "Frequenz:";
+
+
+// MARK: - GravityViewController.swift
+
+
+// MARK: - GyroscopeViewController.swift
+
+
+// MARK: - AttitudeViewController.swift
+
+//"Roll:" = "";
+//"Pitch:" = "";
+//"Yaw:" = "";
+"Heading:" = "Richtung:";
+
+
+// MARK: - MagnetometerViewController.swift
+
+
+// MARK: - AltitudeViewController.swift
+"Pressure:" = "Druck:";
+"Altitude Change:" = "Höhenänderung:";
+"P:" = "D:";
+"A:" = "H:";
+
+
+

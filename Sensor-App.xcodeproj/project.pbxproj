@@ -1,0 +1,476 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1522309F22E8BB0B008659A9 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1522309E22E8BB0B008659A9 /* SettingsViewController.swift */; };
+		157B0E73227F57D6004CC169 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157B0E72227F57D6004CC169 /* AppDelegate.swift */; };
+		157B0E78227F57D6004CC169 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 157B0E76227F57D6004CC169 /* Main.storyboard */; };
+		157B0E7A227F57D7004CC169 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 157B0E79227F57D7004CC169 /* Assets.xcassets */; };
+		157B0E7D227F57D7004CC169 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 157B0E7B227F57D7004CC169 /* LaunchScreen.storyboard */; };
+		157B0E85227F5992004CC169 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157B0E84227F5992004CC169 /* MainViewController.swift */; };
+		157B0E87227F59F8004CC169 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157B0E86227F59F8004CC169 /* LocationViewController.swift */; };
+		157B0E8E227F5A7B004CC169 /* GPSModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157B0E8D227F5A7B004CC169 /* GPSModel.swift */; };
+		158E865B22A271D100E65F4F /* ExtensionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158E865A22A271D100E65F4F /* ExtensionModel.swift */; };
+		159E10F7229967C400F897B7 /* GravityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159E10F6229967C400F897B7 /* GravityViewController.swift */; };
+		159E10F9229967FC00F897B7 /* GyroscopeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159E10F8229967FC00F897B7 /* GyroscopeViewController.swift */; };
+		159E10FB2299682300F897B7 /* AttitudeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159E10FA2299682300F897B7 /* AttitudeViewController.swift */; };
+		159E10FD2299684400F897B7 /* MagnetometerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159E10FC2299684400F897B7 /* MagnetometerViewController.swift */; };
+		159E10FF2299686E00F897B7 /* AltitudeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159E10FE2299686E00F897B7 /* AltitudeViewController.swift */; };
+		15ABA7902299995A00CF44B2 /* AccelerometerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ABA78F2299995A00CF44B2 /* AccelerometerViewController.swift */; };
+		15B05FA622884EC700600340 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 15B05FA422884EC700600340 /* Model.xcdatamodeld */; };
+		15E2469822970599001A70FC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 15E2469A22970599001A70FC /* Localizable.strings */; };
+		15E2469D22970800001A70FC /* CoreMotionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E2469C22970800001A70FC /* CoreMotionModel.swift */; };
+		15FC73332280A09B0077CB8A /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FC73322280A09B0077CB8A /* SettingsModel.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1522309E22E8BB0B008659A9 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		152230A122E90163008659A9 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
+		156FC3CC22A2D9ED00B70943 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		157B0E6F227F57D6004CC169 /* Sensor-App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sensor-App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		157B0E72227F57D6004CC169 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		157B0E77227F57D6004CC169 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		157B0E79227F57D7004CC169 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		157B0E7C227F57D7004CC169 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		157B0E84227F5992004CC169 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		157B0E86227F59F8004CC169 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
+		157B0E8D227F5A7B004CC169 /* GPSModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPSModel.swift; sourceTree = "<group>"; };
+		158E865A22A271D100E65F4F /* ExtensionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ExtensionModel.swift; path = "Sensor-App/Model/ExtensionModel.swift"; sourceTree = SOURCE_ROOT; };
+		159E10F6229967C400F897B7 /* GravityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GravityViewController.swift; sourceTree = "<group>"; };
+		159E10F8229967FC00F897B7 /* GyroscopeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GyroscopeViewController.swift; sourceTree = "<group>"; };
+		159E10FA2299682300F897B7 /* AttitudeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttitudeViewController.swift; sourceTree = "<group>"; };
+		159E10FC2299684400F897B7 /* MagnetometerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagnetometerViewController.swift; sourceTree = "<group>"; };
+		159E10FE2299686E00F897B7 /* AltitudeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AltitudeViewController.swift; sourceTree = "<group>"; };
+		15ABA78F2299995A00CF44B2 /* AccelerometerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccelerometerViewController.swift; sourceTree = "<group>"; };
+		15B05FA022884E2200600340 /* Sensor App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Sensor App.entitlements"; sourceTree = "<group>"; };
+		15B05FA522884EC700600340 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		15CA44682295EF4200665344 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		15D862FE2289DAB8006FD733 /* Sensor-App-Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "Sensor-App-Playground.playground"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		15E2469922970599001A70FC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		15E2469B2297059D001A70FC /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		15E2469C22970800001A70FC /* CoreMotionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreMotionModel.swift; sourceTree = "<group>"; };
+		15FC73322280A09B0077CB8A /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		157B0E6C227F57D6004CC169 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		157B0E66227F57D6004CC169 = {
+			isa = PBXGroup;
+			children = (
+				157B0E71227F57D6004CC169 /* Sensor-App */,
+				157B0E70227F57D6004CC169 /* Products */,
+				15B05FA122884E2B00600340 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		157B0E70227F57D6004CC169 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				157B0E6F227F57D6004CC169 /* Sensor-App.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		157B0E71227F57D6004CC169 /* Sensor-App */ = {
+			isa = PBXGroup;
+			children = (
+				15D862FE2289DAB8006FD733 /* Sensor-App-Playground.playground */,
+				157B0E8A227F5A4E004CC169 /* Model */,
+				157B0E88227F5A2A004CC169 /* Controller */,
+				157B0E89227F5A3A004CC169 /* View */,
+				156FC3CC22A2D9ED00B70943 /* Info.plist */,
+				15B05FA022884E2200600340 /* Sensor App.entitlements */,
+			);
+			path = "Sensor-App";
+			sourceTree = "<group>";
+		};
+		157B0E88227F5A2A004CC169 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				157B0E72227F57D6004CC169 /* AppDelegate.swift */,
+				157B0E84227F5992004CC169 /* MainViewController.swift */,
+				157B0E86227F59F8004CC169 /* LocationViewController.swift */,
+				15ABA78F2299995A00CF44B2 /* AccelerometerViewController.swift */,
+				159E10F6229967C400F897B7 /* GravityViewController.swift */,
+				159E10F8229967FC00F897B7 /* GyroscopeViewController.swift */,
+				159E10FA2299682300F897B7 /* AttitudeViewController.swift */,
+				159E10FC2299684400F897B7 /* MagnetometerViewController.swift */,
+				159E10FE2299686E00F897B7 /* AltitudeViewController.swift */,
+				1522309E22E8BB0B008659A9 /* SettingsViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		157B0E89227F5A3A004CC169 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				15E2469A22970599001A70FC /* Localizable.strings */,
+				157B0E7B227F57D7004CC169 /* LaunchScreen.storyboard */,
+				157B0E76227F57D6004CC169 /* Main.storyboard */,
+				157B0E79227F57D7004CC169 /* Assets.xcassets */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		157B0E8A227F5A4E004CC169 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				158E865A22A271D100E65F4F /* ExtensionModel.swift */,
+				15E2469C22970800001A70FC /* CoreMotionModel.swift */,
+				157B0E8D227F5A7B004CC169 /* GPSModel.swift */,
+				15FC73322280A09B0077CB8A /* SettingsModel.swift */,
+				15B05FA422884EC700600340 /* Model.xcdatamodeld */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		15B05FA122884E2B00600340 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		157B0E6E227F57D6004CC169 /* Sensor-App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 157B0E81227F57D7004CC169 /* Build configuration list for PBXNativeTarget "Sensor-App" */;
+			buildPhases = (
+				157B0E6B227F57D6004CC169 /* Sources */,
+				157B0E6C227F57D6004CC169 /* Frameworks */,
+				157B0E6D227F57D6004CC169 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Sensor-App";
+			productName = "Sensor App";
+			productReference = 157B0E6F227F57D6004CC169 /* Sensor-App.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		157B0E67227F57D6004CC169 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1020;
+				LastUpgradeCheck = 1020;
+				ORGANIZATIONNAME = "Volker Schmitt";
+				TargetAttributes = {
+					157B0E6E227F57D6004CC169 = {
+						CreatedOnToolsVersion = 10.2.1;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 0;
+							};
+							com.apple.Push = {
+								enabled = 0;
+							};
+							com.apple.iCloud = {
+								enabled = 0;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = 157B0E6A227F57D6004CC169 /* Build configuration list for PBXProject "Sensor-App" */;
+			compatibilityVersion = "Xcode 10.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				de,
+			);
+			mainGroup = 157B0E66227F57D6004CC169;
+			productRefGroup = 157B0E70227F57D6004CC169 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				157B0E6E227F57D6004CC169 /* Sensor-App */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		157B0E6D227F57D6004CC169 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15E2469822970599001A70FC /* Localizable.strings in Resources */,
+				157B0E7D227F57D7004CC169 /* LaunchScreen.storyboard in Resources */,
+				157B0E7A227F57D7004CC169 /* Assets.xcassets in Resources */,
+				157B0E78227F57D6004CC169 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		157B0E6B227F57D6004CC169 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				157B0E8E227F5A7B004CC169 /* GPSModel.swift in Sources */,
+				159E10FD2299684400F897B7 /* MagnetometerViewController.swift in Sources */,
+				15ABA7902299995A00CF44B2 /* AccelerometerViewController.swift in Sources */,
+				159E10FF2299686E00F897B7 /* AltitudeViewController.swift in Sources */,
+				157B0E85227F5992004CC169 /* MainViewController.swift in Sources */,
+				157B0E87227F59F8004CC169 /* LocationViewController.swift in Sources */,
+				15B05FA622884EC700600340 /* Model.xcdatamodeld in Sources */,
+				159E10F9229967FC00F897B7 /* GyroscopeViewController.swift in Sources */,
+				1522309F22E8BB0B008659A9 /* SettingsViewController.swift in Sources */,
+				15FC73332280A09B0077CB8A /* SettingsModel.swift in Sources */,
+				157B0E73227F57D6004CC169 /* AppDelegate.swift in Sources */,
+				15E2469D22970800001A70FC /* CoreMotionModel.swift in Sources */,
+				158E865B22A271D100E65F4F /* ExtensionModel.swift in Sources */,
+				159E10FB2299682300F897B7 /* AttitudeViewController.swift in Sources */,
+				159E10F7229967C400F897B7 /* GravityViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		157B0E76227F57D6004CC169 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				157B0E77227F57D6004CC169 /* Base */,
+				152230A122E90163008659A9 /* de */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		157B0E7B227F57D7004CC169 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				157B0E7C227F57D7004CC169 /* Base */,
+				15CA44682295EF4200665344 /* de */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		15E2469A22970599001A70FC /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				15E2469922970599001A70FC /* en */,
+				15E2469B2297059D001A70FC /* de */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		157B0E7F227F57D7004CC169 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		157B0E80227F57D7004CC169 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		157B0E82227F57D7004CC169 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NLF7894S7W;
+				INFOPLIST_FILE = "$(SRCROOT)/Sensor-App/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "VolkerSchmitt88-at-icloud.com.Sensor-App";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		157B0E83227F57D7004CC169 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NLF7894S7W;
+				INFOPLIST_FILE = "$(SRCROOT)/Sensor-App/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "VolkerSchmitt88-at-icloud.com.Sensor-App";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		157B0E6A227F57D6004CC169 /* Build configuration list for PBXProject "Sensor-App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				157B0E7F227F57D7004CC169 /* Debug */,
+				157B0E80227F57D7004CC169 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		157B0E81227F57D7004CC169 /* Build configuration list for PBXNativeTarget "Sensor-App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				157B0E82227F57D7004CC169 /* Debug */,
+				157B0E83227F57D7004CC169 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		15B05FA422884EC700600340 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				15B05FA522884EC700600340 /* Model.xcdatamodel */,
+			);
+			currentVersion = 15B05FA522884EC700600340 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 157B0E67227F57D6004CC169 /* Project object */;
+}
