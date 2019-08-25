@@ -1,0 +1,12 @@
+/* 
+  InfoPlist.strings
+  Sensor-App
+
+  Created by Volker Schmitt on 25.08.19.
+  Copyright © 2019 Volker Schmitt. All rights reserved.
+*/
+
+
+NSLocationAlwaysUsageDescription = "GPS Access required to show current location";
+NSLocationWhenInUseUsageDescription = "GPS Access required to show current location";
+NSMotionUsageDescription = "Motion Sensor access required";

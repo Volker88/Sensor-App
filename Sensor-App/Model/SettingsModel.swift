@@ -59,8 +59,8 @@ class SettingsModel {
     func calculateSpeed(ms: Double, to: String) -> Double { // Calculcate Speed
         switch to {
         case GPSspeedSettings[0]: return ms             // m/s
-        case GPSspeedSettings[0]: return ms * 3.6       // km/h
-        case GPSspeedSettings[0]: return ms * 2.23694   // mph
+        case GPSspeedSettings[1]: return ms * 3.6       // km/h
+        case GPSspeedSettings[2]: return ms * 2.23694   // mph
         default: return ms
         }
     }
@@ -119,11 +119,11 @@ class SettingsModel {
     func calculateHeight(height: Double, to: String) -> Double { // Calculate Height Units (input m)
         switch to {
         case altitudeHeight[0]: return height * 0.01 // mm
-        case altitudeHeight[2]: return height * 0.1 // cm
-        case altitudeHeight[3]: return height // m
-        case altitudeHeight[4]: return height * 39.3701// inch
-        case altitudeHeight[5]: return height * 3.28084// feet
-        case altitudeHeight[6]: return height * 1.09361// yard
+        case altitudeHeight[1]: return height * 0.1 // cm
+        case altitudeHeight[2]: return height // m
+        case altitudeHeight[3]: return height * 39.3701// inch
+        case altitudeHeight[4]: return height * 3.28084// feet
+        case altitudeHeight[5]: return height * 1.09361// yard
         default: return height
         }
     }

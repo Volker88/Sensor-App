@@ -25,6 +25,7 @@
 		15B05FA622884EC700600340 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 15B05FA422884EC700600340 /* Model.xcdatamodeld */; };
 		15E2469822970599001A70FC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 15E2469A22970599001A70FC /* Localizable.strings */; };
 		15E2469D22970800001A70FC /* CoreMotionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E2469C22970800001A70FC /* CoreMotionModel.swift */; };
+		15ED316623127F2F00295418 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 15ED316823127F2F00295418 /* InfoPlist.strings */; };
 		15FC73332280A09B0077CB8A /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FC73322280A09B0077CB8A /* SettingsModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +55,8 @@
 		15E2469922970599001A70FC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		15E2469B2297059D001A70FC /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		15E2469C22970800001A70FC /* CoreMotionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreMotionModel.swift; sourceTree = "<group>"; };
+		15ED316723127F2F00295418 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		15ED316923127F3400295418 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		15FC73322280A09B0077CB8A /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -119,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				15E2469A22970599001A70FC /* Localizable.strings */,
+				15ED316823127F2F00295418 /* InfoPlist.strings */,
 				157B0E7B227F57D7004CC169 /* LaunchScreen.storyboard */,
 				157B0E76227F57D6004CC169 /* Main.storyboard */,
 				157B0E79227F57D7004CC169 /* Assets.xcassets */,
@@ -219,6 +223,7 @@
 				157B0E7D227F57D7004CC169 /* LaunchScreen.storyboard in Resources */,
 				157B0E7A227F57D7004CC169 /* Assets.xcassets in Resources */,
 				157B0E78227F57D6004CC169 /* Main.storyboard in Resources */,
+				15ED316623127F2F00295418 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,6 +282,15 @@
 			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
+		15ED316823127F2F00295418 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				15ED316723127F2F00295418 /* en */,
+				15ED316923127F3400295418 /* de */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -332,7 +346,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -388,7 +402,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -405,7 +419,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NLF7894S7W;
 				INFOPLIST_FILE = "$(SRCROOT)/Sensor-App/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -424,7 +438,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NLF7894S7W;
 				INFOPLIST_FILE = "$(SRCROOT)/Sensor-App/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
