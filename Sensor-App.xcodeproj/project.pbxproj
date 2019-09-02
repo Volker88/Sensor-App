@@ -14,7 +14,6 @@
 		157B0E7D227F57D7004CC169 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 157B0E7B227F57D7004CC169 /* LaunchScreen.storyboard */; };
 		157B0E85227F5992004CC169 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157B0E84227F5992004CC169 /* MainViewController.swift */; };
 		157B0E87227F59F8004CC169 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157B0E86227F59F8004CC169 /* LocationViewController.swift */; };
-		157B0E8E227F5A7B004CC169 /* GPSModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157B0E8D227F5A7B004CC169 /* GPSModel.swift */; };
 		158E865B22A271D100E65F4F /* ExtensionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158E865A22A271D100E65F4F /* ExtensionModel.swift */; };
 		159E10F7229967C400F897B7 /* GravityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159E10F6229967C400F897B7 /* GravityViewController.swift */; };
 		159E10F9229967FC00F897B7 /* GyroscopeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159E10F8229967FC00F897B7 /* GyroscopeViewController.swift */; };
@@ -22,14 +21,19 @@
 		159E10FD2299684400F897B7 /* MagnetometerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159E10FC2299684400F897B7 /* MagnetometerViewController.swift */; };
 		159E10FF2299686E00F897B7 /* AltitudeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159E10FE2299686E00F897B7 /* AltitudeViewController.swift */; };
 		15ABA7902299995A00CF44B2 /* AccelerometerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ABA78F2299995A00CF44B2 /* AccelerometerViewController.swift */; };
-		15B05FA622884EC700600340 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 15B05FA422884EC700600340 /* Model.xcdatamodeld */; };
+		15DEDA61231D8973008B2327 /* CoreLocationAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DEDA60231D8973008B2327 /* CoreLocationAPI.swift */; };
+		15DEDA63231D9E84008B2327 /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DEDA62231D9E84008B2327 /* LocationModel.swift */; };
+		15DEDA65231DA6F3008B2327 /* MotionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DEDA64231DA6F3008B2327 /* MotionModel.swift */; };
+		15DEDA67231DA97B008B2327 /* CoreMotionAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DEDA66231DA97B008B2327 /* CoreMotionAPI.swift */; };
 		15E2469822970599001A70FC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 15E2469A22970599001A70FC /* Localizable.strings */; };
 		15E2469D22970800001A70FC /* CoreMotionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E2469C22970800001A70FC /* CoreMotionModel.swift */; };
 		15ED316623127F2F00295418 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 15ED316823127F2F00295418 /* InfoPlist.strings */; };
-		15FC73332280A09B0077CB8A /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FC73322280A09B0077CB8A /* SettingsModel.swift */; };
+		15FC73332280A09B0077CB8A /* SettingsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FC73322280A09B0077CB8A /* SettingsAPI.swift */; };
+		7EE2E2CB5CE5B6A4930CA3BC /* Pods_Sensor_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E99B08BF9F3D41E60CADB232 /* Pods_Sensor_App.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0011D99DEEA7698EF3EA4700 /* Pods-Sensor-App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sensor-App.release.xcconfig"; path = "Target Support Files/Pods-Sensor-App/Pods-Sensor-App.release.xcconfig"; sourceTree = "<group>"; };
 		1522309E22E8BB0B008659A9 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		152230A122E90163008659A9 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		156FC3CC22A2D9ED00B70943 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -40,7 +44,6 @@
 		157B0E7C227F57D7004CC169 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		157B0E84227F5992004CC169 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		157B0E86227F59F8004CC169 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
-		157B0E8D227F5A7B004CC169 /* GPSModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPSModel.swift; sourceTree = "<group>"; };
 		158E865A22A271D100E65F4F /* ExtensionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ExtensionModel.swift; path = "Sensor-App/Model/ExtensionModel.swift"; sourceTree = SOURCE_ROOT; };
 		159E10F6229967C400F897B7 /* GravityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GravityViewController.swift; sourceTree = "<group>"; };
 		159E10F8229967FC00F897B7 /* GyroscopeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GyroscopeViewController.swift; sourceTree = "<group>"; };
@@ -48,16 +51,20 @@
 		159E10FC2299684400F897B7 /* MagnetometerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagnetometerViewController.swift; sourceTree = "<group>"; };
 		159E10FE2299686E00F897B7 /* AltitudeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AltitudeViewController.swift; sourceTree = "<group>"; };
 		15ABA78F2299995A00CF44B2 /* AccelerometerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccelerometerViewController.swift; sourceTree = "<group>"; };
-		15B05FA022884E2200600340 /* Sensor App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Sensor App.entitlements"; sourceTree = "<group>"; };
-		15B05FA522884EC700600340 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		15CA44682295EF4200665344 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		15D862FE2289DAB8006FD733 /* Sensor-App-Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "Sensor-App-Playground.playground"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		15D862FE2289DAB8006FD733 /* Struct-Timestamp.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "Struct-Timestamp.playground"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		15DEDA60231D8973008B2327 /* CoreLocationAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreLocationAPI.swift; sourceTree = "<group>"; };
+		15DEDA62231D9E84008B2327 /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
+		15DEDA64231DA6F3008B2327 /* MotionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionModel.swift; sourceTree = "<group>"; };
+		15DEDA66231DA97B008B2327 /* CoreMotionAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreMotionAPI.swift; sourceTree = "<group>"; };
 		15E2469922970599001A70FC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		15E2469B2297059D001A70FC /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		15E2469C22970800001A70FC /* CoreMotionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreMotionModel.swift; sourceTree = "<group>"; };
 		15ED316723127F2F00295418 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		15ED316923127F3400295418 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		15FC73322280A09B0077CB8A /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
+		15FC73322280A09B0077CB8A /* SettingsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAPI.swift; sourceTree = "<group>"; };
+		86F90A2F5F5966FFEC6501B2 /* Pods-Sensor-App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sensor-App.debug.xcconfig"; path = "Target Support Files/Pods-Sensor-App/Pods-Sensor-App.debug.xcconfig"; sourceTree = "<group>"; };
+		E99B08BF9F3D41E60CADB232 /* Pods_Sensor_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sensor_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,18 +72,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7EE2E2CB5CE5B6A4930CA3BC /* Pods_Sensor_App.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		150CF9C8231D831000FDD825 /* Playground */ = {
+			isa = PBXGroup;
+			children = (
+				15D862FE2289DAB8006FD733 /* Struct-Timestamp.playground */,
+			);
+			path = Playground;
+			sourceTree = "<group>";
+		};
+		150CF9C9231D84E800FDD825 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				15FC73322280A09B0077CB8A /* SettingsAPI.swift */,
+				15DEDA60231D8973008B2327 /* CoreLocationAPI.swift */,
+				15DEDA66231DA97B008B2327 /* CoreMotionAPI.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
 		157B0E66227F57D6004CC169 = {
 			isa = PBXGroup;
 			children = (
 				157B0E71227F57D6004CC169 /* Sensor-App */,
 				157B0E70227F57D6004CC169 /* Products */,
 				15B05FA122884E2B00600340 /* Frameworks */,
+				4A12537F827C44A9C2583489 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -91,12 +118,12 @@
 		157B0E71227F57D6004CC169 /* Sensor-App */ = {
 			isa = PBXGroup;
 			children = (
-				15D862FE2289DAB8006FD733 /* Sensor-App-Playground.playground */,
+				150CF9C8231D831000FDD825 /* Playground */,
+				150CF9C9231D84E800FDD825 /* API */,
 				157B0E8A227F5A4E004CC169 /* Model */,
 				157B0E88227F5A2A004CC169 /* Controller */,
 				157B0E89227F5A3A004CC169 /* View */,
 				156FC3CC22A2D9ED00B70943 /* Info.plist */,
-				15B05FA022884E2200600340 /* Sensor App.entitlements */,
 			);
 			path = "Sensor-App";
 			sourceTree = "<group>";
@@ -135,9 +162,8 @@
 			children = (
 				158E865A22A271D100E65F4F /* ExtensionModel.swift */,
 				15E2469C22970800001A70FC /* CoreMotionModel.swift */,
-				157B0E8D227F5A7B004CC169 /* GPSModel.swift */,
-				15FC73322280A09B0077CB8A /* SettingsModel.swift */,
-				15B05FA422884EC700600340 /* Model.xcdatamodeld */,
+				15DEDA62231D9E84008B2327 /* LocationModel.swift */,
+				15DEDA64231DA6F3008B2327 /* MotionModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -145,8 +171,18 @@
 		15B05FA122884E2B00600340 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E99B08BF9F3D41E60CADB232 /* Pods_Sensor_App.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4A12537F827C44A9C2583489 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				86F90A2F5F5966FFEC6501B2 /* Pods-Sensor-App.debug.xcconfig */,
+				0011D99DEEA7698EF3EA4700 /* Pods-Sensor-App.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -156,9 +192,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 157B0E81227F57D7004CC169 /* Build configuration list for PBXNativeTarget "Sensor-App" */;
 			buildPhases = (
+				1CF1DFB3B54CFD2D5D3A4F3B /* [CP] Check Pods Manifest.lock */,
 				157B0E6B227F57D6004CC169 /* Sources */,
 				157B0E6C227F57D6004CC169 /* Frameworks */,
 				157B0E6D227F57D6004CC169 /* Resources */,
+				95E549D7759AF40F63A5644E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -229,21 +267,65 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1CF1DFB3B54CFD2D5D3A4F3B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Sensor-App-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		95E549D7759AF40F63A5644E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Sensor-App/Pods-Sensor-App-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Sensor-App/Pods-Sensor-App-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Sensor-App/Pods-Sensor-App-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		157B0E6B227F57D6004CC169 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				157B0E8E227F5A7B004CC169 /* GPSModel.swift in Sources */,
 				159E10FD2299684400F897B7 /* MagnetometerViewController.swift in Sources */,
 				15ABA7902299995A00CF44B2 /* AccelerometerViewController.swift in Sources */,
 				159E10FF2299686E00F897B7 /* AltitudeViewController.swift in Sources */,
+				15DEDA65231DA6F3008B2327 /* MotionModel.swift in Sources */,
 				157B0E85227F5992004CC169 /* MainViewController.swift in Sources */,
 				157B0E87227F59F8004CC169 /* LocationViewController.swift in Sources */,
-				15B05FA622884EC700600340 /* Model.xcdatamodeld in Sources */,
+				15DEDA61231D8973008B2327 /* CoreLocationAPI.swift in Sources */,
 				159E10F9229967FC00F897B7 /* GyroscopeViewController.swift in Sources */,
+				15DEDA67231DA97B008B2327 /* CoreMotionAPI.swift in Sources */,
+				15DEDA63231D9E84008B2327 /* LocationModel.swift in Sources */,
 				1522309F22E8BB0B008659A9 /* SettingsViewController.swift in Sources */,
-				15FC73332280A09B0077CB8A /* SettingsModel.swift in Sources */,
+				15FC73332280A09B0077CB8A /* SettingsAPI.swift in Sources */,
 				157B0E73227F57D6004CC169 /* AppDelegate.swift in Sources */,
 				15E2469D22970800001A70FC /* CoreMotionModel.swift in Sources */,
 				158E865B22A271D100E65F4F /* ExtensionModel.swift in Sources */,
@@ -414,6 +496,7 @@
 		};
 		157B0E82227F57D7004CC169 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 86F90A2F5F5966FFEC6501B2 /* Pods-Sensor-App.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -433,6 +516,7 @@
 		};
 		157B0E83227F57D7004CC169 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0011D99DEEA7698EF3EA4700 /* Pods-Sensor-App.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -472,19 +556,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		15B05FA422884EC700600340 /* Model.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				15B05FA522884EC700600340 /* Model.xcdatamodel */,
-			);
-			currentVersion = 15B05FA522884EC700600340 /* Model.xcdatamodel */;
-			path = Model.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 157B0E67227F57D6004CC169 /* Project object */;
 }

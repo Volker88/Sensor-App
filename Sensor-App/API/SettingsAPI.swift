@@ -21,7 +21,13 @@ enum SettingsForUserDefaults {
 
 
 // MARK: - Class Definition
-class SettingsModel {
+class SettingsAPI {
+    
+    // MARK: - Singleton Pattern
+    static var shared : SettingsAPI = SettingsAPI()
+    private init() {
+    }
+    
     
     // UserDefaults
     let userDefaults = UserDefaults.standard

@@ -24,7 +24,6 @@ class AltitudeViewController: UIViewController, UITableViewDataSource, UITableVi
     
     // MARK: - Initialize Classes
     let motionManager = CoreMotionModel()
-    let settings = SettingsModel() // Settings
     
     
     // MARK: - Define Constants / Variables
@@ -99,8 +98,8 @@ class AltitudeViewController: UIViewController, UITableViewDataSource, UITableVi
             let altitude = self.getAltitudeData(pressure: self.motionManager.pressureValue, height: self.motionManager.relativeAltitudeValue)
             
             // Attitude
-            self.altitudePressureLabel.text = "Pressure:".localized + " \(String(format:"%.5f", altitude.convertedPressure)) \(self.settings.readPressureSetting())"
-            self.altitudeHeightChangeLabel.text = "Altitude Change:".localized + " \(String(format:"%.2f", altitude.convertedHeight)) \(self.settings.readHeightSetting())"
+            self.altitudePressureLabel.text = "Pressure:".localized + " \(String(format:"%.5f", altitude.convertedPressure)) \(SettingsAPI.shared.readPressureSetting())"
+            self.altitudeHeightChangeLabel.text = "Altitude Change:".localized + " \(String(format:"%.2f", altitude.convertedHeight)) \(SettingsAPI.shared.readHeightSetting())"
             
             
             // Altitude Arrays
@@ -140,11 +139,11 @@ class AltitudeViewController: UIViewController, UITableViewDataSource, UITableVi
     
     
     func getAltitudeData(pressure: Double, height: Double) -> (convertedPressure: Double, convertedHeight: Double) {
-        let altitudePressureSetting = settings.readPressureSetting()
-        let altitudeHeightSetting = settings.readHeightSetting()
+        let altitudePressureSetting = SettingsAPI.shared.readPressureSetting()
+        let altitudeHeightSetting = SettingsAPI.shared.readHeightSetting()
         
-        let pressure = settings.calculatePressure(pressure: pressure, to: altitudePressureSetting)
-        let height = settings.calculateHeight(height: height, to: altitudeHeightSetting)
+        let pressure = SettingsAPI.shared.calculatePressure(pressure: pressure, to: altitudePressureSetting)
+        let height = SettingsAPI.shared.calculateHeight(height: height, to: altitudeHeightSetting)
         
         return (pressure, height)
     }

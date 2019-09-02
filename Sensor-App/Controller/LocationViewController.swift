@@ -8,7 +8,6 @@
 
 // MARK: - Import
 import UIKit
-import CoreLocation
 import MapKit
 
 
@@ -16,9 +15,6 @@ import MapKit
 class LocationViewController: UIViewController, CLLocationManagerDelegate {
     
     // MARK: - Initialize Classes
-    let locationManager = CLLocationManager() // Location
-    let GPS = GPSModel() // GPS
-    let settings = SettingsModel() // Settings
     
     
     // MARK: - Variables / Constants
@@ -41,50 +37,50 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
         super.viewDidLoad()
         UICustomization() // UI Customization
         
-        locationStart(speedSetting: settings.readSpeedSetting()) // Start Location
+        startUpdatingCoreLocation()
     }
     
     
     // MARK: - ViewDidDisappear
     override func viewDidDisappear(_ animated: Bool) {
-        GPS.stopGPS()
+        CoreLocationAPI.shared.stopGPS()
     }
     
     
     // MARK: - Actions
     @IBAction func startUpdateLocationButton(_ sender: UIBarButtonItem) {
-        viewDidLoad()
+        CoreLocationAPI.shared.startGPS()
     }
     
     
     @IBAction func stopUpdateLocationButton(_ sender: UIBarButtonItem) {
-        GPS.stopGPS()
+        CoreLocationAPI.shared.stopGPS()
     }
     
     
     // MARK: - Methods
-    // LocationStart
-    func locationStart(speedSetting: String) {
-        GPS.startGPS(_desiredAccuracy: settings.readGPSAccuracySetting()) // Start GPS
-        GPS.didUpdatedLocation = {
+    // MARK: - Read values from CoreLocationAPI
+    
+    func startUpdatingCoreLocation() {
+        CoreLocationAPI.shared.startGPS()
+        CoreLocationAPI.shared.locationCompletionHandler = { GPS in
+            
             // Timestamp into String
             let date = DateFormatter()
             date.timeZone = NSTimeZone(abbreviation: "CET") as TimeZone?
             date.dateFormat = "dd-MM-yyyy - HH:mm:ss.SSS"
-            let datestring = date.string(from: self.GPS.timestamp)
+            let datestring = date.string(from: GPS.timestamp)
             
-            
-            // Get GPS Variables from Model
-            let GPSLatitude = String(format: "%.10f", self.GPS.latitude) // Latitude - Breitengrad
-            let GPSLongitude = String(format: "%.10f", self.GPS.longitude) // Longitude - Längengrad
-            let GPSHorizontalAccuracy = String(format: "%.2f", self.GPS.horizontalAccuracy) // Horizontal Accuracy
-            let GPSAltitude = String(format: "%.2f", self.GPS.altitude) // Altitude - Höhe
-            let GPSVerticalAccuracy = String(format: "%.2f", self.GPS.verticalAccuracy) // Vertcal Accuracy
-            let GPSSpeed = String(format: "%.2f", self.settings.calculateSpeed(ms: self.GPS.speed, to: "\(SettingsForUserDefaults.GPSSpeedSetting)"))
-            let GPSCourse = String(format: "%.5f", self.GPS.course) // Direction of Movement
+            // Get GPS Variables from CoreLocationAPI
+            let GPSLatitude = String(format: "%.10f", GPS.latitude) // Latitude - Breitengrad
+            let GPSLongitude = String(format: "%.10f", GPS.longitude) // Longitude - Längengrad
+            let GPSHorizontalAccuracy = String(format: "%.2f", GPS.horizontalAccuracy) // Horizontal Accuracy
+            let GPSAltitude = String(format: "%.2f", GPS.altitude) // Altitude - Höhe
+            let GPSVerticalAccuracy = String(format: "%.2f", GPS.verticalAccuracy) // Vertcal Accuracy
+            let GPSSpeed = String(format: "%.2f", SettingsAPI.shared.calculateSpeed(ms: GPS.speed, to: "\(SettingsForUserDefaults.GPSSpeedSetting)"))
+            let GPSCourse = String(format: "%.5f", GPS.course) // Direction of Movement
             let GPSTimestamp = datestring // Timestamp
-            let GPSDesiredAccuracy = self.settings.readGPSAccuracySetting() // GPS Accuracy
-            
+            let GPSDesiredAccuracy = SettingsAPI.shared.readGPSAccuracySetting() // GPS Accuracy
             
             // Print all GPS Variables for Debug
             print("Latitude: \(GPSLatitude)")
@@ -92,7 +88,7 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
             print("Horizontal Accuracy: \(GPSHorizontalAccuracy)")
             print("Altitude: \(GPSAltitude)")
             print("VerticalAccuracy: \(GPSVerticalAccuracy)")
-            print("Speed in \(self.settings.readSpeedSetting()): \(GPSSpeed)")
+            print("Speed in \(SettingsAPI.shared.readSpeedSetting()): \(GPSSpeed)")
             print("Direction: \(GPSCourse)")
             print("Timestamp: \(GPSTimestamp)")
             print("Desired Accuracy: \(GPSDesiredAccuracy)")
@@ -103,11 +99,11 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
             self.GPSLongitudeLabel.text = "Longitude:".localized + " \(GPSLongitude) ° ±\(GPSHorizontalAccuracy)m"
             self.GPSAltitudeLabel.text = "Altitude:".localized + " \(GPSAltitude) ±\(GPSVerticalAccuracy)m"
             self.GPSDirectionLabel.text = "Direction:".localized + " \(GPSCourse) °"
-            self.GPSSpeedLabel.text = "Speed:".localized + "\(GPSSpeed) \(self.settings.readSpeedSetting())"
+            self.GPSSpeedLabel.text = "Speed:".localized + "\(GPSSpeed) \(SettingsAPI.shared.readSpeedSetting())"
             
-
+            
             // MARK: - MapKit
-            let locValue:CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: self.GPS.latitude, longitude: self.GPS.longitude)
+            let mapLocationValue:CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: GPS.latitude, longitude: GPS.longitude)
             
             // Map Types
             self.GPSMapKitView.mapType = MKMapType.standard
@@ -124,13 +120,12 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
             self.GPSMapKitView.isRotateEnabled = true
             self.GPSMapKitView.isPitchEnabled = true
             
-            
             let span = MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02)
-            let region = MKCoordinateRegion(center: locValue, span: span)
+            let region = MKCoordinateRegion(center: mapLocationValue, span: span)
             self.GPSMapKitView.setRegion(region, animated: true)
             
             let annotation = MKPointAnnotation()
-            annotation.coordinate = locValue
+            annotation.coordinate = mapLocationValue
         }
     }
     

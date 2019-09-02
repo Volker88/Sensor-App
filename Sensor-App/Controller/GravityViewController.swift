@@ -25,7 +25,6 @@ class GravityViewController: UIViewController, UITableViewDataSource, UITableVie
 
     // MARK: - Initialize Classes
     let motionManager = CoreMotionModel()
-    let settings = SettingsModel() // Settings
     
     
     // MARK: - Define Constants / Variables
@@ -55,7 +54,7 @@ class GravityViewController: UIViewController, UITableViewDataSource, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         UICustomization() // UI Customization
-        self.frequency = settings.readFrequency() // Update Motion Frequency
+        self.frequency = SettingsAPI.shared.readFrequency() // Update Motion Frequency
         initialStart() // Initial Start of CoreMotion
     }
     

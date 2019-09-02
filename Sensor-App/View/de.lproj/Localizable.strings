@@ -46,4 +46,9 @@
 "A:" = "H:";
 
 
+// MARK: - Settings
+"Successfully saved!" = "Änderungen gespeichert!";
+"Changes discarded!" = "Änderungen verworfen!";
+
+
 

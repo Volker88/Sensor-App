@@ -25,7 +25,6 @@ class AccelerometerViewController: UIViewController, UITableViewDataSource, UITa
     
     // MARK: - Initialize Classes
     let motionManager = CoreMotionModel()
-    let settings = SettingsModel() // Settings
     
     
     // MARK: - Define Constants / Variables
@@ -55,8 +54,9 @@ class AccelerometerViewController: UIViewController, UITableViewDataSource, UITa
     override func viewDidLoad() {
         super.viewDidLoad()
         UICustomization() // UI Customization
-        self.frequency = settings.readFrequency() // Update Motion Frequency
+        self.frequency = SettingsAPI.shared.readFrequency() // Update Motion Frequency
         initialStart() // Initial Start of CoreMotion
+        start()
     }
     
     
@@ -91,6 +91,20 @@ class AccelerometerViewController: UIViewController, UITableViewDataSource, UITa
     
     
     // MARK: - Methods
+    
+    func start() {
+        CoreMotionAPI.shared.motionStartMethod()
+        CoreMotionAPI.shared.motionCompletionHandler = { motion in
+            print("---------\(motion.accelerationXAxis) -sddsdssd")
+
+        }
+        CoreMotionAPI.shared.altitudeCompletionHandler = { altitude in
+            print("---------\(altitude.relativeAltitudeValue) -sddsdssd")
+        }
+        
+    }
+    
+    
     func initialStart() {
         motionManager.sensorUpdateInterval = 1 / Double(self.frequency)  // Calculate frequency
         motionUpdateFrequencyLabel.text = "Frequency:".localized + " \(frequency) Hz" // Setting Label
