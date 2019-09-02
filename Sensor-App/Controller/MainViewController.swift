@@ -1,6 +1,6 @@
 //
 //  MainViewController.swift
-//  Sensor App
+//  Sensor-App
 //
 //  Created by Volker Schmitt on 05.05.19.
 //  Copyright © 2019 Volker Schmitt. All rights reserved.

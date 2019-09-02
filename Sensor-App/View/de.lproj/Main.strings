@@ -151,6 +151,9 @@
 /* Class = "UILabel"; text = "Pressure: kP"; ObjectID = "X67-iv-7Of"; */
 "X67-iv-7Of.text" = "Luftdruck:";
 
+/* Class = "UILabel"; text = "Pressure:"; ObjectID = "6Ep-zO-dAQ"; */
+"6Ep-zO-dAQ.text" = "Luftdruck:";
+
 /* Class = "UILabel"; text = "Pressure:"; ObjectID = "dHD-Ng-2Su"; */
 "dHD-Ng-2Su.text" = "Luftdruck:";
 
@@ -300,3 +303,21 @@
 
 /* Class = "UILabel"; text = "Speed:"; ObjectID = "x8m-Mi-oDY"; */
 "x8m-Mi-oDY.text" = "Geschwindigkeit:";
+
+/* Class = "UILabel"; text = "Location"; ObjectID = "v7a-kg-Y6y"; */
+"v7a-kg-Y6y.text" = "Standort";
+
+/* Class = "UILabel"; text = "Speed:"; ObjectID = "A0F-JN-HDj"; */
+"A0F-JN-HDj.text" = "Geschwindigkeit:";
+
+/* Class = "UILabel"; text = "Accuracy:"; ObjectID = "RPJ-nw-B8s"; */
+"RPJ-nw-B8s.text" = "Genauigkeit:";
+
+/* Class = "UILabel"; text = "Height:"; ObjectID = "3h3-b6-oSa"; */
+"3h3-b6-oSa.text" = "Höhe:";
+
+/* Class = "UIViewController"; title = "Settings"; ObjectID = "CoT-1U-b0H"; */
+"CoT-1U-b0H.title" = "Einstellungen";
+
+/* Class = "UILabel"; text = "Refresh Rate"; ObjectID = "U0V-P9-qKJ"; */
+"U0V-P9-qKJ.text" = "Aktualisierungsrate";

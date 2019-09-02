@@ -15,6 +15,12 @@
 "Speed:" = "Geschwindigkeit";
 
 
+"Location update started!" = "Standort updates gestarted!";
+"Location update stopped!" = "Standort updates gestoppt!";
+
+
+
+
 // MARK: - AccelerometerViewController.swift
 "X-Axis:" = "X-Achse:";
 "Y-Axis:" = "Y-Achse:";
@@ -44,6 +50,11 @@
 "Altitude Change:" = "Höhenänderung:";
 "P:" = "D:";
 "A:" = "H:";
+
+
+// MARK: - Settings
+"Successfully saved!" = "Änderungen gespeichert!";
+"Changes discarded!" = "Änderungen verworfen!";
 
 
 

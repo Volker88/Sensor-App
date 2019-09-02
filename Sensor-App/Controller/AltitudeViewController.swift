@@ -1,6 +1,6 @@
 //
 //  AltitudeViewController.swift
-//  Sensor App
+//  Sensor-App
 //
 //  Created by Volker Schmitt on 25.05.19.
 //  Copyright © 2019 Volker Schmitt. All rights reserved.
@@ -8,7 +8,6 @@
 
 // MARK: - Import
 import UIKit
-import CoreMotion
 
 
 // MARK: - TableViewCell Class
@@ -20,25 +19,13 @@ class AltitudeTableViewCell: UITableViewCell {
 
 
 // MARK: - Class Definition
-class AltitudeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class AltitudeViewController: UIViewController {
     
     // MARK: - Initialize Classes
-    let motionManager = CoreMotionModel()
-    let settings = SettingsModel() // Settings
     
     
     // MARK: - Define Constants / Variables
-    var frequency: Float = 1.0 // Default Frequency
-    var dataValues = [DataArray]() // Sensor Data Array
-    
-    
-    // Struct for Tableview Data
-    struct dataArray {
-        var counter = [Int]() // ID Counter
-        var timestamp = [String]() // Timestamp
-        var pressure = [String]() // Pressure values
-        var altitudeChange = [String]() // Altitude Change values
-    }
+    var frequency: Float = SettingsAPI.shared.readFrequency() // Default Frequency
     
     
     // MARK: - Outlets
@@ -53,109 +40,72 @@ class AltitudeViewController: UIViewController, UITableViewDataSource, UITableVi
     // MARK: - ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+        altitudeTableView.dataSource = self
+        altitudeTableView.delegate = self
+        
         UICustomization() // UI Customization
-        initialStart() // Initial Start of CoreMotion
+        startMotionUpdates() // Initial Start of CoreMotion
     }
     
     
     // MARK: - ViewDidDisappear
     override func viewDidDisappear(_ animated: Bool) {
-        motionManager.motionStopMethod()
+        CoreMotionAPI.shared.motionStopMethod()
     }
     
     
     // MARK: - Actions
     @IBAction func startUpdateMotionButton(_ sender: UIBarButtonItem) {
-        motionManagerStart()
+        CoreMotionAPI.shared.motionStartMethod()
     }
     
     
     @IBAction func stopUpdateMotionButton(_ sender: UIBarButtonItem) {
-        motionManager.motionStopMethod()
+        CoreMotionAPI.shared.motionStopMethod()
     }
     
     
     
     @IBAction func deleteRecordedData(_ sender: Any) {
-        dataValues.removeAll() // Clear Array
-        altitudeTableView.reloadData() // Reload TableView
-    }
-    
-    
-    // MARK: - Methods
-    func initialStart() {
-        motionManagerStart() // Motion Start
-    }
-    
-    
-    func motionManagerStart() {
-        // Start Motion
-        motionManager.motionStartMethod()
-        
-        // Update Labels
-        motionManager.didUpdatedCoreMotion = {
-            
-            // Get Calculated Pressure + Altitude change date
-            let altitude = self.getAltitudeData(pressure: self.motionManager.pressureValue, height: self.motionManager.relativeAltitudeValue)
-            
-            // Attitude
-            self.altitudePressureLabel.text = "Pressure:".localized + " \(String(format:"%.5f", altitude.convertedPressure)) \(self.settings.readPressureSetting())"
-            self.altitudeHeightChangeLabel.text = "Altitude Change:".localized + " \(String(format:"%.2f", altitude.convertedHeight)) \(self.settings.readHeightSetting())"
-            
-            
-            // Altitude Arrays
-            self.dataValues.insert(DataArray(
-                counter: self.dataValues.count + 1,
-                timestamp: self.motionManager.getTimestamp(),
-                accelerationXAxis: self.motionManager.accelerationX,
-                accelerationYAxis: self.motionManager.accelerationY,
-                accelerationZAxis: self.motionManager.accelerationZ,
-                gravityXAxis: self.motionManager.gravityX,
-                gravityYAxis: self.motionManager.gravityY,
-                gravityZAxis: self.motionManager.gravityZ,
-                gyroXAxis: self.motionManager.gyroX,
-                gyroYAxis: self.motionManager.gyroX,
-                gyroZAxis: self.motionManager.gyroX,
-                magnetometerCalibration: self.motionManager.magnetometerCalibration,
-                magnetometerXAxis: self.motionManager.magnetometerX,
-                magnetometerYAxis: self.motionManager.magnetometerY,
-                magnetometerZAxis: self.motionManager.magnetometerZ,
-                attitudeRoll: (self.motionManager.attitudeRoll * 180 / .pi),
-                attitudePitch: (self.motionManager.attitudePitch * 180 / .pi),
-                attitudeYaw: (self.motionManager.attitudeYaw * 180 / .pi),
-                attitudeHeading: self.motionManager.attitudeHeading,
-                pressureValue: self.motionManager.pressureValue,
-                relativeAltitudeValue: self.motionManager.relativeAltitudeValue
-            ), at: 0)
-            
+        CoreMotionAPI.shared.clearMotionArray {
             self.altitudeTableView.reloadData() // Reload TableView
         }
     }
     
     
-    // MARK: - TableView
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataValues.count
+    // MARK: - Methods
+    func startMotionUpdates() {
+        CoreMotionAPI.shared.motionStartMethod()
+        CoreMotionAPI.shared.altitudeCompletionHandler = { motion in
+            
+            guard let pressure = motion.first?.pressureValue else { return }
+            guard let altitude = motion.first?.relativeAltitudeValue else { return }
+            
+            // Change Altitude Labels
+            self.altitudePressureLabel.text = "Pressure:".localized + " \(String(format:"%.5f", pressure)) \(SettingsAPI.shared.readPressureSetting())"
+            self.altitudeHeightChangeLabel.text = "Altitude Change:".localized + " \(String(format:"%.5f", altitude)) \(SettingsAPI.shared.readHeightSetting())"
+            
+            
+            // Reload TableView
+            self.altitudeTableView.reloadData()
+        }
     }
-    
-    
-    func getAltitudeData(pressure: Double, height: Double) -> (convertedPressure: Double, convertedHeight: Double) {
-        let altitudePressureSetting = settings.readPressureSetting()
-        let altitudeHeightSetting = settings.readHeightSetting()
-        
-        let pressure = settings.calculatePressure(pressure: pressure, to: altitudePressureSetting)
-        let height = settings.calculateHeight(height: height, to: altitudeHeightSetting)
-        
-        return (pressure, height)
+}
+
+
+// MARK: - TableView
+extension AltitudeViewController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return CoreMotionAPI.shared.altitudeModelArray.count
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "altitudeCell", for: indexPath) as! AltitudeTableViewCell
         
-        cell.altitudeTableViewCounter.text = "ID: \(dataValues[indexPath.row].counter)"
-        cell.altitudeTableViewPressure.text = "P:".localized + "\(String(format:"%.5f", dataValues[indexPath.row].pressureValue))"
-        cell.altitudeTableViewAltitudeChange.text = "A:".localized + "\(String(format:"%.5f", dataValues[indexPath.row].relativeAltitudeValue))"
+        cell.altitudeTableViewCounter.text = "ID: \(CoreMotionAPI.shared.altitudeModelArray[indexPath.row].counter)"
+        cell.altitudeTableViewPressure.text = "P:".localized + "\(String(format:"%.5f", CoreMotionAPI.shared.altitudeModelArray[indexPath.row].pressureValue))"
+        cell.altitudeTableViewAltitudeChange.text = "A:".localized + "\(String(format:"%.5f", CoreMotionAPI.shared.altitudeModelArray[indexPath.row].relativeAltitudeValue))"
         
         return cell
     }

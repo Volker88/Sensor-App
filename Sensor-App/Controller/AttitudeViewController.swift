@@ -1,6 +1,6 @@
 //
 //  AttitudeViewController.swift
-//  Sensor App
+//  Sensor-App
 //
 //  Created by Volker Schmitt on 25.05.19.
 //  Copyright © 2019 Volker Schmitt. All rights reserved.
@@ -8,7 +8,6 @@
 
 // MARK: - Import
 import UIKit
-import CoreMotion
 
 
 // MARK: - TableViewCell Class
@@ -22,20 +21,16 @@ class AttitudeTableViewCell: UITableViewCell {
 
 
 // MARK: - Class Definition
-class AttitudeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class AttitudeViewController: UIViewController {
     
     // MARK: - Initialize Classes
-    let motionManager = CoreMotionModel()
-    let settings = SettingsModel() // Settings
     
     
     // MARK: - Define Constants / Variables
-    var frequency: Float = 1.0 // Default Frequency
-    var dataValues = [DataArray]() // Sensor Data Array
+    var frequency: Float = SettingsAPI.shared.readFrequency() // Default Frequency
     
     
     // MARK: - Outlets
-    
     // Attitude
     @IBOutlet weak var attitudeHeaderLabel: UILabel!
     @IBOutlet weak var attitudeRollLabel: UILabel!
@@ -57,109 +52,92 @@ class AttitudeViewController: UIViewController, UITableViewDataSource, UITableVi
     // MARK: - ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+        attitudeTableView.dataSource = self
+        attitudeTableView.delegate = self
+        
         UICustomization() // UI Customization
-        self.frequency = settings.readFrequency() // Update Motion Frequency
-        initialStart() // Initial Start of CoreMotion
+        frequencySliderSetup() // Set up Frequency Slider + Text
+        startMotionUpdates() // Initial Start of CoreMotion
     }
     
     
     // MARK: - ViewDidDisappear
     override func viewDidDisappear(_ animated: Bool) {
-        motionManager.motionStopMethod()
+        CoreMotionAPI.shared.motionStopMethod()
     }
     
     
     // MARK: - Actions
     @IBAction func startUpdateMotionButton(_ sender: UIBarButtonItem) {
-        motionManagerStart()
+        CoreMotionAPI.shared.motionStartMethod()
     }
     
     
     @IBAction func stopUpdateMotionButton(_ sender: UIBarButtonItem) {
-        motionManager.motionStopMethod()
+        CoreMotionAPI.shared.motionStopMethod()
     }
     
     
     @IBAction func motionFrequencyUpdateSlider(_ sender: UISlider) {
         self.frequency = Float(String(format: "%.1f", sender.value))!
-        motionManager.sensorUpdateInterval = 1 / Double(self.frequency)  // Calculate frequency
+        CoreMotionAPI.shared.sensorUpdateInterval = 1 / Double(self.frequency)  // Calculate frequency
         motionUpdateFrequencyLabel.text = "Frequency:".localized + " \(self.frequency) Hz"
     }
     
     
     @IBAction func deleteRecordedData(_ sender: Any) {
-        dataValues.removeAll() // Clear Array
-        attitudeTableView.reloadData() // Reload TableView
-    }
-    
-    
-    // MARK: - Methods
-    func initialStart() {
-        motionManager.sensorUpdateInterval = 1 / Double(self.frequency)  // Calculate frequency
-        motionUpdateFrequencyLabel.text = "Frequency:".localized + " \(frequency) Hz" // Setting Label
-        motionFrequencySliderOutlet.value = frequency // Setting Slider
-        motionManagerStart() // Motion Start
-    }
-    
-    
-    func motionManagerStart() {
-        // Start Motion
-        motionManager.motionStartMethod()
-        
-        // Update Labels
-        motionManager.didUpdatedCoreMotion = {
-            
-            // Attitude
-            self.attitudeRollLabel.text = "Roll:".localized + " \(String(format:"%.5f", self.motionManager.attitudeRoll * 180 / .pi)) °"
-            self.attitudePitchLabel.text = "Pitch:".localized + " \(String(format:"%.5f", self.motionManager.attitudePitch * 180 / .pi)) °"
-            self.attitudeYawLabel.text = "Yaw:".localized + " \(String(format:"%.5f", self.motionManager.attitudeYaw * 180 / .pi)) °"
-            self.attitudeHeadingLabel.text = "Heading:".localized + " \(String(format:"%.5f", self.motionManager.attitudeHeading)) °" // Localization
-            
-            
-            // Attitude Array
-            self.dataValues.insert(DataArray(
-                counter: self.dataValues.count + 1,
-                timestamp: self.motionManager.getTimestamp(),
-                accelerationXAxis: self.motionManager.accelerationX,
-                accelerationYAxis: self.motionManager.accelerationY,
-                accelerationZAxis: self.motionManager.accelerationZ,
-                gravityXAxis: self.motionManager.gravityX,
-                gravityYAxis: self.motionManager.gravityY,
-                gravityZAxis: self.motionManager.gravityZ,
-                gyroXAxis: self.motionManager.gyroX,
-                gyroYAxis: self.motionManager.gyroX,
-                gyroZAxis: self.motionManager.gyroX,
-                magnetometerCalibration: self.motionManager.magnetometerCalibration,
-                magnetometerXAxis: self.motionManager.magnetometerX,
-                magnetometerYAxis: self.motionManager.magnetometerY,
-                magnetometerZAxis: self.motionManager.magnetometerZ,
-                attitudeRoll: (self.motionManager.attitudeRoll * 180 / .pi),
-                attitudePitch: (self.motionManager.attitudePitch * 180 / .pi),
-                attitudeYaw: (self.motionManager.attitudeYaw * 180 / .pi),
-                attitudeHeading: self.motionManager.attitudeHeading,
-                pressureValue: self.motionManager.pressureValue,
-                relativeAltitudeValue: self.motionManager.relativeAltitudeValue
-            ), at: 0)
-            
+        CoreMotionAPI.shared.clearMotionArray {
             self.attitudeTableView.reloadData() // Reload TableView
         }
     }
     
     
-    // MARK: - TableView
+    // MARK: - Methods
+    func frequencySliderSetup() {
+        CoreMotionAPI.shared.sensorUpdateInterval = 1 / Double(self.frequency)  // Calculate frequency
+        motionUpdateFrequencyLabel.text = "Frequency:".localized + " \(frequency) Hz" // Setting Label
+        motionFrequencySliderOutlet.value = frequency // Setting Slider
+    }
+    
+    
+    func startMotionUpdates() {
+        CoreMotionAPI.shared.motionStartMethod()
+        CoreMotionAPI.shared.motionCompletionHandler = { motion in
+            
+            guard let attitudeRoll = motion.first?.attitudeRoll else { return }
+            guard let attitudePitch = motion.first?.attitudePitch else { return }
+            guard let attitudeYaw = motion.first?.attitudeYaw else { return }
+            guard let attitudeHeading = motion.first?.attitudeHeading else { return }
+            
+            // Change Attitude Labels
+            self.attitudeRollLabel.text = "Roll:".localized + " \(String(format:"%.5f", attitudeRoll * 180 / .pi)) °"
+            self.attitudePitchLabel.text = "Pitch:".localized + " \(String(format:"%.5f", attitudePitch * 180 / .pi)) °"
+            self.attitudeYawLabel.text = "Yaw:".localized + " \(String(format:"%.5f", attitudeYaw * 180 / .pi)) °"
+            self.attitudeHeadingLabel.text = "Heading:".localized + " \(String(format:"%.5f", attitudeHeading)) °"
+            
+            // Reload TableView
+            self.attitudeTableView.reloadData()
+        }
+    }
+}
+
+
+// MARK: - TableView
+extension AttitudeViewController: UITableViewDataSource, UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataValues.count
+        return CoreMotionAPI.shared.motionModelArray.count
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "attitudeCell", for: indexPath) as! AttitudeTableViewCell
         
-        cell.attitudeTableViewCounter.text = "ID: \(dataValues[indexPath.row].counter)"
-        cell.attitudeTableViewRoll.text = "R: \(String(format:"%.5f", dataValues[indexPath.row].attitudeRoll))"
-        cell.attitudeTableViewPitch.text = "P: \(String(format:"%.5f", dataValues[indexPath.row].attitudePitch))"
-        cell.attitudeTableViewYaw.text = "Y: \(String(format:"%.5f", dataValues[indexPath.row].attitudeYaw))"
-        cell.attitudeTableViewHeading.text = "H: \(String(format:"%.5f", dataValues[indexPath.row].attitudeHeading))"
+        cell.attitudeTableViewCounter.text = "ID: \(CoreMotionAPI.shared.motionModelArray[indexPath.row].counter)"
+        cell.attitudeTableViewRoll.text = "R: \(String(format:"%.5f", CoreMotionAPI.shared.motionModelArray[indexPath.row].attitudeRoll))"
+        cell.attitudeTableViewPitch.text = "P: \(String(format:"%.5f", CoreMotionAPI.shared.motionModelArray[indexPath.row].attitudePitch))"
+        cell.attitudeTableViewYaw.text = "Y: \(String(format:"%.5f", CoreMotionAPI.shared.motionModelArray[indexPath.row].attitudeYaw))"
+        cell.attitudeTableViewHeading.text = "H: \(String(format:"%.5f", CoreMotionAPI.shared.motionModelArray[indexPath.row].attitudeHeading))"
         
         return cell
     }

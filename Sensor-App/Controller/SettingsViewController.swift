@@ -14,7 +14,6 @@ import UIKit
 class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     
     // MARK: - Initialize Classes
-    let settingsModel = SettingsModel()
     
     
     // MARK: - Variables / Constants
@@ -22,7 +21,6 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
     var GPSAccuracySetting: String = "Best"
     var altitudePressureSetting: String = "bar"
     var altitudeHeightSetting: String = "m"
-    let userDefaults = UserDefaults.standard
     var updateFrequency: Float = 1.0
     
     
@@ -81,11 +79,12 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
     
     
     @IBAction func saveButtonTapped(_ sender: Any) { // Save Settings
-        settingsModel.saveUserDefaultsString(input: GPSSpeedSetting, setting: SettingsForUserDefaults.GPSSpeedSetting)
-        settingsModel.saveUserDefaultsString(input: GPSAccuracySetting, setting: SettingsForUserDefaults.GPSAccuracySetting)
-        settingsModel.saveUserDefaultsString(input: altitudePressureSetting, setting: SettingsForUserDefaults.pressureSetting)
-        settingsModel.saveUserDefaultsString(input: altitudeHeightSetting, setting: SettingsForUserDefaults.altitudeHeightSetting)
-        settingsModel.saveFrequency(frequency: updateFrequency)
+        SettingsAPI.shared.saveUserDefaultsString(input: GPSSpeedSetting, setting: SettingsForUserDefaults.GPSSpeedSetting)
+        SettingsAPI.shared.saveUserDefaultsString(input: GPSAccuracySetting, setting: SettingsForUserDefaults.GPSAccuracySetting)
+        SettingsAPI.shared.saveUserDefaultsString(input: altitudePressureSetting, setting: SettingsForUserDefaults.pressureSetting)
+        SettingsAPI.shared.saveUserDefaultsString(input: altitudeHeightSetting, setting: SettingsForUserDefaults.altitudeHeightSetting)
+        SettingsAPI.shared.saveFrequency(frequency: updateFrequency)
+        //let status = "Successfully saved!".localized
     }
     
     
@@ -95,6 +94,7 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
         pickerViewDefault(setting: SettingsForUserDefaults.pressureSetting)
         pickerViewDefault(setting: SettingsForUserDefaults.altitudeHeightSetting)
         getUpdateFrequency()
+        //let status = "Changes discarded!".localized
     }
     
     
@@ -104,13 +104,14 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
         return 1
     }
     
+    
     // Qty of items to show
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         switch pickerView.tag {
-        case 1: return settingsModel.GPSspeedSettings.count
-        case 2: return settingsModel.GPSAccuracyOptions.count
-        case 3: return settingsModel.altitudePressure.count
-        case 4: return settingsModel.altitudeHeight.count
+        case 1: return SettingsAPI.shared.GPSspeedSettings.count
+        case 2: return SettingsAPI.shared.GPSAccuracyOptions.count
+        case 3: return SettingsAPI.shared.altitudePressure.count
+        case 4: return SettingsAPI.shared.altitudeHeight.count
         default: return 1
         }
     }
@@ -120,10 +121,10 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         var rowTitle = ""
         switch pickerView.tag {
-        case 1: rowTitle = settingsModel.GPSspeedSettings[row]
-        case 2: rowTitle = settingsModel.GPSAccuracyOptions[row]
-        case 3: rowTitle = settingsModel.altitudePressure[row]
-        case 4: rowTitle = settingsModel.altitudeHeight[row]
+        case 1: rowTitle = SettingsAPI.shared.GPSspeedSettings[row]
+        case 2: rowTitle = SettingsAPI.shared.GPSAccuracyOptions[row]
+        case 3: rowTitle = SettingsAPI.shared.altitudePressure[row]
+        case 4: rowTitle = SettingsAPI.shared.altitudeHeight[row]
         default: rowTitle = "Error"
         }
         return rowTitle
@@ -134,10 +135,10 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
         switch pickerView.tag {
-        case 1: GPSSpeedSetting = settingsModel.GPSspeedSettings[row]
-        case 2: GPSAccuracySetting = settingsModel.GPSAccuracyOptions[row]
-        case 3: altitudePressureSetting = settingsModel.altitudePressure[row]
-        case 4: altitudeHeightSetting = settingsModel.altitudeHeight[row]
+        case 1: GPSSpeedSetting = SettingsAPI.shared.GPSspeedSettings[row]
+        case 2: GPSAccuracySetting = SettingsAPI.shared.GPSAccuracyOptions[row]
+        case 3: altitudePressureSetting = SettingsAPI.shared.altitudePressure[row]
+        case 4: altitudeHeightSetting = SettingsAPI.shared.altitudeHeight[row]
         default: print("Error")
         }
     }
@@ -148,28 +149,28 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
         var settingsDefaultIndex = 0
         
         if setting == SettingsForUserDefaults.GPSSpeedSetting {
-            for item in settingsModel.GPSspeedSettings {
+            for item in SettingsAPI.shared.GPSspeedSettings {
                 settingsDefaultIndex += 1
                 if item == key {
                     break // Search sucessful -> finish loop
                 }
             }
         } else if setting == SettingsForUserDefaults.GPSAccuracySetting {
-            for item in settingsModel.GPSAccuracyOptions {
+            for item in SettingsAPI.shared.GPSAccuracyOptions {
                 settingsDefaultIndex += 1
                 if item == key {
                     break // Search sucessful -> finish loop
                 }
             }
         } else if setting == SettingsForUserDefaults.pressureSetting {
-            for item in settingsModel.altitudePressure {
+            for item in SettingsAPI.shared.altitudePressure {
                 settingsDefaultIndex += 1
                 if item == key {
                     break // Search sucessful -> finish loop
                 }
             }
         } else if setting == SettingsForUserDefaults.altitudeHeightSetting {
-            for item in settingsModel.altitudeHeight {
+            for item in SettingsAPI.shared.altitudeHeight {
                 settingsDefaultIndex += 1
                 if item == key {
                     break // Search sucessful -> finish loop
@@ -181,7 +182,7 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
     
     
     func pickerViewDefault(setting: SettingsForUserDefaults) {
-        if let i = userDefaults.string(forKey: "\(setting)") {
+        if let i = SettingsAPI.shared.userDefaults.string(forKey: "\(setting)") {
             let pickerIndex = defaultSettingForPickerView(key: i, setting: setting)
             switch setting {
             case SettingsForUserDefaults.GPSSpeedSetting: self.speedPickerView.selectRow(pickerIndex - 1, inComponent: 0, animated: true)
@@ -197,7 +198,7 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
     
     // MARK: - Methods
     func getUpdateFrequency() {
-        updateFrequency = settingsModel.readFrequency() // Read update frequency
+        updateFrequency = SettingsAPI.shared.readFrequency() // Read update frequency
         frequencyUpdateSliderOutlet.value = updateFrequency
         self.motionUpdateFrequencyLabel.text = "Frequency:".localized + " \(self.updateFrequency) Hz"
         print("Read: - Setting: \(self.updateFrequency)")
