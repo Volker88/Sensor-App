@@ -8,7 +8,6 @@
 
 // MARK: - Import
 import UIKit
-import CoreMotion
 
 
 // MARK: - TableViewCell Class
@@ -20,24 +19,15 @@ class AltitudeTableViewCell: UITableViewCell {
 
 
 // MARK: - Class Definition
-class AltitudeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class AltitudeViewController: UIViewController {
     
     // MARK: - Initialize Classes
-    let motionManager = CoreMotionModel()
     
     
     // MARK: - Define Constants / Variables
-    var frequency: Float = 1.0 // Default Frequency
-    var dataValues = [DataArray]() // Sensor Data Array
+    var frequency: Float = SettingsAPI.shared.readFrequency() // Default Frequency
+    var dataValues = [AltitudeModelArray]() // Sensor Data Array
     
-    
-    // Struct for Tableview Data
-    struct dataArray {
-        var counter = [Int]() // ID Counter
-        var timestamp = [String]() // Timestamp
-        var pressure = [String]() // Pressure values
-        var altitudeChange = [String]() // Altitude Change values
-    }
     
     
     // MARK: - Outlets
@@ -53,24 +43,24 @@ class AltitudeViewController: UIViewController, UITableViewDataSource, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         UICustomization() // UI Customization
-        initialStart() // Initial Start of CoreMotion
+        startMotionUpdates() // Initial Start of CoreMotion
     }
     
     
     // MARK: - ViewDidDisappear
     override func viewDidDisappear(_ animated: Bool) {
-        motionManager.motionStopMethod()
+        CoreMotionAPI.shared.motionStopMethod()
     }
     
     
     // MARK: - Actions
     @IBAction func startUpdateMotionButton(_ sender: UIBarButtonItem) {
-        motionManagerStart()
+        CoreMotionAPI.shared.motionStartMethod()
     }
     
     
     @IBAction func stopUpdateMotionButton(_ sender: UIBarButtonItem) {
-        motionManager.motionStopMethod()
+        CoreMotionAPI.shared.motionStopMethod()
     }
     
     
@@ -82,70 +72,35 @@ class AltitudeViewController: UIViewController, UITableViewDataSource, UITableVi
     
     
     // MARK: - Methods
-    func initialStart() {
-        motionManagerStart() // Motion Start
-    }
-    
-    
-    func motionManagerStart() {
-        // Start Motion
-        motionManager.motionStartMethod()
-        
-        // Update Labels
-        motionManager.didUpdatedCoreMotion = {
+    func startMotionUpdates() {
+        CoreMotionAPI.shared.motionStartMethod()
+        CoreMotionAPI.shared.altitudeCompletionHandler = { motion in
             
             // Get Calculated Pressure + Altitude change date
-            let altitude = self.getAltitudeData(pressure: self.motionManager.pressureValue, height: self.motionManager.relativeAltitudeValue)
+            let altitude = CalculationAPI.shared.convertAltitudeData(pressure: motion.pressureValue, height: motion.relativeAltitudeValue)
             
             // Attitude
             self.altitudePressureLabel.text = "Pressure:".localized + " \(String(format:"%.5f", altitude.convertedPressure)) \(SettingsAPI.shared.readPressureSetting())"
-            self.altitudeHeightChangeLabel.text = "Altitude Change:".localized + " \(String(format:"%.2f", altitude.convertedHeight)) \(SettingsAPI.shared.readHeightSetting())"
+            self.altitudeHeightChangeLabel.text = "Altitude Change:".localized + " \(String(format:"%.5f", altitude.convertedHeight)) \(SettingsAPI.shared.readHeightSetting())"
             
             
-            // Altitude Arrays
-            self.dataValues.insert(DataArray(
+            // Motion Array
+            self.dataValues.insert(AltitudeModelArray(
                 counter: self.dataValues.count + 1,
-                timestamp: self.motionManager.getTimestamp(),
-                accelerationXAxis: self.motionManager.accelerationX,
-                accelerationYAxis: self.motionManager.accelerationY,
-                accelerationZAxis: self.motionManager.accelerationZ,
-                gravityXAxis: self.motionManager.gravityX,
-                gravityYAxis: self.motionManager.gravityY,
-                gravityZAxis: self.motionManager.gravityZ,
-                gyroXAxis: self.motionManager.gyroX,
-                gyroYAxis: self.motionManager.gyroX,
-                gyroZAxis: self.motionManager.gyroX,
-                magnetometerCalibration: self.motionManager.magnetometerCalibration,
-                magnetometerXAxis: self.motionManager.magnetometerX,
-                magnetometerYAxis: self.motionManager.magnetometerY,
-                magnetometerZAxis: self.motionManager.magnetometerZ,
-                attitudeRoll: (self.motionManager.attitudeRoll * 180 / .pi),
-                attitudePitch: (self.motionManager.attitudePitch * 180 / .pi),
-                attitudeYaw: (self.motionManager.attitudeYaw * 180 / .pi),
-                attitudeHeading: self.motionManager.attitudeHeading,
-                pressureValue: self.motionManager.pressureValue,
-                relativeAltitudeValue: self.motionManager.relativeAltitudeValue
+                timestamp: SettingsAPI.shared.getTimestamp(),
+                pressureValue: altitude.convertedPressure,
+                relativeAltitudeValue: altitude.convertedHeight
             ), at: 0)
-            
             self.altitudeTableView.reloadData() // Reload TableView
         }
     }
-    
-    
-    // MARK: - TableView
+}
+
+
+// MARK: - TableView
+extension AltitudeViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataValues.count
-    }
-    
-    
-    func getAltitudeData(pressure: Double, height: Double) -> (convertedPressure: Double, convertedHeight: Double) {
-        let altitudePressureSetting = SettingsAPI.shared.readPressureSetting()
-        let altitudeHeightSetting = SettingsAPI.shared.readHeightSetting()
-        
-        let pressure = SettingsAPI.shared.calculatePressure(pressure: pressure, to: altitudePressureSetting)
-        let height = SettingsAPI.shared.calculateHeight(height: height, to: altitudeHeightSetting)
-        
-        return (pressure, height)
     }
     
     

@@ -9,6 +9,7 @@
 // MARK: - Import
 import UIKit
 import MapKit
+import ProgressHUD
 
 
 // MARK: - Class Definition
@@ -50,11 +51,15 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
     // MARK: - Actions
     @IBAction func startUpdateLocationButton(_ sender: UIBarButtonItem) {
         CoreLocationAPI.shared.startGPS()
+        let status = "Location update started!".localized
+        ProgressHUD.showSuccess(status)
     }
     
     
     @IBAction func stopUpdateLocationButton(_ sender: UIBarButtonItem) {
         CoreLocationAPI.shared.stopGPS()
+        let status = "Location update stopped!".localized
+        ProgressHUD.showSuccess(status)
     }
     
     
@@ -77,7 +82,7 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
             let GPSHorizontalAccuracy = String(format: "%.2f", GPS.horizontalAccuracy) // Horizontal Accuracy
             let GPSAltitude = String(format: "%.2f", GPS.altitude) // Altitude - Höhe
             let GPSVerticalAccuracy = String(format: "%.2f", GPS.verticalAccuracy) // Vertcal Accuracy
-            let GPSSpeed = String(format: "%.2f", SettingsAPI.shared.calculateSpeed(ms: GPS.speed, to: "\(SettingsForUserDefaults.GPSSpeedSetting)"))
+            let GPSSpeed = String(format: "%.2f", CalculationAPI.shared.calculateSpeed(ms: GPS.speed, to: "\(SettingsForUserDefaults.GPSSpeedSetting)"))
             let GPSCourse = String(format: "%.5f", GPS.course) // Direction of Movement
             let GPSTimestamp = datestring // Timestamp
             let GPSDesiredAccuracy = SettingsAPI.shared.readGPSAccuracySetting() // GPS Accuracy

@@ -10,25 +10,24 @@ import Foundation
 
 
 class MotionModel {
-    var accelerationXAxis : Double?
-    var accelerationYAxis : Double?
-    var accelerationZAxis : Double?
-    var gravityXAxis : Double?
-    var gravityYAxis : Double?
-    var gravityZAxis : Double?
-    var gyroXAxis : Double?
-    var gyroYAxis : Double?
-    var gyroZAxis : Double?
-    var magnetometerCalibration : Int?
-    var magnetometerXAxis : Double?
-    var magnetometerYAxis : Double?
-    var magnetometerZAxis : Double?
-    var attitudeRoll : Double?
-    var attitudePitch : Double?
-    var attitudeYaw : Double?
-    var attitudeHeading : Double?
-    var pressureValue : Double?
-    var relativeAltitudeValue : Double?
+    var accelerationXAxis : Double
+    var accelerationYAxis : Double
+    var accelerationZAxis : Double
+    var gravityXAxis : Double
+    var gravityYAxis : Double
+    var gravityZAxis : Double
+    var gyroXAxis : Double
+    var gyroYAxis : Double
+    var gyroZAxis : Double
+    var magnetometerCalibration : Int
+    var magnetometerXAxis : Double
+    var magnetometerYAxis : Double
+    var magnetometerZAxis : Double
+    var attitudeRoll : Double
+    var attitudePitch : Double
+    var attitudeYaw : Double
+    var attitudeHeading : Double
+    
     
     init(_accelerationX: Double, _accelerationY: Double, _accelerationZ: Double, _gravityX: Double, _gravityY: Double, _gravityZ: Double, _gyroX: Double, _gyroY: Double, _gyroZ: Double, _magCalobration: Int, _magX: Double, _magY: Double, _magZ: Double, _roll: Double, _pitch: Double, _yaw: Double, _heading: Double) {
         accelerationXAxis = _accelerationX
@@ -49,10 +48,27 @@ class MotionModel {
         attitudeYaw = _yaw
         attitudeHeading = _heading
     }
-    
-    init(_pressure: Double, _altitude: Double) {
-        pressureValue = _pressure
-        relativeAltitudeValue = _altitude
-    }
-    
+}
+
+
+struct MotionModelArray {
+    let counter : Int
+    let timestamp : String // Timestamp
+    let accelerationXAxis : Double
+    let accelerationYAxis : Double
+    let accelerationZAxis : Double
+    let gravityXAxis : Double
+    let gravityYAxis : Double
+    let gravityZAxis : Double
+    let gyroXAxis : Double
+    let gyroYAxis : Double
+    let gyroZAxis : Double
+    let magnetometerCalibration : Int
+    let magnetometerXAxis : Double
+    let magnetometerYAxis : Double
+    let magnetometerZAxis : Double
+    let attitudeRoll : Double
+    let attitudePitch : Double
+    let attitudeYaw : Double
+    let attitudeHeading : Double
 }

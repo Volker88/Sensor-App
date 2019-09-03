@@ -61,17 +61,7 @@ class SettingsAPI {
         return GPSSpeedSetting
     }
        
-    
-    func calculateSpeed(ms: Double, to: String) -> Double { // Calculcate Speed
-        switch to {
-        case GPSspeedSettings[0]: return ms             // m/s
-        case GPSspeedSettings[1]: return ms * 3.6       // km/h
-        case GPSspeedSettings[2]: return ms * 2.23694   // mph
-        default: return ms
-        }
-    }
-    
-    
+
     func readGPSAccuracySetting() -> String { // Read GPS Accuracy Settings from UserDefaults
         var GPSAccuracySetting = ""
         if let i = userDefaults.string(forKey: "\(SettingsForUserDefaults.GPSAccuracySetting)") {
@@ -95,22 +85,6 @@ class SettingsAPI {
     }
     
     
-    func calculatePressure(pressure: Double, to: String) -> Double { // Calculate Pressure Units (input kPa)
-        switch to {
-        case altitudePressure[0]: return pressure * 10 // mbar
-        case altitudePressure[1]: return pressure * 0.01 // bar
-        case altitudePressure[2]: return pressure * 0.00986923// atm
-        case altitudePressure[3]: return pressure * 1000 // Pa
-        case altitudePressure[4]: return pressure * 10 // hPa
-        case altitudePressure[5]: return pressure // kPa
-        case altitudePressure[6]: return pressure * 0.145038 // psi
-        case altitudePressure[7]: return pressure * 7.50062 // mmHG
-        case altitudePressure[8]: return pressure * 0.2953 // inHG
-        default: return pressure
-        }
-    }
-    
-    
     func readHeightSetting() -> String { // Read Height Setting from UserDefaults
         var heightSetting = ""
         if let i = userDefaults.string(forKey: "\(SettingsForUserDefaults.altitudeHeightSetting)") {
@@ -122,19 +96,15 @@ class SettingsAPI {
     }
     
 
-    func calculateHeight(height: Double, to: String) -> Double { // Calculate Height Units (input m)
-        switch to {
-        case altitudeHeight[0]: return height * 0.01 // mm
-        case altitudeHeight[1]: return height * 0.1 // cm
-        case altitudeHeight[2]: return height // m
-        case altitudeHeight[3]: return height * 39.3701// inch
-        case altitudeHeight[4]: return height * 3.28084// feet
-        case altitudeHeight[5]: return height * 1.09361// yard
-        default: return height
-        }
+    func getTimestamp() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-MM-yyyy HH:mm:ss.SSS"
+        let dateString = dateFormatter.string(from: NSDate() as Date)
+        print("Timestamp: " + dateString)
+        return dateString
     }
     
-    
+
     // MARK: - Methods for Refresh Rate
     func saveFrequency(frequency: Float) { // Save Frequency to UserDefaults
         userDefaults.set(frequency, forKey: "\(SettingsForUserDefaults.frequencySetting)")

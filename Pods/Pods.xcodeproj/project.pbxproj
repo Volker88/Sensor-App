@@ -30,8 +30,8 @@
 
 /* Begin PBXFileReference section */
 		0469F1AF2BA87FEF86F44C4DE6C812D1 /* ProgressHUD-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ProgressHUD-umbrella.h"; sourceTree = "<group>"; };
-		0B22A8DD64C6DE5A19CDD35206F5F683 /* Pods_Sensor_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Sensor_App.framework; path = "Pods-Sensor-App.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		0D3287058D2F13BD484A454154BEA62B /* ProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = ProgressHUD.framework; path = ProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0B22A8DD64C6DE5A19CDD35206F5F683 /* Pods_Sensor_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sensor_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0D3287058D2F13BD484A454154BEA62B /* ProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1242DF80B644B7C1680F992DA1BD381E /* Pods-Sensor-App-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Sensor-App-dummy.m"; sourceTree = "<group>"; };
 		1C9B8509BA27863688FC8A61337B3D94 /* ProgressHUD.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ProgressHUD.m; path = ProgressHUD/ProgressHUD/ProgressHUD.m; sourceTree = "<group>"; };
 		2A2547D07A4EA053678EBD063D2A9CE8 /* Pods-Sensor-App-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Sensor-App-umbrella.h"; sourceTree = "<group>"; };
@@ -42,7 +42,7 @@
 		4B7082712FE514424A3D7A62A5E94009 /* ProgressHUD.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ProgressHUD.xcconfig; sourceTree = "<group>"; };
 		76C3D5F8F6981FEBF64A97F0CE436B2A /* ProgressHUD.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = ProgressHUD.modulemap; sourceTree = "<group>"; };
 		794BCADA76105092BFFCE4078B1B97DB /* Pods-Sensor-App-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Sensor-App-frameworks.sh"; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A25E248CECB7C121F6DE49F13400753C /* Pods-Sensor-App-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Sensor-App-acknowledgements.plist"; sourceTree = "<group>"; };
 		AD876A3A541EA8660236396A1A5B68C5 /* ProgressHUD-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ProgressHUD-dummy.m"; sourceTree = "<group>"; };
 		C82EDBEF5E190776B45472684CE881A7 /* Pods-Sensor-App-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Sensor-App-acknowledgements.markdown"; sourceTree = "<group>"; };
@@ -147,7 +147,6 @@
 				C17D144F4975147A990DBFA8FF12E171 /* Resources */,
 				5D6A53640B52088588D51E6F5DD60CDC /* Support Files */,
 			);
-			name = ProgressHUD;
 			path = ProgressHUD;
 			sourceTree = "<group>";
 		};
@@ -251,6 +250,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
 			productRefGroup = ABC0BFBE2D014A82DD3EA8EDAE4D1827 /* Products */;

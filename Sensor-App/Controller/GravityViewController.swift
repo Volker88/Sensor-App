@@ -8,7 +8,6 @@
 
 // MARK: - Import
 import UIKit
-import CoreMotion
 
 
 // MARK: - TableViewCell Class
@@ -21,15 +20,14 @@ class GravityTableViewCell: UITableViewCell {
 
 
 // MARK: - Class Definition
-class GravityViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-
+class GravityViewController: UIViewController {
+    
     // MARK: - Initialize Classes
-    let motionManager = CoreMotionModel()
     
     
     // MARK: - Define Constants / Variables
-    var frequency: Float = 1.0 // Default Frequency
-    var dataValues = [DataArray]() // Sensor Data Array
+    var frequency: Float = SettingsAPI.shared.readFrequency() // Default Frequency
+    var dataValues = [MotionModelArray]() // Sensor Data Array
     
     
     // MARK: - Outlets
@@ -54,31 +52,31 @@ class GravityViewController: UIViewController, UITableViewDataSource, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         UICustomization() // UI Customization
-        self.frequency = SettingsAPI.shared.readFrequency() // Update Motion Frequency
-        initialStart() // Initial Start of CoreMotion
+        frequencySliderSetup() // Set up Frequency Slider + Text
+        startMotionUpdates() // Initial Start of CoreMotion
     }
     
     
     // MARK: - ViewDidDisappear
     override func viewDidDisappear(_ animated: Bool) {
-        motionManager.motionStopMethod()
+        CoreMotionAPI.shared.motionStopMethod()
     }
     
     
     // MARK: - Actions
     @IBAction func startUpdateMotionButton(_ sender: UIBarButtonItem) {
-        motionManagerStart()
+        CoreMotionAPI.shared.motionStartMethod()
     }
     
     
     @IBAction func stopUpdateMotionButton(_ sender: UIBarButtonItem) {
-        motionManager.motionStopMethod()
+        CoreMotionAPI.shared.motionStopMethod()
     }
     
     
     @IBAction func motionFrequencyUpdateSlider(_ sender: UISlider) {
         self.frequency = Float(String(format: "%.1f", sender.value))!
-        motionManager.sensorUpdateInterval = 1 / Double(self.frequency)  // Calculate frequency
+        CoreMotionAPI.shared.sensorUpdateInterval = 1 / Double(self.frequency)  // Calculate frequency
         motionUpdateFrequencyLabel.text = "Frequency:".localized + " \(self.frequency) Hz"
     }
     
@@ -90,58 +88,53 @@ class GravityViewController: UIViewController, UITableViewDataSource, UITableVie
     
     
     // MARK: - Methods
-    func initialStart() {
-        motionManager.sensorUpdateInterval = 1 / Double(self.frequency)  // Calculate frequency
+    func frequencySliderSetup() {
+        CoreMotionAPI.shared.sensorUpdateInterval = 1 / Double(self.frequency)  // Calculate frequency
         motionUpdateFrequencyLabel.text = "Frequency:".localized + " \(frequency) Hz" // Setting Label
         motionFrequencySliderOutlet.value = frequency // Setting Slider
-        motionManagerStart() // Motion Start
     }
     
     
-    func motionManagerStart() {
-        // Start Motion
-        motionManager.motionStartMethod()
-        
-        // Update Labels
-        motionManager.didUpdatedCoreMotion = {
+    func startMotionUpdates() {
+        CoreMotionAPI.shared.motionStartMethod()
+        CoreMotionAPI.shared.motionCompletionHandler = { motion in
             
             // Gravity
-            self.gravityXAxisLabel.text = "X-Axis:".localized + " \(String(format:"%.5f", self.motionManager.gravityX)) g (9,81 m/s^2)"
-            self.gravityYAxisLabel.text = "Y-Axis:".localized + " \(String(format:"%.5f", self.motionManager.gravityY)) g (9,81 m/s^2)"
-            self.gravityZAxisLabel.text = "Z-Axis:".localized + " \(String(format:"%.5f", self.motionManager.gravityZ)) g (9,81 m/s^2)"
+            self.gravityXAxisLabel.text = "X-Axis:".localized + " \(String(format:"%.5f", motion.gravityXAxis)) g (9,81 m/s^2)"
+            self.gravityYAxisLabel.text = "Y-Axis:".localized + " \(String(format:"%.5f", motion.gravityYAxis)) g (9,81 m/s^2)"
+            self.gravityZAxisLabel.text = "Z-Axis:".localized + " \(String(format:"%.5f", motion.gravityZAxis)) g (9,81 m/s^2)"
             
-            
-            // Gravity Arrays
-            self.dataValues.insert(DataArray(
+            // Motion Array
+            self.dataValues.insert(MotionModelArray(
                 counter: self.dataValues.count + 1,
-                timestamp: self.motionManager.getTimestamp(),
-                accelerationXAxis: self.motionManager.accelerationX,
-                accelerationYAxis: self.motionManager.accelerationY,
-                accelerationZAxis: self.motionManager.accelerationZ,
-                gravityXAxis: self.motionManager.gravityX,
-                gravityYAxis: self.motionManager.gravityY,
-                gravityZAxis: self.motionManager.gravityZ,
-                gyroXAxis: self.motionManager.gyroX,
-                gyroYAxis: self.motionManager.gyroX,
-                gyroZAxis: self.motionManager.gyroX,
-                magnetometerCalibration: self.motionManager.magnetometerCalibration,
-                magnetometerXAxis: self.motionManager.magnetometerX,
-                magnetometerYAxis: self.motionManager.magnetometerY,
-                magnetometerZAxis: self.motionManager.magnetometerZ,
-                attitudeRoll: (self.motionManager.attitudeRoll * 180 / .pi),
-                attitudePitch: (self.motionManager.attitudePitch * 180 / .pi),
-                attitudeYaw: (self.motionManager.attitudeYaw * 180 / .pi),
-                attitudeHeading: self.motionManager.attitudeHeading,
-                pressureValue: self.motionManager.pressureValue,
-                relativeAltitudeValue: self.motionManager.relativeAltitudeValue
+                timestamp: SettingsAPI.shared.getTimestamp(),
+                accelerationXAxis: motion.accelerationXAxis,
+                accelerationYAxis: motion.accelerationYAxis,
+                accelerationZAxis: motion.accelerationZAxis,
+                gravityXAxis: motion.gravityXAxis,
+                gravityYAxis: motion.gravityYAxis,
+                gravityZAxis: motion.gravityZAxis,
+                gyroXAxis: motion.gyroXAxis,
+                gyroYAxis: motion.gyroYAxis,
+                gyroZAxis: motion.gyroZAxis,
+                magnetometerCalibration: motion.magnetometerCalibration,
+                magnetometerXAxis: motion.magnetometerXAxis,
+                magnetometerYAxis: motion.magnetometerYAxis,
+                magnetometerZAxis: motion.magnetometerZAxis,
+                attitudeRoll: motion.attitudeRoll,
+                attitudePitch: motion.attitudePitch,
+                attitudeYaw: motion.attitudeYaw,
+                attitudeHeading: motion.attitudeHeading
             ), at: 0)
-            
             self.gravityTableView.reloadData() // Reload TableView
         }
     }
+}
+
+
+// MARK: - TableView
+extension GravityViewController: UITableViewDataSource, UITableViewDelegate {
     
-    
-    // MARK: - TableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataValues.count
     }

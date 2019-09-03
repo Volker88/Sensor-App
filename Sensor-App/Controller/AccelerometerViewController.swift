@@ -8,7 +8,6 @@
 
 // MARK: - Import
 import UIKit
-import CoreMotion
 
 
 // MARK: - TableViewCell Class
@@ -21,15 +20,14 @@ class AccelerationTableViewCell: UITableViewCell {
 
 
 // MARK: - Class Definition
-class AccelerometerViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class AccelerometerViewController: UIViewController {
     
     // MARK: - Initialize Classes
-    let motionManager = CoreMotionModel()
     
     
     // MARK: - Define Constants / Variables
-    var frequency: Float = 1.0 // Default Frequency
-    var dataValues = [DataArray]() // Sensor Data Array
+    var frequency: Float = SettingsAPI.shared.readFrequency() // Default Frequency
+    var dataValues = [MotionModelArray]() // Sensor Data Array
     
     
     // MARK: - Outlets
@@ -54,32 +52,31 @@ class AccelerometerViewController: UIViewController, UITableViewDataSource, UITa
     override func viewDidLoad() {
         super.viewDidLoad()
         UICustomization() // UI Customization
-        self.frequency = SettingsAPI.shared.readFrequency() // Update Motion Frequency
-        initialStart() // Initial Start of CoreMotion
-        start()
+        frequencySliderSetup() // Set up Frequency Slider + Text
+        startMotionUpdates() // Initial Start of CoreMotion
     }
     
     
     // MARK: - ViewDidDisappear
     override func viewDidDisappear(_ animated: Bool) {
-        motionManager.motionStopMethod()
+        CoreMotionAPI.shared.motionStopMethod()
     }
     
     
     // MARK: - Actions
     @IBAction func startUpdateMotionButton(_ sender: UIBarButtonItem) {
-        motionManagerStart()
+        CoreMotionAPI.shared.motionStartMethod()
     }
     
     
     @IBAction func stopUpdateMotionButton(_ sender: UIBarButtonItem) {
-        motionManager.motionStopMethod()
+        CoreMotionAPI.shared.motionStopMethod()
     }
     
     
     @IBAction func motionFrequencyUpdateSlider(_ sender: UISlider) {
         self.frequency = Float(String(format: "%.1f", sender.value))!
-        motionManager.sensorUpdateInterval = 1 / Double(self.frequency)  // Calculate frequency
+        CoreMotionAPI.shared.sensorUpdateInterval = 1 / Double(self.frequency)  // Calculate frequency
         motionUpdateFrequencyLabel.text = "Frequency:".localized + " \(self.frequency) Hz"
     }
     
@@ -91,72 +88,53 @@ class AccelerometerViewController: UIViewController, UITableViewDataSource, UITa
     
     
     // MARK: - Methods
-    
-    func start() {
-        CoreMotionAPI.shared.motionStartMethod()
-        CoreMotionAPI.shared.motionCompletionHandler = { motion in
-            print("---------\(motion.accelerationXAxis) -sddsdssd")
-
-        }
-        CoreMotionAPI.shared.altitudeCompletionHandler = { altitude in
-            print("---------\(altitude.relativeAltitudeValue) -sddsdssd")
-        }
-        
-    }
-    
-    
-    func initialStart() {
-        motionManager.sensorUpdateInterval = 1 / Double(self.frequency)  // Calculate frequency
+    func frequencySliderSetup() {
+        CoreMotionAPI.shared.sensorUpdateInterval = 1 / Double(self.frequency)  // Calculate frequency
         motionUpdateFrequencyLabel.text = "Frequency:".localized + " \(frequency) Hz" // Setting Label
         motionFrequencySliderOutlet.value = frequency // Setting Slider
-        motionManagerStart() // Motion Start
     }
     
     
-    func motionManagerStart() {
-        // Start Motion
-        motionManager.motionStartMethod()
-        
-        // Update Labels
-        motionManager.didUpdatedCoreMotion = {
+    func startMotionUpdates() {
+        CoreMotionAPI.shared.motionStartMethod()
+        CoreMotionAPI.shared.motionCompletionHandler = { motion in
             
             // Acceleration
-            self.accelerometerXAxisLabel.text = "X-Axis:".localized + " \(String(format:"%.5f", self.motionManager.accelerationX)) m/s^2"
-            self.accelerometerYAxisLabel.text = "Y-Axis:".localized + " \(String(format:"%.5f", self.motionManager.accelerationY)) m/s^2"
-            self.accelerometerZAxisLabel.text = "Z-Axis:".localized + " \(String(format:"%.5f", self.motionManager.accelerationZ)) m/s^2"
+            self.accelerometerXAxisLabel.text = "X-Axis:".localized + " \(String(format:"%.5f", motion.accelerationXAxis)) m/s^2"
+            self.accelerometerYAxisLabel.text = "Y-Axis:".localized + " \(String(format:"%.5f", motion.accelerationYAxis)) m/s^2"
+            self.accelerometerZAxisLabel.text = "Z-Axis:".localized + " \(String(format:"%.5f", motion.accelerationZAxis)) m/s^2"
             
-            
-            // Acceleration Array
-            self.dataValues.insert(DataArray(
+            // Motion Array
+            self.dataValues.insert(MotionModelArray(
                 counter: self.dataValues.count + 1,
-                timestamp: self.motionManager.getTimestamp(),
-                accelerationXAxis: self.motionManager.accelerationX,
-                accelerationYAxis: self.motionManager.accelerationY,
-                accelerationZAxis: self.motionManager.accelerationZ,
-                gravityXAxis: self.motionManager.gravityX,
-                gravityYAxis: self.motionManager.gravityY,
-                gravityZAxis: self.motionManager.gravityZ,
-                gyroXAxis: self.motionManager.gyroX,
-                gyroYAxis: self.motionManager.gyroX,
-                gyroZAxis: self.motionManager.gyroX,
-                magnetometerCalibration: self.motionManager.magnetometerCalibration,
-                magnetometerXAxis: self.motionManager.magnetometerX,
-                magnetometerYAxis: self.motionManager.magnetometerY,
-                magnetometerZAxis: self.motionManager.magnetometerZ,
-                attitudeRoll: (self.motionManager.attitudeRoll * 180 / .pi),
-                attitudePitch: (self.motionManager.attitudePitch * 180 / .pi),
-                attitudeYaw: (self.motionManager.attitudeYaw * 180 / .pi),
-                attitudeHeading: self.motionManager.attitudeHeading,
-                pressureValue: self.motionManager.pressureValue,
-                relativeAltitudeValue: self.motionManager.relativeAltitudeValue
+                timestamp: SettingsAPI.shared.getTimestamp(),
+                accelerationXAxis: motion.accelerationXAxis,
+                accelerationYAxis: motion.accelerationYAxis,
+                accelerationZAxis: motion.accelerationZAxis,
+                gravityXAxis: motion.gravityXAxis,
+                gravityYAxis: motion.gravityYAxis,
+                gravityZAxis: motion.gravityZAxis,
+                gyroXAxis: motion.gyroXAxis,
+                gyroYAxis: motion.gyroYAxis,
+                gyroZAxis: motion.gyroZAxis,
+                magnetometerCalibration: motion.magnetometerCalibration,
+                magnetometerXAxis: motion.magnetometerXAxis,
+                magnetometerYAxis: motion.magnetometerYAxis,
+                magnetometerZAxis: motion.magnetometerZAxis,
+                attitudeRoll: motion.attitudeRoll,
+                attitudePitch: motion.attitudePitch,
+                attitudeYaw: motion.attitudeYaw,
+                attitudeHeading: motion.attitudeHeading
             ), at: 0)
-            
             self.accelerometerTableView.reloadData() // Reload TableView
         }
     }
+}
+
+
+// MARK: - TableView
+extension AccelerometerViewController: UITableViewDataSource, UITableViewDelegate {
     
-    
-    // MARK: - TableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataValues.count
     }
@@ -188,5 +166,4 @@ class AccelerometerViewController: UIViewController, UITableViewDataSource, UITa
         motionMaxLabel.customizedLabel(labelType: "Standard")
         accelerometerTableView.customizedTableView()
     }
-    
 }

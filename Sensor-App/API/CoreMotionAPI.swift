@@ -35,10 +35,13 @@ class CoreMotionAPI {
     // Sensor Update Interval
     var sensorUpdateInterval : Double = 1.0
     
+    var pressureValue = 0.0
+    var relativeAltitudeValue = 0.0
+
     
     // Closure to push MotionModel to Viewcontroller
     var motionCompletionHandler: ((MotionModel) -> Void)?
-    var altitudeCompletionHandler: ((MotionModel) -> Void)?
+    var altitudeCompletionHandler: ((AltitudeModel) -> ())?
     
     
     // MARK: - Methods
@@ -109,23 +112,23 @@ class CoreMotionAPI {
             let motionModel = MotionModel(_accelerationX: accelerationX, _accelerationY: accelerationY, _accelerationZ: accelerationZ, _gravityX: gravityX, _gravityY: gravityY, _gravityZ: gravityZ, _gyroX: gyroX, _gyroY: gyroY, _gyroZ: gyroZ, _magCalobration: magnetometerCalibration, _magX: magnetometerX, _magY: magnetometerY, _magZ: magnetometerZ, _roll: attitudeRoll, _pitch: attitudePitch, _yaw: attitudeYaw, _heading: attitudeHeading)
             
             self.motionCompletionHandler?(motionModel) // Update Location
-        }
-        
-        
-        // Altimeter
-        altimeterManager.startRelativeAltitudeUpdates(to: .main) { (data, error) in
-            guard let data = data, error == nil else {
-                return
+            
+            
+            // Altimeter
+            self.altimeterManager.startRelativeAltitudeUpdates(to: .main) { (altimeter, error) in
+                guard let altimeter = altimeter, error == nil else {
+                    return
+                }
+                let pressureValue = Double(truncating: altimeter.pressure) // pressure in kPa
+                let relativeAltitudeValue = Double(truncating: altimeter.relativeAltitude) // change in m
+                
+                print("Pressure: \(pressureValue / 100)")
+                print("Relative Altitude change: \(relativeAltitudeValue)")
+            
+                let altitudeModel = AltitudeModel(_pressure: pressureValue, _altitude: relativeAltitudeValue)
+                
+                self.altitudeCompletionHandler?(altitudeModel) // Update Location
             }
-            let pressureValue = Double(truncating: data.pressure) // pressure in kPa
-            let relativeAltitudeValue = Double(truncating: data.relativeAltitude) // change in m
-            
-            print("Pressure: \(pressureValue / 100)")
-            print("Relative Altitude change: \(relativeAltitudeValue)")
-            
-            let motionModel = MotionModel(_pressure: pressureValue, _altitude: relativeAltitudeValue)
-            
-            self.altitudeCompletionHandler?(motionModel) // Update Location
         }
     }
     
@@ -133,14 +136,5 @@ class CoreMotionAPI {
     func motionStopMethod() {
         motionManager.stopDeviceMotionUpdates()
         altimeterManager.stopRelativeAltitudeUpdates()
-    }
-    
-    
-    func getTimestamp() -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd-MM-yyyy HH:mm:ss.SSS"
-        let dateString = dateFormatter.string(from: NSDate() as Date)
-        print("Timestamp: " + dateString)
-        return dateString
     }
 }
