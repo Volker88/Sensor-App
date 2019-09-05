@@ -1,6 +1,6 @@
 //
 //  AttitudeViewController.swift
-//  Sensor App
+//  Sensor-App
 //
 //  Created by Volker Schmitt on 25.05.19.
 //  Copyright © 2019 Volker Schmitt. All rights reserved.
@@ -28,7 +28,6 @@ class AttitudeViewController: UIViewController {
     
     // MARK: - Define Constants / Variables
     var frequency: Float = SettingsAPI.shared.readFrequency() // Default Frequency
-    var dataValues = [MotionModelArray]() // Sensor Data Array
     
     
     // MARK: - Outlets
@@ -53,6 +52,9 @@ class AttitudeViewController: UIViewController {
     // MARK: - ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+        attitudeTableView.dataSource = self
+        attitudeTableView.delegate = self
+        
         UICustomization() // UI Customization
         frequencySliderSetup() // Set up Frequency Slider + Text
         startMotionUpdates() // Initial Start of CoreMotion
@@ -84,8 +86,9 @@ class AttitudeViewController: UIViewController {
     
     
     @IBAction func deleteRecordedData(_ sender: Any) {
-        dataValues.removeAll() // Clear Array
-        attitudeTableView.reloadData() // Reload TableView
+        CoreMotionAPI.shared.clearMotionArray {
+            self.attitudeTableView.reloadData() // Reload TableView
+        }
     }
     
     
@@ -101,35 +104,19 @@ class AttitudeViewController: UIViewController {
         CoreMotionAPI.shared.motionStartMethod()
         CoreMotionAPI.shared.motionCompletionHandler = { motion in
             
-            // Attitude
-            self.attitudeRollLabel.text = "Roll:".localized + " \(String(format:"%.5f", motion.attitudeRoll * 180 / .pi)) °"
-            self.attitudePitchLabel.text = "Pitch:".localized + " \(String(format:"%.5f", motion.attitudePitch * 180 / .pi)) °"
-            self.attitudeYawLabel.text = "Yaw:".localized + " \(String(format:"%.5f", motion.attitudeYaw * 180 / .pi)) °"
-            self.attitudeHeadingLabel.text = "Heading:".localized + " \(String(format:"%.5f", motion.attitudeHeading)) °" // Localization
+            guard let attitudeRoll = motion.first?.attitudeRoll else { return }
+            guard let attitudePitch = motion.first?.attitudePitch else { return }
+            guard let attitudeYaw = motion.first?.attitudeYaw else { return }
+            guard let attitudeHeading = motion.first?.attitudeHeading else { return }
             
-            // Motion Array
-            self.dataValues.insert(MotionModelArray(
-                counter: self.dataValues.count + 1,
-                timestamp: SettingsAPI.shared.getTimestamp(),
-                accelerationXAxis: motion.accelerationXAxis,
-                accelerationYAxis: motion.accelerationYAxis,
-                accelerationZAxis: motion.accelerationZAxis,
-                gravityXAxis: motion.gravityXAxis,
-                gravityYAxis: motion.gravityYAxis,
-                gravityZAxis: motion.gravityZAxis,
-                gyroXAxis: motion.gyroXAxis,
-                gyroYAxis: motion.gyroYAxis,
-                gyroZAxis: motion.gyroZAxis,
-                magnetometerCalibration: motion.magnetometerCalibration,
-                magnetometerXAxis: motion.magnetometerXAxis,
-                magnetometerYAxis: motion.magnetometerYAxis,
-                magnetometerZAxis: motion.magnetometerZAxis,
-                attitudeRoll: motion.attitudeRoll,
-                attitudePitch: motion.attitudePitch,
-                attitudeYaw: motion.attitudeYaw,
-                attitudeHeading: motion.attitudeHeading
-            ), at: 0)
-            self.attitudeTableView.reloadData() // Reload TableView
+            // Change Attitude Labels
+            self.attitudeRollLabel.text = "Roll:".localized + " \(String(format:"%.5f", attitudeRoll * 180 / .pi)) °"
+            self.attitudePitchLabel.text = "Pitch:".localized + " \(String(format:"%.5f", attitudePitch * 180 / .pi)) °"
+            self.attitudeYawLabel.text = "Yaw:".localized + " \(String(format:"%.5f", attitudeYaw * 180 / .pi)) °"
+            self.attitudeHeadingLabel.text = "Heading:".localized + " \(String(format:"%.5f", attitudeHeading)) °"
+            
+            // Reload TableView
+            self.attitudeTableView.reloadData()
         }
     }
 }
@@ -139,18 +126,18 @@ class AttitudeViewController: UIViewController {
 extension AttitudeViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataValues.count
+        return CoreMotionAPI.shared.motionModelArray.count
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "attitudeCell", for: indexPath) as! AttitudeTableViewCell
         
-        cell.attitudeTableViewCounter.text = "ID: \(dataValues[indexPath.row].counter)"
-        cell.attitudeTableViewRoll.text = "R: \(String(format:"%.5f", dataValues[indexPath.row].attitudeRoll))"
-        cell.attitudeTableViewPitch.text = "P: \(String(format:"%.5f", dataValues[indexPath.row].attitudePitch))"
-        cell.attitudeTableViewYaw.text = "Y: \(String(format:"%.5f", dataValues[indexPath.row].attitudeYaw))"
-        cell.attitudeTableViewHeading.text = "H: \(String(format:"%.5f", dataValues[indexPath.row].attitudeHeading))"
+        cell.attitudeTableViewCounter.text = "ID: \(CoreMotionAPI.shared.motionModelArray[indexPath.row].counter)"
+        cell.attitudeTableViewRoll.text = "R: \(String(format:"%.5f", CoreMotionAPI.shared.motionModelArray[indexPath.row].attitudeRoll))"
+        cell.attitudeTableViewPitch.text = "P: \(String(format:"%.5f", CoreMotionAPI.shared.motionModelArray[indexPath.row].attitudePitch))"
+        cell.attitudeTableViewYaw.text = "Y: \(String(format:"%.5f", CoreMotionAPI.shared.motionModelArray[indexPath.row].attitudeYaw))"
+        cell.attitudeTableViewHeading.text = "H: \(String(format:"%.5f", CoreMotionAPI.shared.motionModelArray[indexPath.row].attitudeHeading))"
         
         return cell
     }

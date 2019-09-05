@@ -1,6 +1,6 @@
 //
 //  GyroscopeViewController.swift
-//  Sensor App
+//  Sensor-App
 //
 //  Created by Volker Schmitt on 25.05.19.
 //  Copyright © 2019 Volker Schmitt. All rights reserved.
@@ -27,7 +27,6 @@ class GyroscopeViewController: UIViewController {
     
     // MARK: - Define Constants / Variables
     var frequency: Float = SettingsAPI.shared.readFrequency() // Default Frequency
-    var dataValues = [MotionModelArray]() // Sensor Data Array
     
     
     // MARK: - Outlets
@@ -51,6 +50,9 @@ class GyroscopeViewController: UIViewController {
     // MARK: - ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+        gyroscopeTableView.dataSource = self
+        gyroscopeTableView.delegate = self
+        
         UICustomization() // UI Customization
         frequencySliderSetup() // Set up Frequency Slider + Text
         startMotionUpdates() // Initial Start of CoreMotion
@@ -82,8 +84,9 @@ class GyroscopeViewController: UIViewController {
     
     
     @IBAction func deleteRecordedData(_ sender: Any) {
-        dataValues.removeAll() // Clear Array
-        gyroscopeTableView.reloadData() // Reload TableView
+        CoreMotionAPI.shared.clearMotionArray {
+            self.gyroscopeTableView.reloadData() // Reload TableView
+        }
     }
     
     
@@ -99,34 +102,17 @@ class GyroscopeViewController: UIViewController {
         CoreMotionAPI.shared.motionStartMethod()
         CoreMotionAPI.shared.motionCompletionHandler = { motion in
             
-            // Gyrometer
-            self.gyroscopeXAxisLabel.text = "X-Axis:".localized + " \(String(format:"%.5f", motion.gyroXAxis)) rad/s"
-            self.gyroscopeYAxisLabel.text = "Y-Axis:".localized + " \(String(format:"%.5f", motion.gyroYAxis)) rad/s"
-            self.gyroscopeZAxisLabel.text = "Z-Axis:".localized + " \(String(format:"%.5f", motion.gyroZAxis)) rad/s"
+            guard let gyroX = motion.first?.gyroXAxis else { return }
+            guard let gyroY = motion.first?.gyroYAxis else { return }
+            guard let gyroZ = motion.first?.gyroZAxis else { return }
             
-            // Motion Array
-            self.dataValues.insert(MotionModelArray(
-                counter: self.dataValues.count + 1,
-                timestamp: SettingsAPI.shared.getTimestamp(),
-                accelerationXAxis: motion.accelerationXAxis,
-                accelerationYAxis: motion.accelerationYAxis,
-                accelerationZAxis: motion.accelerationZAxis,
-                gravityXAxis: motion.gravityXAxis,
-                gravityYAxis: motion.gravityYAxis,
-                gravityZAxis: motion.gravityZAxis,
-                gyroXAxis: motion.gyroXAxis,
-                gyroYAxis: motion.gyroYAxis,
-                gyroZAxis: motion.gyroZAxis,
-                magnetometerCalibration: motion.magnetometerCalibration,
-                magnetometerXAxis: motion.magnetometerXAxis,
-                magnetometerYAxis: motion.magnetometerYAxis,
-                magnetometerZAxis: motion.magnetometerZAxis,
-                attitudeRoll: motion.attitudeRoll,
-                attitudePitch: motion.attitudePitch,
-                attitudeYaw: motion.attitudeYaw,
-                attitudeHeading: motion.attitudeHeading
-            ), at: 0)
-            self.gyroscopeTableView.reloadData() // Reload TableView
+            // Change Gyrometer Labels
+            self.gyroscopeXAxisLabel.text = "X-Axis:".localized + " \(String(format:"%.5f", gyroX)) rad/s"
+            self.gyroscopeYAxisLabel.text = "Y-Axis:".localized + " \(String(format:"%.5f", gyroY)) rad/s"
+            self.gyroscopeZAxisLabel.text = "Z-Axis:".localized + " \(String(format:"%.5f", gyroZ)) rad/s"
+            
+           // Reload TableView
+            self.gyroscopeTableView.reloadData()
         }
     }
 }
@@ -135,17 +121,17 @@ class GyroscopeViewController: UIViewController {
 // MARK: - TableView
 extension GyroscopeViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataValues.count
+        return CoreMotionAPI.shared.motionModelArray.count
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "accelerationCell", for: indexPath) as! GyroTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "gyroscopeCell", for: indexPath) as! GyroTableViewCell
         
-        cell.gyroTableViewCounter.text = "ID: \(dataValues[indexPath.row].counter)"
-        cell.gyroTableViewXAxis.text = "X: \(String(format:"%.5f", dataValues[indexPath.row].gyroXAxis))"
-        cell.gyroTableViewYAxis.text = "Y: \(String(format:"%.5f", dataValues[indexPath.row].gyroYAxis))"
-        cell.gyroTableviewZAxis.text = "Z: \(String(format:"%.5f", dataValues[indexPath.row].gyroZAxis))"
+        cell.gyroTableViewCounter.text = "ID: \(CoreMotionAPI.shared.motionModelArray[indexPath.row].counter)"
+        cell.gyroTableViewXAxis.text = "X: \(String(format:"%.5f", CoreMotionAPI.shared.motionModelArray[indexPath.row].gyroXAxis))"
+        cell.gyroTableViewYAxis.text = "Y: \(String(format:"%.5f", CoreMotionAPI.shared.motionModelArray[indexPath.row].gyroYAxis))"
+        cell.gyroTableviewZAxis.text = "Z: \(String(format:"%.5f", CoreMotionAPI.shared.motionModelArray[indexPath.row].gyroZAxis))"
         
         return cell
     }

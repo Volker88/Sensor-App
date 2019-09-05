@@ -1,6 +1,6 @@
 //
 //  MagnetometerViewController.swift
-//  Sensor App
+//  Sensor-App
 //
 //  Created by Volker Schmitt on 25.05.19.
 //  Copyright © 2019 Volker Schmitt. All rights reserved.
@@ -27,7 +27,6 @@ class MagnetometerViewController: UIViewController {
     
     // MARK: - Define Constants / Variables
     var frequency: Float = SettingsAPI.shared.readFrequency() // Default Frequency
-    var dataValues = [MotionModelArray]() // Sensor Data Array
     
     
     // MARK: - Outlets
@@ -51,6 +50,9 @@ class MagnetometerViewController: UIViewController {
     // MARK: - ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+        magnetometerTableView.dataSource = self
+        magnetometerTableView.delegate = self
+        
         UICustomization() // UI Customization
         frequencySliderSetup() // Set up Frequency Slider + Text
         startMotionUpdates() // Initial Start of CoreMotion
@@ -82,8 +84,9 @@ class MagnetometerViewController: UIViewController {
     
     
     @IBAction func deleteRecordedData(_ sender: Any) {
-        dataValues.removeAll() // Clear Array
-        magnetometerTableView.reloadData() // Reload TableView
+        CoreMotionAPI.shared.clearMotionArray {
+            self.magnetometerTableView.reloadData() // Reload TableView
+        }
     }
     
     
@@ -99,35 +102,17 @@ class MagnetometerViewController: UIViewController {
         CoreMotionAPI.shared.motionStartMethod()
         CoreMotionAPI.shared.motionCompletionHandler = { motion in
             
-            // Magnetometer
-            self.magnetometerXAxisLabel.text = "X-Axis:".localized + " \(String(format:"%.5f", motion.magnetometerXAxis)) µT"
-            self.magnetometerYAxisLabel.text = "Y-Axis:".localized + " \(String(format:"%.5f", motion.magnetometerYAxis)) µT"
-            self.magnetometerZAxisLabel.text = "Z-Axis:".localized + " \(String(format:"%.5f", motion.magnetometerZAxis)) µT"
+            guard let magnetometerX = motion.first?.magnetometerXAxis else { return }
+            guard let magnetometerY = motion.first?.magnetometerYAxis else { return }
+            guard let magnetometerZ = motion.first?.magnetometerZAxis else { return }
             
+            // Change Magnetometer Labels
+            self.magnetometerXAxisLabel.text = "X-Axis:".localized + " \(String(format:"%.5f", magnetometerX)) µT"
+            self.magnetometerYAxisLabel.text = "Y-Axis:".localized + " \(String(format:"%.5f", magnetometerY)) µT"
+            self.magnetometerZAxisLabel.text = "Z-Axis:".localized + " \(String(format:"%.5f", magnetometerZ)) µT"
             
-            // Motion Array
-            self.dataValues.insert(MotionModelArray(
-                counter: self.dataValues.count + 1,
-                timestamp: SettingsAPI.shared.getTimestamp(),
-                accelerationXAxis: motion.accelerationXAxis,
-                accelerationYAxis: motion.accelerationYAxis,
-                accelerationZAxis: motion.accelerationZAxis,
-                gravityXAxis: motion.gravityXAxis,
-                gravityYAxis: motion.gravityYAxis,
-                gravityZAxis: motion.gravityZAxis,
-                gyroXAxis: motion.gyroXAxis,
-                gyroYAxis: motion.gyroYAxis,
-                gyroZAxis: motion.gyroZAxis,
-                magnetometerCalibration: motion.magnetometerCalibration,
-                magnetometerXAxis: motion.magnetometerXAxis,
-                magnetometerYAxis: motion.magnetometerYAxis,
-                magnetometerZAxis: motion.magnetometerZAxis,
-                attitudeRoll: motion.attitudeRoll,
-                attitudePitch: motion.attitudePitch,
-                attitudeYaw: motion.attitudeYaw,
-                attitudeHeading: motion.attitudeHeading
-            ), at: 0)
-            self.magnetometerTableView.reloadData() // Reload TableView
+            // Reload TableView
+            self.magnetometerTableView.reloadData()
         }
     }
 }
@@ -138,17 +123,17 @@ extension MagnetometerViewController: UITableViewDataSource, UITableViewDelegate
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return dataValues.count
+        return CoreMotionAPI.shared.motionModelArray.count
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "magnetometerCell", for: indexPath) as! MagnetometerTableViewCell
         
-        cell.magnetometerTableViewCounter.text = "ID: \(dataValues[indexPath.row].counter)"
-        cell.magnetometerTableViewXAxis.text = "X: \(String(format:"%.5f", dataValues[indexPath.row].magnetometerXAxis))"
-        cell.magnetometerTableViewYAxis.text = "Y: \(String(format:"%.5f", dataValues[indexPath.row].magnetometerYAxis))"
-        cell.magnetometerTableViewZAxis.text = "Z: \(String(format:"%.5f", dataValues[indexPath.row].magnetometerZAxis))"
+        cell.magnetometerTableViewCounter.text = "ID: \(CoreMotionAPI.shared.motionModelArray[indexPath.row].counter)"
+        cell.magnetometerTableViewXAxis.text = "X: \(String(format:"%.5f", CoreMotionAPI.shared.motionModelArray[indexPath.row].magnetometerXAxis))"
+        cell.magnetometerTableViewYAxis.text = "Y: \(String(format:"%.5f", CoreMotionAPI.shared.motionModelArray[indexPath.row].magnetometerYAxis))"
+        cell.magnetometerTableViewZAxis.text = "Z: \(String(format:"%.5f", CoreMotionAPI.shared.motionModelArray[indexPath.row].magnetometerZAxis))"
         
         return cell
     }

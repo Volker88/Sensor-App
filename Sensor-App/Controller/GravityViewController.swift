@@ -1,6 +1,6 @@
 //
 //  GravityViewController.swift
-//  Sensor App
+//  Sensor-App
 //
 //  Created by Volker Schmitt on 25.05.19.
 //  Copyright © 2019 Volker Schmitt. All rights reserved.
@@ -27,7 +27,6 @@ class GravityViewController: UIViewController {
     
     // MARK: - Define Constants / Variables
     var frequency: Float = SettingsAPI.shared.readFrequency() // Default Frequency
-    var dataValues = [MotionModelArray]() // Sensor Data Array
     
     
     // MARK: - Outlets
@@ -51,6 +50,9 @@ class GravityViewController: UIViewController {
     // MARK: - ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+        gravityTableView.dataSource = self
+        gravityTableView.delegate = self
+        
         UICustomization() // UI Customization
         frequencySliderSetup() // Set up Frequency Slider + Text
         startMotionUpdates() // Initial Start of CoreMotion
@@ -82,8 +84,9 @@ class GravityViewController: UIViewController {
     
     
     @IBAction func deleteRecordedData(_ sender: Any) {
-        dataValues.removeAll() // Clear Array
-        gravityTableView.reloadData() // Reload TableView
+        CoreMotionAPI.shared.clearMotionArray {
+            self.gravityTableView.reloadData() // Reload TableView
+        }
     }
     
     
@@ -99,34 +102,17 @@ class GravityViewController: UIViewController {
         CoreMotionAPI.shared.motionStartMethod()
         CoreMotionAPI.shared.motionCompletionHandler = { motion in
             
-            // Gravity
-            self.gravityXAxisLabel.text = "X-Axis:".localized + " \(String(format:"%.5f", motion.gravityXAxis)) g (9,81 m/s^2)"
-            self.gravityYAxisLabel.text = "Y-Axis:".localized + " \(String(format:"%.5f", motion.gravityYAxis)) g (9,81 m/s^2)"
-            self.gravityZAxisLabel.text = "Z-Axis:".localized + " \(String(format:"%.5f", motion.gravityZAxis)) g (9,81 m/s^2)"
+            guard let gravityX = motion.first?.gravityXAxis else { return }
+            guard let gravityY = motion.first?.gravityYAxis else { return }
+            guard let gravityZ = motion.first?.gravityZAxis else { return }
             
-            // Motion Array
-            self.dataValues.insert(MotionModelArray(
-                counter: self.dataValues.count + 1,
-                timestamp: SettingsAPI.shared.getTimestamp(),
-                accelerationXAxis: motion.accelerationXAxis,
-                accelerationYAxis: motion.accelerationYAxis,
-                accelerationZAxis: motion.accelerationZAxis,
-                gravityXAxis: motion.gravityXAxis,
-                gravityYAxis: motion.gravityYAxis,
-                gravityZAxis: motion.gravityZAxis,
-                gyroXAxis: motion.gyroXAxis,
-                gyroYAxis: motion.gyroYAxis,
-                gyroZAxis: motion.gyroZAxis,
-                magnetometerCalibration: motion.magnetometerCalibration,
-                magnetometerXAxis: motion.magnetometerXAxis,
-                magnetometerYAxis: motion.magnetometerYAxis,
-                magnetometerZAxis: motion.magnetometerZAxis,
-                attitudeRoll: motion.attitudeRoll,
-                attitudePitch: motion.attitudePitch,
-                attitudeYaw: motion.attitudeYaw,
-                attitudeHeading: motion.attitudeHeading
-            ), at: 0)
-            self.gravityTableView.reloadData() // Reload TableView
+            // Change Gravity Labels
+            self.gravityXAxisLabel.text = "X-Axis:".localized + " \(String(format:"%.5f", gravityX)) g (9,81 m/s^2)"
+            self.gravityYAxisLabel.text = "Y-Axis:".localized + " \(String(format:"%.5f", gravityY)) g (9,81 m/s^2)"
+            self.gravityZAxisLabel.text = "Z-Axis:".localized + " \(String(format:"%.5f", gravityZ)) g (9,81 m/s^2)"
+            
+             // Reload TableView
+            self.gravityTableView.reloadData()
         }
     }
 }
@@ -136,17 +122,17 @@ class GravityViewController: UIViewController {
 extension GravityViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataValues.count
+        return CoreMotionAPI.shared.motionModelArray.count
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "gravityCell", for: indexPath) as! GravityTableViewCell
         
-        cell.gravityTableViewCounter.text = "ID: \(dataValues[indexPath.row].counter)"
-        cell.gravityTableViewXAxis.text = "X: \(String(format:"%.5f", dataValues[indexPath.row].gravityXAxis))"
-        cell.gravityTableviewYAxis.text = "Y: \(String(format:"%.5f", dataValues[indexPath.row].gravityYAxis))"
-        cell.gravityTableViewZAxis.text = "Z: \(String(format:"%.5f", dataValues[indexPath.row].gravityZAxis))"
+        cell.gravityTableViewCounter.text = "ID: \(CoreMotionAPI.shared.motionModelArray[indexPath.row].counter)"
+        cell.gravityTableViewXAxis.text = "X: \(String(format:"%.5f", CoreMotionAPI.shared.motionModelArray[indexPath.row].gravityXAxis))"
+        cell.gravityTableviewYAxis.text = "Y: \(String(format:"%.5f", CoreMotionAPI.shared.motionModelArray[indexPath.row].gravityYAxis))"
+        cell.gravityTableViewZAxis.text = "Z: \(String(format:"%.5f", CoreMotionAPI.shared.motionModelArray[indexPath.row].gravityZAxis))"
         
         return cell
     }

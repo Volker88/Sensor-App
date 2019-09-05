@@ -7,23 +7,12 @@
 //
 
 
+// MARK: - Import
 import Foundation
 
 
-class AltitudeModel {
-    var pressureValue : Double
-    var relativeAltitudeValue : Double
-    
-    
-    init(_pressure: Double, _altitude: Double) {
-
-        pressureValue = _pressure
-        relativeAltitudeValue = _altitude
-    }
-}
-
-
-struct AltitudeModelArray {
+// MARK: - Struct Definition
+struct AltitudeModel {
     let counter : Int
     let timestamp : String // Timestamp
     let pressureValue : Double

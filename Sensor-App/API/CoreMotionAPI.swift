@@ -32,26 +32,22 @@ class CoreMotionAPI {
     
     
     // MARK: - Variables / Constants
-    // Sensor Update Interval
     var sensorUpdateInterval : Double = 1.0
+    var motionModelArray = [MotionModel]()
+    var altitudeModelArray = [AltitudeModel]()
     
-    var pressureValue = 0.0
-    var relativeAltitudeValue = 0.0
-
     
     // Closure to push MotionModel to Viewcontroller
-    var motionCompletionHandler: ((MotionModel) -> Void)?
-    var altitudeCompletionHandler: ((AltitudeModel) -> ())?
+    var motionCompletionHandler: (([MotionModel]) -> Void)?
+    var altitudeCompletionHandler: (([AltitudeModel]) -> Void)?
     
     
     // MARK: - Methods
     func motionStartMethod() {
-        
         self.motionManager.startDeviceMotionUpdates(using: .xTrueNorthZVertical, to: .main) { (data, error) in
             guard let data = data, error == nil else {
                 return
             }
-            
             self.motionManager.deviceMotionUpdateInterval = self.sensorUpdateInterval
             
             
@@ -109,9 +105,32 @@ class CoreMotionAPI {
             print("Heading: \(attitudeHeading) °")
             
             
-            let motionModel = MotionModel(_accelerationX: accelerationX, _accelerationY: accelerationY, _accelerationZ: accelerationZ, _gravityX: gravityX, _gravityY: gravityY, _gravityZ: gravityZ, _gyroX: gyroX, _gyroY: gyroY, _gyroZ: gyroZ, _magCalobration: magnetometerCalibration, _magX: magnetometerX, _magY: magnetometerY, _magZ: magnetometerZ, _roll: attitudeRoll, _pitch: attitudePitch, _yaw: attitudeYaw, _heading: attitudeHeading)
+            // Insert Motion into Array
+            self.motionModelArray.insert(MotionModel(
+                counter: self.motionModelArray.count + 1,
+                timestamp: SettingsAPI.shared.getTimestamp(),
+                accelerationXAxis: accelerationX,
+                accelerationYAxis: accelerationY,
+                accelerationZAxis: accelerationZ,
+                gravityXAxis: gravityX,
+                gravityYAxis: gravityY,
+                gravityZAxis: gravityZ,
+                gyroXAxis: gyroX,
+                gyroYAxis: gyroY,
+                gyroZAxis: gyroZ,
+                magnetometerCalibration: magnetometerCalibration,
+                magnetometerXAxis: magnetometerX,
+                magnetometerYAxis: magnetometerY,
+                magnetometerZAxis: magnetometerZ,
+                attitudeRoll: attitudeRoll,
+                attitudePitch: attitudePitch,
+                attitudeYaw: attitudeYaw,
+                attitudeHeading: attitudeHeading
+            ), at: 0)
             
-            self.motionCompletionHandler?(motionModel) // Update Location
+            
+            // Push Model to ViewController
+            self.motionCompletionHandler?(self.motionModelArray)
             
             
             // Altimeter
@@ -124,17 +143,36 @@ class CoreMotionAPI {
                 
                 print("Pressure: \(pressureValue / 100)")
                 print("Relative Altitude change: \(relativeAltitudeValue)")
-            
-                let altitudeModel = AltitudeModel(_pressure: pressureValue, _altitude: relativeAltitudeValue)
                 
-                self.altitudeCompletionHandler?(altitudeModel) // Update Location
+                let altitude = CalculationAPI.shared.convertAltitudeData(pressure: pressureValue, height: relativeAltitudeValue)
+                
+                // Insert Motion into Array
+                self.altitudeModelArray.insert(AltitudeModel(
+                    counter: self.altitudeModelArray.count + 1,
+                    timestamp: SettingsAPI.shared.getTimestamp(),
+                    pressureValue: altitude.convertedPressure,
+                    relativeAltitudeValue: altitude.convertedHeight
+                ), at: 0)
+                
+                // Push Model to ViewController
+                self.altitudeCompletionHandler?(self.altitudeModelArray)
             }
         }
     }
     
     
+    // Stop Motion Updates
     func motionStopMethod() {
         motionManager.stopDeviceMotionUpdates()
         altimeterManager.stopRelativeAltitudeUpdates()
     }
+    
+    
+    // Clear Arrays
+    func clearMotionArray(completion: @escaping () -> Void) {
+        self.motionModelArray.removeAll()
+        self.altitudeModelArray.removeAll()
+        completion()
+    }
+    
 }

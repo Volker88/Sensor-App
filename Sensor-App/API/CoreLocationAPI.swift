@@ -42,7 +42,6 @@ class CoreLocationAPI: CLLocationManager, CLLocationManagerDelegate {
     var locationCompletionHandler: ((LocationModel) -> Void)?
     
     
- 
     // MARK: - locationManager Methods
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = locations[locations.count - 1] // Last object from location Array

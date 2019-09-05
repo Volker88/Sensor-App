@@ -1,11 +1,13 @@
 //
 //  ExtensionModel.swift
-//  Sensor App
+//  Sensor-App
 //
 //  Created by Volker Schmitt on 01.06.19.
 //  Copyright © 2019 Volker Schmitt. All rights reserved.
 //
 
+
+// MARK: - Import
 import Foundation
 import UIKit
 
@@ -21,7 +23,6 @@ extension UILabel {
     // User defined Extension Method
     func customizedLabel(labelType : String) {
         if labelType == "Header" { // Header Label
-            
             let borderColor = UIColor(red: 200/255, green: 200/255, blue: 200/255, alpha: 1.0) // Border Color
             self.backgroundColor = UIColor(red: 64 / 255, green: 64 / 255, blue: 64 / 255, alpha: 1.0)
             self.layer.borderWidth = 1.0 // Border width

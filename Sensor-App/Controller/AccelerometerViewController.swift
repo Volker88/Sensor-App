@@ -1,6 +1,6 @@
 //
 //  AccelerometerViewController.swift
-//  Sensor App
+//  Sensor-App
 //
 //  Created by Volker Schmitt on 25.05.19.
 //  Copyright © 2019 Volker Schmitt. All rights reserved.
@@ -27,7 +27,6 @@ class AccelerometerViewController: UIViewController {
     
     // MARK: - Define Constants / Variables
     var frequency: Float = SettingsAPI.shared.readFrequency() // Default Frequency
-    var dataValues = [MotionModelArray]() // Sensor Data Array
     
     
     // MARK: - Outlets
@@ -51,6 +50,9 @@ class AccelerometerViewController: UIViewController {
     // MARK: - ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+        accelerometerTableView.dataSource = self
+        accelerometerTableView.delegate = self
+        
         UICustomization() // UI Customization
         frequencySliderSetup() // Set up Frequency Slider + Text
         startMotionUpdates() // Initial Start of CoreMotion
@@ -82,8 +84,9 @@ class AccelerometerViewController: UIViewController {
     
     
     @IBAction func deleteRecordedData(_ sender: Any) {
-        dataValues.removeAll() // Clear Array
-        accelerometerTableView.reloadData() // Reload TableView
+        CoreMotionAPI.shared.clearMotionArray {
+            self.accelerometerTableView.reloadData() // Reload TableView
+        }
     }
     
     
@@ -98,35 +101,18 @@ class AccelerometerViewController: UIViewController {
     func startMotionUpdates() {
         CoreMotionAPI.shared.motionStartMethod()
         CoreMotionAPI.shared.motionCompletionHandler = { motion in
+
+            guard let accelerationX = motion.first?.accelerationXAxis else { return }
+            guard let accelerationY = motion.first?.accelerationYAxis else { return }
+            guard let accelerationZ = motion.first?.accelerationZAxis else { return }
             
-            // Acceleration
-            self.accelerometerXAxisLabel.text = "X-Axis:".localized + " \(String(format:"%.5f", motion.accelerationXAxis)) m/s^2"
-            self.accelerometerYAxisLabel.text = "Y-Axis:".localized + " \(String(format:"%.5f", motion.accelerationYAxis)) m/s^2"
-            self.accelerometerZAxisLabel.text = "Z-Axis:".localized + " \(String(format:"%.5f", motion.accelerationZAxis)) m/s^2"
+            // Change Acceleration Labels
+            self.accelerometerXAxisLabel.text = "X-Axis:".localized + " \(String(format:"%.5f", accelerationX)) m/s^2"
+            self.accelerometerYAxisLabel.text = "Y-Axis:".localized + " \(String(format:"%.5f", accelerationY)) m/s^2"
+            self.accelerometerZAxisLabel.text = "Z-Axis:".localized + " \(String(format:"%.5f", accelerationZ)) m/s^2"
             
-            // Motion Array
-            self.dataValues.insert(MotionModelArray(
-                counter: self.dataValues.count + 1,
-                timestamp: SettingsAPI.shared.getTimestamp(),
-                accelerationXAxis: motion.accelerationXAxis,
-                accelerationYAxis: motion.accelerationYAxis,
-                accelerationZAxis: motion.accelerationZAxis,
-                gravityXAxis: motion.gravityXAxis,
-                gravityYAxis: motion.gravityYAxis,
-                gravityZAxis: motion.gravityZAxis,
-                gyroXAxis: motion.gyroXAxis,
-                gyroYAxis: motion.gyroYAxis,
-                gyroZAxis: motion.gyroZAxis,
-                magnetometerCalibration: motion.magnetometerCalibration,
-                magnetometerXAxis: motion.magnetometerXAxis,
-                magnetometerYAxis: motion.magnetometerYAxis,
-                magnetometerZAxis: motion.magnetometerZAxis,
-                attitudeRoll: motion.attitudeRoll,
-                attitudePitch: motion.attitudePitch,
-                attitudeYaw: motion.attitudeYaw,
-                attitudeHeading: motion.attitudeHeading
-            ), at: 0)
-            self.accelerometerTableView.reloadData() // Reload TableView
+            // Reload TableView
+            self.accelerometerTableView.reloadData()
         }
     }
 }
@@ -136,17 +122,17 @@ class AccelerometerViewController: UIViewController {
 extension AccelerometerViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataValues.count
+        return CoreMotionAPI.shared.motionModelArray.count
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "accelerationCell", for: indexPath) as! AccelerationTableViewCell
         
-        cell.accelerationTableViewCounter.text = "ID: \(dataValues[indexPath.row].counter)"
-        cell.accelerationTableViewXAxis.text = "X: \(String(format:"%.5f", dataValues[indexPath.row].accelerationXAxis))"
-        cell.accelerationTableViewYAxis.text = "Y: \(String(format:"%.5f", dataValues[indexPath.row].accelerationYAxis))"
-        cell.accelerationTableViewZAxis.text = "Z: \(String(format:"%.5f", dataValues[indexPath.row].accelerationZAxis))"
+        cell.accelerationTableViewCounter.text = "ID: \(CoreMotionAPI.shared.motionModelArray[indexPath.row].counter)"
+        cell.accelerationTableViewXAxis.text = "X: \(String(format:"%.5f", CoreMotionAPI.shared.motionModelArray[indexPath.row].accelerationXAxis))"
+        cell.accelerationTableViewYAxis.text = "Y: \(String(format:"%.5f", CoreMotionAPI.shared.motionModelArray[indexPath.row].accelerationYAxis))"
+        cell.accelerationTableViewZAxis.text = "Z: \(String(format:"%.5f", CoreMotionAPI.shared.motionModelArray[indexPath.row].accelerationZAxis))"
         
         return cell
     }

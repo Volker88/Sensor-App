@@ -1,6 +1,6 @@
 //
 //  LocationViewController.swift
-//  Sensor App
+//  Sensor-App
 //
 //  Created by Volker Schmitt on 05.05.19.
 //  Copyright © 2019 Volker Schmitt. All rights reserved.
@@ -37,7 +37,6 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         UICustomization() // UI Customization
-        
         startUpdatingCoreLocation()
     }
     
@@ -65,7 +64,6 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
     
     // MARK: - Methods
     // MARK: - Read values from CoreLocationAPI
-    
     func startUpdatingCoreLocation() {
         CoreLocationAPI.shared.startGPS()
         CoreLocationAPI.shared.locationCompletionHandler = { GPS in
