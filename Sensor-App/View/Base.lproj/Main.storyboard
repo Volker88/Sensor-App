@@ -1178,7 +1178,7 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="pJz-VK-b62"/>
-                                    <barButtonItem image="SettingsButton" id="YJR-8B-5b5">
+                                    <barButtonItem title="Item" image="SettingsButton" id="YJR-8B-5b5">
                                         <connections>
                                             <segue destination="CoT-1U-b0H" kind="show" id="wW0-se-7jV"/>
                                         </connections>
@@ -1979,7 +1979,6 @@
         <!--Settings-->
         <scene sceneID="eWH-7n-iKZ">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="FBR-sg-etB" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController title="Settings" id="CoT-1U-b0H" customClass="SettingsViewController" customModule="Sensor_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VYZ-e2-EC6">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
@@ -2265,6 +2264,7 @@
                         <outlet property="speedPickerView" destination="cDE-wM-a5P" id="Kge-ec-vVN"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FBR-sg-etB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5445" y="839"/>
         </scene>
@@ -2273,7 +2273,7 @@
         <image name="SettingsButton" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="R5N-cF-TBD"/>
+        <segue reference="J2W-gn-5IR"/>
         <segue reference="doD-jV-yHy"/>
         <segue reference="XVE-N1-WQm"/>
         <segue reference="rGE-Tx-zR0"/>

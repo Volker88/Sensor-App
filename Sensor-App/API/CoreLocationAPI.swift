@@ -16,7 +16,7 @@ import CoreLocation
 class CoreLocationAPI: CLLocationManager, CLLocationManagerDelegate {
     
     // MARK: - Initialize Classes
-    var locationManager : CLLocationManager
+    private var locationManager : CLLocationManager
     
     
     // MARK: - Singleton pattern
@@ -27,15 +27,15 @@ class CoreLocationAPI: CLLocationManager, CLLocationManagerDelegate {
     
     
     // MARK: - Declaring Global GPS Variables
-    var longitude : Double = 0.0 // Longitude in Degrees
-    var latitude : Double = 0.0 // Latitude in Degrees
-    var altitude : Double = 0.0 // Altitude measures in Meters
-    var speed : Double = 0.0 // Speed in meter per second
-    var course : Double = 0.0 // Direction the device is travelling in degrees relative to north
-    var horizontalAccuracy : Double = 0.0 // Radius of uncertainity in Meters
-    var verticalAccuracy : Double = 0.0 // Accuracy in Meters
-    var timestamp : Date = Date() // Timestamp of the measurement
-    var GPSAccuracy : Double = 0.0 // GPS Desired Accuracy
+    private var longitude : Double = 0.0 // Longitude in Degrees
+    private var latitude : Double = 0.0 // Latitude in Degrees
+    private var altitude : Double = 0.0 // Altitude measures in Meters
+    private var speed : Double = 0.0 // Speed in meter per second
+    private var course : Double = 0.0 // Direction the device is travelling in degrees relative to north
+    private var horizontalAccuracy : Double = 0.0 // Radius of uncertainity in Meters
+    private var verticalAccuracy : Double = 0.0 // Accuracy in Meters
+    private var timestamp : Date = Date() // Timestamp of the measurement
+    private var GPSAccuracy : Double = 0.0 // GPS Desired Accuracy
     
     
     // Closure to push LocationModel to Viewcontroller
@@ -70,7 +70,7 @@ class CoreLocationAPI: CLLocationManager, CLLocationManagerDelegate {
     
     
     // MARK: - Start / Stop GPS Method
-    func startGPS() { // Start getting GPS Coordinated
+    func startGPS() { // Start getting GPS Coordinates
         // Define Accuracy based on selection - SettingsModel.GPSAccuracy
         let desiredAccuracy = SettingsAPI.shared.readGPSAccuracySetting()
         switch desiredAccuracy {

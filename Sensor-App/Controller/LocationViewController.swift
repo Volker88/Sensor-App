@@ -9,7 +9,6 @@
 // MARK: - Import
 import UIKit
 import MapKit
-import ProgressHUD
 
 
 // MARK: - Class Definition
@@ -50,15 +49,13 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
     // MARK: - Actions
     @IBAction func startUpdateLocationButton(_ sender: UIBarButtonItem) {
         CoreLocationAPI.shared.startGPS()
-        let status = "Location update started!".localized
-        ProgressHUD.showSuccess(status)
+        //let status = "Location update started!".localized
     }
     
     
     @IBAction func stopUpdateLocationButton(_ sender: UIBarButtonItem) {
         CoreLocationAPI.shared.stopGPS()
-        let status = "Location update stopped!".localized
-        ProgressHUD.showSuccess(status)
+        //let status = "Location update stopped!".localized
     }
     
     

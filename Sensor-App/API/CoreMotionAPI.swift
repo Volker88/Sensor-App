@@ -15,10 +15,10 @@ import CoreMotion
 class CoreMotionAPI {
     
     // MARK: - Initialize Classes
-    var motionManager : CMMotionManager
-    var magnetManager : CMMagnetometerData
-    var altimeterManager : CMAltimeter
-    var attitude : CMAttitude
+    private var motionManager : CMMotionManager
+    private var magnetManager : CMMagnetometerData
+    private var altimeterManager : CMAltimeter
+    private var attitude : CMAttitude
     
     
     // MARK: - Singleton pattern

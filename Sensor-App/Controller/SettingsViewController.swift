@@ -8,7 +8,6 @@
 
 // MARK: - Import
 import UIKit
-import ProgressHUD
 
 
 // MARK: - Class Definition
@@ -85,8 +84,7 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
         SettingsAPI.shared.saveUserDefaultsString(input: altitudePressureSetting, setting: SettingsForUserDefaults.pressureSetting)
         SettingsAPI.shared.saveUserDefaultsString(input: altitudeHeightSetting, setting: SettingsForUserDefaults.altitudeHeightSetting)
         SettingsAPI.shared.saveFrequency(frequency: updateFrequency)
-        let status = "Successfully saved!".localized
-        ProgressHUD.showSuccess(status)
+        //let status = "Successfully saved!".localized
     }
     
     
@@ -96,8 +94,7 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
         pickerViewDefault(setting: SettingsForUserDefaults.pressureSetting)
         pickerViewDefault(setting: SettingsForUserDefaults.altitudeHeightSetting)
         getUpdateFrequency()
-        let status = "Changes discarded!".localized
-        ProgressHUD.showSuccess(status)
+        //let status = "Changes discarded!".localized
     }
     
     
@@ -106,6 +103,7 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
+    
     
     // Qty of items to show
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
