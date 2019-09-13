@@ -38,7 +38,7 @@ class CoreLocationAPI: CLLocationManager, CLLocationManagerDelegate {
     private var GPSAccuracy : Double = 0.0 // GPS Desired Accuracy
     
     
-    // Closure to push LocationModel to Viewcontroller
+    // MARK: - Closure to push LocationModel to Viewcontroller
     var locationCompletionHandler: ((LocationModel) -> Void)?
     
     

@@ -1,0 +1,139 @@
+//
+//  Localizable.strings
+//  Sensor-App
+//
+//  Created by Volker Schmitt on 13.09.19.
+//  Copyright © 2019 Volker Schmitt. All rights reserved.
+//
+
+
+// MARK: - ContentView()
+"Home" = "Hauptmenü";
+
+"Welcome to the \n Sensor-App" = "Willkommen bei \n Sensor-App";
+
+"Location" = "Standort";
+
+"Acceleration" = "Beschleunigung";
+
+"Gravity" = "Gravitation";
+
+"Gyroscope" = "Gyroskop";
+
+"Magnetometer" = "Magnetometer";
+
+"Attitude" = "Haltung";
+
+"Altitude" = "Höhe";
+
+"Settings" = "Einstellungen";
+
+
+// MARK: - LocationView()
+"Latitude: %@ ±%@m" = "Breitengrad: %@ ±%@m";
+
+"Longitude: %@ ° ±%@m" = "Längengrad: %@ ° ±%@m";
+
+"Altitude: %@ ±%@m" = "Höhe: %@ ±%@m";
+
+"Direction: %@ °" = "Richtung: %@ °";
+
+"Speed: %@ %@" = "Geschwindigkeit: %@ %@";
+
+
+// MARK: - AccelerationView()
+"X-Axis: %lf m/s^2" = "X-Achse: %lf m/s^2";
+
+"Y-Axis: %lf m/s^2" = "Y-Achse: %lf m/s^2";
+
+"Z-Axis: %lf m/s^2" = "Z-Achse: %lf m/s^2";
+
+// List
+"ID:%lld" = "ID:%lld";
+
+"X:%@" = "X:%@";
+
+"Y:%@" = "Y:%@";
+
+"Z:%@" = "Z:%@";
+
+
+// MARK: - GravityView()
+"X-Axis: %lf g (9,81 m/s^2)" = "X-Achse: %lf g (9,81 m/s^2)";
+
+"Y-Axis: %lf g (9,81 m/s^2)" = "Y-Achse: %lf g (9,81 m/s^2)";
+
+"Z-Axis: %lf g (9,81 m/s^2)" = "Z-Achse: %lf g (9,81 m/s^2)";
+
+
+
+// MARK: - GyroscopeView()
+"X-Axis: %lf rad/s" = "X-Axis: %lf rad/s";
+
+"Y-Axis: %lf rad/s" = "Y-Achse: %lf rad/s";
+
+"Z-Axis: %lf rad/s" = "Z-Achse: %lf rad/s";
+
+
+// MARK: - MagnetometerView()
+"X-Axis: %lf µT" = "X-Achse: %lf µT";
+
+"Y-Axis: %lf µT" = "Y-Achse: %lf µT";
+
+"Z-Axis: %lf µT" = "Z-Achse: %lf µT";
+
+
+// MARK: - AttitudeView()
+"Roll: %lf °" = "Roll: %lf °";
+
+"Pitch: %lf °" = "Pitch: %lf °";
+
+"Yaw: %lf °" = "Yaw: %lf °";
+
+"Heading: %lf °" = "Heading: %lf °";
+
+// List
+"R:%@" = "R:%@";
+
+"P:%@" = "P:%@";
+
+"Y:%@" = "Y:%@";
+
+"H:%@" = "H:%@";
+
+
+
+// MARK: - AltitudeView()
+"Pressure: %lf %@" = "Luftdruck: %lf %@";
+
+"Altitude change: %lf %@" = "Altitude change: %lf %@";
+
+//List
+"P.:%@" = "L.:%@";
+
+"A.:%@" = "H.:%@";
+
+
+// MARK: - SettingsView()
+"Speed Setting" = "Geschwindigkeit";
+
+"Accuracy" = "Genauigkeit";
+
+"Pressure" = "Luftdruck";
+
+"Height" = "Höhe";
+
+"SaveButton" = "SaveButton";
+
+"UndoButton" = "UndoButton";
+
+
+// MARK: - RefreshRateViewModel()
+"Refresh Rate" = "Aktualisierungsrate";
+
+"Frequency: %lld Hz" = "Frequenz: %lld Hz";
+
+"1" = "1";
+
+"50" = "50";
+

@@ -18,6 +18,7 @@ class CalculationAPI {
     }
     
     
+    // MARK: - Methods
     func calculateSpeed(ms: Double, to: String) -> Double { // Calculcate Speed
         switch to {
         case SettingsAPI.shared.GPSspeedSettings[0]: return ms             // m/s
@@ -26,7 +27,6 @@ class CalculationAPI {
         default: return ms
         }
     }
-    
     
     func calculatePressure(pressure: Double, to: String) -> Double { // Calculate Pressure Units (input kPa)
         switch to {
@@ -43,7 +43,6 @@ class CalculationAPI {
         }
     }
     
-    
     func calculateHeight(height: Double, to: String) -> Double { // Calculate Height Units (input m)
         switch to {
         case SettingsAPI.shared.altitudeHeight[0]: return height * 0.01 // mm
@@ -55,7 +54,6 @@ class CalculationAPI {
         default: return height
         }
     }
-    
     
     func convertAltitudeData(pressure: Double, height: Double) -> (convertedPressure: Double, convertedHeight: Double) {
         let altitudePressureSetting = SettingsAPI.shared.readPressureSetting()

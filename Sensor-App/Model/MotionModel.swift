@@ -14,7 +14,7 @@ import Foundation
 // MARK: - Struct Definition
 struct MotionModel {
     let counter : Int
-    let timestamp : String // Timestamp
+    let timestamp : String
     let accelerationXAxis : Double
     let accelerationYAxis : Double
     let accelerationZAxis : Double

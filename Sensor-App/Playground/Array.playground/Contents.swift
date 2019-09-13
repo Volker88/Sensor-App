@@ -21,7 +21,11 @@ for i in 0..<100 {
     testArray.insert(DataArray(id: i, xaxis: 1.0, yaxis: 2.0), at: i)
 }
 
-
 print(testArray.last!.id)
 
+
+let arr = ["a","b","c","a"]
+
+let indexOfA = arr.firstIndex(of: "a") // 0
+let indexOfB = arr.lastIndex(of: "a") // 3
 

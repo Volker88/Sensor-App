@@ -14,7 +14,7 @@ import Foundation
 // MARK: - Struct Definition
 struct AltitudeModel {
     let counter : Int
-    let timestamp : String // Timestamp
+    let timestamp : String
     let pressureValue : Double
     let relativeAltitudeValue : Double
 }

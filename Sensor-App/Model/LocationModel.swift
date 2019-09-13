@@ -14,7 +14,7 @@ import Foundation
 // MARK: - Class Definition
 class LocationModel {
     
-    // MARK: - var / let
+    // MARK: - Define Constants / Variables
     var longitude : Double // Longitude in Degrees
     var latitude : Double // Latitude in Degrees
     var altitude : Double // Altitude measures in Meters

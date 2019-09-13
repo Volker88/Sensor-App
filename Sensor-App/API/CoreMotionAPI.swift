@@ -31,13 +31,13 @@ class CoreMotionAPI {
     }
     
     
-    // MARK: - Variables / Constants
+    // MARK: - Define Constants / Variables
     var sensorUpdateInterval : Double = 1.0
-    var motionModelArray = [MotionModel]()
-    var altitudeModelArray = [AltitudeModel]()
+    private var motionModelArray = [MotionModel]()
+    private var altitudeModelArray = [AltitudeModel]()
     
     
-    // Closure to push MotionModel to Viewcontroller
+    // MARK: - Closure to push MotionModel to Viewcontroller
     var motionCompletionHandler: (([MotionModel]) -> Void)?
     var altitudeCompletionHandler: (([AltitudeModel]) -> Void)?
     
@@ -160,13 +160,11 @@ class CoreMotionAPI {
         }
     }
     
-    
     // Stop Motion Updates
     func motionStopMethod() {
         motionManager.stopDeviceMotionUpdates()
         altimeterManager.stopRelativeAltitudeUpdates()
     }
-    
     
     // Clear Arrays
     func clearMotionArray(completion: @escaping () -> Void) {

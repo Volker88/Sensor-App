@@ -1,0 +1,15 @@
+/* Bundle display name */
+"CFBundleDisplayName" = "Sensor-App-Dev";
+
+/* Bundle name */
+"CFBundleName" = "Sensor-App-Dev";
+
+/* Privacy - Location Always Usage Description */
+"NSLocationAlwaysUsageDescription" = "GPS Zugriff zum Anzeigen des aktuellen Standorts notwendig";
+
+/* Privacy - Location When In Use Usage Description */
+"NSLocationWhenInUseUsageDescription" = "GPS Zugriff zum Anzeigen des aktuellen Standorts notwendig";
+
+/* Privacy - Motion Usage Description */
+"NSMotionUsageDescription" = "Zugriff auf Bewegungssensor benötigt";
+
