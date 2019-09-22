@@ -30,88 +30,100 @@
 
 
 // MARK: - LocationView()
-"Latitude: %@ ±%@m" = "Breitengrad: %@ ±%@m";
+//"Latitude: %@ ±%@m" = "Breitengrad: %@ ±%@m";
+"Latitude:" = "Breitengrad:";
 
-"Longitude: %@ ° ±%@m" = "Längengrad: %@ ° ±%@m";
+//"Longitude: %@ ° ±%@m" = "Längengrad: %@ ° ±%@m";
+"Longitude:" = "Längengrad:";
 
-"Altitude: %@ ±%@m" = "Höhe: %@ ±%@m";
+//"Altitude: %@ ±%@m" = "Höhe: %@ ±%@m";
+"Altitude:" = "Höhe:";
 
-"Direction: %@ °" = "Richtung: %@ °";
+//"Direction: %@ °" = "Richtung: %@ °";
+"Direction:" = "Richtung:";
 
-"Speed: %@ %@" = "Geschwindigkeit: %@ %@";
+//"Speed: %@ %@" = "Geschwindigkeit: %@ %@";
+"Speed:" = "Geschwindigkeit:";
 
 
 // MARK: - AccelerationView()
-"X-Axis: %lf m/s^2" = "X-Achse: %lf m/s^2";
+//"X-Axis: %lf m/s^2" = "X-Achse: %lf m/s^2";
+//"Y-Axis: %lf m/s^2" = "Y-Achse: %lf m/s^2";
+//"Z-Axis: %lf m/s^2" = "Z-Achse: %lf m/s^2";
 
-"Y-Axis: %lf m/s^2" = "Y-Achse: %lf m/s^2";
+"X-Axis:" = "X-Achse:";
 
-"Z-Axis: %lf m/s^2" = "Z-Achse: %lf m/s^2";
+"Y-Axis:" = "Y-Achse:";
+
+"Z-Axis:" = "Z-Achse:";
+
 
 // List
 "ID:%lld" = "ID:%lld";
 
-"X:%@" = "X:%@";
+"X:%.5f" = "X:%.5f";
 
-"Y:%@" = "Y:%@";
+"Y:%.5f" = "Y:%.5f";
 
-"Z:%@" = "Z:%@";
+"Z:%.5f" = "Z:%.5f";
 
 
 // MARK: - GravityView()
-"X-Axis: %lf g (9,81 m/s^2)" = "X-Achse: %lf g (9,81 m/s^2)";
-
-"Y-Axis: %lf g (9,81 m/s^2)" = "Y-Achse: %lf g (9,81 m/s^2)";
-
-"Z-Axis: %lf g (9,81 m/s^2)" = "Z-Achse: %lf g (9,81 m/s^2)";
+//"X-Axis: %lf g (9,81 m/s^2)" = "X-Achse: %lf g (9,81 m/s^2)";
+//"Y-Axis: %lf g (9,81 m/s^2)" = "Y-Achse: %lf g (9,81 m/s^2)";
+//"Z-Axis: %lf g (9,81 m/s^2)" = "Z-Achse: %lf g (9,81 m/s^2)";
 
 
 
 // MARK: - GyroscopeView()
-"X-Axis: %lf rad/s" = "X-Axis: %lf rad/s";
-
-"Y-Axis: %lf rad/s" = "Y-Achse: %lf rad/s";
-
-"Z-Axis: %lf rad/s" = "Z-Achse: %lf rad/s";
+//"X-Axis: %lf rad/s" = "X-Axis: %lf rad/s";
+//"Y-Axis: %lf rad/s" = "Y-Achse: %lf rad/s";
+//"Z-Axis: %lf rad/s" = "Z-Achse: %lf rad/s";
 
 
 // MARK: - MagnetometerView()
-"X-Axis: %lf µT" = "X-Achse: %lf µT";
-
-"Y-Axis: %lf µT" = "Y-Achse: %lf µT";
-
-"Z-Axis: %lf µT" = "Z-Achse: %lf µT";
+//"X-Axis: %lf µT" = "X-Achse: %lf µT";
+//"Y-Axis: %lf µT" = "Y-Achse: %lf µT";
+//"Z-Axis: %lf µT" = "Z-Achse: %lf µT";
 
 
 // MARK: - AttitudeView()
 "Roll: %lf °" = "Roll: %lf °";
-
 "Pitch: %lf °" = "Pitch: %lf °";
-
 "Yaw: %lf °" = "Yaw: %lf °";
-
 "Heading: %lf °" = "Heading: %lf °";
 
+"Roll:" = "Roll";
+
+"Pitch:" = "Pitch:";
+
+"Yaw:" = "Yaw:";
+
+"Heading:" = "Heading:";
+
 // List
-"R:%@" = "R:%@";
+"R:%.4f" = "R:%.4f";
 
-"P:%@" = "P:%@";
+"P:%.4f" = "P:%.4f";
 
-"Y:%@" = "Y:%@";
+"Y:%.4f" = "Y:%.4f";
 
-"H:%@" = "H:%@";
+"H:%.4f" = "H:%.4f";
 
 
 
 // MARK: - AltitudeView()
-"Pressure: %lf %@" = "Luftdruck: %lf %@";
+//"Pressure: %lf %@" = "Luftdruck: %lf %@";
+"Pressure:" = "Luftdruck:";
 
-"Altitude change: %lf %@" = "Altitude change: %lf %@";
+//"Altitude change: %lf %@" = "Höhenänderung: %lf %@";
+"Altitude change:" = "Höhenänderung:";
+
 
 //List
-"P.:%@" = "L.:%@";
+"P.:%.5f" = "L.:%.5f";
 
-"A.:%@" = "H.:%@";
+"A.:%.5f" = "H.:%.5f";
 
 
 // MARK: - SettingsView()
@@ -123,9 +135,26 @@
 
 "Height" = "Höhe";
 
+
+"CancelButton" = "CancelButton";
+
 "SaveButton" = "SaveButton";
 
 "UndoButton" = "UndoButton";
+
+"SettingsButton" = "SettingsButton";
+
+
+// MARK: - NotificationViewModel()
+"Saved successfully" = "Erfolgreich gespeichert";
+
+"Changes Discarded" = "Änderungen verworfen";
+
+"Paused" = "Pausiert";
+
+"Play" = "Fortsetzen";
+
+"Successfully deleted" = "Erfolgreich gelöscht";
 
 
 // MARK: - RefreshRateViewModel()
@@ -136,4 +165,9 @@
 "1" = "1";
 
 "50" = "50";
+
+
+// MARK: - MotionListView()
+"Could not load the table!" = "Tabelle konnte nicht geladen werden!";
+
 

@@ -26,19 +26,21 @@ class CoreLocationAPI: CLLocationManager, CLLocationManagerDelegate {
     }
     
     
-    // MARK: - Declaring Global GPS Variables
-    private var longitude : Double = 0.0 // Longitude in Degrees
-    private var latitude : Double = 0.0 // Latitude in Degrees
-    private var altitude : Double = 0.0 // Altitude measures in Meters
-    private var speed : Double = 0.0 // Speed in meter per second
-    private var course : Double = 0.0 // Direction the device is travelling in degrees relative to north
-    private var horizontalAccuracy : Double = 0.0 // Radius of uncertainity in Meters
-    private var verticalAccuracy : Double = 0.0 // Accuracy in Meters
-    private var timestamp : Date = Date() // Timestamp of the measurement
-    private var GPSAccuracy : Double = 0.0 // GPS Desired Accuracy
+    // MARK: - Define Constants / Variables
+
+    
+    // MARK: - Methods
     
     
-    // MARK: - Closure to push LocationModel to Viewcontroller
+    // MARK: - Closure to push LocationModel to ViewModel
+    ///
+    ///  Completion Handler to receive LocationModel Object
+    ///
+    ///  - Note:
+    ///  - Remark:
+    ///
+    ///  - Returns: LocationModel Object
+    ///
     var locationCompletionHandler: ((LocationModel) -> Void)?
     
     
@@ -46,23 +48,33 @@ class CoreLocationAPI: CLLocationManager, CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = locations[locations.count - 1] // Last object from location Array
         
-        // Updating Global Variables
-        longitude = location.coordinate.longitude
-        latitude = location.coordinate.latitude
-        altitude = location.altitude
-        speed = location.speed
-        course = location.course
-        horizontalAccuracy = location.horizontalAccuracy
-        verticalAccuracy = location.verticalAccuracy
-        GPSAccuracy = locationManager.desiredAccuracy
-        timestamp = location.timestamp
+        // GPS Information
+        let longitude = location.coordinate.longitude // Longitude in Degrees
+        let latitude = location.coordinate.latitude // Latitude in Degrees
+        let altitude = location.altitude // Altitude measures in Meters
+        let speed = location.speed // Speed in meter per second
+        let course = location.course // Direction the device is travelling in degrees relative to north
+        let horizontalAccuracy = location.horizontalAccuracy // Radius of uncertainity in Meters
+        let verticalAccuracy = location.verticalAccuracy // Accuracy in Meters
+        let GPSAccuracy = locationManager.desiredAccuracy // GPS Desired Accuracy
+        //let timestamp = location.timestamp // Timestamp of the measurement
+        
+        // Print all GPS Variables for Debug
+        print("Latitude: \(latitude)")
+        print("Longitude: \(longitude)")
+        print("Horizontal Accuracy: \(horizontalAccuracy)")
+        print("Altitude: \(altitude)")
+        print("VerticalAccuracy: \(verticalAccuracy)")
+        print("Speed in m/s: \(speed)")
+        print("Direction: \(course)")
+        print("Timestamp: \(SettingsAPI.shared.getTimestamp())")
+        print("Desired Accuracy: \(GPSAccuracy)")
+        
+        // Creating LocationModel
+        let locationModel = LocationModel(counter: 1 ,longitude: longitude, latitude: latitude, altitude: altitude, speed: speed, course: course, horizontalAccuracy: horizontalAccuracy, verticalAccuracy: verticalAccuracy, timestamp: SettingsAPI.shared.getTimestamp(), GPSAccuracy: GPSAccuracy)
 
-        
-        let locationModel = LocationModel(_longitude: longitude, _latitude: latitude, _altitude: altitude, _speed: speed, _course: course, _haccuracy: horizontalAccuracy, _vaccuracy: verticalAccuracy, _GPSAccuray: GPSAccuracy, _timestamp: timestamp)
-        
         locationCompletionHandler?(locationModel) // Update Location
     }
-    
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(error)
@@ -70,25 +82,43 @@ class CoreLocationAPI: CLLocationManager, CLLocationManagerDelegate {
     
     
     // MARK: - Start / Stop GPS Method
-    func startGPS() { // Start getting GPS Coordinates
+    ///
+    ///  Start GPS updates
+    ///
+    ///   Starting GPS updates based on selected accuracy
+    ///
+    ///  - Note:
+    ///  - Remark:
+    ///
+    ///  - Returns:
+    ///
+    func startUpdatingGPS() { // Start getting GPS Coordinates
         // Define Accuracy based on selection - SettingsModel.GPSAccuracy
-        let desiredAccuracy = SettingsAPI.shared.readGPSAccuracySetting()
+        let desiredAccuracy = SettingsAPI.shared.fetchGPSAccuracySetting()
         switch desiredAccuracy {
-        case "Best": locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        case "10 Meter": locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-        case "100 Meter": locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
-        case "Kilometer": locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
-        case "3 Kilometer": locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
-        default: locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            case "Best": locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            case "10 Meter": locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            case "100 Meter": locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+            case "Kilometer": locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
+            case "3 Kilometer": locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
+            default: locationManager.desiredAccuracy = kCLLocationAccuracyBest
         }
-        
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization() // Asks for permission to access GPS
         locationManager.startUpdatingLocation() // Start Updating Location
     }
     
-    
-    func stopGPS() {
+    ///
+    ///  Stop GPS updates
+    ///
+    ///  Discussion Text
+    ///
+    ///  - Note:
+    ///  - Remark:
+    ///
+    ///  - Returns:
+    ///
+    func stopUpdatingGPS() {
         locationManager.delegate = self
         locationManager.stopUpdatingLocation()
     }

@@ -18,6 +18,7 @@ struct ContentView: View {
     
     
     // MARK: - @State Variables
+    @State var showSettings = false
     
     
     // MARK: - Define Constants / Variables
@@ -29,92 +30,83 @@ struct ContentView: View {
     // MARK: - Body
     var body: some View {
         
+        // MARK: - Return View
         return NavigationView {
-            GeometryReader { g in
-                ScrollView {
-                    VStack {
-                        Spacer()
-                        Group {
-                            Text("Welcome to the \n Sensor-App")
-                                .fontWeight(.bold)
-                                .font(.largeTitle)
-                                .multilineTextAlignment(.center)
-                                .frame(width: g.size.width - 10, height: CGFloat(100), alignment: .center)
-                                .background(Color("HeaderBackgroundColor"))
-                                .foregroundColor(Color("HeaderTextColor"))
-                                .cornerRadius(10)
+            ZStack {
+                LinearGradient(gradient: Gradient(colors: SettingsAPI.shared.backgroundColor), startPoint: .topLeading, endPoint: .bottomTrailing)
+                    .edgesIgnoringSafeArea(.all)
+                
+                GeometryReader { g in
+                    ScrollView {
+                        VStack {
                             Spacer()
-                            NavigationLink(destination: LocationView()) {
-                                Text("Location")
-                                    .frame(width: g.size.width - 10, height: CGFloat(50), alignment: .center)
+                            Group {
+                                ContentViewButton(type: .contentViewHeader, text: "Welcome to the \n Sensor-App")
+                                    .frame(height: 100, alignment: .center)
+                                Spacer()
+                                NavigationLink(destination: LocationView()) {
+                                    ContentViewButton(type: nil, text: "Location")
+                                    .frame(height: 50, alignment: .center)
+                                }
+                                Spacer()
+                                NavigationLink(destination: AccelerationView()) {
+                                    ContentViewButton(type: nil, text: "Acceleration")
+                                    .frame(height: 50, alignment: .center)
+                                }
+                                Spacer()
+                                NavigationLink(destination: GravityView()) {
+                                    ContentViewButton(type: nil, text: "Gravity")
+                                    .frame(height: 50, alignment: .center)
+                                }
+                                Spacer()
+                                NavigationLink(destination: GyroscopeView()) {
+                                    ContentViewButton(type: nil, text: "Gyroscope")
+                                    .frame(height: 50, alignment: .center)
+                                }
                             }
                             Spacer()
-                            NavigationLink(destination: AccelerationView()) {
-                                Text("Acceleration")
-                                    .frame(width: g.size.width - 10, height: CGFloat(50), alignment: .center)
+                            Group {
+                                NavigationLink(destination: MagnetometerView()) {
+                                    ContentViewButton(type: nil, text: "Magnetometer")
+                                    .frame(height: 50, alignment: .center)
+                                }
+                                Spacer()
+                                NavigationLink(destination: AttitudeView()) {
+                                    ContentViewButton(type: nil, text: "Attitude")
+                                    .frame(height: 50, alignment: .center)
+                                }
+                                Spacer()
+                                NavigationLink(destination: AltitudeView()) {
+                                    ContentViewButton(type: nil, text: "Altitude")
+                                    .frame(height: 50, alignment: .center)
+                                }
+                                Spacer()
+                                Button(action: { self.showSettings.toggle() }) {
+                                    ContentViewButton(type: nil, text: "Settings")
+                                    .frame(height: 50, alignment: .center)
+                                }
                             }
-                            
                             Spacer()
-                            NavigationLink(destination: GravityView()) {
-                                Text("Gravity")
-                                    .frame(width: g.size.width - 10, height: CGFloat(50), alignment: .center)
-                            }
-                            Spacer()
-                            NavigationLink(destination: GyroscopeView()) {
-                                Text("Gyroscope")
-                                    .frame(width: g.size.width - 10, height: CGFloat(50), alignment: .center)
-                            }
                         }
-                        .font(.title)
-                        .foregroundColor(Color("StandardTextColor"))
-                        .background(Color("StandardBackgroundColor"))
-                        .cornerRadius(10)
-                        
-                        Spacer()
-                        Group {
-                            NavigationLink(destination: MagnetometerView()) {
-                                Text("Magnetometer")
-                                    .frame(width: g.size.width - 10, height: CGFloat(50), alignment: .center)
-                            }
-                            Spacer()
-                            NavigationLink(destination: AttitudeView()) {
-                                Text("Attitude")
-                                    .frame(width: g.size.width - 10, height: CGFloat(50), alignment: .center)
-                            }
-                            Spacer()
-                            NavigationLink(destination: AltitudeView()) {
-                                Text("Altitude")
-                                    .frame(width: g.size.width - 10, height: CGFloat(50), alignment: .center)
-                            }
-                            Spacer()
-                            NavigationLink(destination: SettingsView()) {
-                                Text("Settings")
-                                    .frame(width: g.size.width - 10, height: CGFloat(50), alignment: .center)
-                            }
-                        }
-                        .font(.title)
-                        .foregroundColor(Color("StandardTextColor"))
-                        .background(Color("StandardBackgroundColor"))
-                        .cornerRadius(10)
-                        
-                        Spacer()
-                    }.navigationBarTitle("Home", displayMode: .inline)
+                        .offset(x: 5)
+                        .navigationBarTitle("Home", displayMode: .inline)
+                    }
                 }
-            }.background(Color("ViewBackgroundColor").edgesIgnoringSafeArea(.all))
-        }
-        .navigationViewStyle(StackNavigationViewStyle())
-        
+            }
+            .sheet(isPresented: $showSettings) {
+                SettingsView()
+            }
+        }.navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
 
 // MARK: - Preview
-#if DEBUG
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            ContentView().previewDevice("iPhone Xs")
-            ContentView().previewDevice("iPhone Xs")
+            ContentView().previewDevice("iPhone 11 Pro")
+            ContentView().previewDevice("iPhone 11 Pro")
                 .environment(\.colorScheme, .dark)
             //ContentView().previewDevice("iPad Pro (12.9-inch) (3rd generation)")
             //ContentView().previewDevice("iPad Pro (12.9-inch) (3rd generation)")
@@ -122,4 +114,3 @@ struct ContentView_Previews: PreviewProvider {
         }
     }
 }
-#endif

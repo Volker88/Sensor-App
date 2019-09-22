@@ -17,142 +17,109 @@ struct LocationView: View {
     
     // MARK: - Initialize Classes
     
-
-    // MARK: - @State Variables
-    @State var GPSLatitude: String = "0.0"
-    @State var GPSLongitude: String = "0.0"
-    @State var GPSHorizontalAccuracy = "0.0"
-    @State var GPSAltitude = "0.0"
-    @State var GPSVerticalAccuracy = "0.0"
-    @State var GPSSpeed = "0.0"
-    @State var GPSCourse = "0.0"
-    @State var GPSTimestamp = "0.0"
-    @State var GPSDesiredAccuracy = "0.0"
+    
+    // MARK: - @State / @ObservedObject
+    @ObservedObject var locationVM = CoreLocationViewModel()
+    
+    // Notification Variables
+    @State private var showNotification = false
+    @State private var notificationMessage = ""
+    @State private var notificationDuration = NotificationAPI.shared.fetchNotificationAnimationSettings().duration
     
     
     // MARK: - Define Constants / Variables
+    let notificationSettings = NotificationAPI.shared.fetchNotificationAnimationSettings()
     
     
     // MARK: - Methods
-    func locationStart() {
-        CoreLocationAPI.shared.startGPS()
-        CoreLocationAPI.shared.locationCompletionHandler = { GPS in
-            
-            // Timestamp into String
-            let date = DateFormatter()
-            date.timeZone = NSTimeZone(abbreviation: "CET") as TimeZone?
-            date.dateFormat = "dd-MM-yyyy - HH:mm:ss.SSS"
-            let datestring = date.string(from: GPS.timestamp)
-            
-            // Get GPS Variables from GPSModel
-            self.GPSLatitude = String(format: "%.10f", GPS.latitude) // Latitude - Breitengrad
-            self.GPSLongitude = String(format: "%.10f", GPS.longitude) // Longitude - Längengrad
-            self.GPSHorizontalAccuracy = String(format: "%.2f", GPS.horizontalAccuracy) // Horizontal Accuracy
-            self.GPSAltitude = String(format: "%.2f", GPS.altitude) // Altitude - Höhe
-            self.GPSVerticalAccuracy = String(format: "%.2f", GPS.verticalAccuracy) // Vertcal Accuracy
-            self.GPSSpeed = String(format: "%.2f", CalculationAPI.shared.calculateSpeed(ms: GPS.speed, to: "\(SettingsForUserDefaults.GPSSpeedSetting)")) // Calculate Speed
-            self.GPSCourse = String(format: "%.5f", GPS.course) // Direction of Movement
-            self.GPSTimestamp = datestring // Timestamp
-            self.GPSDesiredAccuracy = SettingsAPI.shared.readGPSAccuracySetting() // GPS Accuracy
-            
-            // Print all GPS Variables for Debug
-            print("Latitude: \(self.GPSLatitude)")
-            print("Longitude: \(self.GPSLongitude)")
-            print("Horizontal Accuracy: \(self.GPSHorizontalAccuracy)")
-            print("Altitude: \(self.GPSAltitude)")
-            print("VerticalAccuracy: \(self.GPSVerticalAccuracy)")
-            print("Speed in \(SettingsAPI.shared.readSpeedSetting()): \(self.GPSSpeed)")
-            print("Direction: \(self.GPSCourse)")
-            print("Timestamp: \(self.GPSTimestamp)")
-            print("Desired Accuracy: \(self.GPSDesiredAccuracy)")
-        }
-    }
     
     
     // MARK: - onAppear / onDisappear
     func onAppear() {
-        CoreMotionAPI.shared.clearMotionArray {
-        }
+        // Start updating location
+        locationVM.locationUpdateStart()
     }
     
     func onDisappear() {
-        CoreLocationAPI.shared.stopGPS()
-        CoreMotionAPI.shared.motionStopMethod()
-        CoreMotionAPI.shared.clearMotionArray {
-        }
+        CoreLocationAPI.shared.stopUpdatingGPS()
+        locationVM.coreLocationArray.removeAll()
     }
     
     
     // MARK: - Body - View
     var body: some View {
         
-        // Start Location update
-        locationStart()
-        
         
         // MARK: - Return View
-        return NavigationView {
-            GeometryReader { g in
-                VStack {
-                    ScrollView {
-                        Spacer()
-                        Group{
-                            Text("Latitude: \(self.GPSLatitude) ±\(self.GPSHorizontalAccuracy)m")
-                                .frame(width: g.size.width - 10, height: CGFloat(50), alignment: .leading)
-                            Spacer()
-                            Text("Longitude: \(self.GPSLongitude) ° ±\(self.GPSHorizontalAccuracy)m")
-                                .frame(width: g.size.width - 10, height: CGFloat(50), alignment: .leading)
-                            Spacer()
-                            Text("Altitude: \(self.GPSAltitude) ±\(self.GPSVerticalAccuracy)m")
-                                .frame(width: g.size.width - 10, height: CGFloat(50), alignment: .leading)
-                            Spacer()
-                            Text("Direction: \(self.GPSCourse) °")
-                                .frame(width: g.size.width - 10, height: CGFloat(50), alignment: .leading)
-                            Spacer()
-                            Text("Speed: \(self.GPSSpeed) \(SettingsAPI.shared.readSpeedSetting())")
-                                .frame(width: g.size.width - 10, height: CGFloat(50), alignment: .leading)
+        return ZStack {
+            NavigationView {
+                ZStack {
+                    LinearGradient(gradient: Gradient(colors: SettingsAPI.shared.backgroundColor), startPoint: .topLeading, endPoint: .bottomTrailing)
+                        .edgesIgnoringSafeArea(.all)
+                    GeometryReader { g in
+                        VStack {
+                            ScrollView {
+                                Spacer()
+                                Group{
+                                    ButtonView(type: .latitude, text: "Latitude:", locationVM: self.locationVM)
+                                        .frame(height: 50, alignment: .center)
+                                    Spacer()
+                                    ButtonView(type: .longitude, text: "Longitude:", locationVM: self.locationVM)
+                                        .frame(height: 50, alignment: .center)
+                                    Spacer()
+                                    ButtonView(type: .altitude, text: "Altitude:", locationVM: self.locationVM)
+                                        .frame(height: 50, alignment: .center)
+                                    Spacer()
+                                    ButtonView(type: .course, text: "Direction:", locationVM: self.locationVM)
+                                        .frame(height: 50, alignment: .center)
+                                    Spacer()
+                                    ButtonView(type: .speed, text: "Speed:", locationVM: self.locationVM)
+                                        .frame(height: 50, alignment: .center)
+                                }
+                                Spacer()
+                                MapKitView(latitude: self.locationVM.coreLocationArray.last?.latitude ?? 37.3323314100, longitude: self.locationVM.coreLocationArray.last?.longitude ?? -122.0312186000)
+                                    .frame(width: g.size.width - 10, height: g.size.width - 10, alignment: .center)
+                            }
+                            .frame(width: g.size.width, height: g.size.height - 50 + g.safeAreaInsets.bottom)
+                            
+                            
+                            // MARK: - LocationToolBarViewModel()
+                            LocationToolBarView(notificationMessage: self.$notificationMessage, showNotification: self.$showNotification, notificationDuration: self.$notificationDuration)
                         }
-                        .font(.body)
-                        .foregroundColor(Color("StandardTextColor"))
-                        .background(Color("StandardBackgroundColor"))
-                        .cornerRadius(10)
-                        
-                        Spacer()
-                        MapKitViewModel(latitude: Double(self.GPSLatitude)!, longitude: Double(self.GPSLongitude)!)
-                            .frame(width: g.size.width - 10, height: g.size.width - 10, alignment: .center)
+                        .edgesIgnoringSafeArea(.bottom)
                     }
-                    .frame(width: g.size.width, height: g.size.height - 50 + g.safeAreaInsets.bottom)
-                    
-                    
-                    // MARK: - LocationToolBarViewModel()
-                    LocationToolBarViewModel()
+                    .navigationBarTitle("Location", displayMode: .inline)
+                    .navigationBarHidden(true)
+                    //.background(Color("ViewBackgroundColor").edgesIgnoringSafeArea(.all))
                 }
-                .edgesIgnoringSafeArea(.bottom)
             }
             .navigationBarTitle("Location", displayMode: .inline)
-            .navigationBarHidden(true)
-            .background(Color("ViewBackgroundColor").edgesIgnoringSafeArea(.all))
+            .navigationViewStyle(StackNavigationViewStyle())
+            .onAppear(perform: onAppear)
+            .onDisappear(perform: onDisappear)
+            
+            
+            // MARK: - NotificationViewModel()
+            NotificationView(notificationMessage: self.$notificationMessage, showNotification: self.$showNotification)
         }
-        .navigationBarTitle("Location", displayMode: .inline)
-        .navigationViewStyle(StackNavigationViewStyle())
-        .onAppear { self.onAppear() }
-        .onDisappear { self.onDisappear() }
     }
 }
 
 
 // MARK: - Preview
-#if DEBUG
 struct LocationView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            LocationView().previewDevice("iPhone Xs")
-            LocationView().previewDevice("iPhone Xs")
-                .environment(\.colorScheme, .dark)
+            NavigationView {
+                LocationView().previewDevice("iPhone 11 Pro")
+            }
+            NavigationView {
+                LocationView().previewDevice("iPhone 11 Pro")
+                    .environment(\.colorScheme, .dark)
+            }
             //LocationView().previewDevice("iPad Pro (12.9-inch) (3rd generation)")
             //LocationView().previewDevice("iPad Pro (12.9-inch) (3rd generation)")
             //.environment(\.colorScheme, .dark)
         }
     }
 }
-#endif

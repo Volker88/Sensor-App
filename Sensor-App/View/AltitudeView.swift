@@ -17,49 +17,31 @@ struct AltitudeView: View {
     // MARK: - Initialize Classes
     
     
-    // MARK: - @State Variables
-    @State var frequency: Float = SettingsAPI.shared.readFrequency() // Default Frequency
-    @State var motionArray = [AltitudeModel]()
-    @State var pressureValue = 0.0
-    @State var relativeAltitudeValue = 0.0
-
+    // MARK: - @State / @ObservedObject
+    @ObservedObject var motionVM = CoreMotionViewModel()
+    @State private var frequency: Float = SettingsAPI.shared.fetchFrequency() // Default Frequency
+    
+    // Notification Variables
+    @State private var showNotification = false
+    @State private var notificationMessage = ""
+    @State private var notificationDuration = NotificationAPI.shared.fetchNotificationAnimationSettings().duration
     
     
     // MARK: - Define Constants / Variables
     
     
     // MARK: - Methods
-    func motionManagerStart() {
-        // Start Motion
-        CoreMotionAPI.shared.motionStartMethod()
-        
-        // Update Labels
-        CoreMotionAPI.shared.altitudeCompletionHandler = { altitudeManager in
-            // Check if Array is empty
-            if altitudeManager.isEmpty { return }
-            
-            // Make Array available globally
-            self.motionArray = altitudeManager
-            
-            let convertedValues = CalculationAPI.shared.convertAltitudeData(pressure: self.motionArray.first!.pressureValue, height: self.motionArray.first!.relativeAltitudeValue)
-            
-            self.pressureValue = convertedValues.convertedPressure
-            self.relativeAltitudeValue = convertedValues.convertedHeight
-        }
-    }
     
     
     // MARK: - onAppear / onDisappear
     func onAppear() {
-        CoreMotionAPI.shared.clearMotionArray { }
-        motionManagerStart()
+        // Start updating motion
+        motionVM.altitudeUpdateStart()
     }
     
     func onDisappear() {
-        CoreLocationAPI.shared.stopGPS()
-        CoreMotionAPI.shared.motionStopMethod()
-        CoreMotionAPI.shared.clearMotionArray {
-        }
+        CoreMotionAPI.shared.motionUpdateStart()
+        motionVM.coreMotionArray.removeAll()
     }
     
     
@@ -68,78 +50,71 @@ struct AltitudeView: View {
         
         
         // MARK: - Return View
-        return NavigationView{
-            GeometryReader { geometry in
-                VStack{
-                    ScrollView(.vertical) {
-                        Spacer()
+        return ZStack {
+            NavigationView {
+                ZStack {
+                    LinearGradient(gradient: Gradient(colors: SettingsAPI.shared.backgroundColor), startPoint: .topLeading, endPoint: .bottomTrailing)
+                        .edgesIgnoringSafeArea(.all)
+                    GeometryReader { g in
                         VStack{
-                            Group{
-                                Text("Pressure: \(self.pressureValue) \(SettingsAPI.shared.readPressureSetting())")
-                                    .frame(width: geometry.size.width - 10, height: CGFloat(50), alignment: .leading)
+                            ScrollView(.vertical) {
                                 Spacer()
-                                Text("Altitude change: \(self.relativeAltitudeValue) \(SettingsAPI.shared.readHeightSetting())")
-                                    .frame(width: geometry.size.width - 10, height: CGFloat(50), alignment: .leading)
-                            }
-                            .font(.body)
-                            .foregroundColor(Color("StandardTextColor"))
-                            .background(Color("StandardBackgroundColor"))
-                            .cornerRadius(10)
-                            
-                            // MARK: - List
-                            VStack{
-                                List(self.motionArray.reversed(), id: \.counter) { index in
-                                    HStack{
-                                        Text("ID:\(self.motionArray[index.counter - 1].counter)")
-                                            .foregroundColor(Color("ListTextColor"))
+                                VStack{
+                                    Group{
+                                        ButtonView(type: .pressureValue, text: "Pressure:", motionVM: self.motionVM)
+                                            .frame(height: 50, alignment: .center)
                                         Spacer()
-                                        Text("P.:\(String(format: "%.5f", self.motionArray[index.counter - 1].pressureValue))")
-                                            .foregroundColor(Color("ListTextColor"))
-                                        Spacer()
-                                        Text("A.:\(String(format: "%.5f", self.motionArray[index.counter - 1].relativeAltitudeValue))")
-                                            .foregroundColor(Color("ListTextColor"))
+                                        ButtonView(type: .relativeAltitudeValue, text: "Altitude change:", motionVM: self.motionVM)
+                                            .frame(height: 50, alignment: .center)
                                     }
-                                    .font(.footnote)
-                                    //.background(Color("ListBackgroundColor"))
+                                    Spacer()
+                                    
+                                    
+                                    // MARK: - ListView
+                                    MotionListView(type: .altitude, motionVM: self.motionVM)
+                                        .frame(minHeight: 250, maxHeight: .infinity)
                                 }
-                                .frame(width: geometry.size.width, height: 200, alignment: .center)
-                                Spacer()
                             }
-                            Spacer()
+                            .frame(width: g.size.width, height: g.size.height - 50 + g.safeAreaInsets.bottom)
+                            
+                            
+                            // MARK: - MotionToolBarViewModel()
+                            MotionToolBarView(notificationMessage: self.$notificationMessage, showNotification: self.$showNotification, notificationDuration: self.$notificationDuration, motionVM: self.motionVM)
                         }
+                        .edgesIgnoringSafeArea(.bottom)
                     }
-                    .frame(width: geometry.size.width, height: geometry.size.height - 50 + geometry.safeAreaInsets.bottom)
-                    
-                    
-                    // MARK: - MotionToolBarViewModel()
-                    MotionToolBarViewModel()
                 }
-                .edgesIgnoringSafeArea(.bottom)
+                .navigationBarTitle(Text("Altitude"), displayMode: .inline)
+                .navigationBarHidden(true)
+                //.background(Color("ViewBackgroundColor").edgesIgnoringSafeArea(.all))
             }
-            .navigationBarTitle(Text("Altitude"), displayMode: .inline)
-            .navigationBarHidden(true)
-            .background(Color("ViewBackgroundColor").edgesIgnoringSafeArea(.all))
+            .navigationBarTitle("Altitude", displayMode: .inline)
+            .navigationViewStyle(StackNavigationViewStyle())
+            .onAppear(perform: onAppear)
+            .onDisappear(perform: onDisappear)
+            
+            
+            // MARK: - NotificationViewModel()
+            NotificationView(notificationMessage: self.$notificationMessage, showNotification: self.$showNotification)
         }
-        .navigationBarTitle("Altitude", displayMode: .inline)
-        .navigationViewStyle(StackNavigationViewStyle())
-        .onAppear { self.onAppear() }
-        .onDisappear { self.onDisappear() }
     }
 }
 
-
 // MARK: - Preview
-#if DEBUG
 struct AltitudeView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            AltitudeView().previewDevice("iPhone Xs")
-            AltitudeView().previewDevice("iPhone Xs")
-                .environment(\.colorScheme, .dark)
+            NavigationView{
+                AltitudeView().previewDevice("iPhone 11 Pro")
+            }
+            NavigationView{
+                AltitudeView().previewDevice("iPhone 11 Pro")
+                    .environment(\.colorScheme, .dark)
+            }
             //AltitudeView().previewDevice("iPad Pro (12.9-inch) (3rd generation)")
             //AltitudeView().previewDevice("iPad Pro (12.9-inch) (3rd generation)")
             //.environment(\.colorScheme, .dark)
+            
         }
     }
 }
-#endif

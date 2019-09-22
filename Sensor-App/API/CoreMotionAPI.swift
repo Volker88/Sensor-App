@@ -30,20 +30,43 @@ class CoreMotionAPI {
         attitude = CMAttitude()
     }
     
-    
+
     // MARK: - Define Constants / Variables
     var sensorUpdateInterval : Double = 1.0
-    private var motionModelArray = [MotionModel]()
-    private var altitudeModelArray = [AltitudeModel]()
     
     
-    // MARK: - Closure to push MotionModel to Viewcontroller
-    var motionCompletionHandler: (([MotionModel]) -> Void)?
-    var altitudeCompletionHandler: (([AltitudeModel]) -> Void)?
+    // MARK: - Closure to push MotionModel to ViewModel
+    ///
+    ///  Completion Handler to receive MotionModel
+    ///
+    ///  - Note:
+    ///  - Remark:
+    ///
+    ///  - Returns: CoreMotion
+    ///
+    var motionCompletionHandler: ((MotionModel) -> Void)?
+    
+    ///
+    ///  Completion Handler to receive AltitudeModel
+    ///
+    ///  - Note:
+    ///  - Remark:
+    ///
+    ///  - Returns: AltitudeModel
+    ///
+    var altitudeCompletionHandler: ((AltitudeModel) -> Void)?
     
     
     // MARK: - Methods
-    func motionStartMethod() {
+    ///
+    ///  Start Motion Sensor updates
+    ///
+    ///  - Note:
+    ///  - Remark:
+    ///
+    ///  - Returns:
+    ///
+    func motionUpdateStart() {
         self.motionManager.startDeviceMotionUpdates(using: .xTrueNorthZVertical, to: .main) { (data, error) in
             guard let data = data, error == nil else {
                 return
@@ -105,9 +128,8 @@ class CoreMotionAPI {
             print("Heading: \(attitudeHeading) °")
             
             
-            // Insert Motion into Array
-            self.motionModelArray.insert(MotionModel(
-                counter: self.motionModelArray.count + 1,
+            let motionModel = MotionModel(
+                counter: 1,
                 timestamp: SettingsAPI.shared.getTimestamp(),
                 accelerationXAxis: accelerationX,
                 accelerationYAxis: accelerationY,
@@ -126,12 +148,10 @@ class CoreMotionAPI {
                 attitudePitch: attitudePitch,
                 attitudeYaw: attitudeYaw,
                 attitudeHeading: attitudeHeading
-            ), at: 0)
-            
+            )
             
             // Push Model to ViewController
-            self.motionCompletionHandler?(self.motionModelArray)
-            
+            self.motionCompletionHandler?(motionModel)
             
             // Altimeter
             self.altimeterManager.startRelativeAltitudeUpdates(to: .main) { (altimeter, error) in
@@ -146,31 +166,29 @@ class CoreMotionAPI {
                 
                 let altitude = CalculationAPI.shared.convertAltitudeData(pressure: pressureValue, height: relativeAltitudeValue)
                 
-                // Insert Motion into Array
-                self.altitudeModelArray.insert(AltitudeModel(
-                    counter: self.altitudeModelArray.count + 1,
+                let altitudeModel = AltitudeModel(
+                    counter: 1,
                     timestamp: SettingsAPI.shared.getTimestamp(),
                     pressureValue: altitude.convertedPressure,
                     relativeAltitudeValue: altitude.convertedHeight
-                ), at: 0)
-                
+                )
+
                 // Push Model to ViewController
-                self.altitudeCompletionHandler?(self.altitudeModelArray)
+                self.altitudeCompletionHandler?(altitudeModel)
             }
         }
     }
     
-    // Stop Motion Updates
-    func motionStopMethod() {
+    ///
+    ///  Stop Motion Sensor updates
+    ///
+    ///  - Note:
+    ///  - Remark:
+    ///
+    ///  - Returns:
+    ///
+    func motionUpdateStop() {
         motionManager.stopDeviceMotionUpdates()
         altimeterManager.stopRelativeAltitudeUpdates()
     }
-    
-    // Clear Arrays
-    func clearMotionArray(completion: @escaping () -> Void) {
-        self.motionModelArray.removeAll()
-        self.altitudeModelArray.removeAll()
-        completion()
-    }
-    
 }
