@@ -61,13 +61,12 @@ struct AltitudeView: View {
                                 Spacer()
                                 VStack{
                                     Group{
-                                        ButtonView(type: .pressureValue, text: "Pressure:", motionVM: self.motionVM)
-                                            .frame(height: 50, alignment: .center)
-                                        Spacer()
-                                        ButtonView(type: .relativeAltitudeValue, text: "Altitude change:", motionVM: self.motionVM)
-                                            .frame(height: 50, alignment: .center)
+                                        Text("Pressure: \(CalculationAPI.shared.calculatePressure(pressure: self.motionVM.altitudeArray.last?.pressureValue ?? 0.0, to: SettingsAPI.shared.fetchPressureSetting()), specifier: "%.5f") \(SettingsAPI.shared.fetchPressureSetting())")
+                                            .modifier(ButtonModifier())
+                                        Text("Altitude change: \(CalculationAPI.shared.calculateHeight(height: self.motionVM.altitudeArray.last?.relativeAltitudeValue ?? 0.0, to: SettingsAPI.shared.fetchHeightSetting()), specifier: "%.5f") \(SettingsAPI.shared.fetchHeightSetting())")
+                                            .modifier(ButtonModifier())
                                     }
-                                    Spacer()
+                                    .frame(height: 50, alignment: .center)
                                     
                                     
                                     // MARK: - ListView
@@ -86,7 +85,6 @@ struct AltitudeView: View {
                 }
                 .navigationBarTitle(Text("Altitude"), displayMode: .inline)
                 .navigationBarHidden(true)
-                //.background(Color("ViewBackgroundColor").edgesIgnoringSafeArea(.all))
             }
             .navigationBarTitle("Altitude", displayMode: .inline)
             .navigationViewStyle(StackNavigationViewStyle())

@@ -9,7 +9,6 @@
 
 // MARK: - Import
 import SwiftUI
-import Combine
 
 
 // MARK: - Struct
@@ -61,21 +60,18 @@ struct LocationView: View {
                             ScrollView {
                                 Spacer()
                                 Group{
-                                    ButtonView(type: .latitude, text: "Latitude:", locationVM: self.locationVM)
-                                        .frame(height: 50, alignment: .center)
-                                    Spacer()
-                                    ButtonView(type: .longitude, text: "Longitude:", locationVM: self.locationVM)
-                                        .frame(height: 50, alignment: .center)
-                                    Spacer()
-                                    ButtonView(type: .altitude, text: "Altitude:", locationVM: self.locationVM)
-                                        .frame(height: 50, alignment: .center)
-                                    Spacer()
-                                    ButtonView(type: .course, text: "Direction:", locationVM: self.locationVM)
-                                        .frame(height: 50, alignment: .center)
-                                    Spacer()
-                                    ButtonView(type: .speed, text: "Speed:", locationVM: self.locationVM)
-                                        .frame(height: 50, alignment: .center)
+                                    Text("Latitude: \(self.locationVM.coreLocationArray.last?.latitude ?? 0.0, specifier: "%.10f") ± \(self.locationVM.coreLocationArray.last?.horizontalAccuracy ?? 0.0, specifier: "%.2f")m")
+                                        .modifier(ButtonModifier())
+                                    Text("Longitude: \(self.locationVM.coreLocationArray.last?.longitude ?? 0.0, specifier: "%.10f") ± \(self.locationVM.coreLocationArray.last?.horizontalAccuracy ?? 0.0, specifier: "%.2f")m")
+                                        .modifier(ButtonModifier())
+                                    Text("Altitude: \(self.locationVM.coreLocationArray.last?.altitude ?? 0.0, specifier: "%.2f") ± \(self.locationVM.coreLocationArray.last?.verticalAccuracy ?? 0.0, specifier: "%.2f")m")
+                                        .modifier(ButtonModifier())
+                                    Text("Direction: \(self.locationVM.coreLocationArray.last?.course ?? 0.0, specifier: "%.2f")°")
+                                        .modifier(ButtonModifier())
+                                    Text("Speed: \(CalculationAPI.shared.calculateSpeed(ms: self.locationVM.coreLocationArray.last?.speed ?? 0.0, to: "\(SettingsAPI.shared.fetchSpeedSetting())"), specifier: "%.2f")\(SettingsAPI.shared.fetchSpeedSetting())")
+                                        .modifier(ButtonModifier())
                                 }
+                                .frame(height: 50, alignment: .center)
                                 Spacer()
                                 MapKitView(latitude: self.locationVM.coreLocationArray.last?.latitude ?? 37.3323314100, longitude: self.locationVM.coreLocationArray.last?.longitude ?? -122.0312186000)
                                     .frame(width: g.size.width - 10, height: g.size.width - 10, alignment: .center)
@@ -90,7 +86,6 @@ struct LocationView: View {
                     }
                     .navigationBarTitle("Location", displayMode: .inline)
                     .navigationBarHidden(true)
-                    //.background(Color("ViewBackgroundColor").edgesIgnoringSafeArea(.all))
                 }
             }
             .navigationBarTitle("Location", displayMode: .inline)

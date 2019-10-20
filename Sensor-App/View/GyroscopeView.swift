@@ -55,36 +55,33 @@ struct GyroscopeView: View {
                 ZStack {
                     LinearGradient(gradient: Gradient(colors: SettingsAPI.shared.backgroundColor), startPoint: .topLeading, endPoint: .bottomTrailing)
                         .edgesIgnoringSafeArea(.all)
-                    GeometryReader { geometry in
+                    GeometryReader { g in
                         VStack{
                             ScrollView(.vertical) {
                                 Spacer()
                                 VStack{
                                     Group{
-                                        ButtonView(type: .gyroXAxis, text: "X-Axis:", motionVM: self.motionVM)
-                                            .frame(height: 50, alignment: .center)
-                                        Spacer()
-                                        ButtonView(type: .gyroYAxis, text: "Y-Axis:", motionVM: self.motionVM)
-                                            .frame(height: 50, alignment: .center)
-                                        Spacer()
-                                        ButtonView(type: .gyroZAxis, text: "Z-Axis:", motionVM: self.motionVM)
-                                            .frame(height: 50, alignment: .center)
+                                        Text("X-Axis: \(self.motionVM.coreMotionArray.last?.gyroXAxis ?? 0.0, specifier: "%.5f") rad/s")
+                                        .modifier(ButtonModifier())
+                                        Text("Y-Axis: \(self.motionVM.coreMotionArray.last?.gyroYAxis ?? 0.0, specifier: "%.5f") rad/s")
+                                        .modifier(ButtonModifier())
+                                        Text("Z-Axis: \(self.motionVM.coreMotionArray.last?.gyroZAxis ?? 0.0, specifier: "%.5f") rad/s")
+                                        .modifier(ButtonModifier())
                                     }
+                                    .frame(height: 50, alignment: .center)
                                     
                                     
                                     // MARK: - ListView
                                     MotionListView(type: .gyroscope, motionVM: self.motionVM)
                                         .frame(minHeight: 250, maxHeight: .infinity)
-                                    Spacer()
                                     
                                     
                                     // MARK: - RefreshRateViewModel()
                                     RefreshRateView()
                                         .frame(height: CGFloat(165))
-                                    Spacer()
                                 }
                             }
-                            .frame(width: geometry.size.width, height: geometry.size.height - 50 + geometry.safeAreaInsets.bottom)
+                            .frame(width: g.size.width, height: g.size.height - 50 + g.safeAreaInsets.bottom)
                             
                             
                             // MARK: - MotionToolBarViewModel()
@@ -95,7 +92,6 @@ struct GyroscopeView: View {
                 }
                 .navigationBarTitle(Text("Gyroscope"), displayMode: .inline)
                 .navigationBarHidden(true)
-                //.background(Color("ViewBackgroundColor").edgesIgnoringSafeArea(.all))
             }
             .navigationBarTitle("Gyroscope", displayMode: .inline)
             .navigationViewStyle(StackNavigationViewStyle())

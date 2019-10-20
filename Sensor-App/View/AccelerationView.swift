@@ -55,36 +55,32 @@ struct AccelerationView: View {
                 ZStack {
                     LinearGradient(gradient: Gradient(colors: SettingsAPI.shared.backgroundColor), startPoint: .topLeading, endPoint: .bottomTrailing)
                         .edgesIgnoringSafeArea(.all)
-                    GeometryReader { geometry in
+                    GeometryReader { g in
                         VStack{
                             ScrollView(.vertical) {
                                 Spacer()
                                 VStack{
                                     Group{
-                                        ButtonView(type: .accelerationXAxis, text: "X-Axis:", motionVM: self.motionVM)
-                                            .frame(height: 50, alignment: .center)
-                                        Spacer()
-                                        ButtonView(type: .accelerationYAxis, text: "Y-Axis:", motionVM: self.motionVM)
-                                            .frame(height: 50, alignment: .center)
-                                        Spacer()
-                                        ButtonView(type: .accelerationZAxis, text: "Z-Axis:", motionVM: self.motionVM)
-                                            .frame(height: 50, alignment: .center)
+                                        Text("X-Axis: \(self.motionVM.coreMotionArray.last?.accelerationXAxis ?? 0.0, specifier: "%.5f") m/s^2")
+                                        .modifier(ButtonModifier())
+                                        Text("Y-Axis: \(self.motionVM.coreMotionArray.last?.accelerationYAxis ?? 0.0, specifier: "%.5f") m/s^2")
+                                        .modifier(ButtonModifier())
+                                        Text("Z-Axis: \(self.motionVM.coreMotionArray.last?.accelerationZAxis ?? 0.0, specifier: "%.5f") m/s^2")
+                                        .modifier(ButtonModifier())
                                     }
-                                    
+                                    .frame(height: 50, alignment: .center)
                                     
                                     // MARK: - ListView
                                     MotionListView(type: .acceleration, motionVM: self.motionVM)
                                         .frame(minHeight: 250, maxHeight: .infinity)
-                                    Spacer()
                                     
                                     
                                     // MARK: - RefreshRateViewModel()
                                     RefreshRateView()
-                                        .frame(height: CGFloat(165))
-                                    Spacer()
+                                        .frame(width: g.size.width, height: 165)
                                 }
                             }
-                            .frame(width: geometry.size.width, height: geometry.size.height - 50 + geometry.safeAreaInsets.bottom)
+                            .frame(width: g.size.width, height: g.size.height - 50 + g.safeAreaInsets.bottom)
                             
                             
                             // MARK: - MotionToolBarViewModel()
@@ -94,7 +90,6 @@ struct AccelerationView: View {
                     }
                     .navigationBarTitle(Text("Acceleration"), displayMode: .inline)
                     .navigationBarHidden(true)
-                    //.background(Color("ViewBackgroundColor").edgesIgnoringSafeArea(.all))
                 }
             }
             .navigationBarTitle("Acceleration", displayMode: .inline)

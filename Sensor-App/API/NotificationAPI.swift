@@ -52,7 +52,7 @@ class NotificationAPI {
     ///  - Parameter _velocity: initial velocity
     ///  - Parameter _duration: duration how long the notification is shown
     ///
-    func fetchNotificationAnimationSettings(_offSetY: CGFloat? = -UIScreen.main.bounds.height / 3, _mass: Double? = 1.0, _stiffness: Double? = 100.0, _damping: Double? = 10.0, _velocity: Double? = 0.0, _duration: Double? = 2.0) -> NotificationAnimationModel {
+    public func fetchNotificationAnimationSettings(_offSetY: CGFloat? = -UIScreen.main.bounds.height / 3, _mass: Double? = 1.0, _stiffness: Double? = 100.0, _damping: Double? = 10.0, _velocity: Double? = 0.0, _duration: Double? = 2.0) -> NotificationAnimationModel {
         let notificationAnimationSettings = NotificationAnimationModel(
             offSetY: _offSetY!,
             springMass: _mass!,
@@ -85,7 +85,7 @@ class NotificationAPI {
     ///  - Parameter type: Notification Type
     ///  - Parameter duration: Notification Duration
     ///  - Parameter completion: completiomn handler
-    func toggleNotification(type: NotificationTypes, duration: Double?, completion: @escaping (String, Bool) -> Void) {
+    public func toggleNotification(type: NotificationTypes, duration: Double?, completion: @escaping (String, Bool) -> Void) {
         let duration = duration ?? fetchNotificationAnimationSettings().duration
         
         let notificationMessage = NotificationAPI.shared.fetchNotificationText(type: type)

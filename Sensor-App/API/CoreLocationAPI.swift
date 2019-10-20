@@ -41,7 +41,7 @@ class CoreLocationAPI: CLLocationManager, CLLocationManagerDelegate {
     ///
     ///  - Returns: LocationModel Object
     ///
-    var locationCompletionHandler: ((LocationModel) -> Void)?
+    public var locationCompletionHandler: ((LocationModel) -> Void)?
     
     
     // MARK: - locationManager Methods
@@ -92,7 +92,7 @@ class CoreLocationAPI: CLLocationManager, CLLocationManagerDelegate {
     ///
     ///  - Returns:
     ///
-    func startUpdatingGPS() { // Start getting GPS Coordinates
+    public func startUpdatingGPS() { // Start getting GPS Coordinates
         // Define Accuracy based on selection - SettingsModel.GPSAccuracy
         let desiredAccuracy = SettingsAPI.shared.fetchGPSAccuracySetting()
         switch desiredAccuracy {
@@ -118,7 +118,7 @@ class CoreLocationAPI: CLLocationManager, CLLocationManagerDelegate {
     ///
     ///  - Returns:
     ///
-    func stopUpdatingGPS() {
+    public func stopUpdatingGPS() {
         locationManager.delegate = self
         locationManager.stopUpdatingLocation()
     }

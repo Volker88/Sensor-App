@@ -9,161 +9,107 @@
 
 // MARK: - ContentView()
 "Home" = "Hauptmenü";
-
 "Welcome to the \n Sensor-App" = "Willkommen bei \n Sensor-App";
-
 "Location" = "Standort";
-
 "Acceleration" = "Beschleunigung";
-
 "Gravity" = "Gravitation";
-
 "Gyroscope" = "Gyroskop";
-
 "Magnetometer" = "Magnetometer";
-
 "Attitude" = "Haltung";
-
 "Altitude" = "Höhe";
-
 "Settings" = "Einstellungen";
 
 
 // MARK: - LocationView()
-//"Latitude: %@ ±%@m" = "Breitengrad: %@ ±%@m";
-"Latitude:" = "Breitengrad:";
-
-//"Longitude: %@ ° ±%@m" = "Längengrad: %@ ° ±%@m";
-"Longitude:" = "Längengrad:";
-
-//"Altitude: %@ ±%@m" = "Höhe: %@ ±%@m";
-"Altitude:" = "Höhe:";
-
-//"Direction: %@ °" = "Richtung: %@ °";
-"Direction:" = "Richtung:";
-
-//"Speed: %@ %@" = "Geschwindigkeit: %@ %@";
-"Speed:" = "Geschwindigkeit:";
+"Latitude: %.10f ± %.2fm" = "Breitengrad: %.10f ± %.2fm";
+"Longitude: %.10f ± %.2fm" = "Längengrad: %.10f ± %.2fm";
+"Altitude: %.2f ± %.2fm" = "Höhe: %.2f ± %.2fm";
+"Direction: %.2f°" = "Richtung: %.2f";
+"Speed: %.2f%@" = "Geschwindigkeit: %.2f%@";
 
 
 // MARK: - AccelerationView()
-//"X-Axis: %lf m/s^2" = "X-Achse: %lf m/s^2";
-//"Y-Axis: %lf m/s^2" = "Y-Achse: %lf m/s^2";
-//"Z-Axis: %lf m/s^2" = "Z-Achse: %lf m/s^2";
-
-"X-Axis:" = "X-Achse:";
-
-"Y-Axis:" = "Y-Achse:";
-
-"Z-Axis:" = "Z-Achse:";
+"X-Axis: %.5f m/s^2" = "X-Achse: %.5f m/s^2";
+"Y-Axis: %.5f m/s^2" = "Y-Achse: %.5f m/s^2";
+"Z-Axis: %.5f m/s^2" = "Z-Achse: %.5f m/s^2";
 
 
 // List
 "ID:%lld" = "ID:%lld";
-
 "X:%.5f" = "X:%.5f";
-
 "Y:%.5f" = "Y:%.5f";
-
 "Z:%.5f" = "Z:%.5f";
 
 
 // MARK: - GravityView()
-//"X-Axis: %lf g (9,81 m/s^2)" = "X-Achse: %lf g (9,81 m/s^2)";
-//"Y-Axis: %lf g (9,81 m/s^2)" = "Y-Achse: %lf g (9,81 m/s^2)";
-//"Z-Axis: %lf g (9,81 m/s^2)" = "Z-Achse: %lf g (9,81 m/s^2)";
+"X-Axis: %.5f g (9,81 m/s^2)" = "X-Achse: %.5f g (9,81 m/s^2)";
+"Y-Axis: %.5f g (9,81 m/s^2)" = "Y-Achse: %.5f g (9,81 m/s^2)";
+"Z-Axis: %.5f g (9,81 m/s^2)" = "Z-Achse: %.5f g (9,81 m/s^2)";
 
 
 
 // MARK: - GyroscopeView()
-//"X-Axis: %lf rad/s" = "X-Axis: %lf rad/s";
-//"Y-Axis: %lf rad/s" = "Y-Achse: %lf rad/s";
-//"Z-Axis: %lf rad/s" = "Z-Achse: %lf rad/s";
+"X-Axis: %.5f rad/s" = "X-Aachse: %.5f rad/s";
+"Y-Axis: %.5f rad/s" = "Y-Achse: %.5f rad/s";
+"Z-Axis: %.5f rad/s" = "Z-Achse: %.5f rad/s";
 
 
 // MARK: - MagnetometerView()
-//"X-Axis: %lf µT" = "X-Achse: %lf µT";
-//"Y-Axis: %lf µT" = "Y-Achse: %lf µT";
-//"Z-Axis: %lf µT" = "Z-Achse: %lf µT";
+"X-Axis: %.5f µT" = "X-Achse: %.5f µT";
+"Y-Axis: %.5f µT" = "Y-Achse: %.5f µT";
+"Z-Axis: %.5f µT" = "Z-Achse: %.5f µT";
 
 
 // MARK: - AttitudeView()
-"Roll: %lf °" = "Roll: %lf °";
-"Pitch: %lf °" = "Pitch: %lf °";
-"Yaw: %lf °" = "Yaw: %lf °";
-"Heading: %lf °" = "Heading: %lf °";
+"Roll: %.5f°" = "Roll: %.5f°";
+"Pitch: %.5f°" = "Pitch: %.5f°";
+"Yaw: %.5f°" = "Yaw: %.5f°";
+"Heading: %.5f°" = "Heading: %.5f°";
 
-"Roll:" = "Roll";
-
-"Pitch:" = "Pitch:";
-
-"Yaw:" = "Yaw:";
-
-"Heading:" = "Heading:";
 
 // List
-"R:%.4f" = "R:%.4f";
-
-"P:%.4f" = "P:%.4f";
-
-"Y:%.4f" = "Y:%.4f";
-
-"H:%.4f" = "H:%.4f";
+"R:%.3f" = "R:%.3f";
+"P:%.3f" = "P:%.3f";
+"Y:%.3f" = "Y:%.3f";
+"H:%.3f" = "H:%.3f";
 
 
 
 // MARK: - AltitudeView()
-//"Pressure: %lf %@" = "Luftdruck: %lf %@";
-"Pressure:" = "Luftdruck:";
-
-//"Altitude change: %lf %@" = "Höhenänderung: %lf %@";
-"Altitude change:" = "Höhenänderung:";
+"Pressure: %.5f %@" = "Luftdruck: %.5f %@";
+"Altitude change: %.5f %@" = "Höhenänderung: %.5f %@";
 
 
 //List
-"P.:%.5f" = "L.:%.5f";
-
-"A.:%.5f" = "H.:%.5f";
+"P:%.5f" = "L:%.5f";
+"A:%.5f" = "H:%.5f";
 
 
 // MARK: - SettingsView()
 "Speed Setting" = "Geschwindigkeit";
-
 "Accuracy" = "Genauigkeit";
-
 "Pressure" = "Luftdruck";
-
 "Height" = "Höhe";
 
-
+// Buttons
 "CancelButton" = "CancelButton";
-
 "SaveButton" = "SaveButton";
-
 "UndoButton" = "UndoButton";
-
 "SettingsButton" = "SettingsButton";
 
 
 // MARK: - NotificationViewModel()
 "Saved successfully" = "Erfolgreich gespeichert";
-
 "Changes Discarded" = "Änderungen verworfen";
-
 "Paused" = "Pausiert";
-
 "Play" = "Fortsetzen";
-
 "Successfully deleted" = "Erfolgreich gelöscht";
 
 
 // MARK: - RefreshRateViewModel()
 "Refresh Rate" = "Aktualisierungsrate";
-
 "Frequency: %lld Hz" = "Frequenz: %lld Hz";
-
 "1" = "1";
-
 "50" = "50";
 
 

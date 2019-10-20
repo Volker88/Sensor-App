@@ -20,52 +20,43 @@ struct RefreshRateView: View {
     
     // MARK: - Methods
     func updateSlider() {
+        
+        // Save Sensor Settings
         SettingsAPI.shared.saveFrequency(frequency: Float(self.refreshRate))
+        
+        // Update Sensor Interval
+        CoreMotionAPI.shared.sensorUpdateInterval = self.refreshRate
     }
     
     
     // MARK: - Body - View
     var body: some View {
         
-        // Update Sensor Interval
-        CoreMotionAPI.shared.sensorUpdateInterval = (1 / self.refreshRate)
         
+        // MARK: - Return View
         return GeometryReader { g in
             VStack{
                 Group{
                     Text("Refresh Rate")
-                        .frame(width: g.size.width - 10, height: CGFloat(50), alignment: .center)
-                        .font(.title)
-                        .foregroundColor(Color("HeaderTextColor"))
-                        .background(Color("HeaderBackgroundColor"))
-                    Spacer()
+                        .modifier(ButtonTitleModifier())
                     Text("Frequency: \(Int(self.refreshRate)) Hz")
-                        .frame(width: g.size.width - 10, height: CGFloat(50), alignment: .leading)
+                        .modifier(ButtonModifier())
                 }
-                .font(.body)
-                .foregroundColor(Color("StandardTextColor"))
-                .background(Color("StandardBackgroundColor"))
-                .cornerRadius(10)
-                Spacer()
+                .frame(height: 50, alignment: .center)
                 Group {
                     HStack {
                         Text("1")
-                            .frame(width: CGFloat(50), height: CGFloat(50), alignment: .center)
-                            .background(Color("StandardBackgroundColor"))
-                            .cornerRadius(CGFloat(10))
+                            .modifier(RefreshRateLimitLabel())
                         Slider(value: self.$refreshRate, in: 1...50, step: 1) { refresh in
                             self.updateSlider()
                         }
                         Text("50")
-                            .frame(width: CGFloat(50), height: CGFloat(50), alignment: .center)
-                            .background(Color("StandardBackgroundColor"))
-                            .cornerRadius(CGFloat(10))
+                            .modifier(RefreshRateLimitLabel())
                     }
-                    .frame(width: g.size.width - 10, height: CGFloat(50), alignment: .center)
-                    .font(.body)
-                    .foregroundColor(Color("StandardTextColor"))
                 }
-            }.frame(height: 170)
+                .frame(width: g.size.width - 10, height: 50, alignment: .center)
+            }
+            .frame(height: 170)
         }
     }
 }

@@ -32,7 +32,7 @@ class CoreMotionAPI {
     
 
     // MARK: - Define Constants / Variables
-    var sensorUpdateInterval : Double = 1.0
+    public var sensorUpdateInterval : Double = Double(SettingsAPI.shared.fetchFrequency())
     
     
     // MARK: - Closure to push MotionModel to ViewModel
@@ -44,7 +44,7 @@ class CoreMotionAPI {
     ///
     ///  - Returns: CoreMotion
     ///
-    var motionCompletionHandler: ((MotionModel) -> Void)?
+    public var motionCompletionHandler: ((MotionModel) -> Void)?
     
     ///
     ///  Completion Handler to receive AltitudeModel
@@ -54,7 +54,7 @@ class CoreMotionAPI {
     ///
     ///  - Returns: AltitudeModel
     ///
-    var altitudeCompletionHandler: ((AltitudeModel) -> Void)?
+    public var altitudeCompletionHandler: ((AltitudeModel) -> Void)?
     
     
     // MARK: - Methods
@@ -66,12 +66,12 @@ class CoreMotionAPI {
     ///
     ///  - Returns:
     ///
-    func motionUpdateStart() {
+    public func motionUpdateStart() {
         self.motionManager.startDeviceMotionUpdates(using: .xTrueNorthZVertical, to: .main) { (data, error) in
             guard let data = data, error == nil else {
                 return
             }
-            self.motionManager.deviceMotionUpdateInterval = self.sensorUpdateInterval
+            self.motionManager.deviceMotionUpdateInterval = ( 1 / self.sensorUpdateInterval)
             
             
             // Acceleration
@@ -161,16 +161,14 @@ class CoreMotionAPI {
                 let pressureValue = Double(truncating: altimeter.pressure) // pressure in kPa
                 let relativeAltitudeValue = Double(truncating: altimeter.relativeAltitude) // change in m
                 
-                print("Pressure: \(pressureValue / 100)")
-                print("Relative Altitude change: \(relativeAltitudeValue)")
-                
-                let altitude = CalculationAPI.shared.convertAltitudeData(pressure: pressureValue, height: relativeAltitudeValue)
+                print("Pressure: \(pressureValue) kPa")
+                print("Relative Altitude change: \(relativeAltitudeValue) m")
                 
                 let altitudeModel = AltitudeModel(
                     counter: 1,
                     timestamp: SettingsAPI.shared.getTimestamp(),
-                    pressureValue: altitude.convertedPressure,
-                    relativeAltitudeValue: altitude.convertedHeight
+                    pressureValue: pressureValue,
+                    relativeAltitudeValue: relativeAltitudeValue
                 )
 
                 // Push Model to ViewController
@@ -187,7 +185,7 @@ class CoreMotionAPI {
     ///
     ///  - Returns:
     ///
-    func motionUpdateStop() {
+    public func motionUpdateStop() {
         motionManager.stopDeviceMotionUpdates()
         altimeterManager.stopRelativeAltitudeUpdates()
     }

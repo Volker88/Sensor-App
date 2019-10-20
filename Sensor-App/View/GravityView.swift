@@ -55,36 +55,33 @@ struct GravityView: View {
                 ZStack {
                     LinearGradient(gradient: Gradient(colors: SettingsAPI.shared.backgroundColor), startPoint: .topLeading, endPoint: .bottomTrailing)
                         .edgesIgnoringSafeArea(.all)
-                    GeometryReader { geometry in
+                    GeometryReader { g in
                         VStack{
                             ScrollView(.vertical) {
                                 Spacer()
                                 VStack{
                                     Group{
-                                        ButtonView(type: .gravityXAxis, text: "X-Axis:", motionVM: self.motionVM)
-                                            .frame(height: 50, alignment: .center)
-                                        Spacer()
-                                        ButtonView(type: .gravityYAxis, text: "Y-Axis:", motionVM: self.motionVM)
-                                            .frame(height: 50, alignment: .center)
-                                        Spacer()
-                                        ButtonView(type: .gravityZAxis, text: "Z-Axis:", motionVM: self.motionVM)
-                                            .frame(height: 50, alignment: .center)
+                                        Text("X-Axis: \(self.motionVM.coreMotionArray.last?.gravityXAxis ?? 0.0, specifier: "%.5f") g (9,81 m/s^2)")
+                                        .modifier(ButtonModifier())
+                                        Text("Y-Axis: \(self.motionVM.coreMotionArray.last?.gravityYAxis ?? 0.0, specifier: "%.5f") g (9,81 m/s^2)")
+                                        .modifier(ButtonModifier())
+                                        Text("Z-Axis: \(self.motionVM.coreMotionArray.last?.gravityZAxis ?? 0.0, specifier: "%.5f") g (9,81 m/s^2)")
+                                        .modifier(ButtonModifier())
                                     }
+                                    .frame(height: 50, alignment: .center)
                                     
                                     
                                     // MARK: - ListView
                                     MotionListView(type: .gravity, motionVM: self.motionVM)
                                         .frame(minHeight: 250, maxHeight: .infinity)
-                                    Spacer()
                                     
                                     
                                     // MARK: - RefreshRateViewModel()
                                     RefreshRateView()
                                         .frame(height: CGFloat(165))
-                                    Spacer()
                                 }
                             }
-                            .frame(width: geometry.size.width, height: geometry.size.height - 50 + geometry.safeAreaInsets.bottom)
+                            .frame(width: g.size.width, height: g.size.height - 50 + g.safeAreaInsets.bottom)
                             
                             
                             // MARK: - MotionToolBarViewModel()
@@ -95,7 +92,6 @@ struct GravityView: View {
                 }
                 .navigationBarTitle(Text("Gravity"), displayMode: .inline)
                 .navigationBarHidden(true)
-                //.background(Color("ViewBackgroundColor").edgesIgnoringSafeArea(.all))
             }
             .navigationBarTitle("Gravity", displayMode: .inline)
             .navigationViewStyle(StackNavigationViewStyle())

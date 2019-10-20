@@ -35,16 +35,16 @@ class SettingsAPI {
     
     
     // MARK: - GPS Settings
-    let GPSSpeedSettings = ["m/s", "km/h", "mph"]
-    let GPSAccuracyOptions = ["Best", "10 Meter", "100 Meter", "Kilometer", "3 Kilometer"]
+    public let GPSSpeedSettings = ["m/s", "km/h", "mph"]
+    public let GPSAccuracyOptions = ["Best", "10 Meter", "100 Meter", "Kilometer", "3 Kilometer"]
     
     
     // MARK: - Altitude Settings
-    let altitudePressure = ["mbar", "bar", "atm", "Pa", "hPa", "kPa", "psi", "mmHG", "inHG"]
-    let altitudeHeight = ["mm", "cm", "m", "inch", "feet", "yard"]
+    public let altitudePressure = ["mbar", "bar", "atm", "Pa", "hPa", "kPa", "psi", "mmHG", "inHG"]
+    public let altitudeHeight = ["mm", "cm", "m", "inch", "feet", "yard"]
     
     // MARK: - View BackgroundColor
-    let backgroundColor : [Color] = [Color("1first"), Color("2second"), Color("3third"), Color("4fourth"), Color("5fifth")]
+    public let backgroundColor : [Color] = [Color("1first"), Color("2second"), Color("3third"), Color("4fourth"), Color("5fifth")]
     
     // MARK: - Methods
     
@@ -65,7 +65,7 @@ class SettingsAPI {
     ///  - Parameter input: String to be saved
     ///  - Parameter setting: Setting which should be saved
     ///
-    func saveUserDefaultsString(input: String, setting: SettingsForUserDefaults) {
+    public func saveUserDefaultsString(input: String, setting: SettingsForUserDefaults) {
         userDefaults.set(input, forKey: "\(setting)")
         print("Saved - \(input) for \(setting)")
     }
@@ -82,7 +82,7 @@ class SettingsAPI {
     ///
     ///  - Returns: Speed setting
     ///
-    func fetchSpeedSetting() -> String { // Read Speed Settings from UserDefaults
+    public func fetchSpeedSetting() -> String { // Read Speed Settings from UserDefaults
         var GPSSpeedSetting = ""
         if let i = userDefaults.string(forKey: "\(SettingsForUserDefaults.GPSSpeedSetting)") {
             GPSSpeedSetting = i
@@ -102,7 +102,7 @@ class SettingsAPI {
     ///
     ///  - Returns: GPS accuracy setting
     ///
-    func fetchGPSAccuracySetting() -> String { // Read GPS Accuracy Settings from UserDefaults
+    public func fetchGPSAccuracySetting() -> String { // Read GPS Accuracy Settings from UserDefaults
         var GPSAccuracySetting = ""
         if let i = userDefaults.string(forKey: "\(SettingsForUserDefaults.GPSAccuracySetting)") {
             GPSAccuracySetting = i
@@ -124,7 +124,7 @@ class SettingsAPI {
     ///
     ///  - Returns: GPS accuracy setting
     ///
-    func fetchPressureSetting() -> String { // Read Pressure Setting from UserDefaults
+    public func fetchPressureSetting() -> String { // Read Pressure Setting from UserDefaults
         var pressureSetting = ""
         if let i = userDefaults.string(forKey: "\(SettingsForUserDefaults.pressureSetting)") {
             pressureSetting = i
@@ -144,7 +144,7 @@ class SettingsAPI {
     ///
     ///  - Returns: Altitude Height setting
     ///
-    func fetchHeightSetting() -> String { // Read Height Setting from UserDefaults
+    public func fetchHeightSetting() -> String { // Read Height Setting from UserDefaults
         var heightSetting = ""
         if let i = userDefaults.string(forKey: "\(SettingsForUserDefaults.altitudeHeightSetting)") {
             heightSetting = i
@@ -164,7 +164,7 @@ class SettingsAPI {
     ///
     ///  - Returns: Current timestamp
     ///
-    func getTimestamp() -> String {
+    public func getTimestamp() -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd-MM-yyyy HH:mm:ss.SSS"
         let dateString = dateFormatter.string(from: NSDate() as Date)

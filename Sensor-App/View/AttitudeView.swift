@@ -55,39 +55,35 @@ struct AttitudeView: View {
                 ZStack {
                     LinearGradient(gradient: Gradient(colors: SettingsAPI.shared.backgroundColor), startPoint: .topLeading, endPoint: .bottomTrailing)
                         .edgesIgnoringSafeArea(.all)
-                    GeometryReader { geometry in
+                    GeometryReader { g in
                         VStack{
                             ScrollView(.vertical) {
                                 Spacer()
                                 VStack{
                                     Group{
-                                        ButtonView(type: .attitudeRoll, text: "Roll:", motionVM: self.motionVM)
-                                            .frame(height: 50, alignment: .center)
-                                        Spacer()
-                                        ButtonView(type: .attitudePitch, text: "Pitch:", motionVM: self.motionVM)
-                                            .frame(height: 50, alignment: .center)
-                                        Spacer()
-                                        ButtonView(type: .attitudeYaw, text: "Yaw:", motionVM: self.motionVM)
-                                            .frame(height: 50, alignment: .center)
-                                        Spacer()
-                                        ButtonView(type: .attitudeHeading, text: "Heading:", motionVM: self.motionVM)
-                                            .frame(height: 50, alignment: .center)
+                                        Text("Roll: \((self.motionVM.coreMotionArray.last?.attitudeRoll ?? 0.0) * 180 / .pi, specifier: "%.5f")°")
+                                        .modifier(ButtonModifier())
+                                        Text("Pitch: \((self.motionVM.coreMotionArray.last?.attitudePitch ?? 0.0) * 180 / .pi, specifier: "%.5f")°")
+                                        .modifier(ButtonModifier())
+                                        Text("Yaw: \((self.motionVM.coreMotionArray.last?.attitudeYaw ?? 0.0) * 180 / .pi, specifier: "%.5f")°")
+                                        .modifier(ButtonModifier())
+                                        Text("Heading: \(self.motionVM.coreMotionArray.last?.attitudeHeading ?? 0.0, specifier: "%.5f")°")
+                                        .modifier(ButtonModifier())
                                     }
+                                    .frame(height: 50, alignment: .center)
                                     
                                     
                                     // MARK: - ListView
                                     MotionListView(type: .attitude, motionVM: self.motionVM)
                                         .frame(minHeight: 250, maxHeight: .infinity)
-                                    Spacer()
                                     
                                     
                                     // MARK: - RefreshRateViewModel()
                                     RefreshRateView()
                                         .frame(height: CGFloat(165))
-                                    Spacer()
                                 }
                             }
-                            .frame(width: geometry.size.width, height: geometry.size.height - 50 + geometry.safeAreaInsets.bottom)
+                            .frame(width: g.size.width, height: g.size.height - 50 + g.safeAreaInsets.bottom)
                             
                             
                             // MARK: - MotionToolBarViewModel()
@@ -98,7 +94,6 @@ struct AttitudeView: View {
                 }
                 .navigationBarTitle(Text("Attitude"), displayMode: .inline)
                 .navigationBarHidden(true)
-                //.background(Color("ViewBackgroundColor").edgesIgnoringSafeArea(.all))
             }
             .navigationBarTitle("Attitude", displayMode: .inline)
             .navigationViewStyle(StackNavigationViewStyle())

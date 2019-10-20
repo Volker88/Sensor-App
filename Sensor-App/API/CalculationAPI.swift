@@ -36,7 +36,7 @@ class CalculationAPI {
     ///  - Parameter ms: input in m/s
     ///  - Parameter to: targfet unit
     ///
-    func calculateSpeed(ms: Double, to: String) -> Double { // Calculcate Speed
+    public func calculateSpeed(ms: Double, to: String) -> Double { // Calculcate Speed
         switch to {
         case SettingsAPI.shared.GPSSpeedSettings[0]: return ms             // m/s
         case SettingsAPI.shared.GPSSpeedSettings[1]: return ms * 3.6       // km/h
@@ -66,7 +66,7 @@ class CalculationAPI {
     ///  - Parameter pressure: input in kPa
     ///  - Parameter to: target unit
     ///
-    private func calculatePressure(pressure: Double, to: String) -> Double { // Calculate Pressure Units (input kPa)
+    public func calculatePressure(pressure: Double, to: String) -> Double { // Calculate Pressure Units (input kPa)
         switch to {
         case SettingsAPI.shared.altitudePressure[0]: return pressure * 10 // mbar
         case SettingsAPI.shared.altitudePressure[1]: return pressure * 0.01 // bar
@@ -99,38 +99,15 @@ class CalculationAPI {
     ///  - Parameter height: input in m
     ///  - Parameter to: target unit
     ///
-    private func calculateHeight(height: Double, to: String) -> Double { // Calculate Height Units (input m)
+    public func calculateHeight(height: Double, to: String) -> Double { // Calculate Height Units (input m)
         switch to {
-        case SettingsAPI.shared.altitudeHeight[0]: return height * 0.01 // mm
-        case SettingsAPI.shared.altitudeHeight[1]: return height * 0.1 // cm
+        case SettingsAPI.shared.altitudeHeight[0]: return height * 1000 // mm
+        case SettingsAPI.shared.altitudeHeight[1]: return height * 100 // cm
         case SettingsAPI.shared.altitudeHeight[2]: return height // m
         case SettingsAPI.shared.altitudeHeight[3]: return height * 39.3701// inch
         case SettingsAPI.shared.altitudeHeight[4]: return height * 3.28084// feet
         case SettingsAPI.shared.altitudeHeight[5]: return height * 1.09361// yard
         default: return height
         }
-    }
-    
-    ///
-    ///  Converts Pressure and Altitude Height into selected units
-    ///
-    ///  Input is taken from Motion sensor. Output unit is taken from user Settings
-    ///
-    ///  - Note:
-    ///  - Remark:
-    ///
-    ///  - Returns: (**pressure, height**) in selected units
-    ///
-    ///  - Parameter pressure: input in kPa
-    ///  - Parameter height: input in m
-    ///
-    func convertAltitudeData(pressure: Double, height: Double) -> (convertedPressure: Double, convertedHeight: Double) {
-        let altitudePressureSetting = SettingsAPI.shared.fetchPressureSetting()
-        let altitudeHeightSetting = SettingsAPI.shared.fetchHeightSetting()
-        
-        let pressure = self.calculatePressure(pressure: pressure, to: altitudePressureSetting)
-        let height = self.calculateHeight(height: height, to: altitudeHeightSetting)
-        
-        return (pressure, height)
     }
 }

@@ -35,68 +35,62 @@ struct ContentView: View {
             ZStack {
                 LinearGradient(gradient: Gradient(colors: SettingsAPI.shared.backgroundColor), startPoint: .topLeading, endPoint: .bottomTrailing)
                     .edgesIgnoringSafeArea(.all)
-                
                 GeometryReader { g in
                     ScrollView {
                         VStack {
                             Spacer()
                             Group {
-                                ContentViewButton(type: .contentViewHeader, text: "Welcome to the \n Sensor-App")
-                                    .frame(height: 100, alignment: .center)
-                                Spacer()
+                                Text("Welcome to the \n Sensor-App")
+                                    .modifier(ContentViewTitleModifier())
+                            }
+                            .frame(height: 100, alignment: .center)
+                            Group {
                                 NavigationLink(destination: LocationView()) {
-                                    ContentViewButton(type: nil, text: "Location")
-                                    .frame(height: 50, alignment: .center)
+                                    Text("Location")
+                                        .modifier(ContentViewButtonModifier())
                                 }
-                                Spacer()
                                 NavigationLink(destination: AccelerationView()) {
-                                    ContentViewButton(type: nil, text: "Acceleration")
-                                    .frame(height: 50, alignment: .center)
+                                    Text("Acceleration")
+                                        .modifier(ContentViewButtonModifier())
                                 }
-                                Spacer()
                                 NavigationLink(destination: GravityView()) {
-                                    ContentViewButton(type: nil, text: "Gravity")
-                                    .frame(height: 50, alignment: .center)
+                                    Text("Gravity")
+                                        .modifier(ContentViewButtonModifier())
                                 }
-                                Spacer()
                                 NavigationLink(destination: GyroscopeView()) {
-                                    ContentViewButton(type: nil, text: "Gyroscope")
-                                    .frame(height: 50, alignment: .center)
+                                    Text("Gyroscope")
+                                        .modifier(ContentViewButtonModifier())
                                 }
                             }
-                            Spacer()
+                            .frame(height: 50, alignment: .center)
                             Group {
                                 NavigationLink(destination: MagnetometerView()) {
-                                    ContentViewButton(type: nil, text: "Magnetometer")
-                                    .frame(height: 50, alignment: .center)
+                                    Text("Magnetometer")
+                                        .modifier(ContentViewButtonModifier())
                                 }
-                                Spacer()
                                 NavigationLink(destination: AttitudeView()) {
-                                    ContentViewButton(type: nil, text: "Attitude")
-                                    .frame(height: 50, alignment: .center)
+                                    Text("Attitude")
+                                        .modifier(ContentViewButtonModifier())
                                 }
-                                Spacer()
                                 NavigationLink(destination: AltitudeView()) {
-                                    ContentViewButton(type: nil, text: "Altitude")
-                                    .frame(height: 50, alignment: .center)
+                                    Text("Altitude")
+                                        .modifier(ContentViewButtonModifier())
                                 }
-                                Spacer()
                                 Button(action: { self.showSettings.toggle() }) {
-                                    ContentViewButton(type: nil, text: "Settings")
-                                    .frame(height: 50, alignment: .center)
+                                    Text("Settings")
+                                        .modifier(ContentViewButtonModifier())
                                 }
                             }
-                            Spacer()
+                            .frame(height: 50, alignment: .center)
                         }
-                        .offset(x: 5)
                         .navigationBarTitle("Home", displayMode: .inline)
+                        Spacer()
                     }
                 }
             }
-            .sheet(isPresented: $showSettings) {
-                SettingsView()
-            }
-        }.navigationViewStyle(StackNavigationViewStyle())
+            .sheet(isPresented: $showSettings) { SettingsView() }
+        }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

@@ -81,7 +81,6 @@ struct SettingsView: View {
         return ZStack {
             NavigationView {
                 Form {
-                    
                     Section(header:
                         Text("Location")
                             .font(.largeTitle)

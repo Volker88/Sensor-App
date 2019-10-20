@@ -55,36 +55,33 @@ struct MagnetometerView: View {
                 ZStack {
                     LinearGradient(gradient: Gradient(colors: SettingsAPI.shared.backgroundColor), startPoint: .topLeading, endPoint: .bottomTrailing)
                         .edgesIgnoringSafeArea(.all)
-                    GeometryReader { geometry in
+                    GeometryReader { g in
                         VStack{
                             ScrollView(.vertical) {
                                 Spacer()
                                 VStack{
                                     Group{
-                                        ButtonView(type: .magnetometerXAxis, text: "X-Axis:", motionVM: self.motionVM)
-                                            .frame(height: 50, alignment: .center)
-                                        Spacer()
-                                        ButtonView(type: .magnetometerYAxis, text: "Y-Axis:", motionVM: self.motionVM)
-                                            .frame(height: 50, alignment: .center)
-                                        Spacer()
-                                        ButtonView(type: .magnetometerZAxis, text: "Z-Axis:", motionVM: self.motionVM)
-                                            .frame(height: 50, alignment: .center)
+                                        Text("X-Axis: \(self.motionVM.coreMotionArray.last?.magnetometerXAxis ?? 0.0, specifier: "%.5f") µT")
+                                        .modifier(ButtonModifier())
+                                        Text("Y-Axis: \(self.motionVM.coreMotionArray.last?.magnetometerYAxis ?? 0.0, specifier: "%.5f") µT")
+                                        .modifier(ButtonModifier())
+                                        Text("Z-Axis: \(self.motionVM.coreMotionArray.last?.magnetometerZAxis ?? 0.0, specifier: "%.5f") µT")
+                                        .modifier(ButtonModifier())
                                     }
+                                    .frame(height: 50, alignment: .center)
                                     
                                     
                                     // MARK: - ListView
                                     MotionListView(type: .magnetometer, motionVM: self.motionVM)
                                         .frame(minHeight: 250, maxHeight: .infinity)
-                                    Spacer()
                                     
                                     
                                     // MARK: - RefreshRateViewModel()
                                     RefreshRateView()
                                         .frame(height: CGFloat(165))
-                                    Spacer()
                                 }
                             }
-                            .frame(width: geometry.size.width, height: geometry.size.height - 50 + geometry.safeAreaInsets.bottom)
+                            .frame(width: g.size.width, height: g.size.height - 50 + g.safeAreaInsets.bottom)
                             
                             
                             // MARK: - MotionToolBarViewModel()
@@ -95,7 +92,6 @@ struct MagnetometerView: View {
                 }
                 .navigationBarTitle(Text("Magnetometer"), displayMode: .inline)
                 .navigationBarHidden(true)
-                //.background(Color("ViewBackgroundColor").edgesIgnoringSafeArea(.all))
             }
             .navigationBarTitle("Magnetometer", displayMode: .inline)
             .navigationViewStyle(StackNavigationViewStyle())
