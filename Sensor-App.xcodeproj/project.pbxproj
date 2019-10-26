@@ -10,6 +10,12 @@
 		151101152364518200EC0292 /* ViewButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151101142364518200EC0292 /* ViewButtonModifier.swift */; };
 		151101162364518200EC0292 /* ViewButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151101142364518200EC0292 /* ViewButtonModifier.swift */; };
 		1511011723647EB200EC0292 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1577ECAE23300E620061718B /* Localizable.strings */; };
+		1511014223648D4000EC0292 /* Sensor_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1511014123648D4000EC0292 /* Sensor_AppTests.swift */; };
+		1511015023648D8000EC0292 /* Sensor_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1511014F23648D8000EC0292 /* Sensor_AppUITests.swift */; };
+		1511017323648E6A00EC0292 /* Sensor_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1511014123648D4000EC0292 /* Sensor_AppTests.swift */; };
+		1511017423648E7100EC0292 /* Sensor_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1511014F23648D8000EC0292 /* Sensor_AppUITests.swift */; };
+		1511017623648E9600EC0292 /* CalculationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1511017523648E9600EC0292 /* CalculationTests.swift */; };
+		1511017723648ECF00EC0292 /* CalculationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1511017523648E9600EC0292 /* CalculationTests.swift */; };
 		1513ACBF232529640095760B /* MotionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DEDA64231DA6F3008B2327 /* MotionModel.swift */; };
 		1513ACC2232529640095760B /* AltitudeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ED0436231EF6EE001E5005 /* AltitudeModel.swift */; };
 		1513ACC3232529640095760B /* CoreLocationAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DEDA60231D8973008B2327 /* CoreLocationAPI.swift */; };
@@ -43,7 +49,6 @@
 		1516CD58232D510400817C33 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1516CD56232D510400817C33 /* SettingsView.swift */; };
 		1531AC4C2353968700492189 /* MotionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1531AC4B2353968700492189 /* MotionListView.swift */; };
 		1531AC4D2353968700492189 /* MotionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1531AC4B2353968700492189 /* MotionListView.swift */; };
-		154E0FDA235CE3BC00FD426C /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 154E0FD8235CE3BC00FD426C /* Interface.storyboard */; };
 		154E0FDC235CE3BD00FD426C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 154E0FDB235CE3BD00FD426C /* Assets.xcassets */; };
 		154E0FE3235CE3BD00FD426C /* Sensor-App-WatchApp Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 154E0FE2235CE3BD00FD426C /* Sensor-App-WatchApp Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		154E0FE8235CE3BD00FD426C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154E0FE7235CE3BD00FD426C /* ContentView.swift */; };
@@ -59,7 +64,6 @@
 		154E102A235CE41A00FD426C /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154E0FEB235CE3BD00FD426C /* ExtensionDelegate.swift */; };
 		154E102B235CE41D00FD426C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 154E0FED235CE3BD00FD426C /* Assets.xcassets */; };
 		154E102C235CE42400FD426C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 154E0FF0235CE3BD00FD426C /* Preview Assets.xcassets */; };
-		154E102D235CE42E00FD426C /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 154E0FD8235CE3BC00FD426C /* Interface.storyboard */; };
 		154E102E235CE43000FD426C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 154E0FDB235CE3BD00FD426C /* Assets.xcassets */; };
 		1550FA7C232C0435006447AE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1550FA7B232C0435006447AE /* SceneDelegate.swift */; };
 		1550FA7D232C0435006447AE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1550FA7B232C0435006447AE /* SceneDelegate.swift */; };
@@ -71,8 +75,6 @@
 		1577ECA82330072A0061718B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1577ECA62330072A0061718B /* ContentView.swift */; };
 		1577ECAA233007630061718B /* MagnetometerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1577ECA9233007630061718B /* MagnetometerView.swift */; };
 		1577ECAB233007630061718B /* MagnetometerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1577ECA9233007630061718B /* MagnetometerView.swift */; };
-		1577ECB123300E940061718B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1577ECAE23300E620061718B /* Localizable.strings */; };
-		1577ECB4233019300061718B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1577ECB2233019300061718B /* InfoPlist.strings */; };
 		157B0E73227F57D6004CC169 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157B0E72227F57D6004CC169 /* AppDelegate.swift */; };
 		157B0E7A227F57D7004CC169 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 157B0E79227F57D7004CC169 /* Assets.xcassets */; };
 		158BC8C92341094B001A5EBD /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158BC8C82341094B001A5EBD /* NotificationView.swift */; };
@@ -85,6 +87,21 @@
 		15A062AC233FCDD800F5DC6F /* NotificationAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A062AA233FCDD800F5DC6F /* NotificationAPI.swift */; };
 		15A062AE233FD2D100F5DC6F /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A062AD233FD2D100F5DC6F /* NotificationModel.swift */; };
 		15A062AF233FD2D100F5DC6F /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A062AD233FD2D100F5DC6F /* NotificationModel.swift */; };
+		15A7F69C236C2BDA009FCF1D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1577ECAE23300E620061718B /* Localizable.strings */; };
+		15A7F69D236C38BD009FCF1D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1577ECAE23300E620061718B /* Localizable.strings */; };
+		15A7F69E236C38BF009FCF1D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1577ECAE23300E620061718B /* Localizable.strings */; };
+		15A7F69F236C38BF009FCF1D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1577ECAE23300E620061718B /* Localizable.strings */; };
+		15A7F6A0236C38C0009FCF1D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1577ECAE23300E620061718B /* Localizable.strings */; };
+		15A7F6A1236C38C3009FCF1D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1577ECAE23300E620061718B /* Localizable.strings */; };
+		15A7F6A2236C38C5009FCF1D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1577ECAE23300E620061718B /* Localizable.strings */; };
+		15A7F6A3236C38C5009FCF1D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1577ECAE23300E620061718B /* Localizable.strings */; };
+		15A7F6A4236C38C6009FCF1D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1577ECAE23300E620061718B /* Localizable.strings */; };
+		15A7F6A6236C5794009FCF1D /* ScreenshotUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A7F6A5236C5794009FCF1D /* ScreenshotUITests.swift */; };
+		15A7F6A7236C5794009FCF1D /* ScreenshotUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A7F6A5236C5794009FCF1D /* ScreenshotUITests.swift */; };
+		15A7F6A8236C5EFD009FCF1D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1577ECB2233019300061718B /* InfoPlist.strings */; };
+		15A7F6A9236C5F13009FCF1D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1577ECB2233019300061718B /* InfoPlist.strings */; };
+		15A7F6AD236C5FD9009FCF1D /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15A7F6AC236C5FD9009FCF1D /* Interface.storyboard */; };
+		15A7F6AE236C5FD9009FCF1D /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15A7F6AC236C5FD9009FCF1D /* Interface.storyboard */; };
 		15BD0A4A2350E6AE00784975 /* ParameterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BD0A492350E6AE00784975 /* ParameterType.swift */; };
 		15BD0A4B2350E6AE00784975 /* ParameterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BD0A492350E6AE00784975 /* ParameterType.swift */; };
 		15BD0A4D2350FCD900784975 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BD0A4C2350FCD900784975 /* Extension.swift */; };
@@ -105,6 +122,34 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		1511014423648D4000EC0292 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 157B0E67227F57D6004CC169 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 157B0E6E227F57D6004CC169;
+			remoteInfo = "Sensor-App";
+		};
+		1511015223648D8000EC0292 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 157B0E67227F57D6004CC169 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 157B0E6E227F57D6004CC169;
+			remoteInfo = "Sensor-App";
+		};
+		1511016023648DEB00EC0292 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 157B0E67227F57D6004CC169 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1513ACB9232529640095760B;
+			remoteInfo = "Sensor-App - Dev";
+		};
+		1511016E23648DF700EC0292 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 157B0E67227F57D6004CC169 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1513ACB9232529640095760B;
+			remoteInfo = "Sensor-App - Dev";
+		};
 		154E0FE4235CE3BD00FD426C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 157B0E67227F57D6004CC169 /* Project object */;
@@ -184,6 +229,17 @@
 
 /* Begin PBXFileReference section */
 		151101142364518200EC0292 /* ViewButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewButtonModifier.swift; sourceTree = "<group>"; };
+		1511013F23648D4000EC0292 /* Sensor-AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Sensor-AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1511014123648D4000EC0292 /* Sensor_AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sensor_AppTests.swift; sourceTree = "<group>"; };
+		1511014323648D4000EC0292 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1511014D23648D8000EC0292 /* Sensor-AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Sensor-AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1511014F23648D8000EC0292 /* Sensor_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sensor_AppUITests.swift; sourceTree = "<group>"; };
+		1511015123648D8000EC0292 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1511015B23648DEB00EC0292 /* Sensor-App-DevTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Sensor-App-DevTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1511015F23648DEB00EC0292 /* Dev-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Dev-Info.plist"; sourceTree = "<group>"; };
+		1511016923648DF700EC0292 /* Sensor-App-DevUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Sensor-App-DevUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1511016D23648DF700EC0292 /* Dev-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Dev-Info.plist"; sourceTree = "<group>"; };
+		1511017523648E9600EC0292 /* CalculationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculationTests.swift; sourceTree = "<group>"; };
 		1513ACDA232529640095760B /* Sensor-App-Dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sensor-App-Dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1513ACDB232529640095760B /* Dev-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Dev-Info.plist"; path = "/Users/volkerschmitt/Library/Mobile Documents/com~apple~CloudDocs/Development/Projects/Sensor-App/Sensor-App/Dev-Info.plist"; sourceTree = "<absolute>"; };
 		1516CD30232CC55400817C33 /* MotionToolBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotionToolBarView.swift; sourceTree = "<group>"; };
@@ -200,7 +256,6 @@
 		1522B76823203A65005CA5E8 /* Array.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Array.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		1531AC4B2353968700492189 /* MotionListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionListView.swift; sourceTree = "<group>"; };
 		154E0FD6235CE3BC00FD426C /* Sensor-App-WatchApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sensor-App-WatchApp.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		154E0FD9235CE3BC00FD426C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		154E0FDB235CE3BD00FD426C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		154E0FDD235CE3BD00FD426C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		154E0FE2235CE3BD00FD426C /* Sensor-App-WatchApp Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Sensor-App-WatchApp Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -230,6 +285,8 @@
 		15A062A4233F941C00F5DC6F /* NotificationMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationMessageView.swift; sourceTree = "<group>"; };
 		15A062AA233FCDD800F5DC6F /* NotificationAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationAPI.swift; sourceTree = "<group>"; };
 		15A062AD233FD2D100F5DC6F /* NotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
+		15A7F6A5236C5794009FCF1D /* ScreenshotUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotUITests.swift; sourceTree = "<group>"; };
+		15A7F6AC236C5FD9009FCF1D /* Interface.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Interface.storyboard; sourceTree = "<group>"; };
 		15BD0A492350E6AE00784975 /* ParameterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParameterType.swift; sourceTree = "<group>"; };
 		15BD0A4C2350FCD900784975 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		15D862FE2289DAB8006FD733 /* Struct-Timestamp.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "Struct-Timestamp.playground"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -246,6 +303,34 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		1511013C23648D4000EC0292 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1511014A23648D8000EC0292 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1511015823648DEB00EC0292 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1511016623648DF700EC0292 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1513ACCE232529640095760B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -298,6 +383,28 @@
 			path = API;
 			sourceTree = "<group>";
 		};
+		1511014023648D4000EC0292 /* Sensor-AppTests */ = {
+			isa = PBXGroup;
+			children = (
+				1511014123648D4000EC0292 /* Sensor_AppTests.swift */,
+				1511017523648E9600EC0292 /* CalculationTests.swift */,
+				1511014323648D4000EC0292 /* Info.plist */,
+				1511016D23648DF700EC0292 /* Dev-Info.plist */,
+			);
+			path = "Sensor-AppTests";
+			sourceTree = "<group>";
+		};
+		1511014E23648D8000EC0292 /* Sensor-AppUITests */ = {
+			isa = PBXGroup;
+			children = (
+				1511014F23648D8000EC0292 /* Sensor_AppUITests.swift */,
+				15A7F6A5236C5794009FCF1D /* ScreenshotUITests.swift */,
+				1511015123648D8000EC0292 /* Info.plist */,
+				1511015F23648DEB00EC0292 /* Dev-Info.plist */,
+			);
+			path = "Sensor-AppUITests";
+			sourceTree = "<group>";
+		};
 		1516CD2E232CC54600817C33 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -312,7 +419,7 @@
 		154E0FD7235CE3BC00FD426C /* Sensor-App-WatchApp */ = {
 			isa = PBXGroup;
 			children = (
-				154E0FD8235CE3BC00FD426C /* Interface.storyboard */,
+				15A7F6AC236C5FD9009FCF1D /* Interface.storyboard */,
 				154E0FDB235CE3BD00FD426C /* Assets.xcassets */,
 				154E0FDD235CE3BD00FD426C /* Info.plist */,
 				154E1007235CE3F900FD426C /* Dev-Info.plist */,
@@ -365,6 +472,8 @@
 				157B0E71227F57D6004CC169 /* Sensor-App */,
 				154E0FD7235CE3BC00FD426C /* Sensor-App-WatchApp */,
 				154E0FE6235CE3BD00FD426C /* Sensor-App-WatchApp Extension */,
+				1511014023648D4000EC0292 /* Sensor-AppTests */,
+				1511014E23648D8000EC0292 /* Sensor-AppUITests */,
 				157B0E70227F57D6004CC169 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -378,6 +487,10 @@
 				154E0FE2235CE3BD00FD426C /* Sensor-App-WatchApp Extension.appex */,
 				154E1000235CE3F900FD426C /* Sensor-App-WatchApp-Dev.app */,
 				154E100C235CE3F900FD426C /* Sensor-App-WatchApp-Dev Extension.appex */,
+				1511013F23648D4000EC0292 /* Sensor-AppTests.xctest */,
+				1511014D23648D8000EC0292 /* Sensor-AppUITests.xctest */,
+				1511015B23648DEB00EC0292 /* Sensor-App-DevTests.xctest */,
+				1511016923648DF700EC0292 /* Sensor-App-DevUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -466,6 +579,78 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		1511013E23648D4000EC0292 /* Sensor-AppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1511014623648D4000EC0292 /* Build configuration list for PBXNativeTarget "Sensor-AppTests" */;
+			buildPhases = (
+				1511013B23648D4000EC0292 /* Sources */,
+				1511013C23648D4000EC0292 /* Frameworks */,
+				1511013D23648D4000EC0292 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1511014523648D4000EC0292 /* PBXTargetDependency */,
+			);
+			name = "Sensor-AppTests";
+			productName = "Sensor-AppTests";
+			productReference = 1511013F23648D4000EC0292 /* Sensor-AppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		1511014C23648D8000EC0292 /* Sensor-AppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1511015423648D8100EC0292 /* Build configuration list for PBXNativeTarget "Sensor-AppUITests" */;
+			buildPhases = (
+				1511014923648D8000EC0292 /* Sources */,
+				1511014A23648D8000EC0292 /* Frameworks */,
+				1511014B23648D8000EC0292 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1511015323648D8000EC0292 /* PBXTargetDependency */,
+			);
+			name = "Sensor-AppUITests";
+			productName = "Sensor-AppUITests";
+			productReference = 1511014D23648D8000EC0292 /* Sensor-AppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		1511015A23648DEB00EC0292 /* Sensor-App-DevTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1511016223648DEB00EC0292 /* Build configuration list for PBXNativeTarget "Sensor-App-DevTests" */;
+			buildPhases = (
+				1511015723648DEB00EC0292 /* Sources */,
+				1511015823648DEB00EC0292 /* Frameworks */,
+				1511015923648DEB00EC0292 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1511016123648DEB00EC0292 /* PBXTargetDependency */,
+			);
+			name = "Sensor-App-DevTests";
+			productName = "Sensor-App-DevTests";
+			productReference = 1511015B23648DEB00EC0292 /* Sensor-App-DevTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		1511016823648DF700EC0292 /* Sensor-App-DevUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1511017023648DF700EC0292 /* Build configuration list for PBXNativeTarget "Sensor-App-DevUITests" */;
+			buildPhases = (
+				1511016523648DF700EC0292 /* Sources */,
+				1511016623648DF700EC0292 /* Frameworks */,
+				1511016723648DF700EC0292 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1511016F23648DF700EC0292 /* PBXTargetDependency */,
+			);
+			name = "Sensor-App-DevUITests";
+			productName = "Sensor-App-DevUITests";
+			productReference = 1511016923648DF700EC0292 /* Sensor-App-DevUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		1513ACB9232529640095760B /* Sensor-App - Dev */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1513ACD7232529640095760B /* Build configuration list for PBXNativeTarget "Sensor-App - Dev" */;
@@ -582,6 +767,22 @@
 				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = "Volker Schmitt";
 				TargetAttributes = {
+					1511013E23648D4000EC0292 = {
+						CreatedOnToolsVersion = 11.2;
+						TestTargetID = 157B0E6E227F57D6004CC169;
+					};
+					1511014C23648D8000EC0292 = {
+						CreatedOnToolsVersion = 11.2;
+						TestTargetID = 157B0E6E227F57D6004CC169;
+					};
+					1511015A23648DEB00EC0292 = {
+						CreatedOnToolsVersion = 11.2;
+						TestTargetID = 1513ACB9232529640095760B;
+					};
+					1511016823648DF700EC0292 = {
+						CreatedOnToolsVersion = 11.2;
+						TestTargetID = 1513ACB9232529640095760B;
+					};
 					154E0FD5235CE3BC00FD426C = {
 						CreatedOnToolsVersion = 11.2;
 					};
@@ -630,20 +831,56 @@
 				154E0FE1235CE3BD00FD426C /* Sensor-App-WatchApp Extension */,
 				154E0FFF235CE3F900FD426C /* Sensor-App-WatchApp-Dev */,
 				154E100B235CE3F900FD426C /* Sensor-App-WatchApp-Dev Extension */,
+				1511013E23648D4000EC0292 /* Sensor-AppTests */,
+				1511014C23648D8000EC0292 /* Sensor-AppUITests */,
+				1511015A23648DEB00EC0292 /* Sensor-App-DevTests */,
+				1511016823648DF700EC0292 /* Sensor-App-DevUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		1511013D23648D4000EC0292 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15A7F6A0236C38C0009FCF1D /* Localizable.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1511014B23648D8000EC0292 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15A7F69E236C38BF009FCF1D /* Localizable.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1511015923648DEB00EC0292 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15A7F69F236C38BF009FCF1D /* Localizable.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1511016723648DF700EC0292 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15A7F69D236C38BD009FCF1D /* Localizable.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1513ACD0232529640095760B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				1511011723647EB200EC0292 /* Localizable.strings in Resources */,
 				1513ACD3232529640095760B /* Assets.xcassets in Resources */,
-				1577ECB4233019300061718B /* InfoPlist.strings in Resources */,
 				15DDE35B2337EC8100732427 /* LaunchScreen.storyboard in Resources */,
 				1550FA89232C06C7006447AE /* Preview Assets.xcassets in Resources */,
+				15A7F6A9236C5F13009FCF1D /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -652,7 +889,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				154E0FDC235CE3BD00FD426C /* Assets.xcassets in Resources */,
-				154E0FDA235CE3BC00FD426C /* Interface.storyboard in Resources */,
+				15A7F6AD236C5FD9009FCF1D /* Interface.storyboard in Resources */,
+				15A7F6A1236C38C3009FCF1D /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -661,6 +899,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				154E0FF1235CE3BD00FD426C /* Preview Assets.xcassets in Resources */,
+				15A7F6A2236C38C5009FCF1D /* Localizable.strings in Resources */,
 				154E0FEE235CE3BD00FD426C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -669,7 +908,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				154E102D235CE42E00FD426C /* Interface.storyboard in Resources */,
+				15A7F6A3236C38C5009FCF1D /* Localizable.strings in Resources */,
+				15A7F6AE236C5FD9009FCF1D /* Interface.storyboard in Resources */,
 				154E102E235CE43000FD426C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -679,6 +919,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				154E102C235CE42400FD426C /* Preview Assets.xcassets in Resources */,
+				15A7F6A4236C38C6009FCF1D /* Localizable.strings in Resources */,
 				154E102B235CE41D00FD426C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -688,15 +929,52 @@
 			buildActionMask = 2147483647;
 			files = (
 				157B0E7A227F57D7004CC169 /* Assets.xcassets in Resources */,
+				15A7F69C236C2BDA009FCF1D /* Localizable.strings in Resources */,
 				15DDE35A2337EC8100732427 /* LaunchScreen.storyboard in Resources */,
-				1577ECB123300E940061718B /* Localizable.strings in Resources */,
 				1550FA88232C06C7006447AE /* Preview Assets.xcassets in Resources */,
+				15A7F6A8236C5EFD009FCF1D /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		1511013B23648D4000EC0292 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1511014223648D4000EC0292 /* Sensor_AppTests.swift in Sources */,
+				1511017623648E9600EC0292 /* CalculationTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1511014923648D8000EC0292 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1511015023648D8000EC0292 /* Sensor_AppUITests.swift in Sources */,
+				15A7F6A6236C5794009FCF1D /* ScreenshotUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1511015723648DEB00EC0292 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1511017323648E6A00EC0292 /* Sensor_AppTests.swift in Sources */,
+				1511017723648ECF00EC0292 /* CalculationTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1511016523648DF700EC0292 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1511017423648E7100EC0292 /* Sensor_AppUITests.swift in Sources */,
+				15A7F6A7236C5794009FCF1D /* ScreenshotUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1513ACBB232529640095760B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -802,6 +1080,26 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		1511014523648D4000EC0292 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 157B0E6E227F57D6004CC169 /* Sensor-App */;
+			targetProxy = 1511014423648D4000EC0292 /* PBXContainerItemProxy */;
+		};
+		1511015323648D8000EC0292 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 157B0E6E227F57D6004CC169 /* Sensor-App */;
+			targetProxy = 1511015223648D8000EC0292 /* PBXContainerItemProxy */;
+		};
+		1511016123648DEB00EC0292 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1513ACB9232529640095760B /* Sensor-App - Dev */;
+			targetProxy = 1511016023648DEB00EC0292 /* PBXContainerItemProxy */;
+		};
+		1511016F23648DF700EC0292 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1513ACB9232529640095760B /* Sensor-App - Dev */;
+			targetProxy = 1511016E23648DF700EC0292 /* PBXContainerItemProxy */;
+		};
 		154E0FE5235CE3BD00FD426C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 154E0FE1235CE3BD00FD426C /* Sensor-App-WatchApp Extension */;
@@ -825,14 +1123,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		154E0FD8235CE3BC00FD426C /* Interface.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				154E0FD9235CE3BC00FD426C /* Base */,
-			);
-			name = Interface.storyboard;
-			sourceTree = "<group>";
-		};
 		1577ECAE23300E620061718B /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -852,12 +1142,176 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		1511014723648D4000EC0292 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NLF7894S7W;
+				INFOPLIST_FILE = "$(SRCROOT)/Sensor-AppTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "volkerschmitt88-at-icloud.com.Sensor-AppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Sensor-App.app/Sensor-App";
+			};
+			name = Debug;
+		};
+		1511014823648D4000EC0292 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NLF7894S7W;
+				INFOPLIST_FILE = "$(SRCROOT)/Sensor-AppTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "volkerschmitt88-at-icloud.com.Sensor-AppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Sensor-App.app/Sensor-App";
+			};
+			name = Release;
+		};
+		1511015523648D8100EC0292 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NLF7894S7W;
+				INFOPLIST_FILE = "$(SRCROOT)/Sensor-AppUITests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "volkerschmitt88-at-icloud.com.Sensor-AppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Sensor-App";
+			};
+			name = Debug;
+		};
+		1511015623648D8100EC0292 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NLF7894S7W;
+				INFOPLIST_FILE = "$(SRCROOT)/Sensor-AppUITests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "volkerschmitt88-at-icloud.com.Sensor-AppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Sensor-App";
+			};
+			name = Release;
+		};
+		1511016323648DEB00EC0292 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NLF7894S7W;
+				INFOPLIST_FILE = "$(SRCROOT)/Sensor-AppTests/Dev-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "volkerschmitt88-at-icloud.com.Sensor-App-DevTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Sensor-App-Dev.app/Sensor-App-Dev";
+			};
+			name = Debug;
+		};
+		1511016423648DEB00EC0292 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NLF7894S7W;
+				INFOPLIST_FILE = "$(SRCROOT)/Sensor-AppTests/Dev-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "volkerschmitt88-at-icloud.com.Sensor-App-DevTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Sensor-App-Dev.app/Sensor-App-Dev";
+			};
+			name = Release;
+		};
+		1511017123648DF700EC0292 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NLF7894S7W;
+				INFOPLIST_FILE = "$(SRCROOT)/Sensor-AppUITests/Dev-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "volkerschmitt88-at-icloud.com.Sensor-App-DevUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Sensor-App - Dev";
+			};
+			name = Debug;
+		};
+		1511017223648DF700EC0292 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NLF7894S7W;
+				INFOPLIST_FILE = "$(SRCROOT)/Sensor-AppUITests/Dev-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "volkerschmitt88-at-icloud.com.Sensor-App-DevUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Sensor-App - Dev";
+			};
+			name = Release;
+		};
 		1513ACD8232529640095760B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-dev";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = "1.19436.9-Dev";
+				CURRENT_PROJECT_VERSION = "1.19445.10-Dev";
 				DEVELOPMENT_ASSET_PATHS = "Sensor-App/Preview\\ Content";
 				DEVELOPMENT_TEAM = NLF7894S7W;
 				INFOPLIST_FILE = "$(SRCROOT)/Sensor-App/Dev-Info.plist";
@@ -879,7 +1333,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-dev";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = "1.19436.9-Dev";
+				CURRENT_PROJECT_VERSION = "1.19445.10-Dev";
 				DEVELOPMENT_ASSET_PATHS = "Sensor-App/Preview\\ Content";
 				DEVELOPMENT_TEAM = NLF7894S7W;
 				INFOPLIST_FILE = "$(SRCROOT)/Sensor-App/Dev-Info.plist";
@@ -902,7 +1356,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.19436.9;
+				CURRENT_PROJECT_VERSION = 1.19445.10;
 				DEVELOPMENT_TEAM = NLF7894S7W;
 				IBSC_MODULE = Sensor_App_WatchApp_Extension;
 				INFOPLIST_FILE = "$(SRCROOT)/Sensor-App-WatchApp/Info.plist";
@@ -923,7 +1377,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.19436.9;
+				CURRENT_PROJECT_VERSION = 1.19445.10;
 				DEVELOPMENT_TEAM = NLF7894S7W;
 				IBSC_MODULE = Sensor_App_WatchApp_Extension;
 				INFOPLIST_FILE = "$(SRCROOT)/Sensor-App-WatchApp/Info.plist";
@@ -943,7 +1397,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.19436.9;
+				CURRENT_PROJECT_VERSION = 1.19445.10;
 				DEVELOPMENT_ASSET_PATHS = "\"Sensor-App-WatchApp Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = NLF7894S7W;
 				ENABLE_PREVIEWS = YES;
@@ -969,7 +1423,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.19436.9;
+				CURRENT_PROJECT_VERSION = 1.19445.10;
 				DEVELOPMENT_ASSET_PATHS = "\"Sensor-App-WatchApp Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = NLF7894S7W;
 				ENABLE_PREVIEWS = YES;
@@ -995,7 +1449,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = "1.19436.9-Dev";
+				CURRENT_PROJECT_VERSION = "1.19445.10-Dev";
 				DEVELOPMENT_ASSET_PATHS = "\"Sensor-App-WatchApp Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = NLF7894S7W;
 				ENABLE_PREVIEWS = YES;
@@ -1021,7 +1475,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = "1.19436.9-Dev";
+				CURRENT_PROJECT_VERSION = "1.19445.10-Dev";
 				DEVELOPMENT_ASSET_PATHS = "\"Sensor-App-WatchApp Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = NLF7894S7W;
 				ENABLE_PREVIEWS = YES;
@@ -1048,7 +1502,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-dev";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = "1.19436.9-Dev";
+				CURRENT_PROJECT_VERSION = "1.19445.10-Dev";
 				DEVELOPMENT_TEAM = NLF7894S7W;
 				IBSC_MODULE = Sensor_App_WatchApp_Dev_Extension;
 				INFOPLIST_FILE = "$(SRCROOT)/Sensor-App-WatchApp/Dev-Info.plist";
@@ -1069,7 +1523,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-dev";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = "1.19436.9-Dev";
+				CURRENT_PROJECT_VERSION = "1.19445.10-Dev";
 				DEVELOPMENT_TEAM = NLF7894S7W;
 				IBSC_MODULE = Sensor_App_WatchApp_Dev_Extension;
 				INFOPLIST_FILE = "$(SRCROOT)/Sensor-App-WatchApp/Dev-Info.plist";
@@ -1209,7 +1663,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.19436.9;
+				CURRENT_PROJECT_VERSION = 1.19445.10;
 				DEVELOPMENT_ASSET_PATHS = "Sensor-App/Preview\\ Content";
 				DEVELOPMENT_TEAM = NLF7894S7W;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1233,7 +1687,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.19436.9;
+				CURRENT_PROJECT_VERSION = 1.19445.10;
 				DEVELOPMENT_ASSET_PATHS = "Sensor-App/Preview\\ Content";
 				DEVELOPMENT_TEAM = NLF7894S7W;
 				GCC_OPTIMIZATION_LEVEL = s;
@@ -1254,6 +1708,42 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		1511014623648D4000EC0292 /* Build configuration list for PBXNativeTarget "Sensor-AppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1511014723648D4000EC0292 /* Debug */,
+				1511014823648D4000EC0292 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1511015423648D8100EC0292 /* Build configuration list for PBXNativeTarget "Sensor-AppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1511015523648D8100EC0292 /* Debug */,
+				1511015623648D8100EC0292 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1511016223648DEB00EC0292 /* Build configuration list for PBXNativeTarget "Sensor-App-DevTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1511016323648DEB00EC0292 /* Debug */,
+				1511016423648DEB00EC0292 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1511017023648DF700EC0292 /* Build configuration list for PBXNativeTarget "Sensor-App-DevUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1511017123648DF700EC0292 /* Debug */,
+				1511017223648DF700EC0292 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		1513ACD7232529640095760B /* Build configuration list for PBXNativeTarget "Sensor-App - Dev" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

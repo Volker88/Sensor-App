@@ -12,12 +12,17 @@
 		<key>Sensor-App-Dev-german.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>3</integer>
+			<integer>4</integer>
 		</dict>
 		<key>Sensor-App-Dev.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>2</integer>
+			<integer>3</integer>
+		</dict>
+		<key>Sensor-App-Screenshots.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
 		</dict>
 		<key>Sensor-App-WatchApp (Glance).xcscheme_^#shared#^_</key>
 		<dict>
@@ -52,17 +57,17 @@
 		<key>Sensor-App-WatchApp-german.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>5</integer>
+			<integer>6</integer>
 		</dict>
 		<key>Sensor-App-WatchApp.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>4</integer>
+			<integer>5</integer>
 		</dict>
 		<key>Sensor-App-german.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>1</integer>
+			<integer>2</integer>
 		</dict>
 		<key>Sensor-App.xcscheme_^#shared#^_</key>
 		<dict>
@@ -72,6 +77,16 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>1511013E23648D4000EC0292</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1511014C23648D8000EC0292</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>1513ACB9232529640095760B</key>
 		<dict>
 			<key>primary</key>

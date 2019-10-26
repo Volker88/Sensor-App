@@ -40,8 +40,30 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      systemAttachmentLifetime = "keepAlways"
+      userAttachmentLifetime = "keepAlways">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "1511013E23648D4000EC0292"
+               BuildableName = "Sensor-AppTests.xctest"
+               BlueprintName = "Sensor-AppTests"
+               ReferencedContainer = "container:Sensor-App.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "1511014C23648D8000EC0292"
+               BuildableName = "Sensor-AppUITests.xctest"
+               BlueprintName = "Sensor-AppUITests"
+               ReferencedContainer = "container:Sensor-App.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
