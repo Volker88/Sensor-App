@@ -18,12 +18,12 @@ struct SettingsView: View {
     @Environment(\.presentationMode) var presentationMode
     
     
+    // MARK: - Initialize Classes
+    
+    
     // MARK: - @State Variables
     @State var notificationMessage = ""
     @State var showNotification = false
-    
-    
-    // MARK: - Initialize Classes
     
     
     // MARK: - Variables / Constants
@@ -66,7 +66,6 @@ struct SettingsView: View {
     
     // MARK: - onAppear / onDisappear
     func onAppear() {
-
 
     }
     

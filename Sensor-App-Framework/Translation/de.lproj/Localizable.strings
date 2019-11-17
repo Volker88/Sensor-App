@@ -21,8 +21,8 @@
 
 
 // MARK: - LocationView()
-"Latitude: %.10f ± %.2fm" = "Breitengrad: %.10f ± %.2fm";
-"Longitude: %.10f ± %.2fm" = "Längengrad: %.10f ± %.2fm";
+"Latitude: %.10f° ± %.2fm" = "Breitengrad: %.10f° ± %.2fm";
+"Longitude: %.10f° ± %.2fm" = "Längengrad: %.10f° ± %.2fm";
 "Altitude: %.2f ± %.2fm" = "Höhe: %.2f ± %.2fm";
 "Direction: %.2f°" = "Richtung: %.2f";
 "Speed: %.2f%@" = "Geschwindigkeit: %.2f%@";
@@ -96,6 +96,12 @@
 "SaveButton" = "SaveButton";
 "UndoButton" = "UndoButton";
 "SettingsButton" = "SettingsButton";
+
+// WatchApp
+"Discard" = "Verwerfen";
+"Save" = "Speichern";
+"Discarded Changes" = "Änderungen Verworfen";
+"Saved Changes" = "Änderungen Gespeichert";
 
 
 // MARK: - NotificationViewModel()

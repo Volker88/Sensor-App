@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "154E0FD5235CE3BC00FD426C"
-               BuildableName = "Sensor-App-WatchApp.app"
-               BlueprintName = "Sensor-App-WatchApp"
+               BlueprintIdentifier = "154E0FFF235CE3F900FD426C"
+               BuildableName = "Sensor-App-WatchApp-Dev.app"
+               BlueprintName = "Sensor-App-WatchApp-Dev"
                ReferencedContainer = "container:Sensor-App.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,9 +28,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "157B0E6E227F57D6004CC169"
-               BuildableName = "Sensor-App.app"
-               BlueprintName = "Sensor-App"
+               BlueprintIdentifier = "1513ACB9232529640095760B"
+               BuildableName = "Sensor-App-Dev.app"
+               BlueprintName = "Sensor-App - Dev"
                ReferencedContainer = "container:Sensor-App.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -40,34 +40,12 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES"
-      systemAttachmentLifetime = "keepAlways"
-      userAttachmentLifetime = "keepAlways">
+      shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1511013E23648D4000EC0292"
-               BuildableName = "Sensor-AppTests.xctest"
-               BlueprintName = "Sensor-AppTests"
-               ReferencedContainer = "container:Sensor-App.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1511014C23648D8000EC0292"
-               BuildableName = "Sensor-AppUITests.xctest"
-               BlueprintName = "Sensor-AppUITests"
-               ReferencedContainer = "container:Sensor-App.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
-      buildConfiguration = "Release"
+      buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       language = "de"
@@ -76,16 +54,17 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
-      allowLocationSimulation = "YES">
+      allowLocationSimulation = "YES"
+      showNonLocalizedStrings = "YES">
       <RemoteRunnable
          runnableDebuggingMode = "2"
          BundleIdentifier = "com.apple.Carousel"
-         RemotePath = "/Sensor-App">
+         RemotePath = "/Sensor-App-Dev">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "154E0FD5235CE3BC00FD426C"
-            BuildableName = "Sensor-App-WatchApp.app"
-            BlueprintName = "Sensor-App-WatchApp"
+            BlueprintIdentifier = "154E0FFF235CE3F900FD426C"
+            BuildableName = "Sensor-App-WatchApp-Dev.app"
+            BlueprintName = "Sensor-App-WatchApp-Dev"
             ReferencedContainer = "container:Sensor-App.xcodeproj">
          </BuildableReference>
       </RemoteRunnable>
@@ -99,21 +78,21 @@
       <RemoteRunnable
          runnableDebuggingMode = "2"
          BundleIdentifier = "com.apple.Carousel"
-         RemotePath = "/Sensor-App">
+         RemotePath = "/Sensor-App-Dev">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "154E0FD5235CE3BC00FD426C"
-            BuildableName = "Sensor-App-WatchApp.app"
-            BlueprintName = "Sensor-App-WatchApp"
+            BlueprintIdentifier = "154E0FFF235CE3F900FD426C"
+            BuildableName = "Sensor-App-WatchApp-Dev.app"
+            BlueprintName = "Sensor-App-WatchApp-Dev"
             ReferencedContainer = "container:Sensor-App.xcodeproj">
          </BuildableReference>
       </RemoteRunnable>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "154E0FD5235CE3BC00FD426C"
-            BuildableName = "Sensor-App-WatchApp.app"
-            BlueprintName = "Sensor-App-WatchApp"
+            BlueprintIdentifier = "154E0FFF235CE3F900FD426C"
+            BuildableName = "Sensor-App-WatchApp-Dev.app"
+            BlueprintName = "Sensor-App-WatchApp-Dev"
             ReferencedContainer = "container:Sensor-App.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

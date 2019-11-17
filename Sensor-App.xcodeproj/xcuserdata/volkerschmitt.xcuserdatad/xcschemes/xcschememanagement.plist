@@ -9,20 +9,15 @@
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
-		<key>Sensor-App-Dev-german.xcscheme_^#shared#^_</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>4</integer>
-		</dict>
 		<key>Sensor-App-Dev.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>3</integer>
+			<integer>2</integer>
 		</dict>
 		<key>Sensor-App-Framework.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>8</integer>
+			<integer>5</integer>
 		</dict>
 		<key>Sensor-App-Screenshots.xcscheme_^#shared#^_</key>
 		<dict>
@@ -49,30 +44,15 @@
 			<key>orderHint</key>
 			<integer>8</integer>
 		</dict>
-		<key>Sensor-App-WatchApp-Dev-german.xcscheme_^#shared#^_</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>7</integer>
-		</dict>
 		<key>Sensor-App-WatchApp-Dev.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>6</integer>
-		</dict>
-		<key>Sensor-App-WatchApp-german.xcscheme_^#shared#^_</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>6</integer>
+			<integer>4</integer>
 		</dict>
 		<key>Sensor-App-WatchApp.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>5</integer>
-		</dict>
-		<key>Sensor-App-german.xcscheme_^#shared#^_</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 		<key>Sensor-App.xcscheme_^#shared#^_</key>
 		<dict>
@@ -92,6 +72,16 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>1511015A23648DEB00EC0292</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1511016823648DF700EC0292</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>1513ACB9232529640095760B</key>
 		<dict>
 			<key>primary</key>
@@ -102,7 +92,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>154E0FFF235CE3F900FD426C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>157B0E6E227F57D6004CC169</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>157D91C623814C6500371C2F</key>
 		<dict>
 			<key>primary</key>
 			<true/>

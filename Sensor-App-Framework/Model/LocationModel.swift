@@ -13,7 +13,7 @@ import Foundation
 
 // MARK: - Struct Definition
 struct LocationModel {
-    let counter : Int
+    let counter : Int // Counter
     var longitude : Double // Longitude in Degrees
     var latitude : Double // Latitude in Degrees
     var altitude : Double // Altitude measures in Meters
