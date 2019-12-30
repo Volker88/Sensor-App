@@ -46,7 +46,6 @@
 		1516CD58232D510400817C33 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1516CD56232D510400817C33 /* SettingsView.swift */; };
 		1531AC4C2353968700492189 /* MotionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1531AC4B2353968700492189 /* MotionListView.swift */; };
 		1531AC4D2353968700492189 /* MotionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1531AC4B2353968700492189 /* MotionListView.swift */; };
-		153F19F223A5317C00E18E34 /* Dev-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 153F19F123A5317C00E18E34 /* Dev-Info.plist */; };
 		154E0FDC235CE3BD00FD426C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 154E0FDB235CE3BD00FD426C /* Assets.xcassets */; };
 		154E0FE3235CE3BD00FD426C /* Sensor-App-WatchApp Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 154E0FE2235CE3BD00FD426C /* Sensor-App-WatchApp Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		154E0FE8235CE3BD00FD426C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154E0FE7235CE3BD00FD426C /* ContentView.swift */; };
@@ -147,6 +146,10 @@
 		15A7F6AE236C5FD9009FCF1D /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15A7F6AC236C5FD9009FCF1D /* Interface.storyboard */; };
 		15BD0A4D2350FCD900784975 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BD0A4C2350FCD900784975 /* Extension.swift */; };
 		15BD0A4E2350FCD900784975 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BD0A4C2350FCD900784975 /* Extension.swift */; };
+		15C559C223BA36D800812942 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C559C123BA36D800812942 /* SwiftUIView.swift */; };
+		15C559C323BA36D800812942 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C559C123BA36D800812942 /* SwiftUIView.swift */; };
+		15C559C523BA3A9F00812942 /* SwiftUIChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C559C423BA3A9F00812942 /* SwiftUIChart.swift */; };
+		15C559C623BA3A9F00812942 /* SwiftUIChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C559C423BA3A9F00812942 /* SwiftUIChart.swift */; };
 		15DDE35A2337EC8100732427 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15DDE3592337EC8100732427 /* LaunchScreen.storyboard */; };
 		15DDE35B2337EC8100732427 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15DDE3592337EC8100732427 /* LaunchScreen.storyboard */; };
 		15DEDA61231D8973008B2327 /* CoreLocationAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DEDA60231D8973008B2327 /* CoreLocationAPI.swift */; };
@@ -310,7 +313,6 @@
 		1516CD43232CC57400817C33 /* AltitudeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AltitudeView.swift; sourceTree = "<group>"; };
 		1516CD44232CC57400817C33 /* AccelerationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccelerationView.swift; sourceTree = "<group>"; };
 		1516CD56232D510400817C33 /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		1522B76823203A65005CA5E8 /* Array.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Array.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		1531AC4B2353968700492189 /* MotionListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionListView.swift; sourceTree = "<group>"; };
 		153F19F123A5317C00E18E34 /* Dev-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Dev-Info.plist"; sourceTree = "<group>"; };
 		154E0FD6235CE3BC00FD426C /* Sensor-App-WatchApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sensor-App-WatchApp.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -356,7 +358,9 @@
 		15A7F6A5236C5794009FCF1D /* ScreenshotUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotUITests.swift; sourceTree = "<group>"; };
 		15A7F6AC236C5FD9009FCF1D /* Interface.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Interface.storyboard; sourceTree = "<group>"; };
 		15BD0A4C2350FCD900784975 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
-		15D862FE2289DAB8006FD733 /* Struct-Timestamp.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "Struct-Timestamp.playground"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		15C559C123BA36D800812942 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
+		15C559C423BA3A9F00812942 /* SwiftUIChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIChart.swift; sourceTree = "<group>"; };
+		15C559D523BA545900812942 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
 		15DDE3592337EC8100732427 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		15DEDA60231D8973008B2327 /* CoreLocationAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreLocationAPI.swift; sourceTree = "<group>"; };
 		15DEDA62231D9E84008B2327 /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
@@ -440,8 +444,7 @@
 		150CF9C8231D831000FDD825 /* Playground */ = {
 			isa = PBXGroup;
 			children = (
-				15D862FE2289DAB8006FD733 /* Struct-Timestamp.playground */,
-				1522B76823203A65005CA5E8 /* Array.playground */,
+				15C559D523BA545900812942 /* MyPlayground.playground */,
 			);
 			path = Playground;
 			sourceTree = "<group>";
@@ -578,6 +581,7 @@
 				157B0E89227F5A3A004CC169 /* View */,
 				157B0E72227F57D6004CC169 /* AppDelegate.swift */,
 				1550FA7B232C0435006447AE /* SceneDelegate.swift */,
+				15C559C723BA3AA900812942 /* Chart */,
 				15DDE3592337EC8100732427 /* LaunchScreen.storyboard */,
 				157B0E79227F57D7004CC169 /* Assets.xcassets */,
 				156FC3CC22A2D9ED00B70943 /* Info.plist */,
@@ -669,6 +673,15 @@
 				158BC8C82341094B001A5EBD /* NotificationView.swift */,
 			);
 			path = Notification;
+			sourceTree = "<group>";
+		};
+		15C559C723BA3AA900812942 /* Chart */ = {
+			isa = PBXGroup;
+			children = (
+				15C559C123BA36D800812942 /* SwiftUIView.swift */,
+				15C559C423BA3A9F00812942 /* SwiftUIChart.swift */,
+			);
+			path = Chart;
 			sourceTree = "<group>";
 		};
 		15E57B8F234A17AD0055B4D1 /* SubView */ = {
@@ -902,7 +915,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1120;
-				LastUpgradeCheck = 1020;
+				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = "Volker Schmitt";
 				TargetAttributes = {
 					1511013E23648D4000EC0292 = {
@@ -923,12 +936,14 @@
 					};
 					154E0FD5235CE3BC00FD426C = {
 						CreatedOnToolsVersion = 11.2;
+						LastSwiftMigration = 1130;
 					};
 					154E0FE1235CE3BD00FD426C = {
 						CreatedOnToolsVersion = 11.2;
 					};
 					154E0FFF235CE3F900FD426C = {
 						CreatedOnToolsVersion = 11.2;
+						LastSwiftMigration = 1130;
 					};
 					154E100B235CE3F900FD426C = {
 						CreatedOnToolsVersion = 11.2;
@@ -1018,7 +1033,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				153F19F223A5317C00E18E34 /* Dev-Info.plist in Resources */,
 				15841D8423818B1C00E031B9 /* Localizable.strings in Resources */,
 				1513ACD3232529640095760B /* Assets.xcassets in Resources */,
 				15DDE35B2337EC8100732427 /* LaunchScreen.storyboard in Resources */,
@@ -1132,6 +1146,7 @@
 			files = (
 				1516CD51232CC57400817C33 /* AltitudeView.swift in Sources */,
 				1516CD58232D510400817C33 /* SettingsView.swift in Sources */,
+				15C559C323BA36D800812942 /* SwiftUIView.swift in Sources */,
 				1516CD4B232CC57400817C33 /* GyroscopeView.swift in Sources */,
 				1513ACBF232529640095760B /* MotionModel.swift in Sources */,
 				1531AC4D2353968700492189 /* MotionListView.swift in Sources */,
@@ -1147,6 +1162,7 @@
 				15A062AF233FD2D100F5DC6F /* NotificationModel.swift in Sources */,
 				151101162364518200EC0292 /* ViewButtonModifier.swift in Sources */,
 				1513ACC5232529640095760B /* CoreMotionAPI.swift in Sources */,
+				15C559C623BA3A9F00812942 /* SwiftUIChart.swift in Sources */,
 				15E57B92234A20790055B4D1 /* CoreMotionViewModel.swift in Sources */,
 				158BC8CA2341094B001A5EBD /* NotificationView.swift in Sources */,
 				15E57B8E234A09630055B4D1 /* CoreLocationViewModel.swift in Sources */,
@@ -1231,6 +1247,7 @@
 			files = (
 				1516CD50232CC57400817C33 /* AltitudeView.swift in Sources */,
 				1516CD57232D510400817C33 /* SettingsView.swift in Sources */,
+				15C559C223BA36D800812942 /* SwiftUIView.swift in Sources */,
 				1516CD4A232CC57400817C33 /* GyroscopeView.swift in Sources */,
 				15DEDA65231DA6F3008B2327 /* MotionModel.swift in Sources */,
 				1531AC4C2353968700492189 /* MotionListView.swift in Sources */,
@@ -1246,6 +1263,7 @@
 				15A062AE233FD2D100F5DC6F /* NotificationModel.swift in Sources */,
 				151101152364518200EC0292 /* ViewButtonModifier.swift in Sources */,
 				15DEDA67231DA97B008B2327 /* CoreMotionAPI.swift in Sources */,
+				15C559C523BA3A9F00812942 /* SwiftUIChart.swift in Sources */,
 				15E57B91234A20790055B4D1 /* CoreMotionViewModel.swift in Sources */,
 				158BC8C92341094B001A5EBD /* NotificationView.swift in Sources */,
 				15E57B8D234A09630055B4D1 /* CoreLocationViewModel.swift in Sources */,
@@ -1554,16 +1572,24 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "${MY_BUILD_VERSION}";
 				DEVELOPMENT_TEAM = NLF7894S7W;
 				IBSC_MODULE = Sensor_App_WatchApp_Extension;
 				INFOPLIST_FILE = "$(SRCROOT)/Sensor-App-WatchApp/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				MARKETING_VERSION = "${MY_VERSION}-Dev";
 				PRODUCT_BUNDLE_IDENTIFIER = "VolkerSchmitt88-at-icloud.com.Sensor-App.watchkitapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Sensor-App/Sensor-App-WatchApp-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 6.0;
@@ -1575,16 +1601,23 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "${MY_BUILD_VERSION}";
 				DEVELOPMENT_TEAM = NLF7894S7W;
 				IBSC_MODULE = Sensor_App_WatchApp_Extension;
 				INFOPLIST_FILE = "$(SRCROOT)/Sensor-App-WatchApp/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				MARKETING_VERSION = "${MY_VERSION}-Dev";
 				PRODUCT_BUNDLE_IDENTIFIER = "VolkerSchmitt88-at-icloud.com.Sensor-App.watchkitapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Sensor-App/Sensor-App-WatchApp-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 6.0;
@@ -1700,16 +1733,24 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-dev";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "1.19471.13-Dev";
 				DEVELOPMENT_TEAM = NLF7894S7W;
 				IBSC_MODULE = Sensor_App_WatchApp_Dev_Extension;
 				INFOPLIST_FILE = "$(SRCROOT)/Sensor-App-WatchApp/Dev-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				MARKETING_VERSION = "2.2.0-Dev";
 				PRODUCT_BUNDLE_IDENTIFIER = "VolkerSchmitt88-at-icloud.com.Sensor-App-Dev.watchkitapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Sensor-App/Sensor-App-WatchApp-Dev-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 6.0;
@@ -1721,16 +1762,23 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-dev";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "1.19471.13-Dev";
 				DEVELOPMENT_TEAM = NLF7894S7W;
 				IBSC_MODULE = Sensor_App_WatchApp_Dev_Extension;
 				INFOPLIST_FILE = "$(SRCROOT)/Sensor-App-WatchApp/Dev-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				MARKETING_VERSION = "2.2.0-Dev";
 				PRODUCT_BUNDLE_IDENTIFIER = "VolkerSchmitt88-at-icloud.com.Sensor-App-Dev.watchkitapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Sensor-App/Sensor-App-WatchApp-Dev-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 6.0;
@@ -1792,7 +1840,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				MY_BUILD_VERSION = 2.19471.14;
+				MY_BUILD_VERSION = 2.20011.15;
 				MY_VERSION = 2.3.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1851,7 +1899,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				MY_BUILD_VERSION = 2.19471.14;
+				MY_BUILD_VERSION = 2.20011.15;
 				MY_VERSION = 2.3.0;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;

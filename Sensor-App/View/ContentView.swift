@@ -86,6 +86,7 @@ struct ContentView: View {
                         .navigationBarTitle("Home", displayMode: .inline)
                         Spacer()
                     }
+                    .offset(x: 5)
                 }
             }
             .sheet(isPresented: $showSettings) { SettingsView() }

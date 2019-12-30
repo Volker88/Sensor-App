@@ -56,7 +56,6 @@ struct MotionListView: View {
                     .frame(width: g.size.width - 10)
                     .cornerRadius(10)
                     .opacity(0.3)
-                    .offset(x: 5)
                 )
             }
         } else if  type == .gravity {
@@ -82,7 +81,6 @@ struct MotionListView: View {
                     .frame(width: g.size.width - 10)
                     .cornerRadius(10)
                     .opacity(0.3)
-                    .offset(x: 5)
                 )
             }
         } else if type == .gyroscope {
@@ -108,7 +106,6 @@ struct MotionListView: View {
                     .frame(width: g.size.width - 10)
                     .cornerRadius(10)
                     .opacity(0.3)
-                    .offset(x: 5)
                 )
             }
         } else if type == .magnetometer {
@@ -134,7 +131,6 @@ struct MotionListView: View {
                     .frame(width: g.size.width - 10)
                     .cornerRadius(10)
                     .opacity(0.3)
-                    .offset(x: 5)
                 )
             }
         } else if type == .attitude {
@@ -163,7 +159,6 @@ struct MotionListView: View {
                     .frame(width: g.size.width - 10)
                     .cornerRadius(10)
                     .opacity(0.3)
-                    .offset(x: 5)
                 )
             }
         } else if type == .altitude {
@@ -183,7 +178,6 @@ struct MotionListView: View {
                     .frame(width: g.size.width - 10)
                     .cornerRadius(10)
                     .opacity(0.3)
-                    .offset(x: 5)
                 )
             }
         } else {

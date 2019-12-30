@@ -42,7 +42,7 @@ struct RefreshRateView: View {
                     Text("Frequency: \(Int(self.refreshRate)) Hz")
                         .modifier(ButtonModifier())
                 }
-                .frame(height: 50, alignment: .center)
+                .frame(height: 50)
                 Group {
                     HStack {
                         Text("1")
@@ -53,8 +53,9 @@ struct RefreshRateView: View {
                         Text("50")
                             .modifier(RefreshRateLimitLabel())
                     }
+                    .offset(x: -5)
                 }
-                .frame(width: g.size.width - 10, height: 50, alignment: .center)
+                .frame(width: g.size.width - 10, height: 50)
             }
             .frame(height: 170)
         }

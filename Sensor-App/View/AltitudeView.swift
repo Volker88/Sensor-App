@@ -75,6 +75,7 @@ struct AltitudeView: View {
                                 }
                             }
                             .frame(width: g.size.width, height: g.size.height - 50 + g.safeAreaInsets.bottom)
+                            .offset(x: 5)
                             
                             
                             // MARK: - MotionToolBarViewModel()

@@ -1,5 +1,25 @@
-import UIKit
 
+// MARK: - Search Array Index
+let searchFor = "km/h"
+var searchID = 0
+let speedSettings = ["m/s", "km/h", "mph"]
+
+
+for i in speedSettings {
+    
+    searchID += 1
+    
+    if i == searchFor {
+        break
+    }
+    
+}
+
+print(searchID)
+
+
+
+// MARK: - Array Test
 class DataArray {
     
     var id: Int

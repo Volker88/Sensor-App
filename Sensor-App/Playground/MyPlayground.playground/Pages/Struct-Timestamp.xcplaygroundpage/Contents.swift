@@ -22,21 +22,3 @@ let dateFormatter = DateFormatter()
 dateFormatter.dateFormat = "dd-MM-yyyy HH:mm:ss.SSS"
 let dateString = dateFormatter.string(from: NSDate() as Date)
 print(dateString)
-
-
-let searchFor = "km/h"
-var searchID = 0
-let speedSettings = ["m/s", "km/h", "mph"]
-
-
-for i in speedSettings {
-    
-    searchID += 1
-    
-    if i == searchFor {
-        break
-    }
-    
-}
-
-print(searchID)
