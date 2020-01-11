@@ -78,6 +78,7 @@ struct GyroscopeView: View {
                                     
                                     // MARK: - RefreshRateViewModel()
                                     RefreshRateView()
+                                        .frame(width: g.size.width, height: 170, alignment: .center)
                                 }
                             }
                             .frame(width: g.size.width, height: g.size.height - 50 + g.safeAreaInsets.bottom)

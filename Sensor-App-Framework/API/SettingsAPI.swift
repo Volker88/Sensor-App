@@ -30,23 +30,52 @@ class SettingsAPI {
     }
     
     
-    // UserDefaults
-    private let userDefaults = UserDefaults.standard
-    
-    
     // MARK: - GPS Settings
-    public let GPSSpeedSettings = ["m/s", "km/h", "mph"]
+    public let GPSSpeedSettings = [
+        UnitSpeed.metersPerSecond.symbol,
+        UnitSpeed.kilometersPerHour.symbol,
+        UnitSpeed.milesPerHour.symbol
+    ]
+    
     public let GPSAccuracyOptions = ["Best", "10 Meter", "100 Meter", "Kilometer", "3 Kilometer"]
     
     
     // MARK: - Altitude Settings
-    public let altitudePressure = ["mbar", "bar", "atm", "Pa", "hPa", "kPa", "psi", "mmHG", "inHG"]
-    public let altitudeHeight = ["mm", "cm", "m", "inch", "feet", "yard"]
+    public let altitudePressure = [
+        UnitPressure.millibars.symbol,
+        UnitPressure.bars.symbol,
+        UnitPressure.newtonsPerMetersSquared.symbol,
+        UnitPressure.hectopascals.symbol,
+        UnitPressure.kilopascals.symbol,
+        UnitPressure.poundsForcePerSquareInch.symbol,
+        UnitPressure.millimetersOfMercury.symbol,
+        UnitPressure.inchesOfMercury.symbol
+    ]
+    
+    public let altitudeHeight = [
+        UnitLength.millimeters.symbol,
+        UnitLength.centimeters.symbol,
+        UnitLength.meters.symbol,
+        UnitLength.inches.symbol,
+        UnitLength.feet.symbol,
+        UnitLength.yards.symbol
+    ]
+    
     
     // MARK: - View BackgroundColor
     public let backgroundColor : [Color] = [Color("1first"), Color("2second"), Color("3third"), Color("4fourth"), Color("5fifth")]
     
-    // MARK: - Methods
+    
+    // MARK: - UserDefaults
+    private let userDefaults = UserDefaults.standard
+    
+    ///
+    ///  Call this function to clear all UserDefaults
+    ///
+    public func clearUserDefaults() {
+        UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
+        UserDefaults.standard.synchronize()
+    }
     
     ///
     ///  Save user settings for strings
@@ -85,7 +114,11 @@ class SettingsAPI {
     public func fetchSpeedSetting() -> String { // Read Speed Settings from UserDefaults
         var GPSSpeedSetting = ""
         if let i = userDefaults.string(forKey: "\(SettingsForUserDefaults.GPSSpeedSetting)") {
-            GPSSpeedSetting = i
+            if GPSSpeedSettings.contains(i) {
+                GPSSpeedSetting = i
+            } else {
+                GPSSpeedSetting = "m/s"
+            }
         } else {
             GPSSpeedSetting = "m/s"
         }
@@ -105,7 +138,11 @@ class SettingsAPI {
     public func fetchGPSAccuracySetting() -> String { // Read GPS Accuracy Settings from UserDefaults
         var GPSAccuracySetting = ""
         if let i = userDefaults.string(forKey: "\(SettingsForUserDefaults.GPSAccuracySetting)") {
-            GPSAccuracySetting = i
+            if GPSAccuracyOptions.contains(i) {
+                GPSAccuracySetting = i
+            } else {
+                GPSAccuracySetting = "Best"
+            }
         } else {
             GPSAccuracySetting = "Best"
         }
@@ -127,7 +164,11 @@ class SettingsAPI {
     public func fetchPressureSetting() -> String { // Read Pressure Setting from UserDefaults
         var pressureSetting = ""
         if let i = userDefaults.string(forKey: "\(SettingsForUserDefaults.pressureSetting)") {
-            pressureSetting = i
+            if altitudePressure.contains(i) {
+                pressureSetting = i
+            } else {
+                pressureSetting = "kPa"
+            }
         } else {
             pressureSetting = "kPa"
         }
@@ -147,7 +188,11 @@ class SettingsAPI {
     public func fetchHeightSetting() -> String { // Read Height Setting from UserDefaults
         var heightSetting = ""
         if let i = userDefaults.string(forKey: "\(SettingsForUserDefaults.altitudeHeightSetting)") {
-            heightSetting = i
+            if altitudeHeight.contains(i) {
+                heightSetting = i
+            } else {
+                heightSetting = "m"
+            }
         } else {
             heightSetting = "m"
         }

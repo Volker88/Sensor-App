@@ -66,6 +66,20 @@
 		1550FA7D232C0435006447AE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1550FA7B232C0435006447AE /* SceneDelegate.swift */; };
 		1550FA88232C06C7006447AE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1550FA87232C06C7006447AE /* Preview Assets.xcassets */; };
 		1550FA89232C06C7006447AE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1550FA87232C06C7006447AE /* Preview Assets.xcassets */; };
+		1557774023CA6D5400BD563E /* AppUpdates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1557773F23CA6D5400BD563E /* AppUpdates.swift */; };
+		1557774123CA6F3200BD563E /* AppUpdates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1557773F23CA6D5400BD563E /* AppUpdates.swift */; };
+		1557774223CA6F3200BD563E /* AppUpdates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1557773F23CA6D5400BD563E /* AppUpdates.swift */; };
+		1557774923CA763000BD563E /* SettingsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FC73322280A09B0077CB8A /* SettingsAPI.swift */; };
+		1557774A23CA777900BD563E /* CalculationAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ED0438231EF904001E5005 /* CalculationAPI.swift */; };
+		1557774B23CA777D00BD563E /* CoreLocationAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DEDA60231D8973008B2327 /* CoreLocationAPI.swift */; };
+		1557774C23CA777F00BD563E /* CoreMotionAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DEDA66231DA97B008B2327 /* CoreMotionAPI.swift */; };
+		1557774D23CA778200BD563E /* NotificationAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A062AA233FCDD800F5DC6F /* NotificationAPI.swift */; };
+		1557774E23CA77D300BD563E /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BD0A4C2350FCD900784975 /* Extension.swift */; };
+		1557774F23CA795A00BD563E /* AltitudeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ED0436231EF6EE001E5005 /* AltitudeModel.swift */; };
+		1557775023CA795C00BD563E /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DEDA62231D9E84008B2327 /* LocationModel.swift */; };
+		1557775123CA795E00BD563E /* MotionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DEDA64231DA6F3008B2327 /* MotionModel.swift */; };
+		1557775223CA796100BD563E /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A062AD233FD2D100F5DC6F /* NotificationModel.swift */; };
+		1557775323CA796400BD563E /* SensorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15995DF2234F9D4B00C0DDA0 /* SensorType.swift */; };
 		1577ECA72330072A0061718B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1577ECA62330072A0061718B /* ContentView.swift */; };
 		1577ECA82330072A0061718B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1577ECA62330072A0061718B /* ContentView.swift */; };
 		1577ECAA233007630061718B /* MagnetometerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1577ECA9233007630061718B /* MagnetometerView.swift */; };
@@ -331,6 +345,7 @@
 		154E101C235CE3FA00FD426C /* Dev-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Dev-Info.plist"; sourceTree = "<group>"; };
 		1550FA7B232C0435006447AE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		1550FA87232C06C7006447AE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		1557773F23CA6D5400BD563E /* AppUpdates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUpdates.swift; sourceTree = "<group>"; };
 		156FC3CC22A2D9ED00B70943 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1577ECA62330072A0061718B /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1577ECA9233007630061718B /* MagnetometerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagnetometerView.swift; sourceTree = "<group>"; };
@@ -457,6 +472,7 @@
 				15DEDA66231DA97B008B2327 /* CoreMotionAPI.swift */,
 				15A062AA233FCDD800F5DC6F /* NotificationAPI.swift */,
 				15FC73322280A09B0077CB8A /* SettingsAPI.swift */,
+				1557773F23CA6D5400BD563E /* AppUpdates.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -964,6 +980,7 @@
 					};
 					157D91C623814C6500371C2F = {
 						CreatedOnToolsVersion = 11.2.1;
+						LastSwiftMigration = 1130;
 					};
 				};
 			};
@@ -1153,6 +1170,7 @@
 				1516CD4F232CC57400817C33 /* AttitudeView.swift in Sources */,
 				1577ECA82330072A0061718B /* ContentView.swift in Sources */,
 				1577ECAB233007630061718B /* MagnetometerView.swift in Sources */,
+				1557774223CA6F3200BD563E /* AppUpdates.swift in Sources */,
 				15A062AC233FCDD800F5DC6F /* NotificationAPI.swift in Sources */,
 				1513ACC2232529640095760B /* AltitudeModel.swift in Sources */,
 				1516CD3B232CC55400817C33 /* LocationToolBarView.swift in Sources */,
@@ -1254,6 +1272,7 @@
 				1516CD4E232CC57400817C33 /* AttitudeView.swift in Sources */,
 				1577ECA72330072A0061718B /* ContentView.swift in Sources */,
 				1577ECAA233007630061718B /* MagnetometerView.swift in Sources */,
+				1557774123CA6F3200BD563E /* AppUpdates.swift in Sources */,
 				15A062AB233FCDD800F5DC6F /* NotificationAPI.swift in Sources */,
 				15ED0437231EF6EE001E5005 /* AltitudeModel.swift in Sources */,
 				1516CD3A232CC55400817C33 /* LocationToolBarView.swift in Sources */,
@@ -1286,6 +1305,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1557774B23CA777D00BD563E /* CoreLocationAPI.swift in Sources */,
+				1557774023CA6D5400BD563E /* AppUpdates.swift in Sources */,
+				1557774E23CA77D300BD563E /* Extension.swift in Sources */,
+				1557775323CA796400BD563E /* SensorType.swift in Sources */,
+				1557774F23CA795A00BD563E /* AltitudeModel.swift in Sources */,
+				1557775023CA795C00BD563E /* LocationModel.swift in Sources */,
+				1557774923CA763000BD563E /* SettingsAPI.swift in Sources */,
+				1557774C23CA777F00BD563E /* CoreMotionAPI.swift in Sources */,
+				1557775123CA795E00BD563E /* MotionModel.swift in Sources */,
+				1557774A23CA777900BD563E /* CalculationAPI.swift in Sources */,
+				1557775223CA796100BD563E /* NotificationModel.swift in Sources */,
+				1557774D23CA778200BD563E /* NotificationAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1912,6 +1943,7 @@
 		157B0E82227F57D7004CC169 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "${MY_BUILD_VERSION}";
@@ -1936,6 +1968,7 @@
 		157B0E83227F57D7004CC169 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "${MY_BUILD_VERSION}";
@@ -1959,6 +1992,7 @@
 		157D91D123814C6500371C2F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "${MY_BUILD_VERSION}";
 				DEFINES_MODULE = YES;
@@ -1979,6 +2013,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1989,6 +2024,7 @@
 		157D91D223814C6500371C2F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "${MY_BUILD_VERSION}";
 				DEFINES_MODULE = YES;

@@ -27,6 +27,15 @@ struct ContentView: View {
     // MARK: - Methods
     
     
+    // MARK: - onAppear / onDisappear
+    func onAppear() {
+
+    }
+    
+    func onDisappear() {
+        
+    }
+    
     // MARK: - Body
     var body: some View {
         
@@ -92,6 +101,8 @@ struct ContentView: View {
             .sheet(isPresented: $showSettings) { SettingsView() }
         }
         .navigationViewStyle(StackNavigationViewStyle())
+        .onAppear(perform: onAppear)
+        .onDisappear(perform: onDisappear)
     }
 }
 
