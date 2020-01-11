@@ -69,7 +69,7 @@ struct AltitudeView: View {
                                     .frame(height: 50, alignment: .center)
                                     
                                     
-                                    // MARK: - ListView
+                                    // MARK: - MotionListView()
                                     MotionListView(type: .altitude, motionVM: self.motionVM)
                                         .frame(minHeight: 250, maxHeight: .infinity)
                                 }
@@ -78,7 +78,7 @@ struct AltitudeView: View {
                             .offset(x: 5)
                             
                             
-                            // MARK: - MotionToolBarViewModel()
+                            // MARK: - MotionToolBarView()
                             MotionToolBarView(notificationMessage: self.$notificationMessage, showNotification: self.$showNotification, notificationDuration: self.$notificationDuration, motionVM: self.motionVM)
                         }
                         .edgesIgnoringSafeArea(.bottom)
@@ -93,27 +93,21 @@ struct AltitudeView: View {
             .onDisappear(perform: onDisappear)
             
             
-            // MARK: - NotificationViewModel()
+            // MARK: - NotificationView()
             NotificationView(notificationMessage: self.$notificationMessage, showNotification: self.$showNotification)
         }
     }
 }
 
+
 // MARK: - Preview
 struct AltitudeView_Previews: PreviewProvider {
     static var previews: some View {
-        Group {
-            NavigationView{
-                AltitudeView().previewDevice("iPhone 11 Pro")
+        ForEach([ColorScheme.light, .dark], id: \.self) { scheme in
+            NavigationView {
+                AltitudeView()
+                    .colorScheme(scheme)
             }
-            NavigationView{
-                AltitudeView().previewDevice("iPhone 11 Pro")
-                    .environment(\.colorScheme, .dark)
-            }
-            //AltitudeView().previewDevice("iPad Pro (12.9-inch) (3rd generation)")
-            //AltitudeView().previewDevice("iPad Pro (12.9-inch) (3rd generation)")
-            //.environment(\.colorScheme, .dark)
-            
         }
     }
 }

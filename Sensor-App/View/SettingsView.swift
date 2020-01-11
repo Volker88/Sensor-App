@@ -143,7 +143,7 @@ struct SettingsView: View {
             .onDisappear(perform: onDisappear)
             
             
-            // MARK: - NotificationViewModel()
+            // MARK: - NotificationView()
             NotificationView(notificationMessage: self.$notificationMessage, showNotification: self.$showNotification)
         }
     }
@@ -153,13 +153,9 @@ struct SettingsView: View {
 // MARK: - Preview
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        Group {
-            SettingsView().previewDevice("iPhone 11 Pro")
-            SettingsView().previewDevice("iPhone 11 Pro")
-                .environment(\.colorScheme, .dark)
-            //SettingsView().previewDevice("iPad Pro (12.9-inch) (3rd generation)")
-            //SettingsView().previewDevice("iPad Pro (12.9-inch) (3rd generation)")
-            //.environment(\.colorScheme, .dark)
+        ForEach([ColorScheme.light, .dark], id: \.self) { scheme in
+                SettingsView()
+                    .colorScheme(scheme)
         }
     }
 }

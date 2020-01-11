@@ -93,7 +93,10 @@ struct MotionToolBarView: View {
 // MARK: - Preview
 struct MotionToolBarView_Previews: PreviewProvider {
     static var previews: some View {
-        MotionToolBarView(notificationMessage: .constant("Paused"), showNotification: .constant(true), notificationDuration: .constant(2.0), motionVM: CoreMotionViewModel())
-            .previewLayout(.sizeThatFits)
+        ForEach([ColorScheme.light, .dark], id: \.self) { scheme in
+            MotionToolBarView(notificationMessage: .constant("Paused"), showNotification: .constant(true), notificationDuration: .constant(2.0), motionVM: CoreMotionViewModel())
+                .colorScheme(scheme)
+                .previewLayout(.fixed(width: 400, height: 50))
+        }
     }
 }

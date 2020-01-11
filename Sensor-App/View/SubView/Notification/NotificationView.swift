@@ -31,8 +31,8 @@ struct NotificationView: View {
         
         // MARK: - Return View
         return NotificationMessageView(notificationText: self.$notificationMessage)
-        .offset(y: self.showNotification ? notificationSettings.offSetY : -UIScreen.main.bounds.height)
-        .animation(.interpolatingSpring(mass: notificationSettings.springMass, stiffness: notificationSettings.springStiffness, damping: notificationSettings.springDamping, initialVelocity: notificationSettings.springVelocity))
+            .offset(y: self.showNotification ? notificationSettings.offSetY : -UIScreen.main.bounds.height)
+            .animation(.interpolatingSpring(mass: notificationSettings.springMass, stiffness: notificationSettings.springStiffness, damping: notificationSettings.springDamping, initialVelocity: notificationSettings.springVelocity))
     }
 }
 
@@ -40,6 +40,9 @@ struct NotificationView: View {
 // MARK: - Preview
 struct NotificationView_Previews: PreviewProvider {
     static var previews: some View {
-        NotificationView(notificationMessage: .constant("Saved successfully"), showNotification: .constant(true))
+        ForEach([ColorScheme.light, .dark], id: \.self) { scheme in
+            NotificationView(notificationMessage: .constant("Saved successfully"), showNotification: .constant(true))
+                .colorScheme(scheme)
+        }
     }
 }

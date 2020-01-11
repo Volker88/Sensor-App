@@ -78,7 +78,10 @@ struct LocationToolBarView: View {
 // MARK: - Preview
 struct LocationToolBarView_Previews: PreviewProvider {
     static var previews: some View {
-        LocationToolBarView(notificationMessage: .constant("Paused"), showNotification: .constant(true), notificationDuration: .constant(2.0))
-            .previewLayout(.sizeThatFits)
+        ForEach([ColorScheme.light, .dark], id: \.self) { scheme in
+            LocationToolBarView(notificationMessage: .constant("Paused"), showNotification: .constant(true), notificationDuration: .constant(2.0))
+                .colorScheme(scheme)
+                .previewLayout(.fixed(width: 400, height: 50))
+        }
     }
 }

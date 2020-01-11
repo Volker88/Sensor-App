@@ -71,21 +71,20 @@ struct GravityView: View {
                                     .frame(height: 50, alignment: .center)
                                     
                                     
-                                    // MARK: - ListView
+                                    // MARK: - MotionListView()
                                     MotionListView(type: .gravity, motionVM: self.motionVM)
                                         .frame(minHeight: 250, maxHeight: .infinity)
                                     
                                     
-                                    // MARK: - RefreshRateViewModel()
+                                    // MARK: - RefreshRateView()
                                     RefreshRateView()
-                                        .frame(height: CGFloat(165))
                                 }
                             }
                             .frame(width: g.size.width, height: g.size.height - 50 + g.safeAreaInsets.bottom)
                             .offset(x: 5)
                             
                             
-                            // MARK: - MotionToolBarViewModel()
+                            // MARK: - MotionToolBarView()
                             MotionToolBarView(notificationMessage: self.$notificationMessage, showNotification: self.$showNotification, notificationDuration: self.$notificationDuration, motionVM: self.motionVM)
                         }
                         .edgesIgnoringSafeArea(.bottom)
@@ -100,7 +99,7 @@ struct GravityView: View {
             .onDisappear(perform: onDisappear)
             
             
-            // MARK: - NotificationViewModel()
+            // MARK: - NotificationView()
             NotificationView(notificationMessage: self.$notificationMessage, showNotification: self.$showNotification)
         }
     }
@@ -110,17 +109,11 @@ struct GravityView: View {
 // MARK: - Preview
 struct GravityView_Previews: PreviewProvider {
     static var previews: some View {
-        Group {
+        ForEach([ColorScheme.light, .dark], id: \.self) { scheme in
             NavigationView {
-                GravityView().previewDevice("iPhone 11 Pro")
+                GravityView()
+                    .colorScheme(scheme)
             }
-            NavigationView {
-                GravityView().previewDevice("iPhone 11 Pro")
-                    .environment(\.colorScheme, .dark)
-            }
-            //GravityView().previewDevice("iPad Pro (12.9-inch) (3rd generation)")
-            //GravityView().previewDevice("iPad Pro (12.9-inch) (3rd generation)")
-            //.environment(\.colorScheme, .dark)
         }
     }
 }

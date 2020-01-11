@@ -66,7 +66,11 @@ struct MapKitView: UIViewRepresentable {
 // MARK: - Preview
 struct MapKitView_Previews: PreviewProvider {
     static var previews: some View {
-        MapKitView(latitude: 37.3323314100, longitude: -122.0312186000)
-            .previewLayout(.sizeThatFits)
+        ForEach([ColorScheme.light, .dark], id: \.self) { scheme in
+            MapKitView(latitude: 37.3323314100, longitude: -122.0312186000)
+                .colorScheme(scheme)
+                .previewLayout(.fixed(width: 400, height: 400))
+        }
+
     }
 }

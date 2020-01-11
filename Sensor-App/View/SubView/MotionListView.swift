@@ -53,6 +53,7 @@ struct MotionListView: View {
                         .font(.footnote)
                         //.background(Color("ListBackgroundColor"))
                     }
+                    .id(UUID())
                     .frame(width: g.size.width - 10)
                     .cornerRadius(10)
                     .opacity(0.3)
@@ -78,6 +79,7 @@ struct MotionListView: View {
                         .font(.footnote)
                         //.background(Color("ListBackgroundColor"))
                     }
+                    .id(UUID())
                     .frame(width: g.size.width - 10)
                     .cornerRadius(10)
                     .opacity(0.3)
@@ -103,6 +105,7 @@ struct MotionListView: View {
                         .font(.footnote)
                         //.background(Color("ListBackgroundColor"))
                     }
+                    .id(UUID())
                     .frame(width: g.size.width - 10)
                     .cornerRadius(10)
                     .opacity(0.3)
@@ -128,6 +131,7 @@ struct MotionListView: View {
                         .font(.footnote)
                         //.background(Color("ListBackgroundColor"))
                     }
+                    .id(UUID())
                     .frame(width: g.size.width - 10)
                     .cornerRadius(10)
                     .opacity(0.3)
@@ -156,6 +160,7 @@ struct MotionListView: View {
                         .font(.footnote)
                         //.background(Color("ListBackgroundColor"))
                     }
+                    .id(UUID())
                     .frame(width: g.size.width - 10)
                     .cornerRadius(10)
                     .opacity(0.3)
@@ -175,6 +180,7 @@ struct MotionListView: View {
                         .foregroundColor(Color("ListTextColor"))
                         .font(.footnote)
                     }
+                    .id(UUID())
                     .frame(width: g.size.width - 10)
                     .cornerRadius(10)
                     .opacity(0.3)
@@ -194,12 +200,11 @@ struct MotionListView: View {
 // MARK: - Preview
 struct MotionListView_Previews: PreviewProvider {
     static var previews: some View {
-        Group{
+        
+        ForEach([ColorScheme.light, .dark], id: \.self) { scheme in
             MotionListView(type: .acceleration)
+                .colorScheme(scheme)
                 .previewLayout(.sizeThatFits)
-            MotionListView(type: .acceleration)
-                .previewLayout(.sizeThatFits)
-                .environment(\.colorScheme, .dark)
         }
     }
 }

@@ -37,6 +37,8 @@ class CalculationAPI {
     ///  - Parameter to: targfet unit
     ///
     public func calculateSpeed(ms: Double, to: String) -> Double { // Calculcate Speed
+        
+        // TODO: Calculation using Foundation
         switch to {
         case SettingsAPI.shared.GPSSpeedSettings[0]: return ms.rounded(toPlaces: 5) // m/s
         case SettingsAPI.shared.GPSSpeedSettings[1]: return (ms * 3.6).rounded(toPlaces: 5) // km/h
@@ -67,6 +69,8 @@ class CalculationAPI {
     ///  - Parameter to: target unit
     ///
     public func calculatePressure(pressure: Double, to: String) -> Double { // Calculate Pressure Units (input kPa)
+        
+        // TODO: Calculation using Foundation
         switch to {
         case SettingsAPI.shared.altitudePressure[0]: return (pressure * 10).rounded(toPlaces: 10) // mbar
         case SettingsAPI.shared.altitudePressure[1]: return (pressure * 0.01).rounded(toPlaces: 10) // bar
@@ -100,6 +104,8 @@ class CalculationAPI {
     ///  - Parameter to: target unit
     ///
     public func calculateHeight(height: Double, to: String) -> Double { // Calculate Height Units (input m)
+        
+        // TODO: Calculation using Foundation
         switch to {
         case SettingsAPI.shared.altitudeHeight[0]: return (height * 1000).rounded(toPlaces: 5) // mm
         case SettingsAPI.shared.altitudeHeight[1]: return (height * 100).rounded(toPlaces: 5) // cm

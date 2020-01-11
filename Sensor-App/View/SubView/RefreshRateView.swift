@@ -43,7 +43,8 @@ struct RefreshRateView: View {
                         .modifier(ButtonModifier())
                 }
                 .frame(height: 50)
-                Group {
+                
+
                     HStack {
                         Text("1")
                             .modifier(RefreshRateLimitLabel())
@@ -52,13 +53,13 @@ struct RefreshRateView: View {
                         }
                         Text("50")
                             .modifier(RefreshRateLimitLabel())
-                    }
-                    .offset(x: -5)
                 }
                 .frame(width: g.size.width - 10, height: 50)
+                    .offset(x: -5)
             }
             .frame(height: 170)
         }
+        .frame(alignment: .center)
     }
 }
 
@@ -66,8 +67,11 @@ struct RefreshRateView: View {
 // MARK: - Preview
 struct RefreshRateView_Previews: PreviewProvider {
     static var previews: some View {
-        RefreshRateView()
-            .previewLayout(.sizeThatFits)
+        ForEach([ColorScheme.light, .dark], id: \.self) { scheme in
+            RefreshRateView()
+                .colorScheme(scheme)
+                .previewLayout(.fixed(width: 400, height: 170))
+        }
     }
 }
 

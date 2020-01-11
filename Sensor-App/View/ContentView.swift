@@ -99,13 +99,9 @@ struct ContentView: View {
 // MARK: - Preview
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        Group {
-            ContentView().previewDevice("iPhone 11 Pro")
-            ContentView().previewDevice("iPhone 11 Pro")
-                .environment(\.colorScheme, .dark)
-            //ContentView().previewDevice("iPad Pro (12.9-inch) (3rd generation)")
-            //ContentView().previewDevice("iPad Pro (12.9-inch) (3rd generation)")
-            //.environment(\.colorScheme, .dark)
+        ForEach([ColorScheme.light, .dark], id: \.self) { scheme in
+            ContentView()
+                .colorScheme(scheme)
         }
     }
 }

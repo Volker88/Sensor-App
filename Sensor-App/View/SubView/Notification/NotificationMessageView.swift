@@ -32,7 +32,6 @@ struct NotificationMessageView: View {
             .padding()
             .foregroundColor(Color("NotificationTextGroundColor"))
             .frame(minWidth: 250)
-            //.frame(width: UIScreen.main.bounds.width - 10, height: 50)
             .background(Color("NotificationBackGroundColor"))
             .cornerRadius(20)
     }
@@ -42,8 +41,12 @@ struct NotificationMessageView: View {
 // MARK: - Preview
 struct NotificationMessageView_Previews: PreviewProvider {
     static var previews: some View {
-        NotificationMessageView(notificationText: .constant("Saved Successfully"))
-            .previewLayout(.sizeThatFits)
+        ForEach([ColorScheme.light, .dark], id: \.self) { scheme in
+            NotificationMessageView(notificationText: .constant("Saved Successfully"))
+                .previewLayout(.sizeThatFits)
+                .colorScheme(scheme)
+        }
+        
     }
 }
 

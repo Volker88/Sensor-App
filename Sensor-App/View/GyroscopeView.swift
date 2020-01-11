@@ -71,14 +71,13 @@ struct GyroscopeView: View {
                                     .frame(height: 50, alignment: .center)
                                     
                                     
-                                    // MARK: - ListView
+                                    // MARK: - MotionListView()
                                     MotionListView(type: .gyroscope, motionVM: self.motionVM)
                                         .frame(minHeight: 250, maxHeight: .infinity)
                                     
                                     
                                     // MARK: - RefreshRateViewModel()
                                     RefreshRateView()
-                                        .frame(height: CGFloat(165))
                                 }
                             }
                             .frame(width: g.size.width, height: g.size.height - 50 + g.safeAreaInsets.bottom)
@@ -100,7 +99,7 @@ struct GyroscopeView: View {
             .onDisappear(perform: onDisappear)
             
             
-            // MARK: - NotificationViewModel()
+            // MARK: - NotificationView()
             NotificationView(notificationMessage: self.$notificationMessage, showNotification: self.$showNotification)
         }
     }
@@ -110,17 +109,11 @@ struct GyroscopeView: View {
 // MARK: - Preview
 struct GyroscopeView_Previews: PreviewProvider {
     static var previews: some View {
-        Group {
+        ForEach([ColorScheme.light, .dark], id: \.self) { scheme in
             NavigationView {
-                GyroscopeView().previewDevice("iPhone 11 Pro")
+                GyroscopeView()
+                    .colorScheme(scheme)
             }
-            NavigationView {
-                GyroscopeView().previewDevice("iPhone 11 Pro")
-                    .environment(\.colorScheme, .dark)
-            }
-            //GyroscopeView().previewDevice("iPad Pro (12.9-inch) (3rd generation)")
-            //GyroscopeView().previewDevice("iPad Pro (12.9-inch) (3rd generation)")
-            //.environment(\.colorScheme, .dark)
         }
     }
 }

@@ -62,29 +62,29 @@ struct AccelerationView: View {
                                 VStack{
                                     Group{
                                         Text("X-Axis: \(self.motionVM.coreMotionArray.last?.accelerationXAxis ?? 0.0, specifier: "%.5f") m/s^2")
-                                        .modifier(ButtonModifier())
+                                            .modifier(ButtonModifier())
                                         Text("Y-Axis: \(self.motionVM.coreMotionArray.last?.accelerationYAxis ?? 0.0, specifier: "%.5f") m/s^2")
-                                        .modifier(ButtonModifier())
+                                            .modifier(ButtonModifier())
                                         Text("Z-Axis: \(self.motionVM.coreMotionArray.last?.accelerationZAxis ?? 0.0, specifier: "%.5f") m/s^2")
-                                        .modifier(ButtonModifier())
+                                            .modifier(ButtonModifier())
                                     }
                                     .frame(height: 50, alignment: .center)
                                     
-                                    // MARK: - ListView
+                                    
+                                    // MARK: - MotionListView()
                                     MotionListView(type: .acceleration, motionVM: self.motionVM)
                                         .frame(minHeight: 250, maxHeight: .infinity)
                                     
                                     
-                                    // MARK: - RefreshRateViewModel()
+                                    // MARK: - RefreshRateView()
                                     RefreshRateView()
-                                        .frame(width: g.size.width, height: 165)
                                 }
                             }
                             .frame(width: g.size.width, height: g.size.height - 50 + g.safeAreaInsets.bottom)
                             .offset(x: 5)
                             
                             
-                            // MARK: - MotionToolBarViewModel()
+                            // MARK: - MotionToolBarView()
                             MotionToolBarView(notificationMessage: self.$notificationMessage, showNotification: self.$showNotification, notificationDuration: self.$notificationDuration, motionVM: self.motionVM)
                         }
                         .edgesIgnoringSafeArea(.bottom)
@@ -99,7 +99,7 @@ struct AccelerationView: View {
             .onDisappear(perform: onDisappear)
             
             
-            // MARK: - NotificationViewModel()
+            // MARK: - NotificationView()
             NotificationView(notificationMessage: self.$notificationMessage, showNotification: self.$showNotification)
         }
     }
@@ -109,17 +109,11 @@ struct AccelerationView: View {
 // MARK: - Preview
 struct AccelerationView_Previews: PreviewProvider {
     static var previews: some View {
-        Group {
+        ForEach([ColorScheme.light, .dark], id: \.self) { scheme in
             NavigationView {
-                AccelerationView().previewDevice("iPhone 11 Pro")
+                AccelerationView()
+                    .colorScheme(scheme)
             }
-            NavigationView {
-                AccelerationView().previewDevice("iPhone 11 Pro")
-                    .environment(\.colorScheme, .dark)
-            }
-            //AccelerationView().previewDevice("iPad Pro (12.9-inch) (3rd generation)")
-            //AccelerationView().previewDevice("iPad Pro (12.9-inch) (3rd generation)")
-            //.environment(\.colorScheme, .dark)
         }
     }
 }

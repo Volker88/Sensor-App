@@ -95,7 +95,7 @@ struct LocationView: View {
             .onDisappear(perform: onDisappear)
             
             
-            // MARK: - NotificationViewModel()
+            // MARK: - NotificationView()
             NotificationView(notificationMessage: self.$notificationMessage, showNotification: self.$showNotification)
         }
     }
@@ -105,17 +105,11 @@ struct LocationView: View {
 // MARK: - Preview
 struct LocationView_Previews: PreviewProvider {
     static var previews: some View {
-        Group {
+        ForEach([ColorScheme.light, .dark], id: \.self) { scheme in
             NavigationView {
-                LocationView().previewDevice("iPhone 11 Pro")
+                LocationView()
+                    .colorScheme(scheme)
             }
-            NavigationView {
-                LocationView().previewDevice("iPhone 11 Pro")
-                    .environment(\.colorScheme, .dark)
-            }
-            //LocationView().previewDevice("iPad Pro (12.9-inch) (3rd generation)")
-            //LocationView().previewDevice("iPad Pro (12.9-inch) (3rd generation)")
-            //.environment(\.colorScheme, .dark)
         }
     }
 }
