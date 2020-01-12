@@ -6,7 +6,10 @@
 //  Copyright © 2019 Volker Schmitt. All rights reserved.
 //
 
+
+// MARK: - Import
 import Foundation
+
 
 // MARK: - Double
 extension Double {

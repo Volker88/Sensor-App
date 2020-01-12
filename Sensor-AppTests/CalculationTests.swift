@@ -10,7 +10,6 @@
 // MARK: - Import
 import XCTest
 @testable import Sensor_App
-//@testable import Sensor_App_Dev
 
 
 // MARK: - Class Definition
@@ -24,7 +23,9 @@ class CalculationTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testSpeedCalculation() {
+    
+    // MARK: - Tests
+    func testSpeedCalculationAPI() {
         // Given
         let input = 10.0 // m/s
         
@@ -39,7 +40,8 @@ class CalculationTests: XCTestCase {
         XCTAssertEqual(mph, 22.36940, accuracy: 0.01, "10 m/s does not equal 22.36940 mph")
     }
 
-    func testSpeedCalculationPerformance() {
+    
+    func testSpeedCalculationAPIPerformance() {
         self.measure {
             _ = CalculationAPI.shared.calculateSpeed(ms: 10, to: "m/s")
             _ = CalculationAPI.shared.calculateSpeed(ms: 10, to: "km/h")
@@ -47,7 +49,8 @@ class CalculationTests: XCTestCase {
         }
     }
     
-    func testPressureCalculation() {
+    
+    func testPressureCalculationAPI() {
         // Given
         let input = 100.0 // kPa
         
@@ -72,7 +75,8 @@ class CalculationTests: XCTestCase {
         XCTAssertEqual(inHG, 29.53, accuracy: 0.01, "100kPa does not equal 29.53 inHG")
     }
     
-    func testHeightCalculation() {
+    
+    func testHeightCalculationAPI() {
         // Given
         let input = 1.0 // m
         

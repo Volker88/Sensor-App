@@ -8,44 +8,32 @@
 
 /* Begin PBXBuildFile section */
 		151101152364518200EC0292 /* ViewButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151101142364518200EC0292 /* ViewButtonModifier.swift */; };
-		151101162364518200EC0292 /* ViewButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151101142364518200EC0292 /* ViewButtonModifier.swift */; };
 		1511015023648D8000EC0292 /* Sensor_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1511014F23648D8000EC0292 /* Sensor_AppUITests.swift */; };
-		1511017423648E7100EC0292 /* Sensor_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1511014F23648D8000EC0292 /* Sensor_AppUITests.swift */; };
 		1511017623648E9600EC0292 /* CalculationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1511017523648E9600EC0292 /* CalculationTests.swift */; };
-		1511017723648ECF00EC0292 /* CalculationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1511017523648E9600EC0292 /* CalculationTests.swift */; };
-		1513ACBF232529640095760B /* MotionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DEDA64231DA6F3008B2327 /* MotionModel.swift */; };
-		1513ACC2232529640095760B /* AltitudeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ED0436231EF6EE001E5005 /* AltitudeModel.swift */; };
-		1513ACC3232529640095760B /* CoreLocationAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DEDA60231D8973008B2327 /* CoreLocationAPI.swift */; };
-		1513ACC5232529640095760B /* CoreMotionAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DEDA66231DA97B008B2327 /* CoreMotionAPI.swift */; };
-		1513ACC6232529640095760B /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DEDA62231D9E84008B2327 /* LocationModel.swift */; };
-		1513ACC8232529640095760B /* SettingsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FC73322280A09B0077CB8A /* SettingsAPI.swift */; };
-		1513ACC9232529640095760B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157B0E72227F57D6004CC169 /* AppDelegate.swift */; };
-		1513ACCA232529640095760B /* CalculationAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ED0438231EF904001E5005 /* CalculationAPI.swift */; };
-		1513ACD3232529640095760B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 157B0E79227F57D7004CC169 /* Assets.xcassets */; };
 		1516CD36232CC55400817C33 /* MotionToolBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1516CD30232CC55400817C33 /* MotionToolBarView.swift */; };
-		1516CD37232CC55400817C33 /* MotionToolBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1516CD30232CC55400817C33 /* MotionToolBarView.swift */; };
 		1516CD38232CC55400817C33 /* MapKitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1516CD31232CC55400817C33 /* MapKitView.swift */; };
-		1516CD39232CC55400817C33 /* MapKitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1516CD31232CC55400817C33 /* MapKitView.swift */; };
 		1516CD3A232CC55400817C33 /* LocationToolBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1516CD32232CC55400817C33 /* LocationToolBarView.swift */; };
-		1516CD3B232CC55400817C33 /* LocationToolBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1516CD32232CC55400817C33 /* LocationToolBarView.swift */; };
 		1516CD3C232CC55400817C33 /* RefreshRateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1516CD33232CC55400817C33 /* RefreshRateView.swift */; };
-		1516CD3D232CC55400817C33 /* RefreshRateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1516CD33232CC55400817C33 /* RefreshRateView.swift */; };
 		1516CD46232CC57400817C33 /* GravityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1516CD3E232CC57300817C33 /* GravityView.swift */; };
-		1516CD47232CC57400817C33 /* GravityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1516CD3E232CC57300817C33 /* GravityView.swift */; };
 		1516CD4A232CC57400817C33 /* GyroscopeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1516CD40232CC57400817C33 /* GyroscopeView.swift */; };
-		1516CD4B232CC57400817C33 /* GyroscopeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1516CD40232CC57400817C33 /* GyroscopeView.swift */; };
 		1516CD4C232CC57400817C33 /* LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1516CD41232CC57400817C33 /* LocationView.swift */; };
-		1516CD4D232CC57400817C33 /* LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1516CD41232CC57400817C33 /* LocationView.swift */; };
 		1516CD4E232CC57400817C33 /* AttitudeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1516CD42232CC57400817C33 /* AttitudeView.swift */; };
-		1516CD4F232CC57400817C33 /* AttitudeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1516CD42232CC57400817C33 /* AttitudeView.swift */; };
 		1516CD50232CC57400817C33 /* AltitudeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1516CD43232CC57400817C33 /* AltitudeView.swift */; };
-		1516CD51232CC57400817C33 /* AltitudeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1516CD43232CC57400817C33 /* AltitudeView.swift */; };
 		1516CD52232CC57400817C33 /* AccelerationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1516CD44232CC57400817C33 /* AccelerationView.swift */; };
-		1516CD53232CC57400817C33 /* AccelerationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1516CD44232CC57400817C33 /* AccelerationView.swift */; };
 		1516CD57232D510400817C33 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1516CD56232D510400817C33 /* SettingsView.swift */; };
-		1516CD58232D510400817C33 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1516CD56232D510400817C33 /* SettingsView.swift */; };
+		151F66BC23CB7D4800DAFCD3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1577ECAE23300E620061718B /* Localizable.strings */; };
+		151F66BD23CB819700DAFCD3 /* CoreLocationAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DEDA60231D8973008B2327 /* CoreLocationAPI.swift */; };
+		151F66BE23CB81AB00DAFCD3 /* CoreLocationAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DEDA60231D8973008B2327 /* CoreLocationAPI.swift */; };
+		151F66BF23CB81AB00DAFCD3 /* CoreLocationAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DEDA60231D8973008B2327 /* CoreLocationAPI.swift */; };
+		151F66C123CB821800DAFCD3 /* AppUpdates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1557773F23CA6D5400BD563E /* AppUpdates.swift */; };
+		151F66C223CB822700DAFCD3 /* CoreLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E57B8C234A09630055B4D1 /* CoreLocationViewModel.swift */; };
+		151F66C323CB822A00DAFCD3 /* CoreMotionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E57B90234A20790055B4D1 /* CoreMotionViewModel.swift */; };
+		151F66C623CB826100DAFCD3 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BD0A4C2350FCD900784975 /* Extension.swift */; };
+		151F66C723CB826300DAFCD3 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BD0A4C2350FCD900784975 /* Extension.swift */; };
+		151F66C823CB82A300DAFCD3 /* CalculationAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ED0438231EF904001E5005 /* CalculationAPI.swift */; };
+		151F66C923CB82A500DAFCD3 /* CalculationAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ED0438231EF904001E5005 /* CalculationAPI.swift */; };
+		151F672A23CB9B4600DAFCD3 /* ViewButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151101142364518200EC0292 /* ViewButtonModifier.swift */; };
 		1531AC4C2353968700492189 /* MotionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1531AC4B2353968700492189 /* MotionListView.swift */; };
-		1531AC4D2353968700492189 /* MotionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1531AC4B2353968700492189 /* MotionListView.swift */; };
 		154E0FDC235CE3BD00FD426C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 154E0FDB235CE3BD00FD426C /* Assets.xcassets */; };
 		154E0FE3235CE3BD00FD426C /* Sensor-App-WatchApp Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 154E0FE2235CE3BD00FD426C /* Sensor-App-WatchApp Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		154E0FE8235CE3BD00FD426C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154E0FE7235CE3BD00FD426C /* ContentView.swift */; };
@@ -54,24 +42,12 @@
 		154E0FEE235CE3BD00FD426C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 154E0FED235CE3BD00FD426C /* Assets.xcassets */; };
 		154E0FF1235CE3BD00FD426C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 154E0FF0235CE3BD00FD426C /* Preview Assets.xcassets */; };
 		154E0FF5235CE3BD00FD426C /* Sensor-App-WatchApp.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 154E0FD6235CE3BC00FD426C /* Sensor-App-WatchApp.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		154E100D235CE3F900FD426C /* Sensor-App-WatchApp-Dev Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 154E100C235CE3F900FD426C /* Sensor-App-WatchApp-Dev Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		154E101F235CE3FA00FD426C /* Sensor-App-WatchApp-Dev.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 154E1000235CE3F900FD426C /* Sensor-App-WatchApp-Dev.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		154E1028235CE41500FD426C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154E0FE7235CE3BD00FD426C /* ContentView.swift */; };
-		154E1029235CE41800FD426C /* HostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154E0FE9235CE3BD00FD426C /* HostingController.swift */; };
-		154E102A235CE41A00FD426C /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154E0FEB235CE3BD00FD426C /* ExtensionDelegate.swift */; };
-		154E102B235CE41D00FD426C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 154E0FED235CE3BD00FD426C /* Assets.xcassets */; };
-		154E102C235CE42400FD426C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 154E0FF0235CE3BD00FD426C /* Preview Assets.xcassets */; };
-		154E102E235CE43000FD426C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 154E0FDB235CE3BD00FD426C /* Assets.xcassets */; };
 		1550FA7C232C0435006447AE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1550FA7B232C0435006447AE /* SceneDelegate.swift */; };
-		1550FA7D232C0435006447AE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1550FA7B232C0435006447AE /* SceneDelegate.swift */; };
 		1550FA88232C06C7006447AE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1550FA87232C06C7006447AE /* Preview Assets.xcassets */; };
-		1550FA89232C06C7006447AE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1550FA87232C06C7006447AE /* Preview Assets.xcassets */; };
 		1557774023CA6D5400BD563E /* AppUpdates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1557773F23CA6D5400BD563E /* AppUpdates.swift */; };
 		1557774123CA6F3200BD563E /* AppUpdates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1557773F23CA6D5400BD563E /* AppUpdates.swift */; };
-		1557774223CA6F3200BD563E /* AppUpdates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1557773F23CA6D5400BD563E /* AppUpdates.swift */; };
 		1557774923CA763000BD563E /* SettingsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FC73322280A09B0077CB8A /* SettingsAPI.swift */; };
 		1557774A23CA777900BD563E /* CalculationAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ED0438231EF904001E5005 /* CalculationAPI.swift */; };
-		1557774B23CA777D00BD563E /* CoreLocationAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DEDA60231D8973008B2327 /* CoreLocationAPI.swift */; };
 		1557774C23CA777F00BD563E /* CoreMotionAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DEDA66231DA97B008B2327 /* CoreMotionAPI.swift */; };
 		1557774D23CA778200BD563E /* NotificationAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A062AA233FCDD800F5DC6F /* NotificationAPI.swift */; };
 		1557774E23CA77D300BD563E /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BD0A4C2350FCD900784975 /* Extension.swift */; };
@@ -81,101 +57,52 @@
 		1557775223CA796100BD563E /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A062AD233FD2D100F5DC6F /* NotificationModel.swift */; };
 		1557775323CA796400BD563E /* SensorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15995DF2234F9D4B00C0DDA0 /* SensorType.swift */; };
 		1577ECA72330072A0061718B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1577ECA62330072A0061718B /* ContentView.swift */; };
-		1577ECA82330072A0061718B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1577ECA62330072A0061718B /* ContentView.swift */; };
 		1577ECAA233007630061718B /* MagnetometerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1577ECA9233007630061718B /* MagnetometerView.swift */; };
-		1577ECAB233007630061718B /* MagnetometerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1577ECA9233007630061718B /* MagnetometerView.swift */; };
 		157B0E73227F57D6004CC169 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157B0E72227F57D6004CC169 /* AppDelegate.swift */; };
 		157B0E7A227F57D7004CC169 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 157B0E79227F57D7004CC169 /* Assets.xcassets */; };
 		157D91CB23814C6500371C2F /* Sensor_App_Framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 157D91C923814C6500371C2F /* Sensor_App_Framework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		157D91CE23814C6500371C2F /* Sensor_App_Framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 157D91C723814C6500371C2F /* Sensor_App_Framework.framework */; };
 		157D91CF23814C6500371C2F /* Sensor_App_Framework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 157D91C723814C6500371C2F /* Sensor_App_Framework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		157ECB4B23832A3800890291 /* CoreLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E57B8C234A09630055B4D1 /* CoreLocationViewModel.swift */; };
-		157ECB4C23832A3800890291 /* CoreLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E57B8C234A09630055B4D1 /* CoreLocationViewModel.swift */; };
 		15841D452381767500E031B9 /* LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15841D442381767500E031B9 /* LocationView.swift */; };
-		15841D462381767500E031B9 /* LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15841D442381767500E031B9 /* LocationView.swift */; };
 		15841D482381768700E031B9 /* AccelerationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15841D472381768700E031B9 /* AccelerationView.swift */; };
-		15841D492381768700E031B9 /* AccelerationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15841D472381768700E031B9 /* AccelerationView.swift */; };
 		15841D4B2381769400E031B9 /* GravityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15841D4A2381769400E031B9 /* GravityView.swift */; };
-		15841D4C2381769400E031B9 /* GravityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15841D4A2381769400E031B9 /* GravityView.swift */; };
 		15841D4E238176A400E031B9 /* GyroscopeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15841D4D238176A400E031B9 /* GyroscopeView.swift */; };
-		15841D4F238176A400E031B9 /* GyroscopeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15841D4D238176A400E031B9 /* GyroscopeView.swift */; };
 		15841D51238176AD00E031B9 /* MagnetometerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15841D50238176AD00E031B9 /* MagnetometerView.swift */; };
-		15841D52238176AD00E031B9 /* MagnetometerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15841D50238176AD00E031B9 /* MagnetometerView.swift */; };
 		15841D54238176B900E031B9 /* AttitudeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15841D53238176B900E031B9 /* AttitudeView.swift */; };
-		15841D55238176B900E031B9 /* AttitudeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15841D53238176B900E031B9 /* AttitudeView.swift */; };
 		15841D57238176C100E031B9 /* AltitudeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15841D56238176C100E031B9 /* AltitudeView.swift */; };
-		15841D58238176C100E031B9 /* AltitudeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15841D56238176C100E031B9 /* AltitudeView.swift */; };
 		15841D5A238176CB00E031B9 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15841D59238176CB00E031B9 /* SettingsView.swift */; };
-		15841D5B238176CB00E031B9 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15841D59238176CB00E031B9 /* SettingsView.swift */; };
 		15841D5E238179C500E031B9 /* CoreMotionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E57B90234A20790055B4D1 /* CoreMotionViewModel.swift */; };
-		15841D5F238179C500E031B9 /* CoreMotionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E57B90234A20790055B4D1 /* CoreMotionViewModel.swift */; };
-		15841D60238179CA00E031B9 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BD0A4C2350FCD900784975 /* Extension.swift */; };
-		15841D61238179CA00E031B9 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BD0A4C2350FCD900784975 /* Extension.swift */; };
-		15841D65238179F400E031B9 /* CalculationAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ED0438231EF904001E5005 /* CalculationAPI.swift */; };
-		15841D66238179F400E031B9 /* CalculationAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ED0438231EF904001E5005 /* CalculationAPI.swift */; };
-		15841D67238179F700E031B9 /* CoreLocationAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DEDA60231D8973008B2327 /* CoreLocationAPI.swift */; };
-		15841D68238179F700E031B9 /* CoreLocationAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DEDA60231D8973008B2327 /* CoreLocationAPI.swift */; };
 		15841D6D23817A0000E031B9 /* SettingsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FC73322280A09B0077CB8A /* SettingsAPI.swift */; };
-		15841D6E23817A0000E031B9 /* SettingsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FC73322280A09B0077CB8A /* SettingsAPI.swift */; };
 		15841D6F23817A0300E031B9 /* AltitudeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ED0436231EF6EE001E5005 /* AltitudeModel.swift */; };
-		15841D7023817A0300E031B9 /* AltitudeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ED0436231EF6EE001E5005 /* AltitudeModel.swift */; };
 		15841D7323817A0900E031B9 /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DEDA62231D9E84008B2327 /* LocationModel.swift */; };
-		15841D7423817A0A00E031B9 /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DEDA62231D9E84008B2327 /* LocationModel.swift */; };
 		15841D7523817A0D00E031B9 /* MotionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DEDA64231DA6F3008B2327 /* MotionModel.swift */; };
-		15841D7623817A0D00E031B9 /* MotionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DEDA64231DA6F3008B2327 /* MotionModel.swift */; };
 		15841D7723817A1200E031B9 /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A062AD233FD2D100F5DC6F /* NotificationModel.swift */; };
-		15841D7823817A1300E031B9 /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A062AD233FD2D100F5DC6F /* NotificationModel.swift */; };
 		15841D7B23817A1800E031B9 /* SensorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15995DF2234F9D4B00C0DDA0 /* SensorType.swift */; };
-		15841D7C23817A1900E031B9 /* SensorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15995DF2234F9D4B00C0DDA0 /* SensorType.swift */; };
-		15841D7F23817A2E00E031B9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1577ECB2233019300061718B /* InfoPlist.strings */; };
 		15841D8023817A2F00E031B9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1577ECB2233019300061718B /* InfoPlist.strings */; };
 		15841D8123817A3400E031B9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1577ECAE23300E620061718B /* Localizable.strings */; };
-		15841D8223817A8D00E031B9 /* CoreMotionAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DEDA66231DA97B008B2327 /* CoreMotionAPI.swift */; };
 		15841D8323817A8E00E031B9 /* CoreMotionAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DEDA66231DA97B008B2327 /* CoreMotionAPI.swift */; };
-		15841D8423818B1C00E031B9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1577ECAE23300E620061718B /* Localizable.strings */; };
 		15841D8523818B4700E031B9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1577ECAE23300E620061718B /* Localizable.strings */; };
 		15841D8623818B4700E031B9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1577ECAE23300E620061718B /* Localizable.strings */; };
-		15841D8723818B4800E031B9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1577ECAE23300E620061718B /* Localizable.strings */; };
 		158BC8C92341094B001A5EBD /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158BC8C82341094B001A5EBD /* NotificationView.swift */; };
-		158BC8CA2341094B001A5EBD /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158BC8C82341094B001A5EBD /* NotificationView.swift */; };
 		15995DF3234F9D4B00C0DDA0 /* SensorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15995DF2234F9D4B00C0DDA0 /* SensorType.swift */; };
-		15995DF4234F9D4B00C0DDA0 /* SensorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15995DF2234F9D4B00C0DDA0 /* SensorType.swift */; };
 		15A062A5233F941C00F5DC6F /* NotificationMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A062A4233F941C00F5DC6F /* NotificationMessageView.swift */; };
-		15A062A6233F941C00F5DC6F /* NotificationMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A062A4233F941C00F5DC6F /* NotificationMessageView.swift */; };
 		15A062AB233FCDD800F5DC6F /* NotificationAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A062AA233FCDD800F5DC6F /* NotificationAPI.swift */; };
-		15A062AC233FCDD800F5DC6F /* NotificationAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A062AA233FCDD800F5DC6F /* NotificationAPI.swift */; };
 		15A062AE233FD2D100F5DC6F /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A062AD233FD2D100F5DC6F /* NotificationModel.swift */; };
-		15A062AF233FD2D100F5DC6F /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A062AD233FD2D100F5DC6F /* NotificationModel.swift */; };
-		15A7F69D236C38BD009FCF1D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1577ECAE23300E620061718B /* Localizable.strings */; };
 		15A7F69E236C38BF009FCF1D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1577ECAE23300E620061718B /* Localizable.strings */; };
-		15A7F69F236C38BF009FCF1D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1577ECAE23300E620061718B /* Localizable.strings */; };
 		15A7F6A0236C38C0009FCF1D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1577ECAE23300E620061718B /* Localizable.strings */; };
-		15A7F6A3236C38C5009FCF1D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1577ECAE23300E620061718B /* Localizable.strings */; };
-		15A7F6A4236C38C6009FCF1D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1577ECAE23300E620061718B /* Localizable.strings */; };
 		15A7F6A6236C5794009FCF1D /* ScreenshotUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A7F6A5236C5794009FCF1D /* ScreenshotUITests.swift */; };
-		15A7F6A7236C5794009FCF1D /* ScreenshotUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A7F6A5236C5794009FCF1D /* ScreenshotUITests.swift */; };
 		15A7F6A8236C5EFD009FCF1D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1577ECB2233019300061718B /* InfoPlist.strings */; };
-		15A7F6A9236C5F13009FCF1D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1577ECB2233019300061718B /* InfoPlist.strings */; };
 		15A7F6AD236C5FD9009FCF1D /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15A7F6AC236C5FD9009FCF1D /* Interface.storyboard */; };
-		15A7F6AE236C5FD9009FCF1D /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15A7F6AC236C5FD9009FCF1D /* Interface.storyboard */; };
-		15BD0A4D2350FCD900784975 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BD0A4C2350FCD900784975 /* Extension.swift */; };
-		15BD0A4E2350FCD900784975 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BD0A4C2350FCD900784975 /* Extension.swift */; };
 		15C559C223BA36D800812942 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C559C123BA36D800812942 /* SwiftUIView.swift */; };
-		15C559C323BA36D800812942 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C559C123BA36D800812942 /* SwiftUIView.swift */; };
 		15C559C523BA3A9F00812942 /* SwiftUIChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C559C423BA3A9F00812942 /* SwiftUIChart.swift */; };
-		15C559C623BA3A9F00812942 /* SwiftUIChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C559C423BA3A9F00812942 /* SwiftUIChart.swift */; };
 		15DDE35A2337EC8100732427 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15DDE3592337EC8100732427 /* LaunchScreen.storyboard */; };
-		15DDE35B2337EC8100732427 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15DDE3592337EC8100732427 /* LaunchScreen.storyboard */; };
-		15DEDA61231D8973008B2327 /* CoreLocationAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DEDA60231D8973008B2327 /* CoreLocationAPI.swift */; };
 		15DEDA63231D9E84008B2327 /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DEDA62231D9E84008B2327 /* LocationModel.swift */; };
 		15DEDA65231DA6F3008B2327 /* MotionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DEDA64231DA6F3008B2327 /* MotionModel.swift */; };
 		15DEDA67231DA97B008B2327 /* CoreMotionAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DEDA66231DA97B008B2327 /* CoreMotionAPI.swift */; };
 		15E57B8D234A09630055B4D1 /* CoreLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E57B8C234A09630055B4D1 /* CoreLocationViewModel.swift */; };
-		15E57B8E234A09630055B4D1 /* CoreLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E57B8C234A09630055B4D1 /* CoreLocationViewModel.swift */; };
 		15E57B91234A20790055B4D1 /* CoreMotionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E57B90234A20790055B4D1 /* CoreMotionViewModel.swift */; };
-		15E57B92234A20790055B4D1 /* CoreMotionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E57B90234A20790055B4D1 /* CoreMotionViewModel.swift */; };
 		15ED0437231EF6EE001E5005 /* AltitudeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ED0436231EF6EE001E5005 /* AltitudeModel.swift */; };
-		15ED0439231EF904001E5005 /* CalculationAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ED0438231EF904001E5005 /* CalculationAPI.swift */; };
 		15FC73332280A09B0077CB8A /* SettingsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FC73322280A09B0077CB8A /* SettingsAPI.swift */; };
 /* End PBXBuildFile section */
 
@@ -194,20 +121,6 @@
 			remoteGlobalIDString = 157B0E6E227F57D6004CC169;
 			remoteInfo = "Sensor-App";
 		};
-		1511016023648DEB00EC0292 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 157B0E67227F57D6004CC169 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 1513ACB9232529640095760B;
-			remoteInfo = "Sensor-App - Dev";
-		};
-		1511016E23648DF700EC0292 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 157B0E67227F57D6004CC169 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 1513ACB9232529640095760B;
-			remoteInfo = "Sensor-App - Dev";
-		};
 		154E0FE4235CE3BD00FD426C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 157B0E67227F57D6004CC169 /* Project object */;
@@ -221,20 +134,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 154E0FD5235CE3BC00FD426C;
 			remoteInfo = "Sensor-App-WatchApp";
-		};
-		154E100E235CE3F900FD426C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 157B0E67227F57D6004CC169 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 154E100B235CE3F900FD426C;
-			remoteInfo = "Sensor-App-WatchApp-Dev Extension";
-		};
-		154E101D235CE3FA00FD426C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 157B0E67227F57D6004CC169 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 154E0FFF235CE3F900FD426C;
-			remoteInfo = "Sensor-App-WatchApp-Dev";
 		};
 		157D91CC23814C6500371C2F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -268,28 +167,6 @@
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		154E1023235CE3FA00FD426C /* Embed App Extensions */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 13;
-			files = (
-				154E100D235CE3F900FD426C /* Sensor-App-WatchApp-Dev Extension.appex in Embed App Extensions */,
-			);
-			name = "Embed App Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		154E1027235CE3FA00FD426C /* Embed Watch Content */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
-			dstSubfolderSpec = 16;
-			files = (
-				154E101F235CE3FA00FD426C /* Sensor-App-WatchApp-Dev.app in Embed Watch Content */,
-			);
-			name = "Embed Watch Content";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		157D91D023814C6500371C2F /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -310,12 +187,7 @@
 		1511014D23648D8000EC0292 /* Sensor-AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Sensor-AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1511014F23648D8000EC0292 /* Sensor_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sensor_AppUITests.swift; sourceTree = "<group>"; };
 		1511015123648D8000EC0292 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1511015B23648DEB00EC0292 /* Sensor-App-DevTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Sensor-App-DevTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1511015F23648DEB00EC0292 /* Dev-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Dev-Info.plist"; sourceTree = "<group>"; };
-		1511016923648DF700EC0292 /* Sensor-App-DevUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Sensor-App-DevUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1511016D23648DF700EC0292 /* Dev-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Dev-Info.plist"; sourceTree = "<group>"; };
 		1511017523648E9600EC0292 /* CalculationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculationTests.swift; sourceTree = "<group>"; };
-		1513ACDA232529640095760B /* Sensor-App-Dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sensor-App-Dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1516CD30232CC55400817C33 /* MotionToolBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotionToolBarView.swift; sourceTree = "<group>"; };
 		1516CD31232CC55400817C33 /* MapKitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapKitView.swift; sourceTree = "<group>"; };
 		1516CD32232CC55400817C33 /* LocationToolBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationToolBarView.swift; sourceTree = "<group>"; };
@@ -328,7 +200,6 @@
 		1516CD44232CC57400817C33 /* AccelerationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccelerationView.swift; sourceTree = "<group>"; };
 		1516CD56232D510400817C33 /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		1531AC4B2353968700492189 /* MotionListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionListView.swift; sourceTree = "<group>"; };
-		153F19F123A5317C00E18E34 /* Dev-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Dev-Info.plist"; sourceTree = "<group>"; };
 		154E0FD6235CE3BC00FD426C /* Sensor-App-WatchApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sensor-App-WatchApp.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		154E0FDB235CE3BD00FD426C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		154E0FDD235CE3BD00FD426C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -339,10 +210,6 @@
 		154E0FED235CE3BD00FD426C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		154E0FF0235CE3BD00FD426C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		154E0FF2235CE3BD00FD426C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		154E1000235CE3F900FD426C /* Sensor-App-WatchApp-Dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sensor-App-WatchApp-Dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		154E1007235CE3F900FD426C /* Dev-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Dev-Info.plist"; sourceTree = "<group>"; };
-		154E100C235CE3F900FD426C /* Sensor-App-WatchApp-Dev Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Sensor-App-WatchApp-Dev Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		154E101C235CE3FA00FD426C /* Dev-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Dev-Info.plist"; sourceTree = "<group>"; };
 		1550FA7B232C0435006447AE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		1550FA87232C06C7006447AE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		1557773F23CA6D5400BD563E /* AppUpdates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUpdates.swift; sourceTree = "<group>"; };
@@ -403,35 +270,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1511015823648DEB00EC0292 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1511016623648DF700EC0292 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1513ACCE232529640095760B /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		154E0FDF235CE3BD00FD426C /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		154E1009235CE3F900FD426C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -467,12 +306,12 @@
 		150CF9C9231D84E800FDD825 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				1557773F23CA6D5400BD563E /* AppUpdates.swift */,
 				15ED0438231EF904001E5005 /* CalculationAPI.swift */,
 				15DEDA60231D8973008B2327 /* CoreLocationAPI.swift */,
 				15DEDA66231DA97B008B2327 /* CoreMotionAPI.swift */,
 				15A062AA233FCDD800F5DC6F /* NotificationAPI.swift */,
 				15FC73322280A09B0077CB8A /* SettingsAPI.swift */,
-				1557773F23CA6D5400BD563E /* AppUpdates.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -480,9 +319,8 @@
 		1511014023648D4000EC0292 /* Sensor-AppTests */ = {
 			isa = PBXGroup;
 			children = (
-				1511017523648E9600EC0292 /* CalculationTests.swift */,
 				1511014323648D4000EC0292 /* Info.plist */,
-				1511016D23648DF700EC0292 /* Dev-Info.plist */,
+				1511017523648E9600EC0292 /* CalculationTests.swift */,
 			);
 			path = "Sensor-AppTests";
 			sourceTree = "<group>";
@@ -490,10 +328,9 @@
 		1511014E23648D8000EC0292 /* Sensor-AppUITests */ = {
 			isa = PBXGroup;
 			children = (
-				1511014F23648D8000EC0292 /* Sensor_AppUITests.swift */,
-				15A7F6A5236C5794009FCF1D /* ScreenshotUITests.swift */,
 				1511015123648D8000EC0292 /* Info.plist */,
-				1511015F23648DEB00EC0292 /* Dev-Info.plist */,
+				15A7F6A5236C5794009FCF1D /* ScreenshotUITests.swift */,
+				1511014F23648D8000EC0292 /* Sensor_AppUITests.swift */,
 			);
 			path = "Sensor-AppUITests";
 			sourceTree = "<group>";
@@ -503,18 +340,25 @@
 			children = (
 				15E57B8C234A09630055B4D1 /* CoreLocationViewModel.swift */,
 				15E57B90234A20790055B4D1 /* CoreMotionViewModel.swift */,
-				15BD0A4C2350FCD900784975 /* Extension.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		151F672B23CB9B6900DAFCD3 /* Customization */ = {
+			isa = PBXGroup;
+			children = (
+				15BD0A4C2350FCD900784975 /* Extension.swift */,
+				151101142364518200EC0292 /* ViewButtonModifier.swift */,
+			);
+			path = Customization;
 			sourceTree = "<group>";
 		};
 		154E0FD7235CE3BC00FD426C /* Sensor-App-WatchApp */ = {
 			isa = PBXGroup;
 			children = (
+				154E0FDD235CE3BD00FD426C /* Info.plist */,
 				15A7F6AC236C5FD9009FCF1D /* Interface.storyboard */,
 				154E0FDB235CE3BD00FD426C /* Assets.xcassets */,
-				154E0FDD235CE3BD00FD426C /* Info.plist */,
-				154E1007235CE3F900FD426C /* Dev-Info.plist */,
 			);
 			path = "Sensor-App-WatchApp";
 			sourceTree = "<group>";
@@ -522,13 +366,12 @@
 		154E0FE6235CE3BD00FD426C /* Sensor-App-WatchApp Extension */ = {
 			isa = PBXGroup;
 			children = (
-				157D91D4238151D500371C2F /* View */,
-				154E0FE9235CE3BD00FD426C /* HostingController.swift */,
-				154E0FEB235CE3BD00FD426C /* ExtensionDelegate.swift */,
-				154E0FED235CE3BD00FD426C /* Assets.xcassets */,
 				154E0FF2235CE3BD00FD426C /* Info.plist */,
-				154E101C235CE3FA00FD426C /* Dev-Info.plist */,
+				154E0FEB235CE3BD00FD426C /* ExtensionDelegate.swift */,
+				154E0FE9235CE3BD00FD426C /* HostingController.swift */,
+				154E0FED235CE3BD00FD426C /* Assets.xcassets */,
 				154E0FEF235CE3BD00FD426C /* Preview Content */,
+				157D91D4238151D500371C2F /* View */,
 			);
 			path = "Sensor-App-WatchApp Extension";
 			sourceTree = "<group>";
@@ -561,12 +404,13 @@
 		157B0E66227F57D6004CC169 = {
 			isa = PBXGroup;
 			children = (
+				150CF9C8231D831000FDD825 /* Playground */,
 				157B0E71227F57D6004CC169 /* Sensor-App */,
 				154E0FD7235CE3BC00FD426C /* Sensor-App-WatchApp */,
 				154E0FE6235CE3BD00FD426C /* Sensor-App-WatchApp Extension */,
+				157D91C823814C6500371C2F /* Sensor-App-Framework */,
 				1511014023648D4000EC0292 /* Sensor-AppTests */,
 				1511014E23648D8000EC0292 /* Sensor-AppUITests */,
-				157D91C823814C6500371C2F /* Sensor-App-Framework */,
 				157B0E70227F57D6004CC169 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -575,15 +419,10 @@
 			isa = PBXGroup;
 			children = (
 				157B0E6F227F57D6004CC169 /* Sensor-App.app */,
-				1513ACDA232529640095760B /* Sensor-App-Dev.app */,
 				154E0FD6235CE3BC00FD426C /* Sensor-App-WatchApp.app */,
 				154E0FE2235CE3BD00FD426C /* Sensor-App-WatchApp Extension.appex */,
-				154E1000235CE3F900FD426C /* Sensor-App-WatchApp-Dev.app */,
-				154E100C235CE3F900FD426C /* Sensor-App-WatchApp-Dev Extension.appex */,
 				1511013F23648D4000EC0292 /* Sensor-AppTests.xctest */,
 				1511014D23648D8000EC0292 /* Sensor-AppUITests.xctest */,
-				1511015B23648DEB00EC0292 /* Sensor-App-DevTests.xctest */,
-				1511016923648DF700EC0292 /* Sensor-App-DevUITests.xctest */,
 				157D91C723814C6500371C2F /* Sensor_App_Framework.framework */,
 			);
 			name = Products;
@@ -592,17 +431,14 @@
 		157B0E71227F57D6004CC169 /* Sensor-App */ = {
 			isa = PBXGroup;
 			children = (
-				150CF9C8231D831000FDD825 /* Playground */,
-				157ECB4A2383284800890291 /* ViewModel */,
-				157B0E89227F5A3A004CC169 /* View */,
+				156FC3CC22A2D9ED00B70943 /* Info.plist */,
+				15DDE3592337EC8100732427 /* LaunchScreen.storyboard */,
 				157B0E72227F57D6004CC169 /* AppDelegate.swift */,
 				1550FA7B232C0435006447AE /* SceneDelegate.swift */,
-				15C559C723BA3AA900812942 /* Chart */,
-				15DDE3592337EC8100732427 /* LaunchScreen.storyboard */,
 				157B0E79227F57D7004CC169 /* Assets.xcassets */,
-				156FC3CC22A2D9ED00B70943 /* Info.plist */,
-				153F19F123A5317C00E18E34 /* Dev-Info.plist */,
+				15C559C723BA3AA900812942 /* Chart */,
 				1550FA8A232C06D1006447AE /* Preview Content */,
+				157B0E89227F5A3A004CC169 /* View */,
 			);
 			path = "Sensor-App";
 			sourceTree = "<group>";
@@ -639,12 +475,13 @@
 		157D91C823814C6500371C2F /* Sensor-App-Framework */ = {
 			isa = PBXGroup;
 			children = (
-				150CF9C9231D84E800FDD825 /* API */,
-				157B0E8A227F5A4E004CC169 /* Model */,
-				1516CD2E232CC54600817C33 /* ViewModel */,
-				1577ECB523301DD40061718B /* Translation */,
 				157D91C923814C6500371C2F /* Sensor_App_Framework.h */,
 				157D91CA23814C6500371C2F /* Info.plist */,
+				150CF9C9231D84E800FDD825 /* API */,
+				151F672B23CB9B6900DAFCD3 /* Customization */,
+				157B0E8A227F5A4E004CC169 /* Model */,
+				1577ECB523301DD40061718B /* Translation */,
+				1516CD2E232CC54600817C33 /* ViewModel */,
 			);
 			path = "Sensor-App-Framework";
 			sourceTree = "<group>";
@@ -663,14 +500,6 @@
 				15841D59238176CB00E031B9 /* SettingsView.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		157ECB4A2383284800890291 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				151101142364518200EC0292 /* ViewButtonModifier.swift */,
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		158BC8CB23411F19001A5EBD /* ToolBar */ = {
@@ -762,61 +591,6 @@
 			productReference = 1511014D23648D8000EC0292 /* Sensor-AppUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
-		1511015A23648DEB00EC0292 /* Sensor-App-DevTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 1511016223648DEB00EC0292 /* Build configuration list for PBXNativeTarget "Sensor-App-DevTests" */;
-			buildPhases = (
-				1511015723648DEB00EC0292 /* Sources */,
-				1511015823648DEB00EC0292 /* Frameworks */,
-				1511015923648DEB00EC0292 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				1511016123648DEB00EC0292 /* PBXTargetDependency */,
-			);
-			name = "Sensor-App-DevTests";
-			productName = "Sensor-App-DevTests";
-			productReference = 1511015B23648DEB00EC0292 /* Sensor-App-DevTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		1511016823648DF700EC0292 /* Sensor-App-DevUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 1511017023648DF700EC0292 /* Build configuration list for PBXNativeTarget "Sensor-App-DevUITests" */;
-			buildPhases = (
-				1511016523648DF700EC0292 /* Sources */,
-				1511016623648DF700EC0292 /* Frameworks */,
-				1511016723648DF700EC0292 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				1511016F23648DF700EC0292 /* PBXTargetDependency */,
-			);
-			name = "Sensor-App-DevUITests";
-			productName = "Sensor-App-DevUITests";
-			productReference = 1511016923648DF700EC0292 /* Sensor-App-DevUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
-		1513ACB9232529640095760B /* Sensor-App - Dev */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 1513ACD7232529640095760B /* Build configuration list for PBXNativeTarget "Sensor-App - Dev" */;
-			buildPhases = (
-				1513ACBB232529640095760B /* Sources */,
-				1513ACCE232529640095760B /* Frameworks */,
-				1513ACD0232529640095760B /* Resources */,
-				154E1027235CE3FA00FD426C /* Embed Watch Content */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				154E101E235CE3FA00FD426C /* PBXTargetDependency */,
-			);
-			name = "Sensor-App - Dev";
-			productName = "Sensor App";
-			productReference = 1513ACDA232529640095760B /* Sensor-App-Dev.app */;
-			productType = "com.apple.product-type.application";
-		};
 		154E0FD5235CE3BC00FD426C /* Sensor-App-WatchApp */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 154E0FFD235CE3BD00FD426C /* Build configuration list for PBXNativeTarget "Sensor-App-WatchApp" */;
@@ -849,40 +623,6 @@
 			name = "Sensor-App-WatchApp Extension";
 			productName = "Sensor-App-WatchApp Extension";
 			productReference = 154E0FE2235CE3BD00FD426C /* Sensor-App-WatchApp Extension.appex */;
-			productType = "com.apple.product-type.watchkit2-extension";
-		};
-		154E0FFF235CE3F900FD426C /* Sensor-App-WatchApp-Dev */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 154E1024235CE3FA00FD426C /* Build configuration list for PBXNativeTarget "Sensor-App-WatchApp-Dev" */;
-			buildPhases = (
-				154E0FFE235CE3F900FD426C /* Resources */,
-				154E1023235CE3FA00FD426C /* Embed App Extensions */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				154E100F235CE3F900FD426C /* PBXTargetDependency */,
-			);
-			name = "Sensor-App-WatchApp-Dev";
-			productName = "Sensor-App-WatchApp-Dev";
-			productReference = 154E1000235CE3F900FD426C /* Sensor-App-WatchApp-Dev.app */;
-			productType = "com.apple.product-type.application.watchapp2";
-		};
-		154E100B235CE3F900FD426C /* Sensor-App-WatchApp-Dev Extension */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 154E1020235CE3FA00FD426C /* Build configuration list for PBXNativeTarget "Sensor-App-WatchApp-Dev Extension" */;
-			buildPhases = (
-				154E1008235CE3F900FD426C /* Sources */,
-				154E1009235CE3F900FD426C /* Frameworks */,
-				154E100A235CE3F900FD426C /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Sensor-App-WatchApp-Dev Extension";
-			productName = "Sensor-App-WatchApp-Dev Extension";
-			productReference = 154E100C235CE3F900FD426C /* Sensor-App-WatchApp-Dev Extension.appex */;
 			productType = "com.apple.product-type.watchkit2-extension";
 		};
 		157B0E6E227F57D6004CC169 /* Sensor-App */ = {
@@ -942,26 +682,11 @@
 						CreatedOnToolsVersion = 11.2;
 						TestTargetID = 157B0E6E227F57D6004CC169;
 					};
-					1511015A23648DEB00EC0292 = {
-						CreatedOnToolsVersion = 11.2;
-						TestTargetID = 1513ACB9232529640095760B;
-					};
-					1511016823648DF700EC0292 = {
-						CreatedOnToolsVersion = 11.2;
-						TestTargetID = 1513ACB9232529640095760B;
-					};
 					154E0FD5235CE3BC00FD426C = {
 						CreatedOnToolsVersion = 11.2;
 						LastSwiftMigration = 1130;
 					};
 					154E0FE1235CE3BD00FD426C = {
-						CreatedOnToolsVersion = 11.2;
-					};
-					154E0FFF235CE3F900FD426C = {
-						CreatedOnToolsVersion = 11.2;
-						LastSwiftMigration = 1130;
-					};
-					154E100B235CE3F900FD426C = {
 						CreatedOnToolsVersion = 11.2;
 					};
 					157B0E6E227F57D6004CC169 = {
@@ -999,16 +724,11 @@
 			projectRoot = "";
 			targets = (
 				157B0E6E227F57D6004CC169 /* Sensor-App */,
-				1513ACB9232529640095760B /* Sensor-App - Dev */,
 				154E0FD5235CE3BC00FD426C /* Sensor-App-WatchApp */,
-				154E0FFF235CE3F900FD426C /* Sensor-App-WatchApp-Dev */,
 				154E0FE1235CE3BD00FD426C /* Sensor-App-WatchApp Extension */,
-				154E100B235CE3F900FD426C /* Sensor-App-WatchApp-Dev Extension */,
+				157D91C623814C6500371C2F /* Sensor-App-Framework */,
 				1511013E23648D4000EC0292 /* Sensor-AppTests */,
 				1511014C23648D8000EC0292 /* Sensor-AppUITests */,
-				1511015A23648DEB00EC0292 /* Sensor-App-DevTests */,
-				1511016823648DF700EC0292 /* Sensor-App-DevUITests */,
-				157D91C623814C6500371C2F /* Sensor-App-Framework */,
 			);
 		};
 /* End PBXProject section */
@@ -1027,34 +747,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				15A7F69E236C38BF009FCF1D /* Localizable.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1511015923648DEB00EC0292 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				15A7F69F236C38BF009FCF1D /* Localizable.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1511016723648DF700EC0292 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				15A7F69D236C38BD009FCF1D /* Localizable.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1513ACD0232529640095760B /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				15841D8423818B1C00E031B9 /* Localizable.strings in Resources */,
-				1513ACD3232529640095760B /* Assets.xcassets in Resources */,
-				15DDE35B2337EC8100732427 /* LaunchScreen.storyboard in Resources */,
-				1550FA89232C06C7006447AE /* Preview Assets.xcassets in Resources */,
-				15A7F6A9236C5F13009FCF1D /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1079,32 +771,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		154E0FFE235CE3F900FD426C /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				15A7F6A3236C38C5009FCF1D /* Localizable.strings in Resources */,
-				15A7F6AE236C5FD9009FCF1D /* Interface.storyboard in Resources */,
-				154E102E235CE43000FD426C /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		154E100A235CE3F900FD426C /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				154E102C235CE42400FD426C /* Preview Assets.xcassets in Resources */,
-				15841D7F23817A2E00E031B9 /* InfoPlist.strings in Resources */,
-				15A7F6A4236C38C6009FCF1D /* Localizable.strings in Resources */,
-				154E102B235CE41D00FD426C /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		157B0E6D227F57D6004CC169 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				15841D8723818B4800E031B9 /* Localizable.strings in Resources */,
+				151F66BC23CB7D4800DAFCD3 /* Localizable.strings in Resources */,
 				157B0E7A227F57D7004CC169 /* Assets.xcassets in Resources */,
 				15DDE35A2337EC8100732427 /* LaunchScreen.storyboard in Resources */,
 				1550FA88232C06C7006447AE /* Preview Assets.xcassets in Resources */,
@@ -1140,83 +811,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1511015723648DEB00EC0292 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1511017723648ECF00EC0292 /* CalculationTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1511016523648DF700EC0292 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1511017423648E7100EC0292 /* Sensor_AppUITests.swift in Sources */,
-				15A7F6A7236C5794009FCF1D /* ScreenshotUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1513ACBB232529640095760B /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1516CD51232CC57400817C33 /* AltitudeView.swift in Sources */,
-				1516CD58232D510400817C33 /* SettingsView.swift in Sources */,
-				15C559C323BA36D800812942 /* SwiftUIView.swift in Sources */,
-				1516CD4B232CC57400817C33 /* GyroscopeView.swift in Sources */,
-				1513ACBF232529640095760B /* MotionModel.swift in Sources */,
-				1531AC4D2353968700492189 /* MotionListView.swift in Sources */,
-				1516CD4F232CC57400817C33 /* AttitudeView.swift in Sources */,
-				1577ECA82330072A0061718B /* ContentView.swift in Sources */,
-				1577ECAB233007630061718B /* MagnetometerView.swift in Sources */,
-				1557774223CA6F3200BD563E /* AppUpdates.swift in Sources */,
-				15A062AC233FCDD800F5DC6F /* NotificationAPI.swift in Sources */,
-				1513ACC2232529640095760B /* AltitudeModel.swift in Sources */,
-				1516CD3B232CC55400817C33 /* LocationToolBarView.swift in Sources */,
-				1513ACC3232529640095760B /* CoreLocationAPI.swift in Sources */,
-				1516CD3D232CC55400817C33 /* RefreshRateView.swift in Sources */,
-				15A062A6233F941C00F5DC6F /* NotificationMessageView.swift in Sources */,
-				15A062AF233FD2D100F5DC6F /* NotificationModel.swift in Sources */,
-				151101162364518200EC0292 /* ViewButtonModifier.swift in Sources */,
-				1513ACC5232529640095760B /* CoreMotionAPI.swift in Sources */,
-				15C559C623BA3A9F00812942 /* SwiftUIChart.swift in Sources */,
-				15E57B92234A20790055B4D1 /* CoreMotionViewModel.swift in Sources */,
-				158BC8CA2341094B001A5EBD /* NotificationView.swift in Sources */,
-				15E57B8E234A09630055B4D1 /* CoreLocationViewModel.swift in Sources */,
-				1513ACC6232529640095760B /* LocationModel.swift in Sources */,
-				1513ACC8232529640095760B /* SettingsAPI.swift in Sources */,
-				1513ACC9232529640095760B /* AppDelegate.swift in Sources */,
-				15995DF4234F9D4B00C0DDA0 /* SensorType.swift in Sources */,
-				1516CD53232CC57400817C33 /* AccelerationView.swift in Sources */,
-				1516CD37232CC55400817C33 /* MotionToolBarView.swift in Sources */,
-				1513ACCA232529640095760B /* CalculationAPI.swift in Sources */,
-				1516CD4D232CC57400817C33 /* LocationView.swift in Sources */,
-				15BD0A4E2350FCD900784975 /* Extension.swift in Sources */,
-				1516CD47232CC57400817C33 /* GravityView.swift in Sources */,
-				1550FA7D232C0435006447AE /* SceneDelegate.swift in Sources */,
-				1516CD39232CC55400817C33 /* MapKitView.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		154E0FDE235CE3BD00FD426C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				15841D7523817A0D00E031B9 /* MotionModel.swift in Sources */,
 				15841D5E238179C500E031B9 /* CoreMotionViewModel.swift in Sources */,
+				151F66C123CB821800DAFCD3 /* AppUpdates.swift in Sources */,
 				15841D482381768700E031B9 /* AccelerationView.swift in Sources */,
 				154E0FEA235CE3BD00FD426C /* HostingController.swift in Sources */,
+				151F66BF23CB81AB00DAFCD3 /* CoreLocationAPI.swift in Sources */,
+				151F672A23CB9B4600DAFCD3 /* ViewButtonModifier.swift in Sources */,
+				151F66C923CB82A500DAFCD3 /* CalculationAPI.swift in Sources */,
 				15841D54238176B900E031B9 /* AttitudeView.swift in Sources */,
 				15841D452381767500E031B9 /* LocationView.swift in Sources */,
 				15841D57238176C100E031B9 /* AltitudeView.swift in Sources */,
+				151F66C723CB826300DAFCD3 /* Extension.swift in Sources */,
 				154E0FE8235CE3BD00FD426C /* ContentView.swift in Sources */,
 				15841D51238176AD00E031B9 /* MagnetometerView.swift in Sources */,
 				15841D8323817A8E00E031B9 /* CoreMotionAPI.swift in Sources */,
-				15841D60238179CA00E031B9 /* Extension.swift in Sources */,
 				15841D4E238176A400E031B9 /* GyroscopeView.swift in Sources */,
-				15841D66238179F400E031B9 /* CalculationAPI.swift in Sources */,
-				15841D67238179F700E031B9 /* CoreLocationAPI.swift in Sources */,
 				15841D7323817A0900E031B9 /* LocationModel.swift in Sources */,
 				15841D7723817A1200E031B9 /* NotificationModel.swift in Sources */,
 				157ECB4B23832A3800890291 /* CoreLocationViewModel.swift in Sources */,
@@ -1226,36 +840,6 @@
 				15841D6D23817A0000E031B9 /* SettingsAPI.swift in Sources */,
 				15841D6F23817A0300E031B9 /* AltitudeModel.swift in Sources */,
 				15841D7B23817A1800E031B9 /* SensorType.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		154E1008235CE3F900FD426C /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				15841D7623817A0D00E031B9 /* MotionModel.swift in Sources */,
-				15841D5F238179C500E031B9 /* CoreMotionViewModel.swift in Sources */,
-				15841D492381768700E031B9 /* AccelerationView.swift in Sources */,
-				154E1029235CE41800FD426C /* HostingController.swift in Sources */,
-				15841D55238176B900E031B9 /* AttitudeView.swift in Sources */,
-				15841D462381767500E031B9 /* LocationView.swift in Sources */,
-				15841D58238176C100E031B9 /* AltitudeView.swift in Sources */,
-				154E102A235CE41A00FD426C /* ExtensionDelegate.swift in Sources */,
-				15841D52238176AD00E031B9 /* MagnetometerView.swift in Sources */,
-				15841D8223817A8D00E031B9 /* CoreMotionAPI.swift in Sources */,
-				15841D61238179CA00E031B9 /* Extension.swift in Sources */,
-				15841D4F238176A400E031B9 /* GyroscopeView.swift in Sources */,
-				15841D65238179F400E031B9 /* CalculationAPI.swift in Sources */,
-				15841D68238179F700E031B9 /* CoreLocationAPI.swift in Sources */,
-				15841D7423817A0A00E031B9 /* LocationModel.swift in Sources */,
-				15841D7823817A1300E031B9 /* NotificationModel.swift in Sources */,
-				157ECB4C23832A3800890291 /* CoreLocationViewModel.swift in Sources */,
-				154E1028235CE41500FD426C /* ContentView.swift in Sources */,
-				15841D4C2381769400E031B9 /* GravityView.swift in Sources */,
-				15841D5B238176CB00E031B9 /* SettingsView.swift in Sources */,
-				15841D6E23817A0000E031B9 /* SettingsAPI.swift in Sources */,
-				15841D7023817A0300E031B9 /* AltitudeModel.swift in Sources */,
-				15841D7C23817A1900E031B9 /* SensorType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1276,7 +860,6 @@
 				15A062AB233FCDD800F5DC6F /* NotificationAPI.swift in Sources */,
 				15ED0437231EF6EE001E5005 /* AltitudeModel.swift in Sources */,
 				1516CD3A232CC55400817C33 /* LocationToolBarView.swift in Sources */,
-				15DEDA61231D8973008B2327 /* CoreLocationAPI.swift in Sources */,
 				1516CD3C232CC55400817C33 /* RefreshRateView.swift in Sources */,
 				15A062A5233F941C00F5DC6F /* NotificationMessageView.swift in Sources */,
 				15A062AE233FD2D100F5DC6F /* NotificationModel.swift in Sources */,
@@ -1285,16 +868,17 @@
 				15C559C523BA3A9F00812942 /* SwiftUIChart.swift in Sources */,
 				15E57B91234A20790055B4D1 /* CoreMotionViewModel.swift in Sources */,
 				158BC8C92341094B001A5EBD /* NotificationView.swift in Sources */,
+				151F66C823CB82A300DAFCD3 /* CalculationAPI.swift in Sources */,
 				15E57B8D234A09630055B4D1 /* CoreLocationViewModel.swift in Sources */,
 				15DEDA63231D9E84008B2327 /* LocationModel.swift in Sources */,
 				15FC73332280A09B0077CB8A /* SettingsAPI.swift in Sources */,
 				157B0E73227F57D6004CC169 /* AppDelegate.swift in Sources */,
 				15995DF3234F9D4B00C0DDA0 /* SensorType.swift in Sources */,
+				151F66BE23CB81AB00DAFCD3 /* CoreLocationAPI.swift in Sources */,
 				1516CD52232CC57400817C33 /* AccelerationView.swift in Sources */,
 				1516CD36232CC55400817C33 /* MotionToolBarView.swift in Sources */,
-				15ED0439231EF904001E5005 /* CalculationAPI.swift in Sources */,
+				151F66C623CB826100DAFCD3 /* Extension.swift in Sources */,
 				1516CD4C232CC57400817C33 /* LocationView.swift in Sources */,
-				15BD0A4D2350FCD900784975 /* Extension.swift in Sources */,
 				1516CD46232CC57400817C33 /* GravityView.swift in Sources */,
 				1550FA7C232C0435006447AE /* SceneDelegate.swift in Sources */,
 				1516CD38232CC55400817C33 /* MapKitView.swift in Sources */,
@@ -1305,7 +889,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1557774B23CA777D00BD563E /* CoreLocationAPI.swift in Sources */,
+				151F66C223CB822700DAFCD3 /* CoreLocationViewModel.swift in Sources */,
+				151F66C323CB822A00DAFCD3 /* CoreMotionViewModel.swift in Sources */,
+				151F66BD23CB819700DAFCD3 /* CoreLocationAPI.swift in Sources */,
 				1557774023CA6D5400BD563E /* AppUpdates.swift in Sources */,
 				1557774E23CA77D300BD563E /* Extension.swift in Sources */,
 				1557775323CA796400BD563E /* SensorType.swift in Sources */,
@@ -1333,16 +919,6 @@
 			target = 157B0E6E227F57D6004CC169 /* Sensor-App */;
 			targetProxy = 1511015223648D8000EC0292 /* PBXContainerItemProxy */;
 		};
-		1511016123648DEB00EC0292 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 1513ACB9232529640095760B /* Sensor-App - Dev */;
-			targetProxy = 1511016023648DEB00EC0292 /* PBXContainerItemProxy */;
-		};
-		1511016F23648DF700EC0292 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 1513ACB9232529640095760B /* Sensor-App - Dev */;
-			targetProxy = 1511016E23648DF700EC0292 /* PBXContainerItemProxy */;
-		};
 		154E0FE5235CE3BD00FD426C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 154E0FE1235CE3BD00FD426C /* Sensor-App-WatchApp Extension */;
@@ -1352,16 +928,6 @@
 			isa = PBXTargetDependency;
 			target = 154E0FD5235CE3BC00FD426C /* Sensor-App-WatchApp */;
 			targetProxy = 154E0FF3235CE3BD00FD426C /* PBXContainerItemProxy */;
-		};
-		154E100F235CE3F900FD426C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 154E100B235CE3F900FD426C /* Sensor-App-WatchApp-Dev Extension */;
-			targetProxy = 154E100E235CE3F900FD426C /* PBXContainerItemProxy */;
-		};
-		154E101E235CE3FA00FD426C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 154E0FFF235CE3F900FD426C /* Sensor-App-WatchApp-Dev */;
-			targetProxy = 154E101D235CE3FA00FD426C /* PBXContainerItemProxy */;
 		};
 		157D91CD23814C6500371C2F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1469,132 +1035,6 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = "Sensor-App";
-			};
-			name = Release;
-		};
-		1511016323648DEB00EC0292 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = NLF7894S7W;
-				INFOPLIST_FILE = "$(SRCROOT)/Sensor-AppTests/Dev-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "volkerschmitt88-at-icloud.com.Sensor-App-DevTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Sensor-App-Dev.app/Sensor-App-Dev";
-			};
-			name = Debug;
-		};
-		1511016423648DEB00EC0292 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = NLF7894S7W;
-				INFOPLIST_FILE = "$(SRCROOT)/Sensor-AppTests/Dev-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "volkerschmitt88-at-icloud.com.Sensor-App-DevTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Sensor-App-Dev.app/Sensor-App-Dev";
-			};
-			name = Release;
-		};
-		1511017123648DF700EC0292 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = NLF7894S7W;
-				INFOPLIST_FILE = "$(SRCROOT)/Sensor-AppUITests/Dev-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "volkerschmitt88-at-icloud.com.Sensor-App-DevUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "Sensor-App - Dev";
-			};
-			name = Debug;
-		};
-		1511017223648DF700EC0292 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = NLF7894S7W;
-				INFOPLIST_FILE = "$(SRCROOT)/Sensor-AppUITests/Dev-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "volkerschmitt88-at-icloud.com.Sensor-App-DevUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "Sensor-App - Dev";
-			};
-			name = Release;
-		};
-		1513ACD8232529640095760B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-dev";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = "${MY_BUILD_VERSION}-Dev";
-				DEVELOPMENT_ASSET_PATHS = "Sensor-App/Preview\\ Content";
-				DEVELOPMENT_TEAM = NLF7894S7W;
-				INFOPLIST_FILE = "$(SRCROOT)/Sensor-App/Dev-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = "${MY_VERSION}-Dev";
-				PRODUCT_BUNDLE_IDENTIFIER = "VolkerSchmitt88-at-icloud.com.Sensor-App-Dev";
-				PRODUCT_NAME = "Sensor-App-Dev";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		1513ACD9232529640095760B /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-dev";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = "${MY_BUILD_VERSION}-Dev";
-				DEVELOPMENT_ASSET_PATHS = "Sensor-App/Preview\\ Content";
-				DEVELOPMENT_TEAM = NLF7894S7W;
-				INFOPLIST_FILE = "$(SRCROOT)/Sensor-App/Dev-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = "${MY_VERSION}-Dev";
-				PRODUCT_BUNDLE_IDENTIFIER = "VolkerSchmitt88-at-icloud.com.Sensor-App-Dev";
-				PRODUCT_NAME = "Sensor-App-Dev";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -1707,115 +1147,6 @@
 			};
 			name = Release;
 		};
-		154E1021235CE3FA00FD426C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = "${MY_BUILD_VERSION}-Dev";
-				DEVELOPMENT_ASSET_PATHS = "\"Sensor-App-WatchApp Extension/Preview Content\"";
-				DEVELOPMENT_TEAM = NLF7894S7W;
-				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/Sensor-App-WatchApp Extension/Dev-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = "${MY_VERSION}-Dev";
-				PRODUCT_BUNDLE_IDENTIFIER = "VolkerSchmitt88-at-icloud.com.Sensor-App-Dev.watchkitapp.watchkitextension";
-				PRODUCT_NAME = "${TARGET_NAME}";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 6.0;
-			};
-			name = Debug;
-		};
-		154E1022235CE3FA00FD426C /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = "${MY_BUILD_VERSION}-Dev";
-				DEVELOPMENT_ASSET_PATHS = "\"Sensor-App-WatchApp Extension/Preview Content\"";
-				DEVELOPMENT_TEAM = NLF7894S7W;
-				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/Sensor-App-WatchApp Extension/Dev-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = "${MY_VERSION}-Dev";
-				PRODUCT_BUNDLE_IDENTIFIER = "VolkerSchmitt88-at-icloud.com.Sensor-App-Dev.watchkitapp.watchkitextension";
-				PRODUCT_NAME = "${TARGET_NAME}";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 6.0;
-			};
-			name = Release;
-		};
-		154E1025235CE3FA00FD426C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-dev";
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = "1.19471.13-Dev";
-				DEVELOPMENT_TEAM = NLF7894S7W;
-				IBSC_MODULE = Sensor_App_WatchApp_Dev_Extension;
-				INFOPLIST_FILE = "$(SRCROOT)/Sensor-App-WatchApp/Dev-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				MARKETING_VERSION = "2.2.0-Dev";
-				PRODUCT_BUNDLE_IDENTIFIER = "VolkerSchmitt88-at-icloud.com.Sensor-App-Dev.watchkitapp";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "Sensor-App/Sensor-App-WatchApp-Dev-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 6.0;
-			};
-			name = Debug;
-		};
-		154E1026235CE3FA00FD426C /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-dev";
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = "1.19471.13-Dev";
-				DEVELOPMENT_TEAM = NLF7894S7W;
-				IBSC_MODULE = Sensor_App_WatchApp_Dev_Extension;
-				INFOPLIST_FILE = "$(SRCROOT)/Sensor-App-WatchApp/Dev-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				MARKETING_VERSION = "2.2.0-Dev";
-				PRODUCT_BUNDLE_IDENTIFIER = "VolkerSchmitt88-at-icloud.com.Sensor-App-Dev.watchkitapp";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "Sensor-App/Sensor-App-WatchApp-Dev-Bridging-Header.h";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 6.0;
-			};
-			name = Release;
-		};
 		157B0E7F227F57D7004CC169 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1871,7 +1202,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				MY_BUILD_VERSION = 2.20011.15;
+				MY_BUILD_VERSION = 2.20027.16;
 				MY_VERSION = 2.3.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1930,7 +1261,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				MY_BUILD_VERSION = 2.20011.15;
+				MY_BUILD_VERSION = 2.20027.16;
 				MY_VERSION = 2.3.0;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -2073,33 +1404,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1511016223648DEB00EC0292 /* Build configuration list for PBXNativeTarget "Sensor-App-DevTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				1511016323648DEB00EC0292 /* Debug */,
-				1511016423648DEB00EC0292 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		1511017023648DF700EC0292 /* Build configuration list for PBXNativeTarget "Sensor-App-DevUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				1511017123648DF700EC0292 /* Debug */,
-				1511017223648DF700EC0292 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		1513ACD7232529640095760B /* Build configuration list for PBXNativeTarget "Sensor-App - Dev" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				1513ACD8232529640095760B /* Debug */,
-				1513ACD9232529640095760B /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		154E0FFC235CE3BD00FD426C /* Build configuration list for PBXNativeTarget "Sensor-App-WatchApp Extension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -2114,24 +1418,6 @@
 			buildConfigurations = (
 				154E0FF7235CE3BD00FD426C /* Debug */,
 				154E0FF8235CE3BD00FD426C /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		154E1020235CE3FA00FD426C /* Build configuration list for PBXNativeTarget "Sensor-App-WatchApp-Dev Extension" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				154E1021235CE3FA00FD426C /* Debug */,
-				154E1022235CE3FA00FD426C /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		154E1024235CE3FA00FD426C /* Build configuration list for PBXNativeTarget "Sensor-App-WatchApp-Dev" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				154E1025235CE3FA00FD426C /* Debug */,
-				154E1026235CE3FA00FD426C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

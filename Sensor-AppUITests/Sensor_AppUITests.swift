@@ -6,8 +6,13 @@
 //  Copyright © 2019 Volker Schmitt. All rights reserved.
 //
 
-import XCTest
 
+// MARK: - Import
+import XCTest
+@testable import Sensor_App
+
+
+// MARK: - Class Definition
 class Sensor_AppUITests: XCTestCase {
     
     override func setUp() {
