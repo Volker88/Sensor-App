@@ -56,6 +56,8 @@
 		1557775123CA795E00BD563E /* MotionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DEDA64231DA6F3008B2327 /* MotionModel.swift */; };
 		1557775223CA796100BD563E /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A062AD233FD2D100F5DC6F /* NotificationModel.swift */; };
 		1557775323CA796400BD563E /* SensorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15995DF2234F9D4B00C0DDA0 /* SensorType.swift */; };
+		156947EA23D4F4D9000B69F0 /* SwiftUIGraph in Frameworks */ = {isa = PBXBuildFile; productRef = 156947E923D4F4D9000B69F0 /* SwiftUIGraph */; };
+		156947EE23D4F55A000B69F0 /* SwiftUIGraph in Frameworks */ = {isa = PBXBuildFile; productRef = 156947ED23D4F55A000B69F0 /* SwiftUIGraph */; };
 		1577ECA72330072A0061718B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1577ECA62330072A0061718B /* ContentView.swift */; };
 		1577ECAA233007630061718B /* MagnetometerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1577ECA9233007630061718B /* MagnetometerView.swift */; };
 		157B0E73227F57D6004CC169 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157B0E72227F57D6004CC169 /* AppDelegate.swift */; };
@@ -94,9 +96,9 @@
 		15A7F6A6236C5794009FCF1D /* ScreenshotUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A7F6A5236C5794009FCF1D /* ScreenshotUITests.swift */; };
 		15A7F6A8236C5EFD009FCF1D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1577ECB2233019300061718B /* InfoPlist.strings */; };
 		15A7F6AD236C5FD9009FCF1D /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15A7F6AC236C5FD9009FCF1D /* Interface.storyboard */; };
-		15C559C223BA36D800812942 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C559C123BA36D800812942 /* SwiftUIView.swift */; };
-		15C559C523BA3A9F00812942 /* SwiftUIChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C559C423BA3A9F00812942 /* SwiftUIChart.swift */; };
 		15DDE35A2337EC8100732427 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15DDE3592337EC8100732427 /* LaunchScreen.storyboard */; };
+		15DDEF1623D48CCC003AACC4 /* DoubleExtensionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DDEF1523D48CCC003AACC4 /* DoubleExtensionTest.swift */; };
+		15DDEF1823D4AB09003AACC4 /* LineGraphImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DDEF1723D4AB09003AACC4 /* LineGraphImplementation.swift */; };
 		15DEDA63231D9E84008B2327 /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DEDA62231D9E84008B2327 /* LocationModel.swift */; };
 		15DEDA65231DA6F3008B2327 /* MotionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DEDA64231DA6F3008B2327 /* MotionModel.swift */; };
 		15DEDA67231DA97B008B2327 /* CoreMotionAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DEDA66231DA97B008B2327 /* CoreMotionAPI.swift */; };
@@ -240,10 +242,10 @@
 		15A7F6A5236C5794009FCF1D /* ScreenshotUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotUITests.swift; sourceTree = "<group>"; };
 		15A7F6AC236C5FD9009FCF1D /* Interface.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Interface.storyboard; sourceTree = "<group>"; };
 		15BD0A4C2350FCD900784975 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
-		15C559C123BA36D800812942 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
-		15C559C423BA3A9F00812942 /* SwiftUIChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIChart.swift; sourceTree = "<group>"; };
 		15C559D523BA545900812942 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
 		15DDE3592337EC8100732427 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		15DDEF1523D48CCC003AACC4 /* DoubleExtensionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleExtensionTest.swift; sourceTree = "<group>"; };
+		15DDEF1723D4AB09003AACC4 /* LineGraphImplementation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineGraphImplementation.swift; sourceTree = "<group>"; };
 		15DEDA60231D8973008B2327 /* CoreLocationAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreLocationAPI.swift; sourceTree = "<group>"; };
 		15DEDA62231D9E84008B2327 /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
 		15DEDA64231DA6F3008B2327 /* MotionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionModel.swift; sourceTree = "<group>"; };
@@ -260,6 +262,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				156947EA23D4F4D9000B69F0 /* SwiftUIGraph in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,6 +285,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				157D91CE23814C6500371C2F /* Sensor_App_Framework.framework in Frameworks */,
+				156947EE23D4F55A000B69F0 /* SwiftUIGraph in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,6 +325,7 @@
 			children = (
 				1511014323648D4000EC0292 /* Info.plist */,
 				1511017523648E9600EC0292 /* CalculationTests.swift */,
+				15DDEF1523D48CCC003AACC4 /* DoubleExtensionTest.swift */,
 			);
 			path = "Sensor-AppTests";
 			sourceTree = "<group>";
@@ -351,6 +356,13 @@
 				151101142364518200EC0292 /* ViewButtonModifier.swift */,
 			);
 			path = Customization;
+			sourceTree = "<group>";
+		};
+		15481C4823CCD84E0096D524 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		154E0FD7235CE3BC00FD426C /* Sensor-App-WatchApp */ = {
@@ -412,6 +424,7 @@
 				1511014023648D4000EC0292 /* Sensor-AppTests */,
 				1511014E23648D8000EC0292 /* Sensor-AppUITests */,
 				157B0E70227F57D6004CC169 /* Products */,
+				15481C4823CCD84E0096D524 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -433,10 +446,10 @@
 			children = (
 				156FC3CC22A2D9ED00B70943 /* Info.plist */,
 				15DDE3592337EC8100732427 /* LaunchScreen.storyboard */,
+				15C559C723BA3AA900812942 /* Chart */,
 				157B0E72227F57D6004CC169 /* AppDelegate.swift */,
 				1550FA7B232C0435006447AE /* SceneDelegate.swift */,
 				157B0E79227F57D7004CC169 /* Assets.xcassets */,
-				15C559C723BA3AA900812942 /* Chart */,
 				1550FA8A232C06D1006447AE /* Preview Content */,
 				157B0E89227F5A3A004CC169 /* View */,
 			);
@@ -523,8 +536,7 @@
 		15C559C723BA3AA900812942 /* Chart */ = {
 			isa = PBXGroup;
 			children = (
-				15C559C123BA36D800812942 /* SwiftUIView.swift */,
-				15C559C423BA3A9F00812942 /* SwiftUIChart.swift */,
+				15DDEF1723D4AB09003AACC4 /* LineGraphImplementation.swift */,
 			);
 			path = Chart;
 			sourceTree = "<group>";
@@ -566,9 +578,13 @@
 			buildRules = (
 			);
 			dependencies = (
+				156947EC23D4F525000B69F0 /* PBXTargetDependency */,
 				1511014523648D4000EC0292 /* PBXTargetDependency */,
 			);
 			name = "Sensor-AppTests";
+			packageProductDependencies = (
+				156947E923D4F4D9000B69F0 /* SwiftUIGraph */,
+			);
 			productName = "Sensor-AppTests";
 			productReference = 1511013F23648D4000EC0292 /* Sensor-AppTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -638,10 +654,14 @@
 			buildRules = (
 			);
 			dependencies = (
+				15131CE423D4F24100DF83E4 /* PBXTargetDependency */,
 				154E0FF4235CE3BD00FD426C /* PBXTargetDependency */,
 				157D91CD23814C6500371C2F /* PBXTargetDependency */,
 			);
 			name = "Sensor-App";
+			packageProductDependencies = (
+				156947ED23D4F55A000B69F0 /* SwiftUIGraph */,
+			);
 			productName = "Sensor App";
 			productReference = 157B0E6F227F57D6004CC169 /* Sensor-App.app */;
 			productType = "com.apple.product-type.application";
@@ -719,6 +739,9 @@
 				Base,
 			);
 			mainGroup = 157B0E66227F57D6004CC169;
+			packageReferences = (
+				15131CE023D4F23700DF83E4 /* XCRemoteSwiftPackageReference "SwiftUIGraph" */,
+			);
 			productRefGroup = 157B0E70227F57D6004CC169 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -798,6 +821,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15DDEF1623D48CCC003AACC4 /* DoubleExtensionTest.swift in Sources */,
 				1511017623648E9600EC0292 /* CalculationTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -849,7 +873,6 @@
 			files = (
 				1516CD50232CC57400817C33 /* AltitudeView.swift in Sources */,
 				1516CD57232D510400817C33 /* SettingsView.swift in Sources */,
-				15C559C223BA36D800812942 /* SwiftUIView.swift in Sources */,
 				1516CD4A232CC57400817C33 /* GyroscopeView.swift in Sources */,
 				15DEDA65231DA6F3008B2327 /* MotionModel.swift in Sources */,
 				1531AC4C2353968700492189 /* MotionListView.swift in Sources */,
@@ -865,13 +888,13 @@
 				15A062AE233FD2D100F5DC6F /* NotificationModel.swift in Sources */,
 				151101152364518200EC0292 /* ViewButtonModifier.swift in Sources */,
 				15DEDA67231DA97B008B2327 /* CoreMotionAPI.swift in Sources */,
-				15C559C523BA3A9F00812942 /* SwiftUIChart.swift in Sources */,
 				15E57B91234A20790055B4D1 /* CoreMotionViewModel.swift in Sources */,
 				158BC8C92341094B001A5EBD /* NotificationView.swift in Sources */,
 				151F66C823CB82A300DAFCD3 /* CalculationAPI.swift in Sources */,
 				15E57B8D234A09630055B4D1 /* CoreLocationViewModel.swift in Sources */,
 				15DEDA63231D9E84008B2327 /* LocationModel.swift in Sources */,
 				15FC73332280A09B0077CB8A /* SettingsAPI.swift in Sources */,
+				15DDEF1823D4AB09003AACC4 /* LineGraphImplementation.swift in Sources */,
 				157B0E73227F57D6004CC169 /* AppDelegate.swift in Sources */,
 				15995DF3234F9D4B00C0DDA0 /* SensorType.swift in Sources */,
 				151F66BE23CB81AB00DAFCD3 /* CoreLocationAPI.swift in Sources */,
@@ -919,6 +942,10 @@
 			target = 157B0E6E227F57D6004CC169 /* Sensor-App */;
 			targetProxy = 1511015223648D8000EC0292 /* PBXContainerItemProxy */;
 		};
+		15131CE423D4F24100DF83E4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 15131CE323D4F24100DF83E4 /* SwiftUIGraph */;
+		};
 		154E0FE5235CE3BD00FD426C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 154E0FE1235CE3BD00FD426C /* Sensor-App-WatchApp Extension */;
@@ -928,6 +955,10 @@
 			isa = PBXTargetDependency;
 			target = 154E0FD5235CE3BC00FD426C /* Sensor-App-WatchApp */;
 			targetProxy = 154E0FF3235CE3BD00FD426C /* PBXContainerItemProxy */;
+		};
+		156947EC23D4F525000B69F0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 156947EB23D4F525000B69F0 /* SwiftUIGraph */;
 		};
 		157D91CD23814C6500371C2F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1450,6 +1481,40 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		15131CE023D4F23700DF83E4 /* XCRemoteSwiftPackageReference "SwiftUIGraph" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Volker88/SwiftUIGraph.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		15131CE323D4F24100DF83E4 /* SwiftUIGraph */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 15131CE023D4F23700DF83E4 /* XCRemoteSwiftPackageReference "SwiftUIGraph" */;
+			productName = SwiftUIGraph;
+		};
+		156947E923D4F4D9000B69F0 /* SwiftUIGraph */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 15131CE023D4F23700DF83E4 /* XCRemoteSwiftPackageReference "SwiftUIGraph" */;
+			productName = SwiftUIGraph;
+		};
+		156947EB23D4F525000B69F0 /* SwiftUIGraph */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 15131CE023D4F23700DF83E4 /* XCRemoteSwiftPackageReference "SwiftUIGraph" */;
+			productName = SwiftUIGraph;
+		};
+		156947ED23D4F55A000B69F0 /* SwiftUIGraph */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 15131CE023D4F23700DF83E4 /* XCRemoteSwiftPackageReference "SwiftUIGraph" */;
+			productName = SwiftUIGraph;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 157B0E67227F57D6004CC169 /* Project object */;
 }

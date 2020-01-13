@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "SwiftUIGraph",
+        "repositoryURL": "https://github.com/Volker88/SwiftUIGraph.git",
+        "state": {
+          "branch": null,
+          "revision": "53dc91b2de1ab9c852874f848b7c03f4cf36c084",
+          "version": "0.1.1"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
