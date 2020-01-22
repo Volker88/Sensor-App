@@ -58,6 +58,11 @@ struct LocationView: View {
                     GeometryReader { g in
                         VStack {
                             ScrollView {
+                                
+                                LineGraphImplementation(locationVM: self.locationVM)
+                                    .frame(width: g.size.width, height: 400, alignment: .center)
+                                
+                                
                                 Spacer()
                                 Group{
                                     Text("Latitude: \(self.locationVM.coreLocationArray.last?.latitude ?? 0.0, specifier: "%.10f")° ± \(self.locationVM.coreLocationArray.last?.horizontalAccuracy ?? 0.0, specifier: "%.2f")m")

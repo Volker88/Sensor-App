@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		150039E023D8D184008FA58D /* ArrayTransformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150039DF23D8D184008FA58D /* ArrayTransformation.swift */; };
 		151101152364518200EC0292 /* ViewButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151101142364518200EC0292 /* ViewButtonModifier.swift */; };
 		1511015023648D8000EC0292 /* Sensor_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1511014F23648D8000EC0292 /* Sensor_AppUITests.swift */; };
 		1511017623648E9600EC0292 /* CalculationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1511017523648E9600EC0292 /* CalculationTests.swift */; };
@@ -183,6 +184,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		150039DF23D8D184008FA58D /* ArrayTransformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayTransformation.swift; sourceTree = "<group>"; };
 		151101142364518200EC0292 /* ViewButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewButtonModifier.swift; sourceTree = "<group>"; };
 		1511013F23648D4000EC0292 /* Sensor-AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Sensor-AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1511014323648D4000EC0292 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -537,6 +539,7 @@
 			isa = PBXGroup;
 			children = (
 				15DDEF1723D4AB09003AACC4 /* LineGraphImplementation.swift */,
+				150039DF23D8D184008FA58D /* ArrayTransformation.swift */,
 			);
 			path = Chart;
 			sourceTree = "<group>";
@@ -893,6 +896,7 @@
 				151F66C823CB82A300DAFCD3 /* CalculationAPI.swift in Sources */,
 				15E57B8D234A09630055B4D1 /* CoreLocationViewModel.swift in Sources */,
 				15DEDA63231D9E84008B2327 /* LocationModel.swift in Sources */,
+				150039E023D8D184008FA58D /* ArrayTransformation.swift in Sources */,
 				15FC73332280A09B0077CB8A /* SettingsAPI.swift in Sources */,
 				15DDEF1823D4AB09003AACC4 /* LineGraphImplementation.swift in Sources */,
 				157B0E73227F57D6004CC169 /* AppDelegate.swift in Sources */,
@@ -1233,7 +1237,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				MY_BUILD_VERSION = 2.20027.16;
+				MY_BUILD_VERSION = 2.20044.17;
 				MY_VERSION = 2.3.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1292,7 +1296,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				MY_BUILD_VERSION = 2.20027.16;
+				MY_BUILD_VERSION = 2.20044.17;
 				MY_VERSION = 2.3.0;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
