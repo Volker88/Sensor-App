@@ -111,7 +111,6 @@ class CoreLocationAPI: CLLocationManager, CLLocationManagerDelegate {
     ///
     ///  Stop GPS updates
     ///
-    ///  Discussion Text
     ///
     ///  - Note:
     ///  - Remark:

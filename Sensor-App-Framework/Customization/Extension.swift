@@ -20,9 +20,9 @@ extension Double {
     ///
     ///  Call this function to round Doubles to X decimal digits
     ///
-    /// - Parameter places: decimal digits
+    /// - Parameter places: Decimal digits
     ///
-    /// - Returns: Double
+    /// - Returns: Rounded Double
     ///
     func rounded(toPlaces places:Int) -> Double {
         let divisor = pow(10.0, Double(places))

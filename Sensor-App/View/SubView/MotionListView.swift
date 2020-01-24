@@ -200,7 +200,6 @@ struct MotionListView: View {
 // MARK: - Preview
 struct MotionListView_Previews: PreviewProvider {
     static var previews: some View {
-        
         ForEach([ColorScheme.light, .dark], id: \.self) { scheme in
             MotionListView(type: .acceleration)
                 .colorScheme(scheme)

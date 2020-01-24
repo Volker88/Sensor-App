@@ -228,7 +228,7 @@ class SettingsAPI {
     ///
     ///  - Returns:
     ///
-    ///  - Parameter frequency: Float
+    ///  - Parameter frequency: Update Frequency in Hz
     ///
     func saveFrequency(frequency: Float) { // Save Frequency to UserDefaults
         userDefaults.set(frequency, forKey: "\(SettingsForUserDefaults.frequencySetting)")
@@ -244,7 +244,7 @@ class SettingsAPI {
     ///  - Note:
     ///  - Remark:
     ///
-    ///  - Returns:
+    ///  - Returns: Update Frequency in Hz
     ///
     func fetchFrequency() -> Float { // Read Frequency from UserDefaults
         var frequencySetting: Double = userDefaults.double(forKey: "\(SettingsForUserDefaults.frequencySetting)")

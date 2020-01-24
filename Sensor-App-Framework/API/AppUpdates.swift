@@ -52,7 +52,7 @@ class AppUpdates {
     ///
     ///  Call this method to get the current app version number
     ///
-    ///  - Returns: String
+    ///  - Returns: App Version
     ///
     private func getCurrentAppVersion() -> String {
         let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"]

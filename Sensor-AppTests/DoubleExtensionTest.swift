@@ -12,26 +12,26 @@ import XCTest
 class DoubleExtensionTest: XCTestCase {
 
     func testDoubleExtensionRoundUp() {
-        //given
+        //Given
         let number = 100.000005
         let decimalDigits = 5
         
-        //when
+        //When
         let rounded = number.rounded(toPlaces: decimalDigits)
         
-        //then
+        //Then
         XCTAssertEqual(rounded, 100.00001, "Rounded \(number) to \(rounded) does not equal 100.00001")
     }
     
     func testDoubleExtensionRoundDown() {
-        //given
+        //Given
         let number = 100.111114
         let decimalDigits = 5
         
-        //when
+        //When
         let rounded = number.rounded(toPlaces: decimalDigits)
         
-        //then
+        //Then
         XCTAssertEqual(rounded, 100.11111, "Rounded \(number) to \(rounded) does not equal 100.11111")
     }
 

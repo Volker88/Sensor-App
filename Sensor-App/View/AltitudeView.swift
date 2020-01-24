@@ -21,6 +21,10 @@ struct AltitudeView: View {
     @ObservedObject var motionVM = CoreMotionViewModel()
     @State private var frequency: Float = SettingsAPI.shared.fetchFrequency() // Default Frequency
     
+    // Show Graph
+    @State private var showPressure = false
+    @State private var showRelativeAltidudeChange = false
+    
     // Notification Variables
     @State private var showNotification = false
     @State private var notificationMessage = ""
@@ -63,8 +67,33 @@ struct AltitudeView: View {
                                     Group{
                                         Text("Pressure: \(CalculationAPI.shared.calculatePressure(pressure: self.motionVM.altitudeArray.last?.pressureValue ?? 0.0, to: SettingsAPI.shared.fetchPressureSetting()), specifier: "%.5f") \(SettingsAPI.shared.fetchPressureSetting())")
                                             .modifier(ButtonModifier())
+                                            .overlay(Button(action: { self.showPressure.toggle() }) {
+                                                Image("GraphButton")
+                                                    .foregroundColor(.white)
+                                                    .offset(x: -10)
+                                            }, alignment: .trailing)
+                                        
+                                        if self.showPressure == true {
+                                            Spacer()
+                                            LineGraphSubView(motionVM: self.motionVM, showGraph: .pressureValue)
+                                                .frame(width: g.size.width - 25, height: 100, alignment: .leading)
+                                            Spacer()
+                                        }
+                                        
                                         Text("Altitude change: \(CalculationAPI.shared.calculateHeight(height: self.motionVM.altitudeArray.last?.relativeAltitudeValue ?? 0.0, to: SettingsAPI.shared.fetchHeightSetting()), specifier: "%.5f") \(SettingsAPI.shared.fetchHeightSetting())")
                                             .modifier(ButtonModifier())
+                                            .overlay(Button(action: { self.showRelativeAltidudeChange.toggle() }) {
+                                                Image("GraphButton")
+                                                    .foregroundColor(.white)
+                                                    .offset(x: -10)
+                                            }, alignment: .trailing)
+                                        
+                                        if self.showRelativeAltidudeChange == true {
+                                            Spacer()
+                                            LineGraphSubView(motionVM: self.motionVM, showGraph: .relativeAltitudeValue)
+                                                .frame(width: g.size.width - 25, height: 100, alignment: .leading)
+                                            Spacer()
+                                        }
                                     }
                                     .frame(height: 50, alignment: .center)
                                     

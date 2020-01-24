@@ -26,15 +26,15 @@ class CalculationTests: XCTestCase {
     
     // MARK: - Tests
     func testSpeedCalculationAPI() {
-        // Given
+        //Given
         let input = 10.0 // m/s
         
-        // When
+        //When
         let ms = CalculationAPI.shared.calculateSpeed(ms: input, to: UnitSpeed.metersPerSecond.symbol)
         let kmh = CalculationAPI.shared.calculateSpeed(ms: input, to: UnitSpeed.kilometersPerHour.symbol)
         let mph = CalculationAPI.shared.calculateSpeed(ms: input, to: UnitSpeed.milesPerHour.symbol)
         
-        // Then
+        //Then
         XCTAssertEqual(ms, 10, accuracy: 0.01, "10 m/s does not equal 10 m/s")
         XCTAssertEqual(kmh, 36, accuracy: 0.01, "10 m/s does not equal 36 km/h")
         XCTAssertEqual(mph, 22.36940, accuracy: 0.01, "10 m/s does not equal 22.36940 mph")
@@ -51,10 +51,10 @@ class CalculationTests: XCTestCase {
     
     
     func testPressureCalculationAPI() {
-        // Given
+        //Given
         let input = 100.0 // kPa
         
-        // When
+        //When
         let mbar = CalculationAPI.shared.calculatePressure(pressure: input, to: UnitPressure.millibars.symbol)
         let bar = CalculationAPI.shared.calculatePressure(pressure: input, to: UnitPressure.bars.symbol)
         let pa = CalculationAPI.shared.calculatePressure(pressure: input, to: UnitPressure.newtonsPerMetersSquared.symbol)
@@ -64,7 +64,7 @@ class CalculationTests: XCTestCase {
         let mmHG = CalculationAPI.shared.calculatePressure(pressure: input, to: UnitPressure.millimetersOfMercury.symbol)
         let inHG = CalculationAPI.shared.calculatePressure(pressure: input, to: UnitPressure.inchesOfMercury.symbol)
         
-        // Then
+        //Then
         XCTAssertEqual(mbar, 1000, accuracy: 0.01, "100kPa does not equal 1000 mbar")
         XCTAssertEqual(bar, 1, accuracy: 0.01, "100kPa does not equal 1 bar")
         XCTAssertEqual(pa, 100000, accuracy: 0.01, "100kPa does not equal 100000 Pa")
@@ -77,10 +77,10 @@ class CalculationTests: XCTestCase {
     
     
     func testHeightCalculationAPI() {
-        // Given
+        //Given
         let input = 1.0 // m
         
-        // When
+        //When
         let mm = CalculationAPI.shared.calculateHeight(height: input, to: UnitLength.millimeters.symbol)
         let cm = CalculationAPI.shared.calculateHeight(height: input, to: UnitLength.centimeters.symbol)
         let m = CalculationAPI.shared.calculateHeight(height: input, to: UnitLength.meters.symbol)

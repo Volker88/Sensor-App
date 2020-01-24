@@ -20,6 +20,13 @@ struct LocationView: View {
     // MARK: - @State / @ObservedObject
     @ObservedObject var locationVM = CoreLocationViewModel()
     
+    // Show Graph
+    @State private var showLatitude = false
+    @State private var showLongitude = false
+    @State private var showAltitude = false
+    @State private var showDirection = false
+    @State private var showSpeed = false
+    
     // Notification Variables
     @State private var showNotification = false
     @State private var notificationMessage = ""
@@ -58,29 +65,89 @@ struct LocationView: View {
                     GeometryReader { g in
                         VStack {
                             ScrollView {
-                                
-                                LineGraphImplementation(locationVM: self.locationVM)
-                                    .frame(width: g.size.width, height: 400, alignment: .center)
-                                
-                                
                                 Spacer()
                                 Group{
                                     Text("Latitude: \(self.locationVM.coreLocationArray.last?.latitude ?? 0.0, specifier: "%.10f")° ± \(self.locationVM.coreLocationArray.last?.horizontalAccuracy ?? 0.0, specifier: "%.2f")m")
                                         .modifier(ButtonModifier())
+                                        .overlay(Button(action: { self.showLatitude.toggle() }) {
+                                            Image("GraphButton")
+                                                .foregroundColor(.white)
+                                                .offset(x: -10)
+                                        }, alignment: .trailing)
+                                    
+                                    if self.showLatitude == true {
+                                        Spacer()
+                                        LineGraphSubView(locationVM: self.locationVM, showGraph: .latitude)
+                                            .frame(width: g.size.width - 25, height: 100, alignment: .leading)
+                                        Spacer()
+                                    }
+                                    
                                     Text("Longitude: \(self.locationVM.coreLocationArray.last?.longitude ?? 0.0, specifier: "%.10f")° ± \(self.locationVM.coreLocationArray.last?.horizontalAccuracy ?? 0.0, specifier: "%.2f")m")
                                         .modifier(ButtonModifier())
+                                        .overlay(Button(action: { self.showLongitude.toggle() }) {
+                                            Image("GraphButton")
+                                                .foregroundColor(.white)
+                                                .offset(x: -10)
+                                        }, alignment: .trailing)
+                                    
+                                    if self.showLongitude == true {
+                                        Spacer()
+                                        LineGraphSubView(locationVM: self.locationVM, showGraph: .longitude)
+                                            .frame(width: g.size.width - 25, height: 100, alignment: .leading)
+                                        Spacer()
+                                    }
+                                    
                                     Text("Altitude: \(self.locationVM.coreLocationArray.last?.altitude ?? 0.0, specifier: "%.2f") ± \(self.locationVM.coreLocationArray.last?.verticalAccuracy ?? 0.0, specifier: "%.2f")m")
                                         .modifier(ButtonModifier())
+                                        .overlay(Button(action: { self.showAltitude.toggle() }) {
+                                            Image("GraphButton")
+                                                .foregroundColor(.white)
+                                                .offset(x: -10)
+                                        }, alignment: .trailing)
+                                    
+                                    if self.showAltitude == true {
+                                        Spacer()
+                                        LineGraphSubView(locationVM: self.locationVM, showGraph: .altitude)
+                                            .frame(width: g.size.width - 25, height: 100, alignment: .leading)
+                                        Spacer()
+                                    }
+                                    
                                     Text("Direction: \(self.locationVM.coreLocationArray.last?.course ?? 0.0, specifier: "%.2f")°")
                                         .modifier(ButtonModifier())
+                                        .overlay(Button(action: { self.showDirection.toggle() }) {
+                                            Image("GraphButton")
+                                                .foregroundColor(.white)
+                                                .offset(x: -10)
+                                        }, alignment: .trailing)
+                                    
+                                    if self.showDirection == true {
+                                        Spacer()
+                                        LineGraphSubView(locationVM: self.locationVM, showGraph: .course)
+                                            .frame(width: g.size.width - 25, height: 100, alignment: .leading)
+                                        Spacer()
+                                    }
+                                    
                                     Text("Speed: \(CalculationAPI.shared.calculateSpeed(ms: self.locationVM.coreLocationArray.last?.speed ?? 0.0, to: "\(SettingsAPI.shared.fetchSpeedSetting())"), specifier: "%.2f")\(SettingsAPI.shared.fetchSpeedSetting())")
                                         .modifier(ButtonModifier())
+                                        .overlay(Button(action: { self.showSpeed.toggle() }) {
+                                            Image("GraphButton")
+                                                .foregroundColor(.white)
+                                                .offset(x: -10)
+                                        }, alignment: .trailing)
+                                    
+                                    if self.showSpeed == true {
+                                        Spacer()
+                                        LineGraphSubView(locationVM: self.locationVM, showGraph: .speed)
+                                            .frame(width: g.size.width - 25, height: 100, alignment: .leading)
+                                        Spacer()
+                                    }
                                 }
                                 .frame(height: 50, alignment: .center)
                                 .offset(x: 5)
                                 Spacer()
                                 MapKitView(latitude: self.locationVM.coreLocationArray.last?.latitude ?? 37.3323314100, longitude: self.locationVM.coreLocationArray.last?.longitude ?? -122.0312186000)
                                     .frame(width: g.size.width - 10, height: g.size.width - 10, alignment: .center)
+                                    .cornerRadius(10)
                             }
                             .frame(width: g.size.width, height: g.size.height - 50 + g.safeAreaInsets.bottom)
                             

@@ -21,6 +21,12 @@ struct AttitudeView: View {
     @ObservedObject var motionVM = CoreMotionViewModel()
     @State private var frequency: Float = SettingsAPI.shared.fetchFrequency() // Default Frequency
     
+    // Show Graph
+    @State private var showRoll = false
+    @State private var showPitch = false
+    @State private var showYaw = false
+    @State private var showHeading = false
+    
     // Notification Variables
     @State private var showNotification = false
     @State private var notificationMessage = ""
@@ -63,12 +69,63 @@ struct AttitudeView: View {
                                     Group{
                                         Text("Roll: \((self.motionVM.coreMotionArray.last?.attitudeRoll ?? 0.0) * 180 / .pi, specifier: "%.5f")°")
                                         .modifier(ButtonModifier())
+                                        .overlay(Button(action: { self.showRoll.toggle() }) {
+                                                Image("GraphButton")
+                                                    .foregroundColor(.white)
+                                                    .offset(x: -10)
+                                            }, alignment: .trailing)
+                                        
+                                        if self.showRoll == true {
+                                            Spacer()
+                                            LineGraphSubView(motionVM: self.motionVM, showGraph: .attitudeRoll)
+                                                .frame(width: g.size.width - 25, height: 100, alignment: .leading)
+                                            Spacer()
+                                        }
+                                        
                                         Text("Pitch: \((self.motionVM.coreMotionArray.last?.attitudePitch ?? 0.0) * 180 / .pi, specifier: "%.5f")°")
                                         .modifier(ButtonModifier())
+                                        .overlay(Button(action: { self.showPitch.toggle() }) {
+                                                Image("GraphButton")
+                                                    .foregroundColor(.white)
+                                                    .offset(x: -10)
+                                            }, alignment: .trailing)
+                                        
+                                        if self.showPitch == true {
+                                            Spacer()
+                                            LineGraphSubView(motionVM: self.motionVM, showGraph: .attitudePitch)
+                                                .frame(width: g.size.width - 25, height: 100, alignment: .leading)
+                                            Spacer()
+                                        }
+                                        
                                         Text("Yaw: \((self.motionVM.coreMotionArray.last?.attitudeYaw ?? 0.0) * 180 / .pi, specifier: "%.5f")°")
                                         .modifier(ButtonModifier())
+                                        .overlay(Button(action: { self.showYaw.toggle() }) {
+                                                Image("GraphButton")
+                                                    .foregroundColor(.white)
+                                                    .offset(x: -10)
+                                            }, alignment: .trailing)
+                                        
+                                        if self.showYaw == true {
+                                            Spacer()
+                                            LineGraphSubView(motionVM: self.motionVM, showGraph: .attitudeYaw)
+                                                .frame(width: g.size.width - 25, height: 100, alignment: .leading)
+                                            Spacer()
+                                        }
+                                        
                                         Text("Heading: \(self.motionVM.coreMotionArray.last?.attitudeHeading ?? 0.0, specifier: "%.5f")°")
                                         .modifier(ButtonModifier())
+                                        .overlay(Button(action: { self.showHeading.toggle() }) {
+                                                Image("GraphButton")
+                                                    .foregroundColor(.white)
+                                                    .offset(x: -10)
+                                            }, alignment: .trailing)
+                                        
+                                        if self.showHeading == true {
+                                            Spacer()
+                                            LineGraphSubView(motionVM: self.motionVM, showGraph: .attitudeHeading)
+                                                .frame(width: g.size.width - 25, height: 100, alignment: .leading)
+                                            Spacer()
+                                        }
                                     }
                                     .frame(height: 50, alignment: .center)
                                     

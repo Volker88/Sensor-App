@@ -45,12 +45,12 @@ class NotificationAPI {
     ///
     ///  - Returns: NotificationAnimationModel
     ///
-    ///  - Parameter _offSetY:  offset in Y direction
-    ///  - Parameter _mass:  mass of the view
-    ///  - Parameter _stiffness: spring stiffness
-    ///  - Parameter _damping: spring damping
-    ///  - Parameter _velocity: initial velocity
-    ///  - Parameter _duration: duration how long the notification is shown
+    ///  - Parameter _offSetY:  Offset in Y direction
+    ///  - Parameter _mass:  Mass of the view
+    ///  - Parameter _stiffness: Spring stiffness
+    ///  - Parameter _damping: Spring damping
+    ///  - Parameter _velocity: Initial velocity
+    ///  - Parameter _duration: Duration how long the notification is shown
     ///
     public func fetchNotificationAnimationSettings(_offSetY: CGFloat? = -UIScreen.main.bounds.height / 3, _mass: Double? = 1.0, _stiffness: Double? = 100.0, _damping: Double? = 10.0, _velocity: Double? = 0.0, _duration: Double? = 2.0) -> NotificationAnimationModel {
         let notificationAnimationSettings = NotificationAnimationModel(
@@ -84,7 +84,7 @@ class NotificationAPI {
     ///
     ///  - Parameter type: Notification Type
     ///  - Parameter duration: Notification Duration
-    ///  - Parameter completion: completiomn handler
+    ///  - Parameter completion: Completiomn Handler
     public func toggleNotification(type: NotificationTypes, duration: Double?, completion: @escaping (String, Bool) -> Void) {
         let duration = duration ?? fetchNotificationAnimationSettings().duration
         
@@ -105,7 +105,7 @@ class NotificationAPI {
     ///
     ///  - Returns: Notification Text
     ///
-    ///  - Parameter type: notification type
+    ///  - Parameter type: Notification Type
     ///
     private func fetchNotificationText(type: NotificationTypes) -> String {
         var notificationText = ""

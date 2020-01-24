@@ -33,8 +33,8 @@ class CalculationAPI {
     ///
     ///  - Returns: Speed in selected unit
     ///
-    ///  - Parameter ms: input in m/s
-    ///  - Parameter to: targfet unit
+    ///  - Parameter ms: Input in **m/s**
+    ///  - Parameter to: Target unit
     ///
     public func calculateSpeed(ms: Double, to: String) -> Double { // Calculcate Speed
         var targetUnit : UnitSpeed = .metersPerSecond
@@ -69,8 +69,8 @@ class CalculationAPI {
     ///
     ///  - Returns: Pressure in selected unit
     ///
-    ///  - Parameter pressure: input in kPa
-    ///  - Parameter to: target unit
+    ///  - Parameter pressure: Input in **kPa**
+    ///  - Parameter to: Target unit
     ///
     public func calculatePressure(pressure: Double, to: String) -> Double { // Calculate Pressure Units (input kPa)
         var targetUnit : UnitPressure = .kilopascals
@@ -108,8 +108,8 @@ class CalculationAPI {
     ///
     ///  - Returns: Pressure in selected unit
     ///
-    ///  - Parameter height: input in m
-    ///  - Parameter to: target unit
+    ///  - Parameter height: Input in **m**
+    ///  - Parameter to: Target unit
     ///
     public func calculateHeight(height: Double, to: String) -> Double { // Calculate Height Units (input m)
         var targetUnit : UnitLength = .meters

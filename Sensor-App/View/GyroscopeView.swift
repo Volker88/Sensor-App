@@ -21,6 +21,11 @@ struct GyroscopeView: View {
     @ObservedObject var motionVM = CoreMotionViewModel()
     @State private var frequency: Float = SettingsAPI.shared.fetchFrequency() // Default Frequency
     
+    // Show Graph
+    @State private var showXAxis = false
+    @State private var showYAxis = false
+    @State private var showZAxis = false
+    
     // Notification Variables
     @State private var showNotification = false
     @State private var notificationMessage = ""
@@ -63,10 +68,48 @@ struct GyroscopeView: View {
                                     Group{
                                         Text("X-Axis: \(self.motionVM.coreMotionArray.last?.gyroXAxis ?? 0.0, specifier: "%.5f") rad/s")
                                         .modifier(ButtonModifier())
+                                        .overlay(Button(action: { self.showXAxis.toggle() }) {
+                                                Image("GraphButton")
+                                                    .foregroundColor(.white)
+                                                    .offset(x: -10)
+                                            }, alignment: .trailing)
+                                        
+                                        if self.showXAxis == true {
+                                            Spacer()
+                                            LineGraphSubView(motionVM: self.motionVM, showGraph: .gyroXAxis)
+                                                .frame(width: g.size.width - 25, height: 100, alignment: .leading)
+                                            Spacer()
+                                        }
+                                        
                                         Text("Y-Axis: \(self.motionVM.coreMotionArray.last?.gyroYAxis ?? 0.0, specifier: "%.5f") rad/s")
                                         .modifier(ButtonModifier())
+                                        .overlay(Button(action: { self.showYAxis.toggle() }) {
+                                                Image("GraphButton")
+                                                    .foregroundColor(.white)
+                                                    .offset(x: -10)
+                                            }, alignment: .trailing)
+                                        
+                                        if self.showYAxis == true {
+                                            Spacer()
+                                            LineGraphSubView(motionVM: self.motionVM, showGraph: .gyroYAxis)
+                                                .frame(width: g.size.width - 25, height: 100, alignment: .leading)
+                                            Spacer()
+                                        }
+                                        
                                         Text("Z-Axis: \(self.motionVM.coreMotionArray.last?.gyroZAxis ?? 0.0, specifier: "%.5f") rad/s")
                                         .modifier(ButtonModifier())
+                                        .overlay(Button(action: { self.showZAxis.toggle() }) {
+                                                Image("GraphButton")
+                                                    .foregroundColor(.white)
+                                                    .offset(x: -10)
+                                            }, alignment: .trailing)
+                                        
+                                        if self.showZAxis == true {
+                                            Spacer()
+                                            LineGraphSubView(motionVM: self.motionVM, showGraph: .gyroZAxis)
+                                                .frame(width: g.size.width - 25, height: 100, alignment: .leading)
+                                            Spacer()
+                                        }
                                     }
                                     .frame(height: 50, alignment: .center)
                                     
