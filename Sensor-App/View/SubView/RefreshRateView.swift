@@ -51,6 +51,7 @@ struct RefreshRateView: View {
                         Slider(value: self.$refreshRate, in: 1...50, step: 1) { refresh in
                             self.updateSlider()
                         }
+                        .accessibility(identifier: "Frequency Slider")
                         Text("50")
                             .modifier(RefreshRateLimitLabel())
                 }

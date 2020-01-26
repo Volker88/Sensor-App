@@ -17,7 +17,7 @@ class GraphArrayTransformation: ObservableObject {
     // MARK: - Define Constants / Variables
     var array: [Double] = [0.0]
     var showGraph: GraphDetail = .latitude
-    
+
     
     // MARK: - Methods
     func transformLocation(locationModel: [LocationModel]?, graph: GraphDetail) {

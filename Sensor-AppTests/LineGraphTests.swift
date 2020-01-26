@@ -22,16 +22,11 @@ class LineGraphTests: XCTestCase {
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
-    
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-    
+     
     
     // MARK: - LineGraphView
     func testLineGraphViewPerformanceOnLocationView() {
-        // Given
+        //Given
         let locationVM = CoreLocationViewModel()
         
         //When
@@ -47,7 +42,7 @@ class LineGraphTests: XCTestCase {
     }
     
     func testLineGraphViewPerformanceOnAccelerationView() {
-        // Given
+        //Given
         let motionVM = CoreMotionViewModel()
         
         //When
@@ -63,7 +58,7 @@ class LineGraphTests: XCTestCase {
     }
     
     func testLineGraphViewPerformanceOnAltitudeView() {
-        // Given
+        //Given
         let motionVM = CoreMotionViewModel()
         
         //When
@@ -108,8 +103,5 @@ class LineGraphTests: XCTestCase {
             altitudeArray.append(array)
         }
         return altitudeArray
-    }
-    
- 
-    
+    }   
 }

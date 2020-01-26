@@ -49,7 +49,6 @@ class CalculationTests: XCTestCase {
         }
     }
     
-    
     func testPressureCalculationAPI() {
         //Given
         let input = 100.0 // kPa
@@ -75,7 +74,6 @@ class CalculationTests: XCTestCase {
         XCTAssertEqual(inHG, 29.53, accuracy: 0.01, "100kPa does not equal 29.53 inHG")
     }
     
-    
     func testHeightCalculationAPI() {
         //Given
         let input = 1.0 // m
@@ -97,4 +95,6 @@ class CalculationTests: XCTestCase {
         XCTAssertEqual(yard, 1.09361, accuracy: 0.01, "1m does not equal 1.09361 yard")
     }
     
+    
+    // MARK: - Methods
 }

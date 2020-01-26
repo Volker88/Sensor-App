@@ -89,11 +89,13 @@ struct SettingsView: View {
                                 Text(SettingsAPI.shared.GPSSpeedSettings[$0]).tag($0)
                             }
                         }
+                        .accessibility(identifier: "Speed Settings")
                         Picker(selection: self.$accuracySetting, label: Text("Accuracy")) {
                             ForEach(0 ..< SettingsAPI.shared.GPSAccuracyOptions.count, id: \.self) {
                                 Text(SettingsAPI.shared.GPSAccuracyOptions[$0]).tag($0)
                             }
                         }
+                    .accessibility(identifier: "GPS Accuracy Settings")
                     }
                     Section(header:
                         Text("Altitude")
@@ -104,11 +106,13 @@ struct SettingsView: View {
                                 Text(SettingsAPI.shared.altitudePressure[$0]).tag($0)
                             }
                         }
+                        .accessibility(identifier: "Altitude Settings")
                         Picker(selection: self.$heightSetting, label: Text("Height")) {
                             ForEach(0 ..< SettingsAPI.shared.altitudeHeight.count, id: \.self) {
                                 Text(SettingsAPI.shared.altitudeHeight[$0]).tag($0)
                             }
                         }
+                    .accessibility(identifier: "Height Settings")
                     }
                 }
                 .navigationBarTitle(Text("Settings"), displayMode: .inline)
@@ -117,25 +121,28 @@ struct SettingsView: View {
                     Button(action: {
                         self.discardView()
                     }) {
-                        Image(systemName: "clear")//Image("CancelButton")
+                        Image(systemName: "clear")
                             .resizable()
                             .frame(width: 30, height: 30)
-                    }, trailing:
+                    }
+                    .accessibility(identifier: "Close Button"), trailing:
                     HStack {
                         Button(action: {
                             self.discardChanges(showNotification: true)
                         }) {
-                            Image(systemName: "gobackward")//Image("UndoButton")
+                            Image(systemName: "gobackward")
                                 .resizable()
                                 .frame(width: 30, height: 30)
                         }
+                        .accessibility(identifier: "Reset Settings")
                         Button(action: {
                             self.saveSettings()
                         }) {
-                            Image("SaveButton")//Image(systemName: "square.and.arrow.down")
+                            Image("SaveButton")
                                 .resizable()
                                 .frame(width: 30, height: 30)
                         }
+                        .accessibility(identifier: "Save Settings")
                 })
             }
             .navigationViewStyle(StackNavigationViewStyle())

@@ -73,7 +73,7 @@ struct AttitudeView: View {
                                                 Image("GraphButton")
                                                     .foregroundColor(.white)
                                                     .offset(x: -10)
-                                            }, alignment: .trailing)
+                                            }.accessibility(identifier: "Toggle Roll Graph"), alignment: .trailing)
                                         
                                         if self.showRoll == true {
                                             Spacer()
@@ -88,7 +88,7 @@ struct AttitudeView: View {
                                                 Image("GraphButton")
                                                     .foregroundColor(.white)
                                                     .offset(x: -10)
-                                            }, alignment: .trailing)
+                                            }.accessibility(identifier: "Toggle Pitch Graph"), alignment: .trailing)
                                         
                                         if self.showPitch == true {
                                             Spacer()
@@ -103,7 +103,7 @@ struct AttitudeView: View {
                                                 Image("GraphButton")
                                                     .foregroundColor(.white)
                                                     .offset(x: -10)
-                                            }, alignment: .trailing)
+                                            }.accessibility(identifier: "Toggle Yaw Graph"), alignment: .trailing)
                                         
                                         if self.showYaw == true {
                                             Spacer()
@@ -118,7 +118,7 @@ struct AttitudeView: View {
                                                 Image("GraphButton")
                                                     .foregroundColor(.white)
                                                     .offset(x: -10)
-                                            }, alignment: .trailing)
+                                            }.accessibility(identifier: "Toggle Heading Graph"), alignment: .trailing)
                                         
                                         if self.showHeading == true {
                                             Spacer()

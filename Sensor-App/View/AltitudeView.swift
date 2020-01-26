@@ -71,7 +71,7 @@ struct AltitudeView: View {
                                                 Image("GraphButton")
                                                     .foregroundColor(.white)
                                                     .offset(x: -10)
-                                            }, alignment: .trailing)
+                                            }.accessibility(identifier: "Toggle Pressure Graph"), alignment: .trailing)
                                         
                                         if self.showPressure == true {
                                             Spacer()
@@ -86,7 +86,7 @@ struct AltitudeView: View {
                                                 Image("GraphButton")
                                                     .foregroundColor(.white)
                                                     .offset(x: -10)
-                                            }, alignment: .trailing)
+                                            }.accessibility(identifier: "Toggle Altitude Graph"), alignment: .trailing)
                                         
                                         if self.showRelativeAltidudeChange == true {
                                             Spacer()

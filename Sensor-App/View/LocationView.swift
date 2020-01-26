@@ -67,13 +67,13 @@ struct LocationView: View {
                             ScrollView {
                                 Spacer()
                                 Group{
-                                    Text("Latitude: \(self.locationVM.coreLocationArray.last?.latitude ?? 0.0, specifier: "%.10f")° ± \(self.locationVM.coreLocationArray.last?.horizontalAccuracy ?? 0.0, specifier: "%.2f")m")
+                                    Text("Latitude: \(self.locationVM.coreLocationArray.last?.latitude ?? 0.0, specifier: "%.6f")° ± \(self.locationVM.coreLocationArray.last?.horizontalAccuracy ?? 0.0, specifier: "%.2f")m")
                                         .modifier(ButtonModifier())
                                         .overlay(Button(action: { self.showLatitude.toggle() }) {
                                             Image("GraphButton")
                                                 .foregroundColor(.white)
                                                 .offset(x: -10)
-                                        }, alignment: .trailing)
+                                        }.accessibility(identifier: "Toggle Latitude Graph"), alignment: .trailing)
                                     
                                     if self.showLatitude == true {
                                         Spacer()
@@ -82,13 +82,13 @@ struct LocationView: View {
                                         Spacer()
                                     }
                                     
-                                    Text("Longitude: \(self.locationVM.coreLocationArray.last?.longitude ?? 0.0, specifier: "%.10f")° ± \(self.locationVM.coreLocationArray.last?.horizontalAccuracy ?? 0.0, specifier: "%.2f")m")
+                                    Text("Longitude: \(self.locationVM.coreLocationArray.last?.longitude ?? 0.0, specifier: "%.6f")° ± \(self.locationVM.coreLocationArray.last?.horizontalAccuracy ?? 0.0, specifier: "%.2f")m")
                                         .modifier(ButtonModifier())
                                         .overlay(Button(action: { self.showLongitude.toggle() }) {
                                             Image("GraphButton")
                                                 .foregroundColor(.white)
                                                 .offset(x: -10)
-                                        }, alignment: .trailing)
+                                        }.accessibility(identifier: "Toggle Longitude Graph"), alignment: .trailing)
                                     
                                     if self.showLongitude == true {
                                         Spacer()
@@ -103,7 +103,7 @@ struct LocationView: View {
                                             Image("GraphButton")
                                                 .foregroundColor(.white)
                                                 .offset(x: -10)
-                                        }, alignment: .trailing)
+                                        }.accessibility(identifier: "Toggle Altitude Graph"), alignment: .trailing)
                                     
                                     if self.showAltitude == true {
                                         Spacer()
@@ -118,7 +118,7 @@ struct LocationView: View {
                                             Image("GraphButton")
                                                 .foregroundColor(.white)
                                                 .offset(x: -10)
-                                        }, alignment: .trailing)
+                                        }.accessibility(identifier: "Toggle Direction Graph"), alignment: .trailing)
                                     
                                     if self.showDirection == true {
                                         Spacer()
@@ -133,7 +133,7 @@ struct LocationView: View {
                                             Image("GraphButton")
                                                 .foregroundColor(.white)
                                                 .offset(x: -10)
-                                        }, alignment: .trailing)
+                                            }.accessibility(identifier: "Toggle Speed Graph"), alignment: .trailing)
                                     
                                     if self.showSpeed == true {
                                         Spacer()

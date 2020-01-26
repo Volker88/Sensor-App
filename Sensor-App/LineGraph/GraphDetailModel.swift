@@ -10,6 +10,7 @@
 // MARK: - Import
 import Foundation
 
+
 // MARK: - GraphDetail Types
 enum GraphDetail {
     // LocationModel

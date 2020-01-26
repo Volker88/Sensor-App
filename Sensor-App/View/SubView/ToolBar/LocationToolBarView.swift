@@ -50,11 +50,13 @@ struct LocationToolBarView: View {
                     Image(systemName: "play.circle")
                         .font(.largeTitle)
                 }
+                .accessibility(identifier: "Start Button")
                 Spacer()
                 Button(action: self.pauseButtonTapped) {
                     Image(systemName: "pause.circle")
                         .font(.largeTitle)
                 }
+                .accessibility(identifier: "Pause Button")
                 Spacer()
                 Button(action: {
                     self.showSettings.toggle()
@@ -62,6 +64,7 @@ struct LocationToolBarView: View {
                     Image(systemName: "gear")
                         .font(.largeTitle)
                 }
+                .accessibility(identifier: "Settings Button")
                 Spacer()
             }
             .frame(width: g.size.width + g.safeAreaInsets.leading + g.safeAreaInsets.trailing, height: 50, alignment: .center)

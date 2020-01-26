@@ -29,7 +29,7 @@ struct ContentView: View {
     
     // MARK: - onAppear / onDisappear
     func onAppear() {
-
+        
     }
     
     func onDisappear() {
@@ -57,18 +57,22 @@ struct ContentView: View {
                                 NavigationLink(destination: LocationView()) {
                                     Text("Location")
                                         .modifier(ContentViewButtonModifier())
+                                        .accessibility(identifier: "Location")
                                 }
                                 NavigationLink(destination: AccelerationView()) {
                                     Text("Acceleration")
                                         .modifier(ContentViewButtonModifier())
+                                        .accessibility(identifier: "Acceleration")
                                 }
                                 NavigationLink(destination: GravityView()) {
                                     Text("Gravity")
                                         .modifier(ContentViewButtonModifier())
+                                        .accessibility(identifier: "Gravity")
                                 }
                                 NavigationLink(destination: GyroscopeView()) {
                                     Text("Gyroscope")
                                         .modifier(ContentViewButtonModifier())
+                                        .accessibility(identifier: "Gyroscope")
                                 }
                             }
                             .frame(height: 50, alignment: .center)
@@ -76,18 +80,22 @@ struct ContentView: View {
                                 NavigationLink(destination: MagnetometerView()) {
                                     Text("Magnetometer")
                                         .modifier(ContentViewButtonModifier())
+                                        .accessibility(identifier: "Magnetometer")
                                 }
                                 NavigationLink(destination: AttitudeView()) {
                                     Text("Attitude")
                                         .modifier(ContentViewButtonModifier())
+                                        .accessibility(identifier: "Attitude")
                                 }
                                 NavigationLink(destination: AltitudeView()) {
                                     Text("Altitude")
                                         .modifier(ContentViewButtonModifier())
+                                        .accessibility(identifier: "Altitude")
                                 }
                                 Button(action: { self.showSettings.toggle() }) {
                                     Text("Settings")
                                         .modifier(ContentViewButtonModifier())
+                                        .accessibility(identifier: "Settings")
                                 }
                             }
                             .frame(height: 50, alignment: .center)

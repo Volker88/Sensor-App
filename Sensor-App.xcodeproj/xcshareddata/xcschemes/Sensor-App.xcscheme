@@ -27,7 +27,6 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES"
-      systemAttachmentLifetime = "keepAlways"
       userAttachmentLifetime = "keepAlways"
       codeCoverageEnabled = "YES"
       localizableStringsDataGatheringEnabled = "YES">
@@ -54,6 +53,16 @@
                identifier = "com.apple.dt.IDEFoundation.CurrentLocationScenarioIdentifier"
                referenceType = "1">
             </LocationScenarioReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "1511014C23648D8000EC0292"
+               BuildableName = "Sensor-AppUITests.xctest"
+               BlueprintName = "Sensor-AppUITests"
+               ReferencedContainer = "container:Sensor-App.xcodeproj">
+            </BuildableReference>
          </TestableReference>
       </Testables>
    </TestAction>

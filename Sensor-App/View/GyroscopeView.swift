@@ -72,7 +72,7 @@ struct GyroscopeView: View {
                                                 Image("GraphButton")
                                                     .foregroundColor(.white)
                                                     .offset(x: -10)
-                                            }, alignment: .trailing)
+                                            }.accessibility(identifier: "Toggle X-Axis Graph"), alignment: .trailing)
                                         
                                         if self.showXAxis == true {
                                             Spacer()
@@ -87,7 +87,7 @@ struct GyroscopeView: View {
                                                 Image("GraphButton")
                                                     .foregroundColor(.white)
                                                     .offset(x: -10)
-                                            }, alignment: .trailing)
+                                            }.accessibility(identifier: "Toggle Y-Axis Graph"), alignment: .trailing)
                                         
                                         if self.showYAxis == true {
                                             Spacer()
@@ -102,7 +102,7 @@ struct GyroscopeView: View {
                                                 Image("GraphButton")
                                                     .foregroundColor(.white)
                                                     .offset(x: -10)
-                                            }, alignment: .trailing)
+                                            }.accessibility(identifier: "Toggle Z-Axis Graph"), alignment: .trailing)
                                         
                                         if self.showZAxis == true {
                                             Spacer()
