@@ -278,6 +278,8 @@
 		15B357AD23DF678700972D41 /* SettingsAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAPITests.swift; sourceTree = "<group>"; };
 		15BD0A4C2350FCD900784975 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		15C559D523BA545900812942 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
+		15DD205923E5B64E001DD2A3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		15DD205A23E5B7F1001DD2A3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		15DDE3592337EC8100732427 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		15DDEF1523D48CCC003AACC4 /* ExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionTests.swift; sourceTree = "<group>"; };
 		15DDEF1723D4AB09003AACC4 /* LineGraphSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineGraphSubView.swift; sourceTree = "<group>"; };
@@ -287,6 +289,10 @@
 		15DEDA66231DA97B008B2327 /* CoreMotionAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreMotionAPI.swift; sourceTree = "<group>"; };
 		15E57B8C234A09630055B4D1 /* CoreLocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreLocationViewModel.swift; sourceTree = "<group>"; };
 		15E57B90234A20790055B4D1 /* CoreMotionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreMotionViewModel.swift; sourceTree = "<group>"; };
+		15E87C3323E59ECD0073DE77 /* UnitTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = UnitTests.xctestplan; sourceTree = "<group>"; };
+		15E87C3423E59FB10073DE77 /* UITests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = UITests.xctestplan; sourceTree = "<group>"; };
+		15E87C3523E5A3090073DE77 /* ScreenshotTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = ScreenshotTests.xctestplan; sourceTree = "<group>"; };
+		15E87C3723E5A9B40073DE77 /* FullTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = FullTests.xctestplan; sourceTree = "<group>"; };
 		15ED0436231EF6EE001E5005 /* AltitudeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AltitudeModel.swift; sourceTree = "<group>"; };
 		15ED0438231EF904001E5005 /* CalculationAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculationAPI.swift; sourceTree = "<group>"; };
 		15FC73322280A09B0077CB8A /* SettingsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAPI.swift; sourceTree = "<group>"; };
@@ -494,6 +500,7 @@
 		157B0E66227F57D6004CC169 = {
 			isa = PBXGroup;
 			children = (
+				15E87C3623E5A4E20073DE77 /* TestPlans */,
 				157B0E71227F57D6004CC169 /* Sensor-App */,
 				154E0FD7235CE3BC00FD426C /* Sensor-App-WatchApp */,
 				154E0FE6235CE3BD00FD426C /* Sensor-App-WatchApp Extension */,
@@ -631,6 +638,17 @@
 				158BC8CB23411F19001A5EBD /* ToolBar */,
 			);
 			path = SubView;
+			sourceTree = "<group>";
+		};
+		15E87C3623E5A4E20073DE77 /* TestPlans */ = {
+			isa = PBXGroup;
+			children = (
+				15E87C3523E5A3090073DE77 /* ScreenshotTests.xctestplan */,
+				15E87C3423E59FB10073DE77 /* UITests.xctestplan */,
+				15E87C3323E59ECD0073DE77 /* UnitTests.xctestplan */,
+				15E87C3723E5A9B40073DE77 /* FullTests.xctestplan */,
+			);
+			path = TestPlans;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -818,7 +836,6 @@
 			knownRegions = (
 				en,
 				de,
-				Base,
 			);
 			mainGroup = 157B0E66227F57D6004CC169;
 			packageReferences = (
@@ -1070,6 +1087,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				15175D7B23DDF3320042B640 /* de */,
+				15DD205923E5B64E001DD2A3 /* en */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -1078,6 +1096,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				1577ECB3233019300061718B /* de */,
+				15DD205A23E5B7F1001DD2A3 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -1331,7 +1350,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				MY_BUILD_VERSION = 2.20056.22;
+				MY_BUILD_VERSION = 2.20056.23;
 				MY_VERSION = 2.3.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1390,7 +1409,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				MY_BUILD_VERSION = 2.20056.22;
+				MY_BUILD_VERSION = 2.20056.23;
 				MY_VERSION = 2.3.0;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;

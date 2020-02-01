@@ -1,0 +1,38 @@
+{
+  "configurations" : [
+    {
+      "id" : "71BDA437-24E9-45BD-AFF6-3E1A2B4BC84C",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    },
+    {
+      "id" : "0E32C987-2047-4417-A67F-8EEB38419D42",
+      "name" : "Configuration 2",
+      "options" : {
+        "language" : "de",
+        "region" : "DE"
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "locationScenario" : {
+      "identifier" : "New York, NY, USA",
+      "referenceType" : "built-in"
+    }
+  },
+  "testTargets" : [
+    {
+      "selectedTests" : [
+        "ScreenshotUITests\/testScreenshot()"
+      ],
+      "target" : {
+        "containerPath" : "container:Sensor-App.xcodeproj",
+        "identifier" : "1511014C23648D8000EC0292",
+        "name" : "Sensor-AppUITests"
+      }
+    }
+  ],
+  "version" : 1
+}

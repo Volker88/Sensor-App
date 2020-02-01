@@ -10,7 +10,7 @@
             buildForTesting = "YES"
             buildForRunning = "YES"
             buildForProfiling = "YES"
-            buildForArchiving = "NO"
+            buildForArchiving = "YES"
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
@@ -27,7 +27,6 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES"
-      systemAttachmentLifetime = "keepAlways"
       userAttachmentLifetime = "keepAlways"
       codeCoverageEnabled = "YES"
       localizableStringsDataGatheringEnabled = "YES">
@@ -40,9 +39,24 @@
             ReferencedContainer = "container:Sensor-App.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
+      <TestPlans>
+         <TestPlanReference
+            reference = "container:TestPlans/UnitTests.xctestplan"
+            default = "YES">
+         </TestPlanReference>
+         <TestPlanReference
+            reference = "container:TestPlans/UITests.xctestplan">
+         </TestPlanReference>
+         <TestPlanReference
+            reference = "container:TestPlans/ScreenshotTests.xctestplan">
+         </TestPlanReference>
+         <TestPlanReference
+            reference = "container:TestPlans/FullTests.xctestplan">
+         </TestPlanReference>
+      </TestPlans>
       <Testables>
          <TestableReference
-            skipped = "YES">
+            skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "1511013E23648D4000EC0292"
@@ -50,10 +64,13 @@
                BlueprintName = "Sensor-AppTests"
                ReferencedContainer = "container:Sensor-App.xcodeproj">
             </BuildableReference>
+            <LocationScenarioReference
+               identifier = "com.apple.dt.IDEFoundation.CurrentLocationScenarioIdentifier"
+               referenceType = "1">
+            </LocationScenarioReference>
          </TestableReference>
          <TestableReference
-            skipped = "NO"
-            useTestSelectionWhitelist = "YES">
+            skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "1511014C23648D8000EC0292"
@@ -61,15 +78,6 @@
                BlueprintName = "Sensor-AppUITests"
                ReferencedContainer = "container:Sensor-App.xcodeproj">
             </BuildableReference>
-            <SelectedTests>
-               <Test
-                  Identifier = "ScreenshotUITests/testScreenshot()">
-               </Test>
-            </SelectedTests>
-            <LocationScenarioReference
-               identifier = "New York, NY, USA"
-               referenceType = "1">
-            </LocationScenarioReference>
          </TestableReference>
       </Testables>
    </TestAction>
@@ -77,6 +85,8 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      language = "de"
+      region = "DE"
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"

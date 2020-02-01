@@ -28,7 +28,7 @@ class CoreLocationViewModel: ObservableObject {
         }
         coreLocationArray.removeLast()
         coreLocationArray.shuffle()
-        coreLocationArray.append(LocationModel(counter: 1, longitude: -122.03529395, latitude: 37.33458564, altitude: 10, speed: 26.24, course: 265.08, horizontalAccuracy: 5.0, verticalAccuracy: 5.0, timestamp: "17-11-2019 10:44:13.136", GPSAccuracy: -1.0))
+        coreLocationArray.append(LocationModel(counter: 1, longitude: -73.984021, latitude: 40.760123, altitude: 10, speed: 26.24, course: 265.08, horizontalAccuracy: 5.0, verticalAccuracy: 5.0, timestamp: "17-11-2019 10:44:13.136", GPSAccuracy: -1.0))
         #endif
         
         CoreLocationAPI.shared.startUpdatingGPS()
