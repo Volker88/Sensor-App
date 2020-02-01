@@ -23,7 +23,7 @@ struct LineGraphSubView: View, LineGraphPotocol {
     
     // MARK: - Define Constants / Variables
     var showGraph: GraphDetail
-    var lineGraphSettings: LineGraphSettings = LineGraphSettings(maxPoints: 50, decimalDigits: 3, lineWitdh: 2, lineColor: [.secondary], textColor: .primary)
+    var lineGraphSettings: LineGraphSettings = LineGraphSettings(maxPoints: 150, decimalDigits: 3, lineWitdh: 2, lineColor: [.secondary], textColor: .primary)
     
    
     // MARK: - Methods

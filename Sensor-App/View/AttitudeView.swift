@@ -46,7 +46,7 @@ struct AttitudeView: View {
     }
     
     func onDisappear() {
-        CoreLocationAPI.shared.stopUpdatingGPS()
+        CoreMotionAPI.shared.motionUpdateStop()
         motionVM.coreMotionArray.removeAll()
     }
     

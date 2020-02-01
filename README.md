@@ -1,4 +1,14 @@
-### Privacy Policy
+
+## Sensor-App
+
+Sensor-app provides access to all Sensors on iPhone, iPad and Apple Watch.
+
+![Sensor-App](./Sensor-App.png "Sensor-App")
+
+Get it from App Store [here](https://apps.apple.com/us/app/sensor-app/id1466399692?l=de&ls=1 "Sensor-App")
+
+
+## Privacy Policy
 
 Volker Schmitt built the Sensor-App app as a Free app. This SERVICE is provided by Volker Schmitt at no cost and is intended for use as is.
 

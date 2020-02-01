@@ -1,5 +1,5 @@
 //
-//  CalculationTests.swift
+//  CalculationAPITests.swift
 //  Sensor-AppTests
 //
 //  Created by Volker Schmitt on 26.10.19.
@@ -13,7 +13,7 @@ import XCTest
 
 
 // MARK: - Class Definition
-class CalculationTests: XCTestCase {
+class CalculationAPITests: XCTestCase {
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.

@@ -1,5 +1,5 @@
 //
-//  DoubleExtensionTest.swift
+//  ExtensionTests.swift
 //  Sensor-AppTests
 //
 //  Created by Volker Schmitt on 19.01.20.
@@ -13,7 +13,7 @@ import XCTest
 
 
 // MARK: - Class Definition
-class DoubleExtensionTest: XCTestCase {
+class ExtensionTests: XCTestCase {
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.

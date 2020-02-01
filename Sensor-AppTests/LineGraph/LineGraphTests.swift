@@ -10,6 +10,7 @@
 // MARK: - Import
 import XCTest
 @testable import Sensor_App
+@testable import SwiftUIGraph
 
 
 // MARK: - Class Definition
@@ -25,6 +26,42 @@ class LineGraphTests: XCTestCase {
      
     
     // MARK: - LineGraphView
+    func testLineGraphViewforLocation() {
+        //Given
+        let sut = LineGraphSubView(showGraph: .speed)
+        sut.locationVM.coreLocationArray = generateCoreLocationModelArray()
+        var dataArray = [Double]()
+        
+        //When
+        for item in sut.locationVM.coreLocationArray {
+            dataArray.append(item.speed)
+        }
+        
+        let graph = LineGraphView(lineGraphPointsArray: dataArray, lineGraphSettings: sut.lineGraphSettings, graphWidth: 350, graphHeight: 350)
+        
+        //Then
+        let count = graph.lineGraph.transformedArray.count
+        XCTAssertEqual(count, 150, "There should be 150 DataPoints in the Array")
+        XCTAssertNotNil(graph)
+    }
+    
+    func testLineGraph() {
+        //Given
+        let sut = LineGraphSubView(showGraph: .speed)
+        let locationArray = generateCoreLocationModelArray()
+        var dataArray = [Double]()
+        
+        //When
+        for item in locationArray {
+            dataArray.append(item.speed)
+        }
+        let view = LineGraphView(lineGraphPointsArray: dataArray, lineGraphSettings: sut.lineGraphSettings, graphWidth: 350, graphHeight: 350)
+        
+        //Then
+        XCTAssertNotNil(view)
+    }
+    
+    
     func testLineGraphViewPerformanceOnLocationView() {
         //Given
         let locationVM = CoreLocationViewModel()
@@ -78,7 +115,8 @@ class LineGraphTests: XCTestCase {
     func generateCoreLocationModelArray() -> [LocationModel] {
         var locationArray = [LocationModel]()
         for index in 1...10000 {
-            let array = LocationModel(counter: index, longitude: 23.233245, latitude: -150.23321, altitude: 10.23345, speed: 29.999, course: 250.24424, horizontalAccuracy: 55.5555, verticalAccuracy: 55.5555, timestamp: "2020-01-01 00:00:00", GPSAccuracy: 20.222)
+            let randomDouble = Double.random(in: 0...50)
+            let array = LocationModel(counter: index, longitude: 23.233245, latitude: -150.23321, altitude: 10.23345, speed: randomDouble, course: 250.24424, horizontalAccuracy: 55.5555, verticalAccuracy: 55.5555, timestamp: "2020-01-01 00:00:00", GPSAccuracy: 20.222)
             
             locationArray.append(array)
         }
