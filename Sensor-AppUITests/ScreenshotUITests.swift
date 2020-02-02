@@ -90,8 +90,13 @@ class ScreenshotUITests: XCTestCase {
     func takeScreenshotOfCurrentView(name: String) {
         let fullScreenshot = XCUIScreen.main.screenshot()
         
-        let screenshot = XCTAttachment(uniformTypeIdentifier: "public.png", name: "AppStore-Screenshot-\(name)-\(UIDevice.current.name).png", payload: fullScreenshot.pngRepresentation, userInfo: nil)
+        let screenshot = XCTAttachment(uniformTypeIdentifier: "public.png", name: "\(String(getLanguageISO()))_AppStore-Screenshot-\(name)-\(UIDevice.current.name).png", payload: fullScreenshot.pngRepresentation, userInfo: nil)
         screenshot.lifetime = .keepAlways
         add(screenshot)
+    }
+    
+    func getLanguageISO() -> String {
+      let locale = Locale.current.identifier
+        return locale
     }
 }
