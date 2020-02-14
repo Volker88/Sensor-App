@@ -34,6 +34,8 @@ struct LineGraphSubView: View, LineGraphPotocol {
             transformation.transformMotion(motionModel: motionVM.coreMotionArray, graph: showGraph)
         } else if motionVM.altitudeArray.count != 0 {
             transformation.transformAltitude(altitudeModel: motionVM.altitudeArray, graph: showGraph)
+        } else {
+            transformation.array = [0.0]
         }
     }
     

@@ -19,6 +19,8 @@ struct LocationView: View {
     
     // MARK: - @State / @ObservedObject
     @ObservedObject var locationVM = CoreLocationViewModel()
+    @State private var showSettings = false
+    @State private var toolBarButtonType: ToolBarButtonType = .play
     
     // Show Graph
     @State private var showLatitude = false
@@ -34,15 +36,38 @@ struct LocationView: View {
     
     
     // MARK: - Define Constants / Variables
-    let notificationSettings = NotificationAPI.shared.fetchNotificationAnimationSettings()
     
     
     // MARK: - Methods
+    func toolBarButtonTapped() {
+        var messageType: NotificationTypes?
+        
+        switch toolBarButtonType {
+            case .play:
+                CoreLocationAPI.shared.startUpdatingGPS()
+                messageType = .played
+            case .pause:
+                CoreLocationAPI.shared.stopUpdatingGPS()
+                messageType = .paused
+            case .delete:
+                self.locationVM.coreLocationArray.removeAll()
+                messageType = .deleted
+            case .settings:
+                showSettings.toggle()
+                messageType = nil
+        }
+        
+        if messageType != nil {
+            NotificationAPI.shared.toggleNotification(type: messageType!, duration: self.notificationDuration) { (message, show) in
+                self.notificationMessage = message
+                self.showNotification = show
+            }
+        }
+    }
     
     
     // MARK: - onAppear / onDisappear
     func onAppear() {
-        // Start updating location
         locationVM.locationUpdateStart()
     }
     
@@ -133,7 +158,7 @@ struct LocationView: View {
                                             Image("GraphButton")
                                                 .foregroundColor(.white)
                                                 .offset(x: -10)
-                                            }.accessibility(identifier: "Toggle Speed Graph"), alignment: .trailing)
+                                        }.accessibility(identifier: "Toggle Speed Graph"), alignment: .trailing)
                                     
                                     if self.showSpeed == true {
                                         Spacer()
@@ -153,7 +178,7 @@ struct LocationView: View {
                             
                             
                             // MARK: - LocationToolBarViewModel()
-                            LocationToolBarView(notificationMessage: self.$notificationMessage, showNotification: self.$showNotification, notificationDuration: self.$notificationDuration)
+                            ToolBarView(toolBarButtonType: self.$toolBarButtonType, toolBarFunctionClosure: self.toolBarButtonTapped)
                         }
                         .edgesIgnoringSafeArea(.bottom)
                     }
@@ -169,6 +194,9 @@ struct LocationView: View {
             
             // MARK: - NotificationView()
             NotificationView(notificationMessage: self.$notificationMessage, showNotification: self.$showNotification)
+        }
+        .sheet(isPresented: $showSettings) {
+            SettingsView()
         }
     }
 }

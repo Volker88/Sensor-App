@@ -15,7 +15,7 @@ import SwiftUI
 class GraphArrayTransformation: ObservableObject {
     
     // MARK: - Define Constants / Variables
-    var array: [Double] = [0.0]
+    var array = [Double]()
     var showGraph: GraphDetail = .latitude
 
     

@@ -20,6 +20,8 @@ struct GyroscopeView: View {
     // MARK: - @State / @ObservedObject
     @ObservedObject var motionVM = CoreMotionViewModel()
     @State private var frequency: Float = SettingsAPI.shared.fetchFrequency() // Default Frequency
+    @State private var showSettings = false
+    @State private var toolBarButtonType: ToolBarButtonType = .play
     
     // Show Graph
     @State private var showXAxis = false
@@ -36,6 +38,32 @@ struct GyroscopeView: View {
     
     
     // MARK: - Methods
+    func toolBarButtonTapped() {
+        var messageType: NotificationTypes?
+        
+        switch toolBarButtonType {
+            case .play:
+                motionVM.motionUpdateStart()
+                messageType = .played
+            case .pause:
+                CoreMotionAPI.shared.motionUpdateStop()
+                messageType = .paused
+            case .delete:
+                self.motionVM.coreMotionArray.removeAll()
+                self.motionVM.altitudeArray.removeAll()
+                messageType = .deleted
+            case .settings:
+                showSettings.toggle()
+                messageType = nil
+        }
+        
+        if messageType != nil {
+            NotificationAPI.shared.toggleNotification(type: messageType!, duration: self.notificationDuration) { (message, show) in
+                self.notificationMessage = message
+                self.showNotification = show
+            }
+        }
+    }
     
     
     // MARK: - onAppear / onDisappear
@@ -129,7 +157,7 @@ struct GyroscopeView: View {
                             
                             
                             // MARK: - MotionToolBarViewModel()
-                            MotionToolBarView(notificationMessage: self.$notificationMessage, showNotification: self.$showNotification, notificationDuration: self.$notificationDuration, motionVM: self.motionVM)
+                            ToolBarView(toolBarButtonType: self.$toolBarButtonType, toolBarFunctionClosure: self.toolBarButtonTapped)
                         }
                         .edgesIgnoringSafeArea(.bottom)
                     }
@@ -145,6 +173,9 @@ struct GyroscopeView: View {
             
             // MARK: - NotificationView()
             NotificationView(notificationMessage: self.$notificationMessage, showNotification: self.$showNotification)
+        }
+        .sheet(isPresented: $showSettings) {
+            SettingsView()
         }
     }
 }
