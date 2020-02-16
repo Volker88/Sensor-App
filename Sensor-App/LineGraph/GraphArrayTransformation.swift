@@ -24,7 +24,7 @@ class GraphArrayTransformation: ObservableObject {
         if locationModel!.count != 0 {
             _ = locationModel!.map { value in
                 
-                let speed = CalculationAPI.shared.calculateSpeed(ms: value.speed, to: SettingsAPI.shared.fetchSpeedSetting())
+                let speed = CalculationAPI.shared.calculateSpeed(ms: value.speed, to: SettingsAPI.shared.fetchUserSettings().GPSSpeedSetting)
                 switch graph {
                     case .latitude: array.append(value.latitude)
                     case .longitude: array.append(value.longitude)
@@ -70,8 +70,8 @@ class GraphArrayTransformation: ObservableObject {
         if altitudeModel!.count != 0 {
             _ = altitudeModel!.map { value in
                 
-                let height = CalculationAPI.shared.calculateHeight(height: value.relativeAltitudeValue, to: SettingsAPI.shared.fetchHeightSetting())
-                let pressure = CalculationAPI.shared.calculatePressure(pressure: value.pressureValue, to: SettingsAPI.shared.fetchPressureSetting())
+                let height = CalculationAPI.shared.calculateHeight(height: value.relativeAltitudeValue, to: SettingsAPI.shared.fetchUserSettings().altitudeHeightSetting)
+                let pressure = CalculationAPI.shared.calculatePressure(pressure: value.pressureValue, to: SettingsAPI.shared.fetchUserSettings().altitudeHeightSetting)
                 switch graph {
                     case .pressureValue: array.append(pressure)
                     case .relativeAltitudeValue: array.append(height)

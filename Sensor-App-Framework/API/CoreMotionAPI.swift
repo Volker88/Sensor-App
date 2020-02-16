@@ -32,7 +32,7 @@ class CoreMotionAPI {
     
 
     // MARK: - Define Constants / Variables
-    public var sensorUpdateInterval : Double = Double(SettingsAPI.shared.fetchFrequency())
+    public var sensorUpdateInterval : Double = Double(SettingsAPI.shared.fetchUserSettings().frequencySetting)
     
     
     // MARK: - Closure to push MotionModel to ViewModel

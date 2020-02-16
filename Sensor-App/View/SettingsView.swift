@@ -27,19 +27,22 @@ struct SettingsView: View {
     
     
     // MARK: - Variables / Constants
-    @State var speedSetting = SettingsAPI.shared.GPSSpeedSettings.firstIndex(of: SettingsAPI.shared.fetchSpeedSetting())!
-    @State var accuracySetting = SettingsAPI.shared.GPSAccuracyOptions.firstIndex(of: SettingsAPI.shared.fetchGPSAccuracySetting())!
-    @State var pressureSetting = SettingsAPI.shared.altitudePressure.firstIndex(of: SettingsAPI.shared.fetchPressureSetting())!
-    @State var heightSetting = SettingsAPI.shared.altitudeHeight.firstIndex(of: SettingsAPI.shared.fetchHeightSetting())!
+    @State var speedSetting = SettingsAPI.shared.GPSSpeedSettings.firstIndex(of: SettingsAPI.shared.fetchUserSettings().GPSSpeedSetting)!
+    @State var accuracySetting = SettingsAPI.shared.GPSAccuracyOptions.firstIndex(of: SettingsAPI.shared.fetchUserSettings().GPSAccuracySetting)!
+    @State var pressureSetting = SettingsAPI.shared.altitudePressure.firstIndex(of: SettingsAPI.shared.fetchUserSettings().pressureSetting)!
+    @State var heightSetting = SettingsAPI.shared.altitudeHeight.firstIndex(of: SettingsAPI.shared.fetchUserSettings().altitudeHeightSetting)!
     let notificationSettings = NotificationAPI.shared.fetchNotificationAnimationSettings()
     
     
     // MARK: - Methods
     func saveSettings() {
-        SettingsAPI.shared.saveUserDefaultsString(input: SettingsAPI.shared.GPSSpeedSettings[self.speedSetting], setting: SettingsForUserDefaults.GPSSpeedSetting)
-        SettingsAPI.shared.saveUserDefaultsString(input: SettingsAPI.shared.GPSAccuracyOptions[self.accuracySetting], setting: SettingsForUserDefaults.GPSAccuracySetting)
-        SettingsAPI.shared.saveUserDefaultsString(input: SettingsAPI.shared.altitudePressure[self.pressureSetting], setting: SettingsForUserDefaults.pressureSetting)
-        SettingsAPI.shared.saveUserDefaultsString(input: SettingsAPI.shared.altitudeHeight[self.heightSetting], setting: SettingsForUserDefaults.altitudeHeightSetting)
+        var settings = SettingsAPI.shared.fetchUserSettings()
+        settings.GPSSpeedSetting = SettingsAPI.shared.GPSSpeedSettings[self.speedSetting]
+        settings.GPSAccuracySetting = SettingsAPI.shared.GPSAccuracyOptions[self.accuracySetting]
+        settings.pressureSetting = SettingsAPI.shared.altitudePressure[self.pressureSetting]
+        settings.altitudeHeightSetting = SettingsAPI.shared.altitudeHeight[self.heightSetting]
+        SettingsAPI.shared.saveUserSettings(userSettings: settings)
+        
         NotificationAPI.shared.toggleNotification(type: .saved, duration: nil) { (message, show) in
             self.notificationMessage = message
             self.showNotification = show
@@ -47,10 +50,10 @@ struct SettingsView: View {
     }
     
     func discardChanges(showNotification: Bool) {
-        self.speedSetting = SettingsAPI.shared.GPSSpeedSettings.firstIndex(of: SettingsAPI.shared.fetchSpeedSetting())!
-        self.accuracySetting = SettingsAPI.shared.GPSAccuracyOptions.firstIndex(of: SettingsAPI.shared.fetchGPSAccuracySetting())!
-        self.pressureSetting = SettingsAPI.shared.altitudePressure.firstIndex(of: SettingsAPI.shared.fetchPressureSetting())!
-        self.heightSetting = SettingsAPI.shared.altitudeHeight.firstIndex(of: SettingsAPI.shared.fetchHeightSetting())!
+        self.speedSetting = SettingsAPI.shared.GPSSpeedSettings.firstIndex(of: SettingsAPI.shared.fetchUserSettings().GPSSpeedSetting)!
+        self.accuracySetting = SettingsAPI.shared.GPSAccuracyOptions.firstIndex(of: SettingsAPI.shared.fetchUserSettings().GPSAccuracySetting)!
+        self.pressureSetting = SettingsAPI.shared.altitudePressure.firstIndex(of: SettingsAPI.shared.fetchUserSettings().pressureSetting)!
+        self.heightSetting = SettingsAPI.shared.altitudeHeight.firstIndex(of: SettingsAPI.shared.fetchUserSettings().altitudeHeightSetting)!
         if showNotification == true {
             NotificationAPI.shared.toggleNotification(type: .discarded, duration: nil) { (message, show) in
                 self.notificationMessage = message
@@ -66,11 +69,11 @@ struct SettingsView: View {
     
     // MARK: - onAppear / onDisappear
     func onAppear() {
-
+        
     }
     
     func onDisappear() {
-
+        
     }
     
     
@@ -95,7 +98,7 @@ struct SettingsView: View {
                                 Text(SettingsAPI.shared.GPSAccuracyOptions[$0]).tag($0)
                             }
                         }
-                    .accessibility(identifier: "GPS Accuracy Settings")
+                        .accessibility(identifier: "GPS Accuracy Settings")
                     }
                     Section(header:
                         Text("Altitude")
@@ -106,13 +109,13 @@ struct SettingsView: View {
                                 Text(SettingsAPI.shared.altitudePressure[$0]).tag($0)
                             }
                         }
-                        .accessibility(identifier: "Altitude Settings")
+                        .accessibility(identifier: "Pressure Settings")
                         Picker(selection: self.$heightSetting, label: Text("Height")) {
                             ForEach(0 ..< SettingsAPI.shared.altitudeHeight.count, id: \.self) {
                                 Text(SettingsAPI.shared.altitudeHeight[$0]).tag($0)
                             }
                         }
-                    .accessibility(identifier: "Height Settings")
+                        .accessibility(identifier: "Height Settings")
                     }
                 }
                 .navigationBarTitle(Text("Settings"), displayMode: .inline)
@@ -161,8 +164,8 @@ struct SettingsView: View {
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
         ForEach([ColorScheme.light, .dark], id: \.self) { scheme in
-                SettingsView()
-                    .colorScheme(scheme)
+            SettingsView()
+                .colorScheme(scheme)
         }
     }
 }

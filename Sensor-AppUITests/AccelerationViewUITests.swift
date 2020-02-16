@@ -90,8 +90,10 @@ class AccelerationViewUITests: XCTestCase {
         app.sliders["Frequency Slider"].adjust(toNormalizedSliderPosition: 1.0)
         
         let updateFrequency = app.sliders["Frequency Slider"].value as! String
-        
         XCTAssertEqual(updateFrequency, "100%", "Update frequency should be 100% but is \(updateFrequency)")
+        
+        // Go Back to Main Menu
+        app.navigationBars.buttons.element(boundBy: 0).tap()
     }
     
     

@@ -15,14 +15,16 @@ import SwiftUI
 struct RefreshRateView: View {
     
     // MARK: - @State Variables
-    @State var refreshRate : Double = Double(SettingsAPI.shared.fetchFrequency())
+    @State var refreshRate : Double = SettingsAPI.shared.fetchUserSettings().frequencySetting
     
     
     // MARK: - Methods
     func updateSlider() {
         
         // Save Sensor Settings
-        SettingsAPI.shared.saveFrequency(frequency: Float(self.refreshRate))
+        var settings = SettingsAPI.shared.fetchUserSettings()
+        settings.frequencySetting = self.refreshRate
+        SettingsAPI.shared.saveUserSettings(userSettings: settings)
         
         // Update Sensor Interval
         CoreMotionAPI.shared.sensorUpdateInterval = self.refreshRate

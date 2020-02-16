@@ -11,16 +11,6 @@ import Foundation
 import SwiftUI
 
 
-// MARK: - Settings for User Defaults (enum)
-enum SettingsForUserDefaults {
-    case GPSSpeedSetting
-    case GPSAccuracySetting
-    case frequencySetting
-    case pressureSetting
-    case altitudeHeightSetting
-}
-
-
 // MARK: - Class Definition
 class SettingsAPI {
     
@@ -67,8 +57,6 @@ class SettingsAPI {
     
     
     // MARK: - UserDefaults
-    private let userDefaults = UserDefaults.standard
-    
     ///
     ///  Call this function to clear all UserDefaults
     ///
@@ -77,128 +65,43 @@ class SettingsAPI {
         UserDefaults.standard.synchronize()
     }
     
+    /// Read UserSettings
     ///
-    ///  Save user settings for strings
+    /// This function returns UserSettings from UserDefaults and returns back standard settings if UserDefaults can't be fetched
     ///
-    ///  Saves the user settings for:
-    ///  * GPSSpeedSetting
-    ///  * GPSAccuracyOption
-    ///  * altitudePressure
-    ///  * altitudeHeight
+    /// - Returns: UserSettings
     ///
-    ///  - Note:
-    ///  - Remark:
-    ///
-    ///  - Returns:
-    ///
-    ///  - Parameter input: String to be saved
-    ///  - Parameter setting: Setting which should be saved
-    ///
-    public func saveUserDefaultsString(input: String, setting: SettingsForUserDefaults) {
-        userDefaults.set(input, forKey: "\(setting)")
-        print("Saved - \(input) for \(setting)")
-    }
-    
-    
-    // MARK: - Methods for Location
-    ///
-    ///  Fetch speed setting from user defaults
-    ///
-    ///  Fetches the speed setting from user defaults. If no setting is saved it will return *m/s* as default.
-    ///
-    ///  - Note:
-    ///  - Remark:
-    ///
-    ///  - Returns: Speed setting
-    ///
-    public func fetchSpeedSetting() -> String { // Read Speed Settings from UserDefaults
-        var GPSSpeedSetting = ""
-        if let i = userDefaults.string(forKey: "\(SettingsForUserDefaults.GPSSpeedSetting)") {
-            if GPSSpeedSettings.contains(i) {
-                GPSSpeedSetting = i
-            } else {
-                GPSSpeedSetting = "m/s"
+    public func fetchUserSettings() -> UserSettings {
+        var userSettings = UserSettings(GPSSpeedSetting: "m/s", GPSAccuracySetting: "Best", frequencySetting: 1.0, pressureSetting: "kPa", altitudeHeightSetting: "m")
+        
+        if let settings = UserDefaults.standard.data(forKey: "UserSettings") {
+            let decoder = JSONDecoder()
+            if let decoded = try? decoder.decode(UserSettings.self, from: settings) {
+                userSettings = decoded
             }
-        } else {
-            GPSSpeedSetting = "m/s"
         }
-        return GPSSpeedSetting
+        print("Read Settings: \(userSettings)")
+        return userSettings
     }
     
+    /// Save UserSettings
     ///
-    ///  Fetch GPS accuracy setting from user defaults
+    /// Save UserSettings to UserDefaults
     ///
-    ///  Fetches the GPS accuracy setting from user defaults. If no setting is saved it will return *Best* as default.
+    /// - Parameter userSettings: Settings to save to UserDefaults
     ///
-    ///  - Note:
-    ///  - Remark:
-    ///
-    ///  - Returns: GPS accuracy setting
-    ///
-    public func fetchGPSAccuracySetting() -> String { // Read GPS Accuracy Settings from UserDefaults
-        var GPSAccuracySetting = ""
-        if let i = userDefaults.string(forKey: "\(SettingsForUserDefaults.GPSAccuracySetting)") {
-            if GPSAccuracyOptions.contains(i) {
-                GPSAccuracySetting = i
-            } else {
-                GPSAccuracySetting = "Best"
-            }
-        } else {
-            GPSAccuracySetting = "Best"
+    public func saveUserSettings(userSettings: UserSettings) {
+        let encoder = JSONEncoder()
+        let settings = userSettings
+        
+        if let data = try? encoder.encode(settings) {
+            UserDefaults.standard.set(data, forKey: "UserSettings")
         }
-        return GPSAccuracySetting
+        print("Save Settings: \(settings)")
     }
     
     
-    // MARK: - Methods for Altitiude
-    ///
-    ///  Fetch Altitude Pressure setting from user defaults
-    ///
-    ///  Fetches the Altitude Pressure setting from user defaults. If no setting is saved it will return *kPa* as default.
-    ///
-    ///  - Note:
-    ///  - Remark:
-    ///
-    ///  - Returns: GPS accuracy setting
-    ///
-    public func fetchPressureSetting() -> String { // Read Pressure Setting from UserDefaults
-        var pressureSetting = ""
-        if let i = userDefaults.string(forKey: "\(SettingsForUserDefaults.pressureSetting)") {
-            if altitudePressure.contains(i) {
-                pressureSetting = i
-            } else {
-                pressureSetting = "kPa"
-            }
-        } else {
-            pressureSetting = "kPa"
-        }
-        return pressureSetting
-    }
-    
-    ///
-    ///  Fetch Altitude Height setting from user defaults
-    ///
-    ///  Fetches the Altitude Height setting from user defaults. If no setting is saved it will return *m* as default.
-    ///
-    ///  - Note:
-    ///  - Remark:
-    ///
-    ///  - Returns: Altitude Height setting
-    ///
-    public func fetchHeightSetting() -> String { // Read Height Setting from UserDefaults
-        var heightSetting = ""
-        if let i = userDefaults.string(forKey: "\(SettingsForUserDefaults.altitudeHeightSetting)") {
-            if altitudeHeight.contains(i) {
-                heightSetting = i
-            } else {
-                heightSetting = "m"
-            }
-        } else {
-            heightSetting = "m"
-        }
-        return heightSetting
-    }
-    
+    // MARK: - Methods
     ///
     ///  Get  current timestamp
     ///
@@ -218,40 +121,8 @@ class SettingsAPI {
     }
     
     
-    // MARK: - Methods for Refresh Rate
-    
-    ///
-    ///  Saves the frequency changes to user defaults
-    ///
-    ///  - Note:
-    ///  - Remark:
-    ///
-    ///  - Returns:
-    ///
-    ///  - Parameter frequency: Update Frequency in Hz
-    ///
-    func saveFrequency(frequency: Float) { // Save Frequency to UserDefaults
-        userDefaults.set(frequency, forKey: "\(SettingsForUserDefaults.frequencySetting)")
-        print("Saved - \(frequency) for \(SettingsForUserDefaults.frequencySetting)")
-    }
     
     
-    ///
-    ///  Fetch frequency setting from user defaults
-    ///
-    ///   Fetches the frequency from user defaults. If no setting is saved it will return *1.0* as default.
-    ///
-    ///  - Note:
-    ///  - Remark:
-    ///
-    ///  - Returns: Update Frequency in Hz
-    ///
-    func fetchFrequency() -> Float { // Read Frequency from UserDefaults
-        var frequencySetting: Double = userDefaults.double(forKey: "\(SettingsForUserDefaults.frequencySetting)")
-        
-        if frequencySetting == 0.0 {
-            frequencySetting = 1.0
-        }
-        return Float(frequencySetting)
-    }
+    
+    
 }

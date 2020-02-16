@@ -173,9 +173,9 @@ struct MotionListView: View {
                         HStack{
                             Text("ID:\(self.motionVM.altitudeArray[index.counter - 1].counter)")
                             Spacer()
-                            Text("P:\(CalculationAPI.shared.calculatePressure(pressure: self.motionVM.altitudeArray[index.counter - 1].pressureValue, to: SettingsAPI.shared.fetchPressureSetting()), specifier: "%.5f")")
+                            Text("P:\(CalculationAPI.shared.calculatePressure(pressure: self.motionVM.altitudeArray[index.counter - 1].pressureValue, to: SettingsAPI.shared.fetchUserSettings().pressureSetting), specifier: "%.5f")")
                             Spacer()
-                            Text("A:\(CalculationAPI.shared.calculateHeight(height: self.motionVM.altitudeArray[index.counter - 1].relativeAltitudeValue, to: SettingsAPI.shared.fetchHeightSetting()), specifier: "%.5f")")
+                            Text("A:\(CalculationAPI.shared.calculateHeight(height: self.motionVM.altitudeArray[index.counter - 1].relativeAltitudeValue, to: SettingsAPI.shared.fetchUserSettings().altitudeHeightSetting), specifier: "%.5f")")
                         }
                         .foregroundColor(Color("ListTextColor"))
                         .font(.footnote)

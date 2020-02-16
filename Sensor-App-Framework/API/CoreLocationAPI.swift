@@ -94,7 +94,7 @@ class CoreLocationAPI: CLLocationManager, CLLocationManagerDelegate {
     ///
     public func startUpdatingGPS() { // Start getting GPS Coordinates
         // Define Accuracy based on selection - SettingsModel.GPSAccuracy
-        let desiredAccuracy = SettingsAPI.shared.fetchGPSAccuracySetting()
+        let desiredAccuracy = SettingsAPI.shared.fetchUserSettings().GPSAccuracySetting
         switch desiredAccuracy {
             case "Best": locationManager.desiredAccuracy = kCLLocationAccuracyBest
             case "10 Meter": locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters

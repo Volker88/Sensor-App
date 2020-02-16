@@ -19,7 +19,7 @@ struct AltitudeView: View {
     
     // MARK: - @State / @ObservedObject
     @ObservedObject var motionVM = CoreMotionViewModel()
-    @State private var frequency: Float = SettingsAPI.shared.fetchFrequency() // Default Frequency
+    @State private var frequency = SettingsAPI.shared.fetchUserSettings().frequencySetting // Default Frequency
     
     
     // MARK: - Define Constants / Variables
@@ -46,8 +46,8 @@ struct AltitudeView: View {
         
         // MARK: - Return View
         return List {
-            Text("Pressure: \(CalculationAPI.shared.calculatePressure(pressure: self.motionVM.altitudeArray.last?.pressureValue ?? 0.0, to: SettingsAPI.shared.fetchPressureSetting()), specifier: "%.5f") \(SettingsAPI.shared.fetchPressureSetting())")
-            Text("Altitude change: \(CalculationAPI.shared.calculateHeight(height: self.motionVM.altitudeArray.last?.relativeAltitudeValue ?? 0.0, to: SettingsAPI.shared.fetchHeightSetting()), specifier: "%.5f") \(SettingsAPI.shared.fetchHeightSetting())")
+            Text("Pressure: \(CalculationAPI.shared.calculatePressure(pressure: self.motionVM.altitudeArray.last?.pressureValue ?? 0.0, to: SettingsAPI.shared.fetchUserSettings().pressureSetting), specifier: "%.5f") \(SettingsAPI.shared.fetchUserSettings().pressureSetting)")
+            Text("Altitude change: \(CalculationAPI.shared.calculateHeight(height: self.motionVM.altitudeArray.last?.relativeAltitudeValue ?? 0.0, to: SettingsAPI.shared.fetchUserSettings().altitudeHeightSetting), specifier: "%.5f") \(SettingsAPI.shared.fetchUserSettings().altitudeHeightSetting)")
         }
         .navigationBarTitle("Altitude")
         .font(.footnote)

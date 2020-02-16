@@ -152,7 +152,7 @@ struct LocationView: View {
                                         Spacer()
                                     }
                                     
-                                    Text("Speed: \(CalculationAPI.shared.calculateSpeed(ms: self.locationVM.coreLocationArray.last?.speed ?? 0.0, to: "\(SettingsAPI.shared.fetchSpeedSetting())"), specifier: "%.2f")\(SettingsAPI.shared.fetchSpeedSetting())")
+                                    Text("Speed: \(CalculationAPI.shared.calculateSpeed(ms: self.locationVM.coreLocationArray.last?.speed ?? 0.0, to: "\(SettingsAPI.shared.fetchUserSettings().GPSSpeedSetting)"), specifier: "%.2f")\(SettingsAPI.shared.fetchUserSettings().GPSSpeedSetting)")
                                         .modifier(ButtonModifier())
                                         .overlay(Button(action: { self.showSpeed.toggle() }) {
                                             Image("GraphButton")

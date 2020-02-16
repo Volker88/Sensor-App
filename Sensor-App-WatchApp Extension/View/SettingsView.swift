@@ -20,23 +20,25 @@ struct SettingsView: View {
     // MARK: - @State / @ObservedObject
     @State private var showingDiscardAlert = false
     @State private var showingSaveAlert = false
-    @State var refreshRate : Double = Double(SettingsAPI.shared.fetchFrequency())
+    @State var refreshRate : Double = SettingsAPI.shared.fetchUserSettings().frequencySetting
     
     
     // MARK: - Variables / Constants
-    @State var speedSetting = SettingsAPI.shared.GPSSpeedSettings.firstIndex(of: SettingsAPI.shared.fetchSpeedSetting())!
-    @State var accuracySetting = SettingsAPI.shared.GPSAccuracyOptions.firstIndex(of: SettingsAPI.shared.fetchGPSAccuracySetting())!
-    @State var pressureSetting = SettingsAPI.shared.altitudePressure.firstIndex(of: SettingsAPI.shared.fetchPressureSetting())!
-    @State var heightSetting = SettingsAPI.shared.altitudeHeight.firstIndex(of: SettingsAPI.shared.fetchHeightSetting())!
+    @State var speedSetting = SettingsAPI.shared.GPSSpeedSettings.firstIndex(of: SettingsAPI.shared.fetchUserSettings().GPSSpeedSetting)!
+    @State var accuracySetting = SettingsAPI.shared.GPSAccuracyOptions.firstIndex(of: SettingsAPI.shared.fetchUserSettings().GPSAccuracySetting)!
+    @State var pressureSetting = SettingsAPI.shared.altitudePressure.firstIndex(of: SettingsAPI.shared.fetchUserSettings().pressureSetting)!
+    @State var heightSetting = SettingsAPI.shared.altitudeHeight.firstIndex(of: SettingsAPI.shared.fetchUserSettings().altitudeHeightSetting)!
     
     
     // MARK: - Methods
     func saveSettings() {
-        SettingsAPI.shared.saveUserDefaultsString(input: SettingsAPI.shared.GPSSpeedSettings[self.speedSetting], setting: SettingsForUserDefaults.GPSSpeedSetting)
-        SettingsAPI.shared.saveUserDefaultsString(input: SettingsAPI.shared.GPSAccuracyOptions[self.accuracySetting], setting: SettingsForUserDefaults.GPSAccuracySetting)
-        SettingsAPI.shared.saveUserDefaultsString(input: SettingsAPI.shared.altitudePressure[self.pressureSetting], setting: SettingsForUserDefaults.pressureSetting)
-        SettingsAPI.shared.saveUserDefaultsString(input: SettingsAPI.shared.altitudeHeight[self.heightSetting], setting: SettingsForUserDefaults.altitudeHeightSetting)
-        updateSlider()
+        var settings = SettingsAPI.shared.fetchUserSettings()
+        settings.GPSSpeedSetting = SettingsAPI.shared.GPSSpeedSettings[self.speedSetting]
+        settings.GPSAccuracySetting = SettingsAPI.shared.GPSAccuracyOptions[self.accuracySetting]
+        settings.pressureSetting = SettingsAPI.shared.altitudePressure[self.pressureSetting]
+        settings.altitudeHeightSetting = SettingsAPI.shared.altitudeHeight[self.heightSetting]
+        settings.frequencySetting = self.refreshRate
+        SettingsAPI.shared.saveUserSettings(userSettings: settings)
         
         self.showingSaveAlert = true
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: {
@@ -45,11 +47,11 @@ struct SettingsView: View {
     }
     
     func discardChanges(showNotification: Bool) {
-        self.speedSetting = SettingsAPI.shared.GPSSpeedSettings.firstIndex(of: SettingsAPI.shared.fetchSpeedSetting())!
-        self.accuracySetting = SettingsAPI.shared.GPSAccuracyOptions.firstIndex(of: SettingsAPI.shared.fetchGPSAccuracySetting())!
-        self.pressureSetting = SettingsAPI.shared.altitudePressure.firstIndex(of: SettingsAPI.shared.fetchPressureSetting())!
-        self.heightSetting = SettingsAPI.shared.altitudeHeight.firstIndex(of: SettingsAPI.shared.fetchHeightSetting())!
-        self.refreshRate = Double(SettingsAPI.shared.fetchFrequency())
+        self.speedSetting = SettingsAPI.shared.GPSSpeedSettings.firstIndex(of: SettingsAPI.shared.fetchUserSettings().GPSSpeedSetting)!
+        self.accuracySetting = SettingsAPI.shared.GPSAccuracyOptions.firstIndex(of: SettingsAPI.shared.fetchUserSettings().GPSAccuracySetting)!
+        self.pressureSetting = SettingsAPI.shared.altitudePressure.firstIndex(of: SettingsAPI.shared.fetchUserSettings().pressureSetting)!
+        self.heightSetting = SettingsAPI.shared.altitudeHeight.firstIndex(of: SettingsAPI.shared.fetchUserSettings().altitudeHeightSetting)!
+        self.refreshRate = SettingsAPI.shared.fetchUserSettings().frequencySetting
         
         if showNotification == true {
             self.showingDiscardAlert = true
@@ -59,13 +61,6 @@ struct SettingsView: View {
         }
     }
     
-    func updateSlider() {
-        // Save Sensor Settings
-        SettingsAPI.shared.saveFrequency(frequency: Float(self.refreshRate))
-        
-        // Update Sensor Interval
-        CoreMotionAPI.shared.sensorUpdateInterval = self.refreshRate
-    }
     
     // MARK: - onAppear / onDisappear
     func onAppear() {

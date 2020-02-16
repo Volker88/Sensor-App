@@ -33,6 +33,38 @@ class SettingsViewUITests: XCTestCase {
     
     
     // MARK: - Tests
+    func testSettingsSelection() throws {
+        // Start Application
+        let app = XCUIApplication()
+        app.launch()
+        
+        // Go to Settings View
+        app.scrollViews.otherElements.buttons["Settings"].tap()
+        
+        // Select Speed Setting
+        let tablesQuery = app.tables
+        tablesQuery/*@START_MENU_TOKEN@*/.buttons["Speed Settings"]/*[[".cells",".buttons[\"Speed Setting\"]",".buttons[\"Speed Settings\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.tap()
+        tablesQuery/*@START_MENU_TOKEN@*/.buttons["km/h"]/*[[".cells.buttons[\"km\/h\"]",".buttons[\"km\/h\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        
+        // Select GPS Accuracy Setting
+        tablesQuery.buttons["GPS Accuracy Settings"].tap()
+        tablesQuery.buttons["3 Kilometer"].tap()
+        
+        // Select Pressure Setting
+        tablesQuery.buttons["Pressure Settings"].tap()
+        tablesQuery.buttons["bar"].tap()
+        
+        // Select Height Setting
+        tablesQuery.buttons["Height Settings"].tap()
+        tablesQuery.buttons["ft"].tap()
+        
+        // Save Settings
+        let settingsNavigationBar = app.navigationBars["Settings"]
+        settingsNavigationBar/*@START_MENU_TOKEN@*/.buttons["Save Settings"]/*[[".buttons[\"SaveButton\"]",".buttons[\"Save Settings\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        
+        // Go Back to Main Menu
+        settingsNavigationBar/*@START_MENU_TOKEN@*/.buttons["Close Button"]/*[[".buttons[\"clear\"]",".buttons[\"Close Button\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+    }
     
     
     // MARK:  - Methods

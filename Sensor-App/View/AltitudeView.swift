@@ -19,7 +19,7 @@ struct AltitudeView: View {
     
     // MARK: - @State / @ObservedObject
     @ObservedObject var motionVM = CoreMotionViewModel()
-    @State private var frequency: Float = SettingsAPI.shared.fetchFrequency() // Default Frequency
+    @State private var frequency = SettingsAPI.shared.fetchUserSettings().frequencySetting // Default Frequency
     @State private var showSettings = false
     @State private var toolBarButtonType: ToolBarButtonType = .play
     @State private var motionIsUpdating = true
@@ -100,7 +100,7 @@ struct AltitudeView: View {
                                 Spacer()
                                 VStack{
                                     Group{
-                                        Text("Pressure: \(CalculationAPI.shared.calculatePressure(pressure: self.motionVM.altitudeArray.last?.pressureValue ?? 0.0, to: SettingsAPI.shared.fetchPressureSetting()), specifier: "%.5f") \(SettingsAPI.shared.fetchPressureSetting())")
+                                        Text("Pressure: \(CalculationAPI.shared.calculatePressure(pressure: self.motionVM.altitudeArray.last?.pressureValue ?? 0.0, to: SettingsAPI.shared.fetchUserSettings().pressureSetting), specifier: "%.5f") \(SettingsAPI.shared.fetchUserSettings().pressureSetting)")
                                             .modifier(ButtonModifier())
                                             .overlay(Button(action: { self.showPressure.toggle() }) {
                                                 Image("GraphButton")
@@ -115,7 +115,7 @@ struct AltitudeView: View {
                                             Spacer()
                                         }
                                         
-                                        Text("Altitude change: \(CalculationAPI.shared.calculateHeight(height: self.motionVM.altitudeArray.last?.relativeAltitudeValue ?? 0.0, to: SettingsAPI.shared.fetchHeightSetting()), specifier: "%.5f") \(SettingsAPI.shared.fetchHeightSetting())")
+                                        Text("Altitude change: \(CalculationAPI.shared.calculateHeight(height: self.motionVM.altitudeArray.last?.relativeAltitudeValue ?? 0.0, to: SettingsAPI.shared.fetchUserSettings().altitudeHeightSetting), specifier: "%.5f") \(SettingsAPI.shared.fetchUserSettings().altitudeHeightSetting)")
                                             .modifier(ButtonModifier())
                                             .overlay(Button(action: { self.showRelativeAltidudeChange.toggle() }) {
                                                 Image("GraphButton")

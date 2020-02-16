@@ -112,6 +112,12 @@
 		15A7F6A8236C5EFD009FCF1D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1577ECB2233019300061718B /* InfoPlist.strings */; };
 		15A7F6AD236C5FD9009FCF1D /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15A7F6AC236C5FD9009FCF1D /* Interface.storyboard */; };
 		15B357AE23DF678700972D41 /* SettingsAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B357AD23DF678700972D41 /* SettingsAPITests.swift */; };
+		15D9C3D223F9C92000AC37AE /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D9C3D123F9C92000AC37AE /* UserSettings.swift */; };
+		15D9C3D323F9C92900AC37AE /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D9C3D123F9C92000AC37AE /* UserSettings.swift */; };
+		15D9C3D423F9C92B00AC37AE /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D9C3D123F9C92000AC37AE /* UserSettings.swift */; };
+		15D9C3D623F9C96E00AC37AE /* SettingsForUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D9C3D523F9C96E00AC37AE /* SettingsForUserDefaults.swift */; };
+		15D9C3D723F9C98800AC37AE /* SettingsForUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D9C3D523F9C96E00AC37AE /* SettingsForUserDefaults.swift */; };
+		15D9C3D823F9C98A00AC37AE /* SettingsForUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D9C3D523F9C96E00AC37AE /* SettingsForUserDefaults.swift */; };
 		15DDE35A2337EC8100732427 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15DDE3592337EC8100732427 /* LaunchScreen.storyboard */; };
 		15DDEF1623D48CCC003AACC4 /* ExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DDEF1523D48CCC003AACC4 /* ExtensionTests.swift */; };
 		15DDEF1823D4AB09003AACC4 /* LineGraphSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DDEF1723D4AB09003AACC4 /* LineGraphSubView.swift */; };
@@ -279,6 +285,8 @@
 		15B357AD23DF678700972D41 /* SettingsAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAPITests.swift; sourceTree = "<group>"; };
 		15BD0A4C2350FCD900784975 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		15C559D523BA545900812942 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
+		15D9C3D123F9C92000AC37AE /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
+		15D9C3D523F9C96E00AC37AE /* SettingsForUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsForUserDefaults.swift; sourceTree = "<group>"; };
 		15DD205923E5B64E001DD2A3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		15DD205A23E5B7F1001DD2A3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		15DDE3592337EC8100732427 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -566,7 +574,9 @@
 				15DEDA64231DA6F3008B2327 /* MotionModel.swift */,
 				15A062AD233FD2D100F5DC6F /* NotificationModel.swift */,
 				15995DF2234F9D4B00C0DDA0 /* SensorType.swift */,
+				15D9C3D523F9C96E00AC37AE /* SettingsForUserDefaults.swift */,
 				15404C6423F7295C00863D8B /* ToolBarButtonType.swift */,
+				15D9C3D123F9C92000AC37AE /* UserSettings.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -950,12 +960,14 @@
 				154E0FEA235CE3BD00FD426C /* HostingController.swift in Sources */,
 				15404C6623F7297900863D8B /* ToolBarButtonType.swift in Sources */,
 				151F66BF23CB81AB00DAFCD3 /* CoreLocationAPI.swift in Sources */,
+				15D9C3D823F9C98A00AC37AE /* SettingsForUserDefaults.swift in Sources */,
 				151F672A23CB9B4600DAFCD3 /* ViewButtonModifier.swift in Sources */,
 				151F66C923CB82A500DAFCD3 /* CalculationAPI.swift in Sources */,
 				15841D54238176B900E031B9 /* AttitudeView.swift in Sources */,
 				15841D452381767500E031B9 /* LocationView.swift in Sources */,
 				15841D57238176C100E031B9 /* AltitudeView.swift in Sources */,
 				151F66C723CB826300DAFCD3 /* Extension.swift in Sources */,
+				15D9C3D423F9C92B00AC37AE /* UserSettings.swift in Sources */,
 				154E0FE8235CE3BD00FD426C /* ContentView.swift in Sources */,
 				15841D51238176AD00E031B9 /* MagnetometerView.swift in Sources */,
 				15841D8323817A8E00E031B9 /* CoreMotionAPI.swift in Sources */,
@@ -979,8 +991,10 @@
 				1516CD50232CC57400817C33 /* AltitudeView.swift in Sources */,
 				1516CD57232D510400817C33 /* SettingsView.swift in Sources */,
 				1516CD4A232CC57400817C33 /* GyroscopeView.swift in Sources */,
+				15D9C3D723F9C98800AC37AE /* SettingsForUserDefaults.swift in Sources */,
 				15DEDA65231DA6F3008B2327 /* MotionModel.swift in Sources */,
 				1531AC4C2353968700492189 /* MotionListView.swift in Sources */,
+				15D9C3D323F9C92900AC37AE /* UserSettings.swift in Sources */,
 				1516CD4E232CC57400817C33 /* AttitudeView.swift in Sources */,
 				1577ECA72330072A0061718B /* ContentView.swift in Sources */,
 				1577ECAA233007630061718B /* MagnetometerView.swift in Sources */,
@@ -1031,7 +1045,9 @@
 				1557774C23CA777F00BD563E /* CoreMotionAPI.swift in Sources */,
 				1557775123CA795E00BD563E /* MotionModel.swift in Sources */,
 				15404C6523F7295C00863D8B /* ToolBarButtonType.swift in Sources */,
+				15D9C3D623F9C96E00AC37AE /* SettingsForUserDefaults.swift in Sources */,
 				1557774A23CA777900BD563E /* CalculationAPI.swift in Sources */,
+				15D9C3D223F9C92000AC37AE /* UserSettings.swift in Sources */,
 				1557775223CA796100BD563E /* NotificationModel.swift in Sources */,
 				1557774D23CA778200BD563E /* NotificationAPI.swift in Sources */,
 			);

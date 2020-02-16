@@ -19,7 +19,7 @@ struct GravityView: View {
     
     // MARK: - @State / @ObservedObject
     @ObservedObject var motionVM = CoreMotionViewModel()
-    @State private var frequency: Float = SettingsAPI.shared.fetchFrequency() // Default Frequency
+    @State private var frequency = SettingsAPI.shared.fetchUserSettings().frequencySetting // Default Frequency
     @State private var showSettings = false
     @State private var toolBarButtonType: ToolBarButtonType = .play
     
