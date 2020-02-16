@@ -15,17 +15,17 @@ import XCTest
 // MARK: - Class Definition
 class CalculationAPITests: XCTestCase {
 
-    override func setUp() {
+    override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 
-    override func tearDown() {
+    override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
     
     // MARK: - Tests
-    func testSpeedCalculationAPI() {
+    func testSpeedCalculationAPI() throws {
         //Given
         let input = 10.0 // m/s
         
@@ -41,7 +41,7 @@ class CalculationAPITests: XCTestCase {
     }
 
     
-    func testSpeedCalculationAPIPerformance() {
+    func testSpeedCalculationAPIPerformance() throws {
         self.measure {
             _ = CalculationAPI.shared.calculateSpeed(ms: 10, to: "m/s")
             _ = CalculationAPI.shared.calculateSpeed(ms: 10, to: "km/h")
@@ -49,7 +49,7 @@ class CalculationAPITests: XCTestCase {
         }
     }
     
-    func testPressureCalculationAPI() {
+    func testPressureCalculationAPI() throws {
         //Given
         let input = 100.0 // kPa
         
@@ -74,7 +74,7 @@ class CalculationAPITests: XCTestCase {
         XCTAssertEqual(inHG, 29.53, accuracy: 0.01, "100kPa does not equal 29.53 inHG")
     }
     
-    func testHeightCalculationAPI() {
+    func testHeightCalculationAPI() throws {
         //Given
         let input = 1.0 // m
         

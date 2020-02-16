@@ -15,17 +15,17 @@ import XCTest
 // MARK: - Class Definition
 class SettingsAPITests: XCTestCase {
 
-    override func setUp() {
+    override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 
-    override func tearDown() {
+    override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
     
     // MARK: - Tests
-    func testSaveAndReadFrequency() {
+    func testSaveAndReadFrequency() throws {
         //Given
         SettingsAPI.shared.saveFrequency(frequency: 50)
         
@@ -36,7 +36,7 @@ class SettingsAPITests: XCTestCase {
         XCTAssertEqual(frequency, 50, "Frequency should be 50 but is \(frequency)")
     }
     
-    func testSpeedSetting() {
+    func testSpeedSetting() throws {
         //Given
         SettingsAPI.shared.saveUserDefaultsString(input: "mph", setting: .GPSSpeedSetting)
         
@@ -47,7 +47,7 @@ class SettingsAPITests: XCTestCase {
         XCTAssertEqual(speed, "mph", "Speed Setting should be mph but is \(speed)")
     }
     
-    func testGPSAccuracySetting() {
+    func testGPSAccuracySetting() throws {
         //Given
         SettingsAPI.shared.saveUserDefaultsString(input: "10 Meter", setting: .GPSAccuracySetting)
         
@@ -58,7 +58,7 @@ class SettingsAPITests: XCTestCase {
         XCTAssertEqual(accuracy, "10 Meter", "GPS Accuracy Setting should be 10 Meter but is \(accuracy)")
     }
     
-    func testPressureSetting() {
+    func testPressureSetting() throws {
         //Given
         SettingsAPI.shared.saveUserDefaultsString(input: "bar", setting: .pressureSetting)
         
@@ -69,7 +69,7 @@ class SettingsAPITests: XCTestCase {
         XCTAssertEqual(pressure, "bar", "GPS Accuracy Setting should be 10 Meter but is \(pressure)")
     }
     
-    func testHeightSetting() {
+    func testHeightSetting() throws {
         //Given
         SettingsAPI.shared.saveUserDefaultsString(input: "cm", setting: .altitudeHeightSetting)
         

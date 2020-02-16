@@ -15,18 +15,18 @@ import XCTest
 // MARK: - Class Definition
 class GyroscopeViewTests: XCTestCase {
 
-    override func setUp() {
+    override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 
-    override func tearDown() {
+    override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
     
     // MARK: - Tests
     #if targetEnvironment(simulator)
-    func testGyroscopeViewDebugArray() {
+    func testGyroscopeViewDebugArray() throws {
         //Given
         let sut = GyroscopeView()
         
@@ -38,7 +38,7 @@ class GyroscopeViewTests: XCTestCase {
         XCTAssertEqual(count, 300, "There are \(count) items in MotionArray whereas only 300 should be there")
     }
     
-    func testGyroscopeViewEmptyArray() {
+    func testGyroscopeViewEmptyArray() throws {
         //Given
         let sut = GyroscopeView()
         

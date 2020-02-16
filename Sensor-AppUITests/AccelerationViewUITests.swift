@@ -15,7 +15,7 @@ import XCTest
 // MARK: - Class Definition
 class AccelerationViewUITests: XCTestCase {
     
-    override func setUp() {
+    override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         
         // In UI tests it is usually best to stop immediately when a failure occurs.
@@ -27,52 +27,43 @@ class AccelerationViewUITests: XCTestCase {
         // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
     }
     
-    override func tearDown() {
+    override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
     
     
     // MARK: - Tests
-    func testAccelerationViewTabBarButtons() {
+    func testAccelerationViewTabBarButtons() throws {
         // Start Application
         let app = XCUIApplication()
         app.launch()
         
         // Go to Location View
         app.buttons["Acceleration"].tap()
-        sleep(1)
         
         // Test TabBar Buttons
         app.buttons["Start Button"].tap()
-        sleep(1)
         app.buttons["Pause Button"].tap()
-        sleep(1)
         app.buttons["Delete Button"].tap()
-        sleep(1)
         app.buttons["Settings Button"].tap()
-        sleep(1)
         
         // Go Back to Main Menu
         app.buttons["Close Button"].tap()
-        sleep(1)
         app.navigationBars.buttons.element(boundBy: 0).tap()
-        sleep(1)
     }
     
-    func testAccelerationViewGraphs() {
+    func testAccelerationViewGraphs() throws {
         // Start Application
         let app = XCUIApplication()
         app.launch()
         
         // Go to Location View
         app.buttons["Acceleration"].tap()
-        sleep(1)
         
         // Show all Graphs
         app.buttons["Toggle Z-Axis Graph"].tap()
         app.buttons["Toggle Y-Axis Graph"].tap()
         app.buttons["Toggle X-Axis Graph"].tap()
-        sleep(1)
         
         // Hide all Graphs
         app.buttons["Toggle X-Axis Graph"].tap()
@@ -81,17 +72,15 @@ class AccelerationViewUITests: XCTestCase {
         
         // Go Back to Main Menu
         app.navigationBars.buttons.element(boundBy: 0).tap()
-        sleep(1)
     }
     
-    func testAcceleratonViewSlider() {
+    func testAcceleratonViewSlider() throws {
         // Start Application
         let app = XCUIApplication()
         app.launch()
         
         // Go to Location View
         app.buttons["Acceleration"].tap()
-        sleep(1)
         
         // Swipe Up
         app.buttons["Toggle X-Axis Graph"].swipeUp()

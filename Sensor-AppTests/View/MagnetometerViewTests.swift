@@ -15,18 +15,18 @@ import XCTest
 // MARK: - Class Definition
 class MagnetometerViewTests: XCTestCase {
 
-    override func setUp() {
+    override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 
-    override func tearDown() {
+    override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
     
     
     // MARK: - Tests
     #if targetEnvironment(simulator)
-    func testMagnetometerViewDebugArray() {
+    func testMagnetometerViewDebugArray() throws {
         //Given
         let sut = MagnetometerView()
         
@@ -38,7 +38,7 @@ class MagnetometerViewTests: XCTestCase {
         XCTAssertEqual(count, 300, "There are \(count) items in MotionArray whereas only 300 should be there")
     }
     
-    func testMagnetometerViewEmptyArray() {
+    func testMagnetometerViewEmptyArray() throws {
         //Given
         let sut = MagnetometerView()
         

@@ -15,17 +15,17 @@ import XCTest
 // MARK: - Class Definition
 class ExtensionTests: XCTestCase {
 
-    override func setUp() {
+    override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 
-    override func tearDown() {
+    override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
     
     
     // MARK: - Tests
-    func testDoubleExtensionRoundUp() {
+    func testDoubleExtensionRoundUp() throws {
         //Given
         let number = 100.000005
         let decimalDigits = 5
@@ -37,7 +37,7 @@ class ExtensionTests: XCTestCase {
         XCTAssertEqual(rounded, 100.00001, "Rounded \(number) to \(rounded) does not equal 100.00001")
     }
     
-    func testDoubleExtensionRoundDown() {
+    func testDoubleExtensionRoundDown() throws {
         //Given
         let number = 100.111114
         let decimalDigits = 5

@@ -16,17 +16,17 @@ import XCTest
 // MARK: - Class Definition
 class LineGraphTests: XCTestCase {
     
-    override func setUp() {
+    override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
     
-    override func tearDown() {
+    override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
      
     
     // MARK: - LineGraphView
-    func testLineGraphViewforLocation() {
+    func testLineGraphViewforLocation() throws {
         //Given
         let sut = LineGraphSubView(showGraph: .speed)
         sut.locationVM.coreLocationArray = generateCoreLocationModelArray()
@@ -45,7 +45,7 @@ class LineGraphTests: XCTestCase {
         XCTAssertNotNil(graph)
     }
     
-    func testLineGraph() {
+    func testLineGraph() throws {
         //Given
         let sut = LineGraphSubView(showGraph: .speed)
         let locationArray = generateCoreLocationModelArray()
@@ -62,7 +62,7 @@ class LineGraphTests: XCTestCase {
     }
     
     
-    func testLineGraphViewPerformanceOnLocationView() {
+    func testLineGraphViewPerformanceOnLocationView() throws {
         //Given
         let locationVM = CoreLocationViewModel()
         
@@ -78,7 +78,7 @@ class LineGraphTests: XCTestCase {
         }
     }
     
-    func testLineGraphViewPerformanceOnAccelerationView() {
+    func testLineGraphViewPerformanceOnAccelerationView() throws {
         //Given
         let motionVM = CoreMotionViewModel()
         
@@ -94,7 +94,7 @@ class LineGraphTests: XCTestCase {
         }
     }
     
-    func testLineGraphViewPerformanceOnAltitudeView() {
+    func testLineGraphViewPerformanceOnAltitudeView() throws {
         //Given
         let motionVM = CoreMotionViewModel()
         
