@@ -16,6 +16,8 @@ struct LocationView: View {
     
     // MARK: - Initialize Classes
     let locationAPI = CoreLocationAPI()
+    let calculationAPI = CalculationAPI()
+    
     
     // MARK: - @State / @ObservedObject
     @ObservedObject var locationVM = CoreLocationViewModel()
@@ -152,7 +154,7 @@ struct LocationView: View {
                                         Spacer()
                                     }
                                     
-                                    Text("Speed: \(CalculationAPI.shared.calculateSpeed(ms: self.locationVM.coreLocationArray.last?.speed ?? 0.0, to: "\(SettingsAPI.shared.fetchUserSettings().GPSSpeedSetting)"), specifier: "%.2f")\(SettingsAPI.shared.fetchUserSettings().GPSSpeedSetting)")
+                                    Text("Speed: \(self.calculationAPI.calculateSpeed(ms: self.locationVM.coreLocationArray.last?.speed ?? 0.0, to: "\(SettingsAPI.shared.fetchUserSettings().GPSSpeedSetting)"), specifier: "%.2f")\(SettingsAPI.shared.fetchUserSettings().GPSSpeedSetting)")
                                         .modifier(ButtonModifier())
                                         .overlay(Button(action: { self.showSpeed.toggle() }) {
                                             Image("GraphButton")

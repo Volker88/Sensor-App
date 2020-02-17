@@ -25,14 +25,15 @@ class CalculationAPITests: XCTestCase {
 
     
     // MARK: - Tests
+    let calculationAPI = CalculationAPI()
     func testSpeedCalculationAPI() throws {
         //Given
         let input = 10.0 // m/s
         
         //When
-        let ms = CalculationAPI.shared.calculateSpeed(ms: input, to: UnitSpeed.metersPerSecond.symbol)
-        let kmh = CalculationAPI.shared.calculateSpeed(ms: input, to: UnitSpeed.kilometersPerHour.symbol)
-        let mph = CalculationAPI.shared.calculateSpeed(ms: input, to: UnitSpeed.milesPerHour.symbol)
+        let ms = calculationAPI.calculateSpeed(ms: input, to: UnitSpeed.metersPerSecond.symbol)
+        let kmh = calculationAPI.calculateSpeed(ms: input, to: UnitSpeed.kilometersPerHour.symbol)
+        let mph = calculationAPI.calculateSpeed(ms: input, to: UnitSpeed.milesPerHour.symbol)
         
         //Then
         XCTAssertEqual(ms, 10, accuracy: 0.01, "10 m/s does not equal 10 m/s")
@@ -43,9 +44,9 @@ class CalculationAPITests: XCTestCase {
     
     func testSpeedCalculationAPIPerformance() throws {
         self.measure {
-            _ = CalculationAPI.shared.calculateSpeed(ms: 10, to: "m/s")
-            _ = CalculationAPI.shared.calculateSpeed(ms: 10, to: "km/h")
-            _ = CalculationAPI.shared.calculateSpeed(ms: 10, to: "mph")
+            _ = calculationAPI.calculateSpeed(ms: 10, to: "m/s")
+            _ = calculationAPI.calculateSpeed(ms: 10, to: "km/h")
+            _ = calculationAPI.calculateSpeed(ms: 10, to: "mph")
         }
     }
     
@@ -54,14 +55,14 @@ class CalculationAPITests: XCTestCase {
         let input = 100.0 // kPa
         
         //When
-        let mbar = CalculationAPI.shared.calculatePressure(pressure: input, to: UnitPressure.millibars.symbol)
-        let bar = CalculationAPI.shared.calculatePressure(pressure: input, to: UnitPressure.bars.symbol)
-        let pa = CalculationAPI.shared.calculatePressure(pressure: input, to: UnitPressure.newtonsPerMetersSquared.symbol)
-        let hpa = CalculationAPI.shared.calculatePressure(pressure: input, to: UnitPressure.hectopascals.symbol)
-        let kpa = CalculationAPI.shared.calculatePressure(pressure: input, to: UnitPressure.kilopascals.symbol)
-        let psi = CalculationAPI.shared.calculatePressure(pressure: input, to: UnitPressure.poundsForcePerSquareInch.symbol)
-        let mmHG = CalculationAPI.shared.calculatePressure(pressure: input, to: UnitPressure.millimetersOfMercury.symbol)
-        let inHG = CalculationAPI.shared.calculatePressure(pressure: input, to: UnitPressure.inchesOfMercury.symbol)
+        let mbar = calculationAPI.calculatePressure(pressure: input, to: UnitPressure.millibars.symbol)
+        let bar = calculationAPI.calculatePressure(pressure: input, to: UnitPressure.bars.symbol)
+        let pa = calculationAPI.calculatePressure(pressure: input, to: UnitPressure.newtonsPerMetersSquared.symbol)
+        let hpa = calculationAPI.calculatePressure(pressure: input, to: UnitPressure.hectopascals.symbol)
+        let kpa = calculationAPI.calculatePressure(pressure: input, to: UnitPressure.kilopascals.symbol)
+        let psi = calculationAPI.calculatePressure(pressure: input, to: UnitPressure.poundsForcePerSquareInch.symbol)
+        let mmHG = calculationAPI.calculatePressure(pressure: input, to: UnitPressure.millimetersOfMercury.symbol)
+        let inHG = calculationAPI.calculatePressure(pressure: input, to: UnitPressure.inchesOfMercury.symbol)
         
         //Then
         XCTAssertEqual(mbar, 1000, accuracy: 0.01, "100kPa does not equal 1000 mbar")
@@ -79,12 +80,12 @@ class CalculationAPITests: XCTestCase {
         let input = 1.0 // m
         
         //When
-        let mm = CalculationAPI.shared.calculateHeight(height: input, to: UnitLength.millimeters.symbol)
-        let cm = CalculationAPI.shared.calculateHeight(height: input, to: UnitLength.centimeters.symbol)
-        let m = CalculationAPI.shared.calculateHeight(height: input, to: UnitLength.meters.symbol)
-        let inch = CalculationAPI.shared.calculateHeight(height: input, to: UnitLength.inches.symbol)
-        let feet = CalculationAPI.shared.calculateHeight(height: input, to: UnitLength.feet.symbol)
-        let yard = CalculationAPI.shared.calculateHeight(height: input, to: UnitLength.yards.symbol)
+        let mm = calculationAPI.calculateHeight(height: input, to: UnitLength.millimeters.symbol)
+        let cm = calculationAPI.calculateHeight(height: input, to: UnitLength.centimeters.symbol)
+        let m = calculationAPI.calculateHeight(height: input, to: UnitLength.meters.symbol)
+        let inch = calculationAPI.calculateHeight(height: input, to: UnitLength.inches.symbol)
+        let feet = calculationAPI.calculateHeight(height: input, to: UnitLength.feet.symbol)
+        let yard = calculationAPI.calculateHeight(height: input, to: UnitLength.yards.symbol)
         
         //Then
         XCTAssertEqual(mm, 1000, accuracy: 0.01, "1m does not equal 1000 mm")

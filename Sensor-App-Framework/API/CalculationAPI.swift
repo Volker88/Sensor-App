@@ -14,12 +14,6 @@ import Foundation
 // MARK: - Class Definition
 class CalculationAPI {
     
-    // MARK: - Singleton Pattern
-    // MARK: - FIXME
-    static var shared : CalculationAPI = CalculationAPI()
-    private init() {
-    }
-    
     
     // MARK: - Methods
     ///
