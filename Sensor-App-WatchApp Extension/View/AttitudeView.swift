@@ -15,11 +15,18 @@ import SwiftUI
 struct AttitudeView: View {
     
     // MARK: - Initialize Classes
+    let settings = SettingsAPI()
     
     
     // MARK: - @State / @ObservedObject
     @ObservedObject var motionVM = CoreMotionViewModel()
-    @State private var frequency = SettingsAPI.shared.fetchUserSettings().frequencySetting // Default Frequency
+    @State private var frequency = 1.0 // Default Frequency
+    
+    
+    // MARK: - Initializer
+    init() {
+        frequency = settings.fetchUserSettings().frequencySetting
+    }
     
     
     // MARK: - Define Constants / Variables
@@ -32,6 +39,7 @@ struct AttitudeView: View {
     func onAppear() {
         // Start updating motion
         motionVM.motionUpdateStart()
+        motionVM.sensorUpdateInterval = frequency
     }
     
     func onDisappear() {

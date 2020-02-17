@@ -16,11 +16,12 @@ struct AltitudeView: View {
     
     // MARK: - Initialize Classes
     let calculationAPI = CalculationAPI()
+    let settings = SettingsAPI()
     
     
     // MARK: - @State / @ObservedObject
     @ObservedObject var motionVM = CoreMotionViewModel()
-    @State private var frequency = SettingsAPI.shared.fetchUserSettings().frequencySetting // Default Frequency
+    @State private var frequency = 1.0
     @State private var showSettings = false
     @State private var toolBarButtonType: ToolBarButtonType = .play
     @State private var motionIsUpdating = true
@@ -36,6 +37,12 @@ struct AltitudeView: View {
     
     
     // MARK: - Define Constants / Variables
+    
+    
+    // MARK: - Initializer
+    init() {
+        frequency = settings.fetchUserSettings().frequencySetting
+    }
     
     
     // MARK: - Methods
@@ -93,7 +100,7 @@ struct AltitudeView: View {
         return ZStack {
             NavigationView {
                 ZStack {
-                    LinearGradient(gradient: Gradient(colors: SettingsAPI.shared.backgroundColor), startPoint: .topLeading, endPoint: .bottomTrailing)
+                    LinearGradient(gradient: Gradient(colors: settings.backgroundColor), startPoint: .topLeading, endPoint: .bottomTrailing)
                         .edgesIgnoringSafeArea(.all)
                     GeometryReader { g in
                         VStack{
@@ -101,7 +108,7 @@ struct AltitudeView: View {
                                 Spacer()
                                 VStack{
                                     Group{
-                                        Text("Pressure: \(self.calculationAPI.calculatePressure(pressure: self.motionVM.altitudeArray.last?.pressureValue ?? 0.0, to: SettingsAPI.shared.fetchUserSettings().pressureSetting), specifier: "%.5f") \(SettingsAPI.shared.fetchUserSettings().pressureSetting)")
+                                        Text("Pressure: \(self.calculationAPI.calculatePressure(pressure: self.motionVM.altitudeArray.last?.pressureValue ?? 0.0, to: self.settings.fetchUserSettings().pressureSetting), specifier: "%.5f") \(self.settings.fetchUserSettings().pressureSetting)")
                                             .modifier(ButtonModifier())
                                             .overlay(Button(action: { self.showPressure.toggle() }) {
                                                 Image("GraphButton")
@@ -116,7 +123,7 @@ struct AltitudeView: View {
                                             Spacer()
                                         }
                                         
-                                        Text("Altitude change: \(self.calculationAPI.calculateHeight(height: self.motionVM.altitudeArray.last?.relativeAltitudeValue ?? 0.0, to: SettingsAPI.shared.fetchUserSettings().altitudeHeightSetting), specifier: "%.5f") \(SettingsAPI.shared.fetchUserSettings().altitudeHeightSetting)")
+                                        Text("Altitude change: \(self.calculationAPI.calculateHeight(height: self.motionVM.altitudeArray.last?.relativeAltitudeValue ?? 0.0, to: self.settings.fetchUserSettings().altitudeHeightSetting), specifier: "%.5f") \(self.settings.fetchUserSettings().altitudeHeightSetting)")
                                             .modifier(ButtonModifier())
                                             .overlay(Button(action: { self.showRelativeAltidudeChange.toggle() }) {
                                                 Image("GraphButton")

@@ -15,11 +15,12 @@ import SwiftUI
 struct AttitudeView: View {
     
     // MARK: - Initialize Classes
+    let settings = SettingsAPI()
     
     
     // MARK: - @State / @ObservedObject
     @ObservedObject var motionVM = CoreMotionViewModel()
-    @State private var frequency = SettingsAPI.shared.fetchUserSettings().frequencySetting // Default Frequency
+    @State private var frequency = 1.0
     @State private var showSettings = false
     @State private var toolBarButtonType: ToolBarButtonType = .play
     
@@ -36,6 +37,12 @@ struct AttitudeView: View {
     
     
     // MARK: - Define Constants / Variables
+    
+    
+    // MARK: - Initializer
+    init() {
+        frequency = settings.fetchUserSettings().frequencySetting
+    }
     
     
     // MARK: - Methods
@@ -67,7 +74,7 @@ struct AttitudeView: View {
     }
     
     func updateSensorInterval() {
-        motionVM.sensorUpdateInterval = SettingsAPI.shared.fetchUserSettings().frequencySetting
+        motionVM.sensorUpdateInterval = settings.fetchUserSettings().frequencySetting
     }
     
     
@@ -91,7 +98,7 @@ struct AttitudeView: View {
         return ZStack {
             NavigationView {
                 ZStack {
-                    LinearGradient(gradient: Gradient(colors: SettingsAPI.shared.backgroundColor), startPoint: .topLeading, endPoint: .bottomTrailing)
+                    LinearGradient(gradient: Gradient(colors: settings.backgroundColor), startPoint: .topLeading, endPoint: .bottomTrailing)
                         .edgesIgnoringSafeArea(.all)
                     GeometryReader { g in
                         VStack{

@@ -14,6 +14,8 @@ import Foundation
 // MARK: - Class Definition
 class AppUpdates {
     
+    // MARK: - Initialize Classes
+    let settings = SettingsAPI()
     
     // MARK: - Methods
     ///
@@ -39,7 +41,7 @@ class AppUpdates {
     ///  - Note: Add additional tasks which need to be performed with a new app version
     ///
     private func updateApp() {
-        SettingsAPI.shared.clearUserDefaults()
+        settings.clearUserDefaults()
         UserDefaults.standard.set(true, forKey: "upToDate")
         print("App has been updated")
     }

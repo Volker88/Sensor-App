@@ -14,17 +14,21 @@ import SwiftUI
 // MARK: - Struct
 struct RefreshRateView: View {
     
+    // MARK: - Initialize Classes
+    let settings = SettingsAPI()
+    
+    
     // MARK: - @State Variables
-    @State var refreshRate: Double = SettingsAPI.shared.fetchUserSettings().frequencySetting
+    @State var refreshRate: Double = 1.0
     var updateSensorInterval: () -> Void
     
     
     // MARK: - Methods
     func updateSlider() {
         // Save Sensor Settings
-        var settings = SettingsAPI.shared.fetchUserSettings()
-        settings.frequencySetting = self.refreshRate
-        SettingsAPI.shared.saveUserSettings(userSettings: settings)
+        var userSettings = settings.fetchUserSettings()
+        userSettings.frequencySetting = self.refreshRate
+        settings.saveUserSettings(userSettings: userSettings)
         
         // Update Sensor Interval
         
@@ -63,6 +67,7 @@ struct RefreshRateView: View {
             }
             .frame(height: 170)
         }
+        .onAppear(perform: { self.refreshRate = self.settings.fetchUserSettings().frequencySetting })
         .frame(alignment: .center)
     }
 }

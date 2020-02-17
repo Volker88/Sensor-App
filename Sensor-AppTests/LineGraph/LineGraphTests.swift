@@ -125,8 +125,9 @@ class LineGraphTests: XCTestCase {
     
     func generateCoreMotionModelArray() -> [MotionModel] {
         var motionArray = [MotionModel]()
+        let settings = SettingsAPI()
         for index in 1...10000 {
-            let array = MotionModel(counter: index, timestamp: SettingsAPI.shared.getTimestamp(), accelerationXAxis: 0.01624, accelerationYAxis: 0.53212, accelerationZAxis: 1.60932, gravityXAxis: -0.80520, gravityYAxis: -0.01717, gravityZAxis: -0.59275, gyroXAxis: 0.00140, gyroYAxis: -0.00045, gyroZAxis: 0.00140, magnetometerCalibration: 2, magnetometerXAxis: -2.14823, magnetometerYAxis: 35.9243, magnetometerZAxis: -21.61115, attitudeRoll: -0.9362, attitudePitch: 0.0171, attitudeYaw: -1.1931, attitudeHeading: 338.8594)
+            let array = MotionModel(counter: index, timestamp: settings.getTimestamp(), accelerationXAxis: 0.01624, accelerationYAxis: 0.53212, accelerationZAxis: 1.60932, gravityXAxis: -0.80520, gravityYAxis: -0.01717, gravityZAxis: -0.59275, gyroXAxis: 0.00140, gyroYAxis: -0.00045, gyroZAxis: 0.00140, magnetometerCalibration: 2, magnetometerXAxis: -2.14823, magnetometerYAxis: 35.9243, magnetometerZAxis: -21.61115, attitudeRoll: -0.9362, attitudePitch: 0.0171, attitudeYaw: -1.1931, attitudeHeading: 338.8594)
                 
             motionArray.append(array)
         }
@@ -135,8 +136,9 @@ class LineGraphTests: XCTestCase {
     
     func generateCoreMotionModelAltitudeArray() -> [AltitudeModel] {
         var altitudeArray = [AltitudeModel]()
+        let settings = SettingsAPI()
         for index in 1...10000 {
-            let array = AltitudeModel(counter: index, timestamp: SettingsAPI.shared.getTimestamp(), pressureValue: 0.9961142, relativeAltitudeValue: 0.0)
+            let array = AltitudeModel(counter: index, timestamp: settings.getTimestamp(), pressureValue: 0.9961142, relativeAltitudeValue: 0.0)
                 
             altitudeArray.append(array)
         }

@@ -16,6 +16,7 @@ struct MotionListView: View {
     
     // MARK: - Initialize Classes
     let calculationAPI = CalculationAPI()
+    let settings = SettingsAPI()
     
     // MARK: - @State / @ObservedObject
     @State var type: SensorType
@@ -173,9 +174,9 @@ struct MotionListView: View {
                         HStack{
                             Text("ID:\(self.motionVM.altitudeArray[index.counter - 1].counter)")
                             Spacer()
-                            Text("P:\(self.calculationAPI.calculatePressure(pressure: self.motionVM.altitudeArray[index.counter - 1].pressureValue, to: SettingsAPI.shared.fetchUserSettings().pressureSetting), specifier: "%.5f")")
+                            Text("P:\(self.calculationAPI.calculatePressure(pressure: self.motionVM.altitudeArray[index.counter - 1].pressureValue, to: self.settings.fetchUserSettings().pressureSetting), specifier: "%.5f")")
                             Spacer()
-                            Text("A:\(self.calculationAPI.calculateHeight(height: self.motionVM.altitudeArray[index.counter - 1].relativeAltitudeValue, to: SettingsAPI.shared.fetchUserSettings().altitudeHeightSetting), specifier: "%.5f")")
+                            Text("A:\(self.calculationAPI.calculateHeight(height: self.motionVM.altitudeArray[index.counter - 1].relativeAltitudeValue, to: self.settings.fetchUserSettings().altitudeHeightSetting), specifier: "%.5f")")
                         }
                         .foregroundColor(Color("ListTextColor"))
                         .font(.footnote)

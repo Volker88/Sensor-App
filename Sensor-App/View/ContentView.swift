@@ -15,6 +15,7 @@ import SwiftUI
 struct ContentView: View {
     
     // MARK: - Initialize Classes
+    let settings = SettingsAPI()
     
     
     // MARK: - @State Variables
@@ -42,7 +43,7 @@ struct ContentView: View {
         // MARK: - Return View
         return NavigationView {
             ZStack {
-                LinearGradient(gradient: Gradient(colors: SettingsAPI.shared.backgroundColor), startPoint: .topLeading, endPoint: .bottomTrailing)
+                LinearGradient(gradient: Gradient(colors: settings.backgroundColor), startPoint: .topLeading, endPoint: .bottomTrailing)
                     .edgesIgnoringSafeArea(.all)
                 GeometryReader { g in
                     ScrollView {

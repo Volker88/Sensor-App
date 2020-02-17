@@ -27,8 +27,9 @@ class AppUpdatesTests: XCTestCase {
     // MARK: - Tests
     func testAppUpdates() throws {
         //Given
+        let appUpdates = AppUpdates()
         UserDefaults.standard.removeObject(forKey: "upToDate")
-        AppUpdates.shared.checkForUpdate()
+        appUpdates.checkForUpdate()
         
         //When
         let upToDate = UserDefaults.standard.bool(forKey: "upToDate")

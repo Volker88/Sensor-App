@@ -17,7 +17,7 @@ struct LocationView: View {
     // MARK: - Initialize Classes
     let locationAPI = CoreLocationAPI()
     let calculationAPI = CalculationAPI()
-    
+    let settings = SettingsAPI()
     
     // MARK: - @State / @ObservedObject
     @ObservedObject var locationVM = CoreLocationViewModel()
@@ -87,7 +87,7 @@ struct LocationView: View {
         return ZStack {
             NavigationView {
                 ZStack {
-                    LinearGradient(gradient: Gradient(colors: SettingsAPI.shared.backgroundColor), startPoint: .topLeading, endPoint: .bottomTrailing)
+                    LinearGradient(gradient: Gradient(colors: settings.backgroundColor), startPoint: .topLeading, endPoint: .bottomTrailing)
                         .edgesIgnoringSafeArea(.all)
                     GeometryReader { g in
                         VStack {
@@ -154,7 +154,7 @@ struct LocationView: View {
                                         Spacer()
                                     }
                                     
-                                    Text("Speed: \(self.calculationAPI.calculateSpeed(ms: self.locationVM.coreLocationArray.last?.speed ?? 0.0, to: "\(SettingsAPI.shared.fetchUserSettings().GPSSpeedSetting)"), specifier: "%.2f")\(SettingsAPI.shared.fetchUserSettings().GPSSpeedSetting)")
+                                    Text("Speed: \(self.calculationAPI.calculateSpeed(ms: self.locationVM.coreLocationArray.last?.speed ?? 0.0, to: "\(self.settings.fetchUserSettings().GPSSpeedSetting)"), specifier: "%.2f")\(self.settings.fetchUserSettings().GPSSpeedSetting)")
                                         .modifier(ButtonModifier())
                                         .overlay(Button(action: { self.showSpeed.toggle() }) {
                                             Image("GraphButton")

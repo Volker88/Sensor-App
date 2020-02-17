@@ -14,6 +14,8 @@ import Foundation
 // MARK: - Class Definition
 class CalculationAPI {
     
+    // MARK: - Initialize Classes
+    let settings = SettingsAPI()
     
     // MARK: - Methods
     ///
@@ -35,9 +37,9 @@ class CalculationAPI {
         var targetUnit : UnitSpeed = .metersPerSecond
         
         switch to {
-            case SettingsAPI.shared.GPSSpeedSettings[0]: targetUnit = .metersPerSecond
-            case SettingsAPI.shared.GPSSpeedSettings[1]: targetUnit = .kilometersPerHour
-            case SettingsAPI.shared.GPSSpeedSettings[2]: targetUnit = .milesPerHour
+            case settings.GPSSpeedSettings[0]: targetUnit = .metersPerSecond
+            case settings.GPSSpeedSettings[1]: targetUnit = .kilometersPerHour
+            case settings.GPSSpeedSettings[2]: targetUnit = .milesPerHour
             default: targetUnit = .metersPerSecond
         }
         let meterPerSecond = Measurement(value: ms, unit: UnitSpeed.metersPerSecond)
@@ -71,14 +73,14 @@ class CalculationAPI {
         var targetUnit : UnitPressure = .kilopascals
         
         switch to {
-            case SettingsAPI.shared.altitudePressure[0]: targetUnit = .millibars // mbar
-            case SettingsAPI.shared.altitudePressure[1]: targetUnit = .bars // bar
-            case SettingsAPI.shared.altitudePressure[2]: targetUnit = .newtonsPerMetersSquared // Pa
-            case SettingsAPI.shared.altitudePressure[3]: targetUnit = .hectopascals // hPa
-            case SettingsAPI.shared.altitudePressure[4]: targetUnit = .kilopascals // kPa
-            case SettingsAPI.shared.altitudePressure[5]: targetUnit = .poundsForcePerSquareInch // psi
-            case SettingsAPI.shared.altitudePressure[6]: targetUnit = .millimetersOfMercury // mmHG
-            case SettingsAPI.shared.altitudePressure[7]: targetUnit = .inchesOfMercury // inHG
+            case settings.altitudePressure[0]: targetUnit = .millibars // mbar
+            case settings.altitudePressure[1]: targetUnit = .bars // bar
+            case settings.altitudePressure[2]: targetUnit = .newtonsPerMetersSquared // Pa
+            case settings.altitudePressure[3]: targetUnit = .hectopascals // hPa
+            case settings.altitudePressure[4]: targetUnit = .kilopascals // kPa
+            case settings.altitudePressure[5]: targetUnit = .poundsForcePerSquareInch // psi
+            case settings.altitudePressure[6]: targetUnit = .millimetersOfMercury // mmHG
+            case settings.altitudePressure[7]: targetUnit = .inchesOfMercury // inHG
             default: targetUnit = .kilopascals
         }
         
@@ -110,12 +112,12 @@ class CalculationAPI {
         var targetUnit : UnitLength = .meters
         
         switch to {
-            case SettingsAPI.shared.altitudeHeight[0]: targetUnit = .millimeters // mm
-            case SettingsAPI.shared.altitudeHeight[1]: targetUnit = .centimeters // cm
-            case SettingsAPI.shared.altitudeHeight[2]: targetUnit = .meters // m
-            case SettingsAPI.shared.altitudeHeight[3]: targetUnit = .inches // inch
-            case SettingsAPI.shared.altitudeHeight[4]: targetUnit = .feet // feet
-            case SettingsAPI.shared.altitudeHeight[5]: targetUnit = .yards // yards
+            case settings.altitudeHeight[0]: targetUnit = .millimeters // mm
+            case settings.altitudeHeight[1]: targetUnit = .centimeters // cm
+            case settings.altitudeHeight[2]: targetUnit = .meters // m
+            case settings.altitudeHeight[3]: targetUnit = .inches // inch
+            case settings.altitudeHeight[4]: targetUnit = .feet // feet
+            case settings.altitudeHeight[5]: targetUnit = .yards // yards
             default: targetUnit = .meters
         }
         

@@ -15,6 +15,10 @@ import CoreMotion
 class CoreMotionAPI {
     
     // MARK: - Initialize Classes
+    let settings = SettingsAPI()
+    
+    
+    // MARK: - Initialize Classes
     private var motionManager = CMMotionManager()
     private var magnetManager = CMMagnetometerData()
     private var altimeterManager = CMAltimeter()
@@ -22,7 +26,13 @@ class CoreMotionAPI {
     
 
     // MARK: - Define Constants / Variables
-    public var sensorUpdateInterval : Double = Double(SettingsAPI.shared.fetchUserSettings().frequencySetting)
+    public var sensorUpdateInterval : Double
+    
+    
+    // MARK: - Initializer
+    init() {
+        sensorUpdateInterval = settings.fetchUserSettings().frequencySetting
+    }
     
     
     // MARK: - Closure to push MotionModel to ViewModel
@@ -120,7 +130,7 @@ class CoreMotionAPI {
             
             let motionModel = MotionModel(
                 counter: 1,
-                timestamp: SettingsAPI.shared.getTimestamp(),
+                timestamp: self.settings.getTimestamp(),
                 accelerationXAxis: accelerationX,
                 accelerationYAxis: accelerationY,
                 accelerationZAxis: accelerationZ,
@@ -156,7 +166,7 @@ class CoreMotionAPI {
                 
                 let altitudeModel = AltitudeModel(
                     counter: 1,
-                    timestamp: SettingsAPI.shared.getTimestamp(),
+                    timestamp: self.settings.getTimestamp(),
                     pressureValue: pressureValue,
                     relativeAltitudeValue: relativeAltitudeValue
                 )

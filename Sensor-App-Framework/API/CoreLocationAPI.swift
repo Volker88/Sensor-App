@@ -16,6 +16,10 @@ import CoreLocation
 class CoreLocationAPI: CLLocationManager, CLLocationManagerDelegate {
     
     // MARK: - Initialize Classes
+    let settings = SettingsAPI()
+    
+    
+    // MARK: - Initialize Classes
     private var locationManager : CLLocationManager = CLLocationManager()
     
     
@@ -57,11 +61,11 @@ class CoreLocationAPI: CLLocationManager, CLLocationManagerDelegate {
         print("VerticalAccuracy: \(verticalAccuracy)")
         print("Speed in m/s: \(speed)")
         print("Direction: \(course)")
-        print("Timestamp: \(SettingsAPI.shared.getTimestamp())")
+        print("Timestamp: \(settings.getTimestamp())")
         print("Desired Accuracy: \(GPSAccuracy)")
         
         // Creating LocationModel
-        let locationModel = LocationModel(counter: 1 ,longitude: longitude, latitude: latitude, altitude: altitude, speed: speed, course: course, horizontalAccuracy: horizontalAccuracy, verticalAccuracy: verticalAccuracy, timestamp: SettingsAPI.shared.getTimestamp(), GPSAccuracy: GPSAccuracy)
+        let locationModel = LocationModel(counter: 1 ,longitude: longitude, latitude: latitude, altitude: altitude, speed: speed, course: course, horizontalAccuracy: horizontalAccuracy, verticalAccuracy: verticalAccuracy, timestamp: settings.getTimestamp(), GPSAccuracy: GPSAccuracy)
 
         locationCompletionHandler?(locationModel) // Update Location
     }
@@ -84,7 +88,7 @@ class CoreLocationAPI: CLLocationManager, CLLocationManagerDelegate {
     ///
     public func startUpdatingGPS() { // Start getting GPS Coordinates
         // Define Accuracy based on selection - SettingsModel.GPSAccuracy
-        let desiredAccuracy = SettingsAPI.shared.fetchUserSettings().GPSAccuracySetting
+        let desiredAccuracy = settings.fetchUserSettings().GPSAccuracySetting
         switch desiredAccuracy {
             case "Best": locationManager.desiredAccuracy = kCLLocationAccuracyBest
             case "10 Meter": locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters

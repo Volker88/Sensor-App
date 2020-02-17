@@ -460,9 +460,7 @@
 		154E0FD7235CE3BC00FD426C /* Sensor-App-WatchApp */ = {
 			isa = PBXGroup;
 			children = (
-				154E0FDD235CE3BD00FD426C /* Info.plist */,
-				15A7F6AC236C5FD9009FCF1D /* Interface.storyboard */,
-				154E0FDB235CE3BD00FD426C /* Assets.xcassets */,
+				156CABE023FB22FC007FB467 /* Support */,
 			);
 			path = "Sensor-App-WatchApp";
 			sourceTree = "<group>";
@@ -470,11 +468,7 @@
 		154E0FE6235CE3BD00FD426C /* Sensor-App-WatchApp Extension */ = {
 			isa = PBXGroup;
 			children = (
-				154E0FF2235CE3BD00FD426C /* Info.plist */,
-				154E0FEB235CE3BD00FD426C /* ExtensionDelegate.swift */,
-				154E0FE9235CE3BD00FD426C /* HostingController.swift */,
-				154E0FED235CE3BD00FD426C /* Assets.xcassets */,
-				154E0FEF235CE3BD00FD426C /* Preview Content */,
+				156CABDE23FB2170007FB467 /* Support */,
 				157D91D4238151D500371C2F /* View */,
 			);
 			path = "Sensor-App-WatchApp Extension";
@@ -494,6 +488,51 @@
 				1550FA87232C06C7006447AE /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		156CABDD23FB2161007FB467 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				1550FA8A232C06D1006447AE /* Preview Content */,
+				15C559D523BA545900812942 /* MyPlayground.playground */,
+				156FC3CC22A2D9ED00B70943 /* Info.plist */,
+				15DDE3592337EC8100732427 /* LaunchScreen.storyboard */,
+				157B0E72227F57D6004CC169 /* AppDelegate.swift */,
+				1550FA7B232C0435006447AE /* SceneDelegate.swift */,
+				157B0E79227F57D7004CC169 /* Assets.xcassets */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		156CABDE23FB2170007FB467 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				154E0FF2235CE3BD00FD426C /* Info.plist */,
+				154E0FEB235CE3BD00FD426C /* ExtensionDelegate.swift */,
+				154E0FE9235CE3BD00FD426C /* HostingController.swift */,
+				154E0FEF235CE3BD00FD426C /* Preview Content */,
+				154E0FED235CE3BD00FD426C /* Assets.xcassets */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		156CABDF23FB218D007FB467 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				157D91C923814C6500371C2F /* Sensor_App_Framework.h */,
+				157D91CA23814C6500371C2F /* Info.plist */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		156CABE023FB22FC007FB467 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				154E0FDD235CE3BD00FD426C /* Info.plist */,
+				15A7F6AC236C5FD9009FCF1D /* Interface.storyboard */,
+				154E0FDB235CE3BD00FD426C /* Assets.xcassets */,
+			);
+			path = Support;
 			sourceTree = "<group>";
 		};
 		1577ECB523301DD40061718B /* Translation */ = {
@@ -536,13 +575,7 @@
 		157B0E71227F57D6004CC169 /* Sensor-App */ = {
 			isa = PBXGroup;
 			children = (
-				15C559D523BA545900812942 /* MyPlayground.playground */,
-				156FC3CC22A2D9ED00B70943 /* Info.plist */,
-				15DDE3592337EC8100732427 /* LaunchScreen.storyboard */,
-				157B0E72227F57D6004CC169 /* AppDelegate.swift */,
-				1550FA7B232C0435006447AE /* SceneDelegate.swift */,
-				157B0E79227F57D7004CC169 /* Assets.xcassets */,
-				1550FA8A232C06D1006447AE /* Preview Content */,
+				156CABDD23FB2161007FB467 /* Support */,
 				15B357B623DF6DD900972D41 /* LineGraph */,
 				157B0E89227F5A3A004CC169 /* View */,
 			);
@@ -584,8 +617,7 @@
 		157D91C823814C6500371C2F /* Sensor-App-Framework */ = {
 			isa = PBXGroup;
 			children = (
-				157D91C923814C6500371C2F /* Sensor_App_Framework.h */,
-				157D91CA23814C6500371C2F /* Info.plist */,
+				156CABDF23FB218D007FB467 /* Support */,
 				150CF9C9231D84E800FDD825 /* API */,
 				151F672B23CB9B6900DAFCD3 /* Customization */,
 				157B0E8A227F5A4E004CC169 /* Model */,
@@ -1201,7 +1233,7 @@
 				CURRENT_PROJECT_VERSION = "${MY_BUILD_VERSION}";
 				DEVELOPMENT_TEAM = NLF7894S7W;
 				IBSC_MODULE = Sensor_App_WatchApp_Extension;
-				INFOPLIST_FILE = "$(SRCROOT)/Sensor-App-WatchApp/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Sensor-App-WatchApp/Support/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -1230,7 +1262,7 @@
 				CURRENT_PROJECT_VERSION = "${MY_BUILD_VERSION}";
 				DEVELOPMENT_TEAM = NLF7894S7W;
 				IBSC_MODULE = Sensor_App_WatchApp_Extension;
-				INFOPLIST_FILE = "$(SRCROOT)/Sensor-App-WatchApp/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Sensor-App-WatchApp/Support/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -1254,10 +1286,10 @@
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "${MY_BUILD_VERSION}";
-				DEVELOPMENT_ASSET_PATHS = "\"Sensor-App-WatchApp Extension/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Sensor-App-WatchApp Extension/Support/Preview Content\"";
 				DEVELOPMENT_TEAM = NLF7894S7W;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/Sensor-App-WatchApp Extension/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Sensor-App-WatchApp Extension/Support/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1280,10 +1312,10 @@
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "${MY_BUILD_VERSION}";
-				DEVELOPMENT_ASSET_PATHS = "\"Sensor-App-WatchApp Extension/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Sensor-App-WatchApp Extension/Support/Preview Content\"";
 				DEVELOPMENT_TEAM = NLF7894S7W;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/Sensor-App-WatchApp Extension/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Sensor-App-WatchApp Extension/Support/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1357,7 +1389,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				MY_BUILD_VERSION = 2.20081.25;
-				MY_VERSION = 2.3.0;
+				MY_VERSION = 2.4.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -1417,7 +1449,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				MY_BUILD_VERSION = 2.20081.25;
-				MY_VERSION = 2.3.0;
+				MY_VERSION = 2.4.0;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -1433,10 +1465,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "${MY_BUILD_VERSION}";
-				DEVELOPMENT_ASSET_PATHS = "Sensor-App/Preview\\ Content";
+				DEVELOPMENT_ASSET_PATHS = "$(SRCROOT)/Sensor-App/Support/Preview\\ Content";
 				DEVELOPMENT_TEAM = NLF7894S7W;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "$(SRCROOT)/Sensor-App/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Sensor-App/Support/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1458,10 +1490,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "${MY_BUILD_VERSION}";
-				DEVELOPMENT_ASSET_PATHS = "Sensor-App/Preview\\ Content";
+				DEVELOPMENT_ASSET_PATHS = "$(SRCROOT)/Sensor-App/Support/Preview\\ Content";
 				DEVELOPMENT_TEAM = NLF7894S7W;
 				GCC_OPTIMIZATION_LEVEL = s;
-				INFOPLIST_FILE = "$(SRCROOT)/Sensor-App/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Sensor-App/Support/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1487,7 +1519,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = "$(SRCROOT)/Sensor-App-Framework/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Sensor-App-Framework/Support/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1520,7 +1552,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = "$(SRCROOT)/Sensor-App-Framework/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Sensor-App-Framework/Support/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (

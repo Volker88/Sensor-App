@@ -13,14 +13,7 @@ import SwiftUI
 
 // MARK: - Class Definition
 class SettingsAPI {
-    
-    // MARK: - Singleton Pattern
-    // MARK: - FIXME
-    static var shared : SettingsAPI = SettingsAPI()
-    private init() {
-    }
-    
-    
+     
     // MARK: - GPS Settings
     public let GPSSpeedSettings = [
         UnitSpeed.metersPerSecond.symbol,
