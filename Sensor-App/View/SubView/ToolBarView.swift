@@ -14,7 +14,7 @@ import SwiftUI
 // MARK: - ToolBarView
 struct ToolBarView: View {
     
-    // MARK: - @State / @Binding Variables
+    // MARK: - @State / @ObservedObject / @Binding
     @Binding var toolBarButtonType: ToolBarButtonType
     
     
@@ -36,6 +36,7 @@ struct ToolBarView: View {
     
     // MARK: - Body - View
     var body: some View {
+        
         
         // MARK: - Return View
         return GeometryReader { g in

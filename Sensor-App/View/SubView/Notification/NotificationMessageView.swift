@@ -14,7 +14,7 @@ import SwiftUI
 // MARK: - NotificationViewModel
 struct NotificationMessageView: View {
     
-    // MARK: - @State / @Binding Variables
+    // MARK: - @State / @ObservedObject / @Binding
     @Binding var notificationText: String
     
     
@@ -26,6 +26,7 @@ struct NotificationMessageView: View {
     
     // MARK: - Body - View
     var body: some View {
+        
         
         // MARK: - Return View
         return Text(notificationText)

@@ -12,25 +12,8 @@ import Foundation
 import SwiftUI
 
 
-// MARK: - Notification Types
-enum NotificationTypes {
-    case saved
-    case discarded
-    case paused
-    case played
-    case deleted
-}
-
-
 // MARK: - Class Definition
 class NotificationAPI {
-    
-    // MARK: - Singleton Pattern
-    // MARK: - FIXME
-    static var shared : NotificationAPI = NotificationAPI()
-    private init() {
-    }
-    
     
     // MARK: - Define Constants / Variables
     
@@ -89,7 +72,7 @@ class NotificationAPI {
     public func toggleNotification(type: NotificationTypes, duration: Double?, completion: @escaping (String, Bool) -> Void) {
         let duration = duration ?? fetchNotificationAnimationSettings().duration
         
-        let notificationMessage = NotificationAPI.shared.fetchNotificationText(type: type)
+        let notificationMessage = self.fetchNotificationText(type: type)
         var showNotification = true
         completion(notificationMessage, showNotification)
         DispatchQueue.main.asyncAfter(deadline: .now() + duration, execute: {

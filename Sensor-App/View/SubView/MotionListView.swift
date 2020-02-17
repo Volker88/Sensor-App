@@ -18,7 +18,7 @@ struct MotionListView: View {
     let calculationAPI = CalculationAPI()
     let settings = SettingsAPI()
     
-    // MARK: - @State / @ObservedObject
+    // MARK: - @State / @ObservedObject / @Binding
     @State var type: SensorType
     @ObservedObject var motionVM = CoreMotionViewModel()
     

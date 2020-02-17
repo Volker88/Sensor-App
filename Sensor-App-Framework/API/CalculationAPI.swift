@@ -17,6 +17,7 @@ class CalculationAPI {
     // MARK: - Initialize Classes
     let settings = SettingsAPI()
     
+    
     // MARK: - Methods
     ///
     ///  Converts speed from GPS sensor into desired unit

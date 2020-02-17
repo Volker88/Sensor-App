@@ -15,11 +15,13 @@ import SwiftUI
 struct AltitudeView: View {
     
     // MARK: - Initialize Classes
+    let locationAPI = CoreLocationAPI()
     let calculationAPI = CalculationAPI()
     let settings = SettingsAPI()
+    let notificationAPI = NotificationAPI()
     
     
-    // MARK: - @State / @ObservedObject
+    // MARK: - @State / @ObservedObject / @Binding
     @ObservedObject var motionVM = CoreMotionViewModel()
     @State private var frequency = 1.0
     @State private var showSettings = false
@@ -33,7 +35,7 @@ struct AltitudeView: View {
     // Notification Variables
     @State private var showNotification = false
     @State private var notificationMessage = ""
-    @State private var notificationDuration = NotificationAPI.shared.fetchNotificationAnimationSettings().duration
+    @State private var notificationDuration = 2.0
     
     
     // MARK: - Define Constants / Variables
@@ -42,6 +44,7 @@ struct AltitudeView: View {
     // MARK: - Initializer
     init() {
         frequency = settings.fetchUserSettings().frequencySetting
+        notificationDuration = notificationAPI.fetchNotificationAnimationSettings().duration
     }
     
     
@@ -72,7 +75,7 @@ struct AltitudeView: View {
         }
         
         if messageType != nil {
-            NotificationAPI.shared.toggleNotification(type: messageType!, duration: self.notificationDuration) { (message, show) in
+            notificationAPI.toggleNotification(type: messageType!, duration: self.notificationDuration) { (message, show) in
                 self.notificationMessage = message
                 self.showNotification = show
             }

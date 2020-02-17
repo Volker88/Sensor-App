@@ -18,7 +18,7 @@ struct ContentView: View {
     let settings = SettingsAPI()
     
     
-    // MARK: - @State Variables
+    // MARK: - @State / @ObservedObject / @Binding
     @State var showSettings = false
     
     

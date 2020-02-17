@@ -14,13 +14,23 @@ import SwiftUI
 // MARK: - Struct
 struct NotificationView: View {
     
-    // MARK: - @State / @Binding Variables
+    let notificationAPI = NotificationAPI()
+    
+    // MARK: - @State / @ObservedObject / @Binding
     @Binding var notificationMessage: String
     @Binding var showNotification: Bool
     
     
     // MARK: - Define Constants / Variables
-    private let notificationSettings = NotificationAPI.shared.fetchNotificationAnimationSettings()
+    private var notificationSettings : NotificationAnimationModel
+    
+    
+    // MARK: - Initializer
+    init(notificationMessage: Binding<String>, showNotification: Binding<Bool>) {
+        self._notificationMessage = notificationMessage
+        self._showNotification = showNotification
+        self.notificationSettings = notificationAPI.fetchNotificationAnimationSettings()
+    }
     
     
     // MARK: - Methods
@@ -28,6 +38,7 @@ struct NotificationView: View {
     
     // MARK: - Body - View
     var body: some View {
+        
         
         // MARK: - Return View
         return NotificationMessageView(notificationText: self.$notificationMessage)
@@ -39,9 +50,12 @@ struct NotificationView: View {
 
 // MARK: - Preview
 struct NotificationView_Previews: PreviewProvider {
+    @State static var bool = true
+    @State static var test = "Saved"
+    
     static var previews: some View {
         ForEach([ColorScheme.light, .dark], id: \.self) { scheme in
-            NotificationView(notificationMessage: .constant("Saved successfully"), showNotification: .constant(true))
+            NotificationView(notificationMessage: $test, showNotification: $bool)
                 .colorScheme(scheme)
         }
     }

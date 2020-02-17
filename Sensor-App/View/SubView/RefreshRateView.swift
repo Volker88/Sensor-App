@@ -18,7 +18,7 @@ struct RefreshRateView: View {
     let settings = SettingsAPI()
     
     
-    // MARK: - @State Variables
+    // MARK: - @State / @ObservedObject / @Binding
     @State var refreshRate: Double = 1.0
     var updateSensorInterval: () -> Void
     
@@ -31,7 +31,6 @@ struct RefreshRateView: View {
         settings.saveUserSettings(userSettings: userSettings)
         
         // Update Sensor Interval
-        
         updateSensorInterval()
     }
     

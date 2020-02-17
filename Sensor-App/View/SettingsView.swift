@@ -20,28 +20,31 @@ struct SettingsView: View {
     
     // MARK: - Initialize Classes
     let settings = SettingsAPI()
+    let notificationAPI = NotificationAPI()
     
     
-    // MARK: - @State Variables
+    // MARK: - @State / @ObservedObject / @Binding
     @State var notificationMessage = ""
     @State var showNotification = false
     
     
-    // MARK: - Variables / Constants
+    // MARK: - Define Constants / Variables
     @State var speedSetting = 0
     @State var accuracySetting = 0
     @State var pressureSetting = 0
     @State var heightSetting = 0
-    let notificationSettings = NotificationAPI.shared.fetchNotificationAnimationSettings()
+    let notificationSettings: NotificationAnimationModel
     
     
     // MARK: - Initializer
     init() {
+        notificationSettings = notificationAPI.fetchNotificationAnimationSettings()
         speedSetting = settings.GPSSpeedSettings.firstIndex(of: settings.fetchUserSettings().GPSSpeedSetting)!
         accuracySetting = settings.GPSAccuracyOptions.firstIndex(of: settings.fetchUserSettings().GPSAccuracySetting)!
         pressureSetting = settings.altitudePressure.firstIndex(of: settings.fetchUserSettings().pressureSetting)!
         heightSetting = settings.altitudeHeight.firstIndex(of: settings.fetchUserSettings().altitudeHeightSetting)!
     }
+    
     
     // MARK: - Methods
     func saveSettings() {
@@ -52,7 +55,7 @@ struct SettingsView: View {
         userSettings.altitudeHeightSetting = settings.altitudeHeight[self.heightSetting]
         settings.saveUserSettings(userSettings: userSettings)
         
-        NotificationAPI.shared.toggleNotification(type: .saved, duration: nil) { (message, show) in
+        notificationAPI.toggleNotification(type: .saved, duration: nil) { (message, show) in
             self.notificationMessage = message
             self.showNotification = show
         }
@@ -64,7 +67,7 @@ struct SettingsView: View {
         self.pressureSetting = settings.altitudePressure.firstIndex(of: settings.fetchUserSettings().pressureSetting)!
         self.heightSetting = settings.altitudeHeight.firstIndex(of: settings.fetchUserSettings().altitudeHeightSetting)!
         if showNotification == true {
-            NotificationAPI.shared.toggleNotification(type: .discarded, duration: nil) { (message, show) in
+            notificationAPI.toggleNotification(type: .discarded, duration: nil) { (message, show) in
                 self.notificationMessage = message
                 self.showNotification = show
             }
@@ -89,6 +92,8 @@ struct SettingsView: View {
     // MARK: - Body - View
     var body: some View {
         
+        
+        // MARK: - Return view
         return ZStack {
             NavigationView {
                 Form {

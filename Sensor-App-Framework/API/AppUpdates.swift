@@ -17,6 +17,7 @@ class AppUpdates {
     // MARK: - Initialize Classes
     let settings = SettingsAPI()
     
+    
     // MARK: - Methods
     ///
     ///  Call this function to check if the app version is up to date

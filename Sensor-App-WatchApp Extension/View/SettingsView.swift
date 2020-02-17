@@ -17,18 +17,18 @@ struct SettingsView: View {
     // MARK: - Initialize Classes
     let settings = SettingsAPI()
     
-    // MARK: - @State / @ObservedObject
+    // MARK: - @State / @ObservedObject / @Binding
     @State private var showingDiscardAlert = false
     @State private var showingSaveAlert = false
     @State var refreshRate : Double = 1
-    
-    
-    // MARK: - Variables / Constants
     @State var speedSetting = 0
     @State var accuracySetting = 0
     @State var pressureSetting = 0
     @State var heightSetting = 0
     
+    
+    // MARK: - Define Constants / Variables
+
     
     // MARK: - Initializer
     init() {

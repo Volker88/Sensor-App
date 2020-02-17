@@ -17,11 +17,14 @@ struct ContentView: View {
     // MARK: - Initialize Classes
     
     
-    // MARK: - @State Variables
+    // MARK: - @State / @ObservedObject / @Binding
     @State var showSettings = false
     
     
     // MARK: - Define Constants / Variables
+    
+    
+    // MARK: - Initializer
     
     
     // MARK: - Methods

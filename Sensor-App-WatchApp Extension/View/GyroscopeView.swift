@@ -18,9 +18,12 @@ struct GyroscopeView: View {
     let settings = SettingsAPI()
     
     
-    // MARK: - @State / @ObservedObject
+    // MARK: - @State / @ObservedObject / @Binding
     @ObservedObject var motionVM = CoreMotionViewModel()
     @State private var frequency = 1.0 // Default Frequency
+    
+    
+    // MARK: - Define Constants / Variables
     
     
     // MARK: - Initializer
@@ -29,10 +32,7 @@ struct GyroscopeView: View {
         motionVM.sensorUpdateInterval = frequency
     }
     
-    
-    // MARK: - Define Constants / Variables
-    
-    
+
     // MARK: - Methods
     
     

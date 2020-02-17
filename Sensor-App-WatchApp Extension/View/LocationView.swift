@@ -20,11 +20,14 @@ struct LocationView: View {
     let settings = SettingsAPI()
     
     
-    // MARK: - @State / @ObservedObject
+    // MARK: - @State / @ObservedObject / @Binding
     @ObservedObject var locationVM = CoreLocationViewModel()
     
     
     // MARK: - Define Constants / Variables
+    
+    
+    // MARK: - Initializer
     
     
     // MARK: - Methods

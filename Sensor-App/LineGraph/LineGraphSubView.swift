@@ -15,7 +15,7 @@ import SwiftUIGraph
 // MARK: - Struct
 struct LineGraphSubView: View, LineGraphPotocol {
     
-    // MARK: - @State / @ObservedObject
+    // MARK: - @State / @ObservedObject / @Binding
     @ObservedObject var motionVM = CoreMotionViewModel()
     @ObservedObject var locationVM = CoreLocationViewModel()
     @ObservedObject var transformation = GraphArrayTransformation()

@@ -18,9 +18,12 @@ struct GravityView: View {
     let settings = SettingsAPI()
     
     
-    // MARK: - @State / @ObservedObject
+    // MARK: - @State / @ObservedObject / @Binding
     @ObservedObject var motionVM = CoreMotionViewModel()
     @State private var frequency = 1.0 // Default Frequency
+    
+    
+    // MARK: - Define Constants / Variables
     
     
     // MARK: - Initializer
@@ -28,9 +31,6 @@ struct GravityView: View {
         frequency = settings.fetchUserSettings().frequencySetting
         motionVM.sensorUpdateInterval = frequency
     }
-    
-    
-    // MARK: - Define Constants / Variables
     
     
     // MARK: - Methods
