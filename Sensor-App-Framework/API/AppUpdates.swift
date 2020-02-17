@@ -14,12 +14,6 @@ import Foundation
 // MARK: - Class Definition
 class AppUpdates {
     
-    // MARK: - Singleton Pattern
-    // MARK: - FIXME
-    static var shared : AppUpdates = AppUpdates()
-    private init() {
-    }
-    
     
     // MARK: - Methods
     ///

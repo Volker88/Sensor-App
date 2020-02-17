@@ -14,9 +14,12 @@ import Combine
 // MARK: - Class Definition
 class CoreLocationViewModel: ObservableObject {
     
+    // MARK: - Initialize Classes
+    let locationAPI = CoreLocationAPI()
+    
+    
     // MARK: - Define Constants / Variables
     @Published var coreLocationArray = [LocationModel]()
-    let locationAPI = CoreLocationAPI()
     
     
     // MARK: - Methods

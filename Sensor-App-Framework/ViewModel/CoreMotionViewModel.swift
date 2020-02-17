@@ -14,9 +14,18 @@ import Combine
 // MARK: - Class Definition
 class CoreMotionViewModel: ObservableObject {
     
+    // MARK: - Initialize Classes
+    let motionAPI = CoreMotionAPI()
+    
+    
     // MARK: - Define Constants / Variables
     @Published var coreMotionArray = [MotionModel]()
     @Published var altitudeArray = [AltitudeModel]()
+    var sensorUpdateInterval : Double = SettingsAPI.shared.fetchUserSettings().frequencySetting {
+        didSet {
+            motionAPI.sensorUpdateInterval = SettingsAPI.shared.fetchUserSettings().frequencySetting
+        }
+    }
     
     
     // MARK: - Methods
@@ -31,8 +40,8 @@ class CoreMotionViewModel: ObservableObject {
         coreMotionArray.shuffle()
         #endif
         
-        CoreMotionAPI.shared.motionUpdateStart()
-        CoreMotionAPI.shared.motionCompletionHandler = { data in
+        motionAPI.motionUpdateStart()
+        motionAPI.motionCompletionHandler = { data in
             
             // Append MotionModel to coreMotionArray
             self.coreMotionArray.append(MotionModel(
@@ -69,8 +78,8 @@ class CoreMotionViewModel: ObservableObject {
         altitudeArray.shuffle()
         #endif
         
-        CoreMotionAPI.shared.motionUpdateStart()
-        CoreMotionAPI.shared.altitudeCompletionHandler = { data in
+        motionAPI.motionUpdateStart()
+        motionAPI.altitudeCompletionHandler = { data in
             
             // Append AltitudeModel to altitudeArray
             self.altitudeArray.append(AltitudeModel(
@@ -80,5 +89,9 @@ class CoreMotionViewModel: ObservableObject {
                 relativeAltitudeValue: data.relativeAltitudeValue
             ))
         }
+    }
+    
+    func stopMotionUpdates() {
+        motionAPI.motionUpdateStop()
     }
 }

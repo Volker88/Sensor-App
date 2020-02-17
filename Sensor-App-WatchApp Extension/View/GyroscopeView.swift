@@ -35,7 +35,7 @@ struct GyroscopeView: View {
     }
     
     func onDisappear() {
-        CoreMotionAPI.shared.motionUpdateStop()
+        motionVM.stopMotionUpdates()
         motionVM.coreMotionArray.removeAll()
     }
     

@@ -46,7 +46,7 @@ struct GravityView: View {
                 motionVM.motionUpdateStart()
                 messageType = .played
             case .pause:
-                CoreMotionAPI.shared.motionUpdateStop()
+                motionVM.stopMotionUpdates()
                 messageType = .paused
             case .delete:
                 self.motionVM.coreMotionArray.removeAll()
@@ -65,6 +65,10 @@ struct GravityView: View {
         }
     }
     
+    func updateSensorInterval() {
+        motionVM.sensorUpdateInterval = SettingsAPI.shared.fetchUserSettings().frequencySetting
+    }
+    
     
     // MARK: - onAppear / onDisappear
     func onAppear() {
@@ -73,7 +77,7 @@ struct GravityView: View {
     }
     
     func onDisappear() {
-        CoreMotionAPI.shared.motionUpdateStop()
+        motionVM.stopMotionUpdates()
         motionVM.coreMotionArray.removeAll()
     }
     
@@ -148,7 +152,7 @@ struct GravityView: View {
                                     
                                     
                                     // MARK: - RefreshRateView()
-                                    RefreshRateView()
+                                    RefreshRateView(updateSensorInterval: { self.updateSensorInterval() })
                                         .frame(width: g.size.width, height: 170, alignment: .center)
                                 }
                             }

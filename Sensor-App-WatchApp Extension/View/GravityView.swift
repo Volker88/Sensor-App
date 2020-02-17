@@ -35,7 +35,7 @@ struct GravityView: View {
     }
     
     func onDisappear() {
-        CoreMotionAPI.shared.motionUpdateStop()
+        motionVM.motionUpdateStart()
         motionVM.coreMotionArray.removeAll()
     }
     

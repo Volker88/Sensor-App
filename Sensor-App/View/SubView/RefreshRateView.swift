@@ -15,19 +15,20 @@ import SwiftUI
 struct RefreshRateView: View {
     
     // MARK: - @State Variables
-    @State var refreshRate : Double = SettingsAPI.shared.fetchUserSettings().frequencySetting
+    @State var refreshRate: Double = SettingsAPI.shared.fetchUserSettings().frequencySetting
+    var updateSensorInterval: () -> Void
     
     
     // MARK: - Methods
     func updateSlider() {
-        
         // Save Sensor Settings
         var settings = SettingsAPI.shared.fetchUserSettings()
         settings.frequencySetting = self.refreshRate
         SettingsAPI.shared.saveUserSettings(userSettings: settings)
         
         // Update Sensor Interval
-        CoreMotionAPI.shared.sensorUpdateInterval = self.refreshRate
+        
+        updateSensorInterval()
     }
     
     
@@ -71,7 +72,7 @@ struct RefreshRateView: View {
 struct RefreshRateView_Previews: PreviewProvider {
     static var previews: some View {
         ForEach([ColorScheme.light, .dark], id: \.self) { scheme in
-            RefreshRateView()
+            RefreshRateView(updateSensorInterval: { })
                 .colorScheme(scheme)
                 .previewLayout(.fixed(width: 400, height: 170))
         }

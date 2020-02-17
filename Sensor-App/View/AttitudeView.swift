@@ -47,7 +47,7 @@ struct AttitudeView: View {
                 motionVM.motionUpdateStart()
                 messageType = .played
             case .pause:
-                CoreMotionAPI.shared.motionUpdateStop()
+                motionVM.stopMotionUpdates()
                 messageType = .paused
             case .delete:
                 self.motionVM.coreMotionArray.removeAll()
@@ -66,6 +66,10 @@ struct AttitudeView: View {
         }
     }
     
+    func updateSensorInterval() {
+        motionVM.sensorUpdateInterval = SettingsAPI.shared.fetchUserSettings().frequencySetting
+    }
+    
     
     // MARK: - onAppear / onDisappear
     func onAppear() {
@@ -74,7 +78,7 @@ struct AttitudeView: View {
     }
     
     func onDisappear() {
-        CoreMotionAPI.shared.motionUpdateStop()
+        motionVM.stopMotionUpdates()
         motionVM.coreMotionArray.removeAll()
     }
     
@@ -164,7 +168,7 @@ struct AttitudeView: View {
                                     
                                     
                                     // MARK: - RefreshRateViewModel()
-                                    RefreshRateView()
+                                    RefreshRateView(updateSensorInterval: { self.updateSensorInterval() })
                                         .frame(width: g.size.width, height: 170, alignment: .center)
                                 }
                             }

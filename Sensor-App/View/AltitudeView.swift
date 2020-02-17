@@ -48,14 +48,14 @@ struct AltitudeView: View {
                 motionIsUpdating = true
                 messageType = .played
             case .pause:
-                CoreMotionAPI.shared.motionUpdateStop()
+                motionVM.stopMotionUpdates()
                 motionIsUpdating = false
                 messageType = .paused
             case .delete:
                 self.motionVM.coreMotionArray.removeAll()
                 self.motionVM.altitudeArray.removeAll()
                 if motionIsUpdating == true {
-                    CoreMotionAPI.shared.motionUpdateStop()
+                    motionVM.stopMotionUpdates()
                     motionVM.altitudeUpdateStart()
                 }
                 messageType = .deleted
@@ -80,7 +80,7 @@ struct AltitudeView: View {
     }
     
     func onDisappear() {
-        CoreMotionAPI.shared.motionUpdateStop()
+        motionVM.stopMotionUpdates()
         motionVM.altitudeArray.removeAll()
     }
     

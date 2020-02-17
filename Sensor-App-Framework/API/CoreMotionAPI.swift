@@ -15,21 +15,10 @@ import CoreMotion
 class CoreMotionAPI {
     
     // MARK: - Initialize Classes
-    private var motionManager : CMMotionManager
-    private var magnetManager : CMMagnetometerData
-    private var altimeterManager : CMAltimeter
-    private var attitude : CMAttitude
-    
-    
-    // MARK: - Singleton pattern
-    // MARK: - FIXME
-    static var shared : CoreMotionAPI = CoreMotionAPI()
-    private init() {
-        motionManager = CMMotionManager()
-        magnetManager = CMMagnetometerData()
-        altimeterManager = CMAltimeter()
-        attitude = CMAttitude()
-    }
+    private var motionManager = CMMotionManager()
+    private var magnetManager = CMMagnetometerData()
+    private var altimeterManager = CMAltimeter()
+    private var attitude = CMAttitude()
     
 
     // MARK: - Define Constants / Variables
