@@ -26,6 +26,7 @@ enum NotificationTypes {
 class NotificationAPI {
     
     // MARK: - Singleton Pattern
+    // MARK: - FIXME
     static var shared : NotificationAPI = NotificationAPI()
     private init() {
     }

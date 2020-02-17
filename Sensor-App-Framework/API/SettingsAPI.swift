@@ -15,6 +15,7 @@ import SwiftUI
 class SettingsAPI {
     
     // MARK: - Singleton Pattern
+    // MARK: - FIXME
     static var shared : SettingsAPI = SettingsAPI()
     private init() {
     }

@@ -16,21 +16,11 @@ import CoreLocation
 class CoreLocationAPI: CLLocationManager, CLLocationManagerDelegate {
     
     // MARK: - Initialize Classes
-    private var locationManager : CLLocationManager
-    
-    
-    // MARK: - Singleton pattern
-    static var shared : CoreLocationAPI = CoreLocationAPI()
-    private override init() {
-        locationManager = CLLocationManager()
-    }
+    private var locationManager : CLLocationManager = CLLocationManager()
     
     
     // MARK: - Define Constants / Variables
 
-    
-    // MARK: - Methods
-    
     
     // MARK: - Closure to push LocationModel to ViewModel
     ///
@@ -80,7 +70,7 @@ class CoreLocationAPI: CLLocationManager, CLLocationManagerDelegate {
         print(error)
     }
     
-    
+    // MARK: - Methods
     // MARK: - Start / Stop GPS Method
     ///
     ///  Start GPS updates

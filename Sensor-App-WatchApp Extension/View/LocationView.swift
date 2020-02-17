@@ -15,7 +15,7 @@ import SwiftUI
 struct LocationView: View {
     
     // MARK: - Initialize Classes
-    
+    let locationAPI = CoreLocationAPI()
     
     // MARK: - @State / @ObservedObject
     @ObservedObject var locationVM = CoreLocationViewModel()
@@ -29,12 +29,11 @@ struct LocationView: View {
     
     // MARK: - onAppear / onDisappear
     func onAppear() {
-        // Start updating location
-        locationVM.locationUpdateStart()
+        locationVM.startLocationUpdates()
     }
     
     func onDisappear() {
-        CoreLocationAPI.shared.stopUpdatingGPS()
+        locationVM.stopLocationUpdates()
         locationVM.coreLocationArray.removeAll()
     }
     

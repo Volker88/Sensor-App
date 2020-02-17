@@ -15,6 +15,7 @@ import Foundation
 class CalculationAPI {
     
     // MARK: - Singleton Pattern
+    // MARK: - FIXME
     static var shared : CalculationAPI = CalculationAPI()
     private init() {
     }

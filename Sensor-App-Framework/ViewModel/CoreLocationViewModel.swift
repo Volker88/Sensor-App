@@ -16,10 +16,11 @@ class CoreLocationViewModel: ObservableObject {
     
     // MARK: - Define Constants / Variables
     @Published var coreLocationArray = [LocationModel]()
+    let locationAPI = CoreLocationAPI()
     
     
     // MARK: - Methods
-    func locationUpdateStart() {
+    func startLocationUpdates() {
         #if targetEnvironment(simulator)
         for _ in 1...100 {
             coreLocationArray.append(LocationModel(counter: 1, longitude: -73.985255, latitude: 40.758449, altitude: 30, speed: 23.24, course: 265.08, horizontalAccuracy: 5.0, verticalAccuracy: 5.0, timestamp: "17-11-2019 10:44:13.136", GPSAccuracy: -1.0))
@@ -31,8 +32,8 @@ class CoreLocationViewModel: ObservableObject {
         coreLocationArray.append(LocationModel(counter: 1, longitude: -73.984021, latitude: 40.760123, altitude: 10, speed: 26.24, course: 265.08, horizontalAccuracy: 5.0, verticalAccuracy: 5.0, timestamp: "17-11-2019 10:44:13.136", GPSAccuracy: -1.0))
         #endif
         
-        CoreLocationAPI.shared.startUpdatingGPS()
-        CoreLocationAPI.shared.locationCompletionHandler = { GPS in
+        locationAPI.startUpdatingGPS()
+        locationAPI.locationCompletionHandler = { GPS in
             
             // Append LocationModel to coreLocationArray
             self.coreLocationArray.append(LocationModel(
@@ -49,5 +50,10 @@ class CoreLocationViewModel: ObservableObject {
             ))
         }
     }
+    
+    func stopLocationUpdates() {
+        locationAPI.stopUpdatingGPS()
+    }
+    
 }
 

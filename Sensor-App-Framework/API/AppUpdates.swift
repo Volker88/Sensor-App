@@ -15,6 +15,7 @@ import Foundation
 class AppUpdates {
     
     // MARK: - Singleton Pattern
+    // MARK: - FIXME
     static var shared : AppUpdates = AppUpdates()
     private init() {
     }

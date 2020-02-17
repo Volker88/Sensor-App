@@ -15,7 +15,7 @@ import SwiftUI
 struct LocationView: View {
     
     // MARK: - Initialize Classes
-    
+    let locationAPI = CoreLocationAPI()
     
     // MARK: - @State / @ObservedObject
     @ObservedObject var locationVM = CoreLocationViewModel()
@@ -44,10 +44,10 @@ struct LocationView: View {
         
         switch toolBarButtonType {
             case .play:
-                CoreLocationAPI.shared.startUpdatingGPS()
+                locationVM.startLocationUpdates()
                 messageType = .played
             case .pause:
-                CoreLocationAPI.shared.stopUpdatingGPS()
+                locationVM.stopLocationUpdates()
                 messageType = .paused
             case .delete:
                 self.locationVM.coreLocationArray.removeAll()
@@ -68,11 +68,11 @@ struct LocationView: View {
     
     // MARK: - onAppear / onDisappear
     func onAppear() {
-        locationVM.locationUpdateStart()
+        locationVM.startLocationUpdates()
     }
     
     func onDisappear() {
-        CoreLocationAPI.shared.stopUpdatingGPS()
+        locationVM.stopLocationUpdates()
         locationVM.coreLocationArray.removeAll()
     }
     

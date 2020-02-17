@@ -22,6 +22,7 @@ class CoreMotionAPI {
     
     
     // MARK: - Singleton pattern
+    // MARK: - FIXME
     static var shared : CoreMotionAPI = CoreMotionAPI()
     private init() {
         motionManager = CMMotionManager()
