@@ -24,7 +24,6 @@ struct LocationView: View {
     // MARK: - @State / @ObservedObject / @Binding
     @ObservedObject var locationVM = CoreLocationViewModel()
     @State private var showSettings = false
-    @State private var toolBarButtonType: ToolBarButtonType = .play
     
     // Show Graph
     @State private var showLatitude = false
@@ -49,10 +48,10 @@ struct LocationView: View {
     
     
     // MARK: - Methods
-    func toolBarButtonTapped() {
+    func toolBarButtonTapped(button: ToolBarButtonType) {
         var messageType: NotificationTypes?
         
-        switch toolBarButtonType {
+        switch button {
             case .play:
                 locationVM.startLocationUpdates()
                 messageType = .played
@@ -188,7 +187,7 @@ struct LocationView: View {
                             
                             
                             // MARK: - LocationToolBarViewModel()
-                            ToolBarView(toolBarButtonType: self.$toolBarButtonType, toolBarFunctionClosure: self.toolBarButtonTapped)
+                            ToolBarView(toolBarFunctionClosure: self.toolBarButtonTapped(button:))
                         }
                         .edgesIgnoringSafeArea(.bottom)
                     }

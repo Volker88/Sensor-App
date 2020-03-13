@@ -15,22 +15,16 @@ import SwiftUI
 struct ToolBarView: View {
     
     // MARK: - @State / @ObservedObject / @Binding
-    @Binding var toolBarButtonType: ToolBarButtonType
+    //@Binding var toolBarButtonType: ToolBarButtonType
     
     
     // MARK: - Define Constants / Variables
-    var toolBarFunctionClosure: () -> Void
+    var toolBarFunctionClosure: (ToolBarButtonType) -> Void
     
     
     // MARK: - Methods
     func buttonTapped(type: ToolBarButtonType) {
-        switch type {
-            case .play: toolBarButtonType = .play
-            case .pause: toolBarButtonType = .pause
-            case .delete: toolBarButtonType = .delete
-            case .settings: toolBarButtonType = .settings
-        }
-        toolBarFunctionClosure()
+        toolBarFunctionClosure(type)
     }
 
     
@@ -79,7 +73,7 @@ struct ToolBarView: View {
 struct LocationToolBarView_Previews: PreviewProvider {
     static var previews: some View {
         ForEach([ColorScheme.light, .dark], id: \.self) { scheme in
-            ToolBarView(toolBarButtonType: .constant(.play), toolBarFunctionClosure: { })
+            ToolBarView(toolBarFunctionClosure: { type in })
                 .colorScheme(scheme)
                 .previewLayout(.fixed(width: 400, height: 50))
         }

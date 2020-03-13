@@ -25,7 +25,6 @@ struct AttitudeView: View {
     @ObservedObject var motionVM = CoreMotionViewModel()
     @State private var frequency = 1.0
     @State private var showSettings = false
-    @State private var toolBarButtonType: ToolBarButtonType = .play
     
     // Show Graph
     @State private var showRoll = false
@@ -50,10 +49,10 @@ struct AttitudeView: View {
     
     
     // MARK: - Methods
-    func toolBarButtonTapped() {
+    func toolBarButtonTapped(button: ToolBarButtonType) {
         var messageType: NotificationTypes?
         
-        switch toolBarButtonType {
+        switch button {
             case .play:
                 motionVM.motionUpdateStart()
                 messageType = .played
@@ -188,7 +187,7 @@ struct AttitudeView: View {
                             
                             
                             // MARK: - MotionToolBarView()
-                            ToolBarView(toolBarButtonType: self.$toolBarButtonType, toolBarFunctionClosure: self.toolBarButtonTapped)
+                            ToolBarView(toolBarFunctionClosure: self.toolBarButtonTapped(button:))
                         }
                         .edgesIgnoringSafeArea(.bottom)
                     }

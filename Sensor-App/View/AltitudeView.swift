@@ -25,7 +25,6 @@ struct AltitudeView: View {
     @ObservedObject var motionVM = CoreMotionViewModel()
     @State private var frequency = 1.0
     @State private var showSettings = false
-    @State private var toolBarButtonType: ToolBarButtonType = .play
     @State private var motionIsUpdating = true
     
     // Show Graph
@@ -49,10 +48,10 @@ struct AltitudeView: View {
     
     
     // MARK: - Methods
-    func toolBarButtonTapped() {
+    func toolBarButtonTapped(button: ToolBarButtonType) {
         var messageType: NotificationTypes?
         
-        switch toolBarButtonType {
+        switch button {
             case .play:
                 motionVM.altitudeUpdateStart()
                 motionIsUpdating = true
@@ -154,7 +153,7 @@ struct AltitudeView: View {
                             
                             
                             // MARK: - MotionToolBarView()
-                            ToolBarView(toolBarButtonType: self.$toolBarButtonType, toolBarFunctionClosure: self.toolBarButtonTapped)
+                            ToolBarView(toolBarFunctionClosure: self.toolBarButtonTapped(button:))
                         }
                         .edgesIgnoringSafeArea(.bottom)
                     }
