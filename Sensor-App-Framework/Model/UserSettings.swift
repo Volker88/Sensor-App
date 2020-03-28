@@ -18,4 +18,5 @@ struct UserSettings: Codable {
     var frequencySetting: Double
     var pressureSetting: String
     var altitudeHeightSetting: String
+    var graphMaxPoints: Int
 }

@@ -57,46 +57,38 @@ struct ContentView: View {
                             Group {
                                 NavigationLink(destination: LocationView()) {
                                     Text("Location")
-                                        .modifier(ContentViewButtonModifier())
-                                        .accessibility(identifier: "Location")
+                                        .modifier(ContentViewButtonModifier(accessibility: "Location"))
                                 }
                                 NavigationLink(destination: AccelerationView()) {
                                     Text("Acceleration")
-                                        .modifier(ContentViewButtonModifier())
-                                        .accessibility(identifier: "Acceleration")
+                                        .modifier(ContentViewButtonModifier(accessibility: "Acceleration"))
                                 }
                                 NavigationLink(destination: GravityView()) {
                                     Text("Gravity")
-                                        .modifier(ContentViewButtonModifier())
-                                        .accessibility(identifier: "Gravity")
+                                        .modifier(ContentViewButtonModifier(accessibility: "Gravity"))
                                 }
                                 NavigationLink(destination: GyroscopeView()) {
                                     Text("Gyroscope")
-                                        .modifier(ContentViewButtonModifier())
-                                        .accessibility(identifier: "Gyroscope")
+                                        .modifier(ContentViewButtonModifier(accessibility: "Gyroscope"))
                                 }
                             }
                             .frame(height: 50, alignment: .center)
                             Group {
                                 NavigationLink(destination: MagnetometerView()) {
                                     Text("Magnetometer")
-                                        .modifier(ContentViewButtonModifier())
-                                        .accessibility(identifier: "Magnetometer")
+                                        .modifier(ContentViewButtonModifier(accessibility: "Magnetometer"))
                                 }
                                 NavigationLink(destination: AttitudeView()) {
                                     Text("Attitude")
-                                        .modifier(ContentViewButtonModifier())
-                                        .accessibility(identifier: "Attitude")
+                                        .modifier(ContentViewButtonModifier(accessibility: "Attitude"))
                                 }
                                 NavigationLink(destination: AltitudeView()) {
                                     Text("Altitude")
-                                        .modifier(ContentViewButtonModifier())
-                                        .accessibility(identifier: "Altitude")
+                                        .modifier(ContentViewButtonModifier(accessibility: "Altitude"))
                                 }
                                 Button(action: { self.showSettings.toggle() }) {
                                     Text("Settings")
-                                        .modifier(ContentViewButtonModifier())
-                                        .accessibility(identifier: "Settings")
+                                        .modifier(ContentViewButtonModifier(accessibility: "Settings"))
                                 }
                             }
                             .frame(height: 50, alignment: .center)

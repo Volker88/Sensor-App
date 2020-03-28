@@ -13,7 +13,11 @@ import SwiftUIGraph
 
 
 // MARK: - Struct
-struct LineGraphSubView: View, LineGraphPotocol {
+struct LineGraphSubView: View {
+    
+    // MARK: - Initialize Classes
+    let settings = SettingsAPI()
+    
     
     // MARK: - @State / @ObservedObject / @Binding
     @ObservedObject var motionVM = CoreMotionViewModel()
@@ -23,9 +27,8 @@ struct LineGraphSubView: View, LineGraphPotocol {
     
     // MARK: - Define Constants / Variables
     var showGraph: GraphDetail
-    var lineGraphSettings: LineGraphSettings = LineGraphSettings(maxPoints: 150, decimalDigits: 3, lineWitdh: 2, lineColor: [.secondary], textColor: .primary)
     
-   
+
     // MARK: - Methods
     func transformGraphArray() {
         if locationVM.coreLocationArray.count != 0 {
@@ -43,13 +46,14 @@ struct LineGraphSubView: View, LineGraphPotocol {
     // MARK: - Body - View
     var body: some View {
         
+        let lineGraphSettings: LineGraphSettings = LineGraphSettings(maxPoints: self.settings.fetchUserSettings().graphMaxPoints, decimalDigits: 3, lineWitdh: 2, lineColor: [.secondary], textColor: .primary)
         transformGraphArray()
         
         
         // MARK: - Return View
         return GeometryReader { g in
             VStack{
-                LineGraphView(lineGraphPointsArray: self.transformation.array, lineGraphSettings: self.lineGraphSettings, graphWidth: g.size.width - 10, graphHeight: 100)
+                LineGraphView(lineGraphPointsArray: self.transformation.array, lineGraphSettings: lineGraphSettings, graphWidth: g.size.width - 10, graphHeight: 100)
             }
         }
     }

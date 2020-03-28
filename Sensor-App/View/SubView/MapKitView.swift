@@ -12,7 +12,7 @@ import SwiftUI
 import MapKit
 
 
-// MARK: - Struct
+
 struct MapKitView: UIViewRepresentable {
     
     // MARK: - Define Constants / Variables
@@ -40,6 +40,7 @@ struct MapKitView: UIViewRepresentable {
         view.showsTraffic = true
         view.isRotateEnabled = true
         view.isPitchEnabled = true
+        view.isScrollEnabled = true
         
         // Map Appearance
         view.mapType = MKMapType.standard
@@ -53,9 +54,7 @@ struct MapKitView: UIViewRepresentable {
         let coordinate = CLLocationCoordinate2D(latitude: self.latitude, longitude: self.longitude)
 
         // Zoom Factor
-        let span = MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02)
-        
-        let region = MKCoordinateRegion(center: coordinate, span: span)
+        let region = MKCoordinateRegion(center: coordinate, latitudinalMeters: 500, longitudinalMeters: 500)
         view.setRegion(region, animated: true)
         let annotation = MKPointAnnotation()
         annotation.coordinate = coordinate

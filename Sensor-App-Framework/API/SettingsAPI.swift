@@ -66,7 +66,7 @@ class SettingsAPI {
     /// - Returns: UserSettings
     ///
     public func fetchUserSettings() -> UserSettings {
-        var userSettings = UserSettings(GPSSpeedSetting: "m/s", GPSAccuracySetting: "Best", frequencySetting: 1.0, pressureSetting: "kPa", altitudeHeightSetting: "m")
+        var userSettings = UserSettings(GPSSpeedSetting: "m/s", GPSAccuracySetting: "Best", frequencySetting: 1.0, pressureSetting: "kPa", altitudeHeightSetting: "m", graphMaxPoints: 150)
         
         if let settings = UserDefaults.standard.data(forKey: "UserSettings") {
             let decoder = JSONDecoder()
@@ -112,11 +112,5 @@ class SettingsAPI {
         let dateString = dateFormatter.string(from: NSDate() as Date)
         //print("Timestamp: " + dateString)
         return dateString
-    }
-    
-    
-    
-    
-    
-    
+    } 
 }

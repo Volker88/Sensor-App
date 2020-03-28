@@ -27,6 +27,7 @@ struct ContentViewTitleModifier: ViewModifier {
 }
 
 struct ContentViewButtonModifier: ViewModifier {
+    let accessibility: String
     func body(content: Content) -> some View {
         GeometryReader { g in
             content
@@ -35,6 +36,7 @@ struct ContentViewButtonModifier: ViewModifier {
                 .background(Color("StandardBackgroundColor"))
                 .foregroundColor(Color("StandardTextColor"))
                 .cornerRadius(10)
+                .accessibility(identifier: self.accessibility)
         }
     }
 }

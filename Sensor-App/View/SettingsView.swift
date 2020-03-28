@@ -24,25 +24,22 @@ struct SettingsView: View {
     
     
     // MARK: - @State / @ObservedObject / @Binding
-    @State var notificationMessage = ""
-    @State var showNotification = false
+    @State private var notificationMessage = ""
+    @State private var showNotification = false
+    @State private var speedSetting = 0
+    @State private var accuracySetting = 0
+    @State private var pressureSetting = 0
+    @State private var heightSetting = 0
+    @State private var graphMaxPoints = 0.0
     
     
     // MARK: - Define Constants / Variables
-    @State var speedSetting = 0
-    @State var accuracySetting = 0
-    @State var pressureSetting = 0
-    @State var heightSetting = 0
     let notificationSettings: NotificationAnimationModel
     
     
     // MARK: - Initializer
     init() {
         notificationSettings = notificationAPI.fetchNotificationAnimationSettings()
-        speedSetting = settings.GPSSpeedSettings.firstIndex(of: settings.fetchUserSettings().GPSSpeedSetting)!
-        accuracySetting = settings.GPSAccuracyOptions.firstIndex(of: settings.fetchUserSettings().GPSAccuracySetting)!
-        pressureSetting = settings.altitudePressure.firstIndex(of: settings.fetchUserSettings().pressureSetting)!
-        heightSetting = settings.altitudeHeight.firstIndex(of: settings.fetchUserSettings().altitudeHeightSetting)!
     }
     
     
@@ -53,6 +50,8 @@ struct SettingsView: View {
         userSettings.GPSAccuracySetting = settings.GPSAccuracyOptions[self.accuracySetting]
         userSettings.pressureSetting = settings.altitudePressure[self.pressureSetting]
         userSettings.altitudeHeightSetting = settings.altitudeHeight[self.heightSetting]
+        userSettings.graphMaxPoints = Int(self.graphMaxPoints)
+        
         settings.saveUserSettings(userSettings: userSettings)
         
         notificationAPI.toggleNotification(type: .saved, duration: nil) { (message, show) in
@@ -66,6 +65,8 @@ struct SettingsView: View {
         self.accuracySetting = settings.GPSAccuracyOptions.firstIndex(of: settings.fetchUserSettings().GPSAccuracySetting)!
         self.pressureSetting = settings.altitudePressure.firstIndex(of: settings.fetchUserSettings().pressureSetting)!
         self.heightSetting = settings.altitudeHeight.firstIndex(of: settings.fetchUserSettings().altitudeHeightSetting)!
+        self.graphMaxPoints = Double(settings.fetchUserSettings().graphMaxPoints)
+        
         if showNotification == true {
             notificationAPI.toggleNotification(type: .discarded, duration: nil) { (message, show) in
                 self.notificationMessage = message
@@ -81,7 +82,7 @@ struct SettingsView: View {
     
     // MARK: - onAppear / onDisappear
     func onAppear() {
-        
+        self.discardChanges(showNotification: false)
     }
     
     func onDisappear() {
@@ -99,7 +100,7 @@ struct SettingsView: View {
                 Form {
                     Section(header:
                         Text("Location")
-                            .font(.largeTitle)
+                            .font(.title)
                     ) {
                         Picker(selection: self.$speedSetting, label: Text("Speed Setting")) {
                             ForEach(0 ..< settings.GPSSpeedSettings.count, id: \.self) {
@@ -113,10 +114,14 @@ struct SettingsView: View {
                             }
                         }
                         .accessibility(identifier: "GPS Accuracy Settings")
+                        
+                        
+                        
+                        
                     }
                     Section(header:
                         Text("Altitude")
-                            .font(.largeTitle)
+                            .font(.title)
                     ) {
                         Picker(selection: self.$pressureSetting, label: Text("Pressure")) {
                             ForEach(0 ..< settings.altitudePressure.count, id: \.self) {
@@ -130,6 +135,19 @@ struct SettingsView: View {
                             }
                         }
                         .accessibility(identifier: "Height Settings")
+                    }
+                    
+                    Section(header:
+                        Text("Graph")
+                            .font(.title)
+                    ) {
+                        Text("Max Points: \(Int(self.graphMaxPoints))")
+                        HStack {
+                            Text("1")
+                            Slider(value: self.$graphMaxPoints, in: 1...1000, step: 1)
+                                .accessibility(identifier: "Max Points Slider")
+                            Text("1000")
+                        }
                     }
                 }
                 .navigationBarTitle(Text("Settings"), displayMode: .inline)

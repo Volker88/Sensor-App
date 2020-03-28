@@ -67,6 +67,9 @@ class ScreenshotUITests: XCTestCase {
         takeScreenshotOfCurrentView(name: "Location")
         app.navigationBars.buttons.element(boundBy: 0).tap()
         
+        // Reject App Store review request
+        app.buttons["Not Now"].tap()
+        
         // Go to Acceleration View and take Screenshot
         app.buttons["Acceleration"].tap()
         
