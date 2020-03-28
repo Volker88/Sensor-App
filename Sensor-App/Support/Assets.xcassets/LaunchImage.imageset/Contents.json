@@ -12,7 +12,7 @@
     },
     {
       "idiom" : "universal",
-      "filename" : "default-portrait-2688h@3x-1.png",
+      "filename" : "default-portrait-2688h@3x.png",
       "scale" : "3x"
     },
     {
@@ -35,7 +35,7 @@
     },
     {
       "idiom" : "ipad",
-      "filename" : "default-568h@2x-1.png",
+      "filename" : "default-568h@2x.png",
       "scale" : "2x"
     }
   ],

@@ -181,7 +181,7 @@ struct LocationView: View {
                                 .frame(height: 50, alignment: .center)
                                 .offset(x: 5)
                                 Spacer()
-                                MapKitView(latitude: self.locationVM.coreLocationArray.last?.latitude ?? 37.3323314100, longitude: self.locationVM.coreLocationArray.last?.longitude ?? -122.0312186000)
+                                    MapKitView(latitude: self.locationVM.coreLocationArray.last?.latitude ?? 37.3323314100, longitude: self.locationVM.coreLocationArray.last?.longitude ?? -122.0312186000)
                                     .frame(width: g.size.width - 10, height: g.size.width - 10, alignment: .center)
                                     .cornerRadius(10)
                             }

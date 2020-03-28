@@ -26,42 +26,6 @@ class LineGraphTests: XCTestCase {
      
     
     // MARK: - LineGraphView
-    func testLineGraphViewforLocation() throws {
-        //Given
-        let sut = LineGraphSubView(showGraph: .speed)
-        sut.locationVM.coreLocationArray = generateCoreLocationModelArray()
-        var dataArray = [Double]()
-        
-        //When
-        for item in sut.locationVM.coreLocationArray {
-            dataArray.append(item.speed)
-        }
-        
-        let graph = LineGraphView(lineGraphPointsArray: dataArray, lineGraphSettings: sut.lineGraphSettings, graphWidth: 350, graphHeight: 350)
-        
-        //Then
-        let count = graph.lineGraph.transformedArray.count
-        XCTAssertEqual(count, 150, "There should be 150 DataPoints in the Array")
-        XCTAssertNotNil(graph)
-    }
-    
-    func testLineGraph() throws {
-        //Given
-        let sut = LineGraphSubView(showGraph: .speed)
-        let locationArray = generateCoreLocationModelArray()
-        var dataArray = [Double]()
-        
-        //When
-        for item in locationArray {
-            dataArray.append(item.speed)
-        }
-        let view = LineGraphView(lineGraphPointsArray: dataArray, lineGraphSettings: sut.lineGraphSettings, graphWidth: 350, graphHeight: 350)
-        
-        //Then
-        XCTAssertNotNil(view)
-    }
-    
-    
     func testLineGraphViewPerformanceOnLocationView() throws {
         //Given
         let locationVM = CoreLocationViewModel()

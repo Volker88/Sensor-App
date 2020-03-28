@@ -69,6 +69,7 @@ struct AltitudeView: View {
                 }
                 messageType = .deleted
             case .settings:
+                motionVM.stopMotionUpdates()
                 showSettings.toggle()
                 messageType = nil
         }

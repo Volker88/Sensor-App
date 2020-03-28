@@ -12,8 +12,11 @@ import SwiftUI
 import MapKit
 
 
-
 struct MapKitView: UIViewRepresentable {
+    
+    // MARK: - Initialize Classes
+    let settings = SettingsAPI()
+    
     
     // MARK: - Define Constants / Variables
     private var latitude: Double
@@ -28,37 +31,61 @@ struct MapKitView: UIViewRepresentable {
     
     // MARK: - MapkitView
     func makeUIView(context: Context) -> MKMapView {
-        return MKMapView(frame: .zero)
+        let mapView = MKMapView()
+        mapView.delegate = context.coordinator
+        return mapView
     }
     
     func updateUIView(_ view: MKMapView, context: Context) {
-        
         // Settings
+        let mapKitSettings = settings.fetchMapKitSettings()
+        
         view.showsUserLocation = true
-        view.showsCompass = true
-        view.showsBuildings = true
-        view.showsTraffic = true
-        view.isRotateEnabled = true
-        view.isPitchEnabled = true
-        view.isScrollEnabled = true
+        view.showsCompass = mapKitSettings.showsCompass
+        view.showsBuildings = mapKitSettings.showsBuildings
+        view.showsTraffic = mapKitSettings.showsTraffic
+        view.isRotateEnabled = mapKitSettings.isRotateEnabled
+        view.isScrollEnabled = mapKitSettings.isScrollEnabled
+        view.showsScale = mapKitSettings.showsScale
+        
         
         // Map Appearance
-        view.mapType = MKMapType.standard
-        //view.mapType = MKMapType.satellite
-        //view.mapType = MKMapType.hybrid
-        //view.mapType = MKMapType.satelliteFlyover
-        //view.mapType = MKMapType.hybridFlyover
-        //view.mapType = MKMapType.mutedStandard
+        switch mapKitSettings.mapType {
+            case .standard: view.mapType = MKMapType.standard
+            case .satellite: view.mapType = MKMapType.satellite
+            case .hybrid: view.mapType = MKMapType.hybrid
+            case .satelliteFlyover: view.mapType = MKMapType.satelliteFlyover
+            case .hybridFlyover: view.mapType = MKMapType.hybridFlyover
+            case .mutedSandard: view.mapType = MKMapType.mutedStandard
+        }
         
         // User Coordinates
         let coordinate = CLLocationCoordinate2D(latitude: self.latitude, longitude: self.longitude)
-
+        
         // Zoom Factor
-        let region = MKCoordinateRegion(center: coordinate, latitudinalMeters: 500, longitudinalMeters: 500)
+        let region = MKCoordinateRegion(center: coordinate, latitudinalMeters: mapKitSettings.zoom, longitudinalMeters: mapKitSettings.zoom)
         view.setRegion(region, animated: true)
         let annotation = MKPointAnnotation()
         annotation.coordinate = coordinate
     }
+    
+    func makeCoordinator() -> Coordinator {
+        Coordinator(self)
+    }
+    
+    class Coordinator: NSObject, MKMapViewDelegate {
+        var parent: MapKitView
+        
+        init(_ parent: MapKitView) {
+            self.parent = parent
+        }
+        
+        func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {
+            parent.latitude = mapView.centerCoordinate.latitude
+            parent.longitude = mapView.centerCoordinate.longitude
+        }
+    }
+    
 }
 
 
@@ -70,6 +97,6 @@ struct MapKitView_Previews: PreviewProvider {
                 .colorScheme(scheme)
                 .previewLayout(.fixed(width: 400, height: 400))
         }
-
+        
     }
 }

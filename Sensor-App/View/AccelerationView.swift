@@ -63,6 +63,7 @@ struct AccelerationView: View {
                 self.motionVM.altitudeArray.removeAll()
                 messageType = .deleted
             case .settings:
+                motionVM.stopMotionUpdates()
                 showSettings.toggle()
                 messageType = nil
         }

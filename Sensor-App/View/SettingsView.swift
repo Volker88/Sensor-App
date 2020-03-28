@@ -26,10 +26,27 @@ struct SettingsView: View {
     // MARK: - @State / @ObservedObject / @Binding
     @State private var notificationMessage = ""
     @State private var showNotification = false
+    
+    // Location
     @State private var speedSetting = 0
     @State private var accuracySetting = 0
+    
+    // Map
+    @State private var selectedMapType = 0
+    @State private var showsCompass = false
+    @State private var showsScale = false
+    @State private var showsBuildings = false
+    @State private var showsTraffic = false
+    @State private var isRotateEnabled = false
+    @State private var isScrollEnabled = false
+    @State private var zoom = 0.0
+    
+    
+    // Altitude
     @State private var pressureSetting = 0
     @State private var heightSetting = 0
+    
+    // Chart
     @State private var graphMaxPoints = 0.0
     
     
@@ -45,6 +62,7 @@ struct SettingsView: View {
     
     // MARK: - Methods
     func saveSettings() {
+        // User Settings
         var userSettings = settings.fetchUserSettings()
         userSettings.GPSSpeedSetting = settings.GPSSpeedSettings[self.speedSetting]
         userSettings.GPSAccuracySetting = settings.GPSAccuracyOptions[self.accuracySetting]
@@ -54,6 +72,20 @@ struct SettingsView: View {
         
         settings.saveUserSettings(userSettings: userSettings)
         
+        // MapKit Settings
+        var mapKitSettings = settings.fetchMapKitSettings()
+        mapKitSettings.mapType = MapType.allCases[selectedMapType]
+        mapKitSettings.showsCompass = self.showsCompass
+        mapKitSettings.showsScale = self.showsScale
+        mapKitSettings.showsBuildings = self.showsBuildings
+        mapKitSettings.showsTraffic = self.showsTraffic
+        mapKitSettings.isRotateEnabled = self.isRotateEnabled
+        mapKitSettings.isScrollEnabled = self.isScrollEnabled
+        mapKitSettings.zoom = self.zoom
+        
+        settings.saveMapKitSettings(mapKitSettings: mapKitSettings)
+        
+        // Show Notification
         notificationAPI.toggleNotification(type: .saved, duration: nil) { (message, show) in
             self.notificationMessage = message
             self.showNotification = show
@@ -61,12 +93,26 @@ struct SettingsView: View {
     }
     
     func discardChanges(showNotification: Bool) {
+        // User Settings
         self.speedSetting = settings.GPSSpeedSettings.firstIndex(of: settings.fetchUserSettings().GPSSpeedSetting)!
         self.accuracySetting = settings.GPSAccuracyOptions.firstIndex(of: settings.fetchUserSettings().GPSAccuracySetting)!
         self.pressureSetting = settings.altitudePressure.firstIndex(of: settings.fetchUserSettings().pressureSetting)!
         self.heightSetting = settings.altitudeHeight.firstIndex(of: settings.fetchUserSettings().altitudeHeightSetting)!
         self.graphMaxPoints = Double(settings.fetchUserSettings().graphMaxPoints)
         
+        // MapKit Settings
+        let mapKitSettings = settings.fetchMapKitSettings()
+        self.selectedMapType = MapType.allCases.firstIndex(of: settings.fetchMapKitSettings().mapType)!
+        self.showsCompass = mapKitSettings.showsCompass
+        self.showsScale = mapKitSettings.showsScale
+        self.showsBuildings = mapKitSettings.showsBuildings
+        self.showsTraffic = mapKitSettings.showsTraffic
+        self.isRotateEnabled = mapKitSettings.isRotateEnabled
+        self.isScrollEnabled = mapKitSettings.isScrollEnabled
+        self.zoom = mapKitSettings.zoom
+        
+        
+        // Show Notification
         if showNotification == true {
             notificationAPI.toggleNotification(type: .discarded, duration: nil) { (message, show) in
                 self.notificationMessage = message
@@ -100,7 +146,7 @@ struct SettingsView: View {
                 Form {
                     Section(header:
                         Text("Location")
-                            .font(.title)
+                            .font(.headline)
                     ) {
                         Picker(selection: self.$speedSetting, label: Text("Speed Setting")) {
                             ForEach(0 ..< settings.GPSSpeedSettings.count, id: \.self) {
@@ -114,14 +160,57 @@ struct SettingsView: View {
                             }
                         }
                         .accessibility(identifier: "GPS Accuracy Settings")
-                        
-                        
-                        
-                        
                     }
+                    
+                    Section(header:
+                    Text("Map")
+                        .font(.headline)
+                    ) {
+                        Picker(selection: self.$selectedMapType, label: Text("Type")) {
+                            ForEach(0 ..< MapType.allCases.count, id: \.self) {
+                                Text(MapType.allCases[$0].rawValue).tag($0)
+                            }
+                        }
+                        .accessibility(identifier: "MapType Picker")
+                        
+                        Toggle(isOn: self.$showsCompass) {
+                            Text("Compass")
+                        }.accessibility(identifier: "Compass Toggle")
+                        
+                        Toggle(isOn: self.$showsScale) {
+                            Text("Scale")
+                        }.accessibility(identifier: "Scale Toggle")
+                        
+                        Toggle(isOn: self.$showsBuildings) {
+                            Text("Buildings")
+                        }.accessibility(identifier: "Buildings Toggle")
+                        
+                        Toggle(isOn: self.$showsTraffic) {
+                            Text("Traffic")
+                        }.accessibility(identifier: "Traffic Toggle")
+                        
+                        Toggle(isOn: self.$isRotateEnabled) {
+                            Text("Rotation")
+                        }.accessibility(identifier: "Rotate Toggle")
+                        
+                        Toggle(isOn: self.$isScrollEnabled) {
+                            Text("Scroll")
+                        }.accessibility(identifier: "Scroll Toggle")
+                        
+                        Stepper(value: self.$zoom, in: 100...100000, step: 100) {
+                            Text("Zoom: \(self.zoom / 1000, specifier: "%.1f") km")
+                        }.accessibility(identifier: "Zoom Stepper")
+                        HStack {
+                            Text("0.1 km")
+                            Slider(value: self.$zoom, in: 100...100000, step: 100)
+                                .accessibility(identifier: "Zoom Slider")
+                            Text("100 km")
+                        }
+                    }
+                    
                     Section(header:
                         Text("Altitude")
-                            .font(.title)
+                            .font(.headline)
                     ) {
                         Picker(selection: self.$pressureSetting, label: Text("Pressure")) {
                             ForEach(0 ..< settings.altitudePressure.count, id: \.self) {
@@ -139,9 +228,11 @@ struct SettingsView: View {
                     
                     Section(header:
                         Text("Graph")
-                            .font(.title)
+                            .font(.headline)
                     ) {
-                        Text("Max Points: \(Int(self.graphMaxPoints))")
+                        Stepper(value: self.$graphMaxPoints, in: 1...1000, step: 1) {
+                            Text("Max Points: \(Int(self.graphMaxPoints))")
+                        }.accessibility(identifier: "Max Points Stepper")
                         HStack {
                             Text("1")
                             Slider(value: self.$graphMaxPoints, in: 1...1000, step: 1)
@@ -156,26 +247,23 @@ struct SettingsView: View {
                     Button(action: {
                         self.discardView()
                     }) {
-                        Image(systemName: "clear")
-                            .resizable()
-                            .frame(width: 30, height: 30)
+                        Image(systemName: "xmark.circle")
+                            .font(.headline)
                     }
                     .accessibility(identifier: "Close Button"), trailing:
-                    HStack {
+                    HStack(spacing: 20) {
                         Button(action: {
                             self.discardChanges(showNotification: true)
                         }) {
                             Image(systemName: "gobackward")
-                                .resizable()
-                                .frame(width: 30, height: 30)
+                                .font(.headline)
                         }
                         .accessibility(identifier: "Reset Settings")
                         Button(action: {
                             self.saveSettings()
                         }) {
-                            Image("SaveButton")
-                                .resizable()
-                                .frame(width: 30, height: 30)
+                            Image(systemName: "return")
+                                .font(.headline)
                         }
                         .accessibility(identifier: "Save Settings")
                 })

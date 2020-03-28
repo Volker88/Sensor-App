@@ -34,6 +34,7 @@ class SettingsViewUITests: XCTestCase {
     
     // MARK: - Tests
     func testSettingsSelection() throws {
+        
         // Start Application
         let app = XCUIApplication()
         app.launch()
@@ -50,6 +51,22 @@ class SettingsViewUITests: XCTestCase {
         tablesQuery.buttons["GPS Accuracy Settings"].tap()
         tablesQuery.buttons["3 Kilometer"].tap()
         
+        // Map Settings
+        tablesQuery.buttons["MapType Picker"].tap()
+        tablesQuery.buttons["Satellite"].tap()
+        tablesQuery.switches["Compass Toggle"].tap()
+        tablesQuery.switches["Scale Toggle"].tap()
+        tablesQuery.switches["Buildings Toggle"].tap()
+        tablesQuery.switches["Traffic Toggle"].tap()
+        
+        app.scrollViews.element.swipeUp()
+        
+        tablesQuery.switches["Rotate Toggle"].tap()
+        tablesQuery.switches["Scroll Toggle"].tap()
+        tablesQuery.sliders["Zoom Slider"].adjust(toNormalizedSliderPosition: 0.1)
+        tablesQuery.sliders["Zoom Slider"].adjust(toNormalizedSliderPosition: 0.9)
+        tablesQuery.otherElements["Zoom Stepper"].tap()
+        
         // Select Pressure Setting
         tablesQuery.buttons["Pressure Settings"].tap()
         tablesQuery.buttons["bar"].tap()
@@ -57,6 +74,11 @@ class SettingsViewUITests: XCTestCase {
         // Select Height Setting
         tablesQuery.buttons["Height Settings"].tap()
         tablesQuery.buttons["ft"].tap()
+        
+        // Graph Settings
+        tablesQuery.sliders["Max Points Slider"].adjust(toNormalizedSliderPosition: 0.1)
+        tablesQuery.sliders["Max Points Slider"].adjust(toNormalizedSliderPosition: 0.9)
+        
         
         // Save Settings
         let settingsNavigationBar = app.navigationBars["Settings"]

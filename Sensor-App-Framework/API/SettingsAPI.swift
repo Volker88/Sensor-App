@@ -94,6 +94,45 @@ class SettingsAPI {
         print("Save Settings: \(settings)")
     }
     
+    /// Read MapKitSettings
+    ///
+    /// This function returns MapKitSettings from UserDefaults and returns back standard settings if MapKitSettings can't be fetched
+    ///
+    /// - Precondition:iOS
+    /// - Returns: UserSettings
+    ///
+    @available(watchOS, unavailable)
+    public func fetchMapKitSettings() -> MapKitSettings {
+        var mapKitSettings = MapKitSettings(showsCompass: true, showsScale: true, showsBuildings: true, showsTraffic: true, isRotateEnabled: true, isScrollEnabled: true, mapType: .standard, zoom: 500)
+        
+        if let settings = UserDefaults.standard.data(forKey: "MapKitSettings") {
+            let decoder = JSONDecoder()
+            if let decoded = try? decoder.decode(MapKitSettings.self, from: settings) {
+                mapKitSettings = decoded
+            }
+        }
+        print("Read Settings: \(mapKitSettings)")
+        return mapKitSettings
+    }
+    
+    /// Save MapKitSettings
+    ///
+    /// Save MapKitSettings to UserDefaults
+    ///
+    /// - Precondition:iOS
+    /// - Parameter mapKitSettings: Settings to save to UserDefaults
+    ///
+    @available(watchOS, unavailable)
+    public func saveMapKitSettings(mapKitSettings: MapKitSettings) {
+        let encoder = JSONEncoder()
+        let settings = mapKitSettings
+        
+        if let data = try? encoder.encode(settings) {
+            UserDefaults.standard.set(data, forKey: "MapKitSettings")
+        }
+        print("Save Settings: \(settings)")
+    }
+    
     
     // MARK: - Methods
     ///

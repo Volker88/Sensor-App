@@ -86,10 +86,30 @@
 
 
 // MARK: - SettingsView()
+// Location
 "Speed Setting" = "Geschwindigkeit";
 "Accuracy" = "Genauigkeit";
+
+// Map
+"Map" = "Karte";
+"Type" = "Typ";
+"Compass" = "Kompass";
+"Scale" = "Maßstab";
+"Buildings" = "Gebäude";
+"Traffic" = "Verkehr";
+"Rotation" = "Rotation";
+"Scroll" = "Scrollen";
+"0.1 km" = "0,1 km";
+"Zoom: %.1f km" = "Zoom: %.1f km";
+"100 km" = "100 km";
+
+// Altitude
 "Pressure" = "Luftdruck";
 "Height" = "Höhe";
+
+// Graph
+"Graph" = "Diagramm";
+"Max Points: %lld" = "Maximale Punkte: %lld";
 
 // Buttons
 "CancelButton" = "CancelButton";
