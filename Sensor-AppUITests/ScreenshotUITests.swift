@@ -85,7 +85,7 @@ class ScreenshotUITests: XCTestCase {
         takeScreenshotOfCurrentView(name: "Settings")
         
         // Go Back to Main Menu
-        app.buttons["Close Button"].tap()
+        app.navigationBars.buttons["Close Button"].tap()
     }
     
     

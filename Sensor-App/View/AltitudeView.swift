@@ -101,79 +101,70 @@ struct AltitudeView: View {
         
         // MARK: - Return View
         return ZStack {
-            NavigationView {
-                ZStack {
-                    LinearGradient(gradient: Gradient(colors: settings.backgroundColor), startPoint: .topLeading, endPoint: .bottomTrailing)
-                        .edgesIgnoringSafeArea(.all)
-                    GeometryReader { g in
+            LinearGradient(gradient: Gradient(colors: settings.backgroundColor), startPoint: .topLeading, endPoint: .bottomTrailing)
+                .edgesIgnoringSafeArea(.all)
+            GeometryReader { g in
+                VStack{
+                    ScrollView(.vertical) {
+                        Spacer()
                         VStack{
-                            ScrollView(.vertical) {
-                                Spacer()
-                                VStack{
-                                    Group{
-                                        Text("Pressure: \(self.calculationAPI.calculatePressure(pressure: self.motionVM.altitudeArray.last?.pressureValue ?? 0.0, to: self.settings.fetchUserSettings().pressureSetting), specifier: "%.5f") \(self.settings.fetchUserSettings().pressureSetting)")
-                                            .modifier(ButtonModifier())
-                                            .overlay(Button(action: { self.showPressure.toggle() }) {
-                                                Image("GraphButton")
-                                                    .foregroundColor(.white)
-                                                    .offset(x: -10)
-                                            }.accessibility(identifier: "Toggle Pressure Graph"), alignment: .trailing)
-                                        
-                                        if self.showPressure == true {
-                                            Spacer()
-                                            LineGraphSubView(motionVM: self.motionVM, showGraph: .pressureValue)
-                                                .frame(width: g.size.width - 25, height: 100, alignment: .leading)
-                                            Spacer()
-                                        }
-                                        
-                                        Text("Altitude change: \(self.calculationAPI.calculateHeight(height: self.motionVM.altitudeArray.last?.relativeAltitudeValue ?? 0.0, to: self.settings.fetchUserSettings().altitudeHeightSetting), specifier: "%.5f") \(self.settings.fetchUserSettings().altitudeHeightSetting)")
-                                            .modifier(ButtonModifier())
-                                            .overlay(Button(action: { self.showRelativeAltidudeChange.toggle() }) {
-                                                Image("GraphButton")
-                                                    .foregroundColor(.white)
-                                                    .offset(x: -10)
-                                            }.accessibility(identifier: "Toggle Altitude Graph"), alignment: .trailing)
-                                        
-                                        if self.showRelativeAltidudeChange == true {
-                                            Spacer()
-                                            LineGraphSubView(motionVM: self.motionVM, showGraph: .relativeAltitudeValue)
-                                                .frame(width: g.size.width - 25, height: 100, alignment: .leading)
-                                            Spacer()
-                                        }
-                                    }
-                                    .frame(height: 50, alignment: .center)
-                                    
-                                    
-                                    // MARK: - MotionListView()
-                                    MotionListView(type: .altitude, motionVM: self.motionVM)
-                                        .frame(minHeight: 250, maxHeight: .infinity)
+                            Group{
+                                Text("Pressure: \(self.calculationAPI.calculatePressure(pressure: self.motionVM.altitudeArray.last?.pressureValue ?? 0.0, to: self.settings.fetchUserSettings().pressureSetting), specifier: "%.5f") \(self.settings.fetchUserSettings().pressureSetting)")
+                                    .modifier(ButtonModifier())
+                                    .overlay(Button(action: { self.showPressure.toggle() }) {
+                                        Image("GraphButton")
+                                            .foregroundColor(.white)
+                                            .offset(x: -10)
+                                    }.accessibility(identifier: "Toggle Pressure Graph"), alignment: .trailing)
+                                
+                                if self.showPressure == true {
+                                    Spacer()
+                                    LineGraphSubView(motionVM: self.motionVM, showGraph: .pressureValue)
+                                        .frame(width: g.size.width - 25, height: 100, alignment: .leading)
+                                    Spacer()
+                                }
+                                
+                                Text("Altitude change: \(self.calculationAPI.calculateHeight(height: self.motionVM.altitudeArray.last?.relativeAltitudeValue ?? 0.0, to: self.settings.fetchUserSettings().altitudeHeightSetting), specifier: "%.5f") \(self.settings.fetchUserSettings().altitudeHeightSetting)")
+                                    .modifier(ButtonModifier())
+                                    .overlay(Button(action: { self.showRelativeAltidudeChange.toggle() }) {
+                                        Image("GraphButton")
+                                            .foregroundColor(.white)
+                                            .offset(x: -10)
+                                    }.accessibility(identifier: "Toggle Altitude Graph"), alignment: .trailing)
+                                
+                                if self.showRelativeAltidudeChange == true {
+                                    Spacer()
+                                    LineGraphSubView(motionVM: self.motionVM, showGraph: .relativeAltitudeValue)
+                                        .frame(width: g.size.width - 25, height: 100, alignment: .leading)
+                                    Spacer()
                                 }
                             }
-                            .frame(width: g.size.width, height: g.size.height - 50 + g.safeAreaInsets.bottom)
-                            .offset(x: 5)
+                            .frame(height: 50, alignment: .center)
                             
                             
-                            // MARK: - MotionToolBarView()
-                            ToolBarView(toolBarFunctionClosure: self.toolBarButtonTapped(button:))
+                            // MARK: - MotionListView()
+                            MotionListView(type: .altitude, motionVM: self.motionVM)
+                                .frame(minHeight: 250, maxHeight: .infinity)
                         }
-                        .edgesIgnoringSafeArea(.bottom)
                     }
+                    .frame(width: g.size.width, height: g.size.height - 50 + g.safeAreaInsets.bottom)
+                    .offset(x: 5)
+                    
+                    
+                    // MARK: - MotionToolBarView()
+                    ToolBarView(toolBarFunctionClosure: self.toolBarButtonTapped(button:))
                 }
-                .navigationBarTitle(Text("Altitude"), displayMode: .inline)
-                .navigationBarHidden(true)
+                .edgesIgnoringSafeArea(.bottom)
             }
-            .navigationBarTitle("Altitude", displayMode: .inline)
-            .navigationViewStyle(StackNavigationViewStyle())
-            .onAppear(perform: onAppear)
-            .onDisappear(perform: onDisappear)
             
             
             // MARK: - NotificationView()
-            NotificationView(notificationMessage: self.$notificationMessage, showNotification: self.$showNotification)
+            NotificationView(notificationMessage: self.$notificationMessage, showNotification: self.$showNotification)   
         }
-        .sheet(isPresented: $showSettings) {
-            SettingsView()
-        }
+        .navigationBarTitle("Altitude", displayMode: .inline)
+        .onAppear(perform: onAppear)
+        .onDisappear(perform: onDisappear)
+        .sheet(isPresented: $showSettings) { SettingsView() }
     }
 }
 

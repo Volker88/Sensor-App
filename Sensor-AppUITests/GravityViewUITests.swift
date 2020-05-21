@@ -48,7 +48,9 @@ class GravityViewUITests: XCTestCase {
         app.buttons["Settings Button"].tap()
         
         // Go Back to Main Menu
-        app.buttons["Close Button"].tap()
+        sleep(1)
+        app.navigationBars.buttons["Close Button"].tap()
+        sleep(1)
         app.navigationBars.buttons.element(boundBy: 0).tap()
     }
     

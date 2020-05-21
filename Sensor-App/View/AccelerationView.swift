@@ -99,99 +99,90 @@ struct AccelerationView: View {
         
         // MARK: - Return View
         return ZStack {
-            NavigationView {
-                ZStack {
-                    LinearGradient(gradient: Gradient(colors: settings.backgroundColor), startPoint: .topLeading, endPoint: .bottomTrailing)
-                        .edgesIgnoringSafeArea(.all)
-                    GeometryReader { g in
+            LinearGradient(gradient: Gradient(colors: settings.backgroundColor), startPoint: .topLeading, endPoint: .bottomTrailing)
+                .edgesIgnoringSafeArea(.all)
+            GeometryReader { g in
+                VStack{
+                    ScrollView(.vertical) {
+                        Spacer()
                         VStack{
-                            ScrollView(.vertical) {
-                                Spacer()
-                                VStack{
-                                    Group{
-                                        Text("X-Axis: \(self.motionVM.coreMotionArray.last?.accelerationXAxis ?? 0.0, specifier: "%.5f") m/s^2")
-                                            .modifier(ButtonModifier())
-                                            .overlay(Button(action: { self.showXAxis.toggle() }) {
-                                                Image("GraphButton")
-                                                    .foregroundColor(.white)
-                                                    .offset(x: -10)
-                                            }.accessibility(identifier: "Toggle X-Axis Graph"), alignment: .trailing)
-                                        
-                                        if self.showXAxis == true {
-                                            Spacer()
-                                            LineGraphSubView(motionVM: self.motionVM, showGraph: .accelerationXAxis)
-                                                .frame(width: g.size.width - 25, height: 100, alignment: .leading)
-                                            Spacer()
-                                        }
-                                        
-                                        Text("Y-Axis: \(self.motionVM.coreMotionArray.last?.accelerationYAxis ?? 0.0, specifier: "%.5f") m/s^2")
-                                            .modifier(ButtonModifier())
-                                            .overlay(Button(action: { self.showYAxis.toggle() }) {
-                                                Image("GraphButton")
-                                                    .foregroundColor(.white)
-                                                    .offset(x: -10)
-                                            }.accessibility(identifier: "Toggle Y-Axis Graph"), alignment: .trailing)
-                                        
-                                        if self.showYAxis == true {
-                                            Spacer()
-                                            LineGraphSubView(motionVM: self.motionVM, showGraph: .accelerationYAxis)
-                                                .frame(width: g.size.width - 25, height: 100, alignment: .leading)
-                                            Spacer()
-                                        }
-                                        
-                                        Text("Z-Axis: \(self.motionVM.coreMotionArray.last?.accelerationZAxis ?? 0.0, specifier: "%.5f") m/s^2")
-                                            .modifier(ButtonModifier())
-                                            .overlay(Button(action: { self.showZAxis.toggle() }) {
-                                                Image("GraphButton")
-                                                    .foregroundColor(.white)
-                                                    .offset(x: -10)
-                                            }.accessibility(identifier: "Toggle Z-Axis Graph"), alignment: .trailing)
-                                        
-                                        if self.showZAxis == true {
-                                            Spacer()
-                                            LineGraphSubView(motionVM: self.motionVM, showGraph: .accelerationZAxis)
-                                                .frame(width: g.size.width - 25, height: 100, alignment: .leading)
-                                            Spacer()
-                                        }
-                                    }
-                                    .frame(height: 50, alignment: .center)
-                                    
-                                    
-                                    // MARK: - MotionListView()
-                                    MotionListView(type: .acceleration, motionVM: self.motionVM)
-                                        .frame(minHeight: 250, maxHeight: .infinity)
-                                    
-                                    
-                                    // MARK: - RefreshRateView()
-                                    RefreshRateView(updateSensorInterval: { self.updateSensorInterval() })
-                                        .frame(width: g.size.width, height: 170, alignment: .center)
+                            Group{
+                                Text("X-Axis: \(self.motionVM.coreMotionArray.last?.accelerationXAxis ?? 0.0, specifier: "%.5f") m/s^2")
+                                    .modifier(ButtonModifier())
+                                    .overlay(Button(action: { self.showXAxis.toggle() }) {
+                                        Image("GraphButton")
+                                            .foregroundColor(.white)
+                                            .offset(x: -10)
+                                    }.accessibility(identifier: "Toggle X-Axis Graph"), alignment: .trailing)
+                                
+                                if self.showXAxis == true {
+                                    Spacer()
+                                    LineGraphSubView(motionVM: self.motionVM, showGraph: .accelerationXAxis)
+                                        .frame(width: g.size.width - 25, height: 100, alignment: .leading)
+                                    Spacer()
+                                }
+                                
+                                Text("Y-Axis: \(self.motionVM.coreMotionArray.last?.accelerationYAxis ?? 0.0, specifier: "%.5f") m/s^2")
+                                    .modifier(ButtonModifier())
+                                    .overlay(Button(action: { self.showYAxis.toggle() }) {
+                                        Image("GraphButton")
+                                            .foregroundColor(.white)
+                                            .offset(x: -10)
+                                    }.accessibility(identifier: "Toggle Y-Axis Graph"), alignment: .trailing)
+                                
+                                if self.showYAxis == true {
+                                    Spacer()
+                                    LineGraphSubView(motionVM: self.motionVM, showGraph: .accelerationYAxis)
+                                        .frame(width: g.size.width - 25, height: 100, alignment: .leading)
+                                    Spacer()
+                                }
+                                
+                                Text("Z-Axis: \(self.motionVM.coreMotionArray.last?.accelerationZAxis ?? 0.0, specifier: "%.5f") m/s^2")
+                                    .modifier(ButtonModifier())
+                                    .overlay(Button(action: { self.showZAxis.toggle() }) {
+                                        Image("GraphButton")
+                                            .foregroundColor(.white)
+                                            .offset(x: -10)
+                                    }.accessibility(identifier: "Toggle Z-Axis Graph"), alignment: .trailing)
+                                
+                                if self.showZAxis == true {
+                                    Spacer()
+                                    LineGraphSubView(motionVM: self.motionVM, showGraph: .accelerationZAxis)
+                                        .frame(width: g.size.width - 25, height: 100, alignment: .leading)
+                                    Spacer()
                                 }
                             }
-                            .frame(width: g.size.width, height: g.size.height - 50 + g.safeAreaInsets.bottom)
-                            .offset(x: 5)
+                            .frame(height: 50, alignment: .center)
                             
                             
-                            // MARK: - MotionToolBarView()
-                            ToolBarView(toolBarFunctionClosure: self.toolBarButtonTapped(button:))
+                            // MARK: - MotionListView()
+                            MotionListView(type: .acceleration, motionVM: self.motionVM)
+                                .frame(minHeight: 250, maxHeight: .infinity)
+                            
+                            
+                            // MARK: - RefreshRateView()
+                            RefreshRateView(updateSensorInterval: { self.updateSensorInterval() })
+                                .frame(width: g.size.width, height: 170, alignment: .center)
                         }
-                        .edgesIgnoringSafeArea(.bottom)
                     }
-                    .navigationBarTitle(Text("Acceleration"), displayMode: .inline)
-                    .navigationBarHidden(true)
+                    .frame(width: g.size.width, height: g.size.height - 50 + g.safeAreaInsets.bottom)
+                    .offset(x: 5)
+                    
+                    
+                    // MARK: - MotionToolBarView()
+                    ToolBarView(toolBarFunctionClosure: self.toolBarButtonTapped(button:))
                 }
+                .edgesIgnoringSafeArea(.bottom)
             }
-            .navigationBarTitle("Acceleration", displayMode: .inline)
-            .navigationViewStyle(StackNavigationViewStyle())
-            .onAppear(perform: onAppear)
-            .onDisappear(perform: onDisappear)
             
             
             // MARK: - NotificationView()
             NotificationView(notificationMessage: self.$notificationMessage, showNotification: self.$showNotification)
         }
-        .sheet(isPresented: $showSettings) {
-            SettingsView()
-        }
+        .navigationBarTitle("Acceleration", displayMode: .inline)
+        .onAppear(perform: onAppear)
+        .onDisappear(perform: onDisappear)
+        .sheet(isPresented: $showSettings) { SettingsView() }
     }
 }
 

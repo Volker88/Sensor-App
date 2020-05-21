@@ -99,8 +99,6 @@ struct MagnetometerView: View {
         
         // MARK: - Return View
         return ZStack {
-            NavigationView {
-                ZStack {
                     LinearGradient(gradient: Gradient(colors: settings.backgroundColor), startPoint: .topLeading, endPoint: .bottomTrailing)
                         .edgesIgnoringSafeArea(.all)
                     GeometryReader { g in
@@ -176,22 +174,15 @@ struct MagnetometerView: View {
                         }
                         .edgesIgnoringSafeArea(.bottom)
                     }
-                }
-                .navigationBarTitle(Text("Magnetometer"), displayMode: .inline)
-                .navigationBarHidden(true)
-            }
-            .navigationBarTitle("Magnetometer", displayMode: .inline)
-            .navigationViewStyle(StackNavigationViewStyle())
-            .onAppear(perform: onAppear)
-            .onDisappear(perform: onDisappear)
             
             
             // MARK: - NotificationView()
             NotificationView(notificationMessage: self.$notificationMessage, showNotification: self.$showNotification)
-        }
-        .sheet(isPresented: $showSettings) {
-            SettingsView()
-        }
+            }
+            .navigationBarTitle("Magnetometer", displayMode: .inline)
+            .onAppear(perform: onAppear)
+            .onDisappear(perform: onDisappear)
+        .sheet(isPresented: $showSettings) { SettingsView() }
     }
 }
 

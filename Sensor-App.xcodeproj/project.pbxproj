@@ -1168,6 +1168,8 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MY_BUILD_VERSION = "${MY_BUILD_VERSION}";
+				MY_VERSION = "${MY_VERSION}";
 				PRODUCT_BUNDLE_IDENTIFIER = "volkerschmitt88-at-icloud.com.Sensor-AppTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1189,6 +1191,8 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MY_BUILD_VERSION = "${MY_BUILD_VERSION}";
+				MY_VERSION = "${MY_VERSION}";
 				PRODUCT_BUNDLE_IDENTIFIER = "volkerschmitt88-at-icloud.com.Sensor-AppTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1209,6 +1213,8 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MY_BUILD_VERSION = "${MY_BUILD_VERSION}";
+				MY_VERSION = "${MY_VERSION}";
 				PRODUCT_BUNDLE_IDENTIFIER = "volkerschmitt88-at-icloud.com.Sensor-AppUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1229,6 +1235,8 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MY_BUILD_VERSION = "${MY_BUILD_VERSION}";
+				MY_VERSION = "${MY_VERSION}";
 				PRODUCT_BUNDLE_IDENTIFIER = "volkerschmitt88-at-icloud.com.Sensor-AppUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1253,7 +1261,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
-				MARKETING_VERSION = "${MY_VERSION}-Dev";
+				MARKETING_VERSION = "${MY_VERSION}";
 				PRODUCT_BUNDLE_IDENTIFIER = "VolkerSchmitt88-at-icloud.com.Sensor-App.watchkitapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -1282,7 +1290,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
-				MARKETING_VERSION = "${MY_VERSION}-Dev";
+				MARKETING_VERSION = "${MY_VERSION}";
 				PRODUCT_BUNDLE_IDENTIFIER = "VolkerSchmitt88-at-icloud.com.Sensor-App.watchkitapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -1402,7 +1410,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				MY_BUILD_VERSION = 2.20137.34;
+				MY_BUILD_VERSION = 2.20214.35;
 				MY_VERSION = 2.4.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1462,7 +1470,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				MY_BUILD_VERSION = 2.20137.34;
+				MY_BUILD_VERSION = 2.20214.35;
 				MY_VERSION = 2.4.0;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -1542,7 +1550,8 @@
 					"@loader_path/Frameworks",
 				);
 				MARKETING_VERSION = "${MY_VERSION}";
-				MY_BUILD_VERSION = 2.20136.32;
+				MY_BUILD_VERSION = "${MY_BUILD_VERSION}";
+				MY_VERSION = "${MY_VERSION}";
 				PRODUCT_BUNDLE_IDENTIFIER = "volkerschmitt88-at-icloud.com.Sensor-App-Framework";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -1576,7 +1585,8 @@
 					"@loader_path/Frameworks",
 				);
 				MARKETING_VERSION = "${MY_VERSION}";
-				MY_BUILD_VERSION = 2.20136.32;
+				MY_BUILD_VERSION = "${MY_BUILD_VERSION}";
+				MY_VERSION = "${MY_VERSION}";
 				PRODUCT_BUNDLE_IDENTIFIER = "volkerschmitt88-at-icloud.com.Sensor-App-Framework";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
