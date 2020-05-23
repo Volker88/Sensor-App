@@ -142,19 +142,19 @@ struct SettingsView: View {
         
         // MARK: - Return view
         return ZStack {
-            NavigationView {
+            NavigationView { // TODO: Accessibiliy
                 Form {
                     Section(header:
-                        Text("Location")
+                        Text("Location", comment: "SettingsView - Location Section")
                             .font(.headline)
                     ) {
-                        Picker(selection: self.$speedSetting, label: Text("Speed Setting")) {
+                        Picker(selection: self.$speedSetting, label: Text("Speed Setting", comment: "SettingsView - Speed Setting")) {
                             ForEach(0 ..< settings.GPSSpeedSettings.count, id: \.self) {
                                 Text(self.settings.GPSSpeedSettings[$0]).tag($0)
                             }
                         }
                         .accessibility(identifier: "Speed Settings")
-                        Picker(selection: self.$accuracySetting, label: Text("Accuracy")) {
+                        Picker(selection: self.$accuracySetting, label: Text("Accuracy", comment: "SettingsView - Accuracy")) {
                             ForEach(0 ..< settings.GPSAccuracyOptions.count, id: \.self) {
                                 Text(self.settings.GPSAccuracyOptions[$0]).tag($0)
                             }
@@ -163,10 +163,10 @@ struct SettingsView: View {
                     }
                     
                     Section(header:
-                    Text("Map")
-                        .font(.headline)
+                        Text("Map", comment: "SettingsView - Map Section")
+                            .font(.headline)
                     ) {
-                        Picker(selection: self.$selectedMapType, label: Text("Type")) {
+                        Picker(selection: self.$selectedMapType, label: Text("Type", comment: "SettingsView - Type")) {
                             ForEach(0 ..< MapType.allCases.count, id: \.self) {
                                 Text(MapType.allCases[$0].rawValue).tag($0)
                             }
@@ -174,51 +174,54 @@ struct SettingsView: View {
                         .accessibility(identifier: "MapType Picker")
                         
                         Toggle(isOn: self.$showsCompass) {
-                            Text("Compass")
+                            Text("Compass", comment: "SettingsView - Compass")
                         }.accessibility(identifier: "Compass Toggle")
                         
                         Toggle(isOn: self.$showsScale) {
-                            Text("Scale")
+                            Text("Scale", comment: "SettingsView - Scale")
                         }.accessibility(identifier: "Scale Toggle")
                         
                         Toggle(isOn: self.$showsBuildings) {
-                            Text("Buildings")
+                            Text("Buildings", comment: "SettingsView - Buildings")
                         }.accessibility(identifier: "Buildings Toggle")
                         
                         Toggle(isOn: self.$showsTraffic) {
-                            Text("Traffic")
+                            Text("Traffic", comment: "SettingsView - Traffic")
                         }.accessibility(identifier: "Traffic Toggle")
                         
                         Toggle(isOn: self.$isRotateEnabled) {
-                            Text("Rotation")
+                            Text("Rotation", comment: "SettingsView - Rotation")
                         }.accessibility(identifier: "Rotate Toggle")
                         
                         Toggle(isOn: self.$isScrollEnabled) {
-                            Text("Scroll")
+                            Text("Scroll", comment: "SettingsView - Scroll")
                         }.accessibility(identifier: "Scroll Toggle")
                         
                         Stepper(value: self.$zoom, in: 100...100000, step: 100) {
-                            Text("Zoom: \(self.zoom / 1000, specifier: "%.1f") km")
+                            Text("Zoom: \(self.zoom / 1000, specifier: "%.1f") km", comment: "SettingsView - Zoom")
                         }.accessibility(identifier: "Zoom Stepper")
+                        
                         HStack {
-                            Text("0.1 km")
+                            Text("0.1 km" , comment: "SettingsView - 0.1km")
                             Slider(value: self.$zoom, in: 100...100000, step: 100)
                                 .accessibility(identifier: "Zoom Slider")
-                            Text("100 km")
+                                .accessibility(label: Text("Zoom:", comment: "SettingsView - ZoomSlider"))
+                                .accessibility(value: Text("\(zoom, specifier: "%.1f") km", comment: "SettingsView - ZoomSlider"))
+                            Text("100 km", comment: "SettingsView - 100km")
                         }
                     }
                     
                     Section(header:
-                        Text("Altitude")
+                        Text("Altitude", comment: "SettingsView - Altitude Section")
                             .font(.headline)
                     ) {
-                        Picker(selection: self.$pressureSetting, label: Text("Pressure")) {
+                        Picker(selection: self.$pressureSetting, label: Text("Pressure", comment: "SettingsView - Pressure")) {
                             ForEach(0 ..< settings.altitudePressure.count, id: \.self) {
                                 Text(self.settings.altitudePressure[$0]).tag($0)
                             }
                         }
                         .accessibility(identifier: "Pressure Settings")
-                        Picker(selection: self.$heightSetting, label: Text("Height")) {
+                        Picker(selection: self.$heightSetting, label: Text("Height", comment: "SettingsView - Height")) {
                             ForEach(0 ..< settings.altitudeHeight.count, id: \.self) {
                                 Text(self.settings.altitudeHeight[$0]).tag($0)
                             }
@@ -227,45 +230,47 @@ struct SettingsView: View {
                     }
                     
                     Section(header:
-                        Text("Graph")
+                        Text("Graph", comment: "SettingsView - Graph Section")
                             .font(.headline)
                     ) {
                         Stepper(value: self.$graphMaxPoints, in: 1...1000, step: 1) {
-                            Text("Max Points: \(Int(self.graphMaxPoints))")
+                            Text("Max Points: \(Int(self.graphMaxPoints))", comment: "SettingsView - Max Points")
                         }.accessibility(identifier: "Max Points Stepper")
                         HStack {
-                            Text("1")
+                            Text("1", comment: "SettingsView - 1")
                             Slider(value: self.$graphMaxPoints, in: 1...1000, step: 1)
                                 .accessibility(identifier: "Max Points Slider")
-                            Text("1000")
+                                .accessibility(label: Text("Maximum Points:", comment: "SettingsView - Max Points Slider"))
+                                .accessibility(value: Text("\(graphMaxPoints, specifier: "%.0f")", comment: "SettingsView - Max Points Slider"))
+                            Text("1000", comment: "SettingsView - 1000")
                         }
                     }
                 }
-                .navigationBarTitle(Text("Settings"), displayMode: .inline)
+                .navigationBarTitle("\(NSLocalizedString("Settings", comment: "NavigationBar Title - Settings"))", displayMode: .inline)
                 .navigationViewStyle(StackNavigationViewStyle())
                 .navigationBarItems(leading:
                     Button(action: {
                         self.discardView()
                     }) {
                         Image(systemName: "xmark.circle")
-                            .font(.headline)
-                    }
-                    .accessibility(identifier: "Close Button"), trailing:
+                            .accessibility(label: Text("Close", comment: "NagvigationBarButton - Close"))
+                            .navigationBarItemModifier(accessibility: "Close Button")
+                    }, trailing:
                     HStack(spacing: 20) {
                         Button(action: {
                             self.discardChanges(showNotification: true)
                         }) {
                             Image(systemName: "gobackward")
-                                .font(.headline)
+                                .accessibility(label: Text("Discard Changes", comment: "NagvigationBarButton - Discard Changes"))
+                                .navigationBarItemModifier(accessibility: "Reset Settings")
                         }
-                        .accessibility(identifier: "Reset Settings")
                         Button(action: {
                             self.saveSettings()
                         }) {
                             Image(systemName: "return")
-                                .font(.headline)
+                                .accessibility(label: Text("Save", comment: "NagvigationBarButton - Save"))
+                                .navigationBarItemModifier(accessibility: "Save Settings")
                         }
-                        .accessibility(identifier: "Save Settings")
                 })
             }
             .navigationViewStyle(StackNavigationViewStyle())

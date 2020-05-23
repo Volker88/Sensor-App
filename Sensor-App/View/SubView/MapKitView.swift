@@ -22,6 +22,7 @@ struct MapKitView: UIViewRepresentable {
     private var latitude: Double
     private var longitude: Double
     
+    
     // MARK: - Initialize Coordinates
     init(latitude: Double, longitude: Double) {
         self.latitude = latitude
@@ -85,7 +86,6 @@ struct MapKitView: UIViewRepresentable {
             parent.longitude = mapView.centerCoordinate.longitude
         }
     }
-    
 }
 
 

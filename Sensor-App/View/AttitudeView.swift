@@ -108,13 +108,12 @@ struct AttitudeView: View {
                         Spacer()
                         VStack{
                             Group{
-                                Text("Roll: \((self.motionVM.coreMotionArray.last?.attitudeRoll ?? 0.0) * 180 / .pi, specifier: "%.5f")°")
-                                    .modifier(ButtonModifier())
+                                Text("Roll: \((self.motionVM.coreMotionArray.last?.attitudeRoll ?? 0.0) * 180 / .pi, specifier: "%.5f")°", comment: "AttitudeView - Roll")
+                                    .buttonModifier()
                                     .overlay(Button(action: { self.showRoll.toggle() }) {
                                         Image("GraphButton")
-                                            .foregroundColor(.white)
-                                            .offset(x: -10)
-                                    }.accessibility(identifier: "Toggle Roll Graph"), alignment: .trailing)
+                                        .graphButtonModifier(accessibility: "Toggle Roll Graph")
+                                    }, alignment: .trailing)
                                 
                                 if self.showRoll == true {
                                     Spacer()
@@ -123,13 +122,12 @@ struct AttitudeView: View {
                                     Spacer()
                                 }
                                 
-                                Text("Pitch: \((self.motionVM.coreMotionArray.last?.attitudePitch ?? 0.0) * 180 / .pi, specifier: "%.5f")°")
-                                    .modifier(ButtonModifier())
+                                Text("Pitch: \((self.motionVM.coreMotionArray.last?.attitudePitch ?? 0.0) * 180 / .pi, specifier: "%.5f")°", comment: "AttitudeView - Pitch")
+                                    .buttonModifier()
                                     .overlay(Button(action: { self.showPitch.toggle() }) {
                                         Image("GraphButton")
-                                            .foregroundColor(.white)
-                                            .offset(x: -10)
-                                    }.accessibility(identifier: "Toggle Pitch Graph"), alignment: .trailing)
+                                        .graphButtonModifier(accessibility: "Toggle Pitch Graph")
+                                    }, alignment: .trailing)
                                 
                                 if self.showPitch == true {
                                     Spacer()
@@ -138,13 +136,12 @@ struct AttitudeView: View {
                                     Spacer()
                                 }
                                 
-                                Text("Yaw: \((self.motionVM.coreMotionArray.last?.attitudeYaw ?? 0.0) * 180 / .pi, specifier: "%.5f")°")
-                                    .modifier(ButtonModifier())
+                                Text("Yaw: \((self.motionVM.coreMotionArray.last?.attitudeYaw ?? 0.0) * 180 / .pi, specifier: "%.5f")°", comment: "AttitudeView - Yaw")
+                                    .buttonModifier()
                                     .overlay(Button(action: { self.showYaw.toggle() }) {
                                         Image("GraphButton")
-                                            .foregroundColor(.white)
-                                            .offset(x: -10)
-                                    }.accessibility(identifier: "Toggle Yaw Graph"), alignment: .trailing)
+                                            .graphButtonModifier(accessibility: "Toggle Yaw Graph")
+                                    }, alignment: .trailing)
                                 
                                 if self.showYaw == true {
                                     Spacer()
@@ -153,13 +150,12 @@ struct AttitudeView: View {
                                     Spacer()
                                 }
                                 
-                                Text("Heading: \(self.motionVM.coreMotionArray.last?.attitudeHeading ?? 0.0, specifier: "%.5f")°")
-                                    .modifier(ButtonModifier())
+                                Text("Heading: \(self.motionVM.coreMotionArray.last?.attitudeHeading ?? 0.0, specifier: "%.5f")°", comment: "AttitudeView - Heading")
+                                    .buttonModifier()
                                     .overlay(Button(action: { self.showHeading.toggle() }) {
                                         Image("GraphButton")
-                                            .foregroundColor(.white)
-                                            .offset(x: -10)
-                                    }.accessibility(identifier: "Toggle Heading Graph"), alignment: .trailing)
+                                            .graphButtonModifier(accessibility: "Toggle Heading Graph")
+                                    }, alignment: .trailing)
                                 
                                 if self.showHeading == true {
                                     Spacer()
@@ -195,7 +191,7 @@ struct AttitudeView: View {
             // MARK: - NotificationView()
             NotificationView(notificationMessage: self.$notificationMessage, showNotification: self.$showNotification)
         }
-        .navigationBarTitle("Attitude", displayMode: .inline)
+        .navigationBarTitle("\(NSLocalizedString("Attitude", comment: "NavigationBar Title - Attitude"))", displayMode: .inline)
         .onAppear(perform: onAppear)
         .onDisappear(perform: onDisappear)
         .sheet(isPresented: $showSettings) { SettingsView() }

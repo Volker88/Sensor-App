@@ -8,6 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		150039E023D8D184008FA58D /* GraphArrayTransformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150039DF23D8D184008FA58D /* GraphArrayTransformation.swift */; };
+		1509779C247961A6003FB555 /* HoverEffectModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1509779B247961A6003FB555 /* HoverEffectModifier.swift */; };
+		1509779D247961A6003FB555 /* HoverEffectModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1509779B247961A6003FB555 /* HoverEffectModifier.swift */; };
+		1509779F24796266003FB555 /* NavigationBarItemModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1509779E24796266003FB555 /* NavigationBarItemModifier.swift */; };
+		150977A024796266003FB555 /* NavigationBarItemModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1509779E24796266003FB555 /* NavigationBarItemModifier.swift */; };
+		150977A324796E24003FB555 /* ToolBarButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150977A224796E24003FB555 /* ToolBarButtonModifier.swift */; };
+		150977A424796E24003FB555 /* ToolBarButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150977A224796E24003FB555 /* ToolBarButtonModifier.swift */; };
+		150977A624798937003FB555 /* ListViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150977A524798937003FB555 /* ListViewModifier.swift */; };
+		150977A724798937003FB555 /* ListViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150977A524798937003FB555 /* ListViewModifier.swift */; };
+		150977A924799111003FB555 /* GraphButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150977A824799111003FB555 /* GraphButtonModifier.swift */; };
+		150977AA24799111003FB555 /* GraphButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150977A824799111003FB555 /* GraphButtonModifier.swift */; };
 		150CB2AC23DB605900010253 /* GraphDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150CB2AB23DB605900010253 /* GraphDetailModel.swift */; };
 		151004E823E55FDA00340986 /* LocationViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151004E723E55FDA00340986 /* LocationViewTests.swift */; };
 		151004F023E56A5700340986 /* AccelerationViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151004EF23E56A5700340986 /* AccelerationViewTests.swift */; };
@@ -41,7 +51,6 @@
 		151F66C723CB826300DAFCD3 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BD0A4C2350FCD900784975 /* Extension.swift */; };
 		151F66C823CB82A300DAFCD3 /* CalculationAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ED0438231EF904001E5005 /* CalculationAPI.swift */; };
 		151F66C923CB82A500DAFCD3 /* CalculationAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ED0438231EF904001E5005 /* CalculationAPI.swift */; };
-		151F672A23CB9B4600DAFCD3 /* ViewButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151101142364518200EC0292 /* ViewButtonModifier.swift */; };
 		15229DF623DCC91400278A71 /* LineGraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15229DF523DCC91400278A71 /* LineGraphTests.swift */; };
 		15247FE323DE183B009D7444 /* LaunchPerformanceUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15247FE223DE183B009D7444 /* LaunchPerformanceUITests.swift */; };
 		15247FE523DE18CF009D7444 /* AccelerationViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15247FE423DE18CF009D7444 /* AccelerationViewUITests.swift */; };
@@ -212,6 +221,11 @@
 
 /* Begin PBXFileReference section */
 		150039DF23D8D184008FA58D /* GraphArrayTransformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphArrayTransformation.swift; sourceTree = "<group>"; };
+		1509779B247961A6003FB555 /* HoverEffectModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoverEffectModifier.swift; sourceTree = "<group>"; };
+		1509779E24796266003FB555 /* NavigationBarItemModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarItemModifier.swift; sourceTree = "<group>"; };
+		150977A224796E24003FB555 /* ToolBarButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolBarButtonModifier.swift; sourceTree = "<group>"; };
+		150977A524798937003FB555 /* ListViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModifier.swift; sourceTree = "<group>"; };
+		150977A824799111003FB555 /* GraphButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphButtonModifier.swift; sourceTree = "<group>"; };
 		150CB2AB23DB605900010253 /* GraphDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphDetailModel.swift; sourceTree = "<group>"; };
 		151004E723E55FDA00340986 /* LocationViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewTests.swift; sourceTree = "<group>"; };
 		151004EF23E56A5700340986 /* AccelerationViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccelerationViewTests.swift; sourceTree = "<group>"; };
@@ -452,6 +466,11 @@
 			isa = PBXGroup;
 			children = (
 				15BD0A4C2350FCD900784975 /* Extension.swift */,
+				150977A824799111003FB555 /* GraphButtonModifier.swift */,
+				1509779B247961A6003FB555 /* HoverEffectModifier.swift */,
+				150977A524798937003FB555 /* ListViewModifier.swift */,
+				1509779E24796266003FB555 /* NavigationBarItemModifier.swift */,
+				150977A224796E24003FB555 /* ToolBarButtonModifier.swift */,
 				151101142364518200EC0292 /* ViewButtonModifier.swift */,
 			);
 			path = Customization;
@@ -1002,7 +1021,6 @@
 				15404C6623F7297900863D8B /* ToolBarButtonType.swift in Sources */,
 				151F66BF23CB81AB00DAFCD3 /* CoreLocationAPI.swift in Sources */,
 				15D9C3D823F9C98A00AC37AE /* SettingsForUserDefaults.swift in Sources */,
-				151F672A23CB9B4600DAFCD3 /* ViewButtonModifier.swift in Sources */,
 				151F66C923CB82A500DAFCD3 /* CalculationAPI.swift in Sources */,
 				15841D54238176B900E031B9 /* AttitudeView.swift in Sources */,
 				15841D452381767500E031B9 /* LocationView.swift in Sources */,
@@ -1045,16 +1063,20 @@
 				15ED0437231EF6EE001E5005 /* AltitudeModel.swift in Sources */,
 				1516CD3A232CC55400817C33 /* ToolBarView.swift in Sources */,
 				15404C6723F7297A00863D8B /* ToolBarButtonType.swift in Sources */,
+				150977A924799111003FB555 /* GraphButtonModifier.swift in Sources */,
 				1516CD3C232CC55400817C33 /* RefreshRateView.swift in Sources */,
 				15A062A5233F941C00F5DC6F /* NotificationMessageView.swift in Sources */,
 				15A062AE233FD2D100F5DC6F /* NotificationModel.swift in Sources */,
 				151101152364518200EC0292 /* ViewButtonModifier.swift in Sources */,
+				1509779F24796266003FB555 /* NavigationBarItemModifier.swift in Sources */,
 				15DEDA67231DA97B008B2327 /* CoreMotionAPI.swift in Sources */,
 				15E57B91234A20790055B4D1 /* CoreMotionViewModel.swift in Sources */,
 				158BC8C92341094B001A5EBD /* NotificationView.swift in Sources */,
+				1509779C247961A6003FB555 /* HoverEffectModifier.swift in Sources */,
 				1574475B242FCFCC0027E79E /* MapKitSettings.swift in Sources */,
 				151F66C823CB82A300DAFCD3 /* CalculationAPI.swift in Sources */,
 				15ACAEFD23FB2E22003F71F5 /* NotificationTypes.swift in Sources */,
+				150977A624798937003FB555 /* ListViewModifier.swift in Sources */,
 				15E57B8D234A09630055B4D1 /* CoreLocationViewModel.swift in Sources */,
 				15DEDA63231D9E84008B2327 /* LocationModel.swift in Sources */,
 				150039E023D8D184008FA58D /* GraphArrayTransformation.swift in Sources */,
@@ -1064,6 +1086,7 @@
 				15995DF3234F9D4B00C0DDA0 /* SensorType.swift in Sources */,
 				150CB2AC23DB605900010253 /* GraphDetailModel.swift in Sources */,
 				151F66BE23CB81AB00DAFCD3 /* CoreLocationAPI.swift in Sources */,
+				150977A324796E24003FB555 /* ToolBarButtonModifier.swift in Sources */,
 				1516CD52232CC57400817C33 /* AccelerationView.swift in Sources */,
 				151F66C623CB826100DAFCD3 /* Extension.swift in Sources */,
 				1516CD4C232CC57400817C33 /* LocationView.swift in Sources */,
@@ -1082,19 +1105,24 @@
 				151F66BD23CB819700DAFCD3 /* CoreLocationAPI.swift in Sources */,
 				1557774023CA6D5400BD563E /* AppUpdates.swift in Sources */,
 				1574475A242FBA3B0027E79E /* MapKitSettings.swift in Sources */,
+				150977A724798937003FB555 /* ListViewModifier.swift in Sources */,
 				1557774E23CA77D300BD563E /* Extension.swift in Sources */,
 				1557775323CA796400BD563E /* SensorType.swift in Sources */,
 				1557774F23CA795A00BD563E /* AltitudeModel.swift in Sources */,
+				150977AA24799111003FB555 /* GraphButtonModifier.swift in Sources */,
 				1557775023CA795C00BD563E /* LocationModel.swift in Sources */,
 				1557774923CA763000BD563E /* SettingsAPI.swift in Sources */,
+				150977A424796E24003FB555 /* ToolBarButtonModifier.swift in Sources */,
 				1557774C23CA777F00BD563E /* CoreMotionAPI.swift in Sources */,
 				1557775123CA795E00BD563E /* MotionModel.swift in Sources */,
 				15404C6523F7295C00863D8B /* ToolBarButtonType.swift in Sources */,
 				15D9C3D623F9C96E00AC37AE /* SettingsForUserDefaults.swift in Sources */,
 				1557774A23CA777900BD563E /* CalculationAPI.swift in Sources */,
 				15ACAEFC23FB2DE0003F71F5 /* NotificationTypes.swift in Sources */,
+				1509779D247961A6003FB555 /* HoverEffectModifier.swift in Sources */,
 				15D9C3D223F9C92000AC37AE /* UserSettings.swift in Sources */,
 				1557775223CA796100BD563E /* NotificationModel.swift in Sources */,
+				150977A024796266003FB555 /* NavigationBarItemModifier.swift in Sources */,
 				1557774D23CA778200BD563E /* NotificationAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1410,7 +1438,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				MY_BUILD_VERSION = 2.20214.35;
+				MY_BUILD_VERSION = 2.20216.36;
 				MY_VERSION = 2.4.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1470,7 +1498,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				MY_BUILD_VERSION = 2.20214.35;
+				MY_BUILD_VERSION = 2.20216.36;
 				MY_VERSION = 2.4.0;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;

@@ -101,13 +101,12 @@ struct LocationView: View {
                     ScrollView {
                         Spacer()
                         Group{
-                            Text("Latitude: \(self.locationVM.coreLocationArray.last?.latitude ?? 0.0, specifier: "%.6f")° ± \(self.locationVM.coreLocationArray.last?.horizontalAccuracy ?? 0.0, specifier: "%.2f")m")
-                                .modifier(ButtonModifier())
+                            Text("Latitude: \(self.locationVM.coreLocationArray.last?.latitude ?? 0.0, specifier: "%.6f")° ± \(self.locationVM.coreLocationArray.last?.horizontalAccuracy ?? 0.0, specifier: "%.2f")m", comment: "LocationView - Latitude")
+                                .buttonModifier()
                                 .overlay(Button(action: { self.showLatitude.toggle() }) {
                                     Image("GraphButton")
-                                        .foregroundColor(.white)
-                                        .offset(x: -10)
-                                }.accessibility(identifier: "Toggle Latitude Graph"), alignment: .trailing)
+                                        .graphButtonModifier(accessibility: "Toggle Latitude Graph")
+                                }, alignment: .trailing)
                             
                             if self.showLatitude == true {
                                 Spacer()
@@ -116,13 +115,12 @@ struct LocationView: View {
                                 Spacer()
                             }
                             
-                            Text("Longitude: \(self.locationVM.coreLocationArray.last?.longitude ?? 0.0, specifier: "%.6f")° ± \(self.locationVM.coreLocationArray.last?.horizontalAccuracy ?? 0.0, specifier: "%.2f")m")
-                                .modifier(ButtonModifier())
+                            Text("Longitude: \(self.locationVM.coreLocationArray.last?.longitude ?? 0.0, specifier: "%.6f")° ± \(self.locationVM.coreLocationArray.last?.horizontalAccuracy ?? 0.0, specifier: "%.2f")m", comment: "LocationView - Longitude")
+                                .buttonModifier()
                                 .overlay(Button(action: { self.showLongitude.toggle() }) {
                                     Image("GraphButton")
-                                        .foregroundColor(.white)
-                                        .offset(x: -10)
-                                }.accessibility(identifier: "Toggle Longitude Graph"), alignment: .trailing)
+                                        .graphButtonModifier(accessibility: "Toggle Longitude Graph")
+                                }, alignment: .trailing)
                             
                             if self.showLongitude == true {
                                 Spacer()
@@ -131,13 +129,12 @@ struct LocationView: View {
                                 Spacer()
                             }
                             
-                            Text("Altitude: \(self.locationVM.coreLocationArray.last?.altitude ?? 0.0, specifier: "%.2f") ± \(self.locationVM.coreLocationArray.last?.verticalAccuracy ?? 0.0, specifier: "%.2f")m")
-                                .modifier(ButtonModifier())
+                            Text("Altitude: \(self.locationVM.coreLocationArray.last?.altitude ?? 0.0, specifier: "%.2f") ± \(self.locationVM.coreLocationArray.last?.verticalAccuracy ?? 0.0, specifier: "%.2f")m", comment: "LocationView - Altitude")
+                                .buttonModifier()
                                 .overlay(Button(action: { self.showAltitude.toggle() }) {
                                     Image("GraphButton")
-                                        .foregroundColor(.white)
-                                        .offset(x: -10)
-                                }.accessibility(identifier: "Toggle Altitude Graph"), alignment: .trailing)
+                                        .graphButtonModifier(accessibility: "Toggle Altitude Graph")
+                                }, alignment: .trailing)
                             
                             if self.showAltitude == true {
                                 Spacer()
@@ -146,13 +143,12 @@ struct LocationView: View {
                                 Spacer()
                             }
                             
-                            Text("Direction: \(self.locationVM.coreLocationArray.last?.course ?? 0.0, specifier: "%.2f")°")
-                                .modifier(ButtonModifier())
+                            Text("Direction: \(self.locationVM.coreLocationArray.last?.course ?? 0.0, specifier: "%.2f")°", comment: "LocationView - Direction")
+                                .buttonModifier()
                                 .overlay(Button(action: { self.showDirection.toggle() }) {
                                     Image("GraphButton")
-                                        .foregroundColor(.white)
-                                        .offset(x: -10)
-                                }.accessibility(identifier: "Toggle Direction Graph"), alignment: .trailing)
+                                        .graphButtonModifier(accessibility: "Toggle Direction Graph")
+                                }, alignment: .trailing)
                             
                             if self.showDirection == true {
                                 Spacer()
@@ -161,13 +157,12 @@ struct LocationView: View {
                                 Spacer()
                             }
                             
-                            Text("Speed: \(self.calculationAPI.calculateSpeed(ms: self.locationVM.coreLocationArray.last?.speed ?? 0.0, to: "\(self.settings.fetchUserSettings().GPSSpeedSetting)"), specifier: "%.2f")\(self.settings.fetchUserSettings().GPSSpeedSetting)")
-                                .modifier(ButtonModifier())
+                            Text("Speed: \(self.calculationAPI.calculateSpeed(ms: self.locationVM.coreLocationArray.last?.speed ?? 0.0, to: "\(self.settings.fetchUserSettings().GPSSpeedSetting)"), specifier: "%.2f")\(self.settings.fetchUserSettings().GPSSpeedSetting)", comment: "LocationView - Speed")
+                                .buttonModifier()
                                 .overlay(Button(action: { self.showSpeed.toggle() }) {
                                     Image("GraphButton")
-                                        .foregroundColor(.white)
-                                        .offset(x: -10)
-                                }.accessibility(identifier: "Toggle Speed Graph"), alignment: .trailing)
+                                        .graphButtonModifier(accessibility: "Toggle Speed Graph")
+                                }, alignment: .trailing)
                             
                             if self.showSpeed == true {
                                 Spacer()
@@ -196,7 +191,7 @@ struct LocationView: View {
             // MARK: - NotificationView()
             NotificationView(notificationMessage: self.$notificationMessage, showNotification: self.$showNotification)
         }
-        .navigationBarTitle("Location", displayMode: .inline)
+        .navigationBarTitle("\(NSLocalizedString("Location", comment: "NavigationBar Title - Location"))", displayMode: .inline)
         .onAppear(perform: onAppear)
         .onDisappear(perform: onDisappear)
         .sheet(isPresented: $showSettings) { SettingsView() }

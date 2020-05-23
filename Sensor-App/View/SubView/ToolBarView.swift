@@ -15,7 +15,6 @@ import SwiftUI
 struct ToolBarView: View {
     
     // MARK: - @State / @ObservedObject / @Binding
-    //@Binding var toolBarButtonType: ToolBarButtonType
     
     
     // MARK: - Define Constants / Variables
@@ -26,7 +25,7 @@ struct ToolBarView: View {
     func buttonTapped(type: ToolBarButtonType) {
         toolBarFunctionClosure(type)
     }
-
+    
     
     // MARK: - Body - View
     var body: some View {
@@ -38,27 +37,27 @@ struct ToolBarView: View {
                 Spacer()
                 Button(action: { self.buttonTapped(type: .play)} ) {
                     Image(systemName: "play.circle")
-                        .font(.largeTitle)
+                        .toolBarButtonModifier(accessibility: "Start Button")
+                        .accessibility(label: Text("Play", comment: "ToolBarView - Play Button"))
                 }
-                .accessibility(identifier: "Start Button")
                 Spacer()
                 Button(action: { self.buttonTapped(type: .pause)} ) {
                     Image(systemName: "pause.circle")
-                        .font(.largeTitle)
+                        .toolBarButtonModifier(accessibility: "Pause Button")
+                        .accessibility(label: Text("Pause", comment: "ToolBarView - Pause Button"))
                 }
-                .accessibility(identifier: "Pause Button")
                 Spacer()
                 Button(action: { self.buttonTapped(type: .delete)} ) {
                     Image(systemName: "trash.circle")
-                        .font(.largeTitle)
+                        .toolBarButtonModifier(accessibility: "Delete Button")
+                        .accessibility(label: Text("Delete", comment: "ToolBarView - Delete Button"))
                 }
-                .accessibility(identifier: "Delete Button")
                 Spacer()
                 Button(action: { self.buttonTapped(type: .settings)} ) {
                     Image(systemName: "gear")
-                        .font(.largeTitle)
+                        .toolBarButtonModifier(accessibility: "Settings Button")
+                        .accessibility(label: Text("Settings", comment: "ToolBarView - Settings Button"))
                 }
-                .accessibility(identifier: "Settings Button")
                 Spacer()
             }
             .frame(width: g.size.width + g.safeAreaInsets.leading + g.safeAreaInsets.trailing, height: 50, alignment: .center)

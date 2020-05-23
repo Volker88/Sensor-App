@@ -39,25 +39,21 @@ struct MotionListView: View {
                 AnyView(
                     List(self.motionVM.coreMotionArray.reversed(), id: \.counter) { index in
                         HStack{
-                            Text("ID:\(self.motionVM.coreMotionArray[index.counter - 1].counter)")
+                            Text("ID:\(self.motionVM.coreMotionArray[index.counter - 1].counter)", comment: "MotionListView - ID")
                                 .foregroundColor(Color("ListTextColor"))
                             Spacer()
-                            Text("X:\(self.motionVM.coreMotionArray[index.counter - 1].accelerationXAxis, specifier: "%.5f")")
+                            Text("X:\(self.motionVM.coreMotionArray[index.counter - 1].accelerationXAxis, specifier: "%.5f")", comment: "MotionListView - X")
                                 .foregroundColor(Color("ListTextColor"))
                             Spacer()
-                            Text("Y:\(self.motionVM.coreMotionArray[index.counter - 1].accelerationYAxis, specifier: "%.5f")")
+                            Text("Y:\(self.motionVM.coreMotionArray[index.counter - 1].accelerationYAxis, specifier: "%.5f")", comment: "MotionListView - Y")
                                 .foregroundColor(Color("ListTextColor"))
                             Spacer()
-                            Text("Z:\(self.motionVM.coreMotionArray[index.counter - 1].accelerationZAxis, specifier: "%.5f")")
+                            Text("Z:\(self.motionVM.coreMotionArray[index.counter - 1].accelerationZAxis, specifier: "%.5f")", comment: "MotionListView - Z")
                                 .foregroundColor(Color("ListTextColor"))
                         }
                         .font(.footnote)
-                        //.background(Color("ListBackgroundColor"))
                     }
-                    .id(UUID())
-                    .frame(width: g.size.width - 10)
-                    .cornerRadius(10)
-                    .opacity(0.3)
+                    .listViewModifier(width: g.size.width - 10)
                 )
             }
         } else if  type == .gravity {
@@ -65,25 +61,21 @@ struct MotionListView: View {
                 AnyView(
                     List(self.motionVM.coreMotionArray.reversed(), id: \.counter) { index in
                         HStack{
-                            Text("ID:\(self.motionVM.coreMotionArray[index.counter - 1].counter)")
+                            Text("ID:\(self.motionVM.coreMotionArray[index.counter - 1].counter)", comment: "MotionListView - ID")
                                 .foregroundColor(Color("ListTextColor"))
                             Spacer()
-                            Text("X:\(self.motionVM.coreMotionArray[index.counter - 1].gravityXAxis, specifier: "%.5f")")
+                            Text("X:\(self.motionVM.coreMotionArray[index.counter - 1].gravityXAxis, specifier: "%.5f")", comment: "MotionListView - X")
                                 .foregroundColor(Color("ListTextColor"))
                             Spacer()
-                            Text("Y:\(self.motionVM.coreMotionArray[index.counter - 1].gravityYAxis, specifier: "%.5f")")
+                            Text("Y:\(self.motionVM.coreMotionArray[index.counter - 1].gravityYAxis, specifier: "%.5f")", comment: "MotionListView - Y")
                                 .foregroundColor(Color("ListTextColor"))
                             Spacer()
-                            Text("Z:\(self.motionVM.coreMotionArray[index.counter - 1].gravityZAxis, specifier: "%.5f")")
+                            Text("Z:\(self.motionVM.coreMotionArray[index.counter - 1].gravityZAxis, specifier: "%.5f")", comment: "MotionListView - Z")
                                 .foregroundColor(Color("ListTextColor"))
                         }
                         .font(.footnote)
-                        //.background(Color("ListBackgroundColor"))
                     }
-                    .id(UUID())
-                    .frame(width: g.size.width - 10)
-                    .cornerRadius(10)
-                    .opacity(0.3)
+                    .listViewModifier(width: g.size.width - 10)
                 )
             }
         } else if type == .gyroscope {
@@ -91,25 +83,21 @@ struct MotionListView: View {
                 AnyView(
                     List(self.motionVM.coreMotionArray.reversed(), id: \.counter) { index in
                         HStack{
-                            Text("ID:\(self.motionVM.coreMotionArray[index.counter - 1].counter)")
+                            Text("ID:\(self.motionVM.coreMotionArray[index.counter - 1].counter)", comment: "MotionListView - ID")
                                 .foregroundColor(Color("ListTextColor"))
                             Spacer()
-                            Text("X:\(self.motionVM.coreMotionArray[index.counter - 1].gyroXAxis, specifier: "%.5f")")
+                            Text("X:\(self.motionVM.coreMotionArray[index.counter - 1].gyroXAxis, specifier: "%.5f")", comment: "MotionListView - X")
                                 .foregroundColor(Color("ListTextColor"))
                             Spacer()
-                            Text("Y:\(self.motionVM.coreMotionArray[index.counter - 1].gyroYAxis, specifier: "%.5f")")
+                            Text("Y:\(self.motionVM.coreMotionArray[index.counter - 1].gyroYAxis, specifier: "%.5f")", comment: "MotionListView - Y")
                                 .foregroundColor(Color("ListTextColor"))
                             Spacer()
-                            Text("Z:\(self.motionVM.coreMotionArray[index.counter - 1].gyroZAxis, specifier: "%.5f")")
+                            Text("Z:\(self.motionVM.coreMotionArray[index.counter - 1].gyroZAxis, specifier: "%.5f")", comment: "MotionListView - Z")
                                 .foregroundColor(Color("ListTextColor"))
                         }
                         .font(.footnote)
-                        //.background(Color("ListBackgroundColor"))
                     }
-                    .id(UUID())
-                    .frame(width: g.size.width - 10)
-                    .cornerRadius(10)
-                    .opacity(0.3)
+                    .listViewModifier(width: g.size.width - 10)
                 )
             }
         } else if type == .magnetometer {
@@ -117,25 +105,21 @@ struct MotionListView: View {
                 AnyView(
                     List(self.motionVM.coreMotionArray.reversed(), id: \.counter) { index in
                         HStack{
-                            Text("ID:\(self.motionVM.coreMotionArray[index.counter - 1].counter)")
+                            Text("ID:\(self.motionVM.coreMotionArray[index.counter - 1].counter)", comment: "MotionListView - ID")
                                 .foregroundColor(Color("ListTextColor"))
                             Spacer()
-                            Text("X:\(self.motionVM.coreMotionArray[index.counter - 1].magnetometerXAxis, specifier: "%.5f")")
+                            Text("X:\(self.motionVM.coreMotionArray[index.counter - 1].magnetometerXAxis, specifier: "%.5f")", comment: "MotionListView - X")
                                 .foregroundColor(Color("ListTextColor"))
                             Spacer()
-                            Text("Y:\(self.motionVM.coreMotionArray[index.counter - 1].magnetometerYAxis, specifier: "%.5f")")
+                            Text("Y:\(self.motionVM.coreMotionArray[index.counter - 1].magnetometerYAxis, specifier: "%.5f")", comment: "MotionListView - Y")
                                 .foregroundColor(Color("ListTextColor"))
                             Spacer()
-                            Text("Z:\(self.motionVM.coreMotionArray[index.counter - 1].magnetometerZAxis, specifier: "%.5f")")
+                            Text("Z:\(self.motionVM.coreMotionArray[index.counter - 1].magnetometerZAxis, specifier: "%.5f")", comment: "MotionListView - Z")
                                 .foregroundColor(Color("ListTextColor"))
                         }
                         .font(.footnote)
-                        //.background(Color("ListBackgroundColor"))
                     }
-                    .id(UUID())
-                    .frame(width: g.size.width - 10)
-                    .cornerRadius(10)
-                    .opacity(0.3)
+                    .listViewModifier(width: g.size.width - 10)
                 )
             }
         } else if type == .attitude {
@@ -143,28 +127,24 @@ struct MotionListView: View {
                 AnyView(
                     List(self.motionVM.coreMotionArray.reversed(), id: \.counter) { index in
                         HStack{
-                            Text("ID:\(self.motionVM.coreMotionArray[index.counter - 1].counter)")
+                            Text("ID:\(self.motionVM.coreMotionArray[index.counter - 1].counter)", comment: "MotionListView - ID")
                                 .foregroundColor(Color("ListTextColor"))
                             Spacer()
-                            Text("R:\(self.motionVM.coreMotionArray[index.counter - 1].attitudeRoll * 180 / .pi, specifier: "%.3f")")
+                            Text("R:\(self.motionVM.coreMotionArray[index.counter - 1].attitudeRoll * 180 / .pi, specifier: "%.3f")", comment: "MotionListView - R")
                                 .foregroundColor(Color("ListTextColor"))
                             Spacer()
-                            Text("P:\(self.motionVM.coreMotionArray[index.counter - 1].attitudePitch * 180 / .pi, specifier: "%.3f")")
+                            Text("P:\(self.motionVM.coreMotionArray[index.counter - 1].attitudePitch * 180 / .pi, specifier: "%.3f")", comment: "MotionListView - P")
                                 .foregroundColor(Color("ListTextColor"))
                             Spacer()
-                            Text("Y:\(self.motionVM.coreMotionArray[index.counter - 1].attitudeYaw * 180 / .pi, specifier: "%.3f")")
+                            Text("Y:\(self.motionVM.coreMotionArray[index.counter - 1].attitudeYaw * 180 / .pi, specifier: "%.3f")" , comment: "MotionListView - Yield")
                                 .foregroundColor(Color("ListTextColor"))
                             Spacer()
-                            Text("H:\(self.motionVM.coreMotionArray[index.counter - 1].attitudeHeading, specifier: "%.3f")")
+                            Text("H:\(self.motionVM.coreMotionArray[index.counter - 1].attitudeHeading, specifier: "%.3f")", comment: "MotionListView - H")
                                 .foregroundColor(Color("ListTextColor"))
                         }
                         .font(.footnote)
-                        //.background(Color("ListBackgroundColor"))
                     }
-                    .id(UUID())
-                    .frame(width: g.size.width - 10)
-                    .cornerRadius(10)
-                    .opacity(0.3)
+                    .listViewModifier(width: g.size.width - 10)
                 )
             }
         } else if type == .altitude {
@@ -172,25 +152,22 @@ struct MotionListView: View {
                 AnyView(
                     List(self.motionVM.altitudeArray.reversed(), id: \.counter) { index in
                         HStack{
-                            Text("ID:\(self.motionVM.altitudeArray[index.counter - 1].counter)")
+                            Text("ID:\(self.motionVM.altitudeArray[index.counter - 1].counter)", comment: "MotionListView - ID")
                             Spacer()
-                            Text("P:\(self.calculationAPI.calculatePressure(pressure: self.motionVM.altitudeArray[index.counter - 1].pressureValue, to: self.settings.fetchUserSettings().pressureSetting), specifier: "%.5f")")
+                            Text("P:\(self.calculationAPI.calculatePressure(pressure: self.motionVM.altitudeArray[index.counter - 1].pressureValue, to: self.settings.fetchUserSettings().pressureSetting), specifier: "%.5f")", comment: "MotionListView - P")
                             Spacer()
-                            Text("A:\(self.calculationAPI.calculateHeight(height: self.motionVM.altitudeArray[index.counter - 1].relativeAltitudeValue, to: self.settings.fetchUserSettings().altitudeHeightSetting), specifier: "%.5f")")
+                            Text("A:\(self.calculationAPI.calculateHeight(height: self.motionVM.altitudeArray[index.counter - 1].relativeAltitudeValue, to: self.settings.fetchUserSettings().altitudeHeightSetting), specifier: "%.5f")", comment: "MotionListView - A")
                         }
                         .foregroundColor(Color("ListTextColor"))
                         .font(.footnote)
                     }
-                    .id(UUID())
-                    .frame(width: g.size.width - 10)
-                    .cornerRadius(10)
-                    .opacity(0.3)
+                    .listViewModifier(width: g.size.width - 10)
                 )
             }
         } else {
             return GeometryReader { g in
                 AnyView(
-                    Text("Could not load the table!")
+                    Text("Could not load the table!", comment: "MotionListView - Could not load the Table")
                 )
             }
         }

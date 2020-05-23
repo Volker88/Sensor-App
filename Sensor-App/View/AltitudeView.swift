@@ -109,13 +109,12 @@ struct AltitudeView: View {
                         Spacer()
                         VStack{
                             Group{
-                                Text("Pressure: \(self.calculationAPI.calculatePressure(pressure: self.motionVM.altitudeArray.last?.pressureValue ?? 0.0, to: self.settings.fetchUserSettings().pressureSetting), specifier: "%.5f") \(self.settings.fetchUserSettings().pressureSetting)")
-                                    .modifier(ButtonModifier())
+                                Text("Pressure: \(self.calculationAPI.calculatePressure(pressure: self.motionVM.altitudeArray.last?.pressureValue ?? 0.0, to: self.settings.fetchUserSettings().pressureSetting), specifier: "%.5f") \(self.settings.fetchUserSettings().pressureSetting)", comment: "AltitudeView - Pressure")
+                                    .buttonModifier()
                                     .overlay(Button(action: { self.showPressure.toggle() }) {
                                         Image("GraphButton")
-                                            .foregroundColor(.white)
-                                            .offset(x: -10)
-                                    }.accessibility(identifier: "Toggle Pressure Graph"), alignment: .trailing)
+                                            .graphButtonModifier(accessibility: "Toggle Pressure Graph")
+                                    }, alignment: .trailing)
                                 
                                 if self.showPressure == true {
                                     Spacer()
@@ -124,13 +123,12 @@ struct AltitudeView: View {
                                     Spacer()
                                 }
                                 
-                                Text("Altitude change: \(self.calculationAPI.calculateHeight(height: self.motionVM.altitudeArray.last?.relativeAltitudeValue ?? 0.0, to: self.settings.fetchUserSettings().altitudeHeightSetting), specifier: "%.5f") \(self.settings.fetchUserSettings().altitudeHeightSetting)")
-                                    .modifier(ButtonModifier())
+                                Text("Altitude change: \(self.calculationAPI.calculateHeight(height: self.motionVM.altitudeArray.last?.relativeAltitudeValue ?? 0.0, to: self.settings.fetchUserSettings().altitudeHeightSetting), specifier: "%.5f") \(self.settings.fetchUserSettings().altitudeHeightSetting)", comment: "AltitudeView - Altitude")
+                                    .buttonModifier()
                                     .overlay(Button(action: { self.showRelativeAltidudeChange.toggle() }) {
                                         Image("GraphButton")
-                                            .foregroundColor(.white)
-                                            .offset(x: -10)
-                                    }.accessibility(identifier: "Toggle Altitude Graph"), alignment: .trailing)
+                                            .graphButtonModifier(accessibility: "Toggle Altitude Graph")
+                                    }, alignment: .trailing)
                                 
                                 if self.showRelativeAltidudeChange == true {
                                     Spacer()
@@ -161,7 +159,7 @@ struct AltitudeView: View {
             // MARK: - NotificationView()
             NotificationView(notificationMessage: self.$notificationMessage, showNotification: self.$showNotification)   
         }
-        .navigationBarTitle("Altitude", displayMode: .inline)
+        .navigationBarTitle("\(NSLocalizedString("Altitude", comment: "NavigationBar Title - Altitude"))", displayMode: .inline)
         .onAppear(perform: onAppear)
         .onDisappear(perform: onDisappear)
         .sheet(isPresented: $showSettings) { SettingsView() }

@@ -26,11 +26,18 @@ struct ContentViewTitleModifier: ViewModifier {
     }
 }
 
+extension View {
+    func contentViewTitleModifier() -> some View {
+        self.modifier(ContentViewTitleModifier())
+    }
+}
+
 struct ContentViewButtonModifier: ViewModifier {
     let accessibility: String
     func body(content: Content) -> some View {
         GeometryReader { g in
             content
+                .hoverEffectModifier()
                 .frame(width: g.size.width - 10, height: 50, alignment: .center)
                 .font(.title)
                 .background(Color("StandardBackgroundColor"))
@@ -38,6 +45,12 @@ struct ContentViewButtonModifier: ViewModifier {
                 .cornerRadius(10)
                 .accessibility(identifier: self.accessibility)
         }
+    }
+}
+
+extension View {
+    func contentViewButtonModifier(accessibility: String) -> some View {
+        self.modifier(ContentViewButtonModifier(accessibility: accessibility))
     }
 }
 
@@ -56,6 +69,12 @@ struct ButtonTitleModifier: ViewModifier {
     }
 }
 
+extension View {
+    func buttonTitleModifier() -> some View {
+        self.modifier(ButtonTitleModifier())
+    }
+}
+
 struct ButtonModifier: ViewModifier {
     func body(content: Content) -> some View {
         GeometryReader { g in
@@ -69,18 +88,30 @@ struct ButtonModifier: ViewModifier {
     }
 }
 
+extension View {
+    func buttonModifier() -> some View {
+        self.modifier(ButtonModifier())
+    }
+}
+
 
 // MARK: - Refresh Model
 struct RefreshRateLimitLabel: ViewModifier {
     func body(content: Content) -> some View {
-            content
-                .frame(width: 50, height: 50, alignment: .center)
-                .font(.body)
-                .background(Color("StandardBackgroundColor"))
-                .foregroundColor(Color("StandardTextColor"))
-                .cornerRadius(10)
+        content
+            .frame(width: 50, height: 50, alignment: .center)
+            .font(.body)
+            .background(Color("StandardBackgroundColor"))
+            .foregroundColor(Color("StandardTextColor"))
+            .cornerRadius(10)
     }
 }
 
+
+extension View {
+    func refreshRateLimitLabelModifier() -> some View {
+        self.modifier(RefreshRateLimitLabel())
+    }
+}
 
 

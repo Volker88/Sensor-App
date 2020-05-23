@@ -107,13 +107,12 @@ struct AccelerationView: View {
                         Spacer()
                         VStack{
                             Group{
-                                Text("X-Axis: \(self.motionVM.coreMotionArray.last?.accelerationXAxis ?? 0.0, specifier: "%.5f") m/s^2")
-                                    .modifier(ButtonModifier())
+                                Text("X-Axis: \(self.motionVM.coreMotionArray.last?.accelerationXAxis ?? 0.0, specifier: "%.5f") m/s^2", comment: "AccelerationView - X-Axis")
+                                    .buttonModifier()
                                     .overlay(Button(action: { self.showXAxis.toggle() }) {
                                         Image("GraphButton")
-                                            .foregroundColor(.white)
-                                            .offset(x: -10)
-                                    }.accessibility(identifier: "Toggle X-Axis Graph"), alignment: .trailing)
+                                            .graphButtonModifier(accessibility: "Toggle X-Axis Graph")
+                                    }, alignment: .trailing)
                                 
                                 if self.showXAxis == true {
                                     Spacer()
@@ -122,13 +121,12 @@ struct AccelerationView: View {
                                     Spacer()
                                 }
                                 
-                                Text("Y-Axis: \(self.motionVM.coreMotionArray.last?.accelerationYAxis ?? 0.0, specifier: "%.5f") m/s^2")
-                                    .modifier(ButtonModifier())
+                                Text("Y-Axis: \(self.motionVM.coreMotionArray.last?.accelerationYAxis ?? 0.0, specifier: "%.5f") m/s^2", comment: "AccelerationView - Y-Axis")
+                                    .buttonModifier()
                                     .overlay(Button(action: { self.showYAxis.toggle() }) {
                                         Image("GraphButton")
-                                            .foregroundColor(.white)
-                                            .offset(x: -10)
-                                    }.accessibility(identifier: "Toggle Y-Axis Graph"), alignment: .trailing)
+                                            .graphButtonModifier(accessibility: "Toggle Y-Axis Graph")
+                                    }, alignment: .trailing)
                                 
                                 if self.showYAxis == true {
                                     Spacer()
@@ -137,13 +135,12 @@ struct AccelerationView: View {
                                     Spacer()
                                 }
                                 
-                                Text("Z-Axis: \(self.motionVM.coreMotionArray.last?.accelerationZAxis ?? 0.0, specifier: "%.5f") m/s^2")
-                                    .modifier(ButtonModifier())
+                                Text("Z-Axis: \(self.motionVM.coreMotionArray.last?.accelerationZAxis ?? 0.0, specifier: "%.5f") m/s^2", comment: "AccelerationView - Z-Axis")
+                                    .buttonModifier()
                                     .overlay(Button(action: { self.showZAxis.toggle() }) {
                                         Image("GraphButton")
-                                            .foregroundColor(.white)
-                                            .offset(x: -10)
-                                    }.accessibility(identifier: "Toggle Z-Axis Graph"), alignment: .trailing)
+                                            .graphButtonModifier(accessibility: "Toggle Z-Axis Graph")
+                                    }, alignment: .trailing)
                                 
                                 if self.showZAxis == true {
                                     Spacer()
@@ -179,7 +176,7 @@ struct AccelerationView: View {
             // MARK: - NotificationView()
             NotificationView(notificationMessage: self.$notificationMessage, showNotification: self.$showNotification)
         }
-        .navigationBarTitle("Acceleration", displayMode: .inline)
+        .navigationBarTitle("\(NSLocalizedString("Acceleration", comment: "NavigationBar Title - Acceleration"))", displayMode: .inline)
         .onAppear(perform: onAppear)
         .onDisappear(perform: onDisappear)
         .sheet(isPresented: $showSettings) { SettingsView() }

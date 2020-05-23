@@ -107,13 +107,12 @@ struct GravityView: View {
                         Spacer()
                         VStack{
                             Group{
-                                Text("X-Axis: \(self.motionVM.coreMotionArray.last?.gravityXAxis ?? 0.0, specifier: "%.5f") g (9,81 m/s^2)")
-                                    .modifier(ButtonModifier())
+                                Text("X-Axis: \(self.motionVM.coreMotionArray.last?.gravityXAxis ?? 0.0, specifier: "%.5f") g (9,81 m/s^2)", comment: "GravityView - X-Axis")
+                                    .buttonModifier()
                                     .overlay(Button(action: { self.showXAxis.toggle() }) {
                                         Image("GraphButton")
-                                            .foregroundColor(.white)
-                                            .offset(x: -10)
-                                    }.accessibility(identifier: "Toggle X-Axis Graph"), alignment: .trailing)
+                                            .graphButtonModifier(accessibility: "Toggle X-Axis Graph")
+                                    }, alignment: .trailing)
                                 
                                 if self.showXAxis == true {
                                     Spacer()
@@ -122,13 +121,12 @@ struct GravityView: View {
                                     Spacer()
                                 }
                                 
-                                Text("Y-Axis: \(self.motionVM.coreMotionArray.last?.gravityYAxis ?? 0.0, specifier: "%.5f") g (9,81 m/s^2)")
-                                    .modifier(ButtonModifier())
+                                Text("Y-Axis: \(self.motionVM.coreMotionArray.last?.gravityYAxis ?? 0.0, specifier: "%.5f") g (9,81 m/s^2)", comment: "GravityView - Y-Axis")
+                                    .buttonModifier()
                                     .overlay(Button(action: { self.showYAxis.toggle() }) {
                                         Image("GraphButton")
-                                            .foregroundColor(.white)
-                                            .offset(x: -10)
-                                    }.accessibility(identifier: "Toggle Y-Axis Graph"), alignment: .trailing)
+                                            .graphButtonModifier(accessibility: "Toggle Y-Axis Graph")
+                                    }, alignment: .trailing)
                                 
                                 if self.showYAxis == true {
                                     Spacer()
@@ -137,13 +135,12 @@ struct GravityView: View {
                                     Spacer()
                                 }
                                 
-                                Text("Z-Axis: \(self.motionVM.coreMotionArray.last?.gravityZAxis ?? 0.0, specifier: "%.5f") g (9,81 m/s^2)")
-                                    .modifier(ButtonModifier())
+                                Text("Z-Axis: \(self.motionVM.coreMotionArray.last?.gravityZAxis ?? 0.0, specifier: "%.5f") g (9,81 m/s^2)", comment: "GravityView - Z-Axis")
+                                    .buttonModifier()
                                     .overlay(Button(action: { self.showZAxis.toggle() }) {
                                         Image("GraphButton")
-                                            .foregroundColor(.white)
-                                            .offset(x: -10)
-                                    }.accessibility(identifier: "Toggle Z-Axis Graph"), alignment: .trailing)
+                                            .graphButtonModifier(accessibility: "Toggle Z-Axis Graph")
+                                    }, alignment: .trailing)
                                 
                                 if self.showZAxis == true {
                                     Spacer()
@@ -179,7 +176,7 @@ struct GravityView: View {
             // MARK: - NotificationView()
             NotificationView(notificationMessage: self.$notificationMessage, showNotification: self.$showNotification)
         }
-        .navigationBarTitle("Gravity", displayMode: .inline)
+        .navigationBarTitle("\(NSLocalizedString("Gravity", comment: "NavigationBar Title - Gravity"))", displayMode: .inline)
         .onAppear(perform: onAppear)
         .onDisappear(perform: onDisappear)
         .sheet(isPresented: $showSettings) { SettingsView() }

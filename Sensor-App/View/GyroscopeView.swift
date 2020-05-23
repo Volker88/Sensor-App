@@ -107,13 +107,12 @@ struct GyroscopeView: View {
                         Spacer()
                         VStack{
                             Group{
-                                Text("X-Axis: \(self.motionVM.coreMotionArray.last?.gyroXAxis ?? 0.0, specifier: "%.5f") rad/s")
-                                    .modifier(ButtonModifier())
+                                Text("X-Axis: \(self.motionVM.coreMotionArray.last?.gyroXAxis ?? 0.0, specifier: "%.5f") rad/s", comment: "GyrsocopeView - X-Axis")
+                                    .buttonModifier()
                                     .overlay(Button(action: { self.showXAxis.toggle() }) {
                                         Image("GraphButton")
-                                            .foregroundColor(.white)
-                                            .offset(x: -10)
-                                    }.accessibility(identifier: "Toggle X-Axis Graph"), alignment: .trailing)
+                                            .graphButtonModifier(accessibility: "Toggle X-Axis Graph")
+                                    }, alignment: .trailing)
                                 
                                 if self.showXAxis == true {
                                     Spacer()
@@ -122,13 +121,12 @@ struct GyroscopeView: View {
                                     Spacer()
                                 }
                                 
-                                Text("Y-Axis: \(self.motionVM.coreMotionArray.last?.gyroYAxis ?? 0.0, specifier: "%.5f") rad/s")
-                                    .modifier(ButtonModifier())
+                                Text("Y-Axis: \(self.motionVM.coreMotionArray.last?.gyroYAxis ?? 0.0, specifier: "%.5f") rad/s", comment: "GyrsocopeView - Y-Axis")
+                                    .buttonModifier()
                                     .overlay(Button(action: { self.showYAxis.toggle() }) {
                                         Image("GraphButton")
-                                            .foregroundColor(.white)
-                                            .offset(x: -10)
-                                    }.accessibility(identifier: "Toggle Y-Axis Graph"), alignment: .trailing)
+                                            .graphButtonModifier(accessibility: "Toggle Y-Axis Graph")
+                                    }, alignment: .trailing)
                                 
                                 if self.showYAxis == true {
                                     Spacer()
@@ -137,13 +135,12 @@ struct GyroscopeView: View {
                                     Spacer()
                                 }
                                 
-                                Text("Z-Axis: \(self.motionVM.coreMotionArray.last?.gyroZAxis ?? 0.0, specifier: "%.5f") rad/s")
-                                    .modifier(ButtonModifier())
+                                Text("Z-Axis: \(self.motionVM.coreMotionArray.last?.gyroZAxis ?? 0.0, specifier: "%.5f") rad/s", comment: "GyrsocopeView - Z-Axis")
+                                    .buttonModifier()
                                     .overlay(Button(action: { self.showZAxis.toggle() }) {
                                         Image("GraphButton")
-                                            .foregroundColor(.white)
-                                            .offset(x: -10)
-                                    }.accessibility(identifier: "Toggle Z-Axis Graph"), alignment: .trailing)
+                                            .graphButtonModifier(accessibility: "Toggle Z-Axis Graph")
+                                    }, alignment: .trailing)
                                 
                                 if self.showZAxis == true {
                                     Spacer()
@@ -179,7 +176,7 @@ struct GyroscopeView: View {
             // MARK: - NotificationView()
             NotificationView(notificationMessage: self.$notificationMessage, showNotification: self.$showNotification)  
         }
-        .navigationBarTitle("Gyroscope", displayMode: .inline)
+        .navigationBarTitle("\(NSLocalizedString("Gyroscope", comment: "NavigationBar Title - Gyroscope"))", displayMode: .inline)
         .onAppear(perform: onAppear)
         .onDisappear(perform: onDisappear)
         .sheet(isPresented: $showSettings) { SettingsView() }

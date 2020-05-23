@@ -94,11 +94,11 @@ class NotificationAPI {
     private func fetchNotificationText(type: NotificationTypes) -> String {
         var notificationText = ""
         switch type {
-            case .saved: notificationText = NSLocalizedString("Saved successfully", comment: "Saved")
-            case .discarded: notificationText = NSLocalizedString("Changes Discarded", comment: "Discarded")
-            case .paused: notificationText = NSLocalizedString("Paused", comment: "Paused")
-            case .played: notificationText = NSLocalizedString("Play", comment: "Play")
-            case .deleted: notificationText = NSLocalizedString("Successfully deleted", comment: "Deleted")
+            case .saved: notificationText = NSLocalizedString("Saved successfully", comment: "NotificationMessage - Saved")
+            case .discarded: notificationText = NSLocalizedString("Changes Discarded", comment: "NotificationMessage - Discarded")
+            case .paused: notificationText = NSLocalizedString("Paused", comment: "NotificationMessage - Paused")
+            case .played: notificationText = NSLocalizedString("Play", comment: "NotificationMessage - Play")
+            case .deleted: notificationText = NSLocalizedString("Successfully deleted", comment: "NotificationMessage - Deleted")
         }
         return notificationText
     }

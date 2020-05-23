@@ -29,13 +29,7 @@ struct ContentView: View {
     
     
     // MARK: - onAppear / onDisappear
-    func onAppear() {
-        
-    }
     
-    func onDisappear() {
-        
-    }
     
     // MARK: - Body
     var body: some View {
@@ -50,50 +44,50 @@ struct ContentView: View {
                         VStack {
                             Spacer()
                             Group {
-                                Text("Welcome to the \n Sensor-App")
-                                    .modifier(ContentViewTitleModifier())
+                                Text("Welcome to the \n Sensor-App", comment: "ContentView - Welcome Label")
+                                    .contentViewTitleModifier()
                             }
                             .frame(height: 100, alignment: .center)
                             Group {
                                 NavigationLink(destination: LocationView()) {
-                                    Text("Location")
-                                        .modifier(ContentViewButtonModifier(accessibility: "Location"))
+                                    Text("Location", comment: "ContentView - Location")
+                                        .contentViewButtonModifier(accessibility: "Location")
                                 }
                                 NavigationLink(destination: AccelerationView()) {
-                                    Text("Acceleration")
-                                        .modifier(ContentViewButtonModifier(accessibility: "Acceleration"))
+                                    Text("Acceleration", comment: "ContentView - Acceleration")
+                                        .contentViewButtonModifier(accessibility: "Acceleration")
                                 }
                                 NavigationLink(destination: GravityView()) {
-                                    Text("Gravity")
-                                        .modifier(ContentViewButtonModifier(accessibility: "Gravity"))
+                                    Text("Gravity", comment: "ContentView - Gravity")
+                                        .contentViewButtonModifier(accessibility: "Gravity")
                                 }
                                 NavigationLink(destination: GyroscopeView()) {
-                                    Text("Gyroscope")
-                                        .modifier(ContentViewButtonModifier(accessibility: "Gyroscope"))
+                                    Text("Gyroscope", comment: "ContentView - Gyroscope")
+                                        .contentViewButtonModifier(accessibility: "Gyroscope")
                                 }
                             }
                             .frame(height: 50, alignment: .center)
                             Group {
                                 NavigationLink(destination: MagnetometerView()) {
-                                    Text("Magnetometer")
-                                        .modifier(ContentViewButtonModifier(accessibility: "Magnetometer"))
+                                    Text("Magnetometer", comment: "ContentView - Magnetometer")
+                                        .contentViewButtonModifier(accessibility: "Magnetometer")
                                 }
                                 NavigationLink(destination: AttitudeView()) {
-                                    Text("Attitude")
-                                        .modifier(ContentViewButtonModifier(accessibility: "Attitude"))
+                                    Text("Attitude", comment: "ContentView - Attitude")
+                                        .contentViewButtonModifier(accessibility: "Attitude")
                                 }
                                 NavigationLink(destination: AltitudeView()) {
-                                    Text("Altitude")
-                                        .modifier(ContentViewButtonModifier(accessibility: "Altitude"))
+                                    Text("Altitude", comment: "ContentView - Altitude")
+                                        .contentViewButtonModifier(accessibility: "Altitude")
                                 }
                                 Button(action: { self.showSettings.toggle() }) {
-                                    Text("Settings")
-                                        .modifier(ContentViewButtonModifier(accessibility: "Settings"))
+                                    Text("Settings", comment: "ContentView - Settings")
+                                        .contentViewButtonModifier(accessibility: "Settings")
                                 }
                             }
                             .frame(height: 50, alignment: .center)
                         }
-                        .navigationBarTitle("Home", displayMode: .inline)
+                        .navigationBarTitle("\(NSLocalizedString("Home", comment: "ContentView - NavigationBar Title"))", displayMode: .inline)
                         Spacer()
                     }
                     .offset(x: 5)
@@ -102,8 +96,6 @@ struct ContentView: View {
             .sheet(isPresented: $showSettings) { SettingsView() }
         }
         .navigationViewStyle(StackNavigationViewStyle())
-        .onAppear(perform: onAppear)
-        .onDisappear(perform: onDisappear)
     }
 }
 

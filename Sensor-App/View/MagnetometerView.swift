@@ -99,89 +99,86 @@ struct MagnetometerView: View {
         
         // MARK: - Return View
         return ZStack {
-                    LinearGradient(gradient: Gradient(colors: settings.backgroundColor), startPoint: .topLeading, endPoint: .bottomTrailing)
-                        .edgesIgnoringSafeArea(.all)
-                    GeometryReader { g in
+            LinearGradient(gradient: Gradient(colors: settings.backgroundColor), startPoint: .topLeading, endPoint: .bottomTrailing)
+                .edgesIgnoringSafeArea(.all)
+            GeometryReader { g in
+                VStack{
+                    ScrollView(.vertical) {
+                        Spacer()
                         VStack{
-                            ScrollView(.vertical) {
-                                Spacer()
-                                VStack{
-                                    Group{
-                                        Text("X-Axis: \(self.motionVM.coreMotionArray.last?.magnetometerXAxis ?? 0.0, specifier: "%.5f") µT")
-                                        .modifier(ButtonModifier())
-                                        .overlay(Button(action: { self.showXAxis.toggle() }) {
-                                                Image("GraphButton")
-                                                    .foregroundColor(.white)
-                                                    .offset(x: -10)
-                                            }.accessibility(identifier: "Toggle X-Axis Graph"), alignment: .trailing)
-                                        
-                                        if self.showXAxis == true {
-                                            Spacer()
-                                            LineGraphSubView(motionVM: self.motionVM, showGraph: .magnetometerXAxis)
-                                                .frame(width: g.size.width - 25, height: 100, alignment: .leading)
-                                            Spacer()
-                                        }
-                                        
-                                        Text("Y-Axis: \(self.motionVM.coreMotionArray.last?.magnetometerYAxis ?? 0.0, specifier: "%.5f") µT")
-                                        .modifier(ButtonModifier())
-                                        .overlay(Button(action: { self.showYAxis.toggle() }) {
-                                                Image("GraphButton")
-                                                    .foregroundColor(.white)
-                                                    .offset(x: -10)
-                                            }.accessibility(identifier: "Toggle Y-Axis Graph"), alignment: .trailing)
-                                        
-                                        if self.showYAxis == true {
-                                            Spacer()
-                                            LineGraphSubView(motionVM: self.motionVM, showGraph: .magnetometerYAxis)
-                                                .frame(width: g.size.width - 25, height: 100, alignment: .leading)
-                                            Spacer()
-                                        }
-                                        
-                                        Text("Z-Axis: \(self.motionVM.coreMotionArray.last?.magnetometerZAxis ?? 0.0, specifier: "%.5f") µT")
-                                        .modifier(ButtonModifier())
-                                        .overlay(Button(action: { self.showZAxis.toggle() }) {
-                                                Image("GraphButton")
-                                                    .foregroundColor(.white)
-                                                    .offset(x: -10)
-                                            }.accessibility(identifier: "Toggle Z-Axis Graph"), alignment: .trailing)
-                                        
-                                        if self.showZAxis == true {
-                                            Spacer()
-                                            LineGraphSubView(motionVM: self.motionVM, showGraph: .magnetometerZAxis)
-                                                .frame(width: g.size.width - 25, height: 100, alignment: .leading)
-                                            Spacer()
-                                        }
-                                    }
-                                    .frame(height: 50, alignment: .center)
-                                    
-                                    
-                                    // MARK: - MotionListView()
-                                    MotionListView(type: .magnetometer, motionVM: self.motionVM)
-                                        .frame(minHeight: 250, maxHeight: .infinity)
-                                    
-                                    
-                                    // MARK: - RefreshRateViewModel()
-                                    RefreshRateView(updateSensorInterval: { self.updateSensorInterval() })
-                                        .frame(width: g.size.width, height: 170, alignment: .center)
+                            Group{
+                                Text("X-Axis: \(self.motionVM.coreMotionArray.last?.magnetometerXAxis ?? 0.0, specifier: "%.5f") µT", comment: "MagnetometerView - X-Axis")
+                                    .buttonModifier()
+                                    .overlay(Button(action: { self.showXAxis.toggle() }) {
+                                        Image("GraphButton")
+                                            .graphButtonModifier(accessibility: "Toggle X-Axis Graph")
+                                    }, alignment: .trailing)
+                                
+                                if self.showXAxis == true {
+                                    Spacer()
+                                    LineGraphSubView(motionVM: self.motionVM, showGraph: .magnetometerXAxis)
+                                        .frame(width: g.size.width - 25, height: 100, alignment: .leading)
+                                    Spacer()
+                                }
+                                
+                                Text("Y-Axis: \(self.motionVM.coreMotionArray.last?.magnetometerYAxis ?? 0.0, specifier: "%.5f") µT", comment: "MagnetometerView - Y-Axis")
+                                    .buttonModifier()
+                                    .overlay(Button(action: { self.showYAxis.toggle() }) {
+                                        Image("GraphButton")
+                                            .graphButtonModifier(accessibility: "Toggle Y-Axis Graph")
+                                    }, alignment: .trailing)
+                                
+                                if self.showYAxis == true {
+                                    Spacer()
+                                    LineGraphSubView(motionVM: self.motionVM, showGraph: .magnetometerYAxis)
+                                        .frame(width: g.size.width - 25, height: 100, alignment: .leading)
+                                    Spacer()
+                                }
+                                
+                                Text("Z-Axis: \(self.motionVM.coreMotionArray.last?.magnetometerZAxis ?? 0.0, specifier: "%.5f") µT", comment: "MagnetometerView - Z-Axis")
+                                    .buttonModifier()
+                                    .overlay(Button(action: { self.showZAxis.toggle() }) {
+                                        Image("GraphButton")
+                                            .graphButtonModifier(accessibility: "Toggle Z-Axis Graph")
+                                    }, alignment: .trailing)
+                                
+                                if self.showZAxis == true {
+                                    Spacer()
+                                    LineGraphSubView(motionVM: self.motionVM, showGraph: .magnetometerZAxis)
+                                        .frame(width: g.size.width - 25, height: 100, alignment: .leading)
+                                    Spacer()
                                 }
                             }
-                            .frame(width: g.size.width, height: g.size.height - 50 + g.safeAreaInsets.bottom)
-                            .offset(x: 5)
+                            .frame(height: 50, alignment: .center)
                             
                             
-                            // MARK: - MotionToolBarView()
-                            ToolBarView(toolBarFunctionClosure: self.toolBarButtonTapped(button:))
+                            // MARK: - MotionListView()
+                            MotionListView(type: .magnetometer, motionVM: self.motionVM)
+                                .frame(minHeight: 250, maxHeight: .infinity)
+                            
+                            
+                            // MARK: - RefreshRateViewModel()
+                            RefreshRateView(updateSensorInterval: { self.updateSensorInterval() })
+                                .frame(width: g.size.width, height: 170, alignment: .center)
                         }
-                        .edgesIgnoringSafeArea(.bottom)
                     }
+                    .frame(width: g.size.width, height: g.size.height - 50 + g.safeAreaInsets.bottom)
+                    .offset(x: 5)
+                    
+                    
+                    // MARK: - MotionToolBarView()
+                    ToolBarView(toolBarFunctionClosure: self.toolBarButtonTapped(button:))
+                }
+                .edgesIgnoringSafeArea(.bottom)
+            }
             
             
             // MARK: - NotificationView()
             NotificationView(notificationMessage: self.$notificationMessage, showNotification: self.$showNotification)
-            }
-            .navigationBarTitle("Magnetometer", displayMode: .inline)
-            .onAppear(perform: onAppear)
-            .onDisappear(perform: onDisappear)
+        }
+        .navigationBarTitle("\(NSLocalizedString("Magnetometer", comment: "NavigationBar Title - Magnetometer"))", displayMode: .inline)
+        .onAppear(perform: onAppear)
+        .onDisappear(perform: onDisappear)
         .sheet(isPresented: $showSettings) { SettingsView() }
     }
 }

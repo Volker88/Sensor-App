@@ -92,7 +92,8 @@ class AccelerationViewUITests: XCTestCase {
         app.sliders["Frequency Slider"].adjust(toNormalizedSliderPosition: 1.0)
         
         let updateFrequency = app.sliders["Frequency Slider"].value as! String
-        XCTAssertEqual(updateFrequency, "100%", "Update frequency should be 100% but is \(updateFrequency)")
+        let splitUpdateFrequency = updateFrequency.split(separator: " ", maxSplits: 1).map(String.init)
+        XCTAssertEqual(splitUpdateFrequency[0], "50", "Update frequency should be 50 but is \(splitUpdateFrequency)")
         
         // Go Back to Main Menu
         app.navigationBars.buttons.element(boundBy: 0).tap()

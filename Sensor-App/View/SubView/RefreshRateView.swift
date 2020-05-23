@@ -43,26 +43,29 @@ struct RefreshRateView: View {
         return GeometryReader { g in
             VStack{
                 Group{
-                    Text("Refresh Rate")
-                        .modifier(ButtonTitleModifier())
-                    Text("Frequency: \(Int(self.refreshRate)) Hz")
-                        .modifier(ButtonModifier())
+                    Text("Refresh Rate", comment: "RefreshRateView - Refresh Rate")
+                        .buttonTitleModifier()
+                        .accessibility(addTraits: .isHeader)
+                    Text("Frequency: \(Int(self.refreshRate)) Hz", comment: "RefreshRateView - Frequency")
+                        .buttonModifier()
                 }
                 .frame(height: 50)
                 
-
-                    HStack {
-                        Text("1")
-                            .modifier(RefreshRateLimitLabel())
-                        Slider(value: self.$refreshRate, in: 1...50, step: 1) { refresh in
-                            self.updateSlider()
-                        }
-                        .accessibility(identifier: "Frequency Slider")
-                        Text("50")
-                            .modifier(RefreshRateLimitLabel())
+                HStack {
+                    Text("1", comment: "RefreshRateView - Label 1")
+                        .refreshRateLimitLabelModifier()
+                    Slider(value: self.$refreshRate, in: 1...50, step: 1) { refresh in
+                        self.updateSlider()
+                    }
+                    .hoverEffectModifier()
+                    .accessibility(label: Text("Refresh Rate", comment: "RefreshRateView - Slider"))
+                    .accessibility(value: Text("\(self.refreshRate, specifier: "%.0f") per Second", comment: "RefreshRateView - Value"))
+                    .accessibility(identifier: "Frequency Slider")
+                    Text("50", comment: "RefreshRateView - Label 50")
+                        .refreshRateLimitLabelModifier()
                 }
                 .frame(width: g.size.width - 10, height: 50)
-                    .offset(x: -5)
+                .offset(x: -5)
             }
             .frame(height: 170)
         }
