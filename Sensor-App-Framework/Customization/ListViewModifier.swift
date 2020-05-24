@@ -23,7 +23,6 @@ struct ListViewModifier: ViewModifier {
         
         // MARK: - Return View
         return AnyView(content
-            .id(UUID())
             .frame(width: width)
             .cornerRadius(10)
             .opacity(0.3))

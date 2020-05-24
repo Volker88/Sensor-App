@@ -89,37 +89,37 @@ struct SettingsView: View {
         // MARK: - Return View
         return Form {
             Section(header:
-                Text("Location")
+                Text("Location", comment: "SettingsView - Location Section (watchOS)")
             ) {
-                Picker(selection: self.$speedSetting, label: Text("Speed Setting")) {
+                Picker(selection: self.$speedSetting, label: Text("Speed Setting", comment: "SettingsView - Speed Setting (watchOS)")) {
                     ForEach(0 ..< settings.GPSSpeedSettings.count, id: \.self) {
                         Text(self.settings.GPSSpeedSettings[$0]).tag($0)
                     }
                 }
-                Picker(selection: self.$accuracySetting, label: Text("Accuracy")) {
+                Picker(selection: self.$accuracySetting, label: Text("Accuracy", comment: "SettingsView - Accuracy (watchOS)")) {
                     ForEach(0 ..< settings.GPSAccuracyOptions.count, id: \.self) {
                         Text(self.settings.GPSAccuracyOptions[$0]).tag($0)
                     }
                 }
             }
             Section(header:
-                Text("Altitude")
+                Text("Altitude", comment: "SettingsView - Altitude Section (watchOS)")
             ) {
-                Picker(selection: self.$pressureSetting, label: Text("Pressure")) {
+                Picker(selection: self.$pressureSetting, label: Text("Pressure", comment: "SettingsView - Pressure (watchOS)")) {
                     ForEach(0 ..< settings.altitudePressure.count, id: \.self) {
                         Text(self.settings.altitudePressure[$0]).tag($0)
                     }
                 }
-                Picker(selection: self.$heightSetting, label: Text("Height")) {
+                Picker(selection: self.$heightSetting, label: Text("Height", comment: "SettingsView - Height (watchOS)")) {
                     ForEach(0 ..< settings.altitudeHeight.count, id: \.self) {
                         Text(self.settings.altitudeHeight[$0]).tag($0)
                     }
                 }
             }
             Section(header:
-                Text("Refresh Rate")
+                Text("Refresh Rate", comment: "SettingsView - Refresh Rate Section (watchOS)")
             ) {
-                Text("Frequency: \(Int(self.refreshRate)) Hz")
+                Text("\(NSLocalizedString("Frequency:", comment: "SettingsView - Frequency (watchOS)")) \(Int(self.refreshRate)) Hz", comment: "SettingsView - Frequency (watchOS)")
                 Slider(value: self.$refreshRate, in: 1...50, step: 1) { refresh in
                     
                 }
@@ -128,22 +128,21 @@ struct SettingsView: View {
                 Button(action: {
                     self.discardChanges(showNotification: true)
                 }) {
-                    Text("Discard")
+                    Text("Discard", comment: "SettingsView - Save (watchOS)")
                 }
                 .alert(isPresented: $showingDiscardAlert) {
-                    Alert(title: Text("Discarded Changes"))
+                    Alert(title: Text("Discarded Changes", comment: "SettingsView - Discarded Changes (watchOS)"))
                 }
                 Button(action: {
                     self.saveSettings()
                 }) {
                     Text("Save")
                 }.alert(isPresented: $showingSaveAlert) {
-                    Alert(title: Text("Saved Changes"))
+                    Alert(title: Text("Saved Changes", comment: "SettingsView - Saved Changes (watchOS)"))
                 }
             }
-            
         }
-        .navigationBarTitle("Settings")
+        .navigationBarTitle("\(NSLocalizedString("Settings", comment: "SettingsView - NavigationBar Title (watchOS)"))")
         .font(.footnote)
         .onAppear(perform: onAppear)
         .onDisappear(perform: onDisappear)

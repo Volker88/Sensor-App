@@ -39,6 +39,11 @@
 			<key>orderHint</key>
 			<integer>8</integer>
 		</dict>
+		<key>Sensor-App-WatchApp-GER.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
 		<key>Sensor-App-WatchApp-GER.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>

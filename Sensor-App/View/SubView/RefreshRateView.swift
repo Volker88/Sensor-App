@@ -46,7 +46,7 @@ struct RefreshRateView: View {
                     Text("Refresh Rate", comment: "RefreshRateView - Refresh Rate")
                         .buttonTitleModifier()
                         .accessibility(addTraits: .isHeader)
-                    Text("Frequency: \(Int(self.refreshRate)) Hz", comment: "RefreshRateView - Frequency")
+                    Text("\(NSLocalizedString("Frequency:", comment: "RefreshRateView - Frequency")) \(Int(self.refreshRate)) Hz", comment: "RefreshRateView - Refresh Rate")
                         .buttonModifier()
                 }
                 .frame(height: 50)

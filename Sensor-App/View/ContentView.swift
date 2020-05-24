@@ -44,8 +44,11 @@ struct ContentView: View {
                         VStack {
                             Spacer()
                             Group {
-                                Text("Welcome to the \n Sensor-App", comment: "ContentView - Welcome Label")
-                                    .contentViewTitleModifier()
+                                VStack {
+                                    Text("Welcome to the", comment: "ContentView - Welcome Label")
+                                    Text("Sensor-App", comment: "ContentView - Sensor-App")
+                                }
+                                .contentViewTitleModifier()
                             }
                             .frame(height: 100, alignment: .center)
                             Group {

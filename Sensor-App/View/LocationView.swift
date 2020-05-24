@@ -156,8 +156,7 @@ struct LocationView: View {
                                     .frame(width: g.size.width - 25, height: 100, alignment: .leading)
                                 Spacer()
                             }
-                            
-                            Text("Speed: \(self.calculationAPI.calculateSpeed(ms: self.locationVM.coreLocationArray.last?.speed ?? 0.0, to: "\(self.settings.fetchUserSettings().GPSSpeedSetting)"), specifier: "%.2f")\(self.settings.fetchUserSettings().GPSSpeedSetting)", comment: "LocationView - Speed")
+                            Text(verbatim: "\(NSLocalizedString("Speed:", comment: "LocationView - Speed")) \(self.calculationAPI.calculateSpeed(ms: self.locationVM.coreLocationArray.last?.speed ?? 0.0, to: "\(self.settings.fetchUserSettings().GPSSpeedSetting)")) \(self.settings.fetchUserSettings().GPSSpeedSetting)")  
                                 .buttonModifier()
                                 .overlay(Button(action: { self.showSpeed.toggle() }) {
                                     Image("GraphButton")

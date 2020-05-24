@@ -35,34 +35,34 @@ struct ContentView: View {
         
         
         // MARK: - Return View
-        return
-            List {
-                NavigationLink(destination: LocationView()) {
-                    Text("Location")
-                }
-                NavigationLink(destination: AccelerationView()) {
-                    Text("Acceleration")
-                }
-                NavigationLink(destination: GravityView()) {
-                    Text("Gravity")
-                }
-                NavigationLink(destination: GyroscopeView()) {
-                    Text("Gyroscope")
-                }
-                NavigationLink(destination: MagnetometerView()) {
-                    Text("Magnetometer")
-                }
-                NavigationLink(destination: AttitudeView()) {
-                    Text("Attitude")
-                }
-                NavigationLink(destination: AltitudeView()) {
-                    Text("Altitude")
-                }
-                NavigationLink(destination: SettingsView()) {
-                    Text("Settings")
-                }
+        return List {
+            NavigationLink(destination: LocationView()) {
+                Text("Location", comment: "ContentView - Location (watchOS)")
             }
-            .listStyle(CarouselListStyle())
+            NavigationLink(destination: AccelerationView()) {
+                Text("Acceleration", comment: "ContentView - Acceleration (watchOS)")
+            }
+            NavigationLink(destination: GravityView()) {
+                Text("Gravity", comment: "ContentView - Gravity (watchOS)")
+            }
+            NavigationLink(destination: GyroscopeView()) {
+                Text("Gyroscope", comment: "ContentView - Gyroscope (watchOS)")
+            }
+            NavigationLink(destination: MagnetometerView()) {
+                Text("Magnetometer", comment: "ContentView - Magnetometer (watchOS)")
+            }
+            NavigationLink(destination: AttitudeView()) {
+                Text("Attitude", comment: "ContentView - Attitude (watchOS)")
+            }
+            NavigationLink(destination: AltitudeView()) {
+                Text("Altitude", comment: "ContentView - Altitude (watchOS)")
+            }
+            NavigationLink(destination: SettingsView()) {
+                Text("Settings", comment: "ContentView - Settings (watchOS)")
+            }
+        }
+        .navigationBarTitle("\(NSLocalizedString("Home", comment: "ContentView - NavigationBar Title (watchOS)"))")
+        .listStyle(CarouselListStyle())
     }
 }
 

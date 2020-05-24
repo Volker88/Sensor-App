@@ -1,8 +1,8 @@
 /* Privacy - Location Always Usage Description */
-"NSLocationAlwaysUsageDescription" = "GPS Zugriff zum Anzeigen des aktuellen Standorts notwendig";
+"NSLocationAlwaysUsageDescription" = "GPS Zugriff benötigt um den aktuellen Standort anzuzeigen";
 
 /* Privacy - Location When In Use Usage Description */
-"NSLocationWhenInUseUsageDescription" = "GPS Zugriff zum Anzeigen des aktuellen Standorts notwendig";
+"NSLocationWhenInUseUsageDescription" = "GPS Zugriff benötigt um den aktuellen Standort anzuzeigen";
 
 /* Privacy - Motion Usage Description */
 "NSMotionUsageDescription" = "Zugriff auf Bewegungssensor benötigt";

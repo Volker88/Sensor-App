@@ -18,6 +18,7 @@ struct MotionListView: View {
     let calculationAPI = CalculationAPI()
     let settings = SettingsAPI()
     
+    
     // MARK: - @State / @ObservedObject / @Binding
     @State var type: SensorType
     @ObservedObject var motionVM = CoreMotionViewModel()
@@ -53,6 +54,7 @@ struct MotionListView: View {
                         }
                         .font(.footnote)
                     }
+                    .id(UUID())
                     .listViewModifier(width: g.size.width - 10)
                 )
             }
@@ -75,6 +77,7 @@ struct MotionListView: View {
                         }
                         .font(.footnote)
                     }
+                    .id(UUID())
                     .listViewModifier(width: g.size.width - 10)
                 )
             }
@@ -97,6 +100,7 @@ struct MotionListView: View {
                         }
                         .font(.footnote)
                     }
+                    .id(UUID())
                     .listViewModifier(width: g.size.width - 10)
                 )
             }
@@ -119,6 +123,7 @@ struct MotionListView: View {
                         }
                         .font(.footnote)
                     }
+                    .id(UUID())
                     .listViewModifier(width: g.size.width - 10)
                 )
             }
@@ -144,6 +149,7 @@ struct MotionListView: View {
                         }
                         .font(.footnote)
                     }
+                    .id(UUID())
                     .listViewModifier(width: g.size.width - 10)
                 )
             }
@@ -161,6 +167,7 @@ struct MotionListView: View {
                         .foregroundColor(Color("ListTextColor"))
                         .font(.footnote)
                     }
+                    .id(UUID())
                     .listViewModifier(width: g.size.width - 10)
                 )
             }
