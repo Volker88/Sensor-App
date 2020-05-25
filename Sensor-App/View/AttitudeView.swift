@@ -102,6 +102,14 @@ struct AttitudeView: View {
         return ZStack {
             LinearGradient(gradient: Gradient(colors: settings.backgroundColor), startPoint: .topLeading, endPoint: .bottomTrailing)
                 .edgesIgnoringSafeArea(.all)
+            
+            VStack {
+                Spacer()
+                Color("ToolbarBackgroundColor")
+                    .frame(maxWidth: .infinity, maxHeight: 50)
+            }
+            .edgesIgnoringSafeArea(.all)
+            
             GeometryReader { g in
                 VStack{
                     ScrollView(.vertical) {
@@ -175,6 +183,7 @@ struct AttitudeView: View {
                             // MARK: - RefreshRateViewModel()
                             RefreshRateView(updateSensorInterval: { self.updateSensorInterval() })
                                 .frame(width: g.size.width, height: 170, alignment: .center)
+                            Spacer(minLength: 20)
                         }
                     }
                     .frame(width: g.size.width, height: g.size.height - 50 + g.safeAreaInsets.bottom)
@@ -184,7 +193,6 @@ struct AttitudeView: View {
                     // MARK: - MotionToolBarView()
                     ToolBarView(toolBarFunctionClosure: self.toolBarButtonTapped(button:))
                 }
-                .edgesIgnoringSafeArea(.bottom)
             }
             
             

@@ -96,6 +96,14 @@ struct LocationView: View {
         return ZStack {
             LinearGradient(gradient: Gradient(colors: settings.backgroundColor), startPoint: .topLeading, endPoint: .bottomTrailing)
                 .edgesIgnoringSafeArea(.all)
+            
+            VStack {
+                Spacer()
+                Color("ToolbarBackgroundColor")
+                    .frame(maxWidth: .infinity, maxHeight: 50)
+            }
+            .edgesIgnoringSafeArea(.all)
+            
             GeometryReader { g in
                 VStack {
                     ScrollView {
@@ -174,8 +182,9 @@ struct LocationView: View {
                         .offset(x: 5)
                         Spacer()
                         MapKitView(latitude: self.locationVM.coreLocationArray.last?.latitude ?? 37.3323314100, longitude: self.locationVM.coreLocationArray.last?.longitude ?? -122.0312186000)
-                            .frame(width: g.size.width - 10, height: g.size.width - 10, alignment: .center)
+                            .frame(width: g.size.width - 10, height: g.size.height - 60, alignment: .center)
                             .cornerRadius(10)
+                        Spacer(minLength: 20)
                     }
                     .frame(width: g.size.width, height: g.size.height - 50 + g.safeAreaInsets.bottom)
                     
@@ -183,7 +192,6 @@ struct LocationView: View {
                     // MARK: - LocationToolBarViewModel()
                     ToolBarView(toolBarFunctionClosure: self.toolBarButtonTapped(button:))
                 }
-                .edgesIgnoringSafeArea(.bottom)
             }
             
             
