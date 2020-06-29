@@ -107,6 +107,21 @@
 /* ContentView - NavigationBar Title (watchOS) */
 "Home" = "Hauptmenü";
 
+/* Export CSV Headline - Location */
+"ID;Time;Longitude;Latitude;Altitude;Speed;Course" = "ID;Zeit;Längengrad;Breitengrad;Höhe;Geschwindikgkeit;Richtung";
+
+/* Export CSV Headline - altitude */
+"ID;Time;Pressure;Altitude change" = "ID;Zeit;Luftdruck;Höhenänderung";
+
+/* Export CSV Headline - attitude */
+"ID;Time;Roll;Pitch;Yaw;Heading" = "ID;Zeit;Roll;Pitch;Yaw;Heading";
+
+/* Export CSV Headline - Acceleration
+   Export CSV Headline - Gravity
+   Export CSV Headline - Gyroscope
+   Export CSV Headline - Magnetometer */
+"ID;Time;X-Axis;Y-Axis;Z-Axis" = "ID;Zeit;X-Achse;Y-Achse;Z-Achse";
+
 /* MotionListView - ID */
 "ID:%@" = "ID:%@";
 
@@ -197,6 +212,9 @@
 /* ContentView - Settings (watchOS)
    SettingsView - NavigationBar Title (watchOS) */
 "Settings" = "Einstellungen";
+
+/* ToolBarView - Share Button */
+"Share" = "Teilen";
 
 /* SettingsView - Speed Setting (watchOS) */
 "Speed Setting" = "Geschwindigkeit";

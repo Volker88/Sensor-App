@@ -1,23 +1,10 @@
+import Foundation
 
 
-struct ChildView: View {
-    var function: () -> Void
+let number = 5.12
+let formatter = NumberFormatter()
+formatter.numberStyle = .decimal
+formatter.maximumFractionDigits = 15
+let localized = formatter.string(from: NSNumber(value: number))
 
-    var body: some View {
-        Button(action: {
-            self.function()
-        }, label: {
-            Text("Button")
-        })
-    }
-}
 
-struct ContentView: View {
-    var body: some View {
-        ChildView(function: { self.setViewBackToNil() })
-    }
-
-    func setViewBackToNil() {
-        print("I am the parent")
-    }
-}

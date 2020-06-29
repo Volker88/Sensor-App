@@ -19,6 +19,7 @@ struct MagnetometerView: View {
     let calculationAPI = CalculationAPI()
     let settings = SettingsAPI()
     let notificationAPI = NotificationAPI()
+    let exportAPI = ExportAPI()
     
     
     // MARK: - @State / @ObservedObject / @Binding
@@ -62,6 +63,8 @@ struct MagnetometerView: View {
                 self.motionVM.coreMotionArray.removeAll()
                 self.motionVM.altitudeArray.removeAll()
                 messageType = .deleted
+            case .share:
+                shareCSV()
             case .settings:
                 motionVM.stopMotionUpdates()
                 showSettings.toggle()
@@ -90,6 +93,16 @@ struct MagnetometerView: View {
     func onDisappear() {
         motionVM.stopMotionUpdates()
         motionVM.coreMotionArray.removeAll()
+    }
+    
+    func shareCSV() {
+        motionVM.stopMotionUpdates()
+        var csvText = NSLocalizedString("ID;Time;X-Axis;Y-Axis;Z-Axis", comment: "Export CSV Headline - Magnetometer") + "\n"
+        
+        _ = motionVM.coreMotionArray.map {
+            csvText += "\($0.counter);\($0.timestamp);\($0.magnetometerXAxis.localizedDecimal());\($0.magnetometerYAxis.localizedDecimal());\($0.magnetometerZAxis.localizedDecimal())\n"
+        }
+        exportAPI.shareButton(exportText: csvText, filename: "magnetometer")
     }
     
     

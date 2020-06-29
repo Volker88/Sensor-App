@@ -33,32 +33,42 @@ struct ToolBarView: View {
         
         // MARK: - Return View
         return GeometryReader { g in
-            HStack{
-                Spacer()
-                Button(action: { self.buttonTapped(type: .play)} ) {
-                    Image(systemName: "play.circle")
-                        .toolBarButtonModifier(accessibility: "Start Button")
-                        .accessibility(label: Text("Play", comment: "ToolBarView - Play Button"))
+            HStack {
+                Group {
+                    Spacer()
+                    Button(action: { self.buttonTapped(type: .play)} ) {
+                        Image(systemName: "play.circle")
+                            .toolBarButtonModifier(accessibility: "Start Button")
+                            .accessibility(label: Text("Play", comment: "ToolBarView - Play Button"))
+                    }
+                    Spacer()
+                    Button(action: { self.buttonTapped(type: .pause)} ) {
+                        Image(systemName: "pause.circle")
+                            .toolBarButtonModifier(accessibility: "Pause Button")
+                            .accessibility(label: Text("Pause", comment: "ToolBarView - Pause Button"))
+                    }
+                    Spacer()
                 }
-                Spacer()
-                Button(action: { self.buttonTapped(type: .pause)} ) {
-                    Image(systemName: "pause.circle")
-                        .toolBarButtonModifier(accessibility: "Pause Button")
-                        .accessibility(label: Text("Pause", comment: "ToolBarView - Pause Button"))
+                Group {
+                    Button(action: { self.buttonTapped(type: .delete)} ) {
+                        Image(systemName: "trash.circle")
+                            .toolBarButtonModifier(accessibility: "Delete Button")
+                            .accessibility(label: Text("Delete", comment: "ToolBarView - Delete Button"))
+                    }
+                    Spacer()
+                    Button(action: { self.buttonTapped(type: .share)} ) {
+                        Image(systemName: "square.and.arrow.up")
+                            .toolBarButtonModifier(accessibility: "Share Button")
+                            .accessibility(label: Text("Share", comment: "ToolBarView - Share Button"))
+                    }
+                    Spacer()
+                    Button(action: { self.buttonTapped(type: .settings)} ) {
+                        Image(systemName: "gear")
+                            .toolBarButtonModifier(accessibility: "Settings Button")
+                            .accessibility(label: Text("Settings", comment: "ToolBarView - Settings Button"))
+                    }
+                    Spacer()
                 }
-                Spacer()
-                Button(action: { self.buttonTapped(type: .delete)} ) {
-                    Image(systemName: "trash.circle")
-                        .toolBarButtonModifier(accessibility: "Delete Button")
-                        .accessibility(label: Text("Delete", comment: "ToolBarView - Delete Button"))
-                }
-                Spacer()
-                Button(action: { self.buttonTapped(type: .settings)} ) {
-                    Image(systemName: "gear")
-                        .toolBarButtonModifier(accessibility: "Settings Button")
-                        .accessibility(label: Text("Settings", comment: "ToolBarView - Settings Button"))
-                }
-                Spacer()
             }
             .frame(width: g.size.width + g.safeAreaInsets.leading + g.safeAreaInsets.trailing, height: 50, alignment: .center)
             .foregroundColor(Color("ToolbarTextColor"))

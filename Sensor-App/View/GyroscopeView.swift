@@ -19,6 +19,7 @@ struct GyroscopeView: View {
     let calculationAPI = CalculationAPI()
     let settings = SettingsAPI()
     let notificationAPI = NotificationAPI()
+    let exportAPI = ExportAPI()
     
     
     // MARK: - @State / @ObservedObject / @Binding
@@ -62,6 +63,8 @@ struct GyroscopeView: View {
                 self.motionVM.coreMotionArray.removeAll()
                 self.motionVM.altitudeArray.removeAll()
                 messageType = .deleted
+            case .share:
+                shareCSV()
             case .settings:
                 motionVM.stopMotionUpdates()
                 showSettings.toggle()
@@ -78,6 +81,16 @@ struct GyroscopeView: View {
     
     func updateSensorInterval() {
         motionVM.sensorUpdateInterval = settings.fetchUserSettings().frequencySetting
+    }
+    
+    func shareCSV() {
+        motionVM.stopMotionUpdates()
+        var csvText = NSLocalizedString("ID;Time;X-Axis;Y-Axis;Z-Axis", comment: "Export CSV Headline - Gyroscope") + "\n"
+        
+        _ = motionVM.coreMotionArray.map {
+            csvText += "\($0.counter);\($0.timestamp);\($0.gyroXAxis.localizedDecimal());\($0.gyroYAxis.localizedDecimal());\($0.gyroZAxis.localizedDecimal())\n"
+        }
+        exportAPI.shareButton(exportText: csvText, filename: "gyroscope")
     }
     
     

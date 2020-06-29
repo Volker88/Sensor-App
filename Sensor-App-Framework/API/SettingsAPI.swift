@@ -147,7 +147,7 @@ class SettingsAPI {
     ///
     public func getTimestamp() -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd-MM-yyyy HH:mm:ss.SSS"
+        dateFormatter.setLocalizedDateFormatFromTemplate("ddMMyyyyHHmmssSSS")
         let dateString = dateFormatter.string(from: NSDate() as Date)
         //print("Timestamp: " + dateString)
         return dateString

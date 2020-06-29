@@ -20,6 +20,7 @@ struct LocationView: View {
     let calculationAPI = CalculationAPI()
     let settings = SettingsAPI()
     let notificationAPI = NotificationAPI()
+    let exportAPI = ExportAPI()
     
     
     // MARK: - @State / @ObservedObject / @Binding
@@ -62,6 +63,8 @@ struct LocationView: View {
             case .delete:
                 self.locationVM.coreLocationArray.removeAll()
                 messageType = .deleted
+            case .share:
+                shareCSV()
             case .settings:
                 showSettings.toggle()
                 messageType = nil
@@ -85,6 +88,15 @@ struct LocationView: View {
         locationVM.stopLocationUpdates()
         locationVM.coreLocationArray.removeAll()
         SKStoreReviewController.requestReview()
+    }
+    
+    func shareCSV() {
+        var csvText = NSLocalizedString("ID;Time;Longitude;Latitude;Altitude;Speed;Course", comment: "Export CSV Headline - Location") + "\n"
+        
+        _ = locationVM.coreLocationArray.map {
+            csvText += "\($0.counter);\($0.timestamp);\($0.longitude.localizedDecimal());\($0.latitude.localizedDecimal());\($0.altitude.localizedDecimal());\($0.speed.localizedDecimal());\($0.course.localizedDecimal())\n"
+        }
+        exportAPI.shareButton(exportText: csvText, filename: "location")
     }
     
     

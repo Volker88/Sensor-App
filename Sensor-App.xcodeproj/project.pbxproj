@@ -98,6 +98,8 @@
 		157D91CE23814C6500371C2F /* Sensor_App_Framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 157D91C723814C6500371C2F /* Sensor_App_Framework.framework */; };
 		157D91CF23814C6500371C2F /* Sensor_App_Framework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 157D91C723814C6500371C2F /* Sensor_App_Framework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		157ECB4B23832A3800890291 /* CoreLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E57B8C234A09630055B4D1 /* CoreLocationViewModel.swift */; };
+		158357C424A9D268000DFA44 /* ExportAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158357C324A9D268000DFA44 /* ExportAPI.swift */; };
+		158357C524A9D279000DFA44 /* ExportAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158357C324A9D268000DFA44 /* ExportAPI.swift */; };
 		15841D452381767500E031B9 /* LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15841D442381767500E031B9 /* LocationView.swift */; };
 		15841D482381768700E031B9 /* AccelerationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15841D472381768700E031B9 /* AccelerationView.swift */; };
 		15841D4B2381769400E031B9 /* GravityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15841D4A2381769400E031B9 /* GravityView.swift */; };
@@ -293,6 +295,7 @@
 		157D91C723814C6500371C2F /* Sensor_App_Framework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Sensor_App_Framework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		157D91C923814C6500371C2F /* Sensor_App_Framework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Sensor_App_Framework.h; sourceTree = "<group>"; };
 		157D91CA23814C6500371C2F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		158357C324A9D268000DFA44 /* ExportAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportAPI.swift; sourceTree = "<group>"; };
 		15841D442381767500E031B9 /* LocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationView.swift; sourceTree = "<group>"; };
 		15841D472381768700E031B9 /* AccelerationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccelerationView.swift; sourceTree = "<group>"; };
 		15841D4A2381769400E031B9 /* GravityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GravityView.swift; sourceTree = "<group>"; };
@@ -387,6 +390,7 @@
 				15DEDA66231DA97B008B2327 /* CoreMotionAPI.swift */,
 				15A062AA233FCDD800F5DC6F /* NotificationAPI.swift */,
 				15FC73322280A09B0077CB8A /* SettingsAPI.swift */,
+				158357C324A9D268000DFA44 /* ExportAPI.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -1064,6 +1068,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				158357C524A9D279000DFA44 /* ExportAPI.swift in Sources */,
 				1516CD50232CC57400817C33 /* AltitudeView.swift in Sources */,
 				1516CD57232D510400817C33 /* SettingsView.swift in Sources */,
 				1516CD4A232CC57400817C33 /* GyroscopeView.swift in Sources */,
@@ -1130,6 +1135,7 @@
 				1557774923CA763000BD563E /* SettingsAPI.swift in Sources */,
 				150977A424796E24003FB555 /* ToolBarButtonModifier.swift in Sources */,
 				1557774C23CA777F00BD563E /* CoreMotionAPI.swift in Sources */,
+				158357C424A9D268000DFA44 /* ExportAPI.swift in Sources */,
 				1557775123CA795E00BD563E /* MotionModel.swift in Sources */,
 				15404C6523F7295C00863D8B /* ToolBarButtonType.swift in Sources */,
 				15D9C3D623F9C96E00AC37AE /* SettingsForUserDefaults.swift in Sources */,
@@ -1454,8 +1460,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				MY_BUILD_VERSION = 2.20225.0;
-				MY_VERSION = 2.4.1;
+				MY_BUILD_VERSION = 2.20271.1;
+				MY_VERSION = 2.5.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -1514,8 +1520,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				MY_BUILD_VERSION = 2.20225.0;
-				MY_VERSION = 2.4.1;
+				MY_BUILD_VERSION = 2.20271.1;
+				MY_VERSION = 2.5.0;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";

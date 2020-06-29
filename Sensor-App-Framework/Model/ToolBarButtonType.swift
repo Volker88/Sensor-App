@@ -16,5 +16,6 @@ enum ToolBarButtonType {
     case play
     case pause
     case delete
+    case share
     case settings
 }

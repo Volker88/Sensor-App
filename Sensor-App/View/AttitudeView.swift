@@ -19,6 +19,7 @@ struct AttitudeView: View {
     let calculationAPI = CalculationAPI()
     let settings = SettingsAPI()
     let notificationAPI = NotificationAPI()
+    let exportAPI = ExportAPI()
     
     
     // MARK: - @State / @ObservedObject / @Binding
@@ -63,6 +64,8 @@ struct AttitudeView: View {
                 self.motionVM.coreMotionArray.removeAll()
                 self.motionVM.altitudeArray.removeAll()
                 messageType = .deleted
+            case .share:
+                shareCSV()
             case .settings:
                 motionVM.stopMotionUpdates()
                 showSettings.toggle()
@@ -91,6 +94,16 @@ struct AttitudeView: View {
     func onDisappear() {
         motionVM.stopMotionUpdates()
         motionVM.coreMotionArray.removeAll()
+    }
+    
+    func shareCSV() {
+        motionVM.stopMotionUpdates()
+        var csvText = NSLocalizedString("ID;Time;Roll;Pitch;Yaw;Heading", comment: "Export CSV Headline - attitude") + "\n"
+        
+        _ = motionVM.coreMotionArray.map {
+            csvText += "\($0.counter);\($0.timestamp);\($0.attitudeRoll.localizedDecimal());\($0.attitudePitch.localizedDecimal());\($0.attitudeYaw.localizedDecimal());\($0.attitudeHeading.localizedDecimal())\n"
+        }
+        exportAPI.shareButton(exportText: csvText, filename: "attitude")
     }
     
     

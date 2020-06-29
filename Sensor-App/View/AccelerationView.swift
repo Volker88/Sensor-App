@@ -19,6 +19,7 @@ struct AccelerationView: View {
     let calculationAPI = CalculationAPI()
     let settings = SettingsAPI()
     let notificationAPI = NotificationAPI()
+    let exportAPI = ExportAPI()
     
     
     // MARK: - @State / @ObservedObject / @Binding
@@ -62,6 +63,8 @@ struct AccelerationView: View {
                 self.motionVM.coreMotionArray.removeAll()
                 self.motionVM.altitudeArray.removeAll()
                 messageType = .deleted
+            case .share:
+                shareCSV()
             case .settings:
                 motionVM.stopMotionUpdates()
                 showSettings.toggle()
@@ -78,6 +81,16 @@ struct AccelerationView: View {
     
     func updateSensorInterval() {
         motionVM.sensorUpdateInterval = settings.fetchUserSettings().frequencySetting
+    }
+    
+    func shareCSV() {
+        motionVM.stopMotionUpdates()
+        var csvText = NSLocalizedString("ID;Time;X-Axis;Y-Axis;Z-Axis", comment: "Export CSV Headline - Acceleration") + "\n"
+        
+        _ = motionVM.coreMotionArray.map {
+            csvText += "\($0.counter);\($0.timestamp);\($0.accelerationXAxis.localizedDecimal());\($0.accelerationYAxis.localizedDecimal());\($0.accelerationZAxis.localizedDecimal())\n"
+        }
+        exportAPI.shareButton(exportText: csvText, filename: "acceleration")
     }
     
     

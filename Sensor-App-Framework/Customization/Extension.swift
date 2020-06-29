@@ -28,4 +28,14 @@ extension Double {
         let divisor = pow(10.0, Double(places))
         return (self * divisor).rounded() / divisor
     }
+    
+    
+    func localizedDecimal(_ maxDecimal: Int = 20) -> String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.maximumFractionDigits = maxDecimal
+        let localized = formatter.string(from: NSNumber(value: self))
+        
+        return localized ?? ""
+    }
 }

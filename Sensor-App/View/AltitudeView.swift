@@ -19,6 +19,7 @@ struct AltitudeView: View {
     let calculationAPI = CalculationAPI()
     let settings = SettingsAPI()
     let notificationAPI = NotificationAPI()
+    let exportAPI = ExportAPI()
     
     
     // MARK: - @State / @ObservedObject / @Binding
@@ -60,6 +61,8 @@ struct AltitudeView: View {
                 motionVM.stopMotionUpdates()
                 motionIsUpdating = false
                 messageType = .paused
+            case .share:
+                shareCSV()
             case .delete:
                 self.motionVM.coreMotionArray.removeAll()
                 self.motionVM.altitudeArray.removeAll()
@@ -92,6 +95,16 @@ struct AltitudeView: View {
     func onDisappear() {
         motionVM.stopMotionUpdates()
         motionVM.altitudeArray.removeAll()
+    }
+    
+    func shareCSV() {
+        motionVM.stopMotionUpdates()
+        var csvText = NSLocalizedString("ID;Time;Pressure;Altitude change", comment: "Export CSV Headline - altitude") + "\n"
+        
+        _ = motionVM.altitudeArray.map {
+            csvText += "\($0.counter);\($0.timestamp);\(self.calculationAPI.calculatePressure(pressure: $0.pressureValue, to: self.settings.fetchUserSettings().pressureSetting).localizedDecimal());\(self.calculationAPI.calculateHeight(height: $0.relativeAltitudeValue, to: self.settings.fetchUserSettings().altitudeHeightSetting).localizedDecimal())\n"
+        }
+        exportAPI.shareButton(exportText: csvText, filename: "altitude")
     }
     
     
