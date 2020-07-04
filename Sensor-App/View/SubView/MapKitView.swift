@@ -12,6 +12,7 @@ import SwiftUI
 import MapKit
 
 
+// MARK: - Struct
 struct MapKitView: UIViewRepresentable {
     
     // MARK: - Initialize Classes
@@ -30,7 +31,7 @@ struct MapKitView: UIViewRepresentable {
     }
     
     
-    // MARK: - MapkitView
+    // MARK: - MapKitView
     func makeUIView(context: Context) -> MKMapView {
         let mapView = MKMapView()
         mapView.delegate = context.coordinator

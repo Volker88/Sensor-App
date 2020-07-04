@@ -99,6 +99,24 @@ class GravityViewUITests: XCTestCase {
         app.navigationBars.buttons.element(boundBy: 0).tap()
     }
     
+    func testGravityViewShareSheet() throws {
+        // Start Application
+        let app = XCUIApplication()
+        app.launch()
+        
+        // Go to Location View
+        app.buttons["Gravity"].tap()
+    
+        // Open / Close Share Sheet
+        app/*@START_MENU_TOKEN@*/.buttons["Share Button"]/*[[".buttons[\"Share\"]",".buttons[\"Share Button\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        sleep(1)
+        app/*@START_MENU_TOKEN@*/.navigationBars["UIActivityContentView"]/*[[".otherElements[\"ActivityListView\"].navigationBars[\"UIActivityContentView\"]",".navigationBars[\"UIActivityContentView\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.buttons["Close"].tap()
+        
+        // Go Back to Main Menu
+        sleep(1)
+        app.navigationBars.buttons.element(boundBy: 0).tap()
+    }
+    
     
     // MARK:  - Methods
 }

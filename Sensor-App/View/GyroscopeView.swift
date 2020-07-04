@@ -26,6 +26,8 @@ struct GyroscopeView: View {
     @ObservedObject var motionVM = CoreMotionViewModel()
     @State private var frequency = 1.0
     @State private var showSettings = false
+    @State private var showShareSheet = false
+    @State private var filesToShare = [Any]()
     
     // Show Graph
     @State private var showXAxis = false
@@ -90,7 +92,8 @@ struct GyroscopeView: View {
         _ = motionVM.coreMotionArray.map {
             csvText += "\($0.counter);\($0.timestamp);\($0.gyroXAxis.localizedDecimal());\($0.gyroYAxis.localizedDecimal());\($0.gyroZAxis.localizedDecimal())\n"
         }
-        exportAPI.shareButton(exportText: csvText, filename: "gyroscope")
+        filesToShare = exportAPI.getFile(exportText: csvText, filename: "gyroscope")
+        self.showShareSheet.toggle()
     }
     
     
@@ -200,7 +203,8 @@ struct GyroscopeView: View {
         .navigationBarTitle("\(NSLocalizedString("Gyroscope", comment: "NavigationBar Title - Gyroscope"))", displayMode: .inline)
         .onAppear(perform: onAppear)
         .onDisappear(perform: onDisappear)
-        .sheet(isPresented: $showSettings) { SettingsView() }
+        .background(EmptyView().sheet(isPresented: $showSettings) { SettingsView() }
+        .background(EmptyView().sheet(isPresented: $showShareSheet) { ShareSheet(activityItems: self.filesToShare) }))
     }
 }
 

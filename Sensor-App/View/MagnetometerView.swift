@@ -26,6 +26,8 @@ struct MagnetometerView: View {
     @ObservedObject var motionVM = CoreMotionViewModel()
     @State private var frequency = 1.0
     @State private var showSettings = false
+    @State private var showShareSheet = false
+    @State private var filesToShare = [Any]()
     
     // Show Graph
     @State private var showXAxis = false
@@ -102,7 +104,8 @@ struct MagnetometerView: View {
         _ = motionVM.coreMotionArray.map {
             csvText += "\($0.counter);\($0.timestamp);\($0.magnetometerXAxis.localizedDecimal());\($0.magnetometerYAxis.localizedDecimal());\($0.magnetometerZAxis.localizedDecimal())\n"
         }
-        exportAPI.shareButton(exportText: csvText, filename: "magnetometer")
+        filesToShare = exportAPI.getFile(exportText: csvText, filename: "magnetometer")
+        self.showShareSheet.toggle()
     }
     
     
@@ -200,7 +203,8 @@ struct MagnetometerView: View {
         .navigationBarTitle("\(NSLocalizedString("Magnetometer", comment: "NavigationBar Title - Magnetometer"))", displayMode: .inline)
         .onAppear(perform: onAppear)
         .onDisappear(perform: onDisappear)
-        .sheet(isPresented: $showSettings) { SettingsView() }
+        .background(EmptyView().sheet(isPresented: $showSettings) { SettingsView() }
+        .background(EmptyView().sheet(isPresented: $showShareSheet) { ShareSheet(activityItems: self.filesToShare) }))
     }
 }
 

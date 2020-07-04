@@ -26,6 +26,8 @@ struct GravityView: View {
     @ObservedObject var motionVM = CoreMotionViewModel()
     @State private var frequency = 1.0
     @State private var showSettings = false
+    @State private var showShareSheet = false
+    @State private var filesToShare = [Any]()
     
     // Show Graph
     @State private var showXAxis = false
@@ -90,7 +92,8 @@ struct GravityView: View {
         _ = motionVM.coreMotionArray.map {
             csvText += "\($0.counter);\($0.timestamp);\($0.gravityXAxis.localizedDecimal());\($0.gravityYAxis.localizedDecimal());\($0.gravityZAxis.localizedDecimal())\n"
         }
-        exportAPI.shareButton(exportText: csvText, filename: "gravity")
+        filesToShare = exportAPI.getFile(exportText: csvText, filename: "gravity")
+        self.showShareSheet.toggle()
     }
     
     
@@ -200,7 +203,8 @@ struct GravityView: View {
         .navigationBarTitle("\(NSLocalizedString("Gravity", comment: "NavigationBar Title - Gravity"))", displayMode: .inline)
         .onAppear(perform: onAppear)
         .onDisappear(perform: onDisappear)
-        .sheet(isPresented: $showSettings) { SettingsView() }
+        .background(EmptyView().sheet(isPresented: $showSettings) { SettingsView() }
+        .background(EmptyView().sheet(isPresented: $showShareSheet) { ShareSheet(activityItems: self.filesToShare) }))
     }
 }
 

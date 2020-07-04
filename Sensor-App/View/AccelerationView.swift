@@ -26,12 +26,14 @@ struct AccelerationView: View {
     @ObservedObject var motionVM = CoreMotionViewModel()
     @State private var frequency = 1.0
     @State private var showSettings = false
+    @State private var showShareSheet = false
+    @State private var filesToShare = [Any]()
     
     // Show Graph
     @State private var showXAxis = false
     @State private var showYAxis = false
     @State private var showZAxis = false
-    
+
     // Notification Variables
     @State private var showNotification = false
     @State private var notificationMessage = ""
@@ -90,7 +92,8 @@ struct AccelerationView: View {
         _ = motionVM.coreMotionArray.map {
             csvText += "\($0.counter);\($0.timestamp);\($0.accelerationXAxis.localizedDecimal());\($0.accelerationYAxis.localizedDecimal());\($0.accelerationZAxis.localizedDecimal())\n"
         }
-        exportAPI.shareButton(exportText: csvText, filename: "acceleration")
+        filesToShare = exportAPI.getFile(exportText: csvText, filename: "acceleration")
+        self.showShareSheet.toggle()
     }
     
     
@@ -200,7 +203,8 @@ struct AccelerationView: View {
         .navigationBarTitle("\(NSLocalizedString("Acceleration", comment: "NavigationBar Title - Acceleration"))", displayMode: .inline)
         .onAppear(perform: onAppear)
         .onDisappear(perform: onDisappear)
-        .sheet(isPresented: $showSettings) { SettingsView() }
+        .background(EmptyView().sheet(isPresented: $showSettings) { SettingsView() }
+        .background(EmptyView().sheet(isPresented: $showShareSheet) { ShareSheet(activityItems: self.filesToShare) }))
     }
 }
 

@@ -26,6 +26,8 @@ struct AttitudeView: View {
     @ObservedObject var motionVM = CoreMotionViewModel()
     @State private var frequency = 1.0
     @State private var showSettings = false
+    @State private var showShareSheet = false
+    @State private var filesToShare = [Any]()
     
     // Show Graph
     @State private var showRoll = false
@@ -103,7 +105,8 @@ struct AttitudeView: View {
         _ = motionVM.coreMotionArray.map {
             csvText += "\($0.counter);\($0.timestamp);\($0.attitudeRoll.localizedDecimal());\($0.attitudePitch.localizedDecimal());\($0.attitudeYaw.localizedDecimal());\($0.attitudeHeading.localizedDecimal())\n"
         }
-        exportAPI.shareButton(exportText: csvText, filename: "attitude")
+        filesToShare = exportAPI.getFile(exportText: csvText, filename: "attitude")
+        self.showShareSheet.toggle()
     }
     
     
@@ -215,7 +218,8 @@ struct AttitudeView: View {
         .navigationBarTitle("\(NSLocalizedString("Attitude", comment: "NavigationBar Title - Attitude"))", displayMode: .inline)
         .onAppear(perform: onAppear)
         .onDisappear(perform: onDisappear)
-        .sheet(isPresented: $showSettings) { SettingsView() }
+        .background(EmptyView().sheet(isPresented: $showSettings) { SettingsView() }
+        .background(EmptyView().sheet(isPresented: $showShareSheet) { ShareSheet(activityItems: self.filesToShare) }))
     }
 }
 

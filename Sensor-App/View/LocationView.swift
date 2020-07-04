@@ -26,6 +26,8 @@ struct LocationView: View {
     // MARK: - @State / @ObservedObject / @Binding
     @ObservedObject var locationVM = CoreLocationViewModel()
     @State private var showSettings = false
+    @State private var showShareSheet = false
+    @State private var filesToShare = [Any]()
     
     // Show Graph
     @State private var showLatitude = false
@@ -96,7 +98,8 @@ struct LocationView: View {
         _ = locationVM.coreLocationArray.map {
             csvText += "\($0.counter);\($0.timestamp);\($0.longitude.localizedDecimal());\($0.latitude.localizedDecimal());\($0.altitude.localizedDecimal());\($0.speed.localizedDecimal());\($0.course.localizedDecimal())\n"
         }
-        exportAPI.shareButton(exportText: csvText, filename: "location")
+        filesToShare = exportAPI.getFile(exportText: csvText, filename: "location")
+        self.showShareSheet.toggle()
     }
     
     
@@ -213,7 +216,8 @@ struct LocationView: View {
         .navigationBarTitle("\(NSLocalizedString("Location", comment: "NavigationBar Title - Location"))", displayMode: .inline)
         .onAppear(perform: onAppear)
         .onDisappear(perform: onDisappear)
-        .sheet(isPresented: $showSettings) { SettingsView() }
+        .background(EmptyView().sheet(isPresented: $showSettings) { SettingsView() }
+        .background(EmptyView().sheet(isPresented: $showShareSheet) { ShareSheet(activityItems: self.filesToShare) }))
     }
 }
 

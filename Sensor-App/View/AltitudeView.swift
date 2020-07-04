@@ -27,6 +27,8 @@ struct AltitudeView: View {
     @State private var frequency = 1.0
     @State private var showSettings = false
     @State private var motionIsUpdating = true
+    @State private var showShareSheet = false
+    @State private var filesToShare = [Any]()
     
     // Show Graph
     @State private var showPressure = false
@@ -104,7 +106,8 @@ struct AltitudeView: View {
         _ = motionVM.altitudeArray.map {
             csvText += "\($0.counter);\($0.timestamp);\(self.calculationAPI.calculatePressure(pressure: $0.pressureValue, to: self.settings.fetchUserSettings().pressureSetting).localizedDecimal());\(self.calculationAPI.calculateHeight(height: $0.relativeAltitudeValue, to: self.settings.fetchUserSettings().altitudeHeightSetting).localizedDecimal())\n"
         }
-        exportAPI.shareButton(exportText: csvText, filename: "altitude")
+        filesToShare = exportAPI.getFile(exportText: csvText, filename: "altitude")
+        self.showShareSheet.toggle()
     }
     
     
@@ -183,7 +186,8 @@ struct AltitudeView: View {
         .navigationBarTitle("\(NSLocalizedString("Altitude", comment: "NavigationBar Title - Altitude"))", displayMode: .inline)
         .onAppear(perform: onAppear)
         .onDisappear(perform: onDisappear)
-        .sheet(isPresented: $showSettings) { SettingsView() }
+        .background(EmptyView().sheet(isPresented: $showSettings) { SettingsView() }
+        .background(EmptyView().sheet(isPresented: $showShareSheet) { ShareSheet(activityItems: self.filesToShare) }))
     }
 }
 

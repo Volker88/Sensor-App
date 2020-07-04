@@ -25,22 +25,23 @@ class ExportAPI {
     ///   - filename: String
     ///   - fileExtension: String
     ///
-    func shareButton(exportText: String, filename: String, fileExtension: String = ".csv") {
-        let fileName = "\(filename)\(fileExtension)"
-        let path = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(fileName)
-        
-        let exportText: String = exportText
-        
-        do {
-            try exportText.write(to: path!, atomically: true, encoding: String.Encoding.utf8)
-        } catch {
-            print(error.localizedDescription)
-        }
-        
-        var filesToShare = [Any]()
-        filesToShare.append(path!)
-        
-        let av = UIActivityViewController(activityItems: filesToShare, applicationActivities: nil)
-        UIApplication.shared.windows.first?.rootViewController?.present(av, animated: true, completion: nil)
-    }
+    /// - Returns: [Any]
+    ///
+    func getFile(exportText: String, filename: String, fileExtension: String = ".csv") -> [Any] {
+           let fileName = "\(filename)\(fileExtension)"
+           let path = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(fileName)
+           
+           let exportText: String = exportText
+           
+           do {
+               try exportText.write(to: path!, atomically: true, encoding: String.Encoding.utf8)
+           } catch {
+               print(error.localizedDescription)
+           }
+           
+           var filesToShare = [Any]()
+           filesToShare.append(path!)
+           
+           return filesToShare
+       }
 }

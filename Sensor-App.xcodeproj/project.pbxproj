@@ -150,6 +150,7 @@
 		15DEDA67231DA97B008B2327 /* CoreMotionAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DEDA66231DA97B008B2327 /* CoreMotionAPI.swift */; };
 		15E57B8D234A09630055B4D1 /* CoreLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E57B8C234A09630055B4D1 /* CoreLocationViewModel.swift */; };
 		15E57B91234A20790055B4D1 /* CoreMotionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E57B90234A20790055B4D1 /* CoreMotionViewModel.swift */; };
+		15EC225924B0501E00B49977 /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15EC225824B0501E00B49977 /* ShareSheet.swift */; };
 		15ED0437231EF6EE001E5005 /* AltitudeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ED0436231EF6EE001E5005 /* AltitudeModel.swift */; };
 		15FC73332280A09B0077CB8A /* SettingsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FC73322280A09B0077CB8A /* SettingsAPI.swift */; };
 		15FC879C23E5900900C8C07B /* AppUpdatesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FC879B23E5900900C8C07B /* AppUpdatesTests.swift */; };
@@ -334,6 +335,7 @@
 		15E87C3423E59FB10073DE77 /* UITests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = UITests.xctestplan; sourceTree = "<group>"; };
 		15E87C3523E5A3090073DE77 /* ScreenshotTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = ScreenshotTests.xctestplan; sourceTree = "<group>"; };
 		15E87C3723E5A9B40073DE77 /* FullTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = FullTests.xctestplan; sourceTree = "<group>"; };
+		15EC225824B0501E00B49977 /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
 		15ED0436231EF6EE001E5005 /* AltitudeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AltitudeModel.swift; sourceTree = "<group>"; };
 		15ED0438231EF904001E5005 /* CalculationAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculationAPI.swift; sourceTree = "<group>"; };
 		15FC73322280A09B0077CB8A /* SettingsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAPI.swift; sourceTree = "<group>"; };
@@ -708,6 +710,7 @@
 				1516CD31232CC55400817C33 /* MapKitView.swift */,
 				1531AC4B2353968700492189 /* MotionListView.swift */,
 				1516CD33232CC55400817C33 /* RefreshRateView.swift */,
+				15EC225824B0501E00B49977 /* ShareSheet.swift */,
 				1516CD32232CC55400817C33 /* ToolBarView.swift */,
 				158BC8CC23411F22001A5EBD /* Notification */,
 			);
@@ -1090,6 +1093,7 @@
 				15A062AE233FD2D100F5DC6F /* NotificationModel.swift in Sources */,
 				151101152364518200EC0292 /* ViewButtonModifier.swift in Sources */,
 				1509779F24796266003FB555 /* NavigationBarItemModifier.swift in Sources */,
+				15EC225924B0501E00B49977 /* ShareSheet.swift in Sources */,
 				15DEDA67231DA97B008B2327 /* CoreMotionAPI.swift in Sources */,
 				15E57B91234A20790055B4D1 /* CoreMotionViewModel.swift in Sources */,
 				158BC8C92341094B001A5EBD /* NotificationView.swift in Sources */,
@@ -1460,8 +1464,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				MY_BUILD_VERSION = 2.20271.1;
-				MY_VERSION = 2.5.0;
+				MY_BUILD_VERSION = 2.20276.2;
+				MY_VERSION = 2.5.1;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -1520,8 +1524,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				MY_BUILD_VERSION = 2.20271.1;
-				MY_VERSION = 2.5.0;
+				MY_BUILD_VERSION = 2.20276.2;
+				MY_VERSION = 2.5.1;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
