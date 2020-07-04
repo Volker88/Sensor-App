@@ -142,7 +142,7 @@ struct SettingsView: View {
         
         // MARK: - Return view
         return ZStack {
-            NavigationView { // TODO: Accessibiliy
+            NavigationView {
                 Form {
                     Section(header:
                         Text("Location", comment: "SettingsView - Location Section")
@@ -247,7 +247,6 @@ struct SettingsView: View {
                     }
                 }
                 .navigationBarTitle("\(NSLocalizedString("Settings", comment: "NavigationBar Title - Settings"))", displayMode: .inline)
-                .navigationViewStyle(StackNavigationViewStyle())
                 .navigationBarItems(leading:
                     Button(action: {
                         self.discardView()
