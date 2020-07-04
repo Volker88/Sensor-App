@@ -142,7 +142,7 @@ struct SettingsView: View {
         
         // MARK: - Return view
         return ZStack {
-            NavigationView { // TODO: Accessibiliy
+            NavigationView {
                 Form {
                     Section(header:
                         Text("Location", comment: "SettingsView - Location Section")
@@ -273,7 +273,6 @@ struct SettingsView: View {
                         }
                 })
             }
-            .navigationViewStyle(StackNavigationViewStyle())
             .onAppear(perform: onAppear)
             .onDisappear(perform: onDisappear)
             
