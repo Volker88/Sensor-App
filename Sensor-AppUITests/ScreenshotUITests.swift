@@ -68,7 +68,8 @@ class ScreenshotUITests: XCTestCase {
         app.navigationBars.buttons.element(boundBy: 0).tap()
         
         // Reject App Store review request
-        app.buttons["Not Now"].tap()
+        sleep(1)
+        app.scrollViews.otherElements.buttons["Not Now"].tap()
         
         // Go to Acceleration View and take Screenshot
         app.buttons["Acceleration"].tap()

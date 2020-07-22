@@ -1,7 +1,7 @@
 {
   "configurations" : [
     {
-      "id" : "2CBD38B4-FFD1-475D-8A34-47696B680BEC",
+      "id" : "1C074208-A32F-4692-B289-F37A228D01EA",
       "name" : "Configuration 1",
       "options" : {
 
@@ -15,14 +15,14 @@
     {
       "target" : {
         "containerPath" : "container:Sensor-App.xcodeproj",
-        "identifier" : "1511013E23648D4000EC0292",
+        "identifier" : "1527B02724C4AA240024DD78",
         "name" : "Sensor-AppTests"
       }
     },
     {
       "target" : {
         "containerPath" : "container:Sensor-App.xcodeproj",
-        "identifier" : "1511014C23648D8000EC0292",
+        "identifier" : "1527B03224C4AA240024DD78",
         "name" : "Sensor-AppUITests"
       }
     }

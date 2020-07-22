@@ -2,8 +2,7 @@
 //  Sensor_App_Framework.h
 //  Sensor-App-Framework
 //
-//  Created by Volker Schmitt on 17.11.19.
-//  Copyright © 2019 Volker Schmitt. All rights reserved.
+//  Created by Volker Schmitt on 19.07.20.
 //
 
 #import <Foundation/Foundation.h>

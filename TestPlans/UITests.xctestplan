@@ -1,7 +1,7 @@
 {
   "configurations" : [
     {
-      "id" : "CC406086-6226-4851-955D-0FB29CE341E7",
+      "id" : "10B5B5EB-2913-4F4D-88FE-E5B37C8702CB",
       "name" : "Configuration 1",
       "options" : {
 
@@ -15,7 +15,7 @@
     {
       "target" : {
         "containerPath" : "container:Sensor-App.xcodeproj",
-        "identifier" : "1511014C23648D8000EC0292",
+        "identifier" : "1527B03224C4AA240024DD78",
         "name" : "Sensor-AppUITests"
       }
     }

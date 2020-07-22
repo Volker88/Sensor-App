@@ -40,7 +40,7 @@ class SettingsViewUITests: XCTestCase {
         app.launch()
         
         // Go to Settings View
-        app.scrollViews.otherElements.buttons["Settings"].tap()
+        app/*@START_MENU_TOKEN@*/.buttons["Settings"]/*[[".scrollViews.buttons[\"Settings\"]",".buttons[\"Settings\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
         
         // Select Speed Setting
         let tablesQuery = app.tables

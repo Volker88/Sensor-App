@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1130"
+   LastUpgradeVersion = "1200"
    version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "157B0E6E227F57D6004CC169"
+               BlueprintIdentifier = "1527B01624C4AA240024DD78"
                BuildableName = "Sensor-App.app"
                BlueprintName = "Sensor-App"
                ReferencedContainer = "container:Sensor-App.xcodeproj">
@@ -26,32 +26,20 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES"
-      userAttachmentLifetime = "keepAlways"
-      codeCoverageEnabled = "YES"
-      localizableStringsDataGatheringEnabled = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "157B0E6E227F57D6004CC169"
-            BuildableName = "Sensor-App.app"
-            BlueprintName = "Sensor-App"
-            ReferencedContainer = "container:Sensor-App.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
+      shouldUseLaunchSchemeArgsEnv = "YES">
       <TestPlans>
          <TestPlanReference
-            reference = "container:TestPlans/UnitTests.xctestplan"
-            default = "YES">
+            reference = "container:TestPlans/FullTests.xctestplan">
+         </TestPlanReference>
+         <TestPlanReference
+            reference = "container:TestPlans/ScreenshoTests.xctestplan">
          </TestPlanReference>
          <TestPlanReference
             reference = "container:TestPlans/UITests.xctestplan">
          </TestPlanReference>
          <TestPlanReference
-            reference = "container:TestPlans/ScreenshotTests.xctestplan">
-         </TestPlanReference>
-         <TestPlanReference
-            reference = "container:TestPlans/FullTests.xctestplan">
+            reference = "container:TestPlans/UnitTests.xctestplan"
+            default = "YES">
          </TestPlanReference>
       </TestPlans>
       <Testables>
@@ -59,21 +47,17 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1511013E23648D4000EC0292"
+               BlueprintIdentifier = "1527B02724C4AA240024DD78"
                BuildableName = "Sensor-AppTests.xctest"
                BlueprintName = "Sensor-AppTests"
                ReferencedContainer = "container:Sensor-App.xcodeproj">
             </BuildableReference>
-            <LocationScenarioReference
-               identifier = "com.apple.dt.IDEFoundation.CurrentLocationScenarioIdentifier"
-               referenceType = "1">
-            </LocationScenarioReference>
          </TestableReference>
          <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1511014C23648D8000EC0292"
+               BlueprintIdentifier = "1527B03224C4AA240024DD78"
                BuildableName = "Sensor-AppUITests.xctest"
                BlueprintName = "Sensor-AppUITests"
                ReferencedContainer = "container:Sensor-App.xcodeproj">
@@ -95,7 +79,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "157B0E6E227F57D6004CC169"
+            BlueprintIdentifier = "1527B01624C4AA240024DD78"
             BuildableName = "Sensor-App.app"
             BlueprintName = "Sensor-App"
             ReferencedContainer = "container:Sensor-App.xcodeproj">
@@ -112,7 +96,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "157B0E6E227F57D6004CC169"
+            BlueprintIdentifier = "1527B01624C4AA240024DD78"
             BuildableName = "Sensor-App.app"
             BlueprintName = "Sensor-App"
             ReferencedContainer = "container:Sensor-App.xcodeproj">

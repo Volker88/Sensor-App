@@ -1,14 +1,14 @@
 {
   "configurations" : [
     {
-      "id" : "71BDA437-24E9-45BD-AFF6-3E1A2B4BC84C",
+      "id" : "C56CC015-D669-48A7-9DD9-3B79A697EF0E",
       "name" : "Configuration 1",
       "options" : {
 
       }
     },
     {
-      "id" : "0E32C987-2047-4417-A67F-8EEB38419D42",
+      "id" : "6780A5D9-DB44-4B86-9640-9795AE65EC0B",
       "name" : "Configuration 2",
       "options" : {
         "language" : "de",
@@ -17,10 +17,13 @@
     }
   ],
   "defaultOptions" : {
+    "areLocalizationScreenshotsEnabled" : true,
     "locationScenario" : {
       "identifier" : "New York, NY, USA",
       "referenceType" : "built-in"
-    }
+    },
+    "uiTestingScreenshotsLifetime" : "keepAlways",
+    "userAttachmentLifetime" : "keepAlways"
   },
   "testTargets" : [
     {
@@ -29,7 +32,7 @@
       ],
       "target" : {
         "containerPath" : "container:Sensor-App.xcodeproj",
-        "identifier" : "1511014C23648D8000EC0292",
+        "identifier" : "1527B03224C4AA240024DD78",
         "name" : "Sensor-AppUITests"
       }
     }

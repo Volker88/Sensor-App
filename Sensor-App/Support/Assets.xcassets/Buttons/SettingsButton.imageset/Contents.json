@@ -1,57 +1,57 @@
 {
   "images" : [
     {
-      "idiom" : "universal",
       "filename" : "outline_settings_applications_black_48pt_1x.png",
+      "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "idiom" : "universal",
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
       "filename" : "baseline_settings_applications_white_48pt_1x.png",
-      "appearances" : [
-        {
-          "appearance" : "luminosity",
-          "value" : "dark"
-        }
-      ],
+      "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "idiom" : "universal",
       "filename" : "outline_settings_applications_black_48pt_2x.png",
+      "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "idiom" : "universal",
-      "filename" : "baseline_settings_applications_white_48pt_2x.png",
       "appearances" : [
         {
           "appearance" : "luminosity",
           "value" : "dark"
         }
       ],
+      "filename" : "baseline_settings_applications_white_48pt_2x.png",
+      "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "idiom" : "universal",
       "filename" : "outline_settings_applications_black_48pt_3x.png",
+      "idiom" : "universal",
       "scale" : "3x"
     },
     {
-      "idiom" : "universal",
-      "filename" : "baseline_settings_applications_white_48pt_3x.png",
       "appearances" : [
         {
           "appearance" : "luminosity",
           "value" : "dark"
         }
       ],
+      "filename" : "baseline_settings_applications_white_48pt_3x.png",
+      "idiom" : "universal",
       "scale" : "3x"
     }
   ],
   "info" : {
-    "version" : 1,
-    "author" : "xcode"
+    "author" : "xcode",
+    "version" : 1
   },
   "properties" : {
     "localizable" : true

@@ -89,7 +89,7 @@ struct LocationView: View {
     func onDisappear() {
         locationVM.stopLocationUpdates()
         locationVM.coreLocationArray.removeAll()
-        SKStoreReviewController.requestReview()
+        SKStoreReviewController.requestReview() // FIXME: - depreceated
     }
     
     func shareCSV() {

@@ -4,54 +4,38 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>MyPlayground (Playground) 1.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>7</integer>
+		</dict>
+		<key>MyPlayground (Playground) 2.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>8</integer>
+		</dict>
 		<key>MyPlayground (Playground).xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-			<integer>5</integer>
-		</dict>
-		<key>Sensor-App - German.xcscheme_^#shared#^_</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>1</integer>
+			<integer>4</integer>
 		</dict>
 		<key>Sensor-App-Framework.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>4</integer>
+			<integer>5</integer>
 		</dict>
 		<key>Sensor-App-GER.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
-		<key>Sensor-App-WatchApp (Glance).xcscheme_^#shared#^_</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>6</integer>
-		</dict>
-		<key>Sensor-App-WatchApp (Notification).xcscheme_^#shared#^_</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>5</integer>
-		</dict>
-		<key>Sensor-App-WatchApp-Dev (Glance).xcscheme_^#shared#^_</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>9</integer>
-		</dict>
-		<key>Sensor-App-WatchApp-Dev (Notification).xcscheme_^#shared#^_</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>8</integer>
-		</dict>
 		<key>Sensor-App-WatchApp-GER.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>3</integer>
-		</dict>
-		<key>Sensor-App-WatchApp-GER.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>3</integer>
@@ -69,47 +53,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1511013E23648D4000EC0292</key>
+		<key>1527B01624C4AA240024DD78</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1511014C23648D8000EC0292</key>
+		<key>1527B02724C4AA240024DD78</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1511015A23648DEB00EC0292</key>
+		<key>1527B03224C4AA240024DD78</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1511016823648DF700EC0292</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>1513ACB9232529640095760B</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>154E0FD5235CE3BC00FD426C</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>154E0FFF235CE3F900FD426C</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>157B0E6E227F57D6004CC169</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>157D91C623814C6500371C2F</key>
+		<key>1527B04624C4AA620024DD78</key>
 		<dict>
 			<key>primary</key>
 			<true/>
