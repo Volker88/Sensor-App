@@ -8,7 +8,7 @@
 
 
 // MARK: - Import
-import Foundation
+import SwiftUI
 
 
 // MARK: - Extension
@@ -29,7 +29,13 @@ extension Double {
         return (self * divisor).rounded() / divisor
     }
     
-    
+    // MARK: - Localized Decimalnumber
+    ///
+    /// Localize Decimalnumber
+    ///
+    /// - Parameter maxDecimal: Int
+    /// - Returns: String
+    ///
     func localizedDecimal(_ maxDecimal: Int = 20) -> String {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal

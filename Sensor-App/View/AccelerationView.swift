@@ -33,7 +33,7 @@ struct AccelerationView: View {
     @State private var showXAxis = false
     @State private var showYAxis = false
     @State private var showZAxis = false
-
+    
     // Notification Variables
     @State private var showNotification = false
     @State private var notificationMessage = ""

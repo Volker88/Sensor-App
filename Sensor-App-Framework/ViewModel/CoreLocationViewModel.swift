@@ -8,19 +8,21 @@
 
 
 // MARK: - Import
-import Combine
-
+import SwiftUI
+import MapKit
 
 // MARK: - Class Definition
 class CoreLocationViewModel: ObservableObject {
     
     // MARK: - Initialize Classes
     let locationAPI = CoreLocationAPI()
-    
+    let settingsAPI = SettingsAPI()
+
     
     // MARK: - Define Constants / Variables
     @Published var coreLocationArray = [LocationModel]()
-    
+    @Published var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.3323314100, longitude: -122.0312186000), latitudinalMeters: 10000, longitudinalMeters: 10000)
+
     
     // MARK: - Methods
     func startLocationUpdates() {
@@ -36,11 +38,11 @@ class CoreLocationViewModel: ObservableObject {
         #endif
         
         locationAPI.startUpdatingGPS()
-        locationAPI.locationCompletionHandler = { GPS in
+        locationAPI.locationCompletionHandler = { [self] GPS in
             
             // Append LocationModel to coreLocationArray
-            self.coreLocationArray.append(LocationModel(
-                counter: self.coreLocationArray.count + 1, 
+            coreLocationArray.append(LocationModel(
+                counter: coreLocationArray.count + 1,
                 longitude: GPS.longitude,
                 latitude: GPS.latitude,
                 altitude: GPS.altitude,
@@ -51,6 +53,13 @@ class CoreLocationViewModel: ObservableObject {
                 timestamp: GPS.timestamp,
                 GPSAccuracy: GPS.GPSAccuracy
             ))
+            
+            
+            // Region for MapView()
+            #if !os(watchOS)
+            region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: GPS.latitude, longitude: GPS.longitude), latitudinalMeters: settingsAPI.fetchMapKitSettings().zoom, longitudinalMeters: settingsAPI.fetchMapKitSettings().zoom)
+            #endif
+            
         }
     }
     

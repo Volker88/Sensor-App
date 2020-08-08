@@ -93,7 +93,7 @@
 		1542E3D124C4B05400FA2755 /* NotificationMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E3BD24C4B05400FA2755 /* NotificationMessageView.swift */; };
 		1542E3D224C4B05400FA2755 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E3BE24C4B05400FA2755 /* NotificationView.swift */; };
 		1542E3D324C4B05400FA2755 /* ToolBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E3BF24C4B05400FA2755 /* ToolBarView.swift */; };
-		1542E3D424C4B05400FA2755 /* MapKitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E3C024C4B05400FA2755 /* MapKitView.swift */; };
+		1542E3D424C4B05400FA2755 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E3C024C4B05400FA2755 /* MapView.swift */; };
 		1542E3D524C4B05400FA2755 /* RefreshRateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E3C124C4B05400FA2755 /* RefreshRateView.swift */; };
 		1542E3D624C4B05400FA2755 /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E3C224C4B05400FA2755 /* ShareSheet.swift */; };
 		1542E3D724C4B05400FA2755 /* MotionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E3C324C4B05400FA2755 /* MotionListView.swift */; };
@@ -154,6 +154,8 @@
 		1542E40F24C4B21700FA2755 /* CoreMotionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E37D24C4AF9300FA2755 /* CoreMotionViewModel.swift */; };
 		1542E41024C4B21900FA2755 /* CoreLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E37E24C4AF9300FA2755 /* CoreLocationViewModel.swift */; };
 		1542E41124C4B21A00FA2755 /* CoreLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E37E24C4AF9300FA2755 /* CoreLocationViewModel.swift */; };
+		159B640224DEB5C1009A1E35 /* Extension_Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159B640124DEB5C1009A1E35 /* Extension_Map.swift */; };
+		159B640324DEB5DC009A1E35 /* Extension_Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159B640124DEB5C1009A1E35 /* Extension_Map.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -332,7 +334,7 @@
 		1542E3BD24C4B05400FA2755 /* NotificationMessageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationMessageView.swift; sourceTree = "<group>"; };
 		1542E3BE24C4B05400FA2755 /* NotificationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		1542E3BF24C4B05400FA2755 /* ToolBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolBarView.swift; sourceTree = "<group>"; };
-		1542E3C024C4B05400FA2755 /* MapKitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapKitView.swift; sourceTree = "<group>"; };
+		1542E3C024C4B05400FA2755 /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		1542E3C124C4B05400FA2755 /* RefreshRateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshRateView.swift; sourceTree = "<group>"; };
 		1542E3C224C4B05400FA2755 /* ShareSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
 		1542E3C324C4B05400FA2755 /* MotionListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotionListView.swift; sourceTree = "<group>"; };
@@ -340,6 +342,7 @@
 		1542E3C624C4B05400FA2755 /* GraphArrayTransformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphArrayTransformation.swift; sourceTree = "<group>"; };
 		1542E3C724C4B05400FA2755 /* LineGraphSubView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineGraphSubView.swift; sourceTree = "<group>"; };
 		1542E3C824C4B05400FA2755 /* GraphDetailModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphDetailModel.swift; sourceTree = "<group>"; };
+		159B640124DEB5C1009A1E35 /* Extension_Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension_Map.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -582,13 +585,8 @@
 		1542E36D24C4AF9300FA2755 /* Customization */ = {
 			isa = PBXGroup;
 			children = (
-				1542E37224C4AF9300FA2755 /* Extension.swift */,
-				1542E36E24C4AF9300FA2755 /* GraphButtonModifier.swift */,
-				1542E37024C4AF9300FA2755 /* HoverEffectModifier.swift */,
-				1542E37424C4AF9300FA2755 /* ListViewModifier.swift */,
-				1542E36F24C4AF9300FA2755 /* NavigationBarItemModifier.swift */,
-				1542E37124C4AF9300FA2755 /* ToolBarButtonModifier.swift */,
-				1542E37324C4AF9300FA2755 /* ViewButtonModifier.swift */,
+				159B640524DEB667009A1E35 /* Extension */,
+				159B640424DEB65D009A1E35 /* CustomModifier */,
 			);
 			path = Customization;
 			sourceTree = "<group>";
@@ -666,16 +664,16 @@
 		1542E3B224C4B05400FA2755 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				1542E3B324C4B05400FA2755 /* AltitudeView.swift */,
-				1542E3B424C4B05400FA2755 /* SettingsView.swift */,
-				1542E3B524C4B05400FA2755 /* GyroscopeView.swift */,
-				1542E3B624C4B05400FA2755 /* AccelerationView.swift */,
-				1542E3B724C4B05400FA2755 /* GravityView.swift */,
-				1542E3B824C4B05400FA2755 /* MagnetometerView.swift */,
-				1542E3B924C4B05400FA2755 /* LocationView.swift */,
-				1542E3BA24C4B05400FA2755 /* AttitudeView.swift */,
 				1542E3BB24C4B05400FA2755 /* SubView */,
+				1542E3B624C4B05400FA2755 /* AccelerationView.swift */,
+				1542E3B324C4B05400FA2755 /* AltitudeView.swift */,
+				1542E3BA24C4B05400FA2755 /* AttitudeView.swift */,
 				1542E3C424C4B05400FA2755 /* ContentView.swift */,
+				1542E3B724C4B05400FA2755 /* GravityView.swift */,
+				1542E3B524C4B05400FA2755 /* GyroscopeView.swift */,
+				1542E3B924C4B05400FA2755 /* LocationView.swift */,
+				1542E3B824C4B05400FA2755 /* MagnetometerView.swift */,
+				1542E3B424C4B05400FA2755 /* SettingsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -685,7 +683,7 @@
 			children = (
 				1542E3BC24C4B05400FA2755 /* Notification */,
 				1542E3BF24C4B05400FA2755 /* ToolBarView.swift */,
-				1542E3C024C4B05400FA2755 /* MapKitView.swift */,
+				1542E3C024C4B05400FA2755 /* MapView.swift */,
 				1542E3C124C4B05400FA2755 /* RefreshRateView.swift */,
 				1542E3C224C4B05400FA2755 /* ShareSheet.swift */,
 				1542E3C324C4B05400FA2755 /* MotionListView.swift */,
@@ -710,6 +708,28 @@
 				1542E3C824C4B05400FA2755 /* GraphDetailModel.swift */,
 			);
 			path = LineGraph;
+			sourceTree = "<group>";
+		};
+		159B640424DEB65D009A1E35 /* CustomModifier */ = {
+			isa = PBXGroup;
+			children = (
+				1542E36E24C4AF9300FA2755 /* GraphButtonModifier.swift */,
+				1542E37024C4AF9300FA2755 /* HoverEffectModifier.swift */,
+				1542E37424C4AF9300FA2755 /* ListViewModifier.swift */,
+				1542E36F24C4AF9300FA2755 /* NavigationBarItemModifier.swift */,
+				1542E37124C4AF9300FA2755 /* ToolBarButtonModifier.swift */,
+				1542E37324C4AF9300FA2755 /* ViewButtonModifier.swift */,
+			);
+			path = CustomModifier;
+			sourceTree = "<group>";
+		};
+		159B640524DEB667009A1E35 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				159B640124DEB5C1009A1E35 /* Extension_Map.swift */,
+				1542E37224C4AF9300FA2755 /* Extension.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -989,7 +1009,7 @@
 				1542E3EA24C4B19B00FA2755 /* GraphButtonModifier.swift in Sources */,
 				1542E3ED24C4B1A900FA2755 /* NavigationBarItemModifier.swift in Sources */,
 				1542E3EB24C4B1A000FA2755 /* HoverEffectModifier.swift in Sources */,
-				1542E3D424C4B05400FA2755 /* MapKitView.swift in Sources */,
+				1542E3D424C4B05400FA2755 /* MapView.swift in Sources */,
 				1542E3CD24C4B05400FA2755 /* GravityView.swift in Sources */,
 				1542E3CF24C4B05400FA2755 /* LocationView.swift in Sources */,
 				1542E3DC24C4B16500FA2755 /* AppUpdates.swift in Sources */,
@@ -1008,6 +1028,7 @@
 				1542E3D224C4B05400FA2755 /* NotificationView.swift in Sources */,
 				1542E3D724C4B05400FA2755 /* MotionListView.swift in Sources */,
 				1542E3E824C4B19500FA2755 /* Extension.swift in Sources */,
+				159B640324DEB5DC009A1E35 /* Extension_Map.swift in Sources */,
 				1542E3D524C4B05400FA2755 /* RefreshRateView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1107,6 +1128,7 @@
 				1542E39124C4AF9300FA2755 /* NavigationBarItemModifier.swift in Sources */,
 				1542E38124C4AF9300FA2755 /* NotificationAPI.swift in Sources */,
 				1542E39624C4AF9300FA2755 /* ListViewModifier.swift in Sources */,
+				159B640224DEB5C1009A1E35 /* Extension_Map.swift in Sources */,
 				1542E39424C4AF9300FA2755 /* Extension.swift in Sources */,
 				1542E38B24C4AF9300FA2755 /* NotificationTypes.swift in Sources */,
 				1542E39524C4AF9300FA2755 /* ViewButtonModifier.swift in Sources */,
@@ -1225,7 +1247,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				MY_BUILD_VERSION = 2.20297.5;
+				MY_BUILD_VERSION = 2.20326.7;
 				MY_VERSION = 2.5.1;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1283,7 +1305,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				MY_BUILD_VERSION = 2.20297.5;
+				MY_BUILD_VERSION = 2.20326.7;
 				MY_VERSION = 2.5.1;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;

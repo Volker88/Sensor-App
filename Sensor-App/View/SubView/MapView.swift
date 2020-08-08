@@ -1,5 +1,5 @@
 //
-//  MapKitView.swift
+//  MapView.swift
 //  Sensor-App
 //
 //  Created by Volker Schmitt on 13.09.19.
@@ -12,7 +12,56 @@ import SwiftUI
 import MapKit
 
 
-// MARK: - Struct
+// MARK: - Struct / Class Definition
+struct MapView: View {
+    
+    // MARK: - Initialize Classes
+    let settingsAPI = SettingsAPI()
+    
+    // MARK: - Environment Object
+    
+    // MARK: - @State / @ObservedObject / @Binding
+    @Binding var region: MKCoordinateRegion
+    @State private var userTrackingMode: MapUserTrackingMode = .follow
+    
+    
+    // MARK: - Define Constants / Variables
+    let interaction = MapInteractionModes()
+    
+    
+    // MARK: - Initializer
+    
+    // MARK: - Methods
+    
+    // MARK: - Body
+    var body: some View {
+  
+        // MARK: - Return View
+        return Map(
+            coordinateRegion: $region,
+            interactionModes: MapInteractionModes.all,
+            showsUserLocation: true,
+            userTrackingMode: $userTrackingMode
+        )
+        .mapStyle()
+    }
+}
+
+
+// MARK: - Preview
+struct MapKitView_Previews: PreviewProvider {
+    static var previews: some View {
+        ForEach([ColorScheme.light, .dark], id: \.self) { scheme in
+            MapView(region: .constant(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.3323314100, longitude: -122.0312186000), latitudinalMeters: 10000, longitudinalMeters: 10000)))
+                .colorScheme(scheme)
+                .previewLayout(.fixed(width: 400, height: 400))
+        }
+        
+    }
+}
+
+
+// MARK: - Not Used
 struct MapKitView: UIViewRepresentable {
     
     // MARK: - Initialize Classes
@@ -90,14 +139,3 @@ struct MapKitView: UIViewRepresentable {
 }
 
 
-// MARK: - Preview
-struct MapKitView_Previews: PreviewProvider {
-    static var previews: some View {
-        ForEach([ColorScheme.light, .dark], id: \.self) { scheme in
-            MapKitView(latitude: 37.3323314100, longitude: -122.0312186000)
-                .colorScheme(scheme)
-                .previewLayout(.fixed(width: 400, height: 400))
-        }
-        
-    }
-}

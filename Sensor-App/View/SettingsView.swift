@@ -174,7 +174,7 @@ struct SettingsView: View {
                         .accessibility(identifier: "MapType Picker")
                         
                         Toggle(isOn: self.$showsCompass) {
-                            Text("Compass", comment: "SettingsView - Compass")
+                            Text("Compass", comment: "SettingsView - Compass") // FIXME: - Not Working
                         }.accessibility(identifier: "Compass Toggle")
                         
                         Toggle(isOn: self.$showsScale) {
@@ -190,11 +190,11 @@ struct SettingsView: View {
                         }.accessibility(identifier: "Traffic Toggle")
                         
                         Toggle(isOn: self.$isRotateEnabled) {
-                            Text("Rotation", comment: "SettingsView - Rotation")
+                            Text("Rotation", comment: "SettingsView - Rotation") // FIXME: - Not Working
                         }.accessibility(identifier: "Rotate Toggle")
                         
                         Toggle(isOn: self.$isScrollEnabled) {
-                            Text("Scroll", comment: "SettingsView - Scroll")
+                            Text("Scroll", comment: "SettingsView - Scroll")  // FIXME: - Not Working
                         }.accessibility(identifier: "Scroll Toggle")
                         
                         Stepper(value: self.$zoom, in: 100...100000, step: 100) {
