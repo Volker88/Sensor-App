@@ -24,7 +24,7 @@ struct NavigationBarItemModifier: ViewModifier {
         // MARK: - Return View
         return content
             .padding(10)
-            .hoverEffectModifier()
+            .hoverEffect()
             .accessibility(identifier: accessibility)
     }
 }

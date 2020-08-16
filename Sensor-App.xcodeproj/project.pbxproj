@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		151D316C24E955FB0090BC94 /* Sidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151D316B24E955FB0090BC94 /* Sidebar.swift */; };
+		151D316E24E956210090BC94 /* SidebarMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151D316D24E956210090BC94 /* SidebarMenu.swift */; };
+		151D317024E956380090BC94 /* SideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151D316F24E956380090BC94 /* SideMenuView.swift */; };
+		151D317224E956610090BC94 /* SwipeDirectionAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151D317124E956610090BC94 /* SwipeDirectionAPI.swift */; };
+		151D317324E956680090BC94 /* SwipeDirectionAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151D317124E956610090BC94 /* SwipeDirectionAPI.swift */; };
+		151D317524E956A10090BC94 /* SettingsOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151D317424E956A10090BC94 /* SettingsOverlay.swift */; };
+		151D317724E975560090BC94 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151D317624E975560090BC94 /* HomeView.swift */; };
+		151D317924E975F30090BC94 /* CustomNavigationViewStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151D317824E975F30090BC94 /* CustomNavigationViewStyle.swift */; };
+		151D317A24E975F30090BC94 /* CustomNavigationViewStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151D317824E975F30090BC94 /* CustomNavigationViewStyle.swift */; };
 		1527B01B24C4AA240024DD78 /* Sensor_AppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1527B01A24C4AA240024DD78 /* Sensor_AppApp.swift */; };
 		1527B01F24C4AA240024DD78 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1527B01E24C4AA240024DD78 /* Assets.xcassets */; };
 		1527B02224C4AA240024DD78 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1527B02124C4AA240024DD78 /* Preview Assets.xcassets */; };
@@ -64,7 +73,6 @@
 		1542E38F24C4AF9300FA2755 /* AltitudeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E36C24C4AF9300FA2755 /* AltitudeModel.swift */; };
 		1542E39024C4AF9300FA2755 /* GraphButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E36E24C4AF9300FA2755 /* GraphButtonModifier.swift */; };
 		1542E39124C4AF9300FA2755 /* NavigationBarItemModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E36F24C4AF9300FA2755 /* NavigationBarItemModifier.swift */; };
-		1542E39224C4AF9300FA2755 /* HoverEffectModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E37024C4AF9300FA2755 /* HoverEffectModifier.swift */; };
 		1542E39324C4AF9300FA2755 /* ToolBarButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E37124C4AF9300FA2755 /* ToolBarButtonModifier.swift */; };
 		1542E39424C4AF9300FA2755 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E37224C4AF9300FA2755 /* Extension.swift */; };
 		1542E39524C4AF9300FA2755 /* ViewButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E37324C4AF9300FA2755 /* ViewButtonModifier.swift */; };
@@ -116,7 +124,6 @@
 		1542E3E824C4B19500FA2755 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E37224C4AF9300FA2755 /* Extension.swift */; };
 		1542E3E924C4B19600FA2755 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E37224C4AF9300FA2755 /* Extension.swift */; };
 		1542E3EA24C4B19B00FA2755 /* GraphButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E36E24C4AF9300FA2755 /* GraphButtonModifier.swift */; };
-		1542E3EB24C4B1A000FA2755 /* HoverEffectModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E37024C4AF9300FA2755 /* HoverEffectModifier.swift */; };
 		1542E3EC24C4B1A400FA2755 /* ListViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E37424C4AF9300FA2755 /* ListViewModifier.swift */; };
 		1542E3ED24C4B1A900FA2755 /* NavigationBarItemModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E36F24C4AF9300FA2755 /* NavigationBarItemModifier.swift */; };
 		1542E3EE24C4B1AD00FA2755 /* ToolBarButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E37124C4AF9300FA2755 /* ToolBarButtonModifier.swift */; };
@@ -233,6 +240,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		151D316B24E955FB0090BC94 /* Sidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sidebar.swift; sourceTree = "<group>"; };
+		151D316D24E956210090BC94 /* SidebarMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarMenu.swift; sourceTree = "<group>"; };
+		151D316F24E956380090BC94 /* SideMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuView.swift; sourceTree = "<group>"; };
+		151D317124E956610090BC94 /* SwipeDirectionAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeDirectionAPI.swift; sourceTree = "<group>"; };
+		151D317424E956A10090BC94 /* SettingsOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsOverlay.swift; sourceTree = "<group>"; };
+		151D317624E975560090BC94 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		151D317824E975F30090BC94 /* CustomNavigationViewStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationViewStyle.swift; sourceTree = "<group>"; };
 		1527B01724C4AA240024DD78 /* Sensor-App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sensor-App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1527B01A24C4AA240024DD78 /* Sensor_AppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sensor_AppApp.swift; sourceTree = "<group>"; };
 		1527B01E24C4AA240024DD78 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -302,7 +316,6 @@
 		1542E36C24C4AF9300FA2755 /* AltitudeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AltitudeModel.swift; sourceTree = "<group>"; };
 		1542E36E24C4AF9300FA2755 /* GraphButtonModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphButtonModifier.swift; sourceTree = "<group>"; };
 		1542E36F24C4AF9300FA2755 /* NavigationBarItemModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBarItemModifier.swift; sourceTree = "<group>"; };
-		1542E37024C4AF9300FA2755 /* HoverEffectModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HoverEffectModifier.swift; sourceTree = "<group>"; };
 		1542E37124C4AF9300FA2755 /* ToolBarButtonModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolBarButtonModifier.swift; sourceTree = "<group>"; };
 		1542E37224C4AF9300FA2755 /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		1542E37324C4AF9300FA2755 /* ViewButtonModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewButtonModifier.swift; sourceTree = "<group>"; };
@@ -386,6 +399,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		151D316924E955D90090BC94 /* NewUI */ = {
+			isa = PBXGroup;
+			children = (
+				151D316A24E955E40090BC94 /* Sidebar */,
+				151D317624E975560090BC94 /* HomeView.swift */,
+				1542E3C424C4B05400FA2755 /* ContentView.swift */,
+			);
+			path = NewUI;
+			sourceTree = "<group>";
+		};
+		151D316A24E955E40090BC94 /* Sidebar */ = {
+			isa = PBXGroup;
+			children = (
+				151D316B24E955FB0090BC94 /* Sidebar.swift */,
+				151D316D24E956210090BC94 /* SidebarMenu.swift */,
+				151D316F24E956380090BC94 /* SideMenuView.swift */,
+				151D317424E956A10090BC94 /* SettingsOverlay.swift */,
+			);
+			path = Sidebar;
+			sourceTree = "<group>";
+		};
 		1527B00E24C4AA240024DD78 = {
 			isa = PBXGroup;
 			children = (
@@ -561,6 +595,7 @@
 				1542E35E24C4AF9300FA2755 /* ExportAPI.swift */,
 				1542E35D24C4AF9300FA2755 /* NotificationAPI.swift */,
 				1542E36124C4AF9300FA2755 /* SettingsAPI.swift */,
+				151D317124E956610090BC94 /* SwipeDirectionAPI.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -664,11 +699,11 @@
 		1542E3B224C4B05400FA2755 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				151D316924E955D90090BC94 /* NewUI */,
 				1542E3BB24C4B05400FA2755 /* SubView */,
 				1542E3B624C4B05400FA2755 /* AccelerationView.swift */,
 				1542E3B324C4B05400FA2755 /* AltitudeView.swift */,
 				1542E3BA24C4B05400FA2755 /* AttitudeView.swift */,
-				1542E3C424C4B05400FA2755 /* ContentView.swift */,
 				1542E3B724C4B05400FA2755 /* GravityView.swift */,
 				1542E3B524C4B05400FA2755 /* GyroscopeView.swift */,
 				1542E3B924C4B05400FA2755 /* LocationView.swift */,
@@ -714,11 +749,11 @@
 			isa = PBXGroup;
 			children = (
 				1542E36E24C4AF9300FA2755 /* GraphButtonModifier.swift */,
-				1542E37024C4AF9300FA2755 /* HoverEffectModifier.swift */,
 				1542E37424C4AF9300FA2755 /* ListViewModifier.swift */,
 				1542E36F24C4AF9300FA2755 /* NavigationBarItemModifier.swift */,
 				1542E37124C4AF9300FA2755 /* ToolBarButtonModifier.swift */,
 				1542E37324C4AF9300FA2755 /* ViewButtonModifier.swift */,
+				151D317824E975F30090BC94 /* CustomNavigationViewStyle.swift */,
 			);
 			path = CustomModifier;
 			sourceTree = "<group>";
@@ -994,6 +1029,8 @@
 				1542E3EE24C4B1AD00FA2755 /* ToolBarButtonModifier.swift in Sources */,
 				1542E3F024C4B1D500FA2755 /* AltitudeModel.swift in Sources */,
 				1542E3CB24C4B05400FA2755 /* GyroscopeView.swift in Sources */,
+				151D317524E956A10090BC94 /* SettingsOverlay.swift in Sources */,
+				151D317324E956680090BC94 /* SwipeDirectionAPI.swift in Sources */,
 				1542E3CE24C4B05400FA2755 /* MagnetometerView.swift in Sources */,
 				1542E3DE24C4B16800FA2755 /* CalculationAPI.swift in Sources */,
 				1542E40224C4B1F800FA2755 /* UserSettings.swift in Sources */,
@@ -1008,24 +1045,28 @@
 				1542E3EF24C4B1B400FA2755 /* ViewButtonModifier.swift in Sources */,
 				1542E3EA24C4B19B00FA2755 /* GraphButtonModifier.swift in Sources */,
 				1542E3ED24C4B1A900FA2755 /* NavigationBarItemModifier.swift in Sources */,
-				1542E3EB24C4B1A000FA2755 /* HoverEffectModifier.swift in Sources */,
 				1542E3D424C4B05400FA2755 /* MapView.swift in Sources */,
 				1542E3CD24C4B05400FA2755 /* GravityView.swift in Sources */,
 				1542E3CF24C4B05400FA2755 /* LocationView.swift in Sources */,
+				151D317924E975F30090BC94 /* CustomNavigationViewStyle.swift in Sources */,
 				1542E3DC24C4B16500FA2755 /* AppUpdates.swift in Sources */,
 				1542E3D024C4B05400FA2755 /* AttitudeView.swift in Sources */,
 				1542E3FE24C4B1F300FA2755 /* SettingsForUserDefaults.swift in Sources */,
+				151D317024E956380090BC94 /* SideMenuView.swift in Sources */,
 				1542E3DB24C4B05400FA2755 /* GraphDetailModel.swift in Sources */,
 				1542E3EC24C4B1A400FA2755 /* ListViewModifier.swift in Sources */,
+				151D316C24E955FB0090BC94 /* Sidebar.swift in Sources */,
 				1542E3F724C4B1E500FA2755 /* MotionModel.swift in Sources */,
 				1542E3E524C4B17800FA2755 /* NotificationAPI.swift in Sources */,
 				1542E3E424C4B17000FA2755 /* ExportAPI.swift in Sources */,
 				1542E3FB24C4B1ED00FA2755 /* NotificationTypes.swift in Sources */,
+				151D316E24E956210090BC94 /* SidebarMenu.swift in Sources */,
 				1527B01B24C4AA240024DD78 /* Sensor_AppApp.swift in Sources */,
 				1542E3D824C4B05400FA2755 /* ContentView.swift in Sources */,
 				1542E40024C4B1F600FA2755 /* ToolBarButtonType.swift in Sources */,
 				1542E40F24C4B21700FA2755 /* CoreMotionViewModel.swift in Sources */,
 				1542E3D224C4B05400FA2755 /* NotificationView.swift in Sources */,
+				151D317724E975560090BC94 /* HomeView.swift in Sources */,
 				1542E3D724C4B05400FA2755 /* MotionListView.swift in Sources */,
 				1542E3E824C4B19500FA2755 /* Extension.swift in Sources */,
 				159B640324DEB5DC009A1E35 /* Extension_Map.swift in Sources */,
@@ -1115,6 +1156,7 @@
 				1542E38A24C4AF9300FA2755 /* UserSettings.swift in Sources */,
 				1542E39924C4AF9300FA2755 /* CoreMotionViewModel.swift in Sources */,
 				1542E37F24C4AF9300FA2755 /* CalculationAPI.swift in Sources */,
+				151D317224E956610090BC94 /* SwipeDirectionAPI.swift in Sources */,
 				1542E39324C4AF9300FA2755 /* ToolBarButtonModifier.swift in Sources */,
 				1542E38424C4AF9300FA2755 /* AppUpdates.swift in Sources */,
 				1542E38224C4AF9300FA2755 /* ExportAPI.swift in Sources */,
@@ -1129,11 +1171,11 @@
 				1542E38124C4AF9300FA2755 /* NotificationAPI.swift in Sources */,
 				1542E39624C4AF9300FA2755 /* ListViewModifier.swift in Sources */,
 				159B640224DEB5C1009A1E35 /* Extension_Map.swift in Sources */,
+				151D317A24E975F30090BC94 /* CustomNavigationViewStyle.swift in Sources */,
 				1542E39424C4AF9300FA2755 /* Extension.swift in Sources */,
 				1542E38B24C4AF9300FA2755 /* NotificationTypes.swift in Sources */,
 				1542E39524C4AF9300FA2755 /* ViewButtonModifier.swift in Sources */,
 				1542E38824C4AF9300FA2755 /* NotificationModel.swift in Sources */,
-				1542E39224C4AF9300FA2755 /* HoverEffectModifier.swift in Sources */,
 				1542E39024C4AF9300FA2755 /* GraphButtonModifier.swift in Sources */,
 				1542E38624C4AF9300FA2755 /* SettingsForUserDefaults.swift in Sources */,
 				1542E38C24C4AF9300FA2755 /* ToolBarButtonType.swift in Sources */,
@@ -1247,7 +1289,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				MY_BUILD_VERSION = 2.20326.7;
+				MY_BUILD_VERSION = 2.20337.8;
 				MY_VERSION = 2.5.1;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1305,7 +1347,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				MY_BUILD_VERSION = 2.20326.7;
+				MY_BUILD_VERSION = 2.20337.8;
 				MY_VERSION = 2.5.1;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;

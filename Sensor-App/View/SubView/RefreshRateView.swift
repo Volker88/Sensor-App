@@ -57,7 +57,7 @@ struct RefreshRateView: View {
                     Slider(value: self.$refreshRate, in: 1...50, step: 1) { refresh in
                         self.updateSlider()
                     }
-                    .hoverEffectModifier()
+                    .hoverEffect()
                     .accessibility(label: Text("Refresh Rate", comment: "RefreshRateView - Slider"))
                     .accessibility(value: Text("\(self.refreshRate, specifier: "%.0f") per Second", comment: "RefreshRateView - Value"))
                     .accessibility(identifier: "Frequency Slider")

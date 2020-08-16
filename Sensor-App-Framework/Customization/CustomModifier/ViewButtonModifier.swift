@@ -37,7 +37,7 @@ struct ContentViewButtonModifier: ViewModifier {
     func body(content: Content) -> some View {
         GeometryReader { g in
             content
-                .hoverEffectModifier()
+                .hoverEffect()
                 .frame(width: g.size.width - 10, height: 50, alignment: .center)
                 .font(.title)
                 .background(Color("StandardBackgroundColor"))

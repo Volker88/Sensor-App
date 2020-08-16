@@ -23,9 +23,9 @@ struct ToolBarButtonModifier: ViewModifier {
         
         // MARK: - Return View
         return content
-            .font(.largeTitle)
-            .padding(10)
-            .hoverEffectModifier()
+            .font(.title)
+            .padding()
+            .hoverEffect()
             .accessibility(identifier: accessibility)
     }
 }

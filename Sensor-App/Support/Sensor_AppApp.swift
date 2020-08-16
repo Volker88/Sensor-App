@@ -5,13 +5,26 @@
 //  Created by Volker Schmitt on 19.07.20.
 //
 
+
+// MARK: - Import
 import SwiftUI
 
+
+// MARK: - Struct / Class Definition
 @main
 struct Sensor_AppApp: App {
-    var body: some Scene {
+    
+    // MARK: - Body
+    @SceneBuilder var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationView {
+                if UIDevice.current.userInterfaceIdiom == .pad {
+                    Sidebar()
+                    HomeView()
+                } else if UIDevice.current.userInterfaceIdiom == .phone {
+                    HomeView()
+                }
+            }.customNavigationViewStyle()
         }
     }
 }

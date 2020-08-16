@@ -24,7 +24,7 @@ struct GraphButtonModifier: ViewModifier {
         // MARK: - Return View
         return content
             .padding(5)
-            .hoverEffectModifier()
+            .hoverEffect()
             .foregroundColor(.white)
             .offset(x: -10)
             .accessibility(identifier: accessibility)
