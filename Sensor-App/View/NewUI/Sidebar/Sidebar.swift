@@ -28,38 +28,38 @@ struct Sidebar: View {
     var list: some View {
         List {
             Group {
-                NavigationLink(destination: ContentView()) {
+                NavigationLink(destination: HomeView().navigationBarBackButtonHidden(true)) {
                     Text("ContentView", comment: "ContentView - Location") // TODO: Remove
                         .accessibility(identifier: "Location")
                 }
-                NavigationLink(destination: LocationView()) {
+                NavigationLink(destination: LocationView().navigationBarBackButtonHidden(true)) {
                     Text("Location", comment: "ContentView - Location")
                         .accessibility(identifier: "Location")
                 }
-                NavigationLink(destination: AccelerationView()) {
+                NavigationLink(destination: AccelerationView().navigationBarBackButtonHidden(true)) {
                     Text("Acceleration", comment: "ContentView - Acceleration")
                         .accessibility(identifier: "Acceleration")
                 }
-                NavigationLink(destination: GravityView()) {
+                NavigationLink(destination: GravityView().navigationBarBackButtonHidden(true)) {
                     Text("Gravity", comment: "ContentView - Gravity")
                         .accessibility(identifier: "Gravity")
                 }
-                NavigationLink(destination: GyroscopeView()) {
+                NavigationLink(destination: GyroscopeView().navigationBarBackButtonHidden(true)) {
                     Text("Gyroscope", comment: "ContentView - Gyroscope")
                         .accessibility(identifier: "Gyroscope")
                 }
             }
 
             Group {
-                NavigationLink(destination: MagnetometerView()) {
+                NavigationLink(destination: MagnetometerView().navigationBarBackButtonHidden(true)) {
                     Text("Magnetometer", comment: "ContentView - Magnetometer")
                         .accessibility(identifier: "Magnetometer")
                 }
-                NavigationLink(destination: AttitudeView()) {
+                NavigationLink(destination: AttitudeView().navigationBarBackButtonHidden(true)) {
                     Text("Attitude", comment: "ContentView - Attitude")
                         .accessibility(identifier: "Attitude")
                 }
-                NavigationLink(destination: AltitudeView()) {
+                NavigationLink(destination: AltitudeView().navigationBarBackButtonHidden(true)) {
                     Text("Altitude", comment: "ContentView - Altitude")
                         .accessibility(identifier: "Altitude")
                 }
@@ -76,6 +76,7 @@ struct Sidebar: View {
         // MARK: - Return View
         VStack(spacing: 0) {
             list
+            #warning("Settings not shown due to toolbar")
             SettingsOverlay()
         }
         .edgesIgnoringSafeArea(.all)

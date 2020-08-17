@@ -100,12 +100,10 @@
 		1542E3D024C4B05400FA2755 /* AttitudeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E3BA24C4B05400FA2755 /* AttitudeView.swift */; };
 		1542E3D124C4B05400FA2755 /* NotificationMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E3BD24C4B05400FA2755 /* NotificationMessageView.swift */; };
 		1542E3D224C4B05400FA2755 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E3BE24C4B05400FA2755 /* NotificationView.swift */; };
-		1542E3D324C4B05400FA2755 /* ToolBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E3BF24C4B05400FA2755 /* ToolBarView.swift */; };
 		1542E3D424C4B05400FA2755 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E3C024C4B05400FA2755 /* MapView.swift */; };
 		1542E3D524C4B05400FA2755 /* RefreshRateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E3C124C4B05400FA2755 /* RefreshRateView.swift */; };
 		1542E3D624C4B05400FA2755 /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E3C224C4B05400FA2755 /* ShareSheet.swift */; };
 		1542E3D724C4B05400FA2755 /* MotionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E3C324C4B05400FA2755 /* MotionListView.swift */; };
-		1542E3D824C4B05400FA2755 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E3C424C4B05400FA2755 /* ContentView.swift */; };
 		1542E3D924C4B05400FA2755 /* GraphArrayTransformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E3C624C4B05400FA2755 /* GraphArrayTransformation.swift */; };
 		1542E3DA24C4B05400FA2755 /* LineGraphSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E3C724C4B05400FA2755 /* LineGraphSubView.swift */; };
 		1542E3DB24C4B05400FA2755 /* GraphDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E3C824C4B05400FA2755 /* GraphDetailModel.swift */; };
@@ -161,6 +159,8 @@
 		1542E40F24C4B21700FA2755 /* CoreMotionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E37D24C4AF9300FA2755 /* CoreMotionViewModel.swift */; };
 		1542E41024C4B21900FA2755 /* CoreLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E37E24C4AF9300FA2755 /* CoreLocationViewModel.swift */; };
 		1542E41124C4B21A00FA2755 /* CoreLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E37E24C4AF9300FA2755 /* CoreLocationViewModel.swift */; };
+		15442D8D24EAF1F600DCF523 /* CustomToolBarModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15442D8C24EAF1F600DCF523 /* CustomToolBarModifier.swift */; };
+		15442D8E24EAF1F600DCF523 /* CustomToolBarModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15442D8C24EAF1F600DCF523 /* CustomToolBarModifier.swift */; };
 		159B640224DEB5C1009A1E35 /* Extension_Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159B640124DEB5C1009A1E35 /* Extension_Map.swift */; };
 		159B640324DEB5DC009A1E35 /* Extension_Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159B640124DEB5C1009A1E35 /* Extension_Map.swift */; };
 /* End PBXBuildFile section */
@@ -346,15 +346,14 @@
 		1542E3BA24C4B05400FA2755 /* AttitudeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttitudeView.swift; sourceTree = "<group>"; };
 		1542E3BD24C4B05400FA2755 /* NotificationMessageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationMessageView.swift; sourceTree = "<group>"; };
 		1542E3BE24C4B05400FA2755 /* NotificationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
-		1542E3BF24C4B05400FA2755 /* ToolBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolBarView.swift; sourceTree = "<group>"; };
 		1542E3C024C4B05400FA2755 /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		1542E3C124C4B05400FA2755 /* RefreshRateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshRateView.swift; sourceTree = "<group>"; };
 		1542E3C224C4B05400FA2755 /* ShareSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
 		1542E3C324C4B05400FA2755 /* MotionListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotionListView.swift; sourceTree = "<group>"; };
-		1542E3C424C4B05400FA2755 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1542E3C624C4B05400FA2755 /* GraphArrayTransformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphArrayTransformation.swift; sourceTree = "<group>"; };
 		1542E3C724C4B05400FA2755 /* LineGraphSubView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineGraphSubView.swift; sourceTree = "<group>"; };
 		1542E3C824C4B05400FA2755 /* GraphDetailModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphDetailModel.swift; sourceTree = "<group>"; };
+		15442D8C24EAF1F600DCF523 /* CustomToolBarModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomToolBarModifier.swift; sourceTree = "<group>"; };
 		159B640124DEB5C1009A1E35 /* Extension_Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension_Map.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -404,7 +403,7 @@
 			children = (
 				151D316A24E955E40090BC94 /* Sidebar */,
 				151D317624E975560090BC94 /* HomeView.swift */,
-				1542E3C424C4B05400FA2755 /* ContentView.swift */,
+				15442D8C24EAF1F600DCF523 /* CustomToolBarModifier.swift */,
 			);
 			path = NewUI;
 			sourceTree = "<group>";
@@ -717,7 +716,6 @@
 			isa = PBXGroup;
 			children = (
 				1542E3BC24C4B05400FA2755 /* Notification */,
-				1542E3BF24C4B05400FA2755 /* ToolBarView.swift */,
 				1542E3C024C4B05400FA2755 /* MapView.swift */,
 				1542E3C124C4B05400FA2755 /* RefreshRateView.swift */,
 				1542E3C224C4B05400FA2755 /* ShareSheet.swift */,
@@ -1039,7 +1037,6 @@
 				1542E3FC24C4B1EF00FA2755 /* SensorType.swift in Sources */,
 				1542E3E624C4B17A00FA2755 /* SettingsAPI.swift in Sources */,
 				1542E3D624C4B05400FA2755 /* ShareSheet.swift in Sources */,
-				1542E3D324C4B05400FA2755 /* ToolBarView.swift in Sources */,
 				1542E3F924C4B1EA00FA2755 /* NotificationModel.swift in Sources */,
 				1542E3E024C4B16A00FA2755 /* CoreLocationAPI.swift in Sources */,
 				1542E3EF24C4B1B400FA2755 /* ViewButtonModifier.swift in Sources */,
@@ -1061,8 +1058,8 @@
 				1542E3E424C4B17000FA2755 /* ExportAPI.swift in Sources */,
 				1542E3FB24C4B1ED00FA2755 /* NotificationTypes.swift in Sources */,
 				151D316E24E956210090BC94 /* SidebarMenu.swift in Sources */,
+				15442D8D24EAF1F600DCF523 /* CustomToolBarModifier.swift in Sources */,
 				1527B01B24C4AA240024DD78 /* Sensor_AppApp.swift in Sources */,
-				1542E3D824C4B05400FA2755 /* ContentView.swift in Sources */,
 				1542E40024C4B1F600FA2755 /* ToolBarButtonType.swift in Sources */,
 				1542E40F24C4B21700FA2755 /* CoreMotionViewModel.swift in Sources */,
 				1542E3D224C4B05400FA2755 /* NotificationView.swift in Sources */,
@@ -1179,6 +1176,7 @@
 				1542E39024C4AF9300FA2755 /* GraphButtonModifier.swift in Sources */,
 				1542E38624C4AF9300FA2755 /* SettingsForUserDefaults.swift in Sources */,
 				1542E38C24C4AF9300FA2755 /* ToolBarButtonType.swift in Sources */,
+				15442D8E24EAF1F600DCF523 /* CustomToolBarModifier.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1289,7 +1287,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				MY_BUILD_VERSION = 2.20337.8;
+				MY_BUILD_VERSION = 2.20341.9;
 				MY_VERSION = 2.5.1;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1347,7 +1345,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				MY_BUILD_VERSION = 2.20337.8;
+				MY_BUILD_VERSION = 2.20341.9;
 				MY_VERSION = 2.5.1;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;

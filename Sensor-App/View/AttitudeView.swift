@@ -25,7 +25,7 @@ struct AttitudeView: View {
     // MARK: - @State / @ObservedObject / @Binding
     @ObservedObject var motionVM = CoreMotionViewModel()
     @State private var frequency = 1.0
-    @State private var showSettings = false
+    @State private var sideBarOpen: Bool = false
     @State private var showShareSheet = false
     @State private var filesToShare = [Any]()
     
@@ -68,10 +68,6 @@ struct AttitudeView: View {
                 messageType = .deleted
             case .share:
                 shareCSV()
-            case .settings:
-                motionVM.stopMotionUpdates()
-                showSettings.toggle()
-                messageType = nil
         }
         
         if messageType != nil {
@@ -110,12 +106,28 @@ struct AttitudeView: View {
     }
     
     
+    // MARK: - Content
+    #warning("Can not call button on high frequency")
+    var sideBarButton: some View {
+        Button(action: {
+            sideBarOpen.toggle()
+            if sideBarOpen {
+                motionVM.stopMotionUpdates()
+            } else {
+                motionVM.motionUpdateStart()
+            }
+        }) {
+            Image(systemName: "sidebar.left")
+        }
+    }
+    
+    
     // MARK: - Body - View
+    @ViewBuilder
     var body: some View {
         
-        
         // MARK: - Return View
-        return ZStack {
+        ZStack {
             LinearGradient(gradient: Gradient(colors: settings.backgroundColor), startPoint: .topLeading, endPoint: .bottomTrailing)
                 .edgesIgnoringSafeArea(.all)
             
@@ -136,7 +148,7 @@ struct AttitudeView: View {
                                     .buttonModifier()
                                     .overlay(Button(action: { self.showRoll.toggle() }) {
                                         Image("GraphButton")
-                                        .graphButtonModifier(accessibility: "Toggle Roll Graph")
+                                            .graphButtonModifier(accessibility: "Toggle Roll Graph")
                                     }, alignment: .trailing)
                                 
                                 if self.showRoll == true {
@@ -150,7 +162,7 @@ struct AttitudeView: View {
                                     .buttonModifier()
                                     .overlay(Button(action: { self.showPitch.toggle() }) {
                                         Image("GraphButton")
-                                        .graphButtonModifier(accessibility: "Toggle Pitch Graph")
+                                            .graphButtonModifier(accessibility: "Toggle Pitch Graph")
                                     }, alignment: .trailing)
                                 
                                 if self.showPitch == true {
@@ -204,22 +216,23 @@ struct AttitudeView: View {
                     }
                     .frame(width: g.size.width, height: g.size.height - 50 + g.safeAreaInsets.bottom)
                     .offset(x: 5)
-                    
-                    
-                    // MARK: - MotionToolBarView()
-                    ToolBarView(toolBarFunctionClosure: self.toolBarButtonTapped(button:))
                 }
             }
+            .customToolBar(toolBarFunctionClosure: self.toolBarButtonTapped(button:))
+            
+            
+            // MARK: - SidebarMenu
+            SidebarMenu(sidebarOpen: $sideBarOpen)
             
             
             // MARK: - NotificationView()
             NotificationView(notificationMessage: self.$notificationMessage, showNotification: self.$showNotification)
         }
+        .navigationBarItems(leading: sideBarButton)
         .navigationBarTitle("\(NSLocalizedString("Attitude", comment: "NavigationBar Title - Attitude"))", displayMode: .inline)
         .onAppear(perform: onAppear)
         .onDisappear(perform: onDisappear)
-        .background(EmptyView().sheet(isPresented: $showSettings) { SettingsView() }
-        .background(EmptyView().sheet(isPresented: $showShareSheet) { ShareSheet(activityItems: self.filesToShare) }))
+        .sheet(isPresented: $showShareSheet) { ShareSheet(activityItems: self.filesToShare) }
     }
 }
 

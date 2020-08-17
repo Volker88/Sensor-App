@@ -1,9 +1,8 @@
 //
-//  ContentView.swift
+//  CustomToolBarModifier.swift
 //  Sensor-App
 //
-//  Created by Volker Schmitt on 13.09.19.
-//  Copyright © 2019 Volker Schmitt. All rights reserved.
+//  Created by Volker Schmitt on 17.08.20.
 //
 
 
@@ -11,54 +10,46 @@
 import SwiftUI
 
 
-// MARK: - Struct
-struct ContentView: View {
-    
-    // MARK: - Initialize Classes
-    let settings = SettingsAPI()
-    
+// MARK: - ToolBarView
+struct CustomToolBarModifier: ViewModifier {
     
     // MARK: - @State / @ObservedObject / @Binding
-    @State var showSettings = false
     
     
     // MARK: - Define Constants / Variables
+    var toolBarFunctionClosure: (ToolBarButtonType) -> Void
     
     
     // MARK: - Methods
+    func buttonTapped(type: ToolBarButtonType) {
+        toolBarFunctionClosure(type)
+    }
     
-    
-    // MARK: - onAppear / onDisappear
-    
-    
-    // MARK: - Body
-    var body: some View {
+    func body(content: Content) -> some View {
         
-        // MARK: - Return View
-        return Text("Hello")
+        return content
             .toolbar{
-                
                 ToolbarItem(placement: .bottomBar) {
                     HStack {
-                        Button(action: { } ) {
+                        Button(action: { self.buttonTapped(type: .play) } ) {
                             Image(systemName: "play.circle")
                                 .toolBarButtonModifier(accessibility: "Start Button")
                                 .accessibility(label: Text("Play", comment: "ToolBarView - Play Button"))
                         }
                         
-                        Button(action: { } ) {
+                        Button(action: { self.buttonTapped(type: .pause) } ) {
                             Image(systemName: "pause.circle")
                                 .toolBarButtonModifier(accessibility: "Pause Button")
                                 .accessibility(label: Text("Pause", comment: "ToolBarView - Pause Button"))
                         }
                         
-                        Button(action: { } ) {
+                        Button(action: { self.buttonTapped(type: .delete) } ) {
                             Image(systemName: "trash.circle")
                                 .toolBarButtonModifier(accessibility: "Delete Button")
                                 .accessibility(label: Text("Delete", comment: "ToolBarView - Delete Button"))
                         }
                         
-                        Button(action: { } ) {
+                        Button(action: { self.buttonTapped(type: .share) } ) {
                             Image(systemName: "square.and.arrow.up")
                                 .toolBarButtonModifier(accessibility: "Share Button")
                                 .accessibility(label: Text("Share", comment: "ToolBarView - Share Button"))
@@ -70,12 +61,19 @@ struct ContentView: View {
 }
 
 
-// MARK: - Preview
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ForEach([ColorScheme.light, .dark], id: \.self) { scheme in
-            ContentView()
-                .colorScheme(scheme)
-        }
+// MARK: - Extension View
+extension View {
+    
+    // MARK: - Define Function
+    ///
+    /// customToolBar
+    ///
+    ///  Custom Tool Bar
+    ///
+    /// - Parameter toolBarFunctionClosure: (ToolBarButtonType) -> Void
+    /// - Returns: Void
+    ///
+    func customToolBar(toolBarFunctionClosure: @escaping (ToolBarButtonType) -> Void) -> some View {
+        return  modifier(CustomToolBarModifier(toolBarFunctionClosure: toolBarFunctionClosure))
     }
 }

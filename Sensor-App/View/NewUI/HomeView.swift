@@ -70,7 +70,7 @@ struct HomeView: View {
             }
             
             
-            // MARK: - SideMenu
+            // MARK: - SidebarMenu
             SidebarMenu(sidebarOpen: $sideBarOpen)
         }
     }

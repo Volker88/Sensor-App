@@ -25,7 +25,7 @@ struct LocationView: View {
     
     // MARK: - @State / @ObservedObject / @Binding
     @ObservedObject var locationVM = CoreLocationViewModel()
-    @State private var showSettings = false
+    @State private var sideBarOpen: Bool = false
     @State private var showShareSheet = false
     @State private var filesToShare = [Any]()
     
@@ -67,9 +67,8 @@ struct LocationView: View {
                 messageType = .deleted
             case .share:
                 shareCSV()
-            case .settings:
-                showSettings.toggle()
-                messageType = nil
+            default:
+                print("nil")
         }
         
         if messageType != nil {
@@ -103,134 +102,150 @@ struct LocationView: View {
     }
     
     
-    // MARK: - Body - View
-    var body: some View {
-        
-        
-        // MARK: - Return View
-        return ZStack {
-            LinearGradient(gradient: Gradient(colors: settings.backgroundColor), startPoint: .topLeading, endPoint: .bottomTrailing)
-                .edgesIgnoringSafeArea(.all)
-            
-            VStack {
-                Spacer()
-                Color("ToolbarBackgroundColor")
-                    .frame(maxWidth: .infinity, maxHeight: 50)
+    // MARK: - Content
+    var sideBarButton: some View {
+        Button(action: {
+            sideBarOpen.toggle()
+            if sideBarOpen {
+                locationVM.stopLocationUpdates()
+            } else {
+                    locationVM.startLocationUpdates()
+                }
+            }) {
+                Image(systemName: "sidebar.left")
             }
-            .edgesIgnoringSafeArea(.all)
+        }
+        
+        
+        // MARK: - Body - View
+        @ViewBuilder
+        var body: some View {
             
-            GeometryReader { g in
+            // MARK: - Return View
+            ZStack {
+                LinearGradient(gradient: Gradient(colors: settings.backgroundColor), startPoint: .topLeading, endPoint: .bottomTrailing)
+                    .edgesIgnoringSafeArea(.all)
+                
                 VStack {
-                    ScrollView {
-                        Spacer()
-                        Group{
-                            Text("Latitude: \(self.locationVM.coreLocationArray.last?.latitude ?? 0.0, specifier: "%.6f")° ± \(self.locationVM.coreLocationArray.last?.horizontalAccuracy ?? 0.0, specifier: "%.2f")m", comment: "LocationView - Latitude")
-                                .buttonModifier()
-                                .overlay(Button(action: { self.showLatitude.toggle() }) {
-                                    Image("GraphButton")
-                                        .graphButtonModifier(accessibility: "Toggle Latitude Graph")
-                                }, alignment: .trailing)
-                            
-                            if self.showLatitude == true {
-                                Spacer()
-                                LineGraphSubView(locationVM: self.locationVM, showGraph: .latitude)
-                                    .frame(width: g.size.width - 25, height: 100, alignment: .leading)
-                                Spacer()
+                    Spacer()
+                    Color("ToolbarBackgroundColor")
+                        .frame(maxWidth: .infinity, maxHeight: 50)
+                }
+                .edgesIgnoringSafeArea(.all)
+                
+                GeometryReader { g in
+                    VStack {
+                        ScrollView {
+                            Spacer()
+                            Group{
+                                Text("Latitude: \(self.locationVM.coreLocationArray.last?.latitude ?? 0.0, specifier: "%.6f")° ± \(self.locationVM.coreLocationArray.last?.horizontalAccuracy ?? 0.0, specifier: "%.2f")m", comment: "LocationView - Latitude")
+                                    .buttonModifier()
+                                    .overlay(Button(action: { self.showLatitude.toggle() }) {
+                                        Image("GraphButton")
+                                            .graphButtonModifier(accessibility: "Toggle Latitude Graph")
+                                    }, alignment: .trailing)
+                                
+                                if self.showLatitude == true {
+                                    Spacer()
+                                    LineGraphSubView(locationVM: self.locationVM, showGraph: .latitude)
+                                        .frame(width: g.size.width - 25, height: 100, alignment: .leading)
+                                    Spacer()
+                                }
+                                
+                                Text("Longitude: \(self.locationVM.coreLocationArray.last?.longitude ?? 0.0, specifier: "%.6f")° ± \(self.locationVM.coreLocationArray.last?.horizontalAccuracy ?? 0.0, specifier: "%.2f")m", comment: "LocationView - Longitude")
+                                    .buttonModifier()
+                                    .overlay(Button(action: { self.showLongitude.toggle() }) {
+                                        Image("GraphButton")
+                                            .graphButtonModifier(accessibility: "Toggle Longitude Graph")
+                                    }, alignment: .trailing)
+                                
+                                if self.showLongitude == true {
+                                    Spacer()
+                                    LineGraphSubView(locationVM: self.locationVM, showGraph: .longitude)
+                                        .frame(width: g.size.width - 25, height: 100, alignment: .leading)
+                                    Spacer()
+                                }
+                                
+                                Text("Altitude: \(self.locationVM.coreLocationArray.last?.altitude ?? 0.0, specifier: "%.2f") ± \(self.locationVM.coreLocationArray.last?.verticalAccuracy ?? 0.0, specifier: "%.2f")m", comment: "LocationView - Altitude")
+                                    .buttonModifier()
+                                    .overlay(Button(action: { self.showAltitude.toggle() }) {
+                                        Image("GraphButton")
+                                            .graphButtonModifier(accessibility: "Toggle Altitude Graph")
+                                    }, alignment: .trailing)
+                                
+                                if self.showAltitude == true {
+                                    Spacer()
+                                    LineGraphSubView(locationVM: self.locationVM, showGraph: .altitude)
+                                        .frame(width: g.size.width - 25, height: 100, alignment: .leading)
+                                    Spacer()
+                                }
+                                
+                                Text("Direction: \(self.locationVM.coreLocationArray.last?.course ?? 0.0, specifier: "%.2f")°", comment: "LocationView - Direction")
+                                    .buttonModifier()
+                                    .overlay(Button(action: { self.showDirection.toggle() }) {
+                                        Image("GraphButton")
+                                            .graphButtonModifier(accessibility: "Toggle Direction Graph")
+                                    }, alignment: .trailing)
+                                
+                                if self.showDirection == true {
+                                    Spacer()
+                                    LineGraphSubView(locationVM: self.locationVM, showGraph: .course)
+                                        .frame(width: g.size.width - 25, height: 100, alignment: .leading)
+                                    Spacer()
+                                }
+                                Text(verbatim: "\(NSLocalizedString("Speed:", comment: "LocationView - Speed")) \(self.calculationAPI.calculateSpeed(ms: self.locationVM.coreLocationArray.last?.speed ?? 0.0, to: "\(self.settings.fetchUserSettings().GPSSpeedSetting)")) \(self.settings.fetchUserSettings().GPSSpeedSetting)")
+                                    .buttonModifier()
+                                    .overlay(Button(action: { self.showSpeed.toggle() }) {
+                                        Image("GraphButton")
+                                            .graphButtonModifier(accessibility: "Toggle Speed Graph")
+                                    }, alignment: .trailing)
+                                
+                                if self.showSpeed == true {
+                                    Spacer()
+                                    LineGraphSubView(locationVM: self.locationVM, showGraph: .speed)
+                                        .frame(width: g.size.width - 25, height: 100, alignment: .leading)
+                                    Spacer()
+                                }
                             }
-                            
-                            Text("Longitude: \(self.locationVM.coreLocationArray.last?.longitude ?? 0.0, specifier: "%.6f")° ± \(self.locationVM.coreLocationArray.last?.horizontalAccuracy ?? 0.0, specifier: "%.2f")m", comment: "LocationView - Longitude")
-                                .buttonModifier()
-                                .overlay(Button(action: { self.showLongitude.toggle() }) {
-                                    Image("GraphButton")
-                                        .graphButtonModifier(accessibility: "Toggle Longitude Graph")
-                                }, alignment: .trailing)
-                            
-                            if self.showLongitude == true {
-                                Spacer()
-                                LineGraphSubView(locationVM: self.locationVM, showGraph: .longitude)
-                                    .frame(width: g.size.width - 25, height: 100, alignment: .leading)
-                                Spacer()
-                            }
-                            
-                            Text("Altitude: \(self.locationVM.coreLocationArray.last?.altitude ?? 0.0, specifier: "%.2f") ± \(self.locationVM.coreLocationArray.last?.verticalAccuracy ?? 0.0, specifier: "%.2f")m", comment: "LocationView - Altitude")
-                                .buttonModifier()
-                                .overlay(Button(action: { self.showAltitude.toggle() }) {
-                                    Image("GraphButton")
-                                        .graphButtonModifier(accessibility: "Toggle Altitude Graph")
-                                }, alignment: .trailing)
-                            
-                            if self.showAltitude == true {
-                                Spacer()
-                                LineGraphSubView(locationVM: self.locationVM, showGraph: .altitude)
-                                    .frame(width: g.size.width - 25, height: 100, alignment: .leading)
-                                Spacer()
-                            }
-                            
-                            Text("Direction: \(self.locationVM.coreLocationArray.last?.course ?? 0.0, specifier: "%.2f")°", comment: "LocationView - Direction")
-                                .buttonModifier()
-                                .overlay(Button(action: { self.showDirection.toggle() }) {
-                                    Image("GraphButton")
-                                        .graphButtonModifier(accessibility: "Toggle Direction Graph")
-                                }, alignment: .trailing)
-                            
-                            if self.showDirection == true {
-                                Spacer()
-                                LineGraphSubView(locationVM: self.locationVM, showGraph: .course)
-                                    .frame(width: g.size.width - 25, height: 100, alignment: .leading)
-                                Spacer()
-                            }
-                            Text(verbatim: "\(NSLocalizedString("Speed:", comment: "LocationView - Speed")) \(self.calculationAPI.calculateSpeed(ms: self.locationVM.coreLocationArray.last?.speed ?? 0.0, to: "\(self.settings.fetchUserSettings().GPSSpeedSetting)")) \(self.settings.fetchUserSettings().GPSSpeedSetting)")  
-                                .buttonModifier()
-                                .overlay(Button(action: { self.showSpeed.toggle() }) {
-                                    Image("GraphButton")
-                                        .graphButtonModifier(accessibility: "Toggle Speed Graph")
-                                }, alignment: .trailing)
-                            
-                            if self.showSpeed == true {
-                                Spacer()
-                                LineGraphSubView(locationVM: self.locationVM, showGraph: .speed)
-                                    .frame(width: g.size.width - 25, height: 100, alignment: .leading)
-                                Spacer()
-                            }
+                            .frame(height: 50, alignment: .center)
+                            .offset(x: 5)
+                            Spacer()
+                            //MapKitView(latitude: self.locationVM.coreLocationArray.last?.latitude ?? 37.3323314100, longitude: self.locationVM.coreLocationArray.last?.longitude ?? -122.0312186000)
+                            MapView(region: $locationVM.region)
+                                .frame(width: g.size.width - 10, height: g.size.height - 60, alignment: .center)
+                                .cornerRadius(10)
+                            Spacer(minLength: 20)
                         }
-                        .frame(height: 50, alignment: .center)
-                        .offset(x: 5)
-                        Spacer()
-                        //MapKitView(latitude: self.locationVM.coreLocationArray.last?.latitude ?? 37.3323314100, longitude: self.locationVM.coreLocationArray.last?.longitude ?? -122.0312186000)
-                        MapView(region: $locationVM.region)
-                            .frame(width: g.size.width - 10, height: g.size.height - 60, alignment: .center)
-                            .cornerRadius(10)
-                        Spacer(minLength: 20)
+                        .frame(width: g.size.width, height: g.size.height - 50 + g.safeAreaInsets.bottom)
                     }
-                    .frame(width: g.size.width, height: g.size.height - 50 + g.safeAreaInsets.bottom)
-                    
-                    
-                    // MARK: - LocationToolBarViewModel()
-                    ToolBarView(toolBarFunctionClosure: self.toolBarButtonTapped(button:))
+                }
+                .customToolBar(toolBarFunctionClosure: self.toolBarButtonTapped(button:))
+                
+                
+                // MARK: - SidebarMenu
+                SidebarMenu(sidebarOpen: $sideBarOpen)
+                
+                
+                // MARK: - NotificationView()
+                NotificationView(notificationMessage: self.$notificationMessage, showNotification: self.$showNotification)
+            }
+            .navigationBarItems(leading: sideBarButton)
+            .navigationBarTitle("\(NSLocalizedString("Location", comment: "NavigationBar Title - Location"))", displayMode: .inline)
+            .onAppear(perform: onAppear)
+            .onDisappear(perform: onDisappear)
+            .sheet(isPresented: $showShareSheet) { ShareSheet(activityItems: self.filesToShare) }
+        }
+    }
+    
+    
+    // MARK: - Preview
+    struct LocationView_Previews: PreviewProvider {
+        static var previews: some View {
+            ForEach([ColorScheme.light, .dark], id: \.self) { scheme in
+                NavigationView {
+                    LocationView()
+                        .colorScheme(scheme)
                 }
             }
-            
-            
-            // MARK: - NotificationView()
-            NotificationView(notificationMessage: self.$notificationMessage, showNotification: self.$showNotification)
-        }
-        .navigationBarTitle("\(NSLocalizedString("Location", comment: "NavigationBar Title - Location"))", displayMode: .inline)
-        .onAppear(perform: onAppear)
-        .onDisappear(perform: onDisappear)
-        .background(EmptyView().sheet(isPresented: $showSettings) { SettingsView() }
-        .background(EmptyView().sheet(isPresented: $showShareSheet) { ShareSheet(activityItems: self.filesToShare) }))
-    }
-}
-
-
-// MARK: - Preview
-struct LocationView_Previews: PreviewProvider {
-    static var previews: some View {
-        ForEach([ColorScheme.light, .dark], id: \.self) { scheme in
-            NavigationView {
-                LocationView()
-                    .colorScheme(scheme)
-            }
         }
     }
-}
