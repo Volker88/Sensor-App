@@ -28,9 +28,9 @@ struct Sidebar: View {
     var list: some View {
         List {
             Group {
-                NavigationLink(destination: HomeView().navigationBarBackButtonHidden(true)) {
-                    Text("ContentView", comment: "ContentView - Location") // TODO: Remove
-                        .accessibility(identifier: "Location")
+                NavigationLink(destination: ContentView().navigationBarBackButtonHidden(true)) {
+                    Text("Home", comment: "ContentView - Home") // TODO: Remove
+                        .accessibility(identifier: "Home")
                 }
                 NavigationLink(destination: LocationView().navigationBarBackButtonHidden(true)) {
                     Text("Location", comment: "ContentView - Location")
@@ -76,7 +76,7 @@ struct Sidebar: View {
         // MARK: - Return View
         VStack(spacing: 0) {
             list
-            #warning("Settings not shown due to toolbar")
+            #warning("Settings not shown due to Toolbar")
             SettingsOverlay()
         }
         .edgesIgnoringSafeArea(.all)

@@ -13,7 +13,7 @@
 		151D317224E956610090BC94 /* SwipeDirectionAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151D317124E956610090BC94 /* SwipeDirectionAPI.swift */; };
 		151D317324E956680090BC94 /* SwipeDirectionAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151D317124E956610090BC94 /* SwipeDirectionAPI.swift */; };
 		151D317524E956A10090BC94 /* SettingsOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151D317424E956A10090BC94 /* SettingsOverlay.swift */; };
-		151D317724E975560090BC94 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151D317624E975560090BC94 /* HomeView.swift */; };
+		151D317724E975560090BC94 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151D317624E975560090BC94 /* ContentView.swift */; };
 		151D317924E975F30090BC94 /* CustomNavigationViewStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151D317824E975F30090BC94 /* CustomNavigationViewStyle.swift */; };
 		151D317A24E975F30090BC94 /* CustomNavigationViewStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151D317824E975F30090BC94 /* CustomNavigationViewStyle.swift */; };
 		1527B01B24C4AA240024DD78 /* Sensor_AppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1527B01A24C4AA240024DD78 /* Sensor_AppApp.swift */; };
@@ -159,6 +159,8 @@
 		1542E40F24C4B21700FA2755 /* CoreMotionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E37D24C4AF9300FA2755 /* CoreMotionViewModel.swift */; };
 		1542E41024C4B21900FA2755 /* CoreLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E37E24C4AF9300FA2755 /* CoreLocationViewModel.swift */; };
 		1542E41124C4B21A00FA2755 /* CoreLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E37E24C4AF9300FA2755 /* CoreLocationViewModel.swift */; };
+		15441C0724EDA4A300DC7D41 /* DisclosureGroupModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15441C0624EDA4A300DC7D41 /* DisclosureGroupModifier.swift */; };
+		15441C0824EDA4A300DC7D41 /* DisclosureGroupModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15441C0624EDA4A300DC7D41 /* DisclosureGroupModifier.swift */; };
 		15442D8D24EAF1F600DCF523 /* CustomToolBarModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15442D8C24EAF1F600DCF523 /* CustomToolBarModifier.swift */; };
 		15442D8E24EAF1F600DCF523 /* CustomToolBarModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15442D8C24EAF1F600DCF523 /* CustomToolBarModifier.swift */; };
 		159B640224DEB5C1009A1E35 /* Extension_Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159B640124DEB5C1009A1E35 /* Extension_Map.swift */; };
@@ -245,7 +247,7 @@
 		151D316F24E956380090BC94 /* SideMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuView.swift; sourceTree = "<group>"; };
 		151D317124E956610090BC94 /* SwipeDirectionAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeDirectionAPI.swift; sourceTree = "<group>"; };
 		151D317424E956A10090BC94 /* SettingsOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsOverlay.swift; sourceTree = "<group>"; };
-		151D317624E975560090BC94 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		151D317624E975560090BC94 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		151D317824E975F30090BC94 /* CustomNavigationViewStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationViewStyle.swift; sourceTree = "<group>"; };
 		1527B01724C4AA240024DD78 /* Sensor-App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sensor-App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1527B01A24C4AA240024DD78 /* Sensor_AppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sensor_AppApp.swift; sourceTree = "<group>"; };
@@ -353,6 +355,7 @@
 		1542E3C624C4B05400FA2755 /* GraphArrayTransformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphArrayTransformation.swift; sourceTree = "<group>"; };
 		1542E3C724C4B05400FA2755 /* LineGraphSubView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineGraphSubView.swift; sourceTree = "<group>"; };
 		1542E3C824C4B05400FA2755 /* GraphDetailModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphDetailModel.swift; sourceTree = "<group>"; };
+		15441C0624EDA4A300DC7D41 /* DisclosureGroupModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisclosureGroupModifier.swift; sourceTree = "<group>"; };
 		15442D8C24EAF1F600DCF523 /* CustomToolBarModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomToolBarModifier.swift; sourceTree = "<group>"; };
 		159B640124DEB5C1009A1E35 /* Extension_Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension_Map.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -402,7 +405,7 @@
 			isa = PBXGroup;
 			children = (
 				151D316A24E955E40090BC94 /* Sidebar */,
-				151D317624E975560090BC94 /* HomeView.swift */,
+				151D317624E975560090BC94 /* ContentView.swift */,
 				15442D8C24EAF1F600DCF523 /* CustomToolBarModifier.swift */,
 			);
 			path = NewUI;
@@ -752,6 +755,7 @@
 				1542E37124C4AF9300FA2755 /* ToolBarButtonModifier.swift */,
 				1542E37324C4AF9300FA2755 /* ViewButtonModifier.swift */,
 				151D317824E975F30090BC94 /* CustomNavigationViewStyle.swift */,
+				15441C0624EDA4A300DC7D41 /* DisclosureGroupModifier.swift */,
 			);
 			path = CustomModifier;
 			sourceTree = "<group>";
@@ -1048,6 +1052,7 @@
 				151D317924E975F30090BC94 /* CustomNavigationViewStyle.swift in Sources */,
 				1542E3DC24C4B16500FA2755 /* AppUpdates.swift in Sources */,
 				1542E3D024C4B05400FA2755 /* AttitudeView.swift in Sources */,
+				15441C0724EDA4A300DC7D41 /* DisclosureGroupModifier.swift in Sources */,
 				1542E3FE24C4B1F300FA2755 /* SettingsForUserDefaults.swift in Sources */,
 				151D317024E956380090BC94 /* SideMenuView.swift in Sources */,
 				1542E3DB24C4B05400FA2755 /* GraphDetailModel.swift in Sources */,
@@ -1063,7 +1068,7 @@
 				1542E40024C4B1F600FA2755 /* ToolBarButtonType.swift in Sources */,
 				1542E40F24C4B21700FA2755 /* CoreMotionViewModel.swift in Sources */,
 				1542E3D224C4B05400FA2755 /* NotificationView.swift in Sources */,
-				151D317724E975560090BC94 /* HomeView.swift in Sources */,
+				151D317724E975560090BC94 /* ContentView.swift in Sources */,
 				1542E3D724C4B05400FA2755 /* MotionListView.swift in Sources */,
 				1542E3E824C4B19500FA2755 /* Extension.swift in Sources */,
 				159B640324DEB5DC009A1E35 /* Extension_Map.swift in Sources */,
@@ -1151,6 +1156,7 @@
 				1542E39A24C4AF9300FA2755 /* CoreLocationViewModel.swift in Sources */,
 				1542E38024C4AF9300FA2755 /* CoreLocationAPI.swift in Sources */,
 				1542E38A24C4AF9300FA2755 /* UserSettings.swift in Sources */,
+				15441C0824EDA4A300DC7D41 /* DisclosureGroupModifier.swift in Sources */,
 				1542E39924C4AF9300FA2755 /* CoreMotionViewModel.swift in Sources */,
 				1542E37F24C4AF9300FA2755 /* CalculationAPI.swift in Sources */,
 				151D317224E956610090BC94 /* SwipeDirectionAPI.swift in Sources */,
@@ -1287,7 +1293,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				MY_BUILD_VERSION = 2.20341.9;
+				MY_BUILD_VERSION = 2.20342.10;
 				MY_VERSION = 2.5.1;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1345,7 +1351,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				MY_BUILD_VERSION = 2.20341.9;
+				MY_BUILD_VERSION = 2.20342.10;
 				MY_VERSION = 2.5.1;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;

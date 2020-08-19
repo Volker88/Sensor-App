@@ -29,32 +29,34 @@ struct CustomToolBarModifier: ViewModifier {
         
         return content
             .toolbar{
-                ToolbarItem(placement: .bottomBar) {
-                    HStack {
-                        Button(action: { self.buttonTapped(type: .play) } ) {
-                            Image(systemName: "play.circle")
-                                .toolBarButtonModifier(accessibility: "Start Button")
-                                .accessibility(label: Text("Play", comment: "ToolBarView - Play Button"))
-                        }
-                        
-                        Button(action: { self.buttonTapped(type: .pause) } ) {
-                            Image(systemName: "pause.circle")
-                                .toolBarButtonModifier(accessibility: "Pause Button")
-                                .accessibility(label: Text("Pause", comment: "ToolBarView - Pause Button"))
-                        }
-                        
-                        Button(action: { self.buttonTapped(type: .delete) } ) {
-                            Image(systemName: "trash.circle")
-                                .toolBarButtonModifier(accessibility: "Delete Button")
-                                .accessibility(label: Text("Delete", comment: "ToolBarView - Delete Button"))
-                        }
-                        
-                        Button(action: { self.buttonTapped(type: .share) } ) {
-                            Image(systemName: "square.and.arrow.up")
-                                .toolBarButtonModifier(accessibility: "Share Button")
-                                .accessibility(label: Text("Share", comment: "ToolBarView - Share Button"))
-                        }
+                ToolbarItemGroup(placement: .bottomBar) {
+                    Spacer()
+                    Button(action: { self.buttonTapped(type: .share) } ) {
+                        Image(systemName: "square.and.arrow.up")
+                            .toolBarButtonModifier(accessibility: "Share Button")
+                            .accessibility(label: Text("Share", comment: "ToolBarView - Share Button"))
                     }
+                    
+                    Spacer()
+                    Button(action: { self.buttonTapped(type: .delete) } ) {
+                        Image(systemName: "trash.circle")
+                            .toolBarButtonModifier(accessibility: "Delete Button")
+                            .accessibility(label: Text("Delete", comment: "ToolBarView - Delete Button"))
+                    }
+                    Spacer()
+                    Button(action: { self.buttonTapped(type: .pause) } ) {
+                        Image(systemName: "pause.circle")
+                            .toolBarButtonModifier(accessibility: "Pause Button")
+                            .accessibility(label: Text("Pause", comment: "ToolBarView - Pause Button"))
+                    }
+                    Spacer()
+                    Button(action: { self.buttonTapped(type: .play) } ) {
+                        Image(systemName: "play.circle")
+                            
+                            .accessibility(label: Text("Play", comment: "ToolBarView - Play Button"))
+                    }
+                    .toolBarButtonModifier(accessibility: "Start Button")
+                    Spacer()
                 }
             }
     }

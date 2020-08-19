@@ -1,5 +1,5 @@
 //
-//  HomeView.swift
+//  ContentView.swift
 //  Sensor-App
 //
 //  Created by Volker Schmitt on 16.08.20.
@@ -11,7 +11,7 @@ import SwiftUI
 
 
 // MARK: - Struct / Class Definition
-struct HomeView: View {
+struct ContentView: View {
     
     // MARK: - Initialize Classes
     
@@ -81,7 +81,7 @@ struct HomeView: View {
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         ForEach([ColorScheme.light, .dark], id: \.self) { scheme in
-            HomeView()
+            ContentView()
                 .colorScheme(scheme)
         }
     }

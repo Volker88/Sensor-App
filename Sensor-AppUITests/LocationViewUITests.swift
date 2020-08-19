@@ -30,25 +30,30 @@ class LocationViewUITests: XCTestCase {
     
     
     // MARK: - Tests
-    func testLocationViewTabBarButtons() throws {
+    func testLocationViewToolbarButtons() throws {
         // Start Application
         let app = XCUIApplication()
         app.launch()
-        
+    
         // Go to Location View
-        app.buttons["Location"].tap()
+        app.navigationBars.buttons.element(boundBy: 0).tap()
+        app.tables.cells["Location"].buttons["Location"].tap()
         
-        // Test TabBar Buttons
-        app.buttons["Start Button"].tap()
-        app.buttons["Pause Button"].tap()
-        app.buttons["Delete Button"].tap()
-        app.buttons["Settings Button"].tap()
+        // Test Toolbar Buttons
+        let toolbar = app.toolbars["Toolbar"]
+        toolbar.buttons["play"].tap()
+        toolbar.buttons["pause"].tap()
+        toolbar.buttons["trash"].tap()
+        toolbar.buttons["Share"].tap()
+        sleep(1)
+        app/*@START_MENU_TOKEN@*/.navigationBars["UIActivityContentView"]/*[[".otherElements[\"ActivityListView\"].navigationBars[\"UIActivityContentView\"]",".navigationBars[\"UIActivityContentView\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.buttons["Close"].tap()
+        
         
         // Go Back to Main Menu
         sleep(1)
-        app.navigationBars.buttons["Close Button"].tap()
-        sleep(1)
         app.navigationBars.buttons.element(boundBy: 0).tap()
+        sleep(1)
+        app.tables.cells["Home"].buttons["Home"].tap()
     }
     
     func testLocationViewGraphs() throws {
