@@ -54,6 +54,7 @@ struct LineGraphSubView: View {
         return GeometryReader { g in
             VStack{
                 LineGraphView(lineGraphPointsArray: self.transformation.array, lineGraphSettings: lineGraphSettings, graphWidth: g.size.width - 10, graphHeight: 100)
+                    .frame(minWidth: 150, idealWidth: 200, maxWidth: .infinity, minHeight: 0, idealHeight: 100, maxHeight: 100, alignment: .leading)
             }
         }
     }

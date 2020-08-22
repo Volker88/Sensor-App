@@ -86,7 +86,8 @@ struct LocationView: View {
     func onDisappear() {
         locationVM.stopLocationUpdates()
         locationVM.coreLocationArray.removeAll()
-        //SKStoreReviewController.requestReview() // FIXME: - depreceated
+        #warning("requestReview() deprecated")
+        //SKStoreReviewController.requestReview()
     }
     
     func shareCSV() {
@@ -122,21 +123,15 @@ struct LocationView: View {
         
         // MARK: - Return View
         ZStack {
-            
             GeometryReader { g in
-                
                 ScrollView {
-                    
-                    Spacer()
                     List {
-                        
                         Section(header: Text("Location", comment: "LocationView - Section Header")) {
-                            
                             DisclosureGroup(
                                 isExpanded: $showLatitude,
                                 content: {
                                     LineGraphSubView(locationVM: locationVM, showGraph: .latitude)
-                                        .frame(width: g.size.width - 25, height: 100, alignment: .leading)
+                                        .frame(height: 100, alignment: .leading)
                                 },
                                 label: {
                                     Text("Latitude: \(locationVM.coreLocationArray.last?.latitude ?? 0.0, specifier: "%.6f")° ± \(locationVM.coreLocationArray.last?.horizontalAccuracy ?? 0.0, specifier: "%.2f")m", comment: "LocationView - Latitude")
@@ -147,7 +142,7 @@ struct LocationView: View {
                                 isExpanded: $showLongitude,
                                 content: {
                                     LineGraphSubView(locationVM: locationVM, showGraph: .longitude)
-                                        .frame(width: g.size.width - 25, height: 100, alignment: .leading)
+                                        .frame(height: 100, alignment: .leading)
                                 },
                                 label: {
                                     Text("Longitude: \(locationVM.coreLocationArray.last?.longitude ?? 0.0, specifier: "%.6f")° ± \(locationVM.coreLocationArray.last?.horizontalAccuracy ?? 0.0, specifier: "%.2f")m", comment: "LocationView - Longitude")
@@ -158,7 +153,7 @@ struct LocationView: View {
                                 isExpanded: $showAltitude,
                                 content: {
                                     LineGraphSubView(locationVM: locationVM, showGraph: .altitude)
-                                        .frame(width: g.size.width - 25, height: 100, alignment: .leading)
+                                        .frame(height: 100, alignment: .leading)
                                 },
                                 label: {
                                     Text("Altitude: \(locationVM.coreLocationArray.last?.altitude ?? 0.0, specifier: "%.2f") ± \(locationVM.coreLocationArray.last?.verticalAccuracy ?? 0.0, specifier: "%.2f")m", comment: "LocationView - Altitude")
@@ -169,7 +164,7 @@ struct LocationView: View {
                                 isExpanded: $showDirection,
                                 content: {
                                     LineGraphSubView(locationVM: locationVM, showGraph: .course)
-                                        .frame(width: g.size.width - 25, height: 100, alignment: .leading)
+                                        .frame(height: 100, alignment: .leading)
                                 },
                                 label: {
                                     Text("Direction: \(locationVM.coreLocationArray.last?.course ?? 0.0, specifier: "%.2f")°", comment: "LocationView - Direction")
@@ -180,7 +175,7 @@ struct LocationView: View {
                                 isExpanded: $showSpeed,
                                 content: {
                                     LineGraphSubView(locationVM: locationVM, showGraph: .speed)
-                                        .frame(width: g.size.width - 25, height: 100, alignment: .leading)
+                                        .frame(height: 100, alignment: .leading)
                                 },
                                 label: {
                                     Text(verbatim: "\(NSLocalizedString("Speed:", comment: "LocationView - Speed")) \(calculationAPI.calculateSpeed(ms: locationVM.coreLocationArray.last?.speed ?? 0.0, to: "\(settings.fetchUserSettings().GPSSpeedSetting)")) \(settings.fetchUserSettings().GPSSpeedSetting)")
@@ -194,10 +189,13 @@ struct LocationView: View {
                                 .cornerRadius(10)
                         }
                     }
-                    .frame(minWidth: 0, idealWidth: g.size.width, maxWidth: .infinity, minHeight: 0, idealHeight: g.size.height, maxHeight: .infinity, alignment: .center)
+                    
+                    .frame(minWidth: 0, idealWidth: g.size.width, maxWidth: .infinity, minHeight: 0, idealHeight: g.size.height, maxHeight: .infinity, alignment: .leading)
                 }
+                .listStyle(GroupedListStyle())
             }
             .customToolBar(toolBarFunctionClosure: toolBarButtonTapped(button:))
+            
             
             
             // MARK: - SidebarMenu

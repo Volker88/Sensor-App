@@ -52,7 +52,6 @@ struct CustomToolBarModifier: ViewModifier {
                     Spacer()
                     Button(action: { self.buttonTapped(type: .play) } ) {
                         Image(systemName: "play.circle")
-                            
                             .accessibility(label: Text("Play", comment: "ToolBarView - Play Button"))
                     }
                     .toolBarButtonModifier(accessibility: "Start Button")

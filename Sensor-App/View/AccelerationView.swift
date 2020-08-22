@@ -62,17 +62,17 @@ struct AccelerationView: View {
                 motionVM.stopMotionUpdates()
                 messageType = .paused
             case .delete:
-                self.motionVM.coreMotionArray.removeAll()
-                self.motionVM.altitudeArray.removeAll()
+                motionVM.coreMotionArray.removeAll()
+                motionVM.altitudeArray.removeAll()
                 messageType = .deleted
             case .share:
                 shareCSV()
         }
         
         if messageType != nil {
-            notificationAPI.toggleNotification(type: messageType!, duration: self.notificationDuration) { (message, show) in
-                self.notificationMessage = message
-                self.showNotification = show
+            notificationAPI.toggleNotification(type: messageType!, duration: notificationDuration) { (message, show) in
+                notificationMessage = message
+                showNotification = show
             }
         }
     }
@@ -89,7 +89,7 @@ struct AccelerationView: View {
             csvText += "\($0.counter);\($0.timestamp);\($0.accelerationXAxis.localizedDecimal());\($0.accelerationYAxis.localizedDecimal());\($0.accelerationZAxis.localizedDecimal())\n"
         }
         filesToShare = exportAPI.getFile(exportText: csvText, filename: "acceleration")
-        self.showShareSheet.toggle()
+        showShareSheet.toggle()
     }
     
     
@@ -103,7 +103,6 @@ struct AccelerationView: View {
         motionVM.stopMotionUpdates()
         motionVM.coreMotionArray.removeAll()
     }
-    
     
     
     // MARK: - Content
@@ -128,83 +127,74 @@ struct AccelerationView: View {
         
         // MARK: - Return View
         ZStack {
-            LinearGradient(gradient: Gradient(colors: settings.backgroundColor), startPoint: .topLeading, endPoint: .bottomTrailing)
-                .edgesIgnoringSafeArea(.all)
-            
-            VStack {
-                Spacer()
-                Color("ToolbarBackgroundColor")
-                    .frame(maxWidth: .infinity, maxHeight: 50)
-            }
-            .edgesIgnoringSafeArea(.all)
-            
             GeometryReader { g in
-                VStack{
-                    ScrollView(.vertical) {
-                        Spacer()
-                        VStack{
-                            Group{
-                                Text("X-Axis: \(self.motionVM.coreMotionArray.last?.accelerationXAxis ?? 0.0, specifier: "%.5f") m/s^2", comment: "AccelerationView - X-Axis")
-                                    .buttonModifier()
-                                    .overlay(Button(action: { self.showXAxis.toggle() }) {
-                                        Image("GraphButton")
-                                            .graphButtonModifier(accessibility: "Toggle X-Axis Graph")
-                                    }, alignment: .trailing)
-                                
-                                if self.showXAxis == true {
+                ScrollView {
+                    List {
+                        Section(header: Text("Acceleration", comment: "AccelerationView - Section Header")) {
+                            DisclosureGroup(
+                                isExpanded: $showXAxis,
+                                content: {
+                                    LineGraphSubView(motionVM: motionVM, showGraph: .accelerationXAxis)
+                                        .frame(height: 100, alignment: .leading)
+                                },
+                                label: {
+                                    Text("X-Axis: \(motionVM.coreMotionArray.last?.accelerationXAxis ?? 0.0, specifier: "%.5f") m/s^2", comment: "AccelerationView - X-Axis")
+                                })
+                                .disclosureGroupModifier(accessibility: "Toggle X-Axis Graph")
+                            
+                            DisclosureGroup(
+                                isExpanded: $showYAxis,
+                                content: {
+                                    LineGraphSubView(motionVM: motionVM, showGraph: .accelerationXAxis)
+                                        .frame(height: 100, alignment: .leading)
+                                },
+                                label: {
+                                    Text("Y-Axis: \(motionVM.coreMotionArray.last?.accelerationYAxis ?? 0.0, specifier: "%.5f") m/s^2", comment: "AccelerationView - Y-Axis")
+                                })
+                                .disclosureGroupModifier(accessibility: "Toggle Y-Axis Graph")
+                            
+                            DisclosureGroup(
+                                isExpanded: $showZAxis,
+                                content: {
+                                    LineGraphSubView(motionVM: motionVM, showGraph: .accelerationZAxis)
+                                        .frame(height: 100, alignment: .leading)
+                                },
+                                label: {
+                                    Text("Z-Axis: \(motionVM.coreMotionArray.last?.accelerationZAxis ?? 0.0, specifier: "%.5f") m/s^2", comment: "AccelerationView - Z-Axis")
+                                })
+                                .disclosureGroupModifier(accessibility: "Toggle Z-Axis Graph")
+                        }
+                        
+                        Section(header: Text("Refresh Rate", comment: "AccelerationView - Section Header")) {
+                            RefreshRateView2(refreshRate: $frequency, updateSensorInterval: { updateSensorInterval() }, show: "header")
+                            RefreshRateView2(refreshRate: $frequency, updateSensorInterval: { updateSensorInterval() }, show: "slider")
+                        }
+                        
+                        Section(header: Text("List", comment: "AccelerationView - Section Header")) {
+                            ForEach(motionVM.coreMotionArray.reversed().prefix(5), id: \.counter) { index in
+                                HStack{
+                                    Text("ID:\(motionVM.coreMotionArray[index.counter - 1].counter)", comment: "MotionListView - ID")
+                                        .foregroundColor(Color("ListTextColor"))
                                     Spacer()
-                                    LineGraphSubView(motionVM: self.motionVM, showGraph: .accelerationXAxis)
-                                        .frame(width: g.size.width - 25, height: 100, alignment: .leading)
+                                    Text("X:\(motionVM.coreMotionArray[index.counter - 1].accelerationXAxis, specifier: "%.5f")", comment: "MotionListView - X")
+                                        .foregroundColor(Color("ListTextColor"))
                                     Spacer()
+                                    Text("Y:\(motionVM.coreMotionArray[index.counter - 1].accelerationYAxis, specifier: "%.5f")", comment: "MotionListView - Y")
+                                        .foregroundColor(Color("ListTextColor"))
+                                    Spacer()
+                                    Text("Z:\(motionVM.coreMotionArray[index.counter - 1].accelerationZAxis, specifier: "%.5f")", comment: "MotionListView - Z")
+                                        .foregroundColor(Color("ListTextColor"))
                                 }
-                                
-                                Text("Y-Axis: \(self.motionVM.coreMotionArray.last?.accelerationYAxis ?? 0.0, specifier: "%.5f") m/s^2", comment: "AccelerationView - Y-Axis")
-                                    .buttonModifier()
-                                    .overlay(Button(action: { self.showYAxis.toggle() }) {
-                                        Image("GraphButton")
-                                            .graphButtonModifier(accessibility: "Toggle Y-Axis Graph")
-                                    }, alignment: .trailing)
-                                
-                                if self.showYAxis == true {
-                                    Spacer()
-                                    LineGraphSubView(motionVM: self.motionVM, showGraph: .accelerationYAxis)
-                                        .frame(width: g.size.width - 25, height: 100, alignment: .leading)
-                                    Spacer()
-                                }
-                                
-                                Text("Z-Axis: \(self.motionVM.coreMotionArray.last?.accelerationZAxis ?? 0.0, specifier: "%.5f") m/s^2", comment: "AccelerationView - Z-Axis")
-                                    .buttonModifier()
-                                    .overlay(Button(action: { self.showZAxis.toggle() }) {
-                                        Image("GraphButton")
-                                            .graphButtonModifier(accessibility: "Toggle Z-Axis Graph")
-                                    }, alignment: .trailing)
-                                
-                                if self.showZAxis == true {
-                                    Spacer()
-                                    LineGraphSubView(motionVM: self.motionVM, showGraph: .accelerationZAxis)
-                                        .frame(width: g.size.width - 25, height: 100, alignment: .leading)
-                                    Spacer()
-                                }
+                                .font(.footnote)
                             }
-                            .frame(height: 50, alignment: .center)
-                            
-                            
-                            // MARK: - MotionListView()
-                            MotionListView(type: .acceleration, motionVM: self.motionVM)
-                                .frame(minHeight: 250, maxHeight: .infinity)
-                            
-                            
-                            // MARK: - RefreshRateView()
-                            RefreshRateView(updateSensorInterval: { self.updateSensorInterval() })
-                                .frame(width: g.size.width, height: 170, alignment: .center)
-                            Spacer(minLength: 20)
+                            .id(UUID())
                         }
                     }
-                    .frame(width: g.size.width, height: g.size.height - 50 + g.safeAreaInsets.bottom)
-                    .offset(x: 5)
+                    .frame(minWidth: 0, idealWidth: g.size.width, maxWidth: .infinity, minHeight: 0, idealHeight: g.size.height, maxHeight: .infinity, alignment: .leading)
                 }
+                .listStyle(GroupedListStyle())
             }
-            .customToolBar(toolBarFunctionClosure: self.toolBarButtonTapped(button:))
+            .customToolBar(toolBarFunctionClosure: toolBarButtonTapped(button:))
             
             
             // MARK: - SidebarMenu
@@ -212,13 +202,13 @@ struct AccelerationView: View {
             
             
             // MARK: - NotificationView()
-            NotificationView(notificationMessage: self.$notificationMessage, showNotification: self.$showNotification)
+            NotificationView(notificationMessage: $notificationMessage, showNotification: $showNotification)
         }
         .navigationBarItems(leading: sideBarButton)
         .navigationBarTitle("\(NSLocalizedString("Acceleration", comment: "NavigationBar Title - Acceleration"))", displayMode: .inline)
         .onAppear(perform: onAppear)
         .onDisappear(perform: onDisappear)
-        .sheet(isPresented: $showShareSheet) { ShareSheet(activityItems: self.filesToShare) }
+        .sheet(isPresented: $showShareSheet) { ShareSheet(activityItems: filesToShare) }
     }
 }
 

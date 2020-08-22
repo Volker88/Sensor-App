@@ -55,7 +55,7 @@ struct MotionListView: View {
                         .font(.footnote)
                     }
                     .id(UUID())
-                    .listViewModifier(width: g.size.width - 10)
+                    //.listViewModifier(width: g.size.width - 10)
                 )
             }
         } else if  type == .gravity {

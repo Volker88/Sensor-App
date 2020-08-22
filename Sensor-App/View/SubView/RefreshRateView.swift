@@ -86,3 +86,63 @@ struct RefreshRateView_Previews: PreviewProvider {
     }
 }
 
+
+#warning("Rename View")
+// MARK: - Struct
+struct RefreshRateView2: View {
+    
+   
+    
+    // MARK: - Initialize Classes
+    let settings = SettingsAPI()
+    
+    
+    // MARK: - @State / @ObservedObject / @Binding
+    @Binding var refreshRate: Double
+    var updateSensorInterval: () -> Void
+    
+    
+    // MARK: - Define Constants / Variables
+    let show: String
+    
+    
+    // MARK: - Methods
+    func updateSlider() {
+        // Save Sensor Settings
+        var userSettings = settings.fetchUserSettings()
+        userSettings.frequencySetting = refreshRate
+        settings.saveUserSettings(userSettings: userSettings)
+        
+        // Update Sensor Interval
+        updateSensorInterval()
+    }
+    
+    
+    
+    // MARK: - Body - View
+    var body: some View {
+        
+        
+        // MARK: - Return View
+        if show == "header" {
+            Text("\(NSLocalizedString("Frequency:", comment: "RefreshRateView - Frequency")) \(Double(refreshRate), specifier: "%.1f") Hz", comment: "RefreshRateView - Refresh Rate")
+                .onAppear(perform: { refreshRate = settings.fetchUserSettings().frequencySetting })
+        } else if show == "slider" {
+            HStack {
+                Text("1", comment: "RefreshRateView - Label 1")
+                
+                Slider(value: $refreshRate, in: 1...10, step: 0.1) { refresh in
+                    self.updateSlider()
+                }
+                .hoverEffect()
+                .accessibility(label: Text("Refresh Rate", comment: "RefreshRateView - Slider"))
+                .accessibility(value: Text("\(refreshRate, specifier: "%.0f") per Second", comment: "RefreshRateView - Value"))
+                .accessibility(identifier: "Frequency Slider")
+                Text("10", comment: "RefreshRateView - Label 50")
+                
+            }
+            .onAppear(perform: { refreshRate = settings.fetchUserSettings().frequencySetting })
+        }
+    }
+}
+
