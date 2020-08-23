@@ -189,10 +189,9 @@ struct LocationView: View {
                                 .cornerRadius(10)
                         }
                     }
-                    
                     .frame(minWidth: 0, idealWidth: g.size.width, maxWidth: .infinity, minHeight: 0, idealHeight: g.size.height, maxHeight: .infinity, alignment: .leading)
                 }
-                .listStyle(GroupedListStyle())
+                .listStyle(InsetGroupedListStyle())
             }
             .customToolBar(toolBarFunctionClosure: toolBarButtonTapped(button:))
             

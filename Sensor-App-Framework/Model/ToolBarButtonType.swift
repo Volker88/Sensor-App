@@ -17,4 +17,5 @@ enum ToolBarButtonType {
     case pause
     case delete
     case share
+    #warning("Remove Share case")
 }

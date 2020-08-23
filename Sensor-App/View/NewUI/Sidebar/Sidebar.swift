@@ -36,7 +36,7 @@ struct Sidebar: View {
                     Text("Location", comment: "ContentView - Location")
                         .accessibility(identifier: "Location")
                 }
-                NavigationLink(destination: AccelerationView().navigationBarBackButtonHidden(true)) {
+                NavigationLink(destination: Acceleration().navigationBarBackButtonHidden(true)) {
                     Text("Acceleration", comment: "ContentView - Acceleration")
                         .accessibility(identifier: "Acceleration")
                 }

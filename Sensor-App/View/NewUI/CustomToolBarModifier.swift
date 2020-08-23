@@ -29,14 +29,7 @@ struct CustomToolBarModifier: ViewModifier {
         
         return content
             .toolbar{
-                ToolbarItemGroup(placement: .bottomBar) {
-                    Spacer()
-                    Button(action: { self.buttonTapped(type: .share) } ) {
-                        Image(systemName: "square.and.arrow.up")
-                            .toolBarButtonModifier(accessibility: "Share Button")
-                            .accessibility(label: Text("Share", comment: "ToolBarView - Share Button"))
-                    }
-                    
+                ToolbarItemGroup(placement: .bottomBar) {     
                     Spacer()
                     Button(action: { self.buttonTapped(type: .delete) } ) {
                         Image(systemName: "trash.circle")

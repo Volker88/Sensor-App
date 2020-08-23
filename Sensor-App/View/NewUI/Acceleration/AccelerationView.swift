@@ -15,17 +15,13 @@ import SwiftUI
 struct AccelerationView: View {
     
     // MARK: - Initialize Classes
-    let locationAPI = CoreLocationAPI()
     let calculationAPI = CalculationAPI()
     let settings = SettingsAPI()
-    let notificationAPI = NotificationAPI()
     let exportAPI = ExportAPI()
     
     
     // MARK: - @State / @ObservedObject / @Binding
-    @ObservedObject var motionVM = CoreMotionViewModel()
-    @State private var frequency = 1.0
-    @State private var sideBarOpen: Bool = false
+    @StateObject var motionVM = CoreMotionViewModel()
     @State private var showShareSheet = false
     @State private var filesToShare = [Any]()
     
@@ -34,53 +30,11 @@ struct AccelerationView: View {
     @State private var showYAxis = false
     @State private var showZAxis = false
     
-    // Notification Variables
-    @State private var showNotification = false
-    @State private var notificationMessage = ""
-    @State private var notificationDuration = 2.0
-    
-    
     // MARK: - Define Constants / Variables
     
-    
     // MARK: - Initializer
-    init() {
-        frequency = settings.fetchUserSettings().frequencySetting
-        notificationDuration = notificationAPI.fetchNotificationAnimationSettings().duration
-    }
-    
     
     // MARK: - Methods
-    func toolBarButtonTapped(button: ToolBarButtonType) {
-        var messageType: NotificationTypes?
-        
-        switch button {
-            case .play:
-                motionVM.motionUpdateStart()
-                messageType = .played
-            case .pause:
-                motionVM.stopMotionUpdates()
-                messageType = .paused
-            case .delete:
-                motionVM.coreMotionArray.removeAll()
-                motionVM.altitudeArray.removeAll()
-                messageType = .deleted
-            case .share:
-                shareCSV()
-        }
-        
-        if messageType != nil {
-            notificationAPI.toggleNotification(type: messageType!, duration: notificationDuration) { (message, show) in
-                notificationMessage = message
-                showNotification = show
-            }
-        }
-    }
-    
-    func updateSensorInterval() {
-        motionVM.sensorUpdateInterval = settings.fetchUserSettings().frequencySetting
-    }
-    
     func shareCSV() {
         motionVM.stopMotionUpdates()
         var csvText = NSLocalizedString("ID;Time;X-Axis;Y-Axis;Z-Axis", comment: "Export CSV Headline - Acceleration") + "\n"
@@ -89,6 +43,7 @@ struct AccelerationView: View {
             csvText += "\($0.counter);\($0.timestamp);\($0.accelerationXAxis.localizedDecimal());\($0.accelerationYAxis.localizedDecimal());\($0.accelerationZAxis.localizedDecimal())\n"
         }
         filesToShare = exportAPI.getFile(exportText: csvText, filename: "acceleration")
+        
         showShareSheet.toggle()
     }
     
@@ -106,17 +61,11 @@ struct AccelerationView: View {
     
     
     // MARK: - Content
-    #warning("Can not call button on high frequency")
-    var sideBarButton: some View {
+    var shareButton: some View {
         Button(action: {
-            sideBarOpen.toggle()
-            if sideBarOpen {
-                motionVM.stopMotionUpdates()
-            } else {
-                motionVM.motionUpdateStart()
-            }
+            shareCSV()
         }) {
-            Image(systemName: "sidebar.left")
+            Label(NSLocalizedString("Export", comment: "AccelerationView - Export List"), systemImage: "square.and.arrow.up")
         }
     }
     
@@ -165,47 +114,21 @@ struct AccelerationView: View {
                                 .disclosureGroupModifier(accessibility: "Toggle Z-Axis Graph")
                         }
                         
-                        Section(header: Text("Refresh Rate", comment: "AccelerationView - Section Header")) {
-                            RefreshRateView2(refreshRate: $frequency, updateSensorInterval: { updateSensorInterval() }, show: "header")
-                            RefreshRateView2(refreshRate: $frequency, updateSensorInterval: { updateSensorInterval() }, show: "slider")
+                        Section(header: Text("List", comment: "AccelerationView - Section Header"), footer: shareButton) {
+                            AccelerationList(motionVM: motionVM)
+                                .frame(height: 200, alignment: .center)
                         }
                         
-                        Section(header: Text("List", comment: "AccelerationView - Section Header")) {
-                            ForEach(motionVM.coreMotionArray.reversed().prefix(5), id: \.counter) { index in
-                                HStack{
-                                    Text("ID:\(motionVM.coreMotionArray[index.counter - 1].counter)", comment: "MotionListView - ID")
-                                        .foregroundColor(Color("ListTextColor"))
-                                    Spacer()
-                                    Text("X:\(motionVM.coreMotionArray[index.counter - 1].accelerationXAxis, specifier: "%.5f")", comment: "MotionListView - X")
-                                        .foregroundColor(Color("ListTextColor"))
-                                    Spacer()
-                                    Text("Y:\(motionVM.coreMotionArray[index.counter - 1].accelerationYAxis, specifier: "%.5f")", comment: "MotionListView - Y")
-                                        .foregroundColor(Color("ListTextColor"))
-                                    Spacer()
-                                    Text("Z:\(motionVM.coreMotionArray[index.counter - 1].accelerationZAxis, specifier: "%.5f")", comment: "MotionListView - Z")
-                                        .foregroundColor(Color("ListTextColor"))
-                                }
-                                .font(.footnote)
-                            }
-                            .id(UUID())
+                        Section(header: Text("Refresh Rate", comment: "AccelerationView - Section Header")) {
+                            RefreshRateView2(motionVM: motionVM, show: "header")
+                            RefreshRateView2(motionVM: motionVM, show: "slider")
                         }
                     }
-                    .frame(minWidth: 0, idealWidth: g.size.width, maxWidth: .infinity, minHeight: 0, idealHeight: g.size.height, maxHeight: .infinity, alignment: .leading)
+                    .listStyle(InsetGroupedListStyle())
+                    .frame(minWidth: 0, idealWidth: g.size.width, maxWidth: .infinity, minHeight: 0, idealHeight: g.size.height, maxHeight: g.size.height, alignment: .leading)
                 }
-                .listStyle(GroupedListStyle())
             }
-            .customToolBar(toolBarFunctionClosure: toolBarButtonTapped(button:))
-            
-            
-            // MARK: - SidebarMenu
-            SidebarMenu(sidebarOpen: $sideBarOpen)
-            
-            
-            // MARK: - NotificationView()
-            NotificationView(notificationMessage: $notificationMessage, showNotification: $showNotification)
         }
-        .navigationBarItems(leading: sideBarButton)
-        .navigationBarTitle("\(NSLocalizedString("Acceleration", comment: "NavigationBar Title - Acceleration"))", displayMode: .inline)
         .onAppear(perform: onAppear)
         .onDisappear(perform: onDisappear)
         .sheet(isPresented: $showShareSheet) { ShareSheet(activityItems: filesToShare) }

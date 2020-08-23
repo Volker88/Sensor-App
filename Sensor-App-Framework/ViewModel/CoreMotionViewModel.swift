@@ -22,9 +22,9 @@ class CoreMotionViewModel: ObservableObject {
     // MARK: - Define Constants / Variables
     @Published var coreMotionArray = [MotionModel]()
     @Published var altitudeArray = [AltitudeModel]()
-    var sensorUpdateInterval : Double = 1 {
+    @Published var sensorUpdateInterval : Double = 1 {
         didSet {
-            motionAPI.sensorUpdateInterval = settings.fetchUserSettings().frequencySetting
+            motionAPI.sensorUpdateInterval = sensorUpdateInterval
         }
     }
     
@@ -44,7 +44,6 @@ class CoreMotionViewModel: ObservableObject {
         }
         
         Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { (timer) in
-            
                 let random = Double.random(in: -0.1...0.1)
                 let random2 = Double.random(in: -0.1...0.1)
                 let random3 = Double.random(in: -0.1...0.1)
@@ -52,7 +51,6 @@ class CoreMotionViewModel: ObservableObject {
                 self.coreMotionArray.append(MotionModel(counter: counter, timestamp: self.settings.getTimestamp(), accelerationXAxis: random, accelerationYAxis: random2, accelerationZAxis: random3, gravityXAxis: random, gravityYAxis: random2, gravityZAxis: random3, gyroXAxis: random, gyroYAxis: random2, gyroZAxis: random3, magnetometerCalibration: 2, magnetometerXAxis: random, magnetometerYAxis: random2, magnetometerZAxis: random3, attitudeRoll: random, attitudePitch: random2, attitudeYaw: random3, attitudeHeading: random4))
             counter += 1
         }
-        
         #endif
         
         motionAPI.motionUpdateStart()
@@ -85,12 +83,20 @@ class CoreMotionViewModel: ObservableObject {
     
     func altitudeUpdateStart() {
         #if targetEnvironment(simulator)
+        var counter = 1
         for _ in 1...100 {
-            altitudeArray.append(AltitudeModel(counter: 1, timestamp: settings.getTimestamp(), pressureValue: 99.61142, relativeAltitudeValue: 0.0))
-            altitudeArray.append(AltitudeModel(counter: 1, timestamp: settings.getTimestamp(), pressureValue: 100.32622, relativeAltitudeValue: 0.183257))
-            altitudeArray.append(AltitudeModel(counter: 1, timestamp: settings.getTimestamp(), pressureValue: 101.95223, relativeAltitudeValue: 0.780832))
+            let random = Double.random(in: 99...101)
+            let random2 = Double.random(in: -1...1)
+            altitudeArray.append(AltitudeModel(counter: counter, timestamp: settings.getTimestamp(), pressureValue: random, relativeAltitudeValue: random2))
+            counter += 1
         }
-        altitudeArray.shuffle()
+        
+        Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { (timer) in
+            let random = Double.random(in: 99...101)
+            let random2 = Double.random(in: -1...1)
+            self.altitudeArray.append(AltitudeModel(counter: counter, timestamp: self.settings.getTimestamp(), pressureValue: random, relativeAltitudeValue: random2))
+            counter += 1
+        }
         #endif
         
         motionAPI.motionUpdateStart()
