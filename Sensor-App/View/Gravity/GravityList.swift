@@ -1,5 +1,5 @@
 //
-//  AccelerationList.swift
+//  GravityList.swift
 //  Sensor-App
 //
 //  Created by Volker Schmitt on 23.08.20.
@@ -11,7 +11,7 @@ import SwiftUI
 
 
 // MARK: - Struct
-struct AccelerationList: View {
+struct GravityList: View {
     
     // MARK: - Initialize Classes
     
@@ -30,22 +30,15 @@ struct AccelerationList: View {
         List(self.motionVM.coreMotionArray.reversed(), id: \.counter) { index in
             HStack{
                 Text("ID:\(self.motionVM.coreMotionArray[index.counter - 1].counter)", comment: "MotionListView - ID")
-                    .foregroundColor(Color("ListTextColor"))
                 Spacer()
-                Text("X:\(self.motionVM.coreMotionArray[index.counter - 1].accelerationXAxis, specifier: "%.5f")", comment: "MotionListView - X")
-                    .foregroundColor(Color("ListTextColor"))
+                Text("X:\(self.motionVM.coreMotionArray[index.counter - 1].gravityXAxis, specifier: "%.5f")", comment: "MotionListView - X")
                 Spacer()
-                Text("Y:\(self.motionVM.coreMotionArray[index.counter - 1].accelerationYAxis, specifier: "%.5f")", comment: "MotionListView - Y")
-                    .foregroundColor(Color("ListTextColor"))
+                Text("Y:\(self.motionVM.coreMotionArray[index.counter - 1].gravityYAxis, specifier: "%.5f")", comment: "MotionListView - Y")
                 Spacer()
-                Text("Z:\(self.motionVM.coreMotionArray[index.counter - 1].accelerationZAxis, specifier: "%.5f")", comment: "MotionListView - Z")
-                    .foregroundColor(Color("ListTextColor"))
+                Text("Z:\(self.motionVM.coreMotionArray[index.counter - 1].gravityZAxis, specifier: "%.5f")", comment: "MotionListView - Z")
             }
             .font(.footnote)
-            .id(UUID())
         }
-        //.animation(nil)
-        .id(UUID())
         .listStyle(PlainListStyle())
         .frame(minWidth: 0, idealWidth: 100, maxWidth: .infinity, minHeight: 0, idealHeight: 250, maxHeight: 250, alignment: .center)
     }
@@ -53,10 +46,10 @@ struct AccelerationList: View {
 
 
 // MARK: - Preview
-struct AccelerationList_Previews: PreviewProvider {
+struct GravityList_Previews: PreviewProvider {
     static var previews: some View {
         ForEach([ColorScheme.light, .dark], id: \.self) { scheme in
-            AccelerationList(motionVM: CoreMotionViewModel())
+            GravityList(motionVM: CoreMotionViewModel())
                 .colorScheme(scheme)
                 .previewLayout(.sizeThatFits)
         }

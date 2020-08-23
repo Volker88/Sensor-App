@@ -27,7 +27,7 @@ struct NotificationMessageView: View {
     // MARK: - Body - View
     var body: some View {
         
-        
+        #warning("Change Color")
         // MARK: - Return View
         return Text(notificationText)
             .padding()

@@ -1,5 +1,5 @@
 //
-//  CustomToolBarModifier.swift
+//  CustomToolBar.swift
 //  Sensor-App
 //
 //  Created by Volker Schmitt on 17.08.20.
@@ -11,7 +11,7 @@ import SwiftUI
 
 
 // MARK: - ToolBarView
-struct CustomToolBarModifier: ViewModifier {
+struct CustomToolBar: ViewModifier {
     
     // MARK: - @State / @ObservedObject / @Binding
     
@@ -68,6 +68,6 @@ extension View {
     /// - Returns: Void
     ///
     func customToolBar(toolBarFunctionClosure: @escaping (ToolBarButtonType) -> Void) -> some View {
-        return  modifier(CustomToolBarModifier(toolBarFunctionClosure: toolBarFunctionClosure))
+        return  modifier(CustomToolBar(toolBarFunctionClosure: toolBarFunctionClosure))
     }
 }

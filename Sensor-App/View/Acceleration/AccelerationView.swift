@@ -15,7 +15,6 @@ import SwiftUI
 struct AccelerationView: View {
     
     // MARK: - Initialize Classes
-    let calculationAPI = CalculationAPI()
     let settings = SettingsAPI()
     let exportAPI = ExportAPI()
     
@@ -43,7 +42,6 @@ struct AccelerationView: View {
             csvText += "\($0.counter);\($0.timestamp);\($0.accelerationXAxis.localizedDecimal());\($0.accelerationYAxis.localizedDecimal());\($0.accelerationZAxis.localizedDecimal())\n"
         }
         filesToShare = exportAPI.getFile(exportText: csvText, filename: "acceleration")
-        
         showShareSheet.toggle()
     }
     
@@ -120,8 +118,8 @@ struct AccelerationView: View {
                         }
                         
                         Section(header: Text("Refresh Rate", comment: "AccelerationView - Section Header")) {
-                            RefreshRateView2(motionVM: motionVM, show: "header")
-                            RefreshRateView2(motionVM: motionVM, show: "slider")
+                            RefreshRateView(motionVM: motionVM, show: "header")
+                            RefreshRateView(motionVM: motionVM, show: "slider")
                         }
                     }
                     .listStyle(InsetGroupedListStyle())

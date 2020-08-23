@@ -16,10 +16,10 @@ struct Sidebar: View {
     // MARK: - Initialize Classes
     
     // MARK: - Environment Object
-
+    
     
     // MARK: - @State / @ObservedObject / @Binding
-
+    
     
     // MARK: - Methods
     
@@ -29,39 +29,43 @@ struct Sidebar: View {
         List {
             Group {
                 NavigationLink(destination: ContentView().navigationBarBackButtonHidden(true)) {
-                    Text("Home", comment: "ContentView - Home") // TODO: Remove
+                    Label(NSLocalizedString("Home", comment: "ContentView - Home"), systemImage: "house")// TODO: Remove
                         .accessibility(identifier: "Home")
                 }
                 NavigationLink(destination: LocationView().navigationBarBackButtonHidden(true)) {
-                    Text("Location", comment: "ContentView - Location")
+                    Label(NSLocalizedString("Location", comment: "ContentView - Location"), systemImage: "location")
                         .accessibility(identifier: "Location")
                 }
                 NavigationLink(destination: Acceleration().navigationBarBackButtonHidden(true)) {
-                    Text("Acceleration", comment: "ContentView - Acceleration")
+                    Label(NSLocalizedString("Acceleration", comment: "ContentView - Acceleration"), systemImage: "globe")
                         .accessibility(identifier: "Acceleration")
                 }
-                NavigationLink(destination: GravityView().navigationBarBackButtonHidden(true)) {
-                    Text("Gravity", comment: "ContentView - Gravity")
+                NavigationLink(destination: Gravity().navigationBarBackButtonHidden(true)) {
+                    Label(NSLocalizedString("Gravity", comment: "ContentView - Gravity"), systemImage: "globe")
                         .accessibility(identifier: "Gravity")
                 }
-                NavigationLink(destination: GyroscopeView().navigationBarBackButtonHidden(true)) {
-                    Text("Gyroscope", comment: "ContentView - Gyroscope")
+                NavigationLink(destination: Gyroscope().navigationBarBackButtonHidden(true)) {
+                    Label(NSLocalizedString("Gyroscope", comment: "ContentView - Gyroscope"), systemImage: "globe")
                         .accessibility(identifier: "Gyroscope")
                 }
             }
-
+            
             Group {
-                NavigationLink(destination: MagnetometerView().navigationBarBackButtonHidden(true)) {
-                    Text("Magnetometer", comment: "ContentView - Magnetometer")
+                NavigationLink(destination: Magnetometer().navigationBarBackButtonHidden(true)) {
+                    Label(NSLocalizedString("Magnetometer", comment: "ContentView - Magnetometer"), systemImage: "globe")
                         .accessibility(identifier: "Magnetometer")
                 }
-                NavigationLink(destination: AttitudeView().navigationBarBackButtonHidden(true)) {
-                    Text("Attitude", comment: "ContentView - Attitude")
+                NavigationLink(destination: Attitude().navigationBarBackButtonHidden(true)) {
+                    Label(NSLocalizedString("Attitude", comment: "ContentView - Attitude"), systemImage: "globe")
                         .accessibility(identifier: "Attitude")
                 }
-                NavigationLink(destination: AltitudeView().navigationBarBackButtonHidden(true)) {
-                    Text("Altitude", comment: "ContentView - Altitude")
+                NavigationLink(destination: Altitude().navigationBarBackButtonHidden(true)) {
+                    Label(NSLocalizedString("Altitude", comment: "ContentView - Altitude"), systemImage: "globe")
                         .accessibility(identifier: "Altitude")
+                }
+                NavigationLink(destination: SettingsView().navigationBarBackButtonHidden(true)) {
+                    Label(NSLocalizedString("Settings", comment: "ContentView - Settings"), systemImage: "gear")
+                        .accessibility(identifier: "Settings")
                 }
             }
         }

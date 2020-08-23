@@ -1,5 +1,5 @@
 //
-//  Acceleration.swift
+//  Attitude.swift
 //  Sensor-App
 //
 //  Created by Volker Schmitt on 23.08.20.
@@ -11,13 +11,12 @@ import SwiftUI
 
 
 // MARK: - Struct
-struct Acceleration: View {
-    
+struct Attitude: View {
     
     // MARK: - Initialize Classes
     let locationAPI = CoreLocationAPI()
     let notificationAPI = NotificationAPI()
-    let accelerationView = AccelerationView()
+    let attitudeView = AttitudeView()
     
     // MARK: - @State / @ObservedObject / @Binding
     @State private var sideBarOpen: Bool = false
@@ -43,17 +42,15 @@ struct Acceleration: View {
         
         switch button {
             case .play:
-                accelerationView.motionVM.motionUpdateStart()
+                attitudeView.motionVM.motionUpdateStart()
                 messageType = .played
             case .pause:
-                accelerationView.motionVM.stopMotionUpdates()
+                attitudeView.motionVM.stopMotionUpdates()
                 messageType = .paused
             case .delete:
-                accelerationView.motionVM.coreMotionArray.removeAll()
-                accelerationView.motionVM.altitudeArray.removeAll()
+                attitudeView.motionVM.coreMotionArray.removeAll()
+                attitudeView.motionVM.altitudeArray.removeAll()
                 messageType = .deleted
-            case .share:
-                accelerationView.shareCSV()
         }
         
         if messageType != nil {
@@ -70,9 +67,9 @@ struct Acceleration: View {
         Button(action: {
             sideBarOpen.toggle()
             if sideBarOpen {
-                accelerationView.motionVM.stopMotionUpdates()
+                attitudeView.motionVM.stopMotionUpdates()
             } else {
-                accelerationView.motionVM.motionUpdateStart()
+                attitudeView.motionVM.motionUpdateStart()
             }
         }) {
             Image(systemName: "sidebar.left")
@@ -86,7 +83,7 @@ struct Acceleration: View {
         
         // MARK: - Return View
         ZStack {
-            accelerationView
+            attitudeView
                 .frame(minWidth: 0, idealWidth: 100, maxWidth: .infinity, minHeight: 0, idealHeight: 100, maxHeight: .infinity, alignment: .center)
                 .customToolBar(toolBarFunctionClosure: toolBarButtonTapped(button:))
             
@@ -99,17 +96,17 @@ struct Acceleration: View {
             NotificationView(notificationMessage: $notificationMessage, showNotification: $showNotification)
         }
         .navigationBarItems(leading: sideBarButton)
-        .navigationBarTitle("\(NSLocalizedString("Acceleration", comment: "NavigationBar Title - Acceleration"))", displayMode: .inline)
+        .navigationBarTitle("\(NSLocalizedString("Attitude", comment: "NavigationBar Title - Attitude"))", displayMode: .inline)
     }
 }
 
 
 // MARK: - Preview
-struct Acceleration_Previews: PreviewProvider {
+struct Attitude_Previews: PreviewProvider {
     static var previews: some View {
         ForEach([ColorScheme.light, .dark], id: \.self) { scheme in
             NavigationView {
-                Acceleration()
+                Attitude()
                     .colorScheme(scheme)
             }
         }

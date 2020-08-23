@@ -65,8 +65,6 @@ struct LocationView: View {
             case .delete:
                 locationVM.coreLocationArray.removeAll()
                 messageType = .deleted
-            case .share:
-                shareCSV()
         }
         
         if messageType != nil {
