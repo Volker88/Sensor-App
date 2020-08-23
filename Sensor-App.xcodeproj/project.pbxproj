@@ -32,6 +32,9 @@
 		1527B07D24C4ACA20024DD78 /* Sensor_App_Framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 1527B07B24C4ACA20024DD78 /* Sensor_App_Framework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1527B08024C4ACA20024DD78 /* Sensor_App_Framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1527B07924C4ACA20024DD78 /* Sensor_App_Framework.framework */; };
 		1527B08124C4ACA20024DD78 /* Sensor_App_Framework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1527B07924C4ACA20024DD78 /* Sensor_App_Framework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1535752A24F26D3D00FA4A41 /* AccelerationSensors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1535752724F26D3D00FA4A41 /* AccelerationSensors.swift */; };
+		1535752B24F26D3D00FA4A41 /* AccelerationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1535752824F26D3D00FA4A41 /* AccelerationView.swift */; };
+		1535752C24F26D3D00FA4A41 /* AccelerationList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1535752924F26D3D00FA4A41 /* AccelerationList.swift */; };
 		1542E30024C4AF1000FA2755 /* AccelerationViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E2F624C4AF0F00FA2755 /* AccelerationViewUITests.swift */; };
 		1542E30124C4AF1000FA2755 /* GyroscopeViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E2F724C4AF0F00FA2755 /* GyroscopeViewUITests.swift */; };
 		1542E30224C4AF1000FA2755 /* GravityViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E2F824C4AF0F00FA2755 /* GravityViewUITests.swift */; };
@@ -93,7 +96,6 @@
 		1542E3C924C4B05400FA2755 /* AltitudeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E3B324C4B05400FA2755 /* AltitudeView.swift */; };
 		1542E3CA24C4B05400FA2755 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E3B424C4B05400FA2755 /* SettingsView.swift */; };
 		1542E3CB24C4B05400FA2755 /* GyroscopeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E3B524C4B05400FA2755 /* GyroscopeView.swift */; };
-		1542E3CC24C4B05400FA2755 /* AccelerationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E3B624C4B05400FA2755 /* AccelerationView.swift */; };
 		1542E3CD24C4B05400FA2755 /* GravityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E3B724C4B05400FA2755 /* GravityView.swift */; };
 		1542E3CE24C4B05400FA2755 /* MagnetometerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E3B824C4B05400FA2755 /* MagnetometerView.swift */; };
 		1542E3CF24C4B05400FA2755 /* LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E3B924C4B05400FA2755 /* LocationView.swift */; };
@@ -273,6 +275,9 @@
 		1527B07924C4ACA20024DD78 /* Sensor_App_Framework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Sensor_App_Framework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1527B07B24C4ACA20024DD78 /* Sensor_App_Framework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Sensor_App_Framework.h; sourceTree = "<group>"; };
 		1527B07C24C4ACA20024DD78 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1535752724F26D3D00FA4A41 /* AccelerationSensors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccelerationSensors.swift; sourceTree = "<group>"; };
+		1535752824F26D3D00FA4A41 /* AccelerationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccelerationView.swift; sourceTree = "<group>"; };
+		1535752924F26D3D00FA4A41 /* AccelerationList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccelerationList.swift; sourceTree = "<group>"; };
 		1542E2F224C4AE8F00FA2755 /* ScreenshoTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = ScreenshoTests.xctestplan; sourceTree = "<group>"; };
 		1542E2F324C4AE9A00FA2755 /* UITests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = UITests.xctestplan; sourceTree = "<group>"; };
 		1542E2F424C4AEA300FA2755 /* UnitTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = UnitTests.xctestplan; sourceTree = "<group>"; };
@@ -341,7 +346,6 @@
 		1542E3B324C4B05400FA2755 /* AltitudeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AltitudeView.swift; sourceTree = "<group>"; };
 		1542E3B424C4B05400FA2755 /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		1542E3B524C4B05400FA2755 /* GyroscopeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GyroscopeView.swift; sourceTree = "<group>"; };
-		1542E3B624C4B05400FA2755 /* AccelerationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccelerationView.swift; sourceTree = "<group>"; };
 		1542E3B724C4B05400FA2755 /* GravityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GravityView.swift; sourceTree = "<group>"; };
 		1542E3B824C4B05400FA2755 /* MagnetometerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MagnetometerView.swift; sourceTree = "<group>"; };
 		1542E3B924C4B05400FA2755 /* LocationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationView.swift; sourceTree = "<group>"; };
@@ -536,6 +540,16 @@
 			path = "Sensor-App-Framework";
 			sourceTree = "<group>";
 		};
+		1535752624F26D3D00FA4A41 /* Acceleration */ = {
+			isa = PBXGroup;
+			children = (
+				1535752724F26D3D00FA4A41 /* AccelerationSensors.swift */,
+				1535752824F26D3D00FA4A41 /* AccelerationView.swift */,
+				1535752924F26D3D00FA4A41 /* AccelerationList.swift */,
+			);
+			path = Acceleration;
+			sourceTree = "<group>";
+		};
 		1542E2F124C4AD3B00FA2755 /* TestPlans */ = {
 			isa = PBXGroup;
 			children = (
@@ -701,9 +715,9 @@
 		1542E3B224C4B05400FA2755 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1535752624F26D3D00FA4A41 /* Acceleration */,
 				151D316924E955D90090BC94 /* NewUI */,
 				1542E3BB24C4B05400FA2755 /* SubView */,
-				1542E3B624C4B05400FA2755 /* AccelerationView.swift */,
 				1542E3B324C4B05400FA2755 /* AltitudeView.swift */,
 				1542E3BA24C4B05400FA2755 /* AttitudeView.swift */,
 				1542E3B724C4B05400FA2755 /* GravityView.swift */,
@@ -1036,7 +1050,6 @@
 				1542E3CE24C4B05400FA2755 /* MagnetometerView.swift in Sources */,
 				1542E3DE24C4B16800FA2755 /* CalculationAPI.swift in Sources */,
 				1542E40224C4B1F800FA2755 /* UserSettings.swift in Sources */,
-				1542E3CC24C4B05400FA2755 /* AccelerationView.swift in Sources */,
 				1542E3DA24C4B05400FA2755 /* LineGraphSubView.swift in Sources */,
 				1542E3FC24C4B1EF00FA2755 /* SensorType.swift in Sources */,
 				1542E3E624C4B17A00FA2755 /* SettingsAPI.swift in Sources */,
@@ -1055,6 +1068,7 @@
 				15441C0724EDA4A300DC7D41 /* DisclosureGroupModifier.swift in Sources */,
 				1542E3FE24C4B1F300FA2755 /* SettingsForUserDefaults.swift in Sources */,
 				151D317024E956380090BC94 /* SideMenuView.swift in Sources */,
+				1535752B24F26D3D00FA4A41 /* AccelerationView.swift in Sources */,
 				1542E3DB24C4B05400FA2755 /* GraphDetailModel.swift in Sources */,
 				1542E3EC24C4B1A400FA2755 /* ListViewModifier.swift in Sources */,
 				151D316C24E955FB0090BC94 /* Sidebar.swift in Sources */,
@@ -1063,6 +1077,7 @@
 				1542E3E424C4B17000FA2755 /* ExportAPI.swift in Sources */,
 				1542E3FB24C4B1ED00FA2755 /* NotificationTypes.swift in Sources */,
 				151D316E24E956210090BC94 /* SidebarMenu.swift in Sources */,
+				1535752A24F26D3D00FA4A41 /* AccelerationSensors.swift in Sources */,
 				15442D8D24EAF1F600DCF523 /* CustomToolBarModifier.swift in Sources */,
 				1527B01B24C4AA240024DD78 /* Sensor_AppApp.swift in Sources */,
 				1542E40024C4B1F600FA2755 /* ToolBarButtonType.swift in Sources */,
@@ -1073,6 +1088,7 @@
 				1542E3E824C4B19500FA2755 /* Extension.swift in Sources */,
 				159B640324DEB5DC009A1E35 /* Extension_Map.swift in Sources */,
 				1542E3D524C4B05400FA2755 /* RefreshRateView.swift in Sources */,
+				1535752C24F26D3D00FA4A41 /* AccelerationList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
