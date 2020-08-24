@@ -20,7 +20,7 @@ struct GravityView: View {
     
     
     // MARK: - @State / @ObservedObject / @Binding
-    @StateObject var motionVM = CoreMotionViewModel()
+    @ObservedObject var motionVM = CoreMotionViewModel()
     @State private var showShareSheet = false
     @State private var filesToShare = [Any]()
     
@@ -51,6 +51,7 @@ struct GravityView: View {
     func onAppear() {
         // Start updating motion
         motionVM.motionUpdateStart()
+        motionVM.sensorUpdateInterval = settings.fetchUserSettings().frequencySetting
     }
     
     func onDisappear() {

@@ -14,7 +14,6 @@ import SwiftUI
 struct Attitude: View {
     
     // MARK: - Initialize Classes
-    let locationAPI = CoreLocationAPI()
     let notificationAPI = NotificationAPI()
     let attitudeView = AttitudeView()
     
@@ -76,12 +75,7 @@ struct Attitude: View {
         }
     }
     
-    
-    // MARK: - Body - View
-    @ViewBuilder
-    var body: some View {
-        
-        // MARK: - Return View
+    var content: some View {
         ZStack {
             attitudeView
                 .frame(minWidth: 0, idealWidth: 100, maxWidth: .infinity, minHeight: 0, idealHeight: 100, maxHeight: .infinity, alignment: .center)
@@ -95,8 +89,21 @@ struct Attitude: View {
             // MARK: - NotificationView()
             NotificationView(notificationMessage: $notificationMessage, showNotification: $showNotification)
         }
-        .navigationBarItems(leading: sideBarButton)
         .navigationBarTitle("\(NSLocalizedString("Attitude", comment: "NavigationBar Title - Attitude"))", displayMode: .inline)
+    }
+    
+    
+    // MARK: - Body - View
+    @ViewBuilder
+    var body: some View {
+        
+        // MARK: - Return View
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            content
+                .navigationBarItems(leading: sideBarButton)
+        } else {
+            content
+        }
     }
 }
 

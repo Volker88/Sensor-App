@@ -33,6 +33,7 @@
 		1527B08124C4ACA20024DD78 /* Sensor_App_Framework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1527B07924C4ACA20024DD78 /* Sensor_App_Framework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1535752B24F26D3D00FA4A41 /* AccelerationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1535752824F26D3D00FA4A41 /* AccelerationView.swift */; };
 		1535752C24F26D3D00FA4A41 /* AccelerationList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1535752924F26D3D00FA4A41 /* AccelerationList.swift */; };
+		153F46D024F4157E00E6F851 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153F46CF24F4157E00E6F851 /* Location.swift */; };
 		1542E30024C4AF1000FA2755 /* AccelerationViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E2F624C4AF0F00FA2755 /* AccelerationViewUITests.swift */; };
 		1542E30124C4AF1000FA2755 /* GyroscopeViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E2F724C4AF0F00FA2755 /* GyroscopeViewUITests.swift */; };
 		1542E30224C4AF1000FA2755 /* GravityViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E2F824C4AF0F00FA2755 /* GravityViewUITests.swift */; };
@@ -277,6 +278,7 @@
 		1527B07C24C4ACA20024DD78 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1535752824F26D3D00FA4A41 /* AccelerationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccelerationView.swift; sourceTree = "<group>"; };
 		1535752924F26D3D00FA4A41 /* AccelerationList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccelerationList.swift; sourceTree = "<group>"; };
+		153F46CF24F4157E00E6F851 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		1542E2F224C4AE8F00FA2755 /* ScreenshoTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = ScreenshoTests.xctestplan; sourceTree = "<group>"; };
 		1542E2F324C4AE9A00FA2755 /* UITests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = UITests.xctestplan; sourceTree = "<group>"; };
 		1542E2F424C4AEA300FA2755 /* UnitTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = UnitTests.xctestplan; sourceTree = "<group>"; };
@@ -845,6 +847,7 @@
 		158826ED24F29D7A00631B87 /* Location */ = {
 			isa = PBXGroup;
 			children = (
+				153F46CF24F4157E00E6F851 /* Location.swift */,
 				1542E3B924C4B05400FA2755 /* LocationView.swift */,
 				1542E3C024C4B05400FA2755 /* MapView.swift */,
 			);
@@ -1156,6 +1159,7 @@
 				15445CC424F2DF6B006940C6 /* AttitudeList.swift in Sources */,
 				1542E3CD24C4B05400FA2755 /* GravityView.swift in Sources */,
 				15445CC924F2E213006940C6 /* AltitudeList.swift in Sources */,
+				153F46D024F4157E00E6F851 /* Location.swift in Sources */,
 				1542E3CF24C4B05400FA2755 /* LocationView.swift in Sources */,
 				151D317924E975F30090BC94 /* CustomNavigationViewStyle.swift in Sources */,
 				1542E3DC24C4B16500FA2755 /* AppUpdates.swift in Sources */,
@@ -1399,7 +1403,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				MY_BUILD_VERSION = 2.20347.12;
+				MY_BUILD_VERSION = 2.20351.13;
 				MY_VERSION = 3.0.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1457,7 +1461,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				MY_BUILD_VERSION = 2.20347.12;
+				MY_BUILD_VERSION = 2.20351.13;
 				MY_VERSION = 3.0.0;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;

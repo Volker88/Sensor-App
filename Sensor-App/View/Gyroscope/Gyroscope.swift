@@ -14,7 +14,6 @@ import SwiftUI
 struct Gyroscope: View {
     
     // MARK: - Initialize Classes
-    let locationAPI = CoreLocationAPI()
     let notificationAPI = NotificationAPI()
     let gyroscopeView = GyroscopeView()
     
@@ -76,12 +75,7 @@ struct Gyroscope: View {
         }
     }
     
-    
-    // MARK: - Body - View
-    @ViewBuilder
-    var body: some View {
-        
-        // MARK: - Return View
+    var content: some View {
         ZStack {
             gyroscopeView
                 .frame(minWidth: 0, idealWidth: 100, maxWidth: .infinity, minHeight: 0, idealHeight: 100, maxHeight: .infinity, alignment: .center)
@@ -95,8 +89,21 @@ struct Gyroscope: View {
             // MARK: - NotificationView()
             NotificationView(notificationMessage: $notificationMessage, showNotification: $showNotification)
         }
-        .navigationBarItems(leading: sideBarButton)
         .navigationBarTitle("\(NSLocalizedString("Gyroscope", comment: "NavigationBar Title - Gyroscope"))", displayMode: .inline)
+    }
+    
+    
+    // MARK: - Body - View
+    @ViewBuilder
+    var body: some View {
+        
+        // MARK: - Return View
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            content
+                .navigationBarItems(leading: sideBarButton)
+        } else {
+            content
+        }
     }
 }
 

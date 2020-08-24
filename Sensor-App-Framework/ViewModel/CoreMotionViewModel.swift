@@ -29,6 +29,11 @@ class CoreMotionViewModel: ObservableObject {
     }
     
     
+    // MARK: - Initializer
+    init() {
+        sensorUpdateInterval = settings.fetchUserSettings().frequencySetting
+    }
+    
     // MARK: - Methods
     func motionUpdateStart() {
         #if targetEnvironment(simulator)

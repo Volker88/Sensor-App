@@ -1,8 +1,8 @@
 //
-//  Acceleration.swift
+//  Location.swift
 //  Sensor-App
 //
-//  Created by Volker Schmitt on 23.08.20.
+//  Created by Volker Schmitt on 24.08.20.
 //
 
 
@@ -11,11 +11,11 @@ import SwiftUI
 
 
 // MARK: - Struct
-struct Acceleration: View {
+struct Location: View {
     
     // MARK: - Initialize Classes
     let notificationAPI = NotificationAPI()
-    let accelerationView = AccelerationView()
+    let locationView = LocationView()
     
     // MARK: - @State / @ObservedObject / @Binding
     @State private var sideBarOpen: Bool = false
@@ -41,14 +41,13 @@ struct Acceleration: View {
         
         switch button {
             case .play:
-                accelerationView.motionVM.motionUpdateStart()
+                locationView.locationVM.startLocationUpdates()
                 messageType = .played
             case .pause:
-                accelerationView.motionVM.stopMotionUpdates()
+                locationView.locationVM.stopLocationUpdates()
                 messageType = .paused
             case .delete:
-                accelerationView.motionVM.coreMotionArray.removeAll()
-                accelerationView.motionVM.altitudeArray.removeAll()
+                locationView.locationVM.coreLocationArray.removeAll()
                 messageType = .deleted
         }
         
@@ -66,9 +65,9 @@ struct Acceleration: View {
         Button(action: {
             sideBarOpen.toggle()
             if sideBarOpen {
-                accelerationView.motionVM.stopMotionUpdates()
+                locationView.locationVM.stopLocationUpdates()
             } else {
-                accelerationView.motionVM.motionUpdateStart()
+                locationView.locationVM.startLocationUpdates()
             }
         }) {
             Image(systemName: "sidebar.left")
@@ -77,7 +76,7 @@ struct Acceleration: View {
     
     var content: some View {
         ZStack {
-            accelerationView
+            locationView
                 .frame(minWidth: 0, idealWidth: 100, maxWidth: .infinity, minHeight: 0, idealHeight: 100, maxHeight: .infinity, alignment: .center)
                 .customToolBar(toolBarFunctionClosure: toolBarButtonTapped(button:))
             
@@ -89,7 +88,7 @@ struct Acceleration: View {
             // MARK: - NotificationView()
             NotificationView(notificationMessage: $notificationMessage, showNotification: $showNotification)
         }
-        .navigationBarTitle("\(NSLocalizedString("Acceleration", comment: "NavigationBar Title - Acceleration"))", displayMode: .inline)
+        .navigationBarTitle("\(NSLocalizedString("Location", comment: "NavigationBar Title - Location"))", displayMode: .inline)
     }
     
     
@@ -109,11 +108,11 @@ struct Acceleration: View {
 
 
 // MARK: - Preview
-struct Acceleration_Previews: PreviewProvider {
+struct Location_Previews: PreviewProvider {
     static var previews: some View {
         ForEach([ColorScheme.light, .dark], id: \.self) { scheme in
             NavigationView {
-                Acceleration()
+                Location()
                     .colorScheme(scheme)
             }
         }

@@ -14,7 +14,6 @@ import SwiftUI
 struct Altitude: View {
     
     // MARK: - Initialize Classes
-    let locationAPI = CoreLocationAPI()
     let notificationAPI = NotificationAPI()
     let altitudeView = AltitudeView()
     
@@ -76,12 +75,7 @@ struct Altitude: View {
         }
     }
     
-    
-    // MARK: - Body - View
-    @ViewBuilder
-    var body: some View {
-        
-        // MARK: - Return View
+    var content: some View {
         ZStack {
             altitudeView
                 .frame(minWidth: 0, idealWidth: 100, maxWidth: .infinity, minHeight: 0, idealHeight: 100, maxHeight: .infinity, alignment: .center)
@@ -95,8 +89,21 @@ struct Altitude: View {
             // MARK: - NotificationView()
             NotificationView(notificationMessage: $notificationMessage, showNotification: $showNotification)
         }
-        .navigationBarItems(leading: sideBarButton)
         .navigationBarTitle("\(NSLocalizedString("Altitude", comment: "NavigationBar Title - Altitude"))", displayMode: .inline)
+    }
+    
+    
+    // MARK: - Body - View
+    @ViewBuilder
+    var body: some View {
+        
+        // MARK: - Return View
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            content
+                .navigationBarItems(leading: sideBarButton)
+        } else {
+            content
+        }
     }
 }
 

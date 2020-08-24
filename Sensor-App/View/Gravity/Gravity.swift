@@ -14,7 +14,6 @@ import SwiftUI
 struct Gravity: View {
     
     // MARK: - Initialize Classes
-    let locationAPI = CoreLocationAPI()
     let notificationAPI = NotificationAPI()
     let gravityView = GravityView()
     
@@ -76,12 +75,7 @@ struct Gravity: View {
         }
     }
     
-    
-    // MARK: - Body - View
-    @ViewBuilder
-    var body: some View {
-        
-        // MARK: - Return View
+    var content: some View {
         ZStack {
             gravityView
                 .frame(minWidth: 0, idealWidth: 100, maxWidth: .infinity, minHeight: 0, idealHeight: 100, maxHeight: .infinity, alignment: .center)
@@ -95,11 +89,23 @@ struct Gravity: View {
             // MARK: - NotificationView()
             NotificationView(notificationMessage: $notificationMessage, showNotification: $showNotification)
         }
-        .navigationBarItems(leading: sideBarButton)
         .navigationBarTitle("\(NSLocalizedString("Gravity", comment: "NavigationBar Title - Gravity"))", displayMode: .inline)
     }
+    
+    
+    // MARK: - Body - View
+    @ViewBuilder
+    var body: some View {
+        
+        // MARK: - Return View
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            content
+                .navigationBarItems(leading: sideBarButton)
+        } else {
+            content
+        }
+    }
 }
-
 
 
 // MARK: - Preview

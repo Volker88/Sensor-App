@@ -16,16 +16,13 @@ import SwiftUI
 struct LocationView: View {
     
     // MARK: - Initialize Classes
-    let locationAPI = CoreLocationAPI()
     let calculationAPI = CalculationAPI()
     let settings = SettingsAPI()
-    let notificationAPI = NotificationAPI()
     let exportAPI = ExportAPI()
     
     
     // MARK: - @State / @ObservedObject / @Binding
     @ObservedObject var locationVM = CoreLocationViewModel()
-    @State private var sideBarOpen: Bool = false
     @State private var showShareSheet = false
     @State private var filesToShare = [Any]()
     
@@ -36,43 +33,20 @@ struct LocationView: View {
     @State private var showDirection = false
     @State private var showSpeed = false
     
-    // Notification Variables
-    @State private var showNotification = false
-    @State private var notificationMessage = ""
-    @State private var notificationDuration = 2.0
-    
     
     // MARK: - Define Constants / Variables
     
-    
     // MARK: - Initializer
-    init() {
-        notificationDuration = notificationAPI.fetchNotificationAnimationSettings().duration
-    }
-    
     
     // MARK: - Methods
-    func toolBarButtonTapped(button: ToolBarButtonType) {
-        var messageType: NotificationTypes?
+    func shareCSV() {
+        var csvText = NSLocalizedString("ID;Time;Longitude;Latitude;Altitude;Speed;Course", comment: "Export CSV Headline - Location") + "\n"
         
-        switch button {
-            case .play:
-                locationVM.startLocationUpdates()
-                messageType = .played
-            case .pause:
-                locationVM.stopLocationUpdates()
-                messageType = .paused
-            case .delete:
-                locationVM.coreLocationArray.removeAll()
-                messageType = .deleted
+        _ = locationVM.coreLocationArray.map {
+            csvText += "\($0.counter);\($0.timestamp);\($0.longitude.localizedDecimal());\($0.latitude.localizedDecimal());\($0.altitude.localizedDecimal());\($0.speed.localizedDecimal());\($0.course.localizedDecimal())\n"
         }
-        
-        if messageType != nil {
-            notificationAPI.toggleNotification(type: messageType!, duration: notificationDuration) { (message, show) in
-                notificationMessage = message
-                showNotification = show
-            }
-        }
+        filesToShare = exportAPI.getFile(exportText: csvText, filename: "location")
+        showShareSheet.toggle()
     }
     
     
@@ -88,35 +62,18 @@ struct LocationView: View {
         //SKStoreReviewController.requestReview()
     }
     
-    func shareCSV() {
-        var csvText = NSLocalizedString("ID;Time;Longitude;Latitude;Altitude;Speed;Course", comment: "Export CSV Headline - Location") + "\n"
-        
-        _ = locationVM.coreLocationArray.map {
-            csvText += "\($0.counter);\($0.timestamp);\($0.longitude.localizedDecimal());\($0.latitude.localizedDecimal());\($0.altitude.localizedDecimal());\($0.speed.localizedDecimal());\($0.course.localizedDecimal())\n"
-        }
-        filesToShare = exportAPI.getFile(exportText: csvText, filename: "location")
-        showShareSheet.toggle()
-    }
-    
     
     // MARK: - Content
-    var sideBarButton: some View {
+    var shareButton: some View {
         Button(action: {
-            sideBarOpen.toggle()
-            if sideBarOpen {
-                locationVM.stopLocationUpdates()
-            } else {
-                locationVM.startLocationUpdates()
-            }
+            shareCSV()
         }) {
-            Image(systemName: "sidebar.left")
-                .accessibility(label: Text("Toggle Sidebar", comment: "Toggle Sidebar"))
+            Label(NSLocalizedString("Export", comment: "LocationView - Export List"), systemImage: "square.and.arrow.up")
         }
     }
-    
+
     
     // MARK: - Body - View
-    @ViewBuilder
     var body: some View {
         
         // MARK: - Return View
@@ -124,7 +81,7 @@ struct LocationView: View {
             GeometryReader { g in
                 ScrollView {
                     List {
-                        Section(header: Text("Location", comment: "LocationView - Section Header")) {
+                        Section(header: Text("Location", comment: "LocationView - Section Header"), footer: shareButton) {
                             DisclosureGroup(
                                 isExpanded: $showLatitude,
                                 content: {
@@ -191,19 +148,7 @@ struct LocationView: View {
                 }
                 .listStyle(InsetGroupedListStyle())
             }
-            .customToolBar(toolBarFunctionClosure: toolBarButtonTapped(button:))
-            
-            
-            
-            // MARK: - SidebarMenu
-            SidebarMenu(sidebarOpen: $sideBarOpen)
-            
-            
-            // MARK: - NotificationView()
-            NotificationView(notificationMessage: $notificationMessage, showNotification: $showNotification)
         }
-        .navigationBarItems(leading: sideBarButton)
-        .navigationBarTitle("\(NSLocalizedString("Location", comment: "NavigationBar Title - Location"))", displayMode: .inline)
         .onAppear(perform: onAppear)
         .onDisappear(perform: onDisappear)
         .sheet(isPresented: $showShareSheet) { ShareSheet(activityItems: filesToShare) }

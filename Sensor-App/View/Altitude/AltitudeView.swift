@@ -21,7 +21,7 @@ struct AltitudeView: View {
     
     
     // MARK: - @State / @ObservedObject / @Binding
-    @StateObject var motionVM = CoreMotionViewModel()
+    @ObservedObject var motionVM = CoreMotionViewModel()
     @State private var showShareSheet = false
     @State private var filesToShare = [Any]()
     
@@ -56,6 +56,7 @@ struct AltitudeView: View {
     func onAppear() {
         // Start updating motion
         motionVM.altitudeUpdateStart()
+        motionVM.sensorUpdateInterval = settings.fetchUserSettings().frequencySetting
     }
     
     func onDisappear() {
@@ -111,11 +112,6 @@ struct AltitudeView: View {
                         Section(header: Text("List", comment: "AccelerationView - Section Header"), footer: shareButton) {
                             AltitudeList(motionVM: motionVM)
                                 .frame(height: 200, alignment: .center)
-                        }
-                        
-                        Section(header: Text("Refresh Rate", comment: "AccelerationView - Section Header")) {
-                            RefreshRateView(motionVM: motionVM, show: "header")
-                            RefreshRateView(motionVM: motionVM, show: "slider")
                         }
                     }
                     .listStyle(InsetGroupedListStyle())

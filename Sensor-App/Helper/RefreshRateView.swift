@@ -45,7 +45,10 @@ struct RefreshRateView: View {
         
         // MARK: - Return View
         if show == "header" {
-            Text("\(NSLocalizedString("Frequency:", comment: "RefreshRateView - Frequency")) \(Double(motionVM.sensorUpdateInterval), specifier: "%.1f") Hz", comment: "RefreshRateView - Refresh Rate")
+            HStack {
+                Text("\(NSLocalizedString("Frequency:", comment: "RefreshRateView - Frequency")) \(Double(motionVM.sensorUpdateInterval), specifier: "%.1f") Hz", comment: "RefreshRateView - Refresh Rate")
+                Stepper("", value: $motionVM.sensorUpdateInterval, in: 1...10, step: 0.1)
+            }
         } else if show == "slider" {
             HStack {
                 Text("1", comment: "RefreshRateView - Label 1")

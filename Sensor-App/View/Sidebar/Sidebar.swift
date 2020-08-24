@@ -32,7 +32,7 @@ struct Sidebar: View {
                     Label(NSLocalizedString("Home", comment: "ContentView - Home"), systemImage: "house")// TODO: Remove
                         .accessibility(identifier: "Home")
                 }
-                NavigationLink(destination: LocationView().navigationBarBackButtonHidden(true)) {
+                NavigationLink(destination: Location().navigationBarBackButtonHidden(true)) {
                     Label(NSLocalizedString("Location", comment: "ContentView - Location"), systemImage: "location")
                         .accessibility(identifier: "Location")
                 }
