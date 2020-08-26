@@ -44,27 +44,27 @@ class CoreMotionViewModel: ObservableObject {
             let random2 = Double.random(in: -0.1...0.1)
             let random3 = Double.random(in: -0.1...0.1)
             let random4 = Double.random(in: -0.1...0.1)
-            self.coreMotionArray.append(MotionModel(counter: counter, timestamp: self.settings.getTimestamp(), accelerationXAxis: random, accelerationYAxis: random2, accelerationZAxis: random3, gravityXAxis: random, gravityYAxis: random2, gravityZAxis: random3, gyroXAxis: random, gyroYAxis: random2, gyroZAxis: random3, magnetometerCalibration: 2, magnetometerXAxis: random, magnetometerYAxis: random2, magnetometerZAxis: random3, attitudeRoll: random, attitudePitch: random2, attitudeYaw: random3, attitudeHeading: random4))
+            coreMotionArray.append(MotionModel(counter: counter, timestamp: settings.getTimestamp(), accelerationXAxis: random, accelerationYAxis: random2, accelerationZAxis: random3, gravityXAxis: random, gravityYAxis: random2, gravityZAxis: random3, gyroXAxis: random, gyroYAxis: random2, gyroZAxis: random3, magnetometerCalibration: 2, magnetometerXAxis: random, magnetometerYAxis: random2, magnetometerZAxis: random3, attitudeRoll: random, attitudePitch: random2, attitudeYaw: random3, attitudeHeading: random4))
             counter += 1
         }
         
-        Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { (timer) in
+        Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [self] (timer) in
                 let random = Double.random(in: -0.1...0.1)
                 let random2 = Double.random(in: -0.1...0.1)
                 let random3 = Double.random(in: -0.1...0.1)
                 let random4 = Double.random(in: -0.1...0.1)
-                self.coreMotionArray.append(MotionModel(counter: counter, timestamp: self.settings.getTimestamp(), accelerationXAxis: random, accelerationYAxis: random2, accelerationZAxis: random3, gravityXAxis: random, gravityYAxis: random2, gravityZAxis: random3, gyroXAxis: random, gyroYAxis: random2, gyroZAxis: random3, magnetometerCalibration: 2, magnetometerXAxis: random, magnetometerYAxis: random2, magnetometerZAxis: random3, attitudeRoll: random, attitudePitch: random2, attitudeYaw: random3, attitudeHeading: random4))
+                coreMotionArray.append(MotionModel(counter: counter, timestamp: settings.getTimestamp(), accelerationXAxis: random, accelerationYAxis: random2, accelerationZAxis: random3, gravityXAxis: random, gravityYAxis: random2, gravityZAxis: random3, gyroXAxis: random, gyroYAxis: random2, gyroZAxis: random3, magnetometerCalibration: 2, magnetometerXAxis: random, magnetometerYAxis: random2, magnetometerZAxis: random3, attitudeRoll: random, attitudePitch: random2, attitudeYaw: random3, attitudeHeading: random4))
             counter += 1
         }
         #endif
         
         motionAPI.motionUpdateStart()
-        motionAPI.motionCompletionHandler = { data in
+        motionAPI.motionCompletionHandler = { [self] data in
             
             // Append MotionModel to coreMotionArray
-            self.coreMotionArray.append(MotionModel(
-                counter: self.coreMotionArray.count + 1,
-                timestamp: self.settings.getTimestamp(),
+            coreMotionArray.append(MotionModel(
+                counter: coreMotionArray.count + 1,
+                timestamp: settings.getTimestamp(),
                 accelerationXAxis: data.accelerationXAxis,
                 accelerationYAxis: data.accelerationYAxis,
                 accelerationZAxis: data.accelerationZAxis,
@@ -96,21 +96,21 @@ class CoreMotionViewModel: ObservableObject {
             counter += 1
         }
         
-        Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { (timer) in
+        Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [self] (timer) in
             let random = Double.random(in: 99...101)
             let random2 = Double.random(in: -1...1)
-            self.altitudeArray.append(AltitudeModel(counter: counter, timestamp: self.settings.getTimestamp(), pressureValue: random, relativeAltitudeValue: random2))
+            altitudeArray.append(AltitudeModel(counter: counter, timestamp: settings.getTimestamp(), pressureValue: random, relativeAltitudeValue: random2))
             counter += 1
         }
         #endif
         
         motionAPI.motionUpdateStart()
-        motionAPI.altitudeCompletionHandler = { data in
+        motionAPI.altitudeCompletionHandler = { [self] data in
             
             // Append AltitudeModel to altitudeArray
-            self.altitudeArray.append(AltitudeModel(
-                counter: self.altitudeArray.count + 1,
-                timestamp: self.settings.getTimestamp(),
+            altitudeArray.append(AltitudeModel(
+                counter: altitudeArray.count + 1,
+                timestamp: settings.getTimestamp(),
                 pressureValue: data.pressureValue,
                 relativeAltitudeValue: data.relativeAltitudeValue
             ))

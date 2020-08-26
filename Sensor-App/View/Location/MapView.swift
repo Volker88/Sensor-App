@@ -74,9 +74,9 @@ struct MapKitView: UIViewRepresentable {
     
     
     // MARK: - Initialize Coordinates
-    init(latitude: Double, longitude: Double) {
-        self.latitude = latitude
-        self.longitude = longitude
+    init(_latitude: Double, _longitude: Double) {
+        latitude = _latitude
+        longitude = _longitude
     }
     
     
@@ -111,7 +111,7 @@ struct MapKitView: UIViewRepresentable {
         }
         
         // User Coordinates
-        let coordinate = CLLocationCoordinate2D(latitude: self.latitude, longitude: self.longitude)
+        let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         
         // Zoom Factor
         let region = MKCoordinateRegion(center: coordinate, latitudinalMeters: mapKitSettings.zoom, longitudinalMeters: mapKitSettings.zoom)
@@ -127,8 +127,8 @@ struct MapKitView: UIViewRepresentable {
     class Coordinator: NSObject, MKMapViewDelegate {
         var parent: MapKitView
         
-        init(_ parent: MapKitView) {
-            self.parent = parent
+        init(_ _parent: MapKitView) {
+            parent = _parent
         }
         
         func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {

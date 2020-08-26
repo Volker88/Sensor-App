@@ -46,14 +46,14 @@ struct LineGraphSubView: View {
     // MARK: - Body - View
     var body: some View {
         
-        let lineGraphSettings: LineGraphSettings = LineGraphSettings(maxPoints: self.settings.fetchUserSettings().graphMaxPoints, decimalDigits: 3, lineWitdh: 2, lineColor: [.secondary], textColor: .primary)
+        let lineGraphSettings: LineGraphSettings = LineGraphSettings(maxPoints: settings.fetchUserSettings().graphMaxPoints, decimalDigits: 3, lineWitdh: 2, lineColor: [.secondary], textColor: .primary)
         transformGraphArray()
         
         
         // MARK: - Return View
         return GeometryReader { g in
             VStack{
-                LineGraphView(lineGraphPointsArray: self.transformation.array, lineGraphSettings: lineGraphSettings, graphWidth: g.size.width - 10, graphHeight: 100)
+                LineGraphView(lineGraphPointsArray: transformation.array, lineGraphSettings: lineGraphSettings, graphWidth: g.size.width - 10, graphHeight: 100)
                     .frame(minWidth: 150, idealWidth: 200, maxWidth: .infinity, minHeight: 0, idealHeight: 100, maxHeight: 100, alignment: .leading)
             }
         }

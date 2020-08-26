@@ -28,7 +28,7 @@ struct ContentViewTitleModifier: ViewModifier {
 
 extension View {
     func contentViewTitleModifier() -> some View {
-        self.modifier(ContentViewTitleModifier())
+        modifier(ContentViewTitleModifier())
     }
 }
 
@@ -43,14 +43,14 @@ struct ContentViewButtonModifier: ViewModifier {
                 .background(Color("StandardBackgroundColor"))
                 .foregroundColor(Color("StandardTextColor"))
                 .cornerRadius(10)
-                .accessibility(identifier: self.accessibility)
+                .accessibility(identifier: accessibility)
         }
     }
 }
 
 extension View {
     func contentViewButtonModifier(accessibility: String) -> some View {
-        self.modifier(ContentViewButtonModifier(accessibility: accessibility))
+        modifier(ContentViewButtonModifier(accessibility: accessibility))
     }
 }
 
@@ -71,7 +71,7 @@ struct ButtonTitleModifier: ViewModifier {
 
 extension View {
     func buttonTitleModifier() -> some View {
-        self.modifier(ButtonTitleModifier())
+        modifier(ButtonTitleModifier())
     }
 }
 
@@ -90,7 +90,7 @@ struct ButtonModifier: ViewModifier {
 
 extension View {
     func buttonModifier() -> some View {
-        self.modifier(ButtonModifier())
+        modifier(ButtonModifier())
     }
 }
 
@@ -110,7 +110,7 @@ struct RefreshRateLimitLabel: ViewModifier {
 
 extension View {
     func refreshRateLimitLabelModifier() -> some View {
-        self.modifier(RefreshRateLimitLabel())
+        modifier(RefreshRateLimitLabel())
     }
 }
 

@@ -26,10 +26,10 @@ class DataArray {
     var xaxis: Double
     var yaxis: Double
     
-    init(id: Int, xaxis: Double, yaxis: Double) {
-        self.id = id
-        self.xaxis = xaxis
-        self.yaxis = yaxis
+    init(_id: Int, _xaxis: Double, _yaxis: Double) {
+        id = _id
+        xaxis = _xaxis
+        yaxis = _yaxis
     }
 }
 
@@ -38,7 +38,7 @@ var testArray = [DataArray]()
 
 
 for i in 0..<100 {
-    testArray.insert(DataArray(id: i, xaxis: 1.0, yaxis: 2.0), at: i)
+    testArray.insert(DataArray(_id: i, _xaxis: 1.0, _yaxis: 2.0), at: i)
 }
 
 print(testArray.last!.id)

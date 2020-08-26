@@ -43,7 +43,7 @@ class CalculationAPITests: XCTestCase {
 
     
     func testSpeedCalculationAPIPerformance() throws {
-        self.measure {
+        measure {
             _ = calculationAPI.calculateSpeed(ms: 10, to: "m/s")
             _ = calculationAPI.calculateSpeed(ms: 10, to: "km/h")
             _ = calculationAPI.calculateSpeed(ms: 10, to: "mph")

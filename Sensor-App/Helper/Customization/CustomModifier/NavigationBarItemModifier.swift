@@ -46,7 +46,7 @@ extension View {
     /// - Returns: View
     ///
     func navigationBarItemModifier(accessibility: String) -> some View {
-        self.modifier(NavigationBarItemModifier(accessibility: accessibility))
+        modifier(NavigationBarItemModifier(accessibility: accessibility))
     }
 }
 

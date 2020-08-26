@@ -40,6 +40,6 @@ extension View {
     /// - Returns: View
     ///
     func customNavigationViewStyle() -> some View {
-        self.modifier(CustomNavigationViewStyle()) // Apply Custom Modifier
+        modifier(CustomNavigationViewStyle()) // Apply Custom Modifier
     }
 }

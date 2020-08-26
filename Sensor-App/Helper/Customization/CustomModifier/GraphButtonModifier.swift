@@ -47,6 +47,6 @@ extension View {
     /// - Returns: View
     ///
     func graphButtonModifier(accessibility: String) -> some View {
-        self.modifier(GraphButtonModifier(accessibility: accessibility))
+        modifier(GraphButtonModifier(accessibility: accessibility))
     }
 }

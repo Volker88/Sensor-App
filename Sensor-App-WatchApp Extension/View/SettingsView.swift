@@ -43,30 +43,30 @@ struct SettingsView: View {
     // MARK: - Methods
     func saveSettings() {
         var userSettings = settings.fetchUserSettings()
-        userSettings.GPSSpeedSetting = settings.GPSSpeedSettings[self.speedSetting]
-        userSettings.GPSAccuracySetting = settings.GPSAccuracyOptions[self.accuracySetting]
-        userSettings.pressureSetting = settings.altitudePressure[self.pressureSetting]
-        userSettings.altitudeHeightSetting = settings.altitudeHeight[self.heightSetting]
-        userSettings.frequencySetting = self.refreshRate
+        userSettings.GPSSpeedSetting = settings.GPSSpeedSettings[speedSetting]
+        userSettings.GPSAccuracySetting = settings.GPSAccuracyOptions[accuracySetting]
+        userSettings.pressureSetting = settings.altitudePressure[pressureSetting]
+        userSettings.altitudeHeightSetting = settings.altitudeHeight[heightSetting]
+        userSettings.frequencySetting = refreshRate
         settings.saveUserSettings(userSettings: userSettings)
         
-        self.showingSaveAlert = true
+        showingSaveAlert = true
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: {
-            self.showingSaveAlert = false
+            showingSaveAlert = false
         })
     }
     
     func discardChanges(showNotification: Bool) {
-        self.speedSetting = settings.GPSSpeedSettings.firstIndex(of: settings.fetchUserSettings().GPSSpeedSetting)!
-        self.accuracySetting = settings.GPSAccuracyOptions.firstIndex(of: settings.fetchUserSettings().GPSAccuracySetting)!
-        self.pressureSetting = settings.altitudePressure.firstIndex(of: settings.fetchUserSettings().pressureSetting)!
-        self.heightSetting = settings.altitudeHeight.firstIndex(of: settings.fetchUserSettings().altitudeHeightSetting)!
-        self.refreshRate = settings.fetchUserSettings().frequencySetting
+        speedSetting = settings.GPSSpeedSettings.firstIndex(of: settings.fetchUserSettings().GPSSpeedSetting)!
+        accuracySetting = settings.GPSAccuracyOptions.firstIndex(of: settings.fetchUserSettings().GPSAccuracySetting)!
+        pressureSetting = settings.altitudePressure.firstIndex(of: settings.fetchUserSettings().pressureSetting)!
+        heightSetting = settings.altitudeHeight.firstIndex(of: settings.fetchUserSettings().altitudeHeightSetting)!
+        refreshRate = settings.fetchUserSettings().frequencySetting
         
         if showNotification == true {
-            self.showingDiscardAlert = true
+            showingDiscardAlert = true
             DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: {
-                self.showingDiscardAlert = false
+                showingDiscardAlert = false
             })
         }
     }
@@ -91,42 +91,42 @@ struct SettingsView: View {
             Section(header:
                 Text("Location", comment: "SettingsView - Location Section (watchOS)")
             ) {
-                Picker(selection: self.$speedSetting, label: Text("Speed Setting", comment: "SettingsView - Speed Setting (watchOS)")) {
+                Picker(selection: $speedSetting, label: Text("Speed Setting", comment: "SettingsView - Speed Setting (watchOS)")) {
                     ForEach(0 ..< settings.GPSSpeedSettings.count, id: \.self) {
-                        Text(self.settings.GPSSpeedSettings[$0]).tag($0)
+                        Text(settings.GPSSpeedSettings[$0]).tag($0)
                     }
                 }
-                Picker(selection: self.$accuracySetting, label: Text("Accuracy", comment: "SettingsView - Accuracy (watchOS)")) {
+                Picker(selection: $accuracySetting, label: Text("Accuracy", comment: "SettingsView - Accuracy (watchOS)")) {
                     ForEach(0 ..< settings.GPSAccuracyOptions.count, id: \.self) {
-                        Text(self.settings.GPSAccuracyOptions[$0]).tag($0)
+                        Text(settings.GPSAccuracyOptions[$0]).tag($0)
                     }
                 }
             }
             Section(header:
                 Text("Altitude", comment: "SettingsView - Altitude Section (watchOS)")
             ) {
-                Picker(selection: self.$pressureSetting, label: Text("Pressure", comment: "SettingsView - Pressure (watchOS)")) {
+                Picker(selection: $pressureSetting, label: Text("Pressure", comment: "SettingsView - Pressure (watchOS)")) {
                     ForEach(0 ..< settings.altitudePressure.count, id: \.self) {
-                        Text(self.settings.altitudePressure[$0]).tag($0)
+                        Text(settings.altitudePressure[$0]).tag($0)
                     }
                 }
-                Picker(selection: self.$heightSetting, label: Text("Height", comment: "SettingsView - Height (watchOS)")) {
+                Picker(selection: $heightSetting, label: Text("Height", comment: "SettingsView - Height (watchOS)")) {
                     ForEach(0 ..< settings.altitudeHeight.count, id: \.self) {
-                        Text(self.settings.altitudeHeight[$0]).tag($0)
+                        Text(settings.altitudeHeight[$0]).tag($0)
                     }
                 }
             }
             Section(header:
                 Text("Refresh Rate", comment: "SettingsView - Refresh Rate Section (watchOS)")
             ) {
-                Text("\(NSLocalizedString("Frequency:", comment: "SettingsView - Frequency (watchOS)")) \(Int(self.refreshRate)) Hz", comment: "SettingsView - Frequency (watchOS)")
-                Slider(value: self.$refreshRate, in: 1...50, step: 1) { refresh in
+                Text("\(NSLocalizedString("Frequency:", comment: "SettingsView - Frequency (watchOS)")) \(Int(refreshRate)) Hz", comment: "SettingsView - Frequency (watchOS)")
+                Slider(value: $refreshRate, in: 1...50, step: 1) { refresh in
                     
                 }
             }
             Section {
                 Button(action: {
-                    self.discardChanges(showNotification: true)
+                    discardChanges(showNotification: true)
                 }) {
                     Text("Discard", comment: "SettingsView - Save (watchOS)")
                 }
@@ -134,7 +134,7 @@ struct SettingsView: View {
                     Alert(title: Text("Discarded Changes", comment: "SettingsView - Discarded Changes (watchOS)"))
                 }
                 Button(action: {
-                    self.saveSettings()
+                    saveSettings()
                 }) {
                     Text("Save")
                 }.alert(isPresented: $showingSaveAlert) {

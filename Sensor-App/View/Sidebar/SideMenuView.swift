@@ -28,17 +28,17 @@ struct SideMenuView: View {
                 EmptyView()
             }
             .background(Color.gray.opacity(0.3))
-            .opacity(self.isOpen ? 1.0 : 0.0)
+            .opacity(isOpen ? 1.0 : 0.0)
             .edgesIgnoringSafeArea(.all)
             .onTapGesture {
-                self.menuClose()
+                menuClose()
             }
             
             HStack {
                 GeometryReader { g in
                     Sidebar()
-                        .frame(width: self.width, alignment: .leading)
-                        .offset(x: self.isOpen ? 0 : -self.width - g.safeAreaInsets.leading)
+                        .frame(width: width, alignment: .leading)
+                        .offset(x: isOpen ? 0 : -width - g.safeAreaInsets.leading)
                     
                     Spacer()
                 }

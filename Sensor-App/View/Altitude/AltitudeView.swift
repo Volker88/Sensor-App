@@ -45,10 +45,10 @@ struct AltitudeView: View {
         var csvText = NSLocalizedString("ID;Time;Pressure;Altitude change", comment: "Export CSV Headline - altitude") + "\n"
         
         _ = motionVM.altitudeArray.map {
-            csvText += "\($0.counter);\($0.timestamp);\(self.calculationAPI.calculatePressure(pressure: $0.pressureValue, to: self.settings.fetchUserSettings().pressureSetting).localizedDecimal());\(self.calculationAPI.calculateHeight(height: $0.relativeAltitudeValue, to: self.settings.fetchUserSettings().altitudeHeightSetting).localizedDecimal())\n"
+            csvText += "\($0.counter);\($0.timestamp);\(calculationAPI.calculatePressure(pressure: $0.pressureValue, to: settings.fetchUserSettings().pressureSetting).localizedDecimal());\(calculationAPI.calculateHeight(height: $0.relativeAltitudeValue, to: settings.fetchUserSettings().altitudeHeightSetting).localizedDecimal())\n"
         }
         filesToShare = exportAPI.getFile(exportText: csvText, filename: "altitude")
-        self.showShareSheet.toggle()
+        showShareSheet.toggle()
     }
     
     
@@ -89,22 +89,22 @@ struct AltitudeView: View {
                             DisclosureGroup(
                                 isExpanded: $showPressure,
                                 content: {
-                                    LineGraphSubView(motionVM: self.motionVM, showGraph: .pressureValue)
+                                    LineGraphSubView(motionVM: motionVM, showGraph: .pressureValue)
                                         .frame(height: 100, alignment: .leading)
                                 },
                                 label: {
-                                    Text("Pressure: \(self.calculationAPI.calculatePressure(pressure: self.motionVM.altitudeArray.last?.pressureValue ?? 0.0, to: self.settings.fetchUserSettings().pressureSetting), specifier: "%.5f") \(self.settings.fetchUserSettings().pressureSetting)", comment: "AltitudeView - Pressure")
+                                    Text("Pressure: \(calculationAPI.calculatePressure(pressure: motionVM.altitudeArray.last?.pressureValue ?? 0.0, to: settings.fetchUserSettings().pressureSetting), specifier: "%.5f") \(settings.fetchUserSettings().pressureSetting)", comment: "AltitudeView - Pressure")
                                 })
                                 .disclosureGroupModifier(accessibility: "Toggle Pressure Graph")
                             
                             DisclosureGroup(
                                 isExpanded: $showRelativeAltitudeChange,
                                 content: {
-                                    LineGraphSubView(motionVM: self.motionVM, showGraph: .relativeAltitudeValue)
+                                    LineGraphSubView(motionVM: motionVM, showGraph: .relativeAltitudeValue)
                                         .frame(height: 100, alignment: .leading)
                                 },
                                 label: {
-                                    Text("Altitude change: \(self.calculationAPI.calculateHeight(height: self.motionVM.altitudeArray.last?.relativeAltitudeValue ?? 0.0, to: self.settings.fetchUserSettings().altitudeHeightSetting), specifier: "%.5f") \(self.settings.fetchUserSettings().altitudeHeightSetting)", comment: "AltitudeView - Altitude")
+                                    Text("Altitude change: \(calculationAPI.calculateHeight(height: motionVM.altitudeArray.last?.relativeAltitudeValue ?? 0.0, to: settings.fetchUserSettings().altitudeHeightSetting), specifier: "%.5f") \(settings.fetchUserSettings().altitudeHeightSetting)", comment: "AltitudeView - Altitude")
                                 })
                                 .disclosureGroupModifier(accessibility: "Toggle Altitude Graph")
                         }

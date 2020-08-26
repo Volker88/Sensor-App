@@ -42,6 +42,6 @@ extension View {
     /// - Returns: View
     ///
     func disclosureGroupModifier(accessibility: String) -> some View {
-        self.modifier(DisclosureGroupModifier(accessibility: accessibility))
+        modifier(DisclosureGroupModifier(accessibility: accessibility))
     }
 }

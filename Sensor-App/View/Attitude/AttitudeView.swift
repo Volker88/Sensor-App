@@ -44,7 +44,7 @@ struct AttitudeView: View {
             csvText += "\($0.counter);\($0.timestamp);\($0.attitudeRoll.localizedDecimal());\($0.attitudePitch.localizedDecimal());\($0.attitudeYaw.localizedDecimal());\($0.attitudeHeading.localizedDecimal())\n"
         }
         filesToShare = exportAPI.getFile(exportText: csvText, filename: "attitude")
-        self.showShareSheet.toggle()
+        showShareSheet.toggle()
     }
     
     
@@ -84,11 +84,11 @@ struct AttitudeView: View {
                             DisclosureGroup(
                                 isExpanded: $showRoll,
                                 content: {
-                                    LineGraphSubView(motionVM: self.motionVM, showGraph: .attitudeRoll)
+                                    LineGraphSubView(motionVM: motionVM, showGraph: .attitudeRoll)
                                         .frame(height: 100, alignment: .leading)
                                 },
                                 label: {
-                                    Text("Roll: \((self.motionVM.coreMotionArray.last?.attitudeRoll ?? 0.0) * 180 / .pi, specifier: "%.5f")°", comment: "AttitudeView - Roll")
+                                    Text("Roll: \((motionVM.coreMotionArray.last?.attitudeRoll ?? 0.0) * 180 / .pi, specifier: "%.5f")°", comment: "AttitudeView - Roll")
                                 })
                                 .disclosureGroupModifier(accessibility: "Toggle Roll Graph")
                             
@@ -96,11 +96,11 @@ struct AttitudeView: View {
                             DisclosureGroup(
                                 isExpanded: $showPitch,
                                 content: {
-                                    LineGraphSubView(motionVM: self.motionVM, showGraph: .attitudePitch)
+                                    LineGraphSubView(motionVM: motionVM, showGraph: .attitudePitch)
                                         .frame(height: 100, alignment: .leading)
                                 },
                                 label: {
-                                    Text("Pitch: \((self.motionVM.coreMotionArray.last?.attitudePitch ?? 0.0) * 180 / .pi, specifier: "%.5f")°", comment: "AttitudeView - Pitch")
+                                    Text("Pitch: \((motionVM.coreMotionArray.last?.attitudePitch ?? 0.0) * 180 / .pi, specifier: "%.5f")°", comment: "AttitudeView - Pitch")
                                 })
                                 .disclosureGroupModifier(accessibility: "Toggle Pitch Graph")
                             
@@ -108,22 +108,22 @@ struct AttitudeView: View {
                             DisclosureGroup(
                                 isExpanded: $showYaw,
                                 content: {
-                                    LineGraphSubView(motionVM: self.motionVM, showGraph: .attitudeYaw)
+                                    LineGraphSubView(motionVM: motionVM, showGraph: .attitudeYaw)
                                         .frame(height: 100, alignment: .leading)
                                 },
                                 label: {
-                                    Text("Yaw: \((self.motionVM.coreMotionArray.last?.attitudeYaw ?? 0.0) * 180 / .pi, specifier: "%.5f")°", comment: "AttitudeView - Yaw")
+                                    Text("Yaw: \((motionVM.coreMotionArray.last?.attitudeYaw ?? 0.0) * 180 / .pi, specifier: "%.5f")°", comment: "AttitudeView - Yaw")
                                 })
                                 .disclosureGroupModifier(accessibility: "Toggle Roll Graph")
                             
                             DisclosureGroup(
                                 isExpanded: $showHeading,
                                 content: {
-                                    LineGraphSubView(motionVM: self.motionVM, showGraph: .attitudeHeading)
+                                    LineGraphSubView(motionVM: motionVM, showGraph: .attitudeHeading)
                                         .frame(height: 100, alignment: .leading)
                                 },
                                 label: {
-                                    Text("Heading: \(self.motionVM.coreMotionArray.last?.attitudeHeading ?? 0.0, specifier: "%.5f")°", comment: "AttitudeView - Heading")
+                                    Text("Heading: \(motionVM.coreMotionArray.last?.attitudeHeading ?? 0.0, specifier: "%.5f")°", comment: "AttitudeView - Heading")
                                 })
                                 .disclosureGroupModifier(accessibility: "Toggle Heading Graph")
                         }

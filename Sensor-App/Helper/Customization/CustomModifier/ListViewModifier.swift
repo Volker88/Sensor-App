@@ -43,6 +43,6 @@ extension View {
     /// - Returns: View
     ///
     func listViewModifier(width: CGFloat) -> some View {
-        self.modifier(ListViewModifier(width: width)) // Apply Custom Modifier
+        modifier(ListViewModifier(width: width)) // Apply Custom Modifier
     }
 }

@@ -78,7 +78,10 @@ struct Location: View {
         ZStack {
             locationView
                 .frame(minWidth: 0, idealWidth: 100, maxWidth: .infinity, minHeight: 0, idealHeight: 100, maxHeight: .infinity, alignment: .center)
-                .customToolBar(toolBarFunctionClosure: toolBarButtonTapped(button:))
+                .toolbar {
+                    CustomToolbar(toolBarFunctionClosure: toolBarButtonTapped(button:))
+                }
+                //.customToolBar(toolBarFunctionClosure: toolBarButtonTapped(button:))
             
             
             // MARK: - SidebarMenu

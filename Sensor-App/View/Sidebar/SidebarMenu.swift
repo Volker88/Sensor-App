@@ -19,8 +19,8 @@ struct SidebarMenu: View {
     // MARK: - Body
     var body: some View {
         SideMenuView(width: 250,
-                     isOpen: self.sidebarOpen,
-                     menuClose: { self.sidebarOpen = false })
+                     isOpen: sidebarOpen,
+                     menuClose: { sidebarOpen = false })
             .animation(.easeInOut)
             .gesture(
                 DragGesture(minimumDistance: 50)
@@ -29,7 +29,7 @@ struct SidebarMenu: View {
                         if direction == .right {
                             #if os(iOS)
                             if UIDevice.current.userInterfaceIdiom == .phone {
-                                self.sidebarOpen = true
+                                sidebarOpen = true
                             }
                             #endif
                         }

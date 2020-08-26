@@ -155,7 +155,7 @@
 		1542E41024C4B21900FA2755 /* CoreLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E37E24C4AF9300FA2755 /* CoreLocationViewModel.swift */; };
 		1542E41124C4B21A00FA2755 /* CoreLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E37E24C4AF9300FA2755 /* CoreLocationViewModel.swift */; };
 		15441C0724EDA4A300DC7D41 /* DisclosureGroupModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15441C0624EDA4A300DC7D41 /* DisclosureGroupModifier.swift */; };
-		15442D8D24EAF1F600DCF523 /* CustomToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15442D8C24EAF1F600DCF523 /* CustomToolBar.swift */; };
+		15442D8D24EAF1F600DCF523 /* CustomToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15442D8C24EAF1F600DCF523 /* CustomToolbar.swift */; };
 		15445CB324F2C063006940C6 /* Gravity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15445CB224F2C063006940C6 /* Gravity.swift */; };
 		15445CB524F2C2ED006940C6 /* GravityList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15445CB424F2C2ED006940C6 /* GravityList.swift */; };
 		15445CB824F2D494006940C6 /* Gyroscope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15445CB724F2D494006940C6 /* Gyroscope.swift */; };
@@ -360,7 +360,7 @@
 		1542E3C724C4B05400FA2755 /* LineGraphSubView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineGraphSubView.swift; sourceTree = "<group>"; };
 		1542E3C824C4B05400FA2755 /* GraphDetailModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphDetailModel.swift; sourceTree = "<group>"; };
 		15441C0624EDA4A300DC7D41 /* DisclosureGroupModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisclosureGroupModifier.swift; sourceTree = "<group>"; };
-		15442D8C24EAF1F600DCF523 /* CustomToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomToolBar.swift; sourceTree = "<group>"; };
+		15442D8C24EAF1F600DCF523 /* CustomToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomToolbar.swift; sourceTree = "<group>"; };
 		15445CB224F2C063006940C6 /* Gravity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gravity.swift; sourceTree = "<group>"; };
 		15445CB424F2C2ED006940C6 /* GravityList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GravityList.swift; sourceTree = "<group>"; };
 		15445CB724F2D494006940C6 /* Gyroscope.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gyroscope.swift; sourceTree = "<group>"; };
@@ -736,7 +736,7 @@
 				15445CCC24F2E9DC006940C6 /* Customization */,
 				1542E3BC24C4B05400FA2755 /* Notification */,
 				1542E3C124C4B05400FA2755 /* RefreshRateView.swift */,
-				15442D8C24EAF1F600DCF523 /* CustomToolBar.swift */,
+				15442D8C24EAF1F600DCF523 /* CustomToolbar.swift */,
 				1542E3C224C4B05400FA2755 /* ShareSheet.swift */,
 			);
 			path = Helper;
@@ -1180,7 +1180,7 @@
 				1542E3E424C4B17000FA2755 /* ExportAPI.swift in Sources */,
 				1542E3FB24C4B1ED00FA2755 /* NotificationTypes.swift in Sources */,
 				151D316E24E956210090BC94 /* SidebarMenu.swift in Sources */,
-				15442D8D24EAF1F600DCF523 /* CustomToolBar.swift in Sources */,
+				15442D8D24EAF1F600DCF523 /* CustomToolbar.swift in Sources */,
 				1527B01B24C4AA240024DD78 /* Sensor_AppApp.swift in Sources */,
 				15445CBD24F2D693006940C6 /* Magnetometer.swift in Sources */,
 				1542E40024C4B1F600FA2755 /* ToolBarButtonType.swift in Sources */,
@@ -1403,7 +1403,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				MY_BUILD_VERSION = 2.20351.13;
+				MY_BUILD_VERSION = 2.20353.14;
 				MY_VERSION = 3.0.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1461,7 +1461,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				MY_BUILD_VERSION = 2.20351.13;
+				MY_BUILD_VERSION = 2.20353.14;
 				MY_VERSION = 3.0.0;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;

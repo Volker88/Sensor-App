@@ -42,7 +42,7 @@ struct MagnetometerView: View {
             csvText += "\($0.counter);\($0.timestamp);\($0.magnetometerXAxis.localizedDecimal());\($0.magnetometerYAxis.localizedDecimal());\($0.magnetometerZAxis.localizedDecimal())\n"
         }
         filesToShare = exportAPI.getFile(exportText: csvText, filename: "magnetometer")
-        self.showShareSheet.toggle()
+        showShareSheet.toggle()
     }
     
     
@@ -82,33 +82,33 @@ struct MagnetometerView: View {
                                 DisclosureGroup(
                                     isExpanded: $showXAxis,
                                     content: {
-                                        LineGraphSubView(motionVM: self.motionVM, showGraph: .magnetometerXAxis)
+                                        LineGraphSubView(motionVM: motionVM, showGraph: .magnetometerXAxis)
                                             .frame(height: 100, alignment: .leading)
                                     },
                                     label: {
-                                        Text("X-Axis: \(self.motionVM.coreMotionArray.last?.magnetometerXAxis ?? 0.0, specifier: "%.5f") µT", comment: "MagnetometerView - X-Axis")
+                                        Text("X-Axis: \(motionVM.coreMotionArray.last?.magnetometerXAxis ?? 0.0, specifier: "%.5f") µT", comment: "MagnetometerView - X-Axis")
                                     })
                                     .disclosureGroupModifier(accessibility: "Toggle X-Axis Graph")
                                 
                                 DisclosureGroup(
                                     isExpanded: $showYAxis,
                                     content: {
-                                        LineGraphSubView(motionVM: self.motionVM, showGraph: .magnetometerYAxis)
+                                        LineGraphSubView(motionVM: motionVM, showGraph: .magnetometerYAxis)
                                             .frame(height: 100, alignment: .leading)
                                     },
                                     label: {
-                                        Text("Y-Axis: \(self.motionVM.coreMotionArray.last?.magnetometerYAxis ?? 0.0, specifier: "%.5f") µT", comment: "MagnetometerView - Y-Axis")
+                                        Text("Y-Axis: \(motionVM.coreMotionArray.last?.magnetometerYAxis ?? 0.0, specifier: "%.5f") µT", comment: "MagnetometerView - Y-Axis")
                                     })
                                     .disclosureGroupModifier(accessibility: "Toggle Y-Axis Graph")
                                 
                                 DisclosureGroup(
                                     isExpanded: $showZAxis,
                                     content: {
-                                        LineGraphSubView(motionVM: self.motionVM, showGraph: .magnetometerZAxis)
+                                        LineGraphSubView(motionVM: motionVM, showGraph: .magnetometerZAxis)
                                             .frame(height: 100, alignment: .leading)
                                     },
                                     label: {
-                                        Text("Z-Axis: \(self.motionVM.coreMotionArray.last?.magnetometerZAxis ?? 0.0, specifier: "%.5f") µT", comment: "MagnetometerView - Z-Axis")
+                                        Text("Z-Axis: \(motionVM.coreMotionArray.last?.magnetometerZAxis ?? 0.0, specifier: "%.5f") µT", comment: "MagnetometerView - Z-Axis")
                                     })
                                     .disclosureGroupModifier(accessibility: "Toggle Z-Axis Graph")
                         }

@@ -47,6 +47,6 @@ extension View {
     /// - Returns: View
     ///
     func toolBarButtonModifier(accessibility: String) -> some View {
-        self.modifier(ToolBarButtonModifier(accessibility: accessibility))
+        modifier(ToolBarButtonModifier(accessibility: accessibility))
     }
 }

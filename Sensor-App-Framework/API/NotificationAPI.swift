@@ -72,7 +72,7 @@ class NotificationAPI {
     public func toggleNotification(type: NotificationTypes, duration: Double?, completion: @escaping (String, Bool) -> Void) {
         let duration = duration ?? fetchNotificationAnimationSettings().duration
         
-        let notificationMessage = self.fetchNotificationText(type: type)
+        let notificationMessage = fetchNotificationText(type: type)
         var showNotification = true
         completion(notificationMessage, showNotification)
         DispatchQueue.main.asyncAfter(deadline: .now() + duration, execute: {

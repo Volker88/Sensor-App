@@ -27,9 +27,9 @@ struct NotificationView: View {
     
     // MARK: - Initializer
     init(notificationMessage: Binding<String>, showNotification: Binding<Bool>) {
-        self._notificationMessage = notificationMessage
-        self._showNotification = showNotification
-        self.notificationSettings = notificationAPI.fetchNotificationAnimationSettings()
+        _notificationMessage = notificationMessage
+        _showNotification = showNotification
+        notificationSettings = notificationAPI.fetchNotificationAnimationSettings()
     }
     
     
@@ -41,8 +41,8 @@ struct NotificationView: View {
         
         
         // MARK: - Return View
-        return NotificationMessageView(notificationText: self.$notificationMessage)
-            .offset(y: self.showNotification ? notificationSettings.offSetY : -UIScreen.main.bounds.height)
+        return NotificationMessageView(notificationText: $notificationMessage)
+            .offset(y: showNotification ? notificationSettings.offSetY : -UIScreen.main.bounds.height)
             .animation(.interpolatingSpring(mass: notificationSettings.springMass, stiffness: notificationSettings.springStiffness, damping: notificationSettings.springDamping, initialVelocity: notificationSettings.springVelocity))
     }
 }

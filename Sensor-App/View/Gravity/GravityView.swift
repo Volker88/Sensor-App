@@ -84,33 +84,33 @@ struct GravityView: View {
                             DisclosureGroup(
                                 isExpanded: $showXAxis,
                                 content: {
-                                    LineGraphSubView(motionVM: self.motionVM, showGraph: .gravityXAxis)
+                                    LineGraphSubView(motionVM: motionVM, showGraph: .gravityXAxis)
                                         .frame(height: 100, alignment: .leading)
                                 },
                                 label: {
-                                    Text("X-Axis: \(self.motionVM.coreMotionArray.last?.gravityXAxis ?? 0.0, specifier: "%.5f") g (9,81 m/s^2)", comment: "GravityView - X-Axis")
+                                    Text("X-Axis: \(motionVM.coreMotionArray.last?.gravityXAxis ?? 0.0, specifier: "%.5f") g (9,81 m/s^2)", comment: "GravityView - X-Axis")
                                 })
                                 .disclosureGroupModifier(accessibility: "Toggle X-Axis Graph")
                             
                             DisclosureGroup(
                                 isExpanded: $showYAxis,
                                 content: {
-                                    LineGraphSubView(motionVM: self.motionVM, showGraph: .gravityYAxis)
+                                    LineGraphSubView(motionVM: motionVM, showGraph: .gravityYAxis)
                                         .frame(height: 100, alignment: .leading)
                                 },
                                 label: {
-                                    Text("Y-Axis: \(self.motionVM.coreMotionArray.last?.gravityYAxis ?? 0.0, specifier: "%.5f") g (9,81 m/s^2)", comment: "GravityView - Y-Axis")
+                                    Text("Y-Axis: \(motionVM.coreMotionArray.last?.gravityYAxis ?? 0.0, specifier: "%.5f") g (9,81 m/s^2)", comment: "GravityView - Y-Axis")
                                 })
                                 .disclosureGroupModifier(accessibility: "Toggle X-Axis Graph")
                             
                             DisclosureGroup(
                                 isExpanded: $showZAxis,
                                 content: {
-                                    LineGraphSubView(motionVM: self.motionVM, showGraph: .gravityZAxis)
+                                    LineGraphSubView(motionVM: motionVM, showGraph: .gravityZAxis)
                                         .frame(height: 100, alignment: .leading)
                                 },
                                 label: {
-                                    Text("Z-Axis: \(self.motionVM.coreMotionArray.last?.gravityZAxis ?? 0.0, specifier: "%.5f") g (9,81 m/s^2)", comment: "GravityView - Z-Axis")
+                                    Text("Z-Axis: \(motionVM.coreMotionArray.last?.gravityZAxis ?? 0.0, specifier: "%.5f") g (9,81 m/s^2)", comment: "GravityView - Z-Axis")
                                 })
                                 .disclosureGroupModifier(accessibility: "Toggle X-Axis Graph")
                             

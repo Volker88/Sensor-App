@@ -54,7 +54,7 @@ struct RefreshRateView: View {
                 Text("1", comment: "RefreshRateView - Label 1")
                 
                 Slider(value: $motionVM.sensorUpdateInterval, in: 1...10, step: 0.1) { _ in
-                    self.updateSlider()
+                    updateSlider()
                 }
                 .hoverEffect()
                 .accessibility(label: Text("Refresh Rate", comment: "RefreshRateView - Slider"))

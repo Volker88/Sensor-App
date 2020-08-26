@@ -67,11 +67,11 @@ class CoreMotionAPI {
     ///  - Returns:
     ///
     public func motionUpdateStart() {
-        self.motionManager.startDeviceMotionUpdates(using: .xTrueNorthZVertical, to: .main) { (data, error) in
+        motionManager.startDeviceMotionUpdates(using: .xTrueNorthZVertical, to: .main) { [self] (data, error) in
             guard let data = data, error == nil else {
                 return
             }
-            self.motionManager.deviceMotionUpdateInterval = ( 1 / self.sensorUpdateInterval)
+            motionManager.deviceMotionUpdateInterval = ( 1 / sensorUpdateInterval)
             
             
             // Acceleration
@@ -130,7 +130,7 @@ class CoreMotionAPI {
             
             let motionModel = MotionModel(
                 counter: 1,
-                timestamp: self.settings.getTimestamp(),
+                timestamp: settings.getTimestamp(),
                 accelerationXAxis: accelerationX,
                 accelerationYAxis: accelerationY,
                 accelerationZAxis: accelerationZ,
@@ -151,10 +151,10 @@ class CoreMotionAPI {
             )
             
             // Push Model to ViewController
-            self.motionCompletionHandler?(motionModel)
+            motionCompletionHandler?(motionModel)
             
             // Altimeter
-            self.altimeterManager.startRelativeAltitudeUpdates(to: .main) { (altimeter, error) in
+            altimeterManager.startRelativeAltitudeUpdates(to: .main) { (altimeter, error) in
                 guard let altimeter = altimeter, error == nil else {
                     return
                 }
@@ -166,13 +166,13 @@ class CoreMotionAPI {
                 
                 let altitudeModel = AltitudeModel(
                     counter: 1,
-                    timestamp: self.settings.getTimestamp(),
+                    timestamp: settings.getTimestamp(),
                     pressureValue: pressureValue,
                     relativeAltitudeValue: relativeAltitudeValue
                 )
 
                 // Push Model to ViewController
-                self.altitudeCompletionHandler?(altitudeModel)
+                altitudeCompletionHandler?(altitudeModel)
             }
         }
     }
