@@ -28,14 +28,16 @@ struct GyroscopeList: View {
         
         // MARK: - Return View
         List(motionVM.coreMotionArray.reversed(), id: \.counter) { index in
-            HStack{ #warning("Fix index out of range issue")
-                Text("ID:\(motionVM.coreMotionArray[index.counter - 1].counter)", comment: "MotionListView - ID")
-                Spacer()
-                Text("X:\(motionVM.coreMotionArray[index.counter - 1].gyroXAxis, specifier: "%.5f")", comment: "MotionListView - X")
-                Spacer()
-                Text("Y:\(motionVM.coreMotionArray[index.counter - 1].gyroYAxis, specifier: "%.5f")", comment: "MotionListView - Y")
-                Spacer()
-                Text("Z:\(motionVM.coreMotionArray[index.counter - 1].gyroZAxis, specifier: "%.5f")", comment: "MotionListView - Z")
+            HStack {
+                if index.counter > 0 {
+                    Text("ID:\(motionVM.coreMotionArray[index.counter - 1].counter)", comment: "GyroscopeList - ID")
+                    Spacer()
+                    Text("X:\(motionVM.coreMotionArray[index.counter - 1].gyroXAxis, specifier: "%.5f")", comment: "GyroscopeList - X")
+                    Spacer()
+                    Text("Y:\(motionVM.coreMotionArray[index.counter - 1].gyroYAxis, specifier: "%.5f")", comment: "GyroscopeList - Y")
+                    Spacer()
+                    Text("Z:\(motionVM.coreMotionArray[index.counter - 1].gyroZAxis, specifier: "%.5f")", comment: "GyroscopeList - Z")
+                }
             }
             .font(.footnote)
         }

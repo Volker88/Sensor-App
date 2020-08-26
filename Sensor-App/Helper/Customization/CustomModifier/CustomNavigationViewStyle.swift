@@ -35,7 +35,7 @@ extension View {
     ///
     /// NavigationBarStyle Modifier
     ///
-    /// On iOS a StackNavigationViewStyle will be applied whereas on macOS no stlye will be applied
+    /// On iOS a StackNavigationViewStyle will be applied whereas on iPadOS no stlye will be applied
     ///
     /// - Returns: View
     ///

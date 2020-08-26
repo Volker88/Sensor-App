@@ -63,9 +63,11 @@ struct Sidebar: View {
                     Label(NSLocalizedString("Altitude", comment: "ContentView - Altitude"), systemImage: "globe")
                         .accessibility(identifier: "Altitude")
                 }
-                NavigationLink(destination: SettingsView().navigationBarBackButtonHidden(true)) {
-                    Label(NSLocalizedString("Settings", comment: "ContentView - Settings"), systemImage: "gear")
-                        .accessibility(identifier: "Settings")
+                if UIDevice.current.userInterfaceIdiom == .phone {
+                    NavigationLink(destination: SettingsView().navigationBarBackButtonHidden(true)) {
+                        Label(NSLocalizedString("Settings", comment: "ContentView - Settings"), systemImage: "gear")
+                            .accessibility(identifier: "Settings")
+                    }
                 }
             }
         }
@@ -80,8 +82,9 @@ struct Sidebar: View {
         // MARK: - Return View
         VStack(spacing: 0) {
             list
-            #warning("Settings not shown due to Toolbar")
-            SettingsOverlay()
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                SettingsOverlay()
+            }
         }
         .edgesIgnoringSafeArea(.all)
     }

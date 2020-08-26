@@ -13,23 +13,17 @@ import SwiftUI
 // MARK: - Struct / Class Definition
 struct SettingsOverlay: View {
     
-    
     // MARK: - @State / @ObservedObject / @Binding
-    @State private var isPresented = false
-    
     
     // MARK: - Body
     var body: some View {
-        Button(action: { isPresented.toggle() }) {
+        NavigationLink(destination: SettingsView()) {
             Label(NSLocalizedString("Settings", comment: "Settings"), systemImage: "gear")
-            .padding(10)
+                .padding(10)
         }
         .hoverEffect()
         .frame(maxWidth: .infinity, minHeight: 50, maxHeight: 50, alignment: .center)
         .background((Color.gray).opacity(0.3))
-        .sheet(isPresented: $isPresented) {
-            SettingsView()
-        }
     }
 }
 

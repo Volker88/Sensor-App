@@ -42,7 +42,6 @@ struct RefreshRateView: View {
     // MARK: - Body - View
     var body: some View {
         
-        
         // MARK: - Return View
         if show == "header" {
             HStack {
@@ -56,7 +55,6 @@ struct RefreshRateView: View {
                 Slider(value: $motionVM.sensorUpdateInterval, in: 1...10, step: 0.1) { _ in
                     updateSlider()
                 }
-                .hoverEffect()
                 .accessibility(label: Text("Refresh Rate", comment: "RefreshRateView - Slider"))
                 .accessibility(value: Text("\(motionVM.sensorUpdateInterval, specifier: "%.1f") per Second", comment: "RefreshRateView - Value"))
                 .accessibility(identifier: "Frequency Slider")

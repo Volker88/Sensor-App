@@ -28,14 +28,16 @@ struct MagnetometerList: View {
         
         // MARK: - Return View
         List(motionVM.coreMotionArray.reversed(), id: \.counter) { index in
-            HStack{
-                Text("ID:\(motionVM.coreMotionArray[index.counter - 1].counter)", comment: "MotionListView - ID")
-                Spacer()
-                Text("X:\(motionVM.coreMotionArray[index.counter - 1].magnetometerXAxis, specifier: "%.5f")", comment: "MotionListView - X")
-                Spacer()
-                Text("Y:\(motionVM.coreMotionArray[index.counter - 1].magnetometerYAxis, specifier: "%.5f")", comment: "MotionListView - Y")
-                Spacer()
-                Text("Z:\(motionVM.coreMotionArray[index.counter - 1].magnetometerZAxis, specifier: "%.5f")", comment: "MotionListView - Z")
+            HStack {
+                if index.counter > 0 {
+                    Text("ID:\(motionVM.coreMotionArray[index.counter - 1].counter)", comment: "MagnetometerList - ID")
+                    Spacer()
+                    Text("X:\(motionVM.coreMotionArray[index.counter - 1].magnetometerXAxis, specifier: "%.5f")", comment: "MagnetometerList - X")
+                    Spacer()
+                    Text("Y:\(motionVM.coreMotionArray[index.counter - 1].magnetometerYAxis, specifier: "%.5f")", comment: "MagnetometerList - Y")
+                    Spacer()
+                    Text("Z:\(motionVM.coreMotionArray[index.counter - 1].magnetometerZAxis, specifier: "%.5f")", comment: "MagnetometerList - Z")
+                }
             }
             .font(.footnote)
         }

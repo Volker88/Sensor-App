@@ -28,16 +28,18 @@ struct AttitudeList: View {
         
         // MARK: - Return View
         List(motionVM.coreMotionArray.reversed(), id: \.counter) { index in
-            HStack{
-                Text("ID:\(motionVM.coreMotionArray[index.counter - 1].counter)", comment: "MotionListView - ID")
-                Spacer()
-                Text("R:\(motionVM.coreMotionArray[index.counter - 1].attitudeRoll * 180 / .pi, specifier: "%.3f")", comment: "MotionListView - R")
-                Spacer()
-                Text("P:\(motionVM.coreMotionArray[index.counter - 1].attitudePitch * 180 / .pi, specifier: "%.3f")", comment: "MotionListView - P")
-                Spacer()
-                Text("Y:\(motionVM.coreMotionArray[index.counter - 1].attitudeYaw * 180 / .pi, specifier: "%.3f")" , comment: "MotionListView - Yield")
-                Spacer()
-                Text("H:\(motionVM.coreMotionArray[index.counter - 1].attitudeHeading, specifier: "%.3f")", comment: "MotionListView - H")
+            HStack {
+                if index.counter > 0 {
+                    Text("ID:\(motionVM.coreMotionArray[index.counter - 1].counter)", comment: "AttitudeList - ID")
+                    Spacer()
+                    Text("R:\(motionVM.coreMotionArray[index.counter - 1].attitudeRoll * 180 / .pi, specifier: "%.3f")", comment: "AttitudeList - R")
+                    Spacer()
+                    Text("P:\(motionVM.coreMotionArray[index.counter - 1].attitudePitch * 180 / .pi, specifier: "%.3f")", comment: "AttitudeList - P")
+                    Spacer()
+                    Text("Y:\(motionVM.coreMotionArray[index.counter - 1].attitudeYaw * 180 / .pi, specifier: "%.3f")" , comment: "AttitudeList - Yield")
+                    Spacer()
+                    Text("H:\(motionVM.coreMotionArray[index.counter - 1].attitudeHeading, specifier: "%.3f")", comment: "AttitudeList - H")
+                }
             }
             .font(.footnote)
         }

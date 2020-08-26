@@ -28,14 +28,16 @@ struct GravityList: View {
         
         // MARK: - Return View
         List(motionVM.coreMotionArray.reversed(), id: \.counter) { index in
-            HStack{
-                Text("ID:\(motionVM.coreMotionArray[index.counter - 1].counter)", comment: "MotionListView - ID")
-                Spacer()
-                Text("X:\(motionVM.coreMotionArray[index.counter - 1].gravityXAxis, specifier: "%.5f")", comment: "MotionListView - X")
-                Spacer()
-                Text("Y:\(motionVM.coreMotionArray[index.counter - 1].gravityYAxis, specifier: "%.5f")", comment: "MotionListView - Y")
-                Spacer()
-                Text("Z:\(motionVM.coreMotionArray[index.counter - 1].gravityZAxis, specifier: "%.5f")", comment: "MotionListView - Z")
+            HStack {
+                if index.counter > 0 {
+                    Text("ID:\(motionVM.coreMotionArray[index.counter - 1].counter)", comment: "GravityList - ID")
+                    Spacer()
+                    Text("X:\(motionVM.coreMotionArray[index.counter - 1].gravityXAxis, specifier: "%.5f")", comment: "GravityList - X")
+                    Spacer()
+                    Text("Y:\(motionVM.coreMotionArray[index.counter - 1].gravityYAxis, specifier: "%.5f")", comment: "GravityList - Y")
+                    Spacer()
+                    Text("Z:\(motionVM.coreMotionArray[index.counter - 1].gravityZAxis, specifier: "%.5f")", comment: "GravityList - Z")
+                }
             }
             .font(.footnote)
         }

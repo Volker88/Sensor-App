@@ -21,7 +21,7 @@ struct AltitudeView: View {
     
     
     // MARK: - @State / @ObservedObject / @Binding
-    @ObservedObject var motionVM = CoreMotionViewModel()
+    @StateObject var motionVM = CoreMotionViewModel()
     @State private var showShareSheet = false
     @State private var filesToShare = [Any]()
     
