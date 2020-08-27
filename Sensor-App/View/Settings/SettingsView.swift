@@ -26,6 +26,7 @@ struct SettingsView: View {
     // MARK: - @State / @ObservedObject / @Binding
     @State private var notificationMessage = ""
     @State private var showNotification = false
+    @State private var sideBarOpen: Bool = false
     
     // Location
     @State private var speedSetting = 0
@@ -135,13 +136,17 @@ struct SettingsView: View {
         
     }
     
+    // MARK: - Content
+    var sideBarButton: some View {
+        Button(action: {
+            sideBarOpen.toggle()
+        }) {
+            Image(systemName: "sidebar.left")
+        }
+    }
     
-    // MARK: - Body - View
-    var body: some View {
-        
-        
-        // MARK: - Return view
-        return ZStack {
+    var content: some View {
+        ZStack {
             Form {
                 Section(header:
                             Text("Location", comment: "SettingsView - Location Section")
@@ -246,33 +251,60 @@ struct SettingsView: View {
                 }
             }
             .navigationBarTitle("\(NSLocalizedString("Settings", comment: "NavigationBar Title - Settings"))", displayMode: .inline)
-            .navigationBarItems(trailing:
-                                        HStack(spacing: 20) {
-                                            Button(action: {
-                                                discardChanges(_showNotification: true)
-                                            }) {
-                                                Image(systemName: "gobackward")
-                                                    .accessibility(label: Text("Discard Changes", comment: "NagvigationBarButton - Discard Changes"))
-                                                    .navigationBarItemModifier(accessibility: "Reset Settings")
-                                            }
-                                            Button(action: {
-                                                saveSettings()
-                                            }) {
-                                                Image(systemName: "return")
-                                                    .accessibility(label: Text("Save", comment: "NagvigationBarButton - Save"))
-                                                    .navigationBarItemModifier(accessibility: "Save Settings")
-                                            }
-                                        })
-            
+            .toolbar {
+                ToolbarItem(placement: .bottomBar) { Spacer() }
+                
+                ToolbarItem(placement: .bottomBar) {
+                    Button(action: {
+                        saveSettings()
+                    }) {
+                        //Label(NSLocalizedString("Discard Changes", comment: "NagvigationBarButton - Save"), systemImage: "return")
+                        Text("Save", comment: "NagvigationBarButton - Save")
+                            .accessibility(label: Text("Save", comment: "NagvigationBarButton - Save"))
+                            .navigationBarItemModifier(accessibility: "Save Settings")
+                    }
+                }
+                ToolbarItem(placement: .bottomBar) { Spacer() }
+                
+                ToolbarItem(placement: .bottomBar) {
+                    Button(action: {
+                        discardChanges(_showNotification: true)
+                    }) {
+                        //Label(NSLocalizedString("Discard ", comment: "NagvigationBarButton - Discard Changes"), systemImage: "gobackward")
+                        Text("Discard", comment: "NagvigationBarButton - Discard Changes")
+                            .accessibility(label: Text("Discard", comment: "NagvigationBarButton - Discard Changes"))
+                            .navigationBarItemModifier(accessibility: "Reset Settings")
+                    }
+                }
+                ToolbarItem(placement: .bottomBar) { Spacer() }  
+            }
             
             .onAppear(perform: onAppear)
             .onDisappear(perform: onDisappear)
+            
+            
+            // MARK: - SidebarMenu
+            SidebarMenu(sidebarOpen: $sideBarOpen)
             
             
             // MARK: - NotificationView()
             NotificationView(notificationMessage: $notificationMessage, showNotification: $showNotification)
         }
     }
+    
+    // MARK: - Body - View
+    @ViewBuilder
+    var body: some View {
+        
+        // MARK: - Return View
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            content
+                .navigationBarItems(leading: sideBarButton)
+        } else {
+            content
+        }
+    }
+    
 }
 
 

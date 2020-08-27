@@ -22,7 +22,7 @@ struct LocationView: View {
     
     
     // MARK: - @State / @ObservedObject / @Binding
-    @StateObject var locationVM = CoreLocationViewModel()
+    @ObservedObject var locationVM = CoreLocationViewModel()
     @State private var showShareSheet = false
     @State private var filesToShare = [Any]()
     

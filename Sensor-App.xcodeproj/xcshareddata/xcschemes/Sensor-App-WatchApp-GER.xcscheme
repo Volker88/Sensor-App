@@ -57,8 +57,10 @@
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES"
       showNonLocalizedStrings = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <RemoteRunnable
+         runnableDebuggingMode = "2"
+         BundleIdentifier = "com.apple.Carousel"
+         RemotePath = "/Sensor-App">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1527B04624C4AA620024DD78"
@@ -66,7 +68,7 @@
             BlueprintName = "Sensor-App-WatchApp"
             ReferencedContainer = "container:Sensor-App.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </RemoteRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -74,8 +76,10 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <RemoteRunnable
+         runnableDebuggingMode = "2"
+         BundleIdentifier = "com.apple.Carousel"
+         RemotePath = "/Sensor-App">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1527B04624C4AA620024DD78"
@@ -83,7 +87,16 @@
             BlueprintName = "Sensor-App-WatchApp"
             ReferencedContainer = "container:Sensor-App.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </RemoteRunnable>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "1527B04624C4AA620024DD78"
+            BuildableName = "Sensor-App-WatchApp.app"
+            BlueprintName = "Sensor-App-WatchApp"
+            ReferencedContainer = "container:Sensor-App.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
