@@ -139,7 +139,7 @@ struct LocationView: View {
                         }
 
                         Section(header: Text("Map", comment: "LocationView - Section Header")) {
-                            MapView(region: $locationVM.region)
+                            MapView(locationVM: locationVM)
                                 .frame(minWidth: 0, idealWidth: g.size.width, maxWidth: .infinity, minHeight: 0, idealHeight: g.size.height, maxHeight: .infinity, alignment: .center)
                                 .cornerRadius(10)
                         }

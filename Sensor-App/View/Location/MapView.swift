@@ -18,15 +18,28 @@ struct MapView: View {
     // MARK: - Initialize Classes
     let settingsAPI = SettingsAPI()
     
+    
     // MARK: - Environment Object
     
     // MARK: - @State / @ObservedObject / @Binding
-    @Binding var region: MKCoordinateRegion
+    @ObservedObject var locationVM: CoreLocationViewModel
     @State private var userTrackingMode: MapUserTrackingMode = .follow
     
     
     // MARK: - Define Constants / Variables
     let interaction = MapInteractionModes()
+    var region: MKCoordinateRegion {
+        var coordinate: CLLocationCoordinate2D {
+            CLLocationCoordinate2D(latitude: locationVM.coreLocationArray.last?.latitude ?? 40.7588996887207,
+                                   longitude: locationVM.coreLocationArray.last?.longitude ?? -73.98505401611328
+            )
+        }
+        return MKCoordinateRegion(center:
+                                    coordinate,
+                                  latitudinalMeters: settingsAPI.fetchMapKitSettings().zoom,
+                                  longitudinalMeters: settingsAPI.fetchMapKitSettings().zoom
+        )
+    }
     
     
     // MARK: - Initializer
@@ -35,10 +48,10 @@ struct MapView: View {
     
     // MARK: - Body
     var body: some View {
-  
+        
         // MARK: - Return View
         return Map(
-            coordinateRegion: $region,
+            coordinateRegion: .constant(region),
             interactionModes: MapInteractionModes.all,
             showsUserLocation: true,
             userTrackingMode: $userTrackingMode
@@ -52,90 +65,10 @@ struct MapView: View {
 struct MapKitView_Previews: PreviewProvider {
     static var previews: some View {
         ForEach([ColorScheme.light, .dark], id: \.self) { scheme in
-            MapView(region: .constant(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.3323314100, longitude: -122.0312186000), latitudinalMeters: 10000, longitudinalMeters: 10000)))
+            MapView(locationVM: CoreLocationViewModel())
                 .colorScheme(scheme)
                 .previewLayout(.fixed(width: 400, height: 400))
         }
         
     }
 }
-
-
-// MARK: - Not Used
-struct MapKitView: UIViewRepresentable {
-    
-    // MARK: - Initialize Classes
-    let settings = SettingsAPI()
-    
-    
-    // MARK: - Define Constants / Variables
-    private var latitude: Double
-    private var longitude: Double
-    
-    
-    // MARK: - Initialize Coordinates
-    init(_latitude: Double, _longitude: Double) {
-        latitude = _latitude
-        longitude = _longitude
-    }
-    
-    
-    // MARK: - MapKitView
-    func makeUIView(context: Context) -> MKMapView {
-        let mapView = MKMapView()
-        mapView.delegate = context.coordinator
-        return mapView
-    }
-    
-    func updateUIView(_ view: MKMapView, context: Context) {
-        // Settings
-        let mapKitSettings = settings.fetchMapKitSettings()
-        
-        view.showsUserLocation = true
-        view.showsCompass = mapKitSettings.showsCompass
-        view.showsBuildings = mapKitSettings.showsBuildings
-        view.showsTraffic = mapKitSettings.showsTraffic
-        view.isRotateEnabled = mapKitSettings.isRotateEnabled
-        view.isScrollEnabled = mapKitSettings.isScrollEnabled
-        view.showsScale = mapKitSettings.showsScale
-        
-        
-        // Map Appearance
-        switch mapKitSettings.mapType {
-            case .standard: view.mapType = MKMapType.standard
-            case .satellite: view.mapType = MKMapType.satellite
-            case .hybrid: view.mapType = MKMapType.hybrid
-            case .satelliteFlyover: view.mapType = MKMapType.satelliteFlyover
-            case .hybridFlyover: view.mapType = MKMapType.hybridFlyover
-            case .mutedSandard: view.mapType = MKMapType.mutedStandard
-        }
-        
-        // User Coordinates
-        let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-        
-        // Zoom Factor
-        let region = MKCoordinateRegion(center: coordinate, latitudinalMeters: mapKitSettings.zoom, longitudinalMeters: mapKitSettings.zoom)
-        view.setRegion(region, animated: true)
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = coordinate
-    }
-    
-    func makeCoordinator() -> Coordinator {
-        Coordinator(self)
-    }
-    
-    class Coordinator: NSObject, MKMapViewDelegate {
-        var parent: MapKitView
-        
-        init(_ _parent: MapKitView) {
-            parent = _parent
-        }
-        
-        func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {
-            parent.latitude = mapView.centerCoordinate.latitude
-            parent.longitude = mapView.centerCoordinate.longitude
-        }
-    }
-}
-
-

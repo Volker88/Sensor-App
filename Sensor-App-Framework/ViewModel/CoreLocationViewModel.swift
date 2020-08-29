@@ -21,7 +21,6 @@ class CoreLocationViewModel: ObservableObject {
     
     // MARK: - Define Constants / Variables
     @Published var coreLocationArray = [LocationModel]()
-    @Published var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.3323314100, longitude: -122.0312186000), latitudinalMeters: 10000, longitudinalMeters: 10000)
 
     
     // MARK: - Methods
@@ -52,14 +51,7 @@ class CoreLocationViewModel: ObservableObject {
                 verticalAccuracy: GPS.verticalAccuracy,
                 timestamp: GPS.timestamp,
                 GPSAccuracy: GPS.GPSAccuracy
-            ))
-            
-            
-            // Region for MapView()
-            #if !os(watchOS)
-            region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: GPS.latitude, longitude: GPS.longitude), latitudinalMeters: settingsAPI.fetchMapKitSettings().zoom, longitudinalMeters: settingsAPI.fetchMapKitSettings().zoom)
-            #endif
-            
+            )) 
         }
     }
     

@@ -20,8 +20,7 @@ extension Map {
     ///
     /// - Returns: View
     ///
-    func mapStyle() -> some View { // FIXME: - Not updating when dismiss modal
-        
+    func mapStyle() -> some View {
         let settingsAPI = SettingsAPI()
         let mapKitSettings = settingsAPI.fetchMapKitSettings()
         let map = MKMapView.appearance()

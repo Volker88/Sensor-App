@@ -81,7 +81,6 @@ struct Location: View {
                 .toolbar {
                     CustomToolbar(toolBarFunctionClosure: toolBarButtonTapped(button:))
                 }
-                //.customToolBar(toolBarFunctionClosure: toolBarButtonTapped(button:))
             
             
             // MARK: - SidebarMenu

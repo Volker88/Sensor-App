@@ -22,18 +22,18 @@ struct SidebarMenu: View {
                      isOpen: sidebarOpen,
                      menuClose: { sidebarOpen = false })
             .animation(.easeInOut)
-            .gesture(
-                DragGesture(minimumDistance: 50)
-                    .onChanged { value in
-                        let direction = SwipeDirectionAPI.getSwipeDirection(value: value)
-                        if direction == .right {
-                            #if os(iOS)
-                            if UIDevice.current.userInterfaceIdiom == .phone {
-                                sidebarOpen = true
-                            }
-                            #endif
-                        }
-                    })
+//            .gesture(
+//                DragGesture(minimumDistance: 50)
+//                    .onChanged { value in
+//                        let direction = SwipeDirectionAPI.getSwipeDirection(value: value)
+//                        if direction == .right {
+//                            #if os(iOS)
+//                            if UIDevice.current.userInterfaceIdiom == .phone {
+//                                sidebarOpen = true
+//                            }
+//                            #endif
+//                        }
+//                    })
     }
 }
 
