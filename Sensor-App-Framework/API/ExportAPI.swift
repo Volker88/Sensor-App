@@ -35,8 +35,10 @@ class ExportAPI {
            
            do {
                try exportText.write(to: path!, atomically: true, encoding: String.Encoding.utf8)
+            Log.shared.add(.exportFile, .info, "\(path!)")
+            Log.shared.add(.exportFile, .info, "\(exportText)")
            } catch {
-               print(error.localizedDescription)
+            Log.shared.add(.exportFile, .fault, "\(error)")
            }
            
            var filesToShare = [Any]()

@@ -46,10 +46,6 @@ class SettingsAPI {
     ]
     
     
-    // MARK: - View BackgroundColor
-    public let backgroundColor : [Color] = [Color("1first"), Color("2second"), Color("3third"), Color("4fourth"), Color("5fifth")]
-    
-    
     // MARK: - UserDefaults
     ///
     ///  Call this function to clear all UserDefaults
@@ -57,6 +53,7 @@ class SettingsAPI {
     public func clearUserDefaults() {
         UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
         UserDefaults.standard.synchronize()
+        Log.shared.add(.userDefaults, .info, "Clear Userdefaults")
     }
     
     /// Read UserSettings
@@ -72,9 +69,12 @@ class SettingsAPI {
             let decoder = JSONDecoder()
             if let decoded = try? decoder.decode(UserSettings.self, from: settings) {
                 userSettings = decoded
+                Log.shared.print("Read Settings: \(userSettings)")
+            } else {
+                Log.shared.add(.userDefaults, .error, "UserSettings could not be fetched")
             }
         }
-        print("Read Settings: \(userSettings)")
+        
         return userSettings
     }
     
@@ -90,8 +90,10 @@ class SettingsAPI {
         
         if let data = try? encoder.encode(settings) {
             UserDefaults.standard.set(data, forKey: "UserSettings")
+            Log.shared.print("Save Settings: \(settings)")
+        } else {
+            Log.shared.add(.userDefaults, .error, "UserSettings could not be saved")
         }
-        print("Save Settings: \(settings)")
     }
     
     /// Read MapKitSettings
@@ -109,9 +111,12 @@ class SettingsAPI {
             let decoder = JSONDecoder()
             if let decoded = try? decoder.decode(MapKitSettings.self, from: settings) {
                 mapKitSettings = decoded
+            } else {
+                Log.shared.add(.userDefaults, .error, "MapKitSettings could not be fetched")
             }
         }
-        print("Read Settings: \(mapKitSettings)")
+        Log.shared.print("Read Settings: \(mapKitSettings)")
+        
         return mapKitSettings
     }
     
@@ -129,8 +134,10 @@ class SettingsAPI {
         
         if let data = try? encoder.encode(settings) {
             UserDefaults.standard.set(data, forKey: "MapKitSettings")
+        } else {
+            Log.shared.add(.userDefaults, .error, "MapKitSettings could not be fsaved")
         }
-        print("Save Settings: \(settings)")
+        Log.shared.print("Save Settings: \(settings)")
     }
     
     
@@ -149,7 +156,7 @@ class SettingsAPI {
         let dateFormatter = DateFormatter()
         dateFormatter.setLocalizedDateFormatFromTemplate("ddMMyyyyHHmmssSSS")
         let dateString = dateFormatter.string(from: NSDate() as Date)
-        //print("Timestamp: " + dateString)
+
         return dateString
     } 
 }

@@ -24,11 +24,12 @@ class AppUpdates {
     ///
     public func checkForUpdate() {
         
-        let upToDate = UserDefaults.standard.bool(forKey: "upToDate")
-        
-        if upToDate == true {
-            print("App is up to date!")
-        } else if upToDate == false {
+        let appVersion = UserDefaults.standard.string(forKey: "CurrentAppVersion")
+           
+        if appVersion == getCurrentAppVersion() {
+            Log.shared.add(.appUpdates, .info, "App is up to date! (\(getCurrentAppVersion()))")
+        } else {
+            Log.shared.add(.appUpdates, .info, "App is not up to date! (\(getCurrentAppVersion()))")
             updateApp()
         }
     }
@@ -36,15 +37,15 @@ class AppUpdates {
     ///
     ///  Method to update the app
     ///
-    ///  This function will clear old userDefaults and set "upToDate" to true
+    ///  This function will clear old userDefaults and save the Current App Version
     ///
     ///
     ///  - Note: Add additional tasks which need to be performed with a new app version
     ///
     private func updateApp() {
         settings.clearUserDefaults()
-        UserDefaults.standard.set(true, forKey: "upToDate")
-        print("App has been updated")
+        UserDefaults.standard.setValue(getCurrentAppVersion(), forKey: "CurrentAppVersion")
+        Log.shared.add(.appUpdates, .info, "App has been updated (\(getCurrentAppVersion()))")
     }
     
     ///

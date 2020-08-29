@@ -116,10 +116,7 @@
 		1542E3E724C4B17B00FA2755 /* SettingsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E36124C4AF9300FA2755 /* SettingsAPI.swift */; };
 		1542E3E824C4B19500FA2755 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E37224C4AF9300FA2755 /* Extension.swift */; };
 		1542E3E924C4B19600FA2755 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E37224C4AF9300FA2755 /* Extension.swift */; };
-		1542E3EA24C4B19B00FA2755 /* GraphButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E36E24C4AF9300FA2755 /* GraphButtonModifier.swift */; };
-		1542E3EC24C4B1A400FA2755 /* ListViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E37424C4AF9300FA2755 /* ListViewModifier.swift */; };
 		1542E3ED24C4B1A900FA2755 /* NavigationBarItemModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E36F24C4AF9300FA2755 /* NavigationBarItemModifier.swift */; };
-		1542E3EE24C4B1AD00FA2755 /* ToolBarButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E37124C4AF9300FA2755 /* ToolBarButtonModifier.swift */; };
 		1542E3EF24C4B1B400FA2755 /* ViewButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E37324C4AF9300FA2755 /* ViewButtonModifier.swift */; };
 		1542E3F024C4B1D500FA2755 /* AltitudeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E36C24C4AF9300FA2755 /* AltitudeModel.swift */; };
 		1542E3F224C4B1DC00FA2755 /* AltitudeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E36C24C4AF9300FA2755 /* AltitudeModel.swift */; };
@@ -168,6 +165,9 @@
 		15445CC924F2E213006940C6 /* AltitudeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15445CC824F2E213006940C6 /* AltitudeList.swift */; };
 		158826EC24F276BD00631B87 /* Acceleration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158826EB24F276BD00631B87 /* Acceleration.swift */; };
 		159B640324DEB5DC009A1E35 /* Extension_Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159B640124DEB5C1009A1E35 /* Extension_Map.swift */; };
+		15BBEFA524FAC7B5008E2E4F /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BBEFA424FAC7B5008E2E4F /* Log.swift */; };
+		15BBEFA624FAC7D6008E2E4F /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BBEFA424FAC7B5008E2E4F /* Log.swift */; };
+		15BBEFA724FAC921008E2E4F /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BBEFA424FAC7B5008E2E4F /* Log.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -322,12 +322,9 @@
 		1542E36A24C4AF9300FA2755 /* MapKitSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapKitSettings.swift; sourceTree = "<group>"; };
 		1542E36B24C4AF9300FA2755 /* LocationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
 		1542E36C24C4AF9300FA2755 /* AltitudeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AltitudeModel.swift; sourceTree = "<group>"; };
-		1542E36E24C4AF9300FA2755 /* GraphButtonModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphButtonModifier.swift; sourceTree = "<group>"; };
 		1542E36F24C4AF9300FA2755 /* NavigationBarItemModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBarItemModifier.swift; sourceTree = "<group>"; };
-		1542E37124C4AF9300FA2755 /* ToolBarButtonModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolBarButtonModifier.swift; sourceTree = "<group>"; };
 		1542E37224C4AF9300FA2755 /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		1542E37324C4AF9300FA2755 /* ViewButtonModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewButtonModifier.swift; sourceTree = "<group>"; };
-		1542E37424C4AF9300FA2755 /* ListViewModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewModifier.swift; sourceTree = "<group>"; };
 		1542E37724C4AF9300FA2755 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1542E37924C4AF9300FA2755 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1542E37A24C4AF9300FA2755 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -373,6 +370,7 @@
 		15445CC824F2E213006940C6 /* AltitudeList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AltitudeList.swift; sourceTree = "<group>"; };
 		158826EB24F276BD00631B87 /* Acceleration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Acceleration.swift; sourceTree = "<group>"; };
 		159B640124DEB5C1009A1E35 /* Extension_Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension_Map.swift; sourceTree = "<group>"; };
+		15BBEFA424FAC7B5008E2E4F /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -614,6 +612,7 @@
 				1542E35D24C4AF9300FA2755 /* NotificationAPI.swift */,
 				1542E36124C4AF9300FA2755 /* SettingsAPI.swift */,
 				151D317124E956610090BC94 /* SwipeDirectionAPI.swift */,
+				15BBEFA424FAC7B5008E2E4F /* Log.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -857,10 +856,7 @@
 		159B640424DEB65D009A1E35 /* CustomModifier */ = {
 			isa = PBXGroup;
 			children = (
-				1542E36E24C4AF9300FA2755 /* GraphButtonModifier.swift */,
-				1542E37424C4AF9300FA2755 /* ListViewModifier.swift */,
 				1542E36F24C4AF9300FA2755 /* NavigationBarItemModifier.swift */,
-				1542E37124C4AF9300FA2755 /* ToolBarButtonModifier.swift */,
 				1542E37324C4AF9300FA2755 /* ViewButtonModifier.swift */,
 				151D317824E975F30090BC94 /* CustomNavigationViewStyle.swift */,
 				15441C0624EDA4A300DC7D41 /* DisclosureGroupModifier.swift */,
@@ -1137,7 +1133,6 @@
 				1542E3D924C4B05400FA2755 /* GraphArrayTransformation.swift in Sources */,
 				15445CBF24F2D6A1006940C6 /* MagnetometerList.swift in Sources */,
 				1542E3D124C4B05400FA2755 /* NotificationMessageView.swift in Sources */,
-				1542E3EE24C4B1AD00FA2755 /* ToolBarButtonModifier.swift in Sources */,
 				1542E3F024C4B1D500FA2755 /* AltitudeModel.swift in Sources */,
 				1542E3CB24C4B05400FA2755 /* GyroscopeView.swift in Sources */,
 				151D317524E956A10090BC94 /* SettingsOverlay.swift in Sources */,
@@ -1152,12 +1147,12 @@
 				1542E3F924C4B1EA00FA2755 /* NotificationModel.swift in Sources */,
 				1542E3E024C4B16A00FA2755 /* CoreLocationAPI.swift in Sources */,
 				1542E3EF24C4B1B400FA2755 /* ViewButtonModifier.swift in Sources */,
-				1542E3EA24C4B19B00FA2755 /* GraphButtonModifier.swift in Sources */,
 				1542E3ED24C4B1A900FA2755 /* NavigationBarItemModifier.swift in Sources */,
 				1542E3D424C4B05400FA2755 /* MapView.swift in Sources */,
 				15445CB524F2C2ED006940C6 /* GravityList.swift in Sources */,
 				15445CC424F2DF6B006940C6 /* AttitudeList.swift in Sources */,
 				1542E3CD24C4B05400FA2755 /* GravityView.swift in Sources */,
+				15BBEFA624FAC7D6008E2E4F /* Log.swift in Sources */,
 				15445CC924F2E213006940C6 /* AltitudeList.swift in Sources */,
 				153F46D024F4157E00E6F851 /* Location.swift in Sources */,
 				1542E3CF24C4B05400FA2755 /* LocationView.swift in Sources */,
@@ -1171,7 +1166,6 @@
 				151D317024E956380090BC94 /* SideMenuView.swift in Sources */,
 				1535752B24F26D3D00FA4A41 /* AccelerationView.swift in Sources */,
 				1542E3DB24C4B05400FA2755 /* GraphDetailModel.swift in Sources */,
-				1542E3EC24C4B1A400FA2755 /* ListViewModifier.swift in Sources */,
 				151D316C24E955FB0090BC94 /* Sidebar.swift in Sources */,
 				15445CB824F2D494006940C6 /* Gyroscope.swift in Sources */,
 				1542E3F724C4B1E500FA2755 /* MotionModel.swift in Sources */,
@@ -1262,6 +1256,7 @@
 				1542E3AE24C4AFFB00FA2755 /* AttitudeView.swift in Sources */,
 				1527B05C24C4AA630024DD78 /* NotificationView.swift in Sources */,
 				1542E3AB24C4AFFB00FA2755 /* GravityView.swift in Sources */,
+				15BBEFA724FAC921008E2E4F /* Log.swift in Sources */,
 				1542E40324C4B1F900FA2755 /* UserSettings.swift in Sources */,
 				1542E3F424C4B1DF00FA2755 /* LocationModel.swift in Sources */,
 				1542E3F224C4B1DC00FA2755 /* AltitudeModel.swift in Sources */,
@@ -1274,6 +1269,7 @@
 			files = (
 				1542E39A24C4AF9300FA2755 /* CoreLocationViewModel.swift in Sources */,
 				1542E38024C4AF9300FA2755 /* CoreLocationAPI.swift in Sources */,
+				15BBEFA524FAC7B5008E2E4F /* Log.swift in Sources */,
 				1542E38A24C4AF9300FA2755 /* UserSettings.swift in Sources */,
 				1542E39924C4AF9300FA2755 /* CoreMotionViewModel.swift in Sources */,
 				1542E37F24C4AF9300FA2755 /* CalculationAPI.swift in Sources */,
@@ -1383,6 +1379,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEBUGGING = 0;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -1447,6 +1444,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEBUGGING = 0;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;

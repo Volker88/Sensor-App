@@ -24,7 +24,7 @@ class CoreMotionAPI {
     private var altimeterManager = CMAltimeter()
     private var attitude = CMAttitude()
     
-
+    
     // MARK: - Define Constants / Variables
     public var sensorUpdateInterval : Double
     
@@ -69,8 +69,11 @@ class CoreMotionAPI {
     public func motionUpdateStart() {
         motionManager.startDeviceMotionUpdates(using: .xTrueNorthZVertical, to: .main) { [self] (data, error) in
             guard let data = data, error == nil else {
+                Log.shared.add(.coreMotion, .error, "\(String(describing: error))")
                 return
             }
+            Log.shared.add(.coreMotion, .info, "Start Motion Updates")
+            
             motionManager.deviceMotionUpdateInterval = ( 1 / sensorUpdateInterval)
             
             
@@ -79,9 +82,9 @@ class CoreMotionAPI {
             let accelerationY = data.userAcceleration.y
             let accelerationZ = data.userAcceleration.z
             
-            print("Acceleration X: \(accelerationX)")
-            print("Acceleration Y: \(accelerationY)")
-            print("Acceleration Z: \(accelerationZ)")
+            Log.shared.print("Acceleration X: \(accelerationX)")
+            Log.shared.print("Acceleration Y: \(accelerationY)")
+            Log.shared.print("Acceleration Z: \(accelerationZ)")
             
             
             // Gravity
@@ -89,9 +92,9 @@ class CoreMotionAPI {
             let gravityY = data.gravity.y
             let gravityZ = data.gravity.z
             
-            print("Gravity X: \(gravityX)")
-            print("Gravity Y: \(gravityY)")
-            print("Gravity Z: \(gravityZ)")
+            Log.shared.print("Gravity X: \(gravityX)")
+            Log.shared.print("Gravity Y: \(gravityY)")
+            Log.shared.print("Gravity Z: \(gravityZ)")
             
             
             // Gyrometer
@@ -99,9 +102,9 @@ class CoreMotionAPI {
             let gyroY = data.rotationRate.y
             let gyroZ = data.rotationRate.z
             
-            print("Gyrometer X: \(gyroX)")
-            print("Gyrometer Y: \(gyroZ)")
-            print("Gyrometer Z: \(gyroX)")
+            Log.shared.print("Gyrometer X: \(gyroX)")
+            Log.shared.print("Gyrometer Y: \(gyroZ)")
+            Log.shared.print("Gyrometer Z: \(gyroX)")
             
             
             // Magnetometer
@@ -110,10 +113,10 @@ class CoreMotionAPI {
             let magnetometerY = data.magneticField.field.y
             let magnetometerZ = data.magneticField.field.z
             
-            print("Magnetometer Calib.: \(magnetometerCalibration)")
-            print("Magnetometer X: \(magnetometerX)")
-            print("Magnetometer Y: \(magnetometerY)")
-            print("Magnetometer Z: \(magnetometerZ)")
+            Log.shared.print("Magnetometer Calib.: \(magnetometerCalibration)")
+            Log.shared.print("Magnetometer X: \(magnetometerX)")
+            Log.shared.print("Magnetometer Y: \(magnetometerY)")
+            Log.shared.print("Magnetometer Z: \(magnetometerZ)")
             
             
             // Attitude
@@ -122,10 +125,10 @@ class CoreMotionAPI {
             let attitudeYaw = data.attitude.yaw
             let attitudeHeading = data.heading
             
-            print("Roll: \(attitudeRoll)")
-            print("Pitch: \(attitudePitch)")
-            print("Yaw: \(attitudeYaw)")
-            print("Heading: \(attitudeHeading) °")
+            Log.shared.print("Roll: \(attitudeRoll)")
+            Log.shared.print("Pitch: \(attitudePitch)")
+            Log.shared.print("Yaw: \(attitudeYaw)")
+            Log.shared.print("Heading: \(attitudeHeading) °")
             
             
             let motionModel = MotionModel(
@@ -156,13 +159,14 @@ class CoreMotionAPI {
             // Altimeter
             altimeterManager.startRelativeAltitudeUpdates(to: .main) { (altimeter, error) in
                 guard let altimeter = altimeter, error == nil else {
+                    Log.shared.add(.coreMotion, .error, "\(String(describing: error))")
                     return
                 }
                 let pressureValue = Double(truncating: altimeter.pressure) // pressure in kPa
                 let relativeAltitudeValue = Double(truncating: altimeter.relativeAltitude) // change in m
                 
-                print("Pressure: \(pressureValue) kPa")
-                print("Relative Altitude change: \(relativeAltitudeValue) m")
+                Log.shared.print("Pressure: \(pressureValue) kPa")
+                Log.shared.print("Relative Altitude change: \(relativeAltitudeValue) m")
                 
                 let altitudeModel = AltitudeModel(
                     counter: 1,
@@ -170,7 +174,7 @@ class CoreMotionAPI {
                     pressureValue: pressureValue,
                     relativeAltitudeValue: relativeAltitudeValue
                 )
-
+                
                 // Push Model to ViewController
                 altitudeCompletionHandler?(altitudeModel)
             }
@@ -188,5 +192,6 @@ class CoreMotionAPI {
     public func motionUpdateStop() {
         motionManager.stopDeviceMotionUpdates()
         altimeterManager.stopRelativeAltitudeUpdates()
+        Log.shared.add(.coreMotion, .info, "Stop Motion Updates")
     }
 }
