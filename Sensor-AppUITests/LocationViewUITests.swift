@@ -36,24 +36,16 @@ class LocationViewUITests: XCTestCase {
         app.launch()
     
         // Go to Location View
-        app.navigationBars.buttons.element(boundBy: 0).tap()
-        app.tables.cells["Location"].buttons["Location"].tap()
+        moveToView(app: app, view: "Location")
         
         // Test Toolbar Buttons
         let toolbar = app.toolbars["Toolbar"]
         toolbar.buttons["play"].tap()
         toolbar.buttons["pause"].tap()
         toolbar.buttons["trash"].tap()
-        toolbar.buttons["Share"].tap()
-        sleep(1)
-        app/*@START_MENU_TOKEN@*/.navigationBars["UIActivityContentView"]/*[[".otherElements[\"ActivityListView\"].navigationBars[\"UIActivityContentView\"]",".navigationBars[\"UIActivityContentView\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.buttons["Close"].tap()
-        
         
         // Go Back to Main Menu
-        sleep(1)
-        app.navigationBars.buttons.element(boundBy: 0).tap()
-        sleep(1)
-        app.tables.cells["Home"].buttons["Home"].tap()
+        backToHomeMenu(app: app)
     }
     
     func testLocationViewGraphs() throws {
@@ -62,7 +54,7 @@ class LocationViewUITests: XCTestCase {
         app.launch()
         
         // Go to Location View
-        app.buttons["Location"].tap()
+        moveToView(app: app, view: "Location")
         
         // Show all Graphs
         app.buttons["Toggle Speed Graph"].tap()
@@ -79,7 +71,7 @@ class LocationViewUITests: XCTestCase {
         app.buttons["Toggle Speed Graph"].tap()
         
         // Go Back to Main Menu
-        app.navigationBars.buttons.element(boundBy: 0).tap()
+        backToHomeMenu(app: app)
     }
     
     func testLocationViewShareSheet() throws {
@@ -88,18 +80,28 @@ class LocationViewUITests: XCTestCase {
         app.launch()
         
         // Go to Location View
-        app.buttons["Location"].tap()
+        moveToView(app: app, view: "Location")
     
         // Open / Close Share Sheet
-        app/*@START_MENU_TOKEN@*/.buttons["Share Button"]/*[[".buttons[\"Share\"]",".buttons[\"Share Button\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        app.tables.buttons["Export"].tap()
         sleep(1)
-        app/*@START_MENU_TOKEN@*/.navigationBars["UIActivityContentView"]/*[[".otherElements[\"ActivityListView\"].navigationBars[\"UIActivityContentView\"]",".navigationBars[\"UIActivityContentView\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.buttons["Close"].tap()
+        app.navigationBars["UIActivityContentView"].buttons["Close"].tap()
         
         // Go Back to Main Menu
-        sleep(1)
-        app.navigationBars.buttons.element(boundBy: 0).tap()
+        backToHomeMenu(app: app)
     }
     
     
     // MARK:  - Methods
+    func moveToView(app: XCUIApplication, view: String) {
+        app.navigationBars.buttons.element(boundBy: 0).tap()
+        app.tables.cells[view].buttons[view].tap()
+    }
+    
+    func backToHomeMenu(app: XCUIApplication) {
+        sleep(1)
+        app.navigationBars.buttons.element(boundBy: 0).tap()
+        sleep(1)
+        app.tables.cells["Home"].buttons["Home"].tap()
+    }
 }

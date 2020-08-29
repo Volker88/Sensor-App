@@ -37,14 +37,14 @@ class ScreenshotUITests: XCTestCase {
         // Start Application
         let app = XCUIApplication()
         app.launch()
-        app.scrollViews.element.swipeDown()
         
         // Take Screenshot of Home View
+        app.navigationBars.buttons.element(boundBy: 0).tap()
         sleep(2)
         takeScreenshotOfCurrentView(name: "Home")
         
         // Switch to Location View
-        app.buttons["Location"].tap()
+        app.tables.cells["Location"].buttons["Location"].tap()
         sleep(2)
         
         // Wait for Location Authorization and allow access
@@ -65,28 +65,31 @@ class ScreenshotUITests: XCTestCase {
         // Take Screenshot of Location and go back to Home
         sleep(1)
         takeScreenshotOfCurrentView(name: "Location")
-        app.navigationBars.buttons.element(boundBy: 0).tap()
+        backToHomeMenu(app: app)
         
         // Reject App Store review request
         sleep(1)
-        app.scrollViews.otherElements.buttons["Not Now"].tap()
+        let button = app.scrollViews.otherElements.buttons["Not Now"]
+        if button.exists {
+            button.tap()
+        }
         
         // Go to Acceleration View and take Screenshot
-        app.buttons["Acceleration"].tap()
+        moveToView(app: app, view: "Acceleration")
         
         // Show X-Axis Graph
         app.buttons["Toggle X-Axis Graph"].tap()
         sleep(2)
         takeScreenshotOfCurrentView(name: "Acceleration")
-        app.navigationBars.buttons.element(boundBy: 0).tap()
+        backToHomeMenu(app: app)
         
         // Go to Settings View and take Screenshot
-        app.buttons["Settings"].tap()
+        moveToView(app: app, view: "Settings")
         sleep(2)
         takeScreenshotOfCurrentView(name: "Settings")
         
         // Go Back to Main Menu
-        app.navigationBars.buttons["Close Button"].tap()
+        backToHomeMenu(app: app)
     }
     
     
@@ -102,5 +105,17 @@ class ScreenshotUITests: XCTestCase {
     func getLanguageISO() -> String {
       let locale = Locale.current.identifier
         return locale
+    }
+    
+    func moveToView(app: XCUIApplication, view: String) {
+        app.navigationBars.buttons.element(boundBy: 0).tap()
+        app.tables.cells[view].buttons[view].tap()
+    }
+    
+    func backToHomeMenu(app: XCUIApplication) {
+        sleep(1)
+        app.navigationBars.buttons.element(boundBy: 0).tap()
+        sleep(1)
+        app.tables.cells["Home"].buttons["Home"].tap()
     }
 }

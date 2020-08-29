@@ -34,7 +34,6 @@ struct CustomToolbar: ToolbarContent {
         ToolbarItem(placement: .bottomBar) {
             Button(action: { buttonTapped(type: .play) } ) {
                 Image(systemName: "play.circle")
-                    .toolBarButtonModifier(accessibility: "Start Button")
                     .accessibility(label: Text("Play", comment: "CustomToolbar - Play Button"))
             }
         }
@@ -44,9 +43,9 @@ struct CustomToolbar: ToolbarContent {
         ToolbarItem(placement: .bottomBar) {
             Button(action: { buttonTapped(type: .pause) } ) {
                 Image(systemName: "pause.circle")
-                    .toolBarButtonModifier(accessibility: "Pause Button")
                     .accessibility(label: Text("Pause", comment: "CustomToolbar - Pause Button"))
             }
+            
         }
         
         ToolbarItem(placement: .bottomBar) { Spacer() }
@@ -54,7 +53,6 @@ struct CustomToolbar: ToolbarContent {
         ToolbarItem(placement: .bottomBar) {
             Button(action: { buttonTapped(type: .delete) } ) {
                 Image(systemName: "trash.circle")
-                    .toolBarButtonModifier(accessibility: "Delete Button")
                     .accessibility(label: Text("Delete", comment: "CustomToolbar - Delete Button"))
             }
         }

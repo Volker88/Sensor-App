@@ -33,25 +33,21 @@ class AltitudeViewUITests: XCTestCase {
     
     
     // MARK: - Tests
-    func testAltitudeViewTabBarButtons() throws {
+    func testAltitudeViewToolbarButtons() throws {
         // Start Application
         let app = XCUIApplication()
         app.launch()
         
-        // Go to Location View
-        app.buttons["Altitude"].tap()
+        // Go to Altitude View
+        moveToView(app: app, view: "Altitude")
         
-        // Test TabBar Buttons
-        app.buttons["Start Button"].tap()
-        app.buttons["Pause Button"].tap()
-        app.buttons["Delete Button"].tap()
-        app.buttons["Settings Button"].tap()
+        // Test Toolbar Buttons
+        let toolbar = app.toolbars["Toolbar"]
+        toolbar.buttons["play"].tap()
+        toolbar.buttons["pause"].tap()
+        toolbar.buttons["trash"].tap()
         
-        // Go Back to Main Menu
-        sleep(1)
-        app.navigationBars.buttons["Close Button"].tap()
-        sleep(1)
-        app.navigationBars.buttons.element(boundBy: 0).tap()
+        backToHomeMenu(app: app)
     }
     
     func testAltitudeViewGraphs() throws {
@@ -59,8 +55,8 @@ class AltitudeViewUITests: XCTestCase {
         let app = XCUIApplication()
         app.launch()
         
-        // Go to Location View
-        app.buttons["Altitude"].tap()
+        // Go to Altitude View
+        moveToView(app: app, view: "Altitude")
         
         // Show all Graphs
         app.buttons["Toggle Altitude Graph"].tap()
@@ -70,8 +66,7 @@ class AltitudeViewUITests: XCTestCase {
         app.buttons["Toggle Pressure Graph"].tap()
         app.buttons["Toggle Altitude Graph"].tap()
         
-        // Go Back to Main Menu
-        app.navigationBars.buttons.element(boundBy: 0).tap()
+        backToHomeMenu(app: app)
     }
     
     func testAltitudeViewShareSheet() throws {
@@ -79,19 +74,28 @@ class AltitudeViewUITests: XCTestCase {
         let app = XCUIApplication()
         app.launch()
         
-        // Go to Location View
-        app.buttons["Altitude"].tap()
+        // Go to Altitude View
+        moveToView(app: app, view: "Altitude")
         
         // Open / Close Share Sheet
-        app/*@START_MENU_TOKEN@*/.buttons["Share Button"]/*[[".buttons[\"Share\"]",".buttons[\"Share Button\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        app.tables.buttons["Export"].tap()
         sleep(1)
-        app/*@START_MENU_TOKEN@*/.navigationBars["UIActivityContentView"]/*[[".otherElements[\"ActivityListView\"].navigationBars[\"UIActivityContentView\"]",".navigationBars[\"UIActivityContentView\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.buttons["Close"].tap()
+        app.navigationBars["UIActivityContentView"].buttons["Close"].tap()
         
-        // Go Back to Main Menu
-        sleep(1)
-        app.navigationBars.buttons.element(boundBy: 0).tap()
+        backToHomeMenu(app: app)
     }
     
     
     // MARK:  - Methods
+    func moveToView(app: XCUIApplication, view: String) {
+        app.navigationBars.buttons.element(boundBy: 0).tap()
+        app.tables.cells[view].buttons[view].tap()
+    }
+    
+    func backToHomeMenu(app: XCUIApplication) {
+        sleep(1)
+        app.navigationBars.buttons.element(boundBy: 0).tap()
+        sleep(1)
+        app.tables.cells["Home"].buttons["Home"].tap()
+    }
 }

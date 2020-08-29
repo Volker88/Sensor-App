@@ -62,6 +62,7 @@ struct AltitudeView: View {
     func onDisappear() {
         motionVM.stopMotionUpdates()
         motionVM.coreMotionArray.removeAll()
+        motionVM.altitudeArray.removeAll()
     }
     
     

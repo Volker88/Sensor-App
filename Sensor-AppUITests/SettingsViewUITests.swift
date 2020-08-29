@@ -40,12 +40,12 @@ class SettingsViewUITests: XCTestCase {
         app.launch()
         
         // Go to Settings View
-        app/*@START_MENU_TOKEN@*/.buttons["Settings"]/*[[".scrollViews.buttons[\"Settings\"]",".buttons[\"Settings\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        moveToView(app: app, view: "Settings")
         
         // Select Speed Setting
         let tablesQuery = app.tables
-        tablesQuery/*@START_MENU_TOKEN@*/.buttons["Speed Settings"]/*[[".cells",".buttons[\"Speed Setting\"]",".buttons[\"Speed Settings\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.tap()
-        tablesQuery/*@START_MENU_TOKEN@*/.buttons["km/h"]/*[[".cells.buttons[\"km\/h\"]",".buttons[\"km\/h\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        tablesQuery.buttons["Speed Settings"].tap()
+        tablesQuery.buttons["km/h"].tap()
         
         // Select GPS Accuracy Setting
         tablesQuery.buttons["GPS Accuracy Settings"].tap()
@@ -59,7 +59,7 @@ class SettingsViewUITests: XCTestCase {
         tablesQuery.switches["Buildings Toggle"].tap()
         tablesQuery.switches["Traffic Toggle"].tap()
         
-        app.scrollViews.element.swipeUp()
+        tablesQuery.switches["Traffic Toggle"].swipeUp()
         
         tablesQuery.switches["Rotate Toggle"].tap()
         tablesQuery.switches["Scroll Toggle"].tap()
@@ -79,15 +79,26 @@ class SettingsViewUITests: XCTestCase {
         tablesQuery.sliders["Max Points Slider"].adjust(toNormalizedSliderPosition: 0.1)
         tablesQuery.sliders["Max Points Slider"].adjust(toNormalizedSliderPosition: 0.9)
         
-        
         // Save Settings
-        let settingsNavigationBar = app.navigationBars["Settings"]
-        settingsNavigationBar/*@START_MENU_TOKEN@*/.buttons["Save Settings"]/*[[".buttons[\"SaveButton\"]",".buttons[\"Save Settings\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        let toolbar = app.toolbars["Toolbar"]
+        toolbar.buttons.element(boundBy: 0).tap()
+        toolbar.buttons.element(boundBy: 1).tap()
         
         // Go Back to Main Menu
-        settingsNavigationBar/*@START_MENU_TOKEN@*/.buttons["Close Button"]/*[[".buttons[\"clear\"]",".buttons[\"Close Button\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        backToHomeMenu(app: app)
     }
     
     
     // MARK:  - Methods
+    func moveToView(app: XCUIApplication, view: String) {
+        app.navigationBars.buttons.element(boundBy: 0).tap()
+        app.tables.cells[view].buttons[view].tap()
+    }
+    
+    func backToHomeMenu(app: XCUIApplication) {
+        sleep(1)
+        app.navigationBars.buttons.element(boundBy: 0).tap()
+        sleep(1)
+        app.tables.cells["Home"].buttons["Home"].tap()
+    }
 }

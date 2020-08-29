@@ -101,7 +101,7 @@ struct GravityView: View {
                                 label: {
                                     Text("Y-Axis: \(motionVM.coreMotionArray.last?.gravityYAxis ?? 0.0, specifier: "%.5f") g (9,81 m/s^2)", comment: "GravityView - Y-Axis")
                                 })
-                                .disclosureGroupModifier(accessibility: "Toggle X-Axis Graph")
+                                .disclosureGroupModifier(accessibility: "Toggle Y-Axis Graph")
                             
                             DisclosureGroup(
                                 isExpanded: $showZAxis,
@@ -112,7 +112,7 @@ struct GravityView: View {
                                 label: {
                                     Text("Z-Axis: \(motionVM.coreMotionArray.last?.gravityZAxis ?? 0.0, specifier: "%.5f") g (9,81 m/s^2)", comment: "GravityView - Z-Axis")
                                 })
-                                .disclosureGroupModifier(accessibility: "Toggle X-Axis Graph")
+                                .disclosureGroupModifier(accessibility: "Toggle Z-Axis Graph")
                             
                         }
                         

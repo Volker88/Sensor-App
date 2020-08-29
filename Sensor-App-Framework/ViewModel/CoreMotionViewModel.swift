@@ -20,6 +20,7 @@ class CoreMotionViewModel: ObservableObject {
     
     
     // MARK: - Define Constants / Variables
+    let debug = false
     @Published var coreMotionArray = [MotionModel]()
     @Published var altitudeArray = [AltitudeModel]()
     @Published var sensorUpdateInterval : Double = 1 {
@@ -39,7 +40,7 @@ class CoreMotionViewModel: ObservableObject {
         #if targetEnvironment(simulator)
         var counter = 1
         
-        for _ in 1...100 {
+        for _ in 1...300 {
             let random = Double.random(in: -0.1...0.1)
             let random2 = Double.random(in: -0.1...0.1)
             let random3 = Double.random(in: -0.1...0.1)
@@ -48,13 +49,15 @@ class CoreMotionViewModel: ObservableObject {
             counter += 1
         }
         
-        Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [self] (timer) in
+        if debug {
+            Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [self] (timer) in
                 let random = Double.random(in: -0.1...0.1)
                 let random2 = Double.random(in: -0.1...0.1)
                 let random3 = Double.random(in: -0.1...0.1)
                 let random4 = Double.random(in: -0.1...0.1)
                 coreMotionArray.append(MotionModel(counter: counter, timestamp: settings.getTimestamp(), accelerationXAxis: random, accelerationYAxis: random2, accelerationZAxis: random3, gravityXAxis: random, gravityYAxis: random2, gravityZAxis: random3, gyroXAxis: random, gyroYAxis: random2, gyroZAxis: random3, magnetometerCalibration: 2, magnetometerXAxis: random, magnetometerYAxis: random2, magnetometerZAxis: random3, attitudeRoll: random, attitudePitch: random2, attitudeYaw: random3, attitudeHeading: random4))
-            counter += 1
+                counter += 1
+            }
         }
         #endif
         
@@ -89,18 +92,20 @@ class CoreMotionViewModel: ObservableObject {
     func altitudeUpdateStart() {
         #if targetEnvironment(simulator)
         var counter = 1
-        for _ in 1...100 {
+        for _ in 1...300 {
             let random = Double.random(in: 99...101)
             let random2 = Double.random(in: -1...1)
             altitudeArray.append(AltitudeModel(counter: counter, timestamp: settings.getTimestamp(), pressureValue: random, relativeAltitudeValue: random2))
             counter += 1
         }
         
-        Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [self] (timer) in
-            let random = Double.random(in: 99...101)
-            let random2 = Double.random(in: -1...1)
-            altitudeArray.append(AltitudeModel(counter: counter, timestamp: settings.getTimestamp(), pressureValue: random, relativeAltitudeValue: random2))
-            counter += 1
+        if debug {
+            Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [self] (timer) in
+                let random = Double.random(in: 99...101)
+                let random2 = Double.random(in: -1...1)
+                altitudeArray.append(AltitudeModel(counter: counter, timestamp: settings.getTimestamp(), pressureValue: random, relativeAltitudeValue: random2))
+                counter += 1
+            }
         }
         #endif
         

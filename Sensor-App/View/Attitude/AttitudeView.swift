@@ -114,7 +114,7 @@ struct AttitudeView: View {
                                 label: {
                                     Text("Yaw: \((motionVM.coreMotionArray.last?.attitudeYaw ?? 0.0) * 180 / .pi, specifier: "%.5f")°", comment: "AttitudeView - Yaw")
                                 })
-                                .disclosureGroupModifier(accessibility: "Toggle Roll Graph")
+                                .disclosureGroupModifier(accessibility: "Toggle Yaw Graph")
                             
                             DisclosureGroup(
                                 isExpanded: $showHeading,
