@@ -27,9 +27,9 @@ class AppUpdates {
         let appVersion = UserDefaults.standard.string(forKey: "CurrentAppVersion")
            
         if appVersion == getCurrentAppVersion() {
-            Log.shared.add(.appUpdates, .info, "App is up to date! (\(getCurrentAppVersion()))")
+            Log.shared.add(.appUpdates, .default, "App is up to date! (\(getCurrentAppVersion()))")
         } else {
-            Log.shared.add(.appUpdates, .info, "App is not up to date! (\(getCurrentAppVersion()))")
+            Log.shared.add(.appUpdates, .default, "App is not up to date! (\(getCurrentAppVersion()))")
             updateApp()
         }
     }
@@ -45,7 +45,7 @@ class AppUpdates {
     private func updateApp() {
         settings.clearUserDefaults()
         UserDefaults.standard.setValue(getCurrentAppVersion(), forKey: "CurrentAppVersion")
-        Log.shared.add(.appUpdates, .info, "App has been updated (\(getCurrentAppVersion()))")
+        Log.shared.add(.appUpdates, .default, "App has been updated (\(getCurrentAppVersion()))")
     }
     
     ///

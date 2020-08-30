@@ -49,6 +49,7 @@ struct Location: View {
             case .delete:
                 locationView.locationVM.coreLocationArray.removeAll()
                 messageType = .deleted
+                Log.shared.add(.coreLocation, .default, "Deleted Location Data")
         }
         
         if messageType != nil {

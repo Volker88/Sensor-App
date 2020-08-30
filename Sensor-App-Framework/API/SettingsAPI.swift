@@ -53,7 +53,7 @@ class SettingsAPI {
     public func clearUserDefaults() {
         UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
         UserDefaults.standard.synchronize()
-        Log.shared.add(.userDefaults, .info, "Clear Userdefaults")
+        Log.shared.add(.userDefaults, .default, "Clear Userdefaults")
     }
     
     /// Read UserSettings
@@ -70,6 +70,7 @@ class SettingsAPI {
             if let decoded = try? decoder.decode(UserSettings.self, from: settings) {
                 userSettings = decoded
                 Log.shared.print("Read Settings: \(userSettings)")
+                Log.shared.add(.userDefaults, .default, "UserSettings fetched: \(userSettings)")
             } else {
                 Log.shared.add(.userDefaults, .error, "UserSettings could not be fetched")
             }
@@ -91,6 +92,7 @@ class SettingsAPI {
         if let data = try? encoder.encode(settings) {
             UserDefaults.standard.set(data, forKey: "UserSettings")
             Log.shared.print("Save Settings: \(settings)")
+            Log.shared.add(.userDefaults, .default, "UserSettings saved: \(settings)")
         } else {
             Log.shared.add(.userDefaults, .error, "UserSettings could not be saved")
         }
@@ -111,6 +113,7 @@ class SettingsAPI {
             let decoder = JSONDecoder()
             if let decoded = try? decoder.decode(MapKitSettings.self, from: settings) {
                 mapKitSettings = decoded
+                Log.shared.add(.userDefaults, .default, "MapKitSettings fetched: \(mapKitSettings)")
             } else {
                 Log.shared.add(.userDefaults, .error, "MapKitSettings could not be fetched")
             }
@@ -134,6 +137,7 @@ class SettingsAPI {
         
         if let data = try? encoder.encode(settings) {
             UserDefaults.standard.set(data, forKey: "MapKitSettings")
+            Log.shared.add(.userDefaults, .default, "MapKitSettings saved: \(settings)")
         } else {
             Log.shared.add(.userDefaults, .error, "MapKitSettings could not be fsaved")
         }

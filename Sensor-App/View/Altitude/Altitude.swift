@@ -50,6 +50,7 @@ struct Altitude: View {
                 altitudeView.motionVM.coreMotionArray.removeAll()
                 altitudeView.motionVM.altitudeArray.removeAll()
                 messageType = .deleted
+                Log.shared.add(.coreLocation, .default, "Deleted Motion Data")
         }
         
         if messageType != nil {

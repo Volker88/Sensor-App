@@ -29,11 +29,11 @@ struct Sensor_AppApp: App {
             .onChange(of: scenePhase) { phase in
                 switch phase {
                     case .active:
-                        Log.shared.add(.scenePhase, .info, "ScenePhase: Active")
+                        Log.shared.add(.scenePhase, .default, "ScenePhase: Active")
                     case .inactive:
-                        Log.shared.add(.scenePhase, .info, "ScenePhase: Inactive")
+                        Log.shared.add(.scenePhase, .default, "ScenePhase: Inactive")
                     case .background:
-                        Log.shared.add(.scenePhase, .info, "ScenePhase: Background")
+                        Log.shared.add(.scenePhase, .default, "ScenePhase: Background")
                     @unknown default:
                         Log.shared.add(.scenePhase, .error, "ScenePhase: Unknown")
                 }

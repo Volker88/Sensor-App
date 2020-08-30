@@ -50,6 +50,7 @@ struct Magnetometer: View {
                 magnetometerView.motionVM.coreMotionArray.removeAll()
                 magnetometerView.motionVM.altitudeArray.removeAll()
                 messageType = .deleted
+                Log.shared.add(.coreLocation, .default, "Deleted Motion Data")
         }
         
         if messageType != nil {

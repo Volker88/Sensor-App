@@ -72,7 +72,7 @@ class CoreMotionAPI {
                 Log.shared.add(.coreMotion, .error, "\(String(describing: error))")
                 return
             }
-            Log.shared.add(.coreMotion, .info, "Start Motion Updates")
+            Log.shared.add(.coreMotion, .default, "Start Motion Updates")
             
             motionManager.deviceMotionUpdateInterval = ( 1 / sensorUpdateInterval)
             
@@ -192,6 +192,6 @@ class CoreMotionAPI {
     public func motionUpdateStop() {
         motionManager.stopDeviceMotionUpdates()
         altimeterManager.stopRelativeAltitudeUpdates()
-        Log.shared.add(.coreMotion, .info, "Stop Motion Updates")
+        Log.shared.add(.coreMotion, .default, "Stop Motion Updates")
     }
 }

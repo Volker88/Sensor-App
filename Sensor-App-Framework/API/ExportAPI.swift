@@ -35,8 +35,8 @@ class ExportAPI {
            
            do {
                try exportText.write(to: path!, atomically: true, encoding: String.Encoding.utf8)
-            Log.shared.add(.exportFile, .info, "\(path!)")
-            Log.shared.add(.exportFile, .info, "\(exportText)")
+            Log.shared.add(.exportFile, .default, "\(path!)")
+            Log.shared.add(.exportFile, .default, "\(exportText)")
            } catch {
             Log.shared.add(.exportFile, .fault, "\(error)")
            }

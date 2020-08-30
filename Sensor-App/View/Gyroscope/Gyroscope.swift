@@ -50,6 +50,7 @@ struct Gyroscope: View {
                 gyroscopeView.motionVM.coreMotionArray.removeAll()
                 gyroscopeView.motionVM.altitudeArray.removeAll()
                 messageType = .deleted
+                Log.shared.add(.coreLocation, .default, "Deleted Motion Data")
         }
         
         if messageType != nil {

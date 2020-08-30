@@ -100,7 +100,7 @@ class CoreLocationAPI: CLLocationManager, CLLocationManagerDelegate {
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization() // Asks for permission to access GPS
         locationManager.startUpdatingLocation() // Start Updating Location
-        Log.shared.add(.coreLocation, .info, "Start Location Updates")
+        Log.shared.add(.coreLocation, .default, "Start Location Updates")
     }
     
     ///
@@ -115,7 +115,7 @@ class CoreLocationAPI: CLLocationManager, CLLocationManagerDelegate {
     public func stopUpdatingGPS() {
         locationManager.delegate = self
         locationManager.stopUpdatingLocation()
-        Log.shared.add(.coreLocation, .info, "Stop Location Updates")
+        Log.shared.add(.coreLocation, .default, "Stop Location Updates")
     }
 }
 

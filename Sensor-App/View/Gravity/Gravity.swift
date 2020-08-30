@@ -50,6 +50,7 @@ struct Gravity: View {
                 gravityView.motionVM.coreMotionArray.removeAll()
                 gravityView.motionVM.altitudeArray.removeAll()
                 messageType = .deleted
+                Log.shared.add(.coreLocation, .default, "Deleted Motion Data")
         }
         
         if messageType != nil {
