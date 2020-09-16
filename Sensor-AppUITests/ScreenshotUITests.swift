@@ -44,7 +44,7 @@ class ScreenshotUITests: XCTestCase {
         takeScreenshotOfCurrentView(name: "Home")
         
         // Switch to Location View
-        app.tables.cells["Location"].buttons["Location"].tap()
+        app.tables.buttons.element(boundBy: 0).tap()
         sleep(2)
         
         // Wait for Location Authorization and allow access
@@ -68,14 +68,14 @@ class ScreenshotUITests: XCTestCase {
         backToHomeMenu(app: app)
         
         // Reject App Store review request
-        sleep(1)
-        let button = app.scrollViews.otherElements.buttons["Not Now"]
-        if button.exists {
-            button.tap()
-        }
+//        sleep(1)
+//        let button = app.scrollViews.otherElements.buttons["Not Now"]
+//        if button.exists {
+//            button.tap()
+//        }
         
         // Go to Acceleration View and take Screenshot
-        moveToView(app: app, view: "Acceleration")
+        app.tables.buttons.element(boundBy: 1).tap()
         
         // Show X-Axis Graph
         app.buttons["Toggle X-Axis Graph"].tap()
@@ -84,7 +84,10 @@ class ScreenshotUITests: XCTestCase {
         backToHomeMenu(app: app)
         
         // Go to Settings View and take Screenshot
-        moveToView(app: app, view: "Settings")
+        sleep(1)
+        //app.navigationBars.buttons.element(boundBy: 0).tap()
+        sleep(1)
+        app.tables.buttons.element(boundBy: 7).tap()
         sleep(2)
         takeScreenshotOfCurrentView(name: "Settings")
         
@@ -107,15 +110,15 @@ class ScreenshotUITests: XCTestCase {
         return locale
     }
     
-    func moveToView(app: XCUIApplication, view: String) {
+    func moveToView(app: XCUIApplication, view: Int) {
         app.navigationBars.buttons.element(boundBy: 0).tap()
-        app.tables.cells[view].buttons[view].tap()
+        app.tables.buttons.element(boundBy: view).tap()
     }
     
     func backToHomeMenu(app: XCUIApplication) {
         sleep(1)
         app.navigationBars.buttons.element(boundBy: 0).tap()
         sleep(1)
-        app.tables.cells["Home"].buttons["Home"].tap()
+        app.tables.buttons.element(boundBy: 0)
     }
 }

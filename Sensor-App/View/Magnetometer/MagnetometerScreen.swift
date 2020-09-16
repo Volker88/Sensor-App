@@ -1,5 +1,5 @@
 //
-//  Gravity.swift
+//  MagnetometerScreen.swift
 //  Sensor-App
 //
 //  Created by Volker Schmitt on 23.08.20.
@@ -11,11 +11,11 @@ import SwiftUI
 
 
 // MARK: - Struct
-struct Gravity: View {
+struct MagnetometerScreen: View {
     
     // MARK: - Initialize Classes
     let notificationAPI = NotificationAPI()
-    let gravityView = GravityView()
+    let magnetometerView = MagnetometerView()
     
     // MARK: - @State / @ObservedObject / @Binding
     @State private var sideBarOpen: Bool = false
@@ -41,14 +41,14 @@ struct Gravity: View {
         
         switch button {
             case .play:
-                gravityView.motionVM.motionUpdateStart()
+                magnetometerView.motionVM.motionUpdateStart()
                 messageType = .played
             case .pause:
-                gravityView.motionVM.stopMotionUpdates()
+                magnetometerView.motionVM.stopMotionUpdates()
                 messageType = .paused
             case .delete:
-                gravityView.motionVM.coreMotionArray.removeAll()
-                gravityView.motionVM.altitudeArray.removeAll()
+                magnetometerView.motionVM.coreMotionArray.removeAll()
+                magnetometerView.motionVM.altitudeArray.removeAll()
                 messageType = .deleted
                 Log.shared.add(.coreLocation, .default, "Deleted Motion Data")
         }
@@ -67,9 +67,9 @@ struct Gravity: View {
         Button(action: {
             sideBarOpen.toggle()
             if sideBarOpen {
-                gravityView.motionVM.stopMotionUpdates()
+                magnetometerView.motionVM.stopMotionUpdates()
             } else {
-                gravityView.motionVM.motionUpdateStart()
+                magnetometerView.motionVM.motionUpdateStart()
             }
         }) {
             Image(systemName: "sidebar.left")
@@ -78,7 +78,7 @@ struct Gravity: View {
     
     var content: some View {
         ZStack {
-            gravityView
+            magnetometerView
                 .frame(minWidth: 0, idealWidth: 100, maxWidth: .infinity, minHeight: 0, idealHeight: 100, maxHeight: .infinity, alignment: .center)
                 .toolbar {
                     CustomToolbar(toolBarFunctionClosure: toolBarButtonTapped(button:))
@@ -92,7 +92,7 @@ struct Gravity: View {
             // MARK: - NotificationView()
             NotificationView(notificationMessage: $notificationMessage, showNotification: $showNotification)
         }
-        .navigationBarTitle("\(NSLocalizedString("Gravity", comment: "NavigationBar Title - Gravity"))", displayMode: .inline)
+        .navigationBarTitle("\(NSLocalizedString("Magnetometer", comment: "NavigationBar Title - Magnetometer"))", displayMode: .inline)
     }
     
     
@@ -112,11 +112,11 @@ struct Gravity: View {
 
 
 // MARK: - Preview
-struct Gravity_Previews: PreviewProvider {
+struct MagnetometerScreen_Previews: PreviewProvider {
     static var previews: some View {
         ForEach([ColorScheme.light, .dark], id: \.self) { scheme in
             NavigationView {
-                Gravity()
+                MagnetometerScreen()
                     .colorScheme(scheme)
             }
         }

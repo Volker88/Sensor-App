@@ -20,20 +20,16 @@ struct NotificationMessageView: View {
     
     // MARK: - Define Constants / Variables
     
-    
     // MARK: - Methods
-    
     
     // MARK: - Body - View
     var body: some View {
         
-        #warning("Change Color")
         // MARK: - Return View
         return Text(notificationText)
             .padding()
-            .foregroundColor(Color("NotificationTextGroundColor"))
             .frame(minWidth: 250)
-            .background(Color("NotificationBackGroundColor"))
+            .background(Color.gray)
             .cornerRadius(20)
     }
 }

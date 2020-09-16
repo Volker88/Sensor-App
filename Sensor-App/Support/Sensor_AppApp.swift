@@ -20,9 +20,9 @@ struct Sensor_AppApp: App {
             NavigationView {
                 if UIDevice.current.userInterfaceIdiom == .pad {
                     Sidebar()
-                    ContentView()
+                    AccelerationScreen()
                 } else if UIDevice.current.userInterfaceIdiom == .phone {
-                    ContentView()
+                    AccelerationScreen()
                 }
             }
             .customNavigationViewStyle()

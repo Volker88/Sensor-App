@@ -14,16 +14,23 @@ import SwiftUI
 struct SettingsOverlay: View {
     
     // MARK: - @State / @ObservedObject / @Binding
+    @State private var showSettings = false
+    
     
     // MARK: - Body
     var body: some View {
-        NavigationLink(destination: SettingsView()) {
+        Button(action: {
+            showSettings.toggle()
+        }) {
             Label(NSLocalizedString("Settings", comment: "Settings"), systemImage: "gear")
                 .padding(10)
         }
         .hoverEffect()
         .frame(maxWidth: .infinity, minHeight: 50, maxHeight: 50, alignment: .center)
         .background((Color.gray).opacity(0.3))
+        .sheet(isPresented: $showSettings) {
+            SettingsScreen()
+        }
     }
 }
 

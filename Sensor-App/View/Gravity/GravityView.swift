@@ -116,7 +116,7 @@ struct GravityView: View {
                             
                         }
                         
-                        Section(header: Text("List", comment: "AccelerationView - Section Header"), footer: shareButton) {
+                        Section(header: Text("Log", comment: "AccelerationView - Section Header"), footer: shareButton) {
                             GravityList(motionVM: motionVM)
                                 .frame(height: 200, alignment: .center)
                         }

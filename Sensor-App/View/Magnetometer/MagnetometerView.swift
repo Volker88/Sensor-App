@@ -113,7 +113,7 @@ struct MagnetometerView: View {
                                     .disclosureGroupModifier(accessibility: "Toggle Z-Axis Graph")
                         }
                         
-                        Section(header: Text("List", comment: "AccelerationView - Section Header"), footer: shareButton) {
+                        Section(header: Text("Log", comment: "AccelerationView - Section Header"), footer: shareButton) {
                             MagnetometerList(motionVM: motionVM)
                                 .frame(height: 200, alignment: .center)
                         }

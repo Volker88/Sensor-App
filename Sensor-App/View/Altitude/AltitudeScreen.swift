@@ -1,5 +1,5 @@
 //
-//  Attitude.swift
+//  AltitudeScreen.swift
 //  Sensor-App
 //
 //  Created by Volker Schmitt on 23.08.20.
@@ -11,11 +11,11 @@ import SwiftUI
 
 
 // MARK: - Struct
-struct Attitude: View {
+struct AltitudeScreen: View {
     
     // MARK: - Initialize Classes
     let notificationAPI = NotificationAPI()
-    let attitudeView = AttitudeView()
+    let altitudeView = AltitudeView()
     
     // MARK: - @State / @ObservedObject / @Binding
     @State private var sideBarOpen: Bool = false
@@ -41,14 +41,14 @@ struct Attitude: View {
         
         switch button {
             case .play:
-                attitudeView.motionVM.motionUpdateStart()
+                altitudeView.motionVM.motionUpdateStart()
                 messageType = .played
             case .pause:
-                attitudeView.motionVM.stopMotionUpdates()
+                altitudeView.motionVM.stopMotionUpdates()
                 messageType = .paused
             case .delete:
-                attitudeView.motionVM.coreMotionArray.removeAll()
-                attitudeView.motionVM.altitudeArray.removeAll()
+                altitudeView.motionVM.coreMotionArray.removeAll()
+                altitudeView.motionVM.altitudeArray.removeAll()
                 messageType = .deleted
                 Log.shared.add(.coreLocation, .default, "Deleted Motion Data")
         }
@@ -67,9 +67,9 @@ struct Attitude: View {
         Button(action: {
             sideBarOpen.toggle()
             if sideBarOpen {
-                attitudeView.motionVM.stopMotionUpdates()
+                altitudeView.motionVM.stopMotionUpdates()
             } else {
-                attitudeView.motionVM.motionUpdateStart()
+                altitudeView.motionVM.motionUpdateStart()
             }
         }) {
             Image(systemName: "sidebar.left")
@@ -78,7 +78,7 @@ struct Attitude: View {
     
     var content: some View {
         ZStack {
-            attitudeView
+            altitudeView
                 .frame(minWidth: 0, idealWidth: 100, maxWidth: .infinity, minHeight: 0, idealHeight: 100, maxHeight: .infinity, alignment: .center)
                 .toolbar {
                     CustomToolbar(toolBarFunctionClosure: toolBarButtonTapped(button:))
@@ -92,7 +92,7 @@ struct Attitude: View {
             // MARK: - NotificationView()
             NotificationView(notificationMessage: $notificationMessage, showNotification: $showNotification)
         }
-        .navigationBarTitle("\(NSLocalizedString("Attitude", comment: "NavigationBar Title - Attitude"))", displayMode: .inline)
+        .navigationBarTitle("\(NSLocalizedString("Altitude", comment: "NavigationBar Title - Altitude"))", displayMode: .inline)
     }
     
     
@@ -112,11 +112,11 @@ struct Attitude: View {
 
 
 // MARK: - Preview
-struct Attitude_Previews: PreviewProvider {
+struct AltitudeScreen_Previews: PreviewProvider {
     static var previews: some View {
         ForEach([ColorScheme.light, .dark], id: \.self) { scheme in
             NavigationView {
-                Attitude()
+                AltitudeScreen()
                     .colorScheme(scheme)
             }
         }

@@ -1,5 +1,5 @@
 //
-//  Extension.swift
+//  Extension-Double.swift
 //  Sensor-App
 //
 //  Created by Volker Schmitt on 11.10.19.

@@ -102,6 +102,6 @@ class LocationViewUITests: XCTestCase {
         sleep(1)
         app.navigationBars.buttons.element(boundBy: 0).tap()
         sleep(1)
-        app.tables.cells["Home"].buttons["Home"].tap()
+        app.tables.buttons.element(boundBy: 0)
     }
 }

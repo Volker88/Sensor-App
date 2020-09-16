@@ -110,7 +110,7 @@ struct AltitudeView: View {
                                 .disclosureGroupModifier(accessibility: "Toggle Altitude Graph")
                         }
                         
-                        Section(header: Text("List", comment: "AccelerationView - Section Header"), footer: shareButton) {
+                        Section(header: Text("Log", comment: "AccelerationView - Section Header"), footer: shareButton) {
                             AltitudeList(motionVM: motionVM)
                                 .frame(height: 200, alignment: .center)
                         }

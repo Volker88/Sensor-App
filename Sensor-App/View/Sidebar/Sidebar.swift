@@ -17,61 +17,61 @@ struct Sidebar: View {
     
     // MARK: - Environment Object
     
-    
     // MARK: - @State / @ObservedObject / @Binding
+    @State private var showSettings = false
     
     
     // MARK: - Methods
-    
     
     // MARK: - Content
     var list: some View {
         List {
             Group {
-                NavigationLink(destination: ContentView().navigationBarBackButtonHidden(true)) {
-                    Label(NSLocalizedString("Home", comment: "ContentView - Home"), systemImage: "house")// TODO: Remove
-                        .accessibility(identifier: "Home")
-                }
-                NavigationLink(destination: Location().navigationBarBackButtonHidden(true)) {
-                    Label(NSLocalizedString("Location", comment: "ContentView - Location"), systemImage: "location")
+                NavigationLink(destination: LocationScreen().navigationBarBackButtonHidden(true)) {
+                    Label(NSLocalizedString("Location", comment: "Sidebbar - Location"), systemImage: "location")
                         .accessibility(identifier: "Location")
                 }
-                NavigationLink(destination: Acceleration().navigationBarBackButtonHidden(true)) {
-                    Label(NSLocalizedString("Acceleration", comment: "ContentView - Acceleration"), systemImage: "globe")
+                NavigationLink(destination: AccelerationScreen().navigationBarBackButtonHidden(true)) {
+                    Label(NSLocalizedString("Acceleration", comment: "Sidebbar - Acceleration"), systemImage: "globe")
                         .accessibility(identifier: "Acceleration")
                 }
-                NavigationLink(destination: Gravity().navigationBarBackButtonHidden(true)) {
-                    Label(NSLocalizedString("Gravity", comment: "ContentView - Gravity"), systemImage: "globe")
+                NavigationLink(destination: GravityScreen().navigationBarBackButtonHidden(true)) {
+                    Label(NSLocalizedString("Gravity", comment: "Sidebbar - Gravity"), systemImage: "globe")
                         .accessibility(identifier: "Gravity")
                 }
-                NavigationLink(destination: Gyroscope().navigationBarBackButtonHidden(true)) {
-                    Label(NSLocalizedString("Gyroscope", comment: "ContentView - Gyroscope"), systemImage: "globe")
+                NavigationLink(destination: GyroscopeScreen().navigationBarBackButtonHidden(true)) {
+                    Label(NSLocalizedString("Gyroscope", comment: "Sidebbar - Gyroscope"), systemImage: "globe")
                         .accessibility(identifier: "Gyroscope")
                 }
             }
             
             Group {
-                NavigationLink(destination: Magnetometer().navigationBarBackButtonHidden(true)) {
-                    Label(NSLocalizedString("Magnetometer", comment: "ContentView - Magnetometer"), systemImage: "globe")
+                NavigationLink(destination: MagnetometerScreen().navigationBarBackButtonHidden(true)) {
+                    Label(NSLocalizedString("Magnetometer", comment: "Sidebbar - Magnetometer"), systemImage: "globe")
                         .accessibility(identifier: "Magnetometer")
                 }
-                NavigationLink(destination: Attitude().navigationBarBackButtonHidden(true)) {
-                    Label(NSLocalizedString("Attitude", comment: "ContentView - Attitude"), systemImage: "globe")
+                NavigationLink(destination: AttitudeScreen().navigationBarBackButtonHidden(true)) {
+                    Label(NSLocalizedString("Attitude", comment: "Sidebbar - Attitude"), systemImage: "globe")
                         .accessibility(identifier: "Attitude")
                 }
-                NavigationLink(destination: Altitude().navigationBarBackButtonHidden(true)) {
-                    Label(NSLocalizedString("Altitude", comment: "ContentView - Altitude"), systemImage: "globe")
+                NavigationLink(destination: AltitudeScreen().navigationBarBackButtonHidden(true)) {
+                    Label(NSLocalizedString("Altitude", comment: "Sidebbar - Altitude"), systemImage: "globe")
                         .accessibility(identifier: "Altitude")
                 }
                 if UIDevice.current.userInterfaceIdiom == .phone {
-                    NavigationLink(destination: SettingsView().navigationBarBackButtonHidden(true)) {
-                        Label(NSLocalizedString("Settings", comment: "ContentView - Settings"), systemImage: "gear")
+                    Button(action: {
+                        showSettings.toggle()
+                    }) {
+                        Label(NSLocalizedString("Settings", comment: "Sidebbar - Settings"), systemImage: "gear")
                             .accessibility(identifier: "Settings")
                     }
                 }
             }
         }
         .listStyle(SidebarListStyle())
+        .sheet(isPresented: $showSettings) {
+            SettingsScreen()
+        }
     }
     
     

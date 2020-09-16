@@ -1,8 +1,8 @@
 //
-//  Magnetometer.swift
+//  LocationScreen.swift
 //  Sensor-App
 //
-//  Created by Volker Schmitt on 23.08.20.
+//  Created by Volker Schmitt on 24.08.20.
 //
 
 
@@ -11,11 +11,11 @@ import SwiftUI
 
 
 // MARK: - Struct
-struct Magnetometer: View {
+struct LocationScreen: View {
     
     // MARK: - Initialize Classes
     let notificationAPI = NotificationAPI()
-    let magnetometerView = MagnetometerView()
+    let locationView = LocationView()
     
     // MARK: - @State / @ObservedObject / @Binding
     @State private var sideBarOpen: Bool = false
@@ -41,16 +41,15 @@ struct Magnetometer: View {
         
         switch button {
             case .play:
-                magnetometerView.motionVM.motionUpdateStart()
+                locationView.locationVM.startLocationUpdates()
                 messageType = .played
             case .pause:
-                magnetometerView.motionVM.stopMotionUpdates()
+                locationView.locationVM.stopLocationUpdates()
                 messageType = .paused
             case .delete:
-                magnetometerView.motionVM.coreMotionArray.removeAll()
-                magnetometerView.motionVM.altitudeArray.removeAll()
+                locationView.locationVM.coreLocationArray.removeAll()
                 messageType = .deleted
-                Log.shared.add(.coreLocation, .default, "Deleted Motion Data")
+                Log.shared.add(.coreLocation, .default, "Deleted Location Data")
         }
         
         if messageType != nil {
@@ -67,9 +66,9 @@ struct Magnetometer: View {
         Button(action: {
             sideBarOpen.toggle()
             if sideBarOpen {
-                magnetometerView.motionVM.stopMotionUpdates()
+                locationView.locationVM.stopLocationUpdates()
             } else {
-                magnetometerView.motionVM.motionUpdateStart()
+                locationView.locationVM.startLocationUpdates()
             }
         }) {
             Image(systemName: "sidebar.left")
@@ -78,7 +77,7 @@ struct Magnetometer: View {
     
     var content: some View {
         ZStack {
-            magnetometerView
+            locationView
                 .frame(minWidth: 0, idealWidth: 100, maxWidth: .infinity, minHeight: 0, idealHeight: 100, maxHeight: .infinity, alignment: .center)
                 .toolbar {
                     CustomToolbar(toolBarFunctionClosure: toolBarButtonTapped(button:))
@@ -92,7 +91,7 @@ struct Magnetometer: View {
             // MARK: - NotificationView()
             NotificationView(notificationMessage: $notificationMessage, showNotification: $showNotification)
         }
-        .navigationBarTitle("\(NSLocalizedString("Magnetometer", comment: "NavigationBar Title - Magnetometer"))", displayMode: .inline)
+        .navigationBarTitle("\(NSLocalizedString("Location", comment: "NavigationBar Title - Location"))", displayMode: .inline)
     }
     
     
@@ -112,11 +111,11 @@ struct Magnetometer: View {
 
 
 // MARK: - Preview
-struct Magnetometer_Previews: PreviewProvider {
+struct LocationScreen_Previews: PreviewProvider {
     static var previews: some View {
         ForEach([ColorScheme.light, .dark], id: \.self) { scheme in
             NavigationView {
-                Magnetometer()
+                LocationScreen()
                     .colorScheme(scheme)
             }
         }

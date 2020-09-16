@@ -18,8 +18,8 @@ struct ContentViewTitleModifier: ViewModifier {
             content
                 .frame(width: g.size.width, height: 100, alignment: .center)
                 .font(.largeTitle)
-                .background(Color("HeaderBackgroundColor"))
-                .foregroundColor(Color("HeaderTextColor"))
+                .background(Color.gray)
+                //.foregroundColor(Color("HeaderTextColor"))
                 .cornerRadius(10)
                 .multilineTextAlignment(.center)
         }

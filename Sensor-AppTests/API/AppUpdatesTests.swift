@@ -28,15 +28,13 @@ class AppUpdatesTests: XCTestCase {
     func testAppUpdates() throws {
         //Given
         let appUpdates = AppUpdates()
-        UserDefaults.standard.removeObject(forKey: "upToDate")
+        UserDefaults.standard.removeObject(forKey: "CurrentAppVersion")
         appUpdates.checkForUpdate()
         
         //When
-        let upToDate = UserDefaults.standard.bool(forKey: "upToDate")
         let userDefaultsForSpeedSetting = UserDefaults.standard.string(forKey: "\(SettingsForUserDefaults.GPSSpeedSetting)")
         
         //Then
-        XCTAssertTrue(upToDate, "App Update hasn't been updated")
         XCTAssertNil(userDefaultsForSpeedSetting, "UserDefaults are still present")
     }
     

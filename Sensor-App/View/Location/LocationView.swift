@@ -9,7 +9,7 @@
 
 // MARK: - Import
 import SwiftUI
-import StoreKit
+//import StoreKit
 
 
 // MARK: - Struct
@@ -58,8 +58,8 @@ struct LocationView: View {
     func onDisappear() {
         locationVM.stopLocationUpdates()
         locationVM.coreLocationArray.removeAll()
-        #warning("requestReview() deprecated")
-        SKStoreReviewController.requestReview()
+        // FIXME: Request review
+        //SKStoreReviewController.requestReview()
     }
     
     

@@ -128,7 +128,7 @@ struct AttitudeView: View {
                                 .disclosureGroupModifier(accessibility: "Toggle Heading Graph")
                         }
                         
-                        Section(header: Text("List", comment: "AccelerationView - Section Header"), footer: shareButton) {
+                        Section(header: Text("Log", comment: "AccelerationView - Section Header"), footer: shareButton) {
                             AttitudeList(motionVM: motionVM)
                                 .frame(height: 200, alignment: .center)
                         }

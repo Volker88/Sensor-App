@@ -1,8 +1,8 @@
 //
-//  Location.swift
+//  AttitudeScreen.swift
 //  Sensor-App
 //
-//  Created by Volker Schmitt on 24.08.20.
+//  Created by Volker Schmitt on 23.08.20.
 //
 
 
@@ -11,11 +11,11 @@ import SwiftUI
 
 
 // MARK: - Struct
-struct Location: View {
+struct AttitudeScreen: View {
     
     // MARK: - Initialize Classes
     let notificationAPI = NotificationAPI()
-    let locationView = LocationView()
+    let attitudeView = AttitudeView()
     
     // MARK: - @State / @ObservedObject / @Binding
     @State private var sideBarOpen: Bool = false
@@ -41,15 +41,16 @@ struct Location: View {
         
         switch button {
             case .play:
-                locationView.locationVM.startLocationUpdates()
+                attitudeView.motionVM.motionUpdateStart()
                 messageType = .played
             case .pause:
-                locationView.locationVM.stopLocationUpdates()
+                attitudeView.motionVM.stopMotionUpdates()
                 messageType = .paused
             case .delete:
-                locationView.locationVM.coreLocationArray.removeAll()
+                attitudeView.motionVM.coreMotionArray.removeAll()
+                attitudeView.motionVM.altitudeArray.removeAll()
                 messageType = .deleted
-                Log.shared.add(.coreLocation, .default, "Deleted Location Data")
+                Log.shared.add(.coreLocation, .default, "Deleted Motion Data")
         }
         
         if messageType != nil {
@@ -66,9 +67,9 @@ struct Location: View {
         Button(action: {
             sideBarOpen.toggle()
             if sideBarOpen {
-                locationView.locationVM.stopLocationUpdates()
+                attitudeView.motionVM.stopMotionUpdates()
             } else {
-                locationView.locationVM.startLocationUpdates()
+                attitudeView.motionVM.motionUpdateStart()
             }
         }) {
             Image(systemName: "sidebar.left")
@@ -77,7 +78,7 @@ struct Location: View {
     
     var content: some View {
         ZStack {
-            locationView
+            attitudeView
                 .frame(minWidth: 0, idealWidth: 100, maxWidth: .infinity, minHeight: 0, idealHeight: 100, maxHeight: .infinity, alignment: .center)
                 .toolbar {
                     CustomToolbar(toolBarFunctionClosure: toolBarButtonTapped(button:))
@@ -91,7 +92,7 @@ struct Location: View {
             // MARK: - NotificationView()
             NotificationView(notificationMessage: $notificationMessage, showNotification: $showNotification)
         }
-        .navigationBarTitle("\(NSLocalizedString("Location", comment: "NavigationBar Title - Location"))", displayMode: .inline)
+        .navigationBarTitle("\(NSLocalizedString("Attitude", comment: "NavigationBar Title - Attitude"))", displayMode: .inline)
     }
     
     
@@ -111,11 +112,11 @@ struct Location: View {
 
 
 // MARK: - Preview
-struct Location_Previews: PreviewProvider {
+struct AttitudeScreen_Previews: PreviewProvider {
     static var previews: some View {
         ForEach([ColorScheme.light, .dark], id: \.self) { scheme in
             NavigationView {
-                Location()
+                AttitudeScreen()
                     .colorScheme(scheme)
             }
         }

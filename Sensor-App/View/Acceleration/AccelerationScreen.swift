@@ -1,5 +1,5 @@
 //
-//  Acceleration.swift
+//  AccelerationScreen.swift
 //  Sensor-App
 //
 //  Created by Volker Schmitt on 23.08.20.
@@ -11,7 +11,7 @@ import SwiftUI
 
 
 // MARK: - Struct
-struct Acceleration: View {
+struct AccelerationScreen: View {
     
     // MARK: - Initialize Classes
     let notificationAPI = NotificationAPI()
@@ -112,11 +112,11 @@ struct Acceleration: View {
 
 
 // MARK: - Preview
-struct Acceleration_Previews: PreviewProvider {
+struct AccelerationScreen_Previews: PreviewProvider {
     static var previews: some View {
         ForEach([ColorScheme.light, .dark], id: \.self) { scheme in
             NavigationView {
-                Acceleration()
+                AccelerationScreen()
                     .colorScheme(scheme)
             }
         }

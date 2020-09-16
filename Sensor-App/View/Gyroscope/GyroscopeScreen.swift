@@ -1,5 +1,5 @@
 //
-//  Altitude.swift
+//  GyroscopeScreen.swift
 //  Sensor-App
 //
 //  Created by Volker Schmitt on 23.08.20.
@@ -11,11 +11,11 @@ import SwiftUI
 
 
 // MARK: - Struct
-struct Altitude: View {
+struct GyroscopeScreen: View {
     
     // MARK: - Initialize Classes
     let notificationAPI = NotificationAPI()
-    let altitudeView = AltitudeView()
+    let gyroscopeView = GyroscopeView()
     
     // MARK: - @State / @ObservedObject / @Binding
     @State private var sideBarOpen: Bool = false
@@ -41,14 +41,14 @@ struct Altitude: View {
         
         switch button {
             case .play:
-                altitudeView.motionVM.motionUpdateStart()
+                gyroscopeView.motionVM.motionUpdateStart()
                 messageType = .played
             case .pause:
-                altitudeView.motionVM.stopMotionUpdates()
+                gyroscopeView.motionVM.stopMotionUpdates()
                 messageType = .paused
             case .delete:
-                altitudeView.motionVM.coreMotionArray.removeAll()
-                altitudeView.motionVM.altitudeArray.removeAll()
+                gyroscopeView.motionVM.coreMotionArray.removeAll()
+                gyroscopeView.motionVM.altitudeArray.removeAll()
                 messageType = .deleted
                 Log.shared.add(.coreLocation, .default, "Deleted Motion Data")
         }
@@ -67,9 +67,9 @@ struct Altitude: View {
         Button(action: {
             sideBarOpen.toggle()
             if sideBarOpen {
-                altitudeView.motionVM.stopMotionUpdates()
+                gyroscopeView.motionVM.stopMotionUpdates()
             } else {
-                altitudeView.motionVM.motionUpdateStart()
+                gyroscopeView.motionVM.motionUpdateStart()
             }
         }) {
             Image(systemName: "sidebar.left")
@@ -78,7 +78,7 @@ struct Altitude: View {
     
     var content: some View {
         ZStack {
-            altitudeView
+            gyroscopeView
                 .frame(minWidth: 0, idealWidth: 100, maxWidth: .infinity, minHeight: 0, idealHeight: 100, maxHeight: .infinity, alignment: .center)
                 .toolbar {
                     CustomToolbar(toolBarFunctionClosure: toolBarButtonTapped(button:))
@@ -92,7 +92,7 @@ struct Altitude: View {
             // MARK: - NotificationView()
             NotificationView(notificationMessage: $notificationMessage, showNotification: $showNotification)
         }
-        .navigationBarTitle("\(NSLocalizedString("Altitude", comment: "NavigationBar Title - Altitude"))", displayMode: .inline)
+        .navigationBarTitle("\(NSLocalizedString("Gyroscope", comment: "NavigationBar Title - Gyroscope"))", displayMode: .inline)
     }
     
     
@@ -112,11 +112,11 @@ struct Altitude: View {
 
 
 // MARK: - Preview
-struct Altitude_Previews: PreviewProvider {
+struct GyroscopeScreen_Previews: PreviewProvider {
     static var previews: some View {
         ForEach([ColorScheme.light, .dark], id: \.self) { scheme in
             NavigationView {
-                Altitude()
+                GyroscopeScreen()
                     .colorScheme(scheme)
             }
         }

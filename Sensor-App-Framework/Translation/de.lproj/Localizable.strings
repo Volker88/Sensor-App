@@ -1,110 +1,120 @@
-/* SettingsView - Max Points Slider */
+/* SettingsScreen - Max Points Slider */
 "%.0f" = "%.0f";
 
-/* RefreshRateView - Value */
-"%.0f per Second" = "%.0f pro Sekunde";
-
-/* SettingsView - ZoomSlider */
+/* SettingsScreen - ZoomSlider */
 "%.1f km" = "%.1f km";
+
+/* RefreshRateView - Value */
+"%.1f per Second" = "%.1f pro Sekunde";
+
+/* RefreshRateView - Refresh Rate */
+"%@ %.1f Hz" = "%1$@ %2$.1f Hz";
 
 /* SettingsView - Frequency (watchOS) */
 "%@ %@ Hz" = "%1$@ %2$@ Hz";
 
-/* SettingsView - 0.1km */
+/* SettingsScreen - 0.1km */
 "0.1 km" = "0.1 km";
 
 /* RefreshRateView - Label 1
-   SettingsView - 1 */
+   SettingsScreen - 1 */
 "1" = "1";
 
-/* RefreshRateView - Label 50 */
-"50" = "50";
+/* RefreshRateView - Label 10 */
+"10" = "10";
 
-/* SettingsView - 100km */
+/* SettingsScreen - 100km */
 "100 km" = "100 km";
 
-/* SettingsView - 1000 */
+/* SettingsScreen - 1000 */
 "1000" = "1000";
 
-/* MotionListView - A */
+/* AltitudeList - A */
 "A:%.5f" = "A:%.5f";
 
-/* AccelerationView - NavigationBar Title (watchOS)
-   ContentView - Acceleration (watchOS) */
+/* AccelerationView - Section Header
+   ContentView - Acceleration
+   NavigationBar Title - Acceleration */
 "Acceleration" = "Beschleunigung";
 
-/* SettingsView - Accuracy (watchOS) */
+/* SettingsScreen - Accuracy */
 "Accuracy" = "Genaugkeit";
 
-/* AltitudeView - NavigationBar Title (watchOS)
-   ContentView - Altitude (watchOS)
-   SettingsView - Altitude Section (watchOS) */
+/* ContentView - Altitude
+   NavigationBar Title - Altitude
+   SettingsScreen - Altitude Section */
 "Altitude" = "Höhe";
 
-/* AltitudeView - Altitude Change (watchOS) */
+/* AltitudeView - Altitude */
 "Altitude change: %.5f %@" = "Höhenänderung: %1$.5f %2$@";
 
-/* LocationView - Altitude (watchOS) */
+/* LocationView - Altitude */
 "Altitude: %.2f ± %.2fm" = "Höhe: %1$.2f ± %2$.2fm";
 
-/* AttitudeView - NavigationBar Title (watchOS)
-   ContentView - Attitude (watchOS) */
+/* AttitudeView - Section Header
+   ContentView - Attitude
+   NavigationBar Title - Attitude */
 "Attitude" = "Haltung";
 
-/* SettingsView - Buildings */
+/* SettingsScreen - Buildings */
 "Buildings" = "Gebäude";
 
 /* NotificationMessage - Discarded */
 "Changes Discarded" = "Änderungen verworfen";
 
-/* NagvigationBarButton - Close */
-"Close" = "Schließen";
-
-/* SettingsView - Compass */
+/* SettingsScreen - Compass */
 "Compass" = "Kompass";
 
-/* MotionListView - Could not load the Table */
-"Could not load the table!" = "Tabelle konnte nicht geladen werden!";
-
-/* ToolBarView - Delete Button */
+/* CustomToolbar - Delete Button */
 "Delete" = "Löschen";
 
-/* LocationView - Direction (watchOS) */
+/* LocationView - Direction */
 "Direction: %.2f°" = "Richtung: %.2f°";
 
-/* SettingsView - Save (watchOS) */
+/* NagvigationBarButton - Discard Changes */
 "Discard" = "Verwerfen";
 
 /* NagvigationBarButton - Discard Changes */
+"Discard " = "Verwerfen";
+
+/* NagvigationBarButton - Save */
 "Discard Changes" = "Änderungen verwerfen";
 
 /* SettingsView - Discarded Changes (watchOS) */
 "Discarded Changes" = "Änderungen verworfen";
 
-/* SettingsView - Frequency (watchOS) */
+/* AccelerationView - Export List
+   GravityView - Export List
+   LocationView - Export List */
+"Export" = "Exportieren";
+
+/* RefreshRateView - Frequency */
 "Frequency:" = "Frequenz:";
 
-/* SettingsView - Graph Section */
+/* SettingsScreen - Graph Section */
 "Graph" = "Diagramm";
 
-/* ContentView - Gravity (watchOS)
-   GravityView - NavigationBar Title (watchOS) */
+/* ContentView - Gravity
+   GravityView - Section Header
+   NavigationBar Title - Gravity */
 "Gravity" = "Gravitation";
 
-/* ContentView - Gyroscope (watchOS)
-   GyroscopeView - NavigationBar Title (watchOS) */
+/* ContentView - Gyroscope
+   GyroscopeView - Section Header
+   NavigationBar Title - Gyroscope */
 "Gyroscope" = "Gyroskop";
 
-/* MotionListView - H */
+/* AttitudeList - H */
 "H:%.3f" = "H:%.3f";
 
-/* AttitudeView - Heading (watchOS) */
+/* AttitudeView - Heading */
 "Heading: %.5f°" = "Richtung: %.5f°";
 
-/* SettingsView - Height (watchOS) */
+/* SettingsScreen - Height */
 "Height" = "Höhe";
 
-/* ContentView - NavigationBar Title (watchOS) */
+/* ContentView - Home
+   HomeView - NavigationBar Title */
 "Home" = "Hauptmenü";
 
 /* Export CSV Headline - Location */
@@ -118,11 +128,15 @@
 
 /* Export CSV Headline - Acceleration
    Export CSV Headline - Gravity
-   Export CSV Headline - Gyroscope
    Export CSV Headline - Magnetometer */
 "ID;Time;X-Axis;Y-Axis;Z-Axis" = "ID;Zeit;X-Achse;Y-Achse;Z-Achse";
 
-/* MotionListView - ID */
+/* AccelerationList - ID
+   AltitudeList - ID
+   AttitudeList - ID
+   GravityList - ID
+   GyroscopeList - ID
+   MagnetometerList - ID */
 "ID:%@" = "ID:%@";
 
 /* LocationView - Latitude */
@@ -131,10 +145,14 @@
 /* LocationView - Latitude (watchOS) */
 "Latitude: %.10f° ± %.2fm" = "Breitengrad: %1$.10f° ± %2$.2fm";
 
-/* ContentView - Location (watchOS)
-   LocationView - NavigationBar Title (watchOS)
-   SettingsView - Location Section (watchOS) */
+/* ContentView - Location
+   LocationView - Section Header
+   NavigationBar Title - Location
+   SettingsScreen - Location Section */
 "Location" = "Standort";
+
+/* AccelerationView - Section Header */
+"Log" = "Log";
 
 /* LocationView - Longitude */
 "Longitude: %.6f° ± %.2fm" = "Längengrad: %1$.6f° ± %2$.2fm";
@@ -142,53 +160,56 @@
 /* LocationView - Longitude (watchOS) */
 "Longitude: %.10f° ± %.2fm" = "Längengrad: %1$.10f° ± %2$.2fm";
 
-/* ContentView - Magnetometer (watchOS)
-   MagnetometerView - NavigationBar Title (watchOS) */
+/* ContentView - Magnetometer
+   NavigationBar Title - Magnetometer */
 "Magnetometer" = "Magnetometer";
 
-/* SettingsView - Map Section */
+/* LocationView - Section Header
+   SettingsScreen - Map Section */
 "Map" = "Karte";
 
-/* SettingsView - Max Points */
+/* SettingsScreen - Max Points */
 "Max Points: %@" = "Max Punkte: %@";
 
-/* SettingsView - Max Points Slider */
+/* SettingsScreen - Max Points Slider */
 "Maximum Points:" = "Maximale Punkte:";
 
-/* MotionListView - P */
+/* AttitudeList - P */
 "P:%.3f" = "P:%.3f";
 
-/* MotionListView - P */
+/* AltitudeList - P */
 "P:%.5f" = "P:%.5f";
 
-/* ToolBarView - Pause Button */
+/* CustomToolbar - Pause Button */
 "Pause" = "Pause";
 
 /* NotificationMessage - Paused */
 "Paused" = "Pausiert";
 
-/* AttitudeView - Pitch (watchOS) */
+/* AttitudeView - Pitch */
 "Pitch: %.5f°" = "Pitch: %.5f°";
 
-/* NotificationMessage - Play */
+/* CustomToolbar - Play Button
+   NotificationMessage - Play */
 "Play" = "Starten";
 
-/* SettingsView - Pressure (watchOS) */
+/* SettingsScreen - Pressure */
 "Pressure" = "Luftdruck";
 
-/* AltitudeView - Pressure (watchOS) */
+/* AltitudeView - Pressure */
 "Pressure: %.5f %@" = "Luftdruck: %1$.5f %2$@";
 
-/* MotionListView - R */
+/* AttitudeList - R */
 "R:%.3f" = "R:%.3f";
 
-/* SettingsView - Refresh Rate Section (watchOS) */
+/* AccelerationView - Section Header
+   RefreshRateView - Slider */
 "Refresh Rate" = "Aktualisierungsrate";
 
-/* AttitudeView - Roll (watchOS) */
+/* AttitudeView - Roll */
 "Roll: %.5f°" = "Roll: %.5f°";
 
-/* SettingsView - Rotation */
+/* SettingsScreen - Rotation */
 "Rotation" = "Rotation";
 
 /* NagvigationBarButton - Save */
@@ -200,26 +221,24 @@
 /* NotificationMessage - Saved */
 "Saved successfully" = "Erfolgreich gespeichert";
 
-/* SettingsView - Scale */
+/* SettingsScreen - Scale */
 "Scale" = "Maßstab";
 
-/* SettingsView - Scroll */
+/* SettingsScreen - Scroll */
 "Scroll" = "Scrollen";
 
 /* ContentView - Sensor-App */
 "Sensor-App" = "Sensor-App";
 
-/* ContentView - Settings (watchOS)
-   SettingsView - NavigationBar Title (watchOS) */
+/* ContentView - Settings
+   NavigationBar Title - Settings
+   Settings */
 "Settings" = "Einstellungen";
 
-/* ToolBarView - Share Button */
-"Share" = "Teilen";
-
-/* SettingsView - Speed Setting (watchOS) */
+/* SettingsScreen - Speed Setting */
 "Speed Setting" = "Geschwindigkeit";
 
-/* LocationView - Speed (watchOS) */
+/* LocationView - Speed */
 "Speed:" = "Geschwindigkeit:";
 
 /* NotificationMessage - Deleted */
@@ -228,69 +247,78 @@
 /* GraphButtonModifier - Toggle Graph */
 "Toggle Graph" = "Aktiviere Diagramm";
 
-/* SettingsView - Traffic */
+/* SettingsScreen - Traffic */
 "Traffic" = "Verkehr";
 
-/* SettingsView - Type */
+/* SettingsScreen - Type */
 "Type" = "Typ";
 
 /* ContentView - Welcome Label */
 "Welcome to the" = "Willkommen bei";
 
-/* GravityView - X-Axis (watchOS) */
+/* GravityView - X-Axis */
 "X-Axis: %.5f g (9,81 m/s^2)" = "X-Achse: %.5f g (9,81 m/s^2)";
 
-/* AccelerationView - X-Axis (watchOS) */
+/* AccelerationView - X-Axis */
 "X-Axis: %.5f m/s^2" = "X-Achse: %.5f m/s^2";
 
-/* GyroscopeView - X-Axis (watchOS) */
+/* GyrsocopeView - X-Axis */
 "X-Axis: %.5f rad/s" = "X-Achse: %.5f rad/s";
 
-/* MagnetometerView - X-Axis (watchOS) */
+/* MagnetometerView - X-Axis */
 "X-Axis: %.5f µT" = "X-Achse: %.5f µT";
 
-/* MotionListView - X */
+/* AccelerationList - X
+   GravityList - X
+   GyroscopeList - X
+   MagnetometerList - X */
 "X:%.5f" = "X:%.5f";
 
-/* GravityView - Y-Axis (watchOS) */
+/* GravityView - Y-Axis */
 "Y-Axis: %.5f g (9,81 m/s^2)" = "Y-Achse: %.5f g (9,81 m/s^2)";
 
-/* AccelerationView - Y-Axis (watchOS) */
+/* AccelerationView - Y-Axis */
 "Y-Axis: %.5f m/s^2" = "Y-Achse: %.5f m/s^2";
 
-/* GyroscopeView - Y-Axis (watchOS) */
+/* GyrsocopeView - Y-Axis */
 "Y-Axis: %.5f rad/s" = "Y-Achse: %.5f rad/s";
 
-/* MagnetometerView - Y-Axis (watchOS) */
+/* MagnetometerView - Y-Axis */
 "Y-Axis: %.5f µT" = "Y-Achse: %.5f µT";
 
-/* MotionListView - Yield */
+/* AttitudeList - Yield */
 "Y:%.3f" = "Y:%.3f";
 
-/* MotionListView - Y */
+/* AccelerationList - Y
+   GravityList - Y
+   GyroscopeList - Y
+   MagnetometerList - Y */
 "Y:%.5f" = "Y:%.5f";
 
-/* AttitudeView - Yaw (watchOS) */
+/* AttitudeView - Yaw */
 "Yaw: %.5f°" = "Yaw: %.5f°";
 
-/* GravityView - Z-Axis (watchOS) */
+/* GravityView - Z-Axis */
 "Z-Axis: %.5f g (9,81 m/s^2)" = "Z-Achse: %.5f g (9,81 m/s^2)";
 
-/* AccelerationView - Z-Axis (watchOS) */
+/* AccelerationView - Z-Axis */
 "Z-Axis: %.5f m/s^2" = "Z-Achse: %.5f m/s^2";
 
-/* GyroscopeView - Z-Axis (watchOS) */
+/* GyrsocopeView - Z-Axis */
 "Z-Axis: %.5f rad/s" = "Z-Achse: %.5f rad/s";
 
-/* MagnetometerView - Z-Axis (watchOS) */
+/* MagnetometerView - Z-Axis */
 "Z-Axis: %.5f µT" = "Z-Achse: %.5f µT";
 
-/* MotionListView - Z */
+/* AccelerationList - Z
+   GravityList - Z
+   GyroscopeList - Z
+   MagnetometerList - Z */
 "Z:%.5f" = "Z:%.5f";
 
-/* SettingsView - ZoomSlider */
+/* SettingsScreen - ZoomSlider */
 "Zoom:" = "Zoom:";
 
-/* SettingsView - Zoom */
+/* SettingsScreen - Zoom */
 "Zoom: %.1f km" = "Zoom: %.1f km";
 
