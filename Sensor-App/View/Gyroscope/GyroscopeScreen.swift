@@ -72,7 +72,7 @@ struct GyroscopeScreen: View {
                 gyroscopeView.motionVM.motionUpdateStart()
             }
         }) {
-            Image(systemName: "sidebar.left")
+            Image(systemName: "line.horizontal.3")
         }
     }
     
@@ -97,7 +97,6 @@ struct GyroscopeScreen: View {
     
     
     // MARK: - Body - View
-    @ViewBuilder
     var body: some View {
         
         // MARK: - Return View

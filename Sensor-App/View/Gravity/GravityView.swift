@@ -22,7 +22,7 @@ struct GravityView: View {
     // MARK: - @State / @ObservedObject / @Binding
     @ObservedObject var motionVM = CoreMotionViewModel()
     @State private var showShareSheet = false
-    @State private var filesToShare = [Any]()
+    @State private var fileToShare: URL?
     
     // Show Graph
     @State private var showXAxis = false
@@ -42,8 +42,7 @@ struct GravityView: View {
         _ = motionVM.coreMotionArray.map {
             csvText += "\($0.counter);\($0.timestamp);\($0.gravityXAxis.localizedDecimal());\($0.gravityYAxis.localizedDecimal());\($0.gravityZAxis.localizedDecimal())\n"
         }
-        filesToShare = exportAPI.getFile(exportText: csvText, filename: "gravity")
-        showShareSheet.toggle()
+        fileToShare = exportAPI.getFile(exportText: csvText, filename: "gravity")
     }
     
     
@@ -71,14 +70,10 @@ struct GravityView: View {
     
     
     // MARK: - Body - View
-    @ViewBuilder
     var body: some View {
         
         // MARK: - Return View
-        ZStack {
             GeometryReader { g in
-                ScrollView {
-                    
                     List {
                         Section(header: Text("Gravity", comment: "GravityView - Section Header")) {
                             DisclosureGroup(
@@ -129,12 +124,12 @@ struct GravityView: View {
                     .listStyle(InsetGroupedListStyle())
                     .frame(minWidth: 0, idealWidth: g.size.width, maxWidth: .infinity, minHeight: 0, idealHeight: g.size.height, maxHeight: g.size.height, alignment: .leading)
                     
-                }
-            }
         }
         .onAppear(perform: onAppear)
         .onDisappear(perform: onDisappear)
-        .sheet(isPresented: $showShareSheet) { ShareSheet(activityItems: filesToShare) }
+        .sheet(item: $fileToShare) { file in
+            ShareSheet(activityItems: [file])
+        }
     }
 }
 

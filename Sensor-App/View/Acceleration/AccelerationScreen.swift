@@ -20,6 +20,7 @@ struct AccelerationScreen: View {
     // MARK: - @State / @ObservedObject / @Binding
     @State private var sideBarOpen: Bool = false
     
+    
     // Notification Variables
     @State private var showNotification = false
     @State private var notificationMessage = ""
@@ -72,7 +73,7 @@ struct AccelerationScreen: View {
                 accelerationView.motionVM.motionUpdateStart()
             }
         }) {
-            Image(systemName: "sidebar.left")
+            Image(systemName: "line.horizontal.3")
         }
     }
     
@@ -97,7 +98,6 @@ struct AccelerationScreen: View {
     
     
     // MARK: - Body - View
-    @ViewBuilder
     var body: some View {
         
         // MARK: - Return View

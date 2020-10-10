@@ -73,8 +73,10 @@ class Log {
     /// - Parameter value: Any
     ///
     func print(_ value: Any) {
+        #if DEBUG
         if Bundle.main.infoDictionary?["Debugging"] as! String == "1" {
             Swift.print(value)
         }
+        #endif
     }
 }

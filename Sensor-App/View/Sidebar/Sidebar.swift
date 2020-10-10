@@ -27,6 +27,11 @@ struct Sidebar: View {
     var list: some View {
         List {
             Group {
+                NavigationLink(destination: ContentView().navigationBarBackButtonHidden(true)) {
+                    Label(NSLocalizedString("Home", comment: "Sidebbar - Location"), systemImage: "house")
+                        .accessibility(identifier: "Home")
+                }
+                
                 NavigationLink(destination: LocationScreen().navigationBarBackButtonHidden(true)) {
                     Label(NSLocalizedString("Location", comment: "Sidebbar - Location"), systemImage: "location")
                         .accessibility(identifier: "Location")
@@ -76,7 +81,6 @@ struct Sidebar: View {
     
     
     // MARK: - Body
-    @ViewBuilder
     var body: some View {
         
         // MARK: - Return View

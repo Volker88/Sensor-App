@@ -274,7 +274,6 @@ struct SettingsScreen: View {
     }
     
     // MARK: - Body - View
-    @ViewBuilder
     var body: some View {
         
         // MARK: - Return View

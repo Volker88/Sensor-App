@@ -22,7 +22,7 @@ struct AttitudeView: View {
     // MARK: - @State / @ObservedObject / @Binding
     @ObservedObject var motionVM = CoreMotionViewModel()
     @State private var showShareSheet = false
-    @State private var filesToShare = [Any]()
+    @State private var fileToShare: URL?
     
     // Show Graph
     @State private var showRoll = false
@@ -43,8 +43,7 @@ struct AttitudeView: View {
         _ = motionVM.coreMotionArray.map {
             csvText += "\($0.counter);\($0.timestamp);\($0.attitudeRoll.localizedDecimal());\($0.attitudePitch.localizedDecimal());\($0.attitudeYaw.localizedDecimal());\($0.attitudeHeading.localizedDecimal())\n"
         }
-        filesToShare = exportAPI.getFile(exportText: csvText, filename: "attitude")
-        showShareSheet.toggle()
+        fileToShare = exportAPI.getFile(exportText: csvText, filename: "attitude")
     }
     
     
@@ -72,80 +71,77 @@ struct AttitudeView: View {
     
     
     // MARK: - Body - View
-    @ViewBuilder
     var body: some View {
         
         // MARK: - Return View
-        ZStack {
-            GeometryReader { g in
-                ScrollView {
-                    List {
-                        Section(header: Text("Attitude", comment: "AttitudeView - Section Header")) {
-                            DisclosureGroup(
-                                isExpanded: $showRoll,
-                                content: {
-                                    LineGraphSubView(motionVM: motionVM, showGraph: .attitudeRoll)
-                                        .frame(height: 100, alignment: .leading)
-                                },
-                                label: {
-                                    Text("Roll: \((motionVM.coreMotionArray.last?.attitudeRoll ?? 0.0) * 180 / .pi, specifier: "%.5f")°", comment: "AttitudeView - Roll")
-                                })
-                                .disclosureGroupModifier(accessibility: "Toggle Roll Graph")
-                            
-                            
-                            DisclosureGroup(
-                                isExpanded: $showPitch,
-                                content: {
-                                    LineGraphSubView(motionVM: motionVM, showGraph: .attitudePitch)
-                                        .frame(height: 100, alignment: .leading)
-                                },
-                                label: {
-                                    Text("Pitch: \((motionVM.coreMotionArray.last?.attitudePitch ?? 0.0) * 180 / .pi, specifier: "%.5f")°", comment: "AttitudeView - Pitch")
-                                })
-                                .disclosureGroupModifier(accessibility: "Toggle Pitch Graph")
-                            
-                            
-                            DisclosureGroup(
-                                isExpanded: $showYaw,
-                                content: {
-                                    LineGraphSubView(motionVM: motionVM, showGraph: .attitudeYaw)
-                                        .frame(height: 100, alignment: .leading)
-                                },
-                                label: {
-                                    Text("Yaw: \((motionVM.coreMotionArray.last?.attitudeYaw ?? 0.0) * 180 / .pi, specifier: "%.5f")°", comment: "AttitudeView - Yaw")
-                                })
-                                .disclosureGroupModifier(accessibility: "Toggle Yaw Graph")
-                            
-                            DisclosureGroup(
-                                isExpanded: $showHeading,
-                                content: {
-                                    LineGraphSubView(motionVM: motionVM, showGraph: .attitudeHeading)
-                                        .frame(height: 100, alignment: .leading)
-                                },
-                                label: {
-                                    Text("Heading: \(motionVM.coreMotionArray.last?.attitudeHeading ?? 0.0, specifier: "%.5f")°", comment: "AttitudeView - Heading")
-                                })
-                                .disclosureGroupModifier(accessibility: "Toggle Heading Graph")
-                        }
-                        
-                        Section(header: Text("Log", comment: "AccelerationView - Section Header"), footer: shareButton) {
-                            AttitudeList(motionVM: motionVM)
-                                .frame(height: 200, alignment: .center)
-                        }
-                        
-                        Section(header: Text("Refresh Rate", comment: "AccelerationView - Section Header")) {
-                            RefreshRateView(motionVM: motionVM, show: "header")
-                            RefreshRateView(motionVM: motionVM, show: "slider")
-                        }
-                    }
-                    .listStyle(InsetGroupedListStyle())
-                    .frame(minWidth: 0, idealWidth: g.size.width, maxWidth: .infinity, minHeight: 0, idealHeight: g.size.height, maxHeight: g.size.height, alignment: .leading)
+        GeometryReader { g in
+            List {
+                Section(header: Text("Attitude", comment: "AttitudeView - Section Header")) {
+                    DisclosureGroup(
+                        isExpanded: $showRoll,
+                        content: {
+                            LineGraphSubView(motionVM: motionVM, showGraph: .attitudeRoll)
+                                .frame(height: 100, alignment: .leading)
+                        },
+                        label: {
+                            Text("Roll: \((motionVM.coreMotionArray.last?.attitudeRoll ?? 0.0) * 180 / .pi, specifier: "%.5f")°", comment: "AttitudeView - Roll")
+                        })
+                        .disclosureGroupModifier(accessibility: "Toggle Roll Graph")
+                    
+                    
+                    DisclosureGroup(
+                        isExpanded: $showPitch,
+                        content: {
+                            LineGraphSubView(motionVM: motionVM, showGraph: .attitudePitch)
+                                .frame(height: 100, alignment: .leading)
+                        },
+                        label: {
+                            Text("Pitch: \((motionVM.coreMotionArray.last?.attitudePitch ?? 0.0) * 180 / .pi, specifier: "%.5f")°", comment: "AttitudeView - Pitch")
+                        })
+                        .disclosureGroupModifier(accessibility: "Toggle Pitch Graph")
+                    
+                    
+                    DisclosureGroup(
+                        isExpanded: $showYaw,
+                        content: {
+                            LineGraphSubView(motionVM: motionVM, showGraph: .attitudeYaw)
+                                .frame(height: 100, alignment: .leading)
+                        },
+                        label: {
+                            Text("Yaw: \((motionVM.coreMotionArray.last?.attitudeYaw ?? 0.0) * 180 / .pi, specifier: "%.5f")°", comment: "AttitudeView - Yaw")
+                        })
+                        .disclosureGroupModifier(accessibility: "Toggle Yaw Graph")
+                    
+                    DisclosureGroup(
+                        isExpanded: $showHeading,
+                        content: {
+                            LineGraphSubView(motionVM: motionVM, showGraph: .attitudeHeading)
+                                .frame(height: 100, alignment: .leading)
+                        },
+                        label: {
+                            Text("Heading: \(motionVM.coreMotionArray.last?.attitudeHeading ?? 0.0, specifier: "%.5f")°", comment: "AttitudeView - Heading")
+                        })
+                        .disclosureGroupModifier(accessibility: "Toggle Heading Graph")
+                }
+                
+                Section(header: Text("Log", comment: "AccelerationView - Section Header"), footer: shareButton) {
+                    AttitudeList(motionVM: motionVM)
+                        .frame(height: 200, alignment: .center)
+                }
+                
+                Section(header: Text("Refresh Rate", comment: "AccelerationView - Section Header")) {
+                    RefreshRateView(motionVM: motionVM, show: "header")
+                    RefreshRateView(motionVM: motionVM, show: "slider")
                 }
             }
+            .listStyle(InsetGroupedListStyle())
+            .frame(minWidth: 0, idealWidth: g.size.width, maxWidth: .infinity, minHeight: 0, idealHeight: g.size.height, maxHeight: g.size.height, alignment: .leading)
         }
         .onAppear(perform: onAppear)
         .onDisappear(perform: onDisappear)
-        .sheet(isPresented: $showShareSheet) { ShareSheet(activityItems: filesToShare) }
+        .sheet(item: $fileToShare) { file in
+            ShareSheet(activityItems: [file])
+        }
     }
 }
 

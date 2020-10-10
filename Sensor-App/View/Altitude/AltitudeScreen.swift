@@ -72,7 +72,7 @@ struct AltitudeScreen: View {
                 altitudeView.motionVM.motionUpdateStart()
             }
         }) {
-            Image(systemName: "sidebar.left")
+            Image(systemName: "line.horizontal.3")
         }
     }
     
@@ -97,7 +97,6 @@ struct AltitudeScreen: View {
     
     
     // MARK: - Body - View
-    @ViewBuilder
     var body: some View {
         
         // MARK: - Return View

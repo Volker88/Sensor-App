@@ -13,16 +13,21 @@ import SwiftUI
 // MARK: - Struct / Class Definition
 @main
 struct Sensor_AppApp: App {
+    
+    // MARK: - Environment Object
     @Environment(\.scenePhase) var scenePhase
+    @Environment(\.horizontalSizeClass) var sizeClass
+    
+    
     // MARK: - Body
     @SceneBuilder var body: some Scene {
         WindowGroup {
             NavigationView {
                 if UIDevice.current.userInterfaceIdiom == .pad {
                     Sidebar()
-                    AccelerationScreen()
+                    ContentView()
                 } else if UIDevice.current.userInterfaceIdiom == .phone {
-                    AccelerationScreen()
+                    ContentView()
                 }
             }
             .customNavigationViewStyle()

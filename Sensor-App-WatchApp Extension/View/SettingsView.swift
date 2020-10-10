@@ -120,7 +120,7 @@ struct SettingsView: View {
                 Text("Refresh Rate", comment: "SettingsView - Refresh Rate Section (watchOS)")
             ) {
                 Text("\(NSLocalizedString("Frequency:", comment: "SettingsView - Frequency (watchOS)")) \(Int(refreshRate)) Hz", comment: "SettingsView - Frequency (watchOS)")
-                Slider(value: $refreshRate, in: 1...50, step: 1) { refresh in
+                Slider(value: $refreshRate, in: 1...10, step: 1) { refresh in
                     
                 }
             }

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -162,6 +162,8 @@
 		15445CC424F2DF6B006940C6 /* AttitudeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15445CC324F2DF6B006940C6 /* AttitudeList.swift */; };
 		15445CC724F2E20D006940C6 /* AltitudeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15445CC624F2E20D006940C6 /* AltitudeScreen.swift */; };
 		15445CC924F2E213006940C6 /* AltitudeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15445CC824F2E213006940C6 /* AltitudeList.swift */; };
+		15657AAE2531E68000884941 /* Extension+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15657AAD2531E68000884941 /* Extension+URL.swift */; };
+		15657AB42531E6D300884941 /* Extension+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15657AAD2531E68000884941 /* Extension+URL.swift */; };
 		158826EC24F276BD00631B87 /* AccelerationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158826EB24F276BD00631B87 /* AccelerationScreen.swift */; };
 		159230552514FC1E00B34F3C /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159230542514FC1E00B34F3C /* SettingsScreen.swift */; };
 		159B640324DEB5DC009A1E35 /* Extension_Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159B640124DEB5C1009A1E35 /* Extension_Map.swift */; };
@@ -367,6 +369,7 @@
 		15445CC324F2DF6B006940C6 /* AttitudeList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttitudeList.swift; sourceTree = "<group>"; };
 		15445CC624F2E20D006940C6 /* AltitudeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AltitudeScreen.swift; sourceTree = "<group>"; };
 		15445CC824F2E213006940C6 /* AltitudeList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AltitudeList.swift; sourceTree = "<group>"; };
+		15657AAD2531E68000884941 /* Extension+URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+URL.swift"; sourceTree = "<group>"; };
 		158826EB24F276BD00631B87 /* AccelerationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccelerationScreen.swift; sourceTree = "<group>"; };
 		159230542514FC1E00B34F3C /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
 		159B640124DEB5C1009A1E35 /* Extension_Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension_Map.swift; sourceTree = "<group>"; };
@@ -705,7 +708,6 @@
 			children = (
 				1527B02024C4AA240024DD78 /* Preview Content */,
 				1542E3B124C4B04600FA2755 /* MyPlayground.playground */,
-				1527B01A24C4AA240024DD78 /* Sensor_AppApp.swift */,
 				1527B01E24C4AA240024DD78 /* Assets.xcassets */,
 				1527B02324C4AA240024DD78 /* Info.plist */,
 			);
@@ -821,6 +823,7 @@
 		15445CCB24F2E942006940C6 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				1527B01A24C4AA240024DD78 /* Sensor_AppApp.swift */,
 				151D317624E975560090BC94 /* ContentView.swift */,
 			);
 			path = Home;
@@ -868,6 +871,7 @@
 			isa = PBXGroup;
 			children = (
 				1542E37224C4AF9300FA2755 /* Extension+Double.swift */,
+				15657AAD2531E68000884941 /* Extension+URL.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1030,7 +1034,7 @@
 				};
 			};
 			buildConfigurationList = 1527B01224C4AA240024DD78 /* Build configuration list for PBXProject "Sensor-App" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -1132,6 +1136,7 @@
 				1542E3D924C4B05400FA2755 /* GraphArrayTransformation.swift in Sources */,
 				15445CBF24F2D6A1006940C6 /* MagnetometerList.swift in Sources */,
 				1542E3D124C4B05400FA2755 /* NotificationMessageView.swift in Sources */,
+				15657AB42531E6D300884941 /* Extension+URL.swift in Sources */,
 				1542E3F024C4B1D500FA2755 /* AltitudeModel.swift in Sources */,
 				1542E3CB24C4B05400FA2755 /* GyroscopeView.swift in Sources */,
 				151D317524E956A10090BC94 /* SettingsOverlay.swift in Sources */,
@@ -1284,6 +1289,7 @@
 				1542E38324C4AF9300FA2755 /* CoreMotionAPI.swift in Sources */,
 				1542E38724C4AF9300FA2755 /* MotionModel.swift in Sources */,
 				1542E38124C4AF9300FA2755 /* NotificationAPI.swift in Sources */,
+				15657AAE2531E68000884941 /* Extension+URL.swift in Sources */,
 				1542E39424C4AF9300FA2755 /* Extension+Double.swift in Sources */,
 				1542E38B24C4AF9300FA2755 /* NotificationTypes.swift in Sources */,
 				1542E38824C4AF9300FA2755 /* NotificationModel.swift in Sources */,
@@ -1400,8 +1406,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				MY_BUILD_VERSION = 3.20385.1;
-				MY_VERSION = 3.0.0;
+				MY_BUILD_VERSION = 3.20416.2;
+				MY_VERSION = 3.0.1;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -1459,8 +1465,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				MY_BUILD_VERSION = 3.20385.1;
-				MY_VERSION = 3.0.0;
+				MY_BUILD_VERSION = 3.20416.2;
+				MY_VERSION = 3.0.1;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -1472,7 +1478,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-V3";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"$(SRCROOT)/Sensor-App/Support/Preview Content\"";
@@ -1495,7 +1501,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-V3";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"$(SRCROOT)/Sensor-App/Support/Preview Content\"";
@@ -1650,7 +1656,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-V3";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NLF7894S7W;
@@ -1670,7 +1676,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-V3";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NLF7894S7W;
