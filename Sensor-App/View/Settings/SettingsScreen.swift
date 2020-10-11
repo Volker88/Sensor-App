@@ -28,6 +28,9 @@ struct SettingsScreen: View {
     @State private var showNotification = false
     @State private var sideBarOpen: Bool = false
     
+    // General
+    @State private var showReleaseNotes = true
+    
     // Location
     @State private var speedSetting = 0
     @State private var accuracySetting = 0
@@ -65,6 +68,7 @@ struct SettingsScreen: View {
     func saveSettings() {
         // User Settings
         var userSettings = settings.fetchUserSettings()
+        userSettings.showReleaseNotes = showReleaseNotes
         userSettings.GPSSpeedSetting = settings.GPSSpeedSettings[speedSetting]
         userSettings.GPSAccuracySetting = settings.GPSAccuracyOptions[accuracySetting]
         userSettings.pressureSetting = settings.altitudePressure[pressureSetting]
@@ -94,6 +98,9 @@ struct SettingsScreen: View {
     }
     
     func discardChanges(_showNotification: Bool) {
+        // General
+        showReleaseNotes = settings.fetchUserSettings().showReleaseNotes
+        
         // User Settings
         speedSetting = settings.GPSSpeedSettings.firstIndex(of: settings.fetchUserSettings().GPSSpeedSetting)!
         accuracySetting = settings.GPSAccuracyOptions.firstIndex(of: settings.fetchUserSettings().GPSAccuracySetting)!
@@ -128,7 +135,7 @@ struct SettingsScreen: View {
     }
     
     // MARK: - onAppear / onDisappear
-
+    
     
     // MARK: - Content
     var closeButton: some View {
@@ -143,8 +150,15 @@ struct SettingsScreen: View {
         ZStack {
             Form {
                 Section(header:
+                            Text("General", comment: "SettingsScreen - General Section")
+                ) {
+                    Toggle(isOn: $showReleaseNotes, label: {
+                        Text("Show Release Notes")
+                    })
+                }
+                
+                Section(header:
                             Text("Location", comment: "SettingsScreen - Location Section")
-                            .font(.headline)
                 ) {
                     Picker(selection: $speedSetting, label: Text("Speed Setting", comment: "SettingsScreen - Speed Setting")) {
                         ForEach(0 ..< settings.GPSSpeedSettings.count, id: \.self) {
@@ -162,14 +176,13 @@ struct SettingsScreen: View {
                 
                 Section(header:
                             Text("Map", comment: "SettingsScreen - Map Section")
-                            .font(.headline)
                 ) {
-//                    Picker(selection: $selectedMapType, label: Text("Type", comment: "SettingsScreen - Type")) {
-//                        ForEach(0 ..< MapType.allCases.count, id: \.self) {
-//                            Text(MapType.allCases[$0].rawValue).tag($0)
-//                        }
-//                    }
-//                    .accessibility(identifier: "MapType Picker")
+                    //                    Picker(selection: $selectedMapType, label: Text("Type", comment: "SettingsScreen - Type")) {
+                    //                        ForEach(0 ..< MapType.allCases.count, id: \.self) {
+                    //                            Text(MapType.allCases[$0].rawValue).tag($0)
+                    //                        }
+                    //                    }
+                    //                    .accessibility(identifier: "MapType Picker")
                     
                     //                    Toggle(isOn: $showsCompass) {
                     //                        Text("Compass", comment: "SettingsScreen - Compass") // FIXME: - Not Working
@@ -211,7 +224,6 @@ struct SettingsScreen: View {
                 
                 Section(header:
                             Text("Altitude", comment: "SettingsScreen - Altitude Section")
-                            .font(.headline)
                 ) {
                     Picker(selection: $pressureSetting, label: Text("Pressure", comment: "SettingsScreen - Pressure")) {
                         ForEach(0 ..< settings.altitudePressure.count, id: \.self) {
@@ -229,7 +241,6 @@ struct SettingsScreen: View {
                 
                 Section(header:
                             Text("Graph", comment: "SettingsScreen - Graph Section")
-                            .font(.headline)
                 ) {
                     Stepper(value: $graphMaxPoints, in: 1...1000, step: 1) {
                         Text("Max Points: \(Int(graphMaxPoints))", comment: "SettingsScreen - Max Points")
@@ -253,7 +264,7 @@ struct SettingsScreen: View {
                             .accessibility(label: Text("Save", comment: "NagvigationBarButton - Save"))
                             .navigationBarItemModifier(accessibility: "Save Settings")
                     }
-
+                    
                     Button(action: {
                         discardChanges(_showNotification: true)
                     }) {
@@ -265,7 +276,7 @@ struct SettingsScreen: View {
                 }
             }
             .navigationBarTitle("\(NSLocalizedString("Settings", comment: "NavigationBar Title - Settings"))", displayMode: .inline)
-
+            
             
             // MARK: - NotificationView()
             NotificationView(notificationMessage: $notificationMessage, showNotification: $showNotification)
@@ -280,7 +291,7 @@ struct SettingsScreen: View {
         NavigationView {
             content
                 .navigationBarItems(leading: closeButton)
-                
+            
         }
         .onAppear {
             discardChanges(_showNotification: false)

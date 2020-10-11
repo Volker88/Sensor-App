@@ -51,8 +51,16 @@ class SettingsAPI {
     ///  Call this function to clear all UserDefaults
     ///
     public func clearUserDefaults() {
+        
+        var userSettings = fetchUserSettings()
+        let releaseNotes = userSettings.showReleaseNotes
         UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
         UserDefaults.standard.synchronize()
+        
+        userSettings.showReleaseNotes = releaseNotes
+        
+        saveUserSettings(userSettings: userSettings)
+        
         Log.shared.add(.userDefaults, .default, "Clear Userdefaults")
     }
     
@@ -63,7 +71,7 @@ class SettingsAPI {
     /// - Returns: UserSettings
     ///
     public func fetchUserSettings() -> UserSettings {
-        var userSettings = UserSettings(GPSSpeedSetting: "m/s", GPSAccuracySetting: "Best", frequencySetting: 1.0, pressureSetting: "kPa", altitudeHeightSetting: "m", graphMaxPoints: 150)
+        var userSettings = UserSettings(showReleaseNotes: true, GPSSpeedSetting: "m/s", GPSAccuracySetting: "Best", frequencySetting: 1.0, pressureSetting: "kPa", altitudeHeightSetting: "m", graphMaxPoints: 150)
         
         if let settings = UserDefaults.standard.data(forKey: "UserSettings") {
             let decoder = JSONDecoder()

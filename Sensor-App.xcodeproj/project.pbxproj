@@ -33,6 +33,14 @@
 		1527B08124C4ACA20024DD78 /* Sensor_App_Framework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1527B07924C4ACA20024DD78 /* Sensor_App_Framework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1535752B24F26D3D00FA4A41 /* AccelerationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1535752824F26D3D00FA4A41 /* AccelerationView.swift */; };
 		1535752C24F26D3D00FA4A41 /* AccelerationList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1535752924F26D3D00FA4A41 /* AccelerationList.swift */; };
+		153723362532FEA800061B24 /* ReleaseNotes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153723352532FEA800061B24 /* ReleaseNotes.swift */; };
+		1537239325332A9F00061B24 /* ReleaseNotes.json in Resources */ = {isa = PBXBuildFile; fileRef = 1537239525332A9F00061B24 /* ReleaseNotes.json */; };
+		153723A425332C7500061B24 /* Extension+Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153723A325332C7500061B24 /* Extension+Bundle.swift */; };
+		153723AF25332C8000061B24 /* Extension+Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153723A325332C7500061B24 /* Extension+Bundle.swift */; };
+		153723B625332C9E00061B24 /* Extension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153723B525332C9E00061B24 /* Extension+String.swift */; };
+		153723BD25332CBB00061B24 /* ReleaseNotesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153723BC25332CBB00061B24 /* ReleaseNotesModel.swift */; };
+		153723CE25332CFD00061B24 /* ReleaseNotesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153723BC25332CBB00061B24 /* ReleaseNotesModel.swift */; };
+		153723D425332D0B00061B24 /* Extension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153723B525332C9E00061B24 /* Extension+String.swift */; };
 		153F46D024F4157E00E6F851 /* LocationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153F46CF24F4157E00E6F851 /* LocationScreen.swift */; };
 		1542E30024C4AF1000FA2755 /* AccelerationViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E2F624C4AF0F00FA2755 /* AccelerationViewUITests.swift */; };
 		1542E30124C4AF1000FA2755 /* GyroscopeViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E2F724C4AF0F00FA2755 /* GyroscopeViewUITests.swift */; };
@@ -280,6 +288,12 @@
 		1527B07C24C4ACA20024DD78 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1535752824F26D3D00FA4A41 /* AccelerationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccelerationView.swift; sourceTree = "<group>"; };
 		1535752924F26D3D00FA4A41 /* AccelerationList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccelerationList.swift; sourceTree = "<group>"; };
+		153723352532FEA800061B24 /* ReleaseNotes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseNotes.swift; sourceTree = "<group>"; };
+		1537239425332A9F00061B24 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = de; path = de.lproj/ReleaseNotes.json; sourceTree = "<group>"; };
+		1537239C25332AAD00061B24 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = en; path = en.lproj/ReleaseNotes.json; sourceTree = "<group>"; };
+		153723A325332C7500061B24 /* Extension+Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Bundle.swift"; sourceTree = "<group>"; };
+		153723B525332C9E00061B24 /* Extension+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+String.swift"; sourceTree = "<group>"; };
+		153723BC25332CBB00061B24 /* ReleaseNotesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseNotesModel.swift; sourceTree = "<group>"; };
 		153F46CF24F4157E00E6F851 /* LocationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationScreen.swift; sourceTree = "<group>"; };
 		1542E2F224C4AE8F00FA2755 /* ScreenshoTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = ScreenshoTests.xctestplan; sourceTree = "<group>"; };
 		1542E2F324C4AE9A00FA2755 /* UITests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = UITests.xctestplan; sourceTree = "<group>"; };
@@ -533,6 +547,7 @@
 		1527B07A24C4ACA20024DD78 /* Sensor-App-Framework */ = {
 			isa = PBXGroup;
 			children = (
+				153723A225332C4C00061B24 /* ReleaseNotes */,
 				1542E35A24C4AF9300FA2755 /* API */,
 				1542E36D24C4AF9300FA2755 /* Customization */,
 				1542E36224C4AF9300FA2755 /* Model */,
@@ -551,6 +566,15 @@
 				1535752824F26D3D00FA4A41 /* AccelerationView.swift */,
 			);
 			path = Acceleration;
+			sourceTree = "<group>";
+		};
+		153723A225332C4C00061B24 /* ReleaseNotes */ = {
+			isa = PBXGroup;
+			children = (
+				1537239525332A9F00061B24 /* ReleaseNotes.json */,
+				153723BC25332CBB00061B24 /* ReleaseNotesModel.swift */,
+			);
+			path = ReleaseNotes;
 			sourceTree = "<group>";
 		};
 		1542E2F124C4AD3B00FA2755 /* TestPlans */ = {
@@ -825,6 +849,7 @@
 			children = (
 				1527B01A24C4AA240024DD78 /* Sensor_AppApp.swift */,
 				151D317624E975560090BC94 /* ContentView.swift */,
+				153723352532FEA800061B24 /* ReleaseNotes.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -872,6 +897,8 @@
 			children = (
 				1542E37224C4AF9300FA2755 /* Extension+Double.swift */,
 				15657AAD2531E68000884941 /* Extension+URL.swift */,
+				153723A325332C7500061B24 /* Extension+Bundle.swift */,
+				153723B525332C9E00061B24 /* Extension+String.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1069,6 +1096,7 @@
 				1542E40924C4B20A00FA2755 /* InfoPlist.strings in Resources */,
 				1542E40424C4B1FE00FA2755 /* Localizable.strings in Resources */,
 				1527B01F24C4AA240024DD78 /* Assets.xcassets in Resources */,
+				1537239325332A9F00061B24 /* ReleaseNotes.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1132,6 +1160,7 @@
 				1542E3F324C4B1DF00FA2755 /* LocationModel.swift in Sources */,
 				1542E3F524C4B1E100FA2755 /* MapKitSettings.swift in Sources */,
 				1542E3E224C4B16D00FA2755 /* CoreMotionAPI.swift in Sources */,
+				153723CE25332CFD00061B24 /* ReleaseNotesModel.swift in Sources */,
 				1542E41024C4B21900FA2755 /* CoreLocationViewModel.swift in Sources */,
 				1542E3D924C4B05400FA2755 /* GraphArrayTransformation.swift in Sources */,
 				15445CBF24F2D6A1006940C6 /* MagnetometerList.swift in Sources */,
@@ -1142,9 +1171,11 @@
 				151D317524E956A10090BC94 /* SettingsOverlay.swift in Sources */,
 				151D317324E956680090BC94 /* SwipeDirectionAPI.swift in Sources */,
 				1542E3CE24C4B05400FA2755 /* MagnetometerView.swift in Sources */,
+				153723AF25332C8000061B24 /* Extension+Bundle.swift in Sources */,
 				1542E3DE24C4B16800FA2755 /* CalculationAPI.swift in Sources */,
 				1542E40224C4B1F800FA2755 /* UserSettings.swift in Sources */,
 				1542E3DA24C4B05400FA2755 /* LineGraphSubView.swift in Sources */,
+				153723D425332D0B00061B24 /* Extension+String.swift in Sources */,
 				1542E3FC24C4B1EF00FA2755 /* SensorType.swift in Sources */,
 				1542E3E624C4B17A00FA2755 /* SettingsAPI.swift in Sources */,
 				1542E3D624C4B05400FA2755 /* ShareSheet.swift in Sources */,
@@ -1152,6 +1183,7 @@
 				1542E3E024C4B16A00FA2755 /* CoreLocationAPI.swift in Sources */,
 				1542E3EF24C4B1B400FA2755 /* ViewButtonModifier.swift in Sources */,
 				1542E3ED24C4B1A900FA2755 /* NavigationBarItemModifier.swift in Sources */,
+				153723362532FEA800061B24 /* ReleaseNotes.swift in Sources */,
 				1542E3D424C4B05400FA2755 /* MapView.swift in Sources */,
 				15445CB524F2C2ED006940C6 /* GravityList.swift in Sources */,
 				15445CC424F2DF6B006940C6 /* AttitudeList.swift in Sources */,
@@ -1275,12 +1307,14 @@
 				1542E39A24C4AF9300FA2755 /* CoreLocationViewModel.swift in Sources */,
 				1542E38024C4AF9300FA2755 /* CoreLocationAPI.swift in Sources */,
 				15BBEFA524FAC7B5008E2E4F /* Log.swift in Sources */,
+				153723A425332C7500061B24 /* Extension+Bundle.swift in Sources */,
 				1542E38A24C4AF9300FA2755 /* UserSettings.swift in Sources */,
 				1542E39924C4AF9300FA2755 /* CoreMotionViewModel.swift in Sources */,
 				1542E37F24C4AF9300FA2755 /* CalculationAPI.swift in Sources */,
 				151D317224E956610090BC94 /* SwipeDirectionAPI.swift in Sources */,
 				1542E38424C4AF9300FA2755 /* AppUpdates.swift in Sources */,
 				1542E38224C4AF9300FA2755 /* ExportAPI.swift in Sources */,
+				153723B625332C9E00061B24 /* Extension+String.swift in Sources */,
 				1542E38524C4AF9300FA2755 /* SettingsAPI.swift in Sources */,
 				1542E38F24C4AF9300FA2755 /* AltitudeModel.swift in Sources */,
 				1542E38924C4AF9300FA2755 /* SensorType.swift in Sources */,
@@ -1293,6 +1327,7 @@
 				1542E39424C4AF9300FA2755 /* Extension+Double.swift in Sources */,
 				1542E38B24C4AF9300FA2755 /* NotificationTypes.swift in Sources */,
 				1542E38824C4AF9300FA2755 /* NotificationModel.swift in Sources */,
+				153723BD25332CBB00061B24 /* ReleaseNotesModel.swift in Sources */,
 				1542E38624C4AF9300FA2755 /* SettingsForUserDefaults.swift in Sources */,
 				1542E38C24C4AF9300FA2755 /* ToolBarButtonType.swift in Sources */,
 			);
@@ -1329,6 +1364,15 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		1537239525332A9F00061B24 /* ReleaseNotes.json */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1537239425332A9F00061B24 /* de */,
+				1537239C25332AAD00061B24 /* en */,
+			);
+			name = ReleaseNotes.json;
+			sourceTree = "<group>";
+		};
 		1542E37624C4AF9300FA2755 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1407,7 +1451,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				MY_BUILD_VERSION = 3.20416.2;
-				MY_VERSION = 3.0.1;
+				MY_VERSION = 3.1.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -1466,7 +1510,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				MY_BUILD_VERSION = 3.20416.2;
-				MY_VERSION = 3.0.1;
+				MY_VERSION = 3.1.0;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";

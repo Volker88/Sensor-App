@@ -13,6 +13,7 @@ import Foundation
 
 // MARK: - UserSettings Struct
 struct UserSettings: Codable {
+    var showReleaseNotes: Bool
     var GPSSpeedSetting: String
     var GPSAccuracySetting: String
     var frequencySetting: Double

@@ -19,6 +19,10 @@ struct Sensor_AppApp: App {
     @Environment(\.horizontalSizeClass) var sizeClass
     
     
+    // MARK: - @State / @StateObject / @ObservedObject / @Binding
+    @ObservedObject var update = AppUpdates()
+    
+    
     // MARK: - Body
     @SceneBuilder var body: some Scene {
         WindowGroup {
@@ -44,9 +48,10 @@ struct Sensor_AppApp: App {
                 }
             }
             .onAppear {
-                let update = AppUpdates()
                 update.checkForUpdate()
             }
+            .sheet(isPresented: $update.showReleaseNotes) { ReleaseNotes() }
+            //.sheet(isPresented: .constant(true)) { ReleaseNotes() }
         }
     }
 }
