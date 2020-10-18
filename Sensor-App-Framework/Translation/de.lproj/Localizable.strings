@@ -7,6 +7,9 @@
 /* RefreshRateView - Value */
 "%.1f per Second" = "%.1f pro Sekunde";
 
+/* No comment provided by engineer. */
+"%@" = "%@";
+
 /* RefreshRateView - Refresh Rate */
 "%@ %.1f Hz" = "%1$@ %2$.1f Hz";
 
@@ -33,16 +36,16 @@
 "A:%.5f" = "A:%.5f";
 
 /* AccelerationView - Section Header
-   ContentView - Acceleration
-   NavigationBar Title - Acceleration */
+   NavigationBar Title - Acceleration
+   Sidebbar - Acceleration */
 "Acceleration" = "Beschleunigung";
 
 /* SettingsScreen - Accuracy */
 "Accuracy" = "Genaugkeit";
 
-/* ContentView - Altitude
-   NavigationBar Title - Altitude
-   SettingsScreen - Altitude Section */
+/* NavigationBar Title - Altitude
+   SettingsScreen - Altitude Section
+   Sidebbar - Altitude */
 "Altitude" = "Höhe";
 
 /* AltitudeView - Altitude */
@@ -52,8 +55,8 @@
 "Altitude: %.2f ± %.2fm" = "Höhe: %1$.2f ± %2$.2fm";
 
 /* AttitudeView - Section Header
-   ContentView - Attitude
-   NavigationBar Title - Attitude */
+   NavigationBar Title - Attitude
+   Sidebbar - Attitude */
 "Attitude" = "Haltung";
 
 /* SettingsScreen - Buildings */
@@ -91,17 +94,20 @@
 /* RefreshRateView - Frequency */
 "Frequency:" = "Frequenz:";
 
+/* SettingsScreen - General Section */
+"General" = "Allgemein";
+
 /* SettingsScreen - Graph Section */
 "Graph" = "Diagramm";
 
-/* ContentView - Gravity
-   GravityView - Section Header
-   NavigationBar Title - Gravity */
+/* GravityView - Section Header
+   NavigationBar Title - Gravity
+   Sidebbar - Gravity */
 "Gravity" = "Gravitation";
 
-/* ContentView - Gyroscope
-   GyroscopeView - Section Header
-   NavigationBar Title - Gyroscope */
+/* GyroscopeView - Section Header
+   NavigationBar Title - Gyroscope
+   Sidebbar - Gyroscope */
 "Gyroscope" = "Gyroskop";
 
 /* AttitudeList - H */
@@ -113,8 +119,8 @@
 /* SettingsScreen - Height */
 "Height" = "Höhe";
 
-/* ContentView - Home
-   HomeView - NavigationBar Title */
+/* HomeView - NavigationBar Title
+   Sidebbar - Location */
 "Home" = "Hauptmenü";
 
 /* Export CSV Headline - Location */
@@ -145,10 +151,10 @@
 /* LocationView - Latitude (watchOS) */
 "Latitude: %.10f° ± %.2fm" = "Breitengrad: %1$.10f° ± %2$.2fm";
 
-/* ContentView - Location
-   LocationView - Section Header
+/* LocationView - Section Header
    NavigationBar Title - Location
-   SettingsScreen - Location Section */
+   SettingsScreen - Location Section
+   Sidebbar - Location */
 "Location" = "Standort";
 
 /* AccelerationView - Section Header */
@@ -160,8 +166,8 @@
 /* LocationView - Longitude (watchOS) */
 "Longitude: %.10f° ± %.2fm" = "Längengrad: %1$.10f° ± %2$.2fm";
 
-/* ContentView - Magnetometer
-   NavigationBar Title - Magnetometer */
+/* NavigationBar Title - Magnetometer
+   Sidebbar - Magnetometer */
 "Magnetometer" = "Magnetometer";
 
 /* LocationView - Section Header
@@ -206,6 +212,9 @@
    RefreshRateView - Slider */
 "Refresh Rate" = "Aktualisierungsrate";
 
+/* Release Notes - Title */
+"Release Notes" = "Release Notes";
+
 /* AttitudeView - Roll */
 "Roll: %.5f°" = "Roll: %.5f°";
 
@@ -227,13 +236,16 @@
 /* SettingsScreen - Scroll */
 "Scroll" = "Scrollen";
 
-/* ContentView - Sensor-App */
-"Sensor-App" = "Sensor-App";
-
-/* ContentView - Settings
-   NavigationBar Title - Settings
-   Settings */
+/* NavigationBar Title - Settings
+   Settings
+   Sidebbar - Settings */
 "Settings" = "Einstellungen";
+
+/* No comment provided by engineer. */
+"Show" = "Zeigen";
+
+/* No comment provided by engineer. */
+"Show Release Notes" = "Release Notes anzeigen";
 
 /* SettingsScreen - Speed Setting */
 "Speed Setting" = "Geschwindigkeit";
@@ -252,9 +264,6 @@
 
 /* SettingsScreen - Type */
 "Type" = "Typ";
-
-/* ContentView - Welcome Label */
-"Welcome to the" = "Willkommen bei";
 
 /* GravityView - X-Axis */
 "X-Axis: %.5f g (9,81 m/s^2)" = "X-Achse: %.5f g (9,81 m/s^2)";

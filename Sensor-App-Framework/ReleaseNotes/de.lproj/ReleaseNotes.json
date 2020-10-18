@@ -4,17 +4,9 @@
         "version": "2.1.0",
         "notes":
         [
-            "Added LaunchScreen",
-            "Open Settings from Every View",
-            "Implemented Notification for play/pause/delete button",
-            "Reworked APIs",
-            "Code Documentation on APIs",
-            "CoreLocation / CoreMotion ViewModel",
-            "CoreLocation save entries in Array",
-            "Extracted Lists into separate View",
-            "Extracted Buttons from all Views into separate ButtonView",
-            "onAppear / onDisappear for Start / Stop updates and clear array",
-            "Added static List Values for CoreMotion values when running in Simulator",
+            "Startbildschirm hinzugefügt",
+            "Einstellungen können von jedem Bildschirm geöffnet werden",
+            "Beim betätigen von Start/Stopp/Löschen wird eine Benachrichtigung angezeigt"
         ]
     },
     {
@@ -23,7 +15,7 @@
         "notes":
         [
             "Apple Watch App",
-            "Minor Bug fixes"
+            "Kleinere Fehler wurden behoben"
         ]
     },
     {
@@ -31,8 +23,8 @@
         "version": "2.3.0",
         "notes":
         [
-            "Visualization of all sensors with a line graph",
-            "Minor Bug fixes"
+            "Liniendiagramm für alle Sensoren",
+            "Kleinere Fehler wurden behoben"
         ]
     },
     {
@@ -40,13 +32,13 @@
         "version": "2.4.0",
         "notes":
         [
-            "Additional Settings for Graphs",
-            "Additional Settings for Map",
-            "- Map Type",
+            "Zusätzliche Einstellungen für Diagramme",
+            "Zusätzliche Einstellungen für Karten",
+            "- Kartentyp",
             "- Zoom",
-            "- Compass",
-            "- Scale",
-            "Minor Bug Fixes"
+            "- Kompass",
+            "- Maßstab",
+            "Kleinere Fehler wurden behoben"
         ]
     },
     {
@@ -54,8 +46,8 @@
         "version": "2.4.1",
         "notes":
         [
-            "Fi­xed a bug which could cau­se the app to crash",
-            "Ad­ded sup­port for Magic Key­board"
+            "Ein Fehler der die App zum Absturz bringen konnte wurde behoben",
+            "Unterstützung von Magic Keyboard"
         ]
     },
     {
@@ -63,7 +55,7 @@
         "version": "2.5.0",
         "notes":
         [
-            "Added option to export Sensor data into .csv file"
+            "Sensor Messwerte können in .csv Dateien exportiert werden"
         ]
     },
     {
@@ -71,7 +63,7 @@
         "version": "2.5.1",
         "notes":
         [
-            "Fi­xed a bug which caused the app to crash on iPad when exporting Sensor Data into .csv file"
+            "Ein Fehler, der die App beim exportieren der Sensor Messwerte in eine .csv Datei abstürzen lies, wurde behoben"
         ]
     },
     {
@@ -79,9 +71,9 @@
         "version": "3.0.0",
         "notes":
         [
-            "New design",
-            "Optimized for iOS 14",
-            "Performance improvement"
+            "Neues Design",
+            "Optimiert für iOS 14",
+            "Performance Verbesserungen"
         ]
     },
     {
@@ -89,9 +81,8 @@
         "version": "3.1.0",
         "notes":
         [
-            "Added Release Notes",
-            "Fixed .csv export",
-            ""
+            "Release Notes wurden hinzugefügt",
+            ".csv Export wurde verbessert",
         ]
     }
 ]

@@ -66,17 +66,11 @@ class Log {
     ///
     /// Print
     ///
-    /// If DEBUGGING is set to 1, print Statements will be shown in Console
-    ///
-    /// - Note: Debugging can be set in User-Defined Build Settings
-    ///
     /// - Parameter value: Any
     ///
     func print(_ value: Any) {
         #if DEBUG
-        if Bundle.main.infoDictionary?["Debugging"] as! String == "1" {
             Swift.print(value)
-        }
         #endif
     }
 }

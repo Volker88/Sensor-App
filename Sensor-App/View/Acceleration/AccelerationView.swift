@@ -125,9 +125,12 @@ struct AccelerationView: View {
         }
         .onAppear(perform: onAppear)
         .onDisappear(perform: onDisappear)
-        .sheet(item: $fileToShare) { file in
+        .sheet(item: $fileToShare, onDismiss: {
+            onAppear()
+        }) { file in
             ShareSheet(activityItems: [file])
         }
+        
     }
 }
 

@@ -27,8 +27,6 @@
 	</array>
 	<key>WKCompanionAppBundleIdentifier</key>
 	<string>VolkerSchmitt88-at-icloud.com.Sensor-App</string>
-	<key>Debugging</key>
-	<string>${DEBUGGING}</string>
 	<key>WKWatchKitApp</key>
 	<true/>
 </dict>

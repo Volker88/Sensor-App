@@ -22,8 +22,6 @@
 	<string>${MY_BUILD_VERSION}</string>
 	<key>CLKComplicationPrincipalClass</key>
 	<string>$(PRODUCT_MODULE_NAME).ComplicationController</string>
-	<key>Debugging</key>
-	<string>${DEBUGGING}</string>
 	<key>NSExtension</key>
 	<dict>
 		<key>NSExtensionAttributes</key>

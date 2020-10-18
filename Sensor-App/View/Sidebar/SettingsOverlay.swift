@@ -25,7 +25,7 @@ struct SettingsOverlay: View {
             Label(NSLocalizedString("Settings", comment: "Settings"), systemImage: "gear")
                 .padding(10)
         }
-        .hoverEffect()
+        //.hoverEffect()
         .frame(maxWidth: .infinity, minHeight: 50, maxHeight: 50, alignment: .center)
         .background((Color.gray).opacity(0.3))
         .sheet(isPresented: $showSettings) {

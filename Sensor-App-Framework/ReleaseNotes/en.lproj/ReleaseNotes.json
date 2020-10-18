@@ -6,15 +6,7 @@
         [
             "Added LaunchScreen",
             "Open Settings from Every View",
-            "Implemented Notification for play/pause/delete button",
-            "Reworked APIs",
-            "Code Documentation on APIs",
-            "CoreLocation / CoreMotion ViewModel",
-            "CoreLocation save entries in Array",
-            "Extracted Lists into separate View",
-            "Extracted Buttons from all Views into separate ButtonView",
-            "onAppear / onDisappear for Start / Stop updates and clear array",
-            "Added static List Values for CoreMotion values when running in Simulator",
+            "Implemented Notification for play/pause/delete button"
         ]
     },
     {
@@ -91,7 +83,6 @@
         [
             "Added Release Notes",
             "Fixed .csv export",
-            ""
         ]
     }
 ]
