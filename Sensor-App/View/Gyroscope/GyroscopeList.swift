@@ -27,17 +27,15 @@ struct GyroscopeList: View {
     var body: some View {
         
         // MARK: - Return View
-        List(motionVM.coreMotionArray.reversed(), id: \.counter) { index in
+        List(motionVM.coreMotionArray.reversed(), id: \.self) { item in
             HStack {
-                if index.counter > 0 {
-                    Text("ID:\(motionVM.coreMotionArray[index.counter - 1].counter)", comment: "GyroscopeList - ID")
-                    Spacer()
-                    Text("X:\(motionVM.coreMotionArray[index.counter - 1].gyroXAxis, specifier: "%.5f")", comment: "GyroscopeList - X")
-                    Spacer()
-                    Text("Y:\(motionVM.coreMotionArray[index.counter - 1].gyroYAxis, specifier: "%.5f")", comment: "GyroscopeList - Y")
-                    Spacer()
-                    Text("Z:\(motionVM.coreMotionArray[index.counter - 1].gyroZAxis, specifier: "%.5f")", comment: "GyroscopeList - Z")
-                }
+                Text("ID:\(item.counter)", comment: "GyroscopeList - ID")
+                Spacer()
+                Text("X:\(item.gyroXAxis, specifier: "%.5f")", comment: "GyroscopeList - X")
+                Spacer()
+                Text("Y:\(item.gyroYAxis, specifier: "%.5f")", comment: "GyroscopeList - Y")
+                Spacer()
+                Text("Z:\(item.gyroZAxis, specifier: "%.5f")", comment: "GyroscopeList - Z")
             }
             .font(.footnote)
         }

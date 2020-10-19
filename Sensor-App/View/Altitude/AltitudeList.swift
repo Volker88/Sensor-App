@@ -30,15 +30,13 @@ struct AltitudeList: View {
     var body: some View {
         
         // MARK: - Return View
-        List(motionVM.altitudeArray.reversed(), id: \.counter) { index in
+        List(motionVM.altitudeArray.reversed(), id: \.self) { item in
             HStack {
-                if index.counter > 0 {
-                    Text("ID:\(motionVM.altitudeArray[index.counter - 1].counter)", comment: "AltitudeList - ID")
-                    Spacer()
-                    Text("P:\(calculationAPI.calculatePressure(pressure: motionVM.altitudeArray[index.counter - 1].pressureValue, to: settings.fetchUserSettings().pressureSetting), specifier: "%.5f")", comment: "AltitudeList - P")
-                    Spacer()
-                    Text("A:\(calculationAPI.calculateHeight(height: motionVM.altitudeArray[index.counter - 1].relativeAltitudeValue, to: settings.fetchUserSettings().altitudeHeightSetting), specifier: "%.5f")", comment: "AltitudeList - A")
-                }
+                Text("ID:\(item.counter)", comment: "AltitudeList - ID")
+                Spacer()
+                Text("P:\(calculationAPI.calculatePressure(pressure: item.pressureValue, to: settings.fetchUserSettings().pressureSetting), specifier: "%.5f")", comment: "AltitudeList - P")
+                Spacer()
+                Text("A:\(calculationAPI.calculateHeight(height: item.relativeAltitudeValue, to: settings.fetchUserSettings().altitudeHeightSetting), specifier: "%.5f")", comment: "AltitudeList - A")
             }
             .font(.footnote)
         }

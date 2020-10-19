@@ -12,7 +12,7 @@ import Foundation
 
 
 // MARK: - Struct Definition
-struct MotionModel {
+struct MotionModel: Hashable {
     let counter : Int
     let timestamp : String
     let accelerationXAxis : Double

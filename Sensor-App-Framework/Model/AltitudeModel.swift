@@ -12,7 +12,7 @@ import Foundation
 
 
 // MARK: - Struct Definition
-struct AltitudeModel {
+struct AltitudeModel: Hashable {
     let counter : Int
     let timestamp : String
     let pressureValue : Double

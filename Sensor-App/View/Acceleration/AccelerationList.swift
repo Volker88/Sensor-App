@@ -27,17 +27,15 @@ struct AccelerationList: View {
     var body: some View {
         
         // MARK: - Return View
-        List(motionVM.coreMotionArray.reversed(), id: \.counter) { index in
+        List(motionVM.coreMotionArray.reversed(), id: \.self) { item in
             HStack {
-                if index.counter > 0 {
-                    Text("ID:\(motionVM.coreMotionArray[index.counter - 1].counter)", comment: "AccelerationList - ID")
-                    Spacer()
-                    Text("X:\(motionVM.coreMotionArray[index.counter - 1].accelerationXAxis, specifier: "%.5f")", comment: "AccelerationList - X")
-                    Spacer()
-                    Text("Y:\(motionVM.coreMotionArray[index.counter - 1].accelerationYAxis, specifier: "%.5f")", comment: "AccelerationList - Y")
-                    Spacer()
-                    Text("Z:\(motionVM.coreMotionArray[index.counter - 1].accelerationZAxis, specifier: "%.5f")", comment: "AccelerationList - Z")
-                }
+                Text("ID:\(item.counter)", comment: "AccelerationList - ID")
+                Spacer()
+                Text("X:\(item.accelerationXAxis, specifier: "%.5f")", comment: "AccelerationList - X")
+                Spacer()
+                Text("Y:\(item.accelerationYAxis, specifier: "%.5f")", comment: "AccelerationList - Y")
+                Spacer()
+                Text("Z:\(item.accelerationZAxis, specifier: "%.5f")", comment: "AccelerationList - Z")
             }
             .font(.footnote)
         }
