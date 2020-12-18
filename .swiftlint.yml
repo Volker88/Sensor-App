@@ -1,0 +1,17 @@
+identifier_name:
+  excluded:
+    - id
+    - to
+    - ms
+    - pa
+
+disabled_rules:
+  - multiple_closures_with_trailing_closure
+  - no_space_in_method_call
+  - redundant_string_enum_value
+  - nesting
+  - switch_case_alignment
+  - unused_capture_list
+
+line_length:
+  ignores_comments: true

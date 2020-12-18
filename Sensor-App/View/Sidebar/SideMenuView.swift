@@ -5,23 +5,20 @@
 //  Created by Volker Schmitt on 16.08.20.
 //
 
-
 // MARK: - Import
 import SwiftUI
 
-
 // MARK: - Struct / Class Definition
 struct SideMenuView: View {
-    
+
     // MARK: - Define Constants / Variables
     let width: CGFloat
     let isOpen: Bool
     let menuClose: () -> Void
-    
-    
+
     // MARK: - Body
     var body: some View {
-        
+
         // MARK: - Return View
         return ZStack {
             GeometryReader { _ in
@@ -33,13 +30,13 @@ struct SideMenuView: View {
             .onTapGesture {
                 menuClose()
             }
-            
+
             HStack {
-                GeometryReader { g in
+                GeometryReader { geo in
                     Sidebar()
                         .frame(width: width, alignment: .leading)
-                        .offset(x: isOpen ? 0 : -width - g.safeAreaInsets.leading)
-                    
+                        .offset(x: isOpen ? 0 : -width - geo.safeAreaInsets.leading)
+
                     Spacer()
                 }
             }
@@ -48,7 +45,6 @@ struct SideMenuView: View {
         }
     }
 }
-
 
 // MARK: - Preview
 struct SideMenuView_Previews: PreviewProvider {

@@ -6,11 +6,9 @@
 //  Copyright © 2020 Volker Schmitt. All rights reserved.
 //
 
-
 // MARK: - Import
 import XCTest
 @testable import Sensor_App
-
 
 // MARK: - Class Definition
 class GravityViewTests: XCTestCase {
@@ -22,35 +20,34 @@ class GravityViewTests: XCTestCase {
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
-    
-    
+
     // MARK: - Tests
     #if targetEnvironment(simulator)
     func testGravityViewDebugArray() throws {
         //Given
         let sut = GravityView()
-        
+
         //When
         sut.onAppear()
         let count = sut.motionVM.coreMotionArray.count
-        
+
         //Then
         XCTAssertEqual(count, 300, "There are \(count) items in MotionArray whereas only 300 should be there")
     }
-    
+
     func testGravityViewEmptyArray() throws {
         //Given
         let sut = GravityView()
-        
+
         //When
         sut.onAppear()
         sut.onDisappear()
         let count = sut.motionVM.coreMotionArray.count
-        
+
         //Then
         XCTAssertEqual(count, 0, "There are \(count) items in LocationArray whereas only 300 should be there")
     }
     #endif
-    
+
     // MARK: - Methods
 }

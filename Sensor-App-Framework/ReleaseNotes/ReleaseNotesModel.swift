@@ -5,10 +5,8 @@
 //  Created by Volker Schmitt on 11.10.20.
 //
 
-
 // MARK: - Import
 import SwiftUI
-
 
 // MARK: - Struct Definition
 struct ReleaseNotesModel: Codable, Identifiable {

@@ -6,26 +6,22 @@
 //  Copyright © 2019 Volker Schmitt. All rights reserved.
 //
 
-
 // MARK: - Import
 import SwiftUI
 import MapKit
 
-
 // MARK: - Struct / Class Definition
 struct MapView: View {
-    
+
     // MARK: - Initialize Classes
     let settingsAPI = SettingsAPI()
-    
-    
+
     // MARK: - Environment Object
-    
+
     // MARK: - @State / @ObservedObject / @Binding
     @ObservedObject var locationVM: CoreLocationViewModel
     @State private var userTrackingMode: MapUserTrackingMode = .follow
-    
-    
+
     // MARK: - Define Constants / Variables
     let interaction = MapInteractionModes()
     var region: MKCoordinateRegion {
@@ -40,15 +36,14 @@ struct MapView: View {
                                   longitudinalMeters: settingsAPI.fetchMapKitSettings().zoom
         )
     }
-    
-    
+
     // MARK: - Initializer
-    
+
     // MARK: - Methods
-    
+
     // MARK: - Body
     var body: some View {
-        
+
         // MARK: - Return View
         return Map(
             coordinateRegion: .constant(region),
@@ -60,7 +55,6 @@ struct MapView: View {
     }
 }
 
-
 // MARK: - Preview
 struct MapKitView_Previews: PreviewProvider {
     static var previews: some View {
@@ -69,6 +63,6 @@ struct MapKitView_Previews: PreviewProvider {
                 .colorScheme(scheme)
                 .previewLayout(.fixed(width: 400, height: 400))
         }
-        
+
     }
 }

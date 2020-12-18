@@ -7,13 +7,11 @@
 
 import SwiftUI
 
-
 struct SidebarButton: View {
-    
+
     // MARK: - Define Constants / Variables
     let action: () -> Void
-    
-    
+
     // MARK: - Define Constants / Variables
     var body: some View {
         Button(action: {
@@ -25,7 +23,6 @@ struct SidebarButton: View {
         .accessibility(identifier: "Save Button")
     }
 }
-
 
 // MARK: - Preview
 struct SidebarButton_Previews: PreviewProvider {

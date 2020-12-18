@@ -6,18 +6,15 @@
 //  Copyright © 2019 Volker Schmitt. All rights reserved.
 //
 
-
 // MARK: - Import
 import Foundation
 import SwiftUI
 
-
 // MARK: - Class Definition
 class NotificationAPI {
-    
+
     // MARK: - Define Constants / Variables
-    
-    
+
     // MARK: - Methods
     ///
     ///  Fetches the Notification Animation Settings
@@ -29,25 +26,32 @@ class NotificationAPI {
     ///
     ///  - Returns: NotificationAnimationModel
     ///
-    ///  - Parameter _offSetY:  Offset in Y direction
-    ///  - Parameter _mass:  Mass of the view
-    ///  - Parameter _stiffness: Spring stiffness
-    ///  - Parameter _damping: Spring damping
-    ///  - Parameter _velocity: Initial velocity
-    ///  - Parameter _duration: Duration how long the notification is shown
+    ///  - Parameter offSetY:  Offset in Y direction
+    ///  - Parameter mass:  Mass of the view
+    ///  - Parameter stiffness: Spring stiffness
+    ///  - Parameter damping: Spring damping
+    ///  - Parameter velocity: Initial velocity
+    ///  - Parameter duration: Duration how long the notification is shown
     ///
-    public func fetchNotificationAnimationSettings(_offSetY: CGFloat? = -UIScreen.main.bounds.height / 3, _mass: Double? = 1.0, _stiffness: Double? = 100.0, _damping: Double? = 10.0, _velocity: Double? = 0.0, _duration: Double? = 2.0) -> NotificationAnimationModel {
+    public func fetchNotificationAnimationSettings(
+        offSetY: CGFloat? = -UIScreen.main.bounds.height / 3,
+        mass: Double? = 1.0,
+        stiffness: Double? = 100.0,
+        damping: Double? = 10.0,
+        velocity: Double? = 0.0,
+        duration: Double? = 2.0
+    ) -> NotificationAnimationModel {
         let notificationAnimationSettings = NotificationAnimationModel(
-            offSetY: _offSetY!,
-            springMass: _mass!,
-            springStiffness: _stiffness!,
-            springDamping: _damping!,
-            springVelocity: _velocity!,
-            duration: _duration!
+            offSetY: offSetY!,
+            springMass: mass!,
+            springStiffness: stiffness!,
+            springDamping: damping!,
+            springVelocity: velocity!,
+            duration: duration!
         )
         return notificationAnimationSettings
     }
-    
+
     ///
     ///  Toggles notification based on type and duration
     ///
@@ -69,9 +73,13 @@ class NotificationAPI {
     ///  - Parameter type: Notification Type
     ///  - Parameter duration: Notification Duration
     ///  - Parameter completion: Completiomn Handler
-    public func toggleNotification(type: NotificationTypes, duration: Double?, completion: @escaping (String, Bool) -> Void) {
+    public func toggleNotification(
+        type: NotificationTypes,
+        duration: Double?,
+        completion: @escaping (String, Bool) -> Void
+    ) {
         let duration = duration ?? fetchNotificationAnimationSettings().duration
-        
+
         let notificationMessage = fetchNotificationText(type: type)
         var showNotification = true
         completion(notificationMessage, showNotification)
@@ -80,7 +88,7 @@ class NotificationAPI {
             completion(notificationMessage, showNotification)
         })
     }
-    
+
     ///
     ///  Fetches Notification Text based on notification Type
     ///
@@ -94,11 +102,13 @@ class NotificationAPI {
     private func fetchNotificationText(type: NotificationTypes) -> String {
         var notificationText = ""
         switch type {
+            //swiftlint:disable line_length
             case .saved: notificationText = NSLocalizedString("Saved successfully", comment: "NotificationMessage - Saved")
             case .discarded: notificationText = NSLocalizedString("Changes Discarded", comment: "NotificationMessage - Discarded")
             case .paused: notificationText = NSLocalizedString("Paused", comment: "NotificationMessage - Paused")
             case .played: notificationText = NSLocalizedString("Play", comment: "NotificationMessage - Play")
             case .deleted: notificationText = NSLocalizedString("Successfully deleted", comment: "NotificationMessage - Deleted")
+            //swiftlint:enable line_length
         }
         return notificationText
     }

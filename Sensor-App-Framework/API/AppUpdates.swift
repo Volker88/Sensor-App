@@ -6,29 +6,26 @@
 //  Copyright © 2020 Volker Schmitt. All rights reserved.
 //
 
-
 // MARK: - Import
 import Foundation
 
-
 // MARK: - Class Definition
 class AppUpdates: ObservableObject {
-    
+
     // MARK: - Initialize Classes
     let settings = SettingsAPI()
-    
+
     // MARK: - Define Constants / Variables
     @Published var showReleaseNotes = false
-    
-    
+
     // MARK: - Methods
     ///
     /// Call this function to check if the app version is up to date
     ///
     public func checkForUpdate() {
-        
+
         let appVersion = UserDefaults.standard.string(forKey: "CurrentAppVersion")
-        
+
         if appVersion == getCurrentAppVersion() {
             Log.shared.add(.appUpdates, .default, "App is up to date! (\(getCurrentAppVersion()))")
         } else {
@@ -42,7 +39,7 @@ class AppUpdates: ObservableObject {
             updateApp()
         }
     }
-    
+
     ///
     ///  Method to update the app
     ///
@@ -56,7 +53,7 @@ class AppUpdates: ObservableObject {
         UserDefaults.standard.setValue(getCurrentAppVersion(), forKey: "CurrentAppVersion")
         Log.shared.add(.appUpdates, .default, "App has been updated (\(getCurrentAppVersion()))")
     }
-    
+
     ///
     ///  Call this method to get the current app version number
     ///
@@ -64,8 +61,8 @@ class AppUpdates: ObservableObject {
     ///
     private func getCurrentAppVersion() -> String {
         let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"]
-        let version = (appVersion as! String)
-        
+        let version = (appVersion as! String) //swiftlint:disable:this force_cast
+
         return version
     }
 }

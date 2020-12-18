@@ -6,73 +6,67 @@
 //  Copyright © 2019 Volker Schmitt. All rights reserved.
 //
 
-
 // MARK: - Import
 import SwiftUI
 
-
 // MARK: - Struct
 struct MagnetometerView: View {
-    
+
     // MARK: - Initialize Classes
     let settings = SettingsAPI()
     let exportAPI = ExportAPI()
-    
-    
+
     // MARK: - @State / @ObservedObject / @Binding
     @ObservedObject var motionVM = CoreMotionViewModel()
     @State private var showShareSheet = false
     @State private var fileToShare: URL?
-    
+
     // Show Graph
     @State private var showXAxis = false
     @State private var showYAxis = false
     @State private var showZAxis = false
-    
+
     // MARK: - Define Constants / Variables
-    
+
     // MARK: - Initializer
-    
+
     // MARK: - Methods
     func shareCSV() {
         motionVM.stopMotionUpdates()
-        var csvText = NSLocalizedString("ID;Time;X-Axis;Y-Axis;Z-Axis", comment: "Export CSV Headline - Magnetometer") + "\n"
-        
+        var csvText = NSLocalizedString("ID;Time;X-Axis;Y-Axis;Z-Axis", comment: "Export CSV Headline - Magnetometer") + "\n" //swiftlint:disable:this line_length
+
         _ = motionVM.coreMotionArray.map {
-            csvText += "\($0.counter);\($0.timestamp);\($0.magnetometerXAxis.localizedDecimal());\($0.magnetometerYAxis.localizedDecimal());\($0.magnetometerZAxis.localizedDecimal())\n"
+            csvText += "\($0.counter);\($0.timestamp);\($0.magnetometerXAxis.localizedDecimal());\($0.magnetometerYAxis.localizedDecimal());\($0.magnetometerZAxis.localizedDecimal())\n" //swiftlint:disable:this line_length
         }
         fileToShare = exportAPI.getFile(exportText: csvText, filename: "magnetometer")
     }
-    
-    
+
     // MARK: - onAppear / onDisappear
     func onAppear() {
         // Start updating motion
         motionVM.motionUpdateStart()
         motionVM.sensorUpdateInterval = settings.fetchUserSettings().frequencySetting
     }
-    
+
     func onDisappear() {
         motionVM.stopMotionUpdates()
         motionVM.coreMotionArray.removeAll()
     }
-    
-    
+
     // MARK: - Content
     var shareButton: some View {
         Button(action: {
             shareCSV()
         }) {
-            Label(NSLocalizedString("Export", comment: "AccelerationView - Export List"), systemImage: "square.and.arrow.up")
+            Label(NSLocalizedString("Export", comment: "AccelerationView - Export List"), systemImage: "square.and.arrow.up") //swiftlint:disable:this line_length
         }
     }
-    
-    
+
     // MARK: - Body - View
     var body: some View {
-        
+
         // MARK: - Return View
-        GeometryReader { g in
+        GeometryReader { geo in
             List {
                 Section(header: Text("Acceleration", comment: "AccelerationView - Section Header")) {
                     DisclosureGroup(
@@ -82,10 +76,10 @@ struct MagnetometerView: View {
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {
-                            Text("X-Axis: \(motionVM.coreMotionArray.last?.magnetometerXAxis ?? 0.0, specifier: "%.5f") µT", comment: "MagnetometerView - X-Axis")
+                            Text("X-Axis: \(motionVM.coreMotionArray.last?.magnetometerXAxis ?? 0.0, specifier: "%.5f") µT", comment: "MagnetometerView - X-Axis") //swiftlint:disable:this line_length
                         })
                         .disclosureGroupModifier(accessibility: "Toggle X-Axis Graph")
-                    
+
                     DisclosureGroup(
                         isExpanded: $showYAxis,
                         content: {
@@ -93,10 +87,10 @@ struct MagnetometerView: View {
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {
-                            Text("Y-Axis: \(motionVM.coreMotionArray.last?.magnetometerYAxis ?? 0.0, specifier: "%.5f") µT", comment: "MagnetometerView - Y-Axis")
+                            Text("Y-Axis: \(motionVM.coreMotionArray.last?.magnetometerYAxis ?? 0.0, specifier: "%.5f") µT", comment: "MagnetometerView - Y-Axis") //swiftlint:disable:this line_length
                         })
                         .disclosureGroupModifier(accessibility: "Toggle Y-Axis Graph")
-                    
+
                     DisclosureGroup(
                         isExpanded: $showZAxis,
                         content: {
@@ -104,23 +98,31 @@ struct MagnetometerView: View {
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {
-                            Text("Z-Axis: \(motionVM.coreMotionArray.last?.magnetometerZAxis ?? 0.0, specifier: "%.5f") µT", comment: "MagnetometerView - Z-Axis")
+                            Text("Z-Axis: \(motionVM.coreMotionArray.last?.magnetometerZAxis ?? 0.0, specifier: "%.5f") µT", comment: "MagnetometerView - Z-Axis") //swiftlint:disable:this line_length
                         })
                         .disclosureGroupModifier(accessibility: "Toggle Z-Axis Graph")
                 }
-                
+
                 Section(header: Text("Log", comment: "AccelerationView - Section Header"), footer: shareButton) {
                     MagnetometerList(motionVM: motionVM)
                         .frame(height: 200, alignment: .center)
                 }
-                
+
                 Section(header: Text("Refresh Rate", comment: "AccelerationView - Section Header")) {
                     RefreshRateView(motionVM: motionVM, show: "header")
                     RefreshRateView(motionVM: motionVM, show: "slider")
                 }
             }
             .listStyle(InsetGroupedListStyle())
-            .frame(minWidth: 0, idealWidth: g.size.width, maxWidth: .infinity, minHeight: 0, idealHeight: g.size.height, maxHeight: g.size.height, alignment: .leading)
+            .frame(
+                minWidth: 0,
+                idealWidth: geo.size.width,
+                maxWidth: .infinity,
+                minHeight: 0,
+                idealHeight: geo.size.height,
+                maxHeight: geo.size.height,
+                alignment: .leading
+            )
         }
         .onAppear(perform: onAppear)
         .onDisappear(perform: onDisappear)
@@ -131,7 +133,6 @@ struct MagnetometerView: View {
         }
     }
 }
-
 
 // MARK: - Preview
 struct MagnetometerView_Previews: PreviewProvider {

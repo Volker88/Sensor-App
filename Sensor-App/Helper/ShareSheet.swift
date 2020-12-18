@@ -6,23 +6,19 @@
 //  Copyright © 2020 Volker Schmitt. All rights reserved.
 //
 
-
 // MARK: - Import
 import SwiftUI
 
-
 // MARK: - Struct
 struct ShareSheet: UIViewControllerRepresentable {
-    typealias Callback = (_ activityType: UIActivity.ActivityType?, _ completed: Bool, _ returnedItems: [Any]?, _ error: Error?) -> Void
-    
-    
+    typealias Callback = (_ activityType: UIActivity.ActivityType?, _ completed: Bool, _ returnedItems: [Any]?, _ error: Error?) -> Void //swiftlint:disable:this line_length
+
     // MARK: - Define Constants / Variables
     let activityItems: [Any]
     let applicationActivities: [UIActivity]? = nil
     let excludedActivityTypes: [UIActivity.ActivityType]? = nil
     let callback: Callback? = nil
-    
-    
+
     // MARK: - Methods
     func makeUIViewController(context: Context) -> UIActivityViewController {
         let controller = UIActivityViewController(
@@ -32,7 +28,7 @@ struct ShareSheet: UIViewControllerRepresentable {
         controller.completionWithItemsHandler = callback
         return controller
     }
-    
+
     func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {
         // nothing to do here
     }

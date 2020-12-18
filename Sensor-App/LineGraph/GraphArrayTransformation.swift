@@ -6,30 +6,29 @@
 //  Copyright © 2020 Volker Schmitt. All rights reserved.
 //
 
-
 // MARK: - Import
 import SwiftUI
 
-
 // MARK: - Class Definition
 class GraphArrayTransformation: ObservableObject {
-    
+
     // MARK: - Initialize Classes
     let calculationAPI = CalculationAPI()
     let settings = SettingsAPI()
-    
-    
+
     // MARK: - Define Constants / Variables
     var array = [Double]()
     var showGraph: GraphDetail = .latitude
 
-    
     // MARK: - Methods
     func transformLocation(locationModel: [LocationModel]?, graph: GraphDetail) {
         if locationModel!.count != 0 {
             _ = locationModel!.map { value in
-                
-                let speed = calculationAPI.calculateSpeed(ms: value.speed, to: settings.fetchUserSettings().GPSSpeedSetting)
+
+                let speed = calculationAPI.calculateSpeed(
+                    ms: value.speed,
+                    to: settings.fetchUserSettings().GPSSpeedSetting
+                )
                 switch graph {
                     case .latitude: array.append(value.latitude)
                     case .longitude: array.append(value.longitude)
@@ -44,8 +43,8 @@ class GraphArrayTransformation: ObservableObject {
             }
         }
     }
-    
-    func transformMotion(motionModel: [MotionModel]?, graph: GraphDetail) {
+
+    func transformMotion(motionModel: [MotionModel]?, graph: GraphDetail) { //swiftlint:disable:this line_length cyclomatic_complexity
         if motionModel!.count != 0 {
             _ = motionModel!.map { value in
                 switch graph {
@@ -70,13 +69,19 @@ class GraphArrayTransformation: ObservableObject {
             }
         }
     }
-    
+
     func transformAltitude(altitudeModel: [AltitudeModel]?, graph: GraphDetail) {
         if altitudeModel!.count != 0 {
             _ = altitudeModel!.map { value in
-                
-                let height = calculationAPI.calculateHeight(height: value.relativeAltitudeValue, to: settings.fetchUserSettings().altitudeHeightSetting)
-                let pressure = calculationAPI.calculatePressure(pressure: value.pressureValue, to: settings.fetchUserSettings().altitudeHeightSetting)
+
+                let height = calculationAPI.calculateHeight(
+                    height: value.relativeAltitudeValue,
+                    to: settings.fetchUserSettings().altitudeHeightSetting
+                )
+                let pressure = calculationAPI.calculatePressure(
+                    pressure: value.pressureValue,
+                    to: settings.fetchUserSettings().altitudeHeightSetting
+                )
                 switch graph {
                     case .pressureValue: array.append(pressure)
                     case .relativeAltitudeValue: array.append(height)
@@ -85,6 +90,5 @@ class GraphArrayTransformation: ObservableObject {
             }
         }
     }
-    
-}
 
+}

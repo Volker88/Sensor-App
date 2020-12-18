@@ -6,10 +6,8 @@
 //  Copyright © 2020 Volker Schmitt. All rights reserved.
 //
 
-
 // MARK: - Import
 import Foundation
-
 
 // MARK: - GraphDetail Types
 enum GraphDetail {
@@ -22,7 +20,7 @@ enum GraphDetail {
     case horizontalAccuracy
     case verticalAccuracy
     case GPSAccuracy
-    
+
     // MotionModel
     case accelerationXAxis
     case accelerationYAxis
@@ -40,7 +38,7 @@ enum GraphDetail {
     case attitudePitch
     case attitudeYaw
     case attitudeHeading
-    
+
     // AltitudeModel
     case pressureValue
     case relativeAltitudeValue

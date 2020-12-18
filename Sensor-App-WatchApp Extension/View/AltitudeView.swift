@@ -6,57 +6,50 @@
 //  Copyright © 2019 Volker Schmitt. All rights reserved.
 //
 
-
 // MARK: - Import
 import SwiftUI
 
-
 // MARK: - Struct
 struct AltitudeView: View {
-    
+
     // MARK: - Initialize Classes
     let calculationAPI = CalculationAPI()
     let settings = SettingsAPI()
-    
-    
+
     // MARK: - @State / @ObservedObject / @Binding
     @ObservedObject var motionVM = CoreMotionViewModel()
     @State private var frequency = 1.0 // Default Frequency
-    
-    
+
     // MARK: - Define Constants / Variables
-    
-    
+
     // MARK: - Initializer
     init() {
         frequency = settings.fetchUserSettings().frequencySetting
         motionVM.sensorUpdateInterval = frequency
     }
-    
-    
+
     // MARK: - Methods
-    
-    
+
     // MARK: - onAppear / onDisappear
     func onAppear() {
         // Start updating motion
         motionVM.altitudeUpdateStart()
     }
-    
+
     func onDisappear() {
         motionVM.stopMotionUpdates()
         motionVM.coreMotionArray.removeAll()
     }
-    
-    
+
     // MARK: - Body - View
     var body: some View {
-        
-        
+
         // MARK: - Return View
         return List {
+            //swiftlint:disable line_length
             Text("Pressure: \(calculationAPI.calculatePressure(pressure: motionVM.altitudeArray.last?.pressureValue ?? 0.0, to: settings.fetchUserSettings().pressureSetting), specifier: "%.5f") \(settings.fetchUserSettings().pressureSetting)", comment: "AltitudeView - Pressure (watchOS)")
             Text("Altitude change: \(calculationAPI.calculateHeight(height: motionVM.altitudeArray.last?.relativeAltitudeValue ?? 0.0, to: settings.fetchUserSettings().altitudeHeightSetting), specifier: "%.5f") \(settings.fetchUserSettings().altitudeHeightSetting)", comment: "AltitudeView - Altitude Change (watchOS)")
+            //swiftlint:enable line_length
         }
         .navigationBarTitle("\(NSLocalizedString("Altitude", comment: "AltitudeView - NavigationBar Title (watchOS)"))")
         .font(.footnote)
@@ -64,7 +57,6 @@ struct AltitudeView: View {
         .onDisappear(perform: onDisappear)
     }
 }
-
 
 // MARK: - Preview
 struct AltitudeView_Previews: PreviewProvider {

@@ -6,17 +6,15 @@
 //  Copyright © 2019 Volker Schmitt. All rights reserved.
 //
 
-
 // MARK: - Import
 import SwiftUI
-
 
 // MARK: - ContentView
 struct ContentViewTitleModifier: ViewModifier {
     func body(content: Content) -> some View {
-        GeometryReader { g in
+        GeometryReader { geo in
             content
-                .frame(width: g.size.width, height: 100, alignment: .center)
+                .frame(width: geo.size.width, height: 100, alignment: .center)
                 .font(.largeTitle)
                 .background(Color.gray)
                 //.foregroundColor(Color("HeaderTextColor"))

@@ -10,20 +10,18 @@
 import Foundation
 import SwiftUI
 
-
 // MARK: - Class Definition
 class SettingsAPI {
-     
+
     // MARK: - GPS Settings
     public let GPSSpeedSettings = [
         UnitSpeed.metersPerSecond.symbol,
         UnitSpeed.kilometersPerHour.symbol,
         UnitSpeed.milesPerHour.symbol
     ]
-    
+
     public let GPSAccuracyOptions = ["Best", "10 Meter", "100 Meter", "Kilometer", "3 Kilometer"]
-    
-    
+
     // MARK: - Altitude Settings
     public let altitudePressure = [
         UnitPressure.millibars.symbol,
@@ -35,7 +33,7 @@ class SettingsAPI {
         UnitPressure.millimetersOfMercury.symbol,
         UnitPressure.inchesOfMercury.symbol
     ]
-    
+
     public let altitudeHeight = [
         UnitLength.millimeters.symbol,
         UnitLength.centimeters.symbol,
@@ -44,26 +42,25 @@ class SettingsAPI {
         UnitLength.feet.symbol,
         UnitLength.yards.symbol
     ]
-    
-    
+
     // MARK: - UserDefaults
     ///
     ///  Call this function to clear all UserDefaults
     ///
     public func clearUserDefaults() {
-        
+
         var userSettings = fetchUserSettings()
         let releaseNotes = userSettings.showReleaseNotes
         UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
         UserDefaults.standard.synchronize()
-        
+
         userSettings.showReleaseNotes = releaseNotes
-        
+
         saveUserSettings(userSettings: userSettings)
-        
+
         Log.shared.add(.userDefaults, .default, "Clear Userdefaults")
     }
-    
+
     /// Read UserSettings
     ///
     /// This function returns UserSettings from UserDefaults and returns back standard settings if UserDefaults can't be fetched
@@ -71,8 +68,16 @@ class SettingsAPI {
     /// - Returns: UserSettings
     ///
     public func fetchUserSettings() -> UserSettings {
-        var userSettings = UserSettings(showReleaseNotes: true, GPSSpeedSetting: "m/s", GPSAccuracySetting: "Best", frequencySetting: 1.0, pressureSetting: "kPa", altitudeHeightSetting: "m", graphMaxPoints: 150)
-        
+        var userSettings = UserSettings(
+            showReleaseNotes: true,
+            GPSSpeedSetting: "m/s",
+            GPSAccuracySetting: "Best",
+            frequencySetting: 1.0,
+            pressureSetting: "kPa",
+            altitudeHeightSetting: "m",
+            graphMaxPoints: 150
+        )
+
         if let settings = UserDefaults.standard.data(forKey: "UserSettings") {
             let decoder = JSONDecoder()
             if let decoded = try? decoder.decode(UserSettings.self, from: settings) {
@@ -83,10 +88,10 @@ class SettingsAPI {
                 Log.shared.add(.userDefaults, .error, "UserSettings could not be fetched")
             }
         }
-        
+
         return userSettings
     }
-    
+
     /// Save UserSettings
     ///
     /// Save UserSettings to UserDefaults
@@ -96,7 +101,7 @@ class SettingsAPI {
     public func saveUserSettings(userSettings: UserSettings) {
         let encoder = JSONEncoder()
         let settings = userSettings
-        
+
         if let data = try? encoder.encode(settings) {
             UserDefaults.standard.set(data, forKey: "UserSettings")
             Log.shared.print("Save Settings: \(settings)")
@@ -105,7 +110,7 @@ class SettingsAPI {
             Log.shared.add(.userDefaults, .error, "UserSettings could not be saved")
         }
     }
-    
+
     /// Read MapKitSettings
     ///
     /// This function returns MapKitSettings from UserDefaults and returns back standard settings if MapKitSettings can't be fetched
@@ -115,8 +120,17 @@ class SettingsAPI {
     ///
     @available(watchOS, unavailable)
     public func fetchMapKitSettings() -> MapKitSettings {
-        var mapKitSettings = MapKitSettings(showsCompass: true, showsScale: true, showsBuildings: true, showsTraffic: true, isRotateEnabled: true, isScrollEnabled: true, mapType: .standard, zoom: 500)
-        
+        var mapKitSettings = MapKitSettings(
+            showsCompass: true,
+            showsScale: true,
+            showsBuildings: true,
+            showsTraffic: true,
+            isRotateEnabled: true,
+            isScrollEnabled: true,
+            mapType: .standard,
+            zoom: 500
+        )
+
         if let settings = UserDefaults.standard.data(forKey: "MapKitSettings") {
             let decoder = JSONDecoder()
             if let decoded = try? decoder.decode(MapKitSettings.self, from: settings) {
@@ -127,10 +141,10 @@ class SettingsAPI {
             }
         }
         Log.shared.print("Read Settings: \(mapKitSettings)")
-        
+
         return mapKitSettings
     }
-    
+
     /// Save MapKitSettings
     ///
     /// Save MapKitSettings to UserDefaults
@@ -142,7 +156,7 @@ class SettingsAPI {
     public func saveMapKitSettings(mapKitSettings: MapKitSettings) {
         let encoder = JSONEncoder()
         let settings = mapKitSettings
-        
+
         if let data = try? encoder.encode(settings) {
             UserDefaults.standard.set(data, forKey: "MapKitSettings")
             Log.shared.add(.userDefaults, .default, "MapKitSettings saved: \(settings)")
@@ -151,8 +165,7 @@ class SettingsAPI {
         }
         Log.shared.print("Save Settings: \(settings)")
     }
-    
-    
+
     // MARK: - Methods
     ///
     ///  Get  current timestamp
@@ -170,5 +183,5 @@ class SettingsAPI {
         let dateString = dateFormatter.string(from: NSDate() as Date)
 
         return dateString
-    } 
+    }
 }

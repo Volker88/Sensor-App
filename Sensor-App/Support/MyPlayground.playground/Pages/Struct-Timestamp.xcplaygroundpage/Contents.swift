@@ -1,11 +1,10 @@
 import UIKit
 
-
 // MARK: - Struct for DataArrays
-struct dataValues {
-    var id : [Int] = []
-    var timestamp : [String] = []
-    var xAxis : [String] = []
+struct DataValues {
+    var id: [Int] = []
+    var timestamp: [String] = []
+    var xAxis: [String] = []
 }
 
 var data = dataValues()
@@ -15,7 +14,6 @@ data.timestamp.insert("test1", at: 0)
 data.xAxis.insert("23.23", at: 0)
 
 print(data.id[0])
-
 
 // MARK: - Timestamp
 let dateFormatter = DateFormatter()

@@ -6,14 +6,12 @@
 //  Copyright © 2019 Volker Schmitt. All rights reserved.
 //
 
-
 // MARK: - Import
 import SwiftUI
 
-
 // MARK: - Extension
 extension Double {
-    
+
     // MARK: - Round
     ///
     /// Round Doubles
@@ -24,11 +22,11 @@ extension Double {
     ///
     /// - Returns: Rounded Double
     ///
-    func rounded(toPlaces places:Int) -> Double {
+    func rounded(toPlaces places: Int) -> Double {
         let divisor = pow(10.0, Double(places))
         return (self * divisor).rounded() / divisor
     }
-    
+
     // MARK: - Localized Decimalnumber
     ///
     /// Localize Decimalnumber
@@ -41,7 +39,7 @@ extension Double {
         formatter.numberStyle = .decimal
         formatter.maximumFractionDigits = maxDecimal
         let localized = formatter.string(from: NSNumber(value: self))
-        
+
         return localized ?? ""
     }
 }

@@ -5,24 +5,21 @@
 //  Created by Volker Schmitt on 16.08.20.
 //
 
-
 // MARK: - Import
 import SwiftUI
 
-
 // MARK: - Struct / Class Definition
 struct Sidebar: View {
-    
+
     // MARK: - Initialize Classes
-    
+
     // MARK: - Environment Object
-    
+
     // MARK: - @State / @ObservedObject / @Binding
     @State private var showSettings = false
-    
-    
+
     // MARK: - Methods
-    
+
     // MARK: - Content
     var list: some View {
         List {
@@ -31,7 +28,7 @@ struct Sidebar: View {
                     Label(NSLocalizedString("Home", comment: "Sidebbar - Location"), systemImage: "house")
                         .accessibility(identifier: "Home")
                 }
-                
+
                 NavigationLink(destination: LocationScreen().navigationBarBackButtonHidden(true)) {
                     Label(NSLocalizedString("Location", comment: "Sidebbar - Location"), systemImage: "location")
                         .accessibility(identifier: "Location")
@@ -49,7 +46,7 @@ struct Sidebar: View {
                         .accessibility(identifier: "Gyroscope")
                 }
             }
-            
+
             Group {
                 NavigationLink(destination: MagnetometerScreen().navigationBarBackButtonHidden(true)) {
                     Label(NSLocalizedString("Magnetometer", comment: "Sidebbar - Magnetometer"), systemImage: "globe")
@@ -78,11 +75,10 @@ struct Sidebar: View {
             SettingsScreen()
         }
     }
-    
-    
+
     // MARK: - Body
     var body: some View {
-        
+
         // MARK: - Return View
         VStack(spacing: 0) {
             list
@@ -93,7 +89,6 @@ struct Sidebar: View {
         .edgesIgnoringSafeArea(.all)
     }
 }
-
 
 // MARK: - Preview
 struct Sidebar_Previews: PreviewProvider {

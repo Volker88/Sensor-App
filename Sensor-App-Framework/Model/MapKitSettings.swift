@@ -6,10 +6,8 @@
 //  Copyright © 2020 Volker Schmitt. All rights reserved.
 //
 
-
 // MARK: - Import
 import Foundation
-
 
 // MARK: - MapKitSettings Enum
 enum MapType: String, Codable, CaseIterable {
@@ -20,7 +18,6 @@ enum MapType: String, Codable, CaseIterable {
     case hybridFlyover = "Hybrid Flyover"
     case mutedSandard = "Muted Standard"
 }
-
 
 // MARK: - MapKitSettings Struct
 struct MapKitSettings: Codable {

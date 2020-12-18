@@ -5,13 +5,12 @@
 //  Created by Volker Schmitt on 16.08.20.
 //
 
-
 // MARK: - Import
 import SwiftUI
 
 // MARK: - Struct Definition
 struct CustomNavigationViewStyle: ViewModifier {
-    
+
     // MARK: - Body
     @ViewBuilder
     func body(content: Content) -> some View {
@@ -27,7 +26,6 @@ struct CustomNavigationViewStyle: ViewModifier {
         #endif
     }
 }
-
 
 // MARK: - Extension View
 extension View {

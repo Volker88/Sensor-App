@@ -5,15 +5,13 @@
 //  Created by Volker Schmitt on 29.08.20.
 //
 
-
 // MARK: - Import
 import Foundation
 import os
 
-
 // MARK: - Struct / Class Definition
 class Log {
-    
+
     // MARK: - Enum
     enum LogCategory: String {
         case scenePhase = "ScenePhase"
@@ -23,18 +21,15 @@ class Log {
         case exportFile = "ExportFile"
         case userDefaults = "UserDefaults"
     }
-    
-    
+
     // MARK: - Define Constants / Variables
     static let shared = Log()
     private let bundleID = Bundle.main.bundleIdentifier
-    
-    
+
     // MARK: - Initializer
     private init() {
     }
-    
-    
+
     // MARK: - Methods
     ///
     /// Write to Log
@@ -44,7 +39,7 @@ class Log {
     ///   - logType: Log Type
     ///   - message: Log Message
     ///
-    func add(_ category: LogCategory, _ logType: OSLogType, _ message: String)  {
+    func add(_ category: LogCategory, _ logType: OSLogType, _ message: String) {
         let logger = Logger(subsystem: "\(bundleID!)", category: "\(category.rawValue)")
         switch logType {
         case .debug:
@@ -61,8 +56,7 @@ class Log {
             logger.log(level: .error, "No log type specified: \(message)")
         }
     }
-    
-    
+
     ///
     /// Print
     ///

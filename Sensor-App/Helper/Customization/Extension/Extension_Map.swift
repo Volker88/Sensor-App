@@ -5,15 +5,13 @@
 //  Created by Volker Schmitt on 08.08.20.
 //
 
-
 // MARK: - Import
 import SwiftUI
 import MapKit
 
-
 // MARK: - Extension
 extension Map {
-    
+
     // MARK: - Round
     ///
     /// MapStyle
@@ -24,7 +22,7 @@ extension Map {
         let settingsAPI = SettingsAPI()
         let mapKitSettings = settingsAPI.fetchMapKitSettings()
         let map = MKMapView.appearance()
-        
+
         // Map Appearance
         switch mapKitSettings.mapType {
             case .standard: map.mapType = MKMapType.standard
@@ -34,12 +32,12 @@ extension Map {
             case .hybridFlyover: map.mapType = MKMapType.hybridFlyover
             case .mutedSandard: map.mapType = MKMapType.mutedStandard
         }
-        
+
         map.showsCompass = mapKitSettings.showsCompass
         map.showsBuildings = mapKitSettings.showsBuildings
         map.showsTraffic = mapKitSettings.showsTraffic
         map.showsScale = mapKitSettings.showsScale
-        
+
         return self
     }
 }

@@ -4,11 +4,10 @@
 //
 //  Created by Volker Schmitt on 11.10.20.
 //
-
+//swiftlint:disable line_length
 
 // MARK: - Import
 import SwiftUI
-
 
 // MARK: - Extension
 extension Bundle {

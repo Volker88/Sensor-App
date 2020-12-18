@@ -1,12 +1,8 @@
-
-
 struct User {
     var name: String
     var mail: String
     var age: Int
 }
-
-
 
 var userArray = [User]()
 
@@ -22,7 +18,7 @@ var userShort = [String]()
 
 var transform = userArray.map { user  in
     userShort.append(user.name)
-    
+
 }
 
 print(userShort)

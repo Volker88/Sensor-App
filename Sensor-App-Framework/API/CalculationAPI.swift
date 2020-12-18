@@ -6,18 +6,15 @@
 //  Copyright © 2019 Volker Schmitt. All rights reserved.
 //
 
-
 // MARK: - Import
 import Foundation
 
-
 // MARK: - Class Definition
 class CalculationAPI {
-    
+
     // MARK: - Initialize Classes
     let settings = SettingsAPI()
-    
-    
+
     // MARK: - Methods
     ///
     ///  Converts speed from GPS sensor into desired unit
@@ -35,8 +32,8 @@ class CalculationAPI {
     ///  - Parameter to: Target unit
     ///
     public func calculateSpeed(ms: Double, to: String) -> Double { // Calculcate Speed
-        var targetUnit : UnitSpeed = .metersPerSecond
-        
+        var targetUnit: UnitSpeed = .metersPerSecond
+
         switch to {
             case settings.GPSSpeedSettings[0]: targetUnit = .metersPerSecond
             case settings.GPSSpeedSettings[1]: targetUnit = .kilometersPerHour
@@ -45,10 +42,10 @@ class CalculationAPI {
         }
         let meterPerSecond = Measurement(value: ms, unit: UnitSpeed.metersPerSecond)
         let output = meterPerSecond.converted(to: targetUnit)
-        
+
         return output.value.rounded(toPlaces: 2)
     }
-    
+
     ///
     ///  Converts pressure from motion sensor into desired unit
     ///
@@ -71,8 +68,8 @@ class CalculationAPI {
     ///  - Parameter to: Target unit
     ///
     public func calculatePressure(pressure: Double, to: String) -> Double { // Calculate Pressure Units (input kPa)
-        var targetUnit : UnitPressure = .kilopascals
-        
+        var targetUnit: UnitPressure = .kilopascals
+
         switch to {
             case settings.altitudePressure[0]: targetUnit = .millibars // mbar
             case settings.altitudePressure[1]: targetUnit = .bars // bar
@@ -84,13 +81,13 @@ class CalculationAPI {
             case settings.altitudePressure[7]: targetUnit = .inchesOfMercury // inHG
             default: targetUnit = .kilopascals
         }
-        
+
         let kiloPascal = Measurement(value: pressure, unit: UnitPressure.kilopascals)
         let output = kiloPascal.converted(to: targetUnit)
-        
+
         return output.value.rounded(toPlaces: 5)
     }
-    
+
     ///
     ///  Converts height into selected unit
     ///
@@ -110,8 +107,8 @@ class CalculationAPI {
     ///  - Parameter to: Target unit
     ///
     public func calculateHeight(height: Double, to: String) -> Double { // Calculate Height Units (input m)
-        var targetUnit : UnitLength = .meters
-        
+        var targetUnit: UnitLength = .meters
+
         switch to {
             case settings.altitudeHeight[0]: targetUnit = .millimeters // mm
             case settings.altitudeHeight[1]: targetUnit = .centimeters // cm
@@ -121,10 +118,10 @@ class CalculationAPI {
             case settings.altitudeHeight[5]: targetUnit = .yards // yards
             default: targetUnit = .meters
         }
-        
+
         let meters = Measurement(value: height, unit: UnitLength.meters)
         let output = meters.converted(to: targetUnit)
-        
+
         return output.value.rounded(toPlaces: 5)
     }
 }

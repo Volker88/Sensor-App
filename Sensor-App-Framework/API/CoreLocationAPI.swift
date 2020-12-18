@@ -6,26 +6,21 @@
 //  Copyright © 2019 Volker Schmitt. All rights reserved.
 //
 
-
 // MARK: - Import
 import Foundation
 import CoreLocation
 
-
 // MARK: - Class Definition
 class CoreLocationAPI: CLLocationManager, CLLocationManagerDelegate {
-    
+
     // MARK: - Initialize Classes
     let settings = SettingsAPI()
-    
-    
+
     // MARK: - Initialize Classes
-    private var locationManager : CLLocationManager = CLLocationManager()
-    
-    
+    private var locationManager: CLLocationManager = CLLocationManager()
+
     // MARK: - Define Constants / Variables
 
-    
     // MARK: - Closure to push LocationModel to ViewModel
     ///
     ///  Completion Handler to receive LocationModel Object
@@ -36,12 +31,11 @@ class CoreLocationAPI: CLLocationManager, CLLocationManagerDelegate {
     ///  - Returns: LocationModel Object
     ///
     public var locationCompletionHandler: ((LocationModel) -> Void)?
-    
-    
+
     // MARK: - locationManager Methods
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = locations[locations.count - 1] // Last object from location Array
-        
+
         // GPS Information
         let longitude = location.coordinate.longitude // Longitude in Degrees
         let latitude = location.coordinate.latitude // Latitude in Degrees
@@ -52,7 +46,7 @@ class CoreLocationAPI: CLLocationManager, CLLocationManagerDelegate {
         let verticalAccuracy = location.verticalAccuracy // Accuracy in Meters
         let GPSAccuracy = locationManager.desiredAccuracy // GPS Desired Accuracy
         //let timestamp = location.timestamp // Timestamp of the measurement
-        
+
         // Print all GPS Variables for Debug
         Log.shared.print("Latitude: \(latitude)")
         Log.shared.print("Longitude: \(longitude)")
@@ -63,17 +57,28 @@ class CoreLocationAPI: CLLocationManager, CLLocationManagerDelegate {
         Log.shared.print("Direction: \(course)")
         Log.shared.print("Timestamp: \(settings.getTimestamp())")
         Log.shared.print("Desired Accuracy: \(GPSAccuracy)")
-        
+
         // Creating LocationModel
-        let locationModel = LocationModel(counter: 1 ,longitude: longitude, latitude: latitude, altitude: altitude, speed: speed, course: course, horizontalAccuracy: horizontalAccuracy, verticalAccuracy: verticalAccuracy, timestamp: settings.getTimestamp(), GPSAccuracy: GPSAccuracy)
+        let locationModel = LocationModel(
+            counter: 1,
+            longitude: longitude,
+            latitude: latitude,
+            altitude: altitude,
+            speed: speed,
+            course: course,
+            horizontalAccuracy: horizontalAccuracy,
+            verticalAccuracy: verticalAccuracy,
+            timestamp: settings.getTimestamp(),
+            GPSAccuracy: GPSAccuracy
+        )
 
         locationCompletionHandler?(locationModel) // Update Location
     }
-    
+
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         Log.shared.add(.coreLocation, .fault, "\(error)")
     }
-    
+
     // MARK: - Methods
     // MARK: - Start / Stop GPS Method
     ///
@@ -102,7 +107,7 @@ class CoreLocationAPI: CLLocationManager, CLLocationManagerDelegate {
         locationManager.startUpdatingLocation() // Start Updating Location
         Log.shared.add(.coreLocation, .default, "Start Location Updates")
     }
-    
+
     ///
     ///  Stop GPS updates
     ///
@@ -118,6 +123,3 @@ class CoreLocationAPI: CLLocationManager, CLLocationManagerDelegate {
         Log.shared.add(.coreLocation, .default, "Stop Location Updates")
     }
 }
-
-
-

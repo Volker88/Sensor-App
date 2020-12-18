@@ -6,15 +6,13 @@
 //  Copyright © 2019 Volker Schmitt. All rights reserved.
 //
 
-
 // MARK: - Import
 import Foundation
 
-
 // MARK: - Struct Definition
 struct AltitudeModel: Hashable {
-    let counter : Int
-    let timestamp : String
-    let pressureValue : Double
-    let relativeAltitudeValue : Double
+    let counter: Int
+    let timestamp: String
+    let pressureValue: Double
+    let relativeAltitudeValue: Double
 }

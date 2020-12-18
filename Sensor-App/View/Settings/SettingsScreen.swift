@@ -6,35 +6,31 @@
 //  Copyright © 2019 Volker Schmitt. All rights reserved.
 //
 
-
 // MARK: - Import
 import SwiftUI
 
-
 // MARK: - Struct
 struct SettingsScreen: View {
-    
+
     // MARK: - Environment Objects
     @Environment(\.presentationMode) var presentationMode
-    
-    
+
     // MARK: - Initialize Classes
     let settings = SettingsAPI()
     let notificationAPI = NotificationAPI()
-    
-    
+
     // MARK: - @State / @ObservedObject / @Binding
     @State private var notificationMessage = ""
     @State private var showNotification = false
     @State private var sideBarOpen: Bool = false
-    
+
     // General
     @State private var showReleaseNotes = true
-    
+
     // Location
     @State private var speedSetting = 0
     @State private var accuracySetting = 0
-    
+
     // Map
     @State private var selectedMapType = 0
     @State private var showsCompass = false
@@ -44,26 +40,22 @@ struct SettingsScreen: View {
     @State private var isRotateEnabled = false
     @State private var isScrollEnabled = false
     @State private var zoom = 0.0
-    
-    
+
     // Altitude
     @State private var pressureSetting = 0
     @State private var heightSetting = 0
-    
+
     // Chart
     @State private var graphMaxPoints = 0.0
-    
-    
+
     // MARK: - Define Constants / Variables
     let notificationSettings: NotificationAnimationModel
-    
-    
+
     // MARK: - Initializer
     init() {
         notificationSettings = notificationAPI.fetchNotificationAnimationSettings()
     }
-    
-    
+
     // MARK: - Methods
     func saveSettings() {
         // User Settings
@@ -74,9 +66,9 @@ struct SettingsScreen: View {
         userSettings.pressureSetting = settings.altitudePressure[pressureSetting]
         userSettings.altitudeHeightSetting = settings.altitudeHeight[heightSetting]
         userSettings.graphMaxPoints = Int(graphMaxPoints)
-        
+
         settings.saveUserSettings(userSettings: userSettings)
-        
+
         // MapKit Settings
         var mapKitSettings = settings.fetchMapKitSettings()
         mapKitSettings.mapType = MapType.allCases[selectedMapType]
@@ -87,27 +79,27 @@ struct SettingsScreen: View {
         mapKitSettings.isRotateEnabled = isRotateEnabled
         mapKitSettings.isScrollEnabled = isScrollEnabled
         mapKitSettings.zoom = zoom
-        
+
         settings.saveMapKitSettings(mapKitSettings: mapKitSettings)
-        
+
         // Show Notification
         notificationAPI.toggleNotification(type: .saved, duration: nil) { (message, show) in
             notificationMessage = message
             showNotification = show
         }
     }
-    
-    func discardChanges(_showNotification: Bool) {
+
+    func discardChanges(showNotification: Bool) {
         // General
         showReleaseNotes = settings.fetchUserSettings().showReleaseNotes
-        
+
         // User Settings
         speedSetting = settings.GPSSpeedSettings.firstIndex(of: settings.fetchUserSettings().GPSSpeedSetting)!
         accuracySetting = settings.GPSAccuracyOptions.firstIndex(of: settings.fetchUserSettings().GPSAccuracySetting)!
         pressureSetting = settings.altitudePressure.firstIndex(of: settings.fetchUserSettings().pressureSetting)!
         heightSetting = settings.altitudeHeight.firstIndex(of: settings.fetchUserSettings().altitudeHeightSetting)!
         graphMaxPoints = Double(settings.fetchUserSettings().graphMaxPoints)
-        
+
         // MapKit Settings
         let mapKitSettings = settings.fetchMapKitSettings()
         selectedMapType = MapType.allCases.firstIndex(of: settings.fetchMapKitSettings().mapType)!
@@ -118,25 +110,23 @@ struct SettingsScreen: View {
         isRotateEnabled = mapKitSettings.isRotateEnabled
         isScrollEnabled = mapKitSettings.isScrollEnabled
         zoom = mapKitSettings.zoom
-        
-        
+
         // Show Notification
-        if _showNotification == true {
+        if showNotification == true {
             notificationAPI.toggleNotification(type: .discarded, duration: nil) { (message, show) in
                 notificationMessage = message
-                showNotification = show
+                self.showNotification = show
             }
         }
     }
-    
+
     func discardView() {
-        discardChanges(_showNotification: false)
+        discardChanges(showNotification: false)
         presentationMode.wrappedValue.dismiss()
     }
-    
+
     // MARK: - onAppear / onDisappear
-    
-    
+
     // MARK: - Content
     var closeButton: some View {
         Button(action: {
@@ -145,7 +135,7 @@ struct SettingsScreen: View {
             Image(systemName: "xmark.circle")
         }
     }
-    
+
     var content: some View {
         ZStack {
             Form {
@@ -156,11 +146,15 @@ struct SettingsScreen: View {
                         Text("Show Release Notes")
                     })
                 }
-                
+
                 Section(header:
                             Text("Location", comment: "SettingsScreen - Location Section")
                 ) {
-                    Picker(selection: $speedSetting, label: Text("Speed Setting", comment: "SettingsScreen - Speed Setting")) {
+                    Picker(
+                        selection: $speedSetting,
+                        label: Text("Speed Setting",
+                                    comment: "SettingsScreen - Speed Setting")
+                    ) {
                         ForEach(0 ..< settings.GPSSpeedSettings.count, id: \.self) {
                             Text(settings.GPSSpeedSettings[$0]).tag($0)
                         }
@@ -173,7 +167,7 @@ struct SettingsScreen: View {
                     }
                     .accessibility(identifier: "GPS Accuracy Settings")
                 }
-                
+
                 Section(header:
                             Text("Map", comment: "SettingsScreen - Map Section")
                 ) {
@@ -183,7 +177,7 @@ struct SettingsScreen: View {
                     //                        }
                     //                    }
                     //                    .accessibility(identifier: "MapType Picker")
-                    
+
                     //                    Toggle(isOn: $showsCompass) {
                     //                        Text("Compass", comment: "SettingsScreen - Compass") // FIXME: - Not Working
                     //                    }.accessibility(identifier: "Compass Toggle")
@@ -207,21 +201,21 @@ struct SettingsScreen: View {
                     //                    Toggle(isOn: $isScrollEnabled) {
                     //                        Text("Scroll", comment: "SettingsScreen - Scroll")  // FIXME: - Not Working
                     //                    }.accessibility(identifier: "Scroll Toggle")
-                    
+
                     Stepper(value: $zoom, in: 100...100000, step: 100) {
                         Text("Zoom: \(zoom / 1000, specifier: "%.1f") km", comment: "SettingsScreen - Zoom")
                     }.accessibility(identifier: "Zoom Stepper")
-                    
+
                     HStack {
-                        Text("0.1 km" , comment: "SettingsScreen - 0.1km")
+                        Text("0.1 km", comment: "SettingsScreen - 0.1km")
                         Slider(value: $zoom, in: 100...100000, step: 100)
                             .accessibility(identifier: "Zoom Slider")
                             .accessibility(label: Text("Zoom:", comment: "SettingsScreen - ZoomSlider"))
-                            .accessibility(value: Text("\(zoom, specifier: "%.1f") km", comment: "SettingsScreen - ZoomSlider"))
+                            .accessibility(value: Text("\(zoom, specifier: "%.1f") km", comment: "SettingsScreen - ZoomSlider")) //swiftlint:disable:this line_length
                         Text("100 km", comment: "SettingsScreen - 100km")
                     }
                 }
-                
+
                 Section(header:
                             Text("Altitude", comment: "SettingsScreen - Altitude Section")
                 ) {
@@ -238,7 +232,7 @@ struct SettingsScreen: View {
                     }
                     .accessibility(identifier: "Height Settings")
                 }
-                
+
                 Section(header:
                             Text("Graph", comment: "SettingsScreen - Graph Section")
                 ) {
@@ -249,12 +243,12 @@ struct SettingsScreen: View {
                         Text("1", comment: "SettingsScreen - 1")
                         Slider(value: $graphMaxPoints, in: 1...1000, step: 1)
                             .accessibility(identifier: "Max Points Slider")
-                            .accessibility(label: Text("Maximum Points:", comment: "SettingsScreen - Max Points Slider"))
-                            .accessibility(value: Text("\(graphMaxPoints, specifier: "%.0f")", comment: "SettingsScreen - Max Points Slider"))
+                            .accessibility(label: Text("Maximum Points:", comment: "SettingsScreen - Max Points Slider")) //swiftlint:disable:this line_length
+                            .accessibility(value: Text("\(graphMaxPoints, specifier: "%.0f")", comment: "SettingsScreen - Max Points Slider")) //swiftlint:disable:this line_length
                         Text("1000", comment: "SettingsScreen - 1000")
                     }
                 }
-                
+
                 Section {
                     Button(action: {
                         saveSettings()
@@ -264,9 +258,9 @@ struct SettingsScreen: View {
                             .accessibility(label: Text("Save", comment: "NagvigationBarButton - Save"))
                             .navigationBarItemModifier(accessibility: "Save Settings")
                     }
-                    
+
                     Button(action: {
-                        discardChanges(_showNotification: true)
+                        discardChanges(showNotification: true)
                     }) {
                         //Label(NSLocalizedString("Discard ", comment: "NagvigationBarButton - Discard Changes"), systemImage: "gobackward")
                         Text("Discard", comment: "NagvigationBarButton - Discard Changes")
@@ -275,31 +269,29 @@ struct SettingsScreen: View {
                     }
                 }
             }
-            .navigationBarTitle("\(NSLocalizedString("Settings", comment: "NavigationBar Title - Settings"))", displayMode: .inline)
-            
-            
+            .navigationBarTitle("\(NSLocalizedString("Settings", comment: "NavigationBar Title - Settings"))", displayMode: .inline) //swiftlint:disable:this line_length
+
             // MARK: - NotificationView()
             NotificationView(notificationMessage: $notificationMessage, showNotification: $showNotification)
         }
-        
+
     }
-    
+
     // MARK: - Body - View
     var body: some View {
-        
+
         // MARK: - Return View
         NavigationView {
             content
                 .navigationBarItems(leading: closeButton)
-            
+
         }
         .onAppear {
-            discardChanges(_showNotification: false)
+            discardChanges(showNotification: false)
         }
     }
-    
-}
 
+}
 
 // MARK: - Preview
 struct SettingsScreen_Previews: PreviewProvider {

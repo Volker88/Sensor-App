@@ -6,25 +6,22 @@
 //  Copyright © 2019 Volker Schmitt. All rights reserved.
 //
 
-
 // MARK: - Import
 import SwiftUI
 
-
 // MARK: - NotificationViewModel
 struct NotificationMessageView: View {
-    
+
     // MARK: - @State / @ObservedObject / @Binding
     @Binding var notificationText: String
-    
-    
+
     // MARK: - Define Constants / Variables
-    
+
     // MARK: - Methods
-    
+
     // MARK: - Body - View
     var body: some View {
-        
+
         // MARK: - Return View
         return Text(notificationText)
             .padding()
@@ -34,7 +31,6 @@ struct NotificationMessageView: View {
     }
 }
 
-
 // MARK: - Preview
 struct NotificationMessageView_Previews: PreviewProvider {
     static var previews: some View {
@@ -43,7 +39,6 @@ struct NotificationMessageView_Previews: PreviewProvider {
                 .previewLayout(.sizeThatFits)
                 .colorScheme(scheme)
         }
-        
+
     }
 }
-

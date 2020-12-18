@@ -5,21 +5,18 @@
 //  Created by Volker Schmitt on 19.08.20.
 //
 
-
 // MARK: - Import
 import SwiftUI
 
-
 // MARK: - Struct Definition
 struct DisclosureGroupModifier: ViewModifier {
-    
+
     // MARK: - Define Constants / Variables
     var accessibility: String
-    
-    
+
     // MARK: - Body
     func body(content: Content) -> some View {
-        
+
         // MARK: - Return View
         return content
             .accessibility(identifier: accessibility)
@@ -27,10 +24,9 @@ struct DisclosureGroupModifier: ViewModifier {
     }
 }
 
-
 // MARK: - Extension View
 extension View {
-    
+
     // MARK: - Define Function
     ///
     /// GraphButtonModifier

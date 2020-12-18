@@ -6,21 +6,18 @@
 //  Copyright © 2020 Volker Schmitt. All rights reserved.
 //
 
-
 // MARK: - Import
 import SwiftUI
 
-
 // MARK: - Struct Definition
 struct NavigationBarItemModifier: ViewModifier {
-    
+
     // MARK: - Define Constants / Variables
     var accessibility: String
-    
-    
+
     // MARK: - Body
     func body(content: Content) -> some View {
-        
+
         // MARK: - Return View
         return content
             .padding(10)
@@ -29,10 +26,9 @@ struct NavigationBarItemModifier: ViewModifier {
     }
 }
 
-
 // MARK: - Extension View
 extension View {
-    
+
     // MARK: - Define Function
     ///
     /// NavigationBarItem
@@ -49,6 +45,3 @@ extension View {
         modifier(NavigationBarItemModifier(accessibility: accessibility))
     }
 }
-
-
-

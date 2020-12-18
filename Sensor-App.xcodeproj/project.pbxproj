@@ -921,6 +921,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1527B03C24C4AA240024DD78 /* Build configuration list for PBXNativeTarget "Sensor-App" */;
 			buildPhases = (
+				15906B5F258CCF700021E7BE /* SwiftLint */,
 				1527B01324C4AA240024DD78 /* Sources */,
 				1527B01424C4AA240024DD78 /* Frameworks */,
 				1527B01524C4AA240024DD78 /* Resources */,
@@ -981,6 +982,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1527B06D24C4AA640024DD78 /* Build configuration list for PBXNativeTarget "Sensor-App-WatchApp" */;
 			buildPhases = (
+				15906B60258CCF800021E7BE /* SwiftLint */,
 				1527B04524C4AA620024DD78 /* Resources */,
 				1527B06C24C4AA640024DD78 /* Embed App Extensions */,
 			);
@@ -1149,6 +1151,45 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		15906B5F258CCF700021E7BE /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+		15906B60258CCF800021E7BE /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1527B01324C4AA240024DD78 /* Sources */ = {
@@ -1449,7 +1490,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				MY_BUILD_VERSION = 3.1.204311.0;
+				MY_BUILD_VERSION = 3.1.20505.1.0;
 				MY_VERSION = 3.1.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1507,7 +1548,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				MY_BUILD_VERSION = 3.1.204311.0;
+				MY_BUILD_VERSION = 3.1.20505.1.0;
 				MY_VERSION = 3.1.0;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;

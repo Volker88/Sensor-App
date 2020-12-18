@@ -6,10 +6,8 @@
 //  Copyright © 2020 Volker Schmitt. All rights reserved.
 //
 
-
 // MARK: - Import
 import Foundation
-
 
 // MARK: - Settings for User Defaults (enum)
 enum SettingsForUserDefaults {

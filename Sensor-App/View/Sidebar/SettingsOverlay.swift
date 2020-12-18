@@ -5,18 +5,15 @@
 //  Created by Volker Schmitt on 16.08.20.
 //
 
-
 // MARK: - Import
 import SwiftUI
 
-
 // MARK: - Struct / Class Definition
 struct SettingsOverlay: View {
-    
+
     // MARK: - @State / @ObservedObject / @Binding
     @State private var showSettings = false
-    
-    
+
     // MARK: - Body
     var body: some View {
         Button(action: {
@@ -34,7 +31,6 @@ struct SettingsOverlay: View {
     }
 }
 
-
 // MARK: - Preview
 struct SettingsOverlay_Previews: PreviewProvider {
     static var previews: some View {
@@ -45,4 +41,3 @@ struct SettingsOverlay_Previews: PreviewProvider {
         }
     }
 }
-

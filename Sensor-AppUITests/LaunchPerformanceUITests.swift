@@ -6,11 +6,9 @@
 //  Copyright © 2020 Volker Schmitt. All rights reserved.
 //
 
-
 // MARK: - Import
 import XCTest
 @testable import Sensor_App
-
 
 // MARK: - Class Definition
 class LaunchPerformanceUITests: XCTestCase {
@@ -31,7 +29,6 @@ class LaunchPerformanceUITests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    
     // MARK: - Tests
     func testLaunchPerformance() throws {
         if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {
@@ -42,6 +39,5 @@ class LaunchPerformanceUITests: XCTestCase {
         }
     }
 
-    
     // MARK: - Methods
 }

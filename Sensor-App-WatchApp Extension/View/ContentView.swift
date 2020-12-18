@@ -6,34 +6,26 @@
 //  Copyright © 2019 Volker Schmitt. All rights reserved.
 //
 
-
 // MARK: - Import
 import SwiftUI
 
-
 // MARK: - Struct
 struct ContentView: View {
-    
+
     // MARK: - Initialize Classes
-    
-    
+
     // MARK: - @State / @ObservedObject / @Binding
     @State var showSettings = false
-    
-    
+
     // MARK: - Define Constants / Variables
-    
-    
+
     // MARK: - Initializer
-    
-    
+
     // MARK: - Methods
-    
-    
+
     // MARK: - Body
     var body: some View {
-        
-        
+
         // MARK: - Return View
         return List {
             NavigationLink(destination: LocationView()) {
@@ -65,7 +57,6 @@ struct ContentView: View {
         .listStyle(CarouselListStyle())
     }
 }
-
 
 // MARK: - Preview
 struct ContentView_Previews: PreviewProvider {

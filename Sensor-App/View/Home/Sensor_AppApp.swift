@@ -5,24 +5,20 @@
 //  Created by Volker Schmitt on 19.07.20.
 //
 
-
 // MARK: - Import
 import SwiftUI
 
-
 // MARK: - Struct / Class Definition
 @main
-struct Sensor_AppApp: App {
-    
+struct Sensor_AppApp: App { //swiftlint:disable:this type_name
+
     // MARK: - Environment Object
     @Environment(\.scenePhase) var scenePhase
     @Environment(\.horizontalSizeClass) var sizeClass
-    
-    
+
     // MARK: - @State / @StateObject / @ObservedObject / @Binding
     @ObservedObject var update = AppUpdates()
-    
-    
+
     // MARK: - Body
     @SceneBuilder var body: some Scene {
         WindowGroup {
