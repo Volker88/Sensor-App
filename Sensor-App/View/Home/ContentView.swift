@@ -78,6 +78,7 @@ struct ContentView: View {
                 }
             }
         }
+        .accessibilityIdentifier("Navigation List")
         .listStyle(InsetGroupedListStyle())
         .sheet(isPresented: $showSettings) { SettingsScreen() }
     }

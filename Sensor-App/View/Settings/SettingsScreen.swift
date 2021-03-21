@@ -133,6 +133,8 @@ struct SettingsScreen: View {
             discardView()
         }) {
             Image(systemName: "xmark.circle")
+                .accessibility(identifier: "Close")
+                .accessibilityIdentifier("Close")
         }
     }
 

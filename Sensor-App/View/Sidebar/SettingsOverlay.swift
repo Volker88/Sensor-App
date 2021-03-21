@@ -22,6 +22,7 @@ struct SettingsOverlay: View {
             Label(NSLocalizedString("Settings", comment: "Settings"), systemImage: "gear")
                 .padding(10)
         }
+        .accessibilityIdentifier("Settings")
         //.hoverEffect()
         .frame(maxWidth: .infinity, minHeight: 50, maxHeight: 50, alignment: .center)
         .background((Color.gray).opacity(0.3))

@@ -68,6 +68,7 @@ class SettingsAPI {
     /// - Returns: UserSettings
     ///
     public func fetchUserSettings() -> UserSettings {
+
         var userSettings = UserSettings(
             showReleaseNotes: true,
             GPSSpeedSetting: "m/s",
@@ -88,6 +89,22 @@ class SettingsAPI {
                 Log.shared.add(.userDefaults, .error, "UserSettings could not be fetched")
             }
         }
+
+        /// Overwrite user settings in case of UI Testing
+        #if DEBUG
+        if CommandLine.arguments.contains("enable-testing") {
+            userSettings = UserSettings(
+                showReleaseNotes: true,
+                GPSSpeedSetting: "m/s",
+                GPSAccuracySetting: "Best",
+                frequencySetting: 1.0,
+                pressureSetting: "kPa",
+                altitudeHeightSetting: "m",
+                graphMaxPoints: 150
+            )
+            print("Testing in progress")
+        }
+        #endif
 
         return userSettings
     }

@@ -70,6 +70,7 @@ struct Sidebar: View {
                 }
             }
         }
+        .accessibilityIdentifier("Sidebar")
         .listStyle(SidebarListStyle())
         .sheet(isPresented: $showSettings) {
             SettingsScreen()

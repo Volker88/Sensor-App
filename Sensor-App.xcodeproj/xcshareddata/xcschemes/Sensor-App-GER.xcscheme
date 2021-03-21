@@ -32,7 +32,7 @@
             reference = "container:TestPlans/FullTests.xctestplan">
          </TestPlanReference>
          <TestPlanReference
-            reference = "container:TestPlans/ScreenshoTests.xctestplan">
+            reference = "container:TestPlans/ScreenshotTests.xctestplan">
          </TestPlanReference>
          <TestPlanReference
             reference = "container:TestPlans/UITests.xctestplan">

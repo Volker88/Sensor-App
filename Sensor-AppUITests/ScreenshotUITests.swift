@@ -11,37 +11,15 @@ import XCTest
 @testable import Sensor_App
 
 // MARK: - Class Definition
-class ScreenshotUITests: XCTestCase {
-
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-
-        // In UI tests it is usually best to stop immediately when a failure occurs.
-        continueAfterFailure = false
-
-        // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
-        XCUIApplication().launch()
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    // MARK: - Tests
+class ScreenshotUITests: BaseTestCase {
     func testScreenshot() throws {
-        // Start Application
-        let app = XCUIApplication()
-        app.launch()
-
         // Take Screenshot of Home View
         app.navigationBars.buttons.element(boundBy: 0).tap()
         sleep(2)
         takeScreenshotOfCurrentView(name: "Home")
 
         // Switch to Location View
-        app.tables.buttons.element(boundBy: 0).tap()
+        app.tables["Sidebar"].buttons.element(boundBy: 1).tap()
         sleep(2)
 
         // Wait for Location Authorization and allow access
@@ -62,34 +40,42 @@ class ScreenshotUITests: XCTestCase {
         // Take Screenshot of Location and go back to Home
         sleep(1)
         takeScreenshotOfCurrentView(name: "Location")
-        backToHomeMenu(app: app)
+        backToHomeMenu()
 
         // Reject App Store review request
-//        sleep(1)
-//        let button = app.scrollViews.otherElements.buttons["Not Now"]
-//        if button.exists {
-//            button.tap()
-//        }
+        //        sleep(1)
+        //        let button = app.scrollViews.otherElements.buttons["Not Now"]
+        //        if button.exists {
+        //            button.tap()
+        //        }
 
         // Go to Acceleration View and take Screenshot
-        app.tables.buttons.element(boundBy: 1).tap()
+        app.navigationBars.buttons.element(boundBy: 0).tap()
+        sleep(2)
+        app.tables["Sidebar"].buttons.element(boundBy: 2).tap()
 
         // Show X-Axis Graph
         app.buttons["Toggle X-Axis Graph"].tap()
         sleep(2)
         takeScreenshotOfCurrentView(name: "Acceleration")
-        backToHomeMenu(app: app)
+        backToHomeMenu()
 
         // Go to Settings View and take Screenshot
         sleep(1)
-        //app.navigationBars.buttons.element(boundBy: 0).tap()
+        app.navigationBars.buttons.element(boundBy: 0).tap()
         sleep(1)
-        app.tables.buttons.element(boundBy: 7).tap()
+
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            app.tables["Sidebar"].buttons.element(boundBy: 8).tap()
+        } else {
+            app.buttons["Settings"].tap()
+        }
+
         sleep(2)
         takeScreenshotOfCurrentView(name: "Settings")
 
         // Go Back to Main Menu
-        backToHomeMenu(app: app)
+        //app.navigationBars.buttons.element(boundBy: 0).tap()
     }
 
     // MARK: - Methods
@@ -107,19 +93,7 @@ class ScreenshotUITests: XCTestCase {
     }
 
     func getLanguageISO() -> String {
-      let locale = Locale.current.identifier
+        let locale = Locale.current.identifier
         return locale
-    }
-
-    func moveToView(app: XCUIApplication, view: Int) {
-        app.navigationBars.buttons.element(boundBy: 0).tap()
-        app.tables.buttons.element(boundBy: view).tap()
-    }
-
-    func backToHomeMenu(app: XCUIApplication) {
-        sleep(1)
-        app.navigationBars.buttons.element(boundBy: 0).tap()
-        sleep(1)
-        app.tables.buttons.element(boundBy: 0)
     }
 }

@@ -175,6 +175,7 @@
 		158826EC24F276BD00631B87 /* AccelerationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158826EB24F276BD00631B87 /* AccelerationScreen.swift */; };
 		159230552514FC1E00B34F3C /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159230542514FC1E00B34F3C /* SettingsScreen.swift */; };
 		159B640324DEB5DC009A1E35 /* Extension_Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159B640124DEB5C1009A1E35 /* Extension_Map.swift */; };
+		15B512F92607703C00A579C3 /* BaseTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B512F82607703C00A579C3 /* BaseTestCase.swift */; };
 		15BBEFA524FAC7B5008E2E4F /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BBEFA424FAC7B5008E2E4F /* Log.swift */; };
 		15BBEFA624FAC7D6008E2E4F /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BBEFA424FAC7B5008E2E4F /* Log.swift */; };
 		15BBEFA724FAC921008E2E4F /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BBEFA424FAC7B5008E2E4F /* Log.swift */; };
@@ -295,7 +296,7 @@
 		153723B525332C9E00061B24 /* Extension+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+String.swift"; sourceTree = "<group>"; };
 		153723BC25332CBB00061B24 /* ReleaseNotesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseNotesModel.swift; sourceTree = "<group>"; };
 		153F46CF24F4157E00E6F851 /* LocationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationScreen.swift; sourceTree = "<group>"; };
-		1542E2F224C4AE8F00FA2755 /* ScreenshoTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = ScreenshoTests.xctestplan; sourceTree = "<group>"; };
+		1542E2F224C4AE8F00FA2755 /* ScreenshotTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = ScreenshotTests.xctestplan; sourceTree = "<group>"; };
 		1542E2F324C4AE9A00FA2755 /* UITests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = UITests.xctestplan; sourceTree = "<group>"; };
 		1542E2F424C4AEA300FA2755 /* UnitTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = UnitTests.xctestplan; sourceTree = "<group>"; };
 		1542E2F524C4AEB000FA2755 /* FullTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = FullTests.xctestplan; sourceTree = "<group>"; };
@@ -387,6 +388,7 @@
 		158826EB24F276BD00631B87 /* AccelerationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccelerationScreen.swift; sourceTree = "<group>"; };
 		159230542514FC1E00B34F3C /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
 		159B640124DEB5C1009A1E35 /* Extension_Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension_Map.swift; sourceTree = "<group>"; };
+		15B512F82607703C00A579C3 /* BaseTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTestCase.swift; sourceTree = "<group>"; };
 		15BBEFA424FAC7B5008E2E4F /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -507,6 +509,7 @@
 				1542E2F624C4AF0F00FA2755 /* AccelerationViewUITests.swift */,
 				1542E2F924C4AF0F00FA2755 /* AltitudeViewUITests.swift */,
 				1542E2FD24C4AF1000FA2755 /* AttitudeViewUITests.swift */,
+				15B512F82607703C00A579C3 /* BaseTestCase.swift */,
 				1542E2F824C4AF0F00FA2755 /* GravityViewUITests.swift */,
 				1542E2F724C4AF0F00FA2755 /* GyroscopeViewUITests.swift */,
 				1542E2FE24C4AF1000FA2755 /* LaunchPerformanceUITests.swift */,
@@ -581,7 +584,7 @@
 			isa = PBXGroup;
 			children = (
 				1542E2F524C4AEB000FA2755 /* FullTests.xctestplan */,
-				1542E2F224C4AE8F00FA2755 /* ScreenshoTests.xctestplan */,
+				1542E2F224C4AE8F00FA2755 /* ScreenshotTests.xctestplan */,
 				1542E2F324C4AE9A00FA2755 /* UITests.xctestplan */,
 				1542E2F424C4AEA300FA2755 /* UnitTests.xctestplan */,
 			);
@@ -1297,6 +1300,7 @@
 				1542E30424C4AF1000FA2755 /* LocationViewUITests.swift in Sources */,
 				1542E30824C4AF1000FA2755 /* LaunchPerformanceUITests.swift in Sources */,
 				1542E30724C4AF1000FA2755 /* AttitudeViewUITests.swift in Sources */,
+				15B512F92607703C00A579C3 /* BaseTestCase.swift in Sources */,
 				1542E30124C4AF1000FA2755 /* GyroscopeViewUITests.swift in Sources */,
 				1542E30524C4AF1000FA2755 /* MagnetometerViewUITests.swift in Sources */,
 				1542E30924C4AF1000FA2755 /* SettingsViewUITests.swift in Sources */,
@@ -1490,8 +1494,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				MY_BUILD_VERSION = 3.1.20505.1.0;
-				MY_VERSION = 3.1.0;
+				MY_BUILD_VERSION = 3.2.21117001.0;
+				MY_VERSION = 3.2.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -1548,8 +1552,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				MY_BUILD_VERSION = 3.1.20505.1.0;
-				MY_VERSION = 3.1.0;
+				MY_BUILD_VERSION = 3.2.21117001.0;
+				MY_VERSION = 3.2.0;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
