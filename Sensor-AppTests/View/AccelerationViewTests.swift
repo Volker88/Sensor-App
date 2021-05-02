@@ -24,27 +24,27 @@ class AccelerationViewTests: XCTestCase {
     // MARK: - Tests
     #if targetEnvironment(simulator)
     func testAccelerationViewDebugArray() throws {
-        //Given
+        // Given
         let sut = AccelerationView()
 
-        //When
+        // When
         sut.onAppear()
         let count = sut.motionVM.coreMotionArray.count
 
-        //Then
+        // Then
         XCTAssertEqual(count, 300, "There are \(count) items in MotionArray whereas only 300 should be there")
     }
 
     func testAccelerationViewEmptyArray() throws {
-        //Given
+        // Given
         let sut = AccelerationView()
 
-        //When
+        // When
         sut.onAppear()
         sut.onDisappear()
         let count = sut.motionVM.coreMotionArray.count
 
-        //Then
+        // Then
         XCTAssertEqual(count, 0, "There are \(count) items in LocationArray whereas only 300 should be there")
     }
     #endif

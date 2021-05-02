@@ -92,7 +92,7 @@ struct MagnetometerScreen: View {
             // MARK: - NotificationView()
             NotificationView(notificationMessage: $notificationMessage, showNotification: $showNotification)
         }
-        .navigationBarTitle("\(NSLocalizedString("Magnetometer", comment: "NavigationBar Title - Magnetometer"))", displayMode: .inline) //swiftlint:disable:this line_length
+        .navigationBarTitle("\(NSLocalizedString("Magnetometer", comment: "NavigationBar Title - Magnetometer"))", displayMode: .inline) // swiftlint:disable:this line_length
     }
 
     // MARK: - Body - View

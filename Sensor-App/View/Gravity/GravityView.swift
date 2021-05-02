@@ -36,7 +36,7 @@ struct GravityView: View {
         var csvText = NSLocalizedString("ID;Time;X-Axis;Y-Axis;Z-Axis", comment: "Export CSV Headline - Gravity") + "\n"
 
         _ = motionVM.coreMotionArray.map {
-            csvText += "\($0.counter);\($0.timestamp);\($0.gravityXAxis.localizedDecimal());\($0.gravityYAxis.localizedDecimal());\($0.gravityZAxis.localizedDecimal())\n" //swiftlint:disable:this line_length
+            csvText += "\($0.counter);\($0.timestamp);\($0.gravityXAxis.localizedDecimal());\($0.gravityYAxis.localizedDecimal());\($0.gravityZAxis.localizedDecimal())\n" // swiftlint:disable:this line_length
         }
         fileToShare = exportAPI.getFile(exportText: csvText, filename: "gravity")
     }
@@ -76,7 +76,7 @@ struct GravityView: View {
                                         .frame(height: 100, alignment: .leading)
                                 },
                                 label: {
-                                    Text("X-Axis: \(motionVM.coreMotionArray.last?.gravityXAxis ?? 0.0, specifier: "%.5f") g (9,81 m/s^2)", comment: "GravityView - X-Axis") //swiftlint:disable:this line_length
+                                    Text("X-Axis: \(motionVM.coreMotionArray.last?.gravityXAxis ?? 0.0, specifier: "%.5f") g (9,81 m/s^2)", comment: "GravityView - X-Axis") // swiftlint:disable:this line_length
                                 })
                                 .disclosureGroupModifier(accessibility: "Toggle X-Axis Graph")
 
@@ -87,7 +87,7 @@ struct GravityView: View {
                                         .frame(height: 100, alignment: .leading)
                                 },
                                 label: {
-                                    Text("Y-Axis: \(motionVM.coreMotionArray.last?.gravityYAxis ?? 0.0, specifier: "%.5f") g (9,81 m/s^2)", comment: "GravityView - Y-Axis") //swiftlint:disable:this line_length
+                                    Text("Y-Axis: \(motionVM.coreMotionArray.last?.gravityYAxis ?? 0.0, specifier: "%.5f") g (9,81 m/s^2)", comment: "GravityView - Y-Axis") // swiftlint:disable:this line_length
                                 })
                                 .disclosureGroupModifier(accessibility: "Toggle Y-Axis Graph")
 
@@ -98,7 +98,7 @@ struct GravityView: View {
                                         .frame(height: 100, alignment: .leading)
                                 },
                                 label: {
-                                    Text("Z-Axis: \(motionVM.coreMotionArray.last?.gravityZAxis ?? 0.0, specifier: "%.5f") g (9,81 m/s^2)", comment: "GravityView - Z-Axis") //swiftlint:disable:this line_length
+                                    Text("Z-Axis: \(motionVM.coreMotionArray.last?.gravityZAxis ?? 0.0, specifier: "%.5f") g (9,81 m/s^2)", comment: "GravityView - Z-Axis") // swiftlint:disable:this line_length
                                 })
                                 .disclosureGroupModifier(accessibility: "Toggle Z-Axis Graph")
 

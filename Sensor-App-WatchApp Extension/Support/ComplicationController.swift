@@ -4,7 +4,7 @@
 //
 //  Created by Volker Schmitt on 19.07.20.
 //
-//swiftlint:disable line_length
+// swiftlint:disable line_length
 
 import ClockKit
 

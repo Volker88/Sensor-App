@@ -46,7 +46,7 @@ struct ReleaseNotes: View {
                     }
                 }
             }
-            .navigationBarTitle(NSLocalizedString("Release Notes", comment: "Release Notes - Title"), displayMode: .inline) //swiftlint:disable:this line_length
+            .navigationBarTitle(NSLocalizedString("Release Notes", comment: "Release Notes - Title"), displayMode: .inline) // swiftlint:disable:this line_length
             .navigationBarItems(leading: closeButton)
             .toolbar {
                 ToolbarItem(placement: .automatic) {

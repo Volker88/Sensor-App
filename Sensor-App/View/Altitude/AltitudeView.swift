@@ -38,10 +38,10 @@ struct AltitudeView: View {
     // MARK: - Methods
     func shareCSV() {
         motionVM.stopMotionUpdates()
-        var csvText = NSLocalizedString("ID;Time;Pressure;Altitude change", comment: "Export CSV Headline - altitude") + "\n" //swiftlint:disable:this line_length
+        var csvText = NSLocalizedString("ID;Time;Pressure;Altitude change", comment: "Export CSV Headline - altitude") + "\n" // swiftlint:disable:this line_length
 
         _ = motionVM.altitudeArray.map {
-            csvText += "\($0.counter);\($0.timestamp);\(calculationAPI.calculatePressure(pressure: $0.pressureValue, to: settings.fetchUserSettings().pressureSetting).localizedDecimal());\(calculationAPI.calculateHeight(height: $0.relativeAltitudeValue, to: settings.fetchUserSettings().altitudeHeightSetting).localizedDecimal())\n" //swiftlint:disable:this line_length
+            csvText += "\($0.counter);\($0.timestamp);\(calculationAPI.calculatePressure(pressure: $0.pressureValue, to: settings.fetchUserSettings().pressureSetting).localizedDecimal());\(calculationAPI.calculateHeight(height: $0.relativeAltitudeValue, to: settings.fetchUserSettings().altitudeHeightSetting).localizedDecimal())\n" // swiftlint:disable:this line_length
         }
         fileToShare = exportAPI.getFile(exportText: csvText, filename: "altitude")
     }
@@ -64,7 +64,7 @@ struct AltitudeView: View {
         Button(action: {
             shareCSV()
         }) {
-            Label(NSLocalizedString("Export", comment: "AccelerationView - Export List"), systemImage: "square.and.arrow.up") //swiftlint:disable:this line_length
+            Label(NSLocalizedString("Export", comment: "AccelerationView - Export List"), systemImage: "square.and.arrow.up") // swiftlint:disable:this line_length
         }
     }
 
@@ -82,7 +82,7 @@ struct AltitudeView: View {
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {
-                            Text("Pressure: \(calculationAPI.calculatePressure(pressure: motionVM.altitudeArray.last?.pressureValue ?? 0.0, to: settings.fetchUserSettings().pressureSetting), specifier: "%.5f") \(settings.fetchUserSettings().pressureSetting)", comment: "AltitudeView - Pressure") //swiftlint:disable:this line_length
+                            Text("Pressure: \(calculationAPI.calculatePressure(pressure: motionVM.altitudeArray.last?.pressureValue ?? 0.0, to: settings.fetchUserSettings().pressureSetting), specifier: "%.5f") \(settings.fetchUserSettings().pressureSetting)", comment: "AltitudeView - Pressure") // swiftlint:disable:this line_length
                         })
                         .disclosureGroupModifier(accessibility: "Toggle Pressure Graph")
 
@@ -93,7 +93,7 @@ struct AltitudeView: View {
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {
-                            Text("Altitude change: \(calculationAPI.calculateHeight(height: motionVM.altitudeArray.last?.relativeAltitudeValue ?? 0.0, to: settings.fetchUserSettings().altitudeHeightSetting), specifier: "%.5f") \(settings.fetchUserSettings().altitudeHeightSetting)", comment: "AltitudeView - Altitude") //swiftlint:disable:this line_length
+                            Text("Altitude change: \(calculationAPI.calculateHeight(height: motionVM.altitudeArray.last?.relativeAltitudeValue ?? 0.0, to: settings.fetchUserSettings().altitudeHeightSetting), specifier: "%.5f") \(settings.fetchUserSettings().altitudeHeightSetting)", comment: "AltitudeView - Altitude") // swiftlint:disable:this line_length
                         })
                         .disclosureGroupModifier(accessibility: "Toggle Altitude Graph")
                 }

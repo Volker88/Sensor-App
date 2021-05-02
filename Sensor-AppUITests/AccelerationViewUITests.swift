@@ -55,7 +55,7 @@ class AccelerationViewUITests: BaseTestCase {
         app.sliders["Frequency Slider"].adjust(toNormalizedSliderPosition: 0.0)
         app.sliders["Frequency Slider"].adjust(toNormalizedSliderPosition: 1.0)
 
-        let updateFrequency = app.sliders["Frequency Slider"].value as! String //swiftlint:disable:this force_cast
+        let updateFrequency = app.sliders["Frequency Slider"].value as! String // swiftlint:disable:this force_cast
         let splitUpdateFrequency = updateFrequency.split(separator: " ", maxSplits: 1).map(String.init)
         XCTAssertEqual(splitUpdateFrequency[0], "10.0", "Update frequency should be 10 but is \(splitUpdateFrequency)")
 

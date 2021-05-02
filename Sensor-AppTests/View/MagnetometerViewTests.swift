@@ -24,27 +24,27 @@ class MagnetometerViewTests: XCTestCase {
     // MARK: - Tests
     #if targetEnvironment(simulator)
     func testMagnetometerViewDebugArray() throws {
-        //Given
+        // Given
         let sut = MagnetometerView()
 
-        //When
+        // When
         sut.onAppear()
         let count = sut.motionVM.coreMotionArray.count
 
-        //Then
+        // Then
         XCTAssertEqual(count, 300, "There are \(count) items in MotionArray whereas only 300 should be there")
     }
 
     func testMagnetometerViewEmptyArray() throws {
-        //Given
+        // Given
         let sut = MagnetometerView()
 
-        //When
+        // When
         sut.onAppear()
         sut.onDisappear()
         let count = sut.motionVM.coreMotionArray.count
 
-        //Then
+        // Then
         XCTAssertEqual(count, 0, "There are \(count) items in MotionArray whereas only 300 should be there")
     }
     #endif

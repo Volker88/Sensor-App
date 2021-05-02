@@ -92,7 +92,7 @@ struct GyroscopeScreen: View {
             // MARK: - NotificationView()
             NotificationView(notificationMessage: $notificationMessage, showNotification: $showNotification)
         }
-        .navigationBarTitle("\(NSLocalizedString("Gyroscope", comment: "NavigationBar Title - Gyroscope"))", displayMode: .inline) //swiftlint:disable:this line_length
+        .navigationBarTitle("\(NSLocalizedString("Gyroscope", comment: "NavigationBar Title - Gyroscope"))", displayMode: .inline) // swiftlint:disable:this line_length
     }
 
     // MARK: - Body - View

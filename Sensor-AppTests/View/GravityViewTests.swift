@@ -24,27 +24,27 @@ class GravityViewTests: XCTestCase {
     // MARK: - Tests
     #if targetEnvironment(simulator)
     func testGravityViewDebugArray() throws {
-        //Given
+        // Given
         let sut = GravityView()
 
-        //When
+        // When
         sut.onAppear()
         let count = sut.motionVM.coreMotionArray.count
 
-        //Then
+        // Then
         XCTAssertEqual(count, 300, "There are \(count) items in MotionArray whereas only 300 should be there")
     }
 
     func testGravityViewEmptyArray() throws {
-        //Given
+        // Given
         let sut = GravityView()
 
-        //When
+        // When
         sut.onAppear()
         sut.onDisappear()
         let count = sut.motionVM.coreMotionArray.count
 
-        //Then
+        // Then
         XCTAssertEqual(count, 0, "There are \(count) items in LocationArray whereas only 300 should be there")
     }
     #endif

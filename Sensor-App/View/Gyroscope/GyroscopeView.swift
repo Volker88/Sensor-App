@@ -33,10 +33,10 @@ struct GyroscopeView: View {
     // MARK: - Methods
     func shareCSV() {
         motionVM.stopMotionUpdates()
-        var csvText = NSLocalizedString("ID;Time;X-Axis;Y-Axis;Z-Axis", comment: "Export CSV Headline - Acceleration") + "\n" //swiftlint:disable:this line_length
+        var csvText = NSLocalizedString("ID;Time;X-Axis;Y-Axis;Z-Axis", comment: "Export CSV Headline - Acceleration") + "\n" // swiftlint:disable:this line_length
 
         _ = motionVM.coreMotionArray.map {
-            csvText += "\($0.counter);\($0.timestamp);\($0.gyroXAxis.localizedDecimal());\($0.gyroYAxis.localizedDecimal());\($0.gyroZAxis.localizedDecimal())\n" //swiftlint:disable:this line_length
+            csvText += "\($0.counter);\($0.timestamp);\($0.gyroXAxis.localizedDecimal());\($0.gyroYAxis.localizedDecimal());\($0.gyroZAxis.localizedDecimal())\n" // swiftlint:disable:this line_length
         }
         fileToShare = exportAPI.getFile(exportText: csvText, filename: "acceleration")
     }
@@ -58,7 +58,7 @@ struct GyroscopeView: View {
         Button(action: {
             shareCSV()
         }) {
-            Label(NSLocalizedString("Export", comment: "AccelerationView - Export List"), systemImage: "square.and.arrow.up") //swiftlint:disable:this line_length
+            Label(NSLocalizedString("Export", comment: "AccelerationView - Export List"), systemImage: "square.and.arrow.up") // swiftlint:disable:this line_length
         }
     }
 
@@ -76,7 +76,7 @@ struct GyroscopeView: View {
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {
-                            Text("X-Axis: \(motionVM.coreMotionArray.last?.gyroXAxis ?? 0.0, specifier: "%.5f") rad/s", comment: "GyrsocopeView - X-Axis") //swiftlint:disable:this line_length
+                            Text("X-Axis: \(motionVM.coreMotionArray.last?.gyroXAxis ?? 0.0, specifier: "%.5f") rad/s", comment: "GyrsocopeView - X-Axis") // swiftlint:disable:this line_length
                         })
                         .disclosureGroupModifier(accessibility: "Toggle X-Axis Graph")
 
@@ -87,7 +87,7 @@ struct GyroscopeView: View {
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {
-                            Text("Y-Axis: \(motionVM.coreMotionArray.last?.gyroYAxis ?? 0.0, specifier: "%.5f") rad/s", comment: "GyrsocopeView - Y-Axis") //swiftlint:disable:this line_length
+                            Text("Y-Axis: \(motionVM.coreMotionArray.last?.gyroYAxis ?? 0.0, specifier: "%.5f") rad/s", comment: "GyrsocopeView - Y-Axis") // swiftlint:disable:this line_length
                         })
                         .disclosureGroupModifier(accessibility: "Toggle Y-Axis Graph")
 
@@ -98,7 +98,7 @@ struct GyroscopeView: View {
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {
-                            Text("Z-Axis: \(motionVM.coreMotionArray.last?.gyroZAxis ?? 0.0, specifier: "%.5f") rad/s", comment: "GyrsocopeView - Z-Axis") //swiftlint:disable:this line_length
+                            Text("Z-Axis: \(motionVM.coreMotionArray.last?.gyroZAxis ?? 0.0, specifier: "%.5f") rad/s", comment: "GyrsocopeView - Z-Axis") // swiftlint:disable:this line_length
                         })
                         .disclosureGroupModifier(accessibility: "Toggle Z-Axis Graph")
                 }

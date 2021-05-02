@@ -92,7 +92,7 @@ struct AccelerationScreen: View {
             // MARK: - NotificationView()
             NotificationView(notificationMessage: $notificationMessage, showNotification: $showNotification)
         }
-        .navigationBarTitle("\(NSLocalizedString("Acceleration", comment: "NavigationBar Title - Acceleration"))", displayMode: .inline) //swiftlint:disable:this line_length
+        .navigationBarTitle("\(NSLocalizedString("Acceleration", comment: "NavigationBar Title - Acceleration"))", displayMode: .inline) // swiftlint:disable:this line_length
     }
 
     // MARK: - Body - View

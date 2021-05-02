@@ -10,7 +10,7 @@ import SwiftUI
 
 // MARK: - Struct / Class Definition
 @main
-struct Sensor_AppApp: App { //swiftlint:disable:this type_name
+struct Sensor_AppApp: App { // swiftlint:disable:this type_name
 
     // MARK: - Environment Object
     @Environment(\.scenePhase) var scenePhase
@@ -47,7 +47,7 @@ struct Sensor_AppApp: App { //swiftlint:disable:this type_name
                 update.checkForUpdate()
             }
             .sheet(isPresented: $update.showReleaseNotes) { ReleaseNotes() }
-            //.sheet(isPresented: .constant(true)) { ReleaseNotes() }
+            // .sheet(isPresented: .constant(true)) { ReleaseNotes() }
         }
     }
 }

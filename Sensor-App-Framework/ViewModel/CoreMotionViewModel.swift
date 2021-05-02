@@ -35,7 +35,7 @@ class CoreMotionViewModel: ObservableObject {
     // MARK: - Methods
     func motionUpdateStart() {
         #if targetEnvironment(simulator)
-        //swiftlint:disable line_length
+        // swiftlint:disable line_length
         var counter = 1
 
         for _ in 1...300 {
@@ -57,7 +57,7 @@ class CoreMotionViewModel: ObservableObject {
                 counter += 1
             }
         }
-        //swiftlint:enable line_length
+        // swiftlint:enable line_length
         #endif
 
         motionAPI.motionUpdateStart()
@@ -90,7 +90,7 @@ class CoreMotionViewModel: ObservableObject {
 
     func altitudeUpdateStart() {
         #if targetEnvironment(simulator)
-        //swiftlint:disable line_length
+        // swiftlint:disable line_length
         var counter = 1
         for _ in 1...300 {
             let random = Double.random(in: 99...101)
@@ -107,7 +107,7 @@ class CoreMotionViewModel: ObservableObject {
                 counter += 1
             }
         }
-        //swiftlint:enable line_length
+        // swiftlint:enable line_length
         #endif
 
         motionAPI.motionUpdateStart()

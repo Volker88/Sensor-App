@@ -91,7 +91,7 @@ struct ContentView: View {
                 ZStack {
                     content
                         .navigationBarItems(leading: sideBarButton)
-                        .navigationBarTitle("\(NSLocalizedString("Home", comment: "HomeView - NavigationBar Title"))", displayMode: .automatic) //swiftlint:disable:this line_length
+                        .navigationBarTitle("\(NSLocalizedString("Home", comment: "HomeView - NavigationBar Title"))", displayMode: .automatic) // swiftlint:disable:this line_length
 
                     // MARK: - SidebarMenu
                     SidebarMenu(sidebarOpen: $sideBarOpen)
@@ -99,10 +99,10 @@ struct ContentView: View {
             } else {
                 if geometry.size.height > geometry.size.width {
                     content
-                        .navigationBarTitle("\(NSLocalizedString("Home", comment: "HomeView - NavigationBar Title"))", displayMode: .automatic) //swiftlint:disable:this line_length
+                        .navigationBarTitle("\(NSLocalizedString("Home", comment: "HomeView - NavigationBar Title"))", displayMode: .automatic) // swiftlint:disable:this line_length
                 } else {
                     Text("")
-                        .navigationBarTitle("\(NSLocalizedString("Home", comment: "HomeView - NavigationBar Title"))", displayMode: .automatic) //swiftlint:disable:this line_length
+                        .navigationBarTitle("\(NSLocalizedString("Home", comment: "HomeView - NavigationBar Title"))", displayMode: .automatic) // swiftlint:disable:this line_length
                 }
 
             }

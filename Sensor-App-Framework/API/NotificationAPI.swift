@@ -102,13 +102,13 @@ class NotificationAPI {
     private func fetchNotificationText(type: NotificationTypes) -> String {
         var notificationText = ""
         switch type {
-            //swiftlint:disable line_length
+            // swiftlint:disable line_length
             case .saved: notificationText = NSLocalizedString("Saved successfully", comment: "NotificationMessage - Saved")
             case .discarded: notificationText = NSLocalizedString("Changes Discarded", comment: "NotificationMessage - Discarded")
             case .paused: notificationText = NSLocalizedString("Paused", comment: "NotificationMessage - Paused")
             case .played: notificationText = NSLocalizedString("Play", comment: "NotificationMessage - Play")
             case .deleted: notificationText = NSLocalizedString("Successfully deleted", comment: "NotificationMessage - Deleted")
-            //swiftlint:enable line_length
+            // swiftlint:enable line_length
         }
         return notificationText
     }

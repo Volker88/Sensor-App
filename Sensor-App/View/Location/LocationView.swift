@@ -8,7 +8,7 @@
 
 // MARK: - Import
 import SwiftUI
-//import StoreKit
+// import StoreKit
 
 // MARK: - Struct
 struct LocationView: View {
@@ -36,10 +36,10 @@ struct LocationView: View {
 
     // MARK: - Methods
     func shareCSV() {
-        var csvText = NSLocalizedString("ID;Time;Longitude;Latitude;Altitude;Speed;Course", comment: "Export CSV Headline - Location") + "\n" //swiftlint:disable:this line_length
+        var csvText = NSLocalizedString("ID;Time;Longitude;Latitude;Altitude;Speed;Course", comment: "Export CSV Headline - Location") + "\n" // swiftlint:disable:this line_length
 
         _ = locationVM.coreLocationArray.map {
-            csvText += "\($0.counter);\($0.timestamp);\($0.longitude.localizedDecimal());\($0.latitude.localizedDecimal());\($0.altitude.localizedDecimal());\($0.speed.localizedDecimal());\($0.course.localizedDecimal())\n" //swiftlint:disable:this line_length
+            csvText += "\($0.counter);\($0.timestamp);\($0.longitude.localizedDecimal());\($0.latitude.localizedDecimal());\($0.altitude.localizedDecimal());\($0.speed.localizedDecimal());\($0.course.localizedDecimal())\n" // swiftlint:disable:this line_length
         }
         fileToShare = exportAPI.getFile(exportText: csvText, filename: "location")
     }
@@ -53,7 +53,7 @@ struct LocationView: View {
         locationVM.stopLocationUpdates()
         locationVM.coreLocationArray.removeAll()
         // FIXME: Request review
-        //SKStoreReviewController.requestReview()
+        // SKStoreReviewController.requestReview()
     }
 
     // MARK: - Content
@@ -61,7 +61,7 @@ struct LocationView: View {
         Button(action: {
             shareCSV()
         }) {
-            Label(NSLocalizedString("Export", comment: "LocationView - Export List"), systemImage: "square.and.arrow.up") //swiftlint:disable:this line_length
+            Label(NSLocalizedString("Export", comment: "LocationView - Export List"), systemImage: "square.and.arrow.up") // swiftlint:disable:this line_length
         }
     }
 
@@ -79,7 +79,7 @@ struct LocationView: View {
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {
-                            Text("Latitude: \(locationVM.coreLocationArray.last?.latitude ?? 0.0, specifier: "%.6f")° ± \(locationVM.coreLocationArray.last?.horizontalAccuracy ?? 0.0, specifier: "%.2f")m", comment: "LocationView - Latitude") //swiftlint:disable:this line_length
+                            Text("Latitude: \(locationVM.coreLocationArray.last?.latitude ?? 0.0, specifier: "%.6f")° ± \(locationVM.coreLocationArray.last?.horizontalAccuracy ?? 0.0, specifier: "%.2f")m", comment: "LocationView - Latitude") // swiftlint:disable:this line_length
                         })
                         .disclosureGroupModifier(accessibility: "Toggle Latitude Graph")
 
@@ -90,7 +90,7 @@ struct LocationView: View {
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {
-                            Text("Longitude: \(locationVM.coreLocationArray.last?.longitude ?? 0.0, specifier: "%.6f")° ± \(locationVM.coreLocationArray.last?.horizontalAccuracy ?? 0.0, specifier: "%.2f")m", comment: "LocationView - Longitude") //swiftlint:disable:this line_length
+                            Text("Longitude: \(locationVM.coreLocationArray.last?.longitude ?? 0.0, specifier: "%.6f")° ± \(locationVM.coreLocationArray.last?.horizontalAccuracy ?? 0.0, specifier: "%.2f")m", comment: "LocationView - Longitude") // swiftlint:disable:this line_length
                         })
                         .disclosureGroupModifier(accessibility: "Toggle Longitude Graph")
 
@@ -101,7 +101,7 @@ struct LocationView: View {
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {
-                            Text("Altitude: \(locationVM.coreLocationArray.last?.altitude ?? 0.0, specifier: "%.2f") ± \(locationVM.coreLocationArray.last?.verticalAccuracy ?? 0.0, specifier: "%.2f")m", comment: "LocationView - Altitude") //swiftlint:disable:this line_length
+                            Text("Altitude: \(locationVM.coreLocationArray.last?.altitude ?? 0.0, specifier: "%.2f") ± \(locationVM.coreLocationArray.last?.verticalAccuracy ?? 0.0, specifier: "%.2f")m", comment: "LocationView - Altitude") // swiftlint:disable:this line_length
                         })
                         .disclosureGroupModifier(accessibility: "Toggle Altitude Graph")
 
@@ -112,7 +112,7 @@ struct LocationView: View {
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {
-                            Text("Direction: \(locationVM.coreLocationArray.last?.course ?? 0.0, specifier: "%.2f")°", comment: "LocationView - Direction") //swiftlint:disable:this line_length
+                            Text("Direction: \(locationVM.coreLocationArray.last?.course ?? 0.0, specifier: "%.2f")°", comment: "LocationView - Direction") // swiftlint:disable:this line_length
                         })
                         .disclosureGroupModifier(accessibility: "Toggle Direction Graph")
 
@@ -123,7 +123,7 @@ struct LocationView: View {
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {
-                            Text(verbatim: "\(NSLocalizedString("Speed:", comment: "LocationView - Speed")) \(calculationAPI.calculateSpeed(ms: locationVM.coreLocationArray.last?.speed ?? 0.0, to: "\(settings.fetchUserSettings().GPSSpeedSetting)")) \(settings.fetchUserSettings().GPSSpeedSetting)") //swiftlint:disable:this line_length
+                            Text(verbatim: "\(NSLocalizedString("Speed:", comment: "LocationView - Speed")) \(calculationAPI.calculateSpeed(ms: locationVM.coreLocationArray.last?.speed ?? 0.0, to: "\(settings.fetchUserSettings().GPSSpeedSetting)")) \(settings.fetchUserSettings().GPSSpeedSetting)") // swiftlint:disable:this line_length
                         })
                         .disclosureGroupModifier(accessibility: "Toggle Speed Graph")
                 }

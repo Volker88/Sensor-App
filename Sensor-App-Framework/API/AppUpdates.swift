@@ -61,7 +61,7 @@ class AppUpdates: ObservableObject {
     ///
     private func getCurrentAppVersion() -> String {
         let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"]
-        let version = (appVersion as! String) //swiftlint:disable:this force_cast
+        let version = (appVersion as! String) // swiftlint:disable:this force_cast
 
         return version
     }

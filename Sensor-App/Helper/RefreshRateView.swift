@@ -16,7 +16,7 @@ struct RefreshRateView: View {
     let settings = SettingsAPI()
 
     // MARK: - @State / @ObservedObject / @Binding
-    //@Binding var refreshRate: Double
+    // @Binding var refreshRate: Double
     @ObservedObject var motionVM: CoreMotionViewModel
 
     // MARK: - Define Constants / Variables
@@ -36,7 +36,7 @@ struct RefreshRateView: View {
         // MARK: - Return View
         if show == "header" {
             HStack {
-                Text("\(NSLocalizedString("Frequency:", comment: "RefreshRateView - Frequency")) \(Double(motionVM.sensorUpdateInterval), specifier: "%.1f") Hz", comment: "RefreshRateView - Refresh Rate") //swiftlint:disable:this line_length
+                Text("\(NSLocalizedString("Frequency:", comment: "RefreshRateView - Frequency")) \(Double(motionVM.sensorUpdateInterval), specifier: "%.1f") Hz", comment: "RefreshRateView - Refresh Rate") // swiftlint:disable:this line_length
                 Stepper("", value: $motionVM.sensorUpdateInterval, in: 1...10, step: 0.1)
             }
         } else if show == "slider" {
@@ -47,7 +47,7 @@ struct RefreshRateView: View {
                     updateSlider()
                 }
                 .accessibility(label: Text("Refresh Rate", comment: "RefreshRateView - Slider"))
-                .accessibility(value: Text("\(motionVM.sensorUpdateInterval, specifier: "%.1f") per Second", comment: "RefreshRateView - Value")) //swiftlint:disable:this line_length
+                .accessibility(value: Text("\(motionVM.sensorUpdateInterval, specifier: "%.1f") per Second", comment: "RefreshRateView - Value")) // swiftlint:disable:this line_length
                 .accessibility(identifier: "Frequency Slider")
                 Text("10", comment: "RefreshRateView - Label 10")
 

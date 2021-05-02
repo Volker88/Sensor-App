@@ -34,10 +34,10 @@ struct AttitudeView: View {
     // MARK: - Methods
     func shareCSV() {
         motionVM.stopMotionUpdates()
-        var csvText = NSLocalizedString("ID;Time;Roll;Pitch;Yaw;Heading", comment: "Export CSV Headline - attitude") + "\n" //swiftlint:disable:this line_length
+        var csvText = NSLocalizedString("ID;Time;Roll;Pitch;Yaw;Heading", comment: "Export CSV Headline - attitude") + "\n" // swiftlint:disable:this line_length
 
         _ = motionVM.coreMotionArray.map {
-            csvText += "\($0.counter);\($0.timestamp);\($0.attitudeRoll.localizedDecimal());\($0.attitudePitch.localizedDecimal());\($0.attitudeYaw.localizedDecimal());\($0.attitudeHeading.localizedDecimal())\n" //swiftlint:disable:this line_length
+            csvText += "\($0.counter);\($0.timestamp);\($0.attitudeRoll.localizedDecimal());\($0.attitudePitch.localizedDecimal());\($0.attitudeYaw.localizedDecimal());\($0.attitudeHeading.localizedDecimal())\n" // swiftlint:disable:this line_length
         }
         fileToShare = exportAPI.getFile(exportText: csvText, filename: "attitude")
     }
@@ -59,7 +59,7 @@ struct AttitudeView: View {
         Button(action: {
             shareCSV()
         }) {
-            Label(NSLocalizedString("Export", comment: "AccelerationView - Export List"), systemImage: "square.and.arrow.up") //swiftlint:disable:this line_length
+            Label(NSLocalizedString("Export", comment: "AccelerationView - Export List"), systemImage: "square.and.arrow.up") // swiftlint:disable:this line_length
         }
     }
 
@@ -77,7 +77,7 @@ struct AttitudeView: View {
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {
-                            Text("Roll: \((motionVM.coreMotionArray.last?.attitudeRoll ?? 0.0) * 180 / .pi, specifier: "%.5f")°", comment: "AttitudeView - Roll") //swiftlint:disable:this line_length
+                            Text("Roll: \((motionVM.coreMotionArray.last?.attitudeRoll ?? 0.0) * 180 / .pi, specifier: "%.5f")°", comment: "AttitudeView - Roll") // swiftlint:disable:this line_length
                         })
                         .disclosureGroupModifier(accessibility: "Toggle Roll Graph")
 
@@ -88,7 +88,7 @@ struct AttitudeView: View {
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {
-                            Text("Pitch: \((motionVM.coreMotionArray.last?.attitudePitch ?? 0.0) * 180 / .pi, specifier: "%.5f")°", comment: "AttitudeView - Pitch") //swiftlint:disable:this line_length
+                            Text("Pitch: \((motionVM.coreMotionArray.last?.attitudePitch ?? 0.0) * 180 / .pi, specifier: "%.5f")°", comment: "AttitudeView - Pitch") // swiftlint:disable:this line_length
                         })
                         .disclosureGroupModifier(accessibility: "Toggle Pitch Graph")
 
@@ -99,7 +99,7 @@ struct AttitudeView: View {
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {
-                            Text("Yaw: \((motionVM.coreMotionArray.last?.attitudeYaw ?? 0.0) * 180 / .pi, specifier: "%.5f")°", comment: "AttitudeView - Yaw") //swiftlint:disable:this line_length
+                            Text("Yaw: \((motionVM.coreMotionArray.last?.attitudeYaw ?? 0.0) * 180 / .pi, specifier: "%.5f")°", comment: "AttitudeView - Yaw") // swiftlint:disable:this line_length
                         })
                         .disclosureGroupModifier(accessibility: "Toggle Yaw Graph")
 
@@ -110,7 +110,7 @@ struct AttitudeView: View {
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {
-                            Text("Heading: \(motionVM.coreMotionArray.last?.attitudeHeading ?? 0.0, specifier: "%.5f")°", comment: "AttitudeView - Heading") //swiftlint:disable:this line_length
+                            Text("Heading: \(motionVM.coreMotionArray.last?.attitudeHeading ?? 0.0, specifier: "%.5f")°", comment: "AttitudeView - Heading") // swiftlint:disable:this line_length
                         })
                         .disclosureGroupModifier(accessibility: "Toggle Heading Graph")
                 }

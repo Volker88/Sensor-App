@@ -60,7 +60,7 @@ class CoreMotionAPI {
     ///
     ///  - Returns:
     ///
-    public func motionUpdateStart() { //swiftlint:disable:this function_body_length
+    public func motionUpdateStart() { // swiftlint:disable:this function_body_length
         motionManager.startDeviceMotionUpdates(using: .xTrueNorthZVertical, to: .main) { [self] (data, error) in
             guard let data = data, error == nil else {
                 Log.shared.add(.coreMotion, .error, "\(String(describing: error))")

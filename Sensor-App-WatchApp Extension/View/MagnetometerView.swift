@@ -45,13 +45,13 @@ struct MagnetometerView: View {
 
         // MARK: - Return View
         return List {
-            //swiftlint:disable line_length
+            // swiftlint:disable line_length
             Text("X-Axis: \(motionVM.coreMotionArray.last?.magnetometerXAxis ?? 0.0, specifier: "%.5f") µT", comment: "MagnetometerView - X-Axis (watchOS)")
             Text("Y-Axis: \(motionVM.coreMotionArray.last?.magnetometerYAxis ?? 0.0, specifier: "%.5f") µT", comment: "MagnetometerView - Y-Axis (watchOS)")
             Text("Z-Axis: \(motionVM.coreMotionArray.last?.magnetometerZAxis ?? 0.0, specifier: "%.5f") µT", comment: "MagnetometerView - Z-Axis (watchOS)")
-            //swiftlint:enable line_length
+            // swiftlint:enable line_length
         }
-        .navigationBarTitle("\(NSLocalizedString("Magnetometer", comment: "MagnetometerView - NavigationBar Title (watchOS)"))") //swiftlint:disable:this line_length
+        .navigationBarTitle("\(NSLocalizedString("Magnetometer", comment: "MagnetometerView - NavigationBar Title (watchOS)"))") // swiftlint:disable:this line_length
         .font(.footnote)
         .onAppear(perform: onAppear)
         .onDisappear(perform: onDisappear)

@@ -123,7 +123,7 @@ struct SettingsView: View {
             Section(header:
                 Text("Refresh Rate", comment: "SettingsView - Refresh Rate Section (watchOS)")
             ) {
-                Text("\(NSLocalizedString("Frequency:", comment: "SettingsView - Frequency (watchOS)")) \(Int(refreshRate)) Hz", comment: "SettingsView - Frequency (watchOS)") //swiftlint:disable:this line_length
+                Text("\(NSLocalizedString("Frequency:", comment: "SettingsView - Frequency (watchOS)")) \(Int(refreshRate)) Hz", comment: "SettingsView - Frequency (watchOS)") // swiftlint:disable:this line_length
                 Slider(value: $refreshRate, in: 1...10, step: 1) { _ in
 
                 }

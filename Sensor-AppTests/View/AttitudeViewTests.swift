@@ -24,27 +24,27 @@ class AttitudeViewTests: XCTestCase {
     // MARK: - Tests
     #if targetEnvironment(simulator)
     func testAttitudeViewDebugArray() throws {
-        //Given
+        // Given
         let sut = AttitudeView()
 
-        //When
+        // When
         sut.onAppear()
         let count = sut.motionVM.coreMotionArray.count
 
-        //Then
+        // Then
         XCTAssertEqual(count, 300, "There are \(count) items in MotionArray whereas only 300 should be there")
     }
 
     func testAttitudeViewEmptyArray() throws {
-        //Given
+        // Given
         let sut = AttitudeView()
 
-        //When
+        // When
         sut.onAppear()
         sut.onDisappear()
         let count = sut.motionVM.coreMotionArray.count
 
-        //Then
+        // Then
         XCTAssertEqual(count, 0, "There are \(count) items in MotionArray whereas only 300 should be there")
     }
     #endif

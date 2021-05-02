@@ -24,27 +24,27 @@ class AltitudeViewTests: XCTestCase {
     // MARK: - Tests
     #if targetEnvironment(simulator)
     func testAltitudeViewDebugArray() throws {
-        //Given
+        // Given
         let sut = AltitudeView()
 
-        //When
+        // When
         sut.onAppear()
         let count = sut.motionVM.altitudeArray.count
 
-        //Then
+        // Then
         XCTAssertEqual(count, 300, "There are \(count) items in AltitudeArray whereas only 300 should be there")
     }
 
     func testAltitudeViewEmptyArray() throws {
-        //Given
+        // Given
         let sut = AltitudeView()
 
-        //When
+        // When
         sut.onAppear()
         sut.onDisappear()
         let count = sut.motionVM.altitudeArray.count
 
-        //Then
+        // Then
         XCTAssertEqual(count, 0, "There are \(count) items in AltitudeArray whereas only 300 should be there")
     }
     #endif

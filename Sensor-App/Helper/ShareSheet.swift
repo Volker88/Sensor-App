@@ -11,7 +11,7 @@ import SwiftUI
 
 // MARK: - Struct
 struct ShareSheet: UIViewControllerRepresentable {
-    typealias Callback = (_ activityType: UIActivity.ActivityType?, _ completed: Bool, _ returnedItems: [Any]?, _ error: Error?) -> Void //swiftlint:disable:this line_length
+    typealias Callback = (_ activityType: UIActivity.ActivityType?, _ completed: Bool, _ returnedItems: [Any]?, _ error: Error?) -> Void // swiftlint:disable:this line_length
 
     // MARK: - Define Constants / Variables
     let activityItems: [Any]

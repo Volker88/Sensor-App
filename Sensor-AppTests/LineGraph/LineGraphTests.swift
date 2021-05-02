@@ -24,48 +24,48 @@ class LineGraphTests: XCTestCase {
 
     // MARK: - LineGraphView
     func testLineGraphViewPerformanceOnLocationView() throws {
-        //Given
+        // Given
         let locationVM = CoreLocationViewModel()
 
-        //When
+        // When
         locationVM.coreLocationArray = generateCoreLocationModelArray()
 
-        //Then
+        // Then
         print("Items in LocationArray: \(locationVM.coreLocationArray.count)")
 
-        //Measure
+        // Measure
         measure {
             _ = LineGraphSubView(locationVM: locationVM, showGraph: .latitude)
         }
     }
 
     func testLineGraphViewPerformanceOnAccelerationView() throws {
-        //Given
+        // Given
         let motionVM = CoreMotionViewModel()
 
-        //When
+        // When
         motionVM.coreMotionArray = generateCoreMotionModelArray()
 
-        //Then
+        // Then
         print("Items in MotionArray: \(motionVM.coreMotionArray.count)")
 
-        //Measure
+        // Measure
         measure {
             _ = LineGraphSubView(motionVM: motionVM, showGraph: .accelerationXAxis)
         }
     }
 
     func testLineGraphViewPerformanceOnAltitudeView() throws {
-        //Given
+        // Given
         let motionVM = CoreMotionViewModel()
 
-        //When
+        // When
         motionVM.altitudeArray = generateCoreMotionModelAltitudeArray()
 
-        //Then
+        // Then
         print("Items in AltitudeArray: \(motionVM.altitudeArray.count)")
 
-        //Measure
+        // Measure
         measure {
             _ = LineGraphSubView(motionVM: motionVM, showGraph: .pressureValue)
         }

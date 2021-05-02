@@ -30,9 +30,9 @@ struct AltitudeList: View {
             HStack {
                 Text("ID:\(item.counter)", comment: "AltitudeList - ID")
                 Spacer()
-                Text("P:\(calculationAPI.calculatePressure(pressure: item.pressureValue, to: settings.fetchUserSettings().pressureSetting), specifier: "%.5f")", comment: "AltitudeList - P") //swiftlint:disable:this line_length
+                Text("P:\(calculationAPI.calculatePressure(pressure: item.pressureValue, to: settings.fetchUserSettings().pressureSetting), specifier: "%.5f")", comment: "AltitudeList - P") // swiftlint:disable:this line_length
                 Spacer()
-                Text("A:\(calculationAPI.calculateHeight(height: item.relativeAltitudeValue, to: settings.fetchUserSettings().altitudeHeightSetting), specifier: "%.5f")", comment: "AltitudeList - A") //swiftlint:disable:this line_length
+                Text("A:\(calculationAPI.calculateHeight(height: item.relativeAltitudeValue, to: settings.fetchUserSettings().altitudeHeightSetting), specifier: "%.5f")", comment: "AltitudeList - A") // swiftlint:disable:this line_length
             }
             .font(.footnote)
         }

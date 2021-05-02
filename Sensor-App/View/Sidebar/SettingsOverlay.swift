@@ -23,7 +23,7 @@ struct SettingsOverlay: View {
                 .padding(10)
         }
         .accessibilityIdentifier("Settings")
-        //.hoverEffect()
+        // .hoverEffect()
         .frame(maxWidth: .infinity, minHeight: 50, maxHeight: 50, alignment: .center)
         .background((Color.gray).opacity(0.3))
         .sheet(isPresented: $showSettings) {

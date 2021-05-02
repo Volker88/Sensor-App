@@ -44,7 +44,7 @@ class GraphArrayTransformation: ObservableObject {
         }
     }
 
-    func transformMotion(motionModel: [MotionModel]?, graph: GraphDetail) { //swiftlint:disable:this line_length cyclomatic_complexity
+    func transformMotion(motionModel: [MotionModel]?, graph: GraphDetail) { // swiftlint:disable:this line_length cyclomatic_complexity
         if motionModel!.count != 0 {
             _ = motionModel!.map { value in
                 switch graph {

@@ -24,27 +24,27 @@ class LocationViewTests: XCTestCase {
     // MARK: - Tests
     #if targetEnvironment(simulator)
     func testLocationViewDebugArray() throws {
-        //Given
+        // Given
         let sut = LocationView()
 
-        //When
+        // When
         sut.onAppear()
         let count = sut.locationVM.coreLocationArray.count
 
-        //Then
+        // Then
         XCTAssertEqual(count, 300, "There are \(count) items in LocationArray whereas only 300 should be there")
     }
 
     func testLocationViewEmptyArray() throws {
-        //Given
+        // Given
         let sut = LocationView()
 
-        //When
+        // When
         sut.onAppear()
         sut.onDisappear()
         let count = sut.locationVM.coreLocationArray.count
 
-        //Then
+        // Then
         XCTAssertEqual(count, 0, "There are \(count) items in LocationArray whereas only 300 should be there")
     }
     #endif

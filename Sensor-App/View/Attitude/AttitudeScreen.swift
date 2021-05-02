@@ -92,7 +92,7 @@ struct AttitudeScreen: View {
             // MARK: - NotificationView()
             NotificationView(notificationMessage: $notificationMessage, showNotification: $showNotification)
         }
-        .navigationBarTitle("\(NSLocalizedString("Attitude", comment: "NavigationBar Title - Attitude"))", displayMode: .inline) //swiftlint:disable:this line_length
+        .navigationBarTitle("\(NSLocalizedString("Attitude", comment: "NavigationBar Title - Attitude"))", displayMode: .inline) // swiftlint:disable:this line_length
     }
 
     // MARK: - Body - View

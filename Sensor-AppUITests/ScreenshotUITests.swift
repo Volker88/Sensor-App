@@ -75,7 +75,7 @@ class ScreenshotUITests: BaseTestCase {
         takeScreenshotOfCurrentView(name: "Settings")
 
         // Go Back to Main Menu
-        //app.navigationBars.buttons.element(boundBy: 0).tap()
+        // app.navigationBars.buttons.element(boundBy: 0).tap()
     }
 
     // MARK: - Methods

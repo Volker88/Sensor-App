@@ -17,7 +17,7 @@ struct ContentViewTitleModifier: ViewModifier {
                 .frame(width: geo.size.width, height: 100, alignment: .center)
                 .font(.largeTitle)
                 .background(Color.gray)
-                //.foregroundColor(Color("HeaderTextColor"))
+                // .foregroundColor(Color("HeaderTextColor"))
                 .cornerRadius(10)
                 .multilineTextAlignment(.center)
         }

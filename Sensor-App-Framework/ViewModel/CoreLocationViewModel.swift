@@ -23,7 +23,7 @@ class CoreLocationViewModel: ObservableObject {
     // MARK: - Methods
     func startLocationUpdates() {
         #if targetEnvironment(simulator)
-        //swiftlint:disable line_length
+        // swiftlint:disable line_length
         for _ in 1...100 {
             coreLocationArray.append(LocationModel(counter: 1, longitude: -73.985255, latitude: 40.758449, altitude: 30, speed: 23.24, course: 265.08, horizontalAccuracy: 5.0, verticalAccuracy: 5.0, timestamp: "17-11-2019 10:44:13.136", GPSAccuracy: -1.0))
             coreLocationArray.append(LocationModel(counter: 1, longitude: -73.984729, latitude: 40.759083, altitude: 30, speed: 25.24, course: 265.08, horizontalAccuracy: 5.0, verticalAccuracy: 5.0, timestamp: "17-11-2019 10:44:13.136", GPSAccuracy: -1.0))
@@ -33,7 +33,7 @@ class CoreLocationViewModel: ObservableObject {
         coreLocationArray.removeLast()
         coreLocationArray.shuffle()
         coreLocationArray.append(LocationModel(counter: 1, longitude: -73.984021, latitude: 40.760123, altitude: 10, speed: 26.24, course: 265.08, horizontalAccuracy: 5.0, verticalAccuracy: 5.0, timestamp: "17-11-2019 10:44:13.136", GPSAccuracy: -1.0))
-        //swiftlint:enable line_length
+        // swiftlint:enable line_length
         #endif
 
         locationAPI.startUpdatingGPS()

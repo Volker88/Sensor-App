@@ -23,15 +23,15 @@ class AppUpdatesTests: XCTestCase {
 
     // MARK: - Tests
     func testAppUpdates() throws {
-        //Given
+        // Given
         let appUpdates = AppUpdates()
         UserDefaults.standard.removeObject(forKey: "CurrentAppVersion")
         appUpdates.checkForUpdate()
 
-        //When
-        let userDefaultsForSpeedSetting = UserDefaults.standard.string(forKey: "\(SettingsForUserDefaults.GPSSpeedSetting)") //swiftlint:disable:this line_length
+        // When
+        let userDefaultsForSpeedSetting = UserDefaults.standard.string(forKey: "\(SettingsForUserDefaults.GPSSpeedSetting)") // swiftlint:disable:this line_length
 
-        //Then
+        // Then
         XCTAssertNil(userDefaultsForSpeedSetting, "UserDefaults are still present")
     }
 

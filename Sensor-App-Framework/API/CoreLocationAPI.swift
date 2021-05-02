@@ -45,7 +45,7 @@ class CoreLocationAPI: CLLocationManager, CLLocationManagerDelegate {
         let horizontalAccuracy = location.horizontalAccuracy // Radius of uncertainity in Meters
         let verticalAccuracy = location.verticalAccuracy // Accuracy in Meters
         let GPSAccuracy = locationManager.desiredAccuracy // GPS Desired Accuracy
-        //let timestamp = location.timestamp // Timestamp of the measurement
+        // let timestamp = location.timestamp // Timestamp of the measurement
 
         // Print all GPS Variables for Debug
         Log.shared.print("Latitude: \(latitude)")

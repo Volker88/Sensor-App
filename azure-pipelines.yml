@@ -2,39 +2,174 @@
 # Build, test, and archive an Xcode workspace on macOS.
 # Add steps that install certificates, test, sign, and distribute an app, save build artifacts, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/xcode
+# SDKs
+# https://github.com/actions/virtual-environments/blob/main/images/macos/macos-10.15-Readme.md#installed-sdksS
 
+
+##############################################################################
+##
+## Trigger
+##
 trigger:
 - main
 - development
 
+##############################################################################
+##
+## Pool
+##
 pool:
   vmImage: 'macos-latest'
 
-steps:
-- task: Xcode@5
-  displayName: 'Xcode Build'
-  inputs:
-    actions: 'build'
-    scheme: '$(scheme)'
-    sdk: ''
-    configuration: 'Debug'
-    xcWorkspacePath: '**/*.xcodeproj/project.xcworkspace'
-    xcodeVersion: 'default'
-    destinationSimulators: '$(target)'
-    destinationTypeOption: 'simulators'
-    destinationPlatformOption: 'iOS'
-    signingOption: "auto"
+##############################################################################
+##
+## Variables
+##
+variables:
+- group: iOS
+- group: telegram
 
-- task: Xcode@5
-  displayName: 'Running XCTest/XCUITest'
-  inputs:
-    actions: 'test'
-    scheme: '$(scheme)'
-    sdk: ''
-    configuration: 'Debug'
-    xcWorkspacePath: '**/*.xcodeproj/project.xcworkspace'
-    xcodeVersion: 'default'
-    destinationSimulators: '$(target)'
-    destinationTypeOption: 'simulators'
-    destinationPlatformOption: 'iOS'
-    signingOption: "auto"
+- name: project
+  value: 'Sensor-App'
+- name: scheme
+  value: 'Sensor-App'
+
+  ### Do not change
+- name: workspacePath
+  value: '**/$(project).xcodeproj/project.xcworkspace'
+- name: projectPath 
+  value: '$(project).xcodeproj'
+- name: lintpath
+  value: '$(agent.buildDirectory)/$(scheme)-$(Build.BuildNumber)_lintreport.html'
+- name: resultpath
+  value: '$(scheme)-$(Build.BuildNumber)_testresult.xcresult'
+- name: coveragePath
+  value: '$(agent.buildDirectory)/coverage/'
+
+##############################################################################
+##
+## Build
+##
+stages:
+- stage: Xcode
+  displayName: 'Xcode'
+
+  jobs:
+  - job: Build
+    displayName: 'Xcode Build'
+    timeoutInMinutes: 10
+
+    steps:
+    - task: Xcode@5
+      displayName: 'Xcode Build'
+      inputs:
+        actions: 'build'
+        scheme: '$(scheme)'
+        sdk: ''
+        configuration: '$(configuration)'
+        xcWorkspacePath: '$(workspacePath)'
+        xcodeVersion: '$(xcodeVersion)'
+        destinationSimulators: '$(destinationSimulator)'
+        destinationPlatformOption: '$(destinationPlatform)'
+        signingOption: "$(signingOption)"
+
+    - task: CmdLine@2
+      displayName: 'Run swiftlint'
+      condition: always()
+      inputs:
+        script: 'swiftlint --reporter html > $(lintpath)'
+
+    - task: PublishPipelineArtifact@1
+      displayName: 'Publish swiftlint report'
+      condition: always()
+      inputs:
+        targetPath: '$(lintpath)'
+        artifactName: 'swiftlint_report'
+
+##############################################################################
+##
+## Test
+##
+  - job: XCTest
+    displayName: 'Xcode Test'
+    condition: succeeded()
+    dependsOn:
+    - Build
+    timeoutInMinutes: 60
+
+    steps:
+    - task: Xcode@5
+      displayName: 'Running XCTest/XCUITest'
+      inputs:
+        actions: 'test'
+        scheme: '$(scheme)'
+        sdk: ''
+        configuration: '$(configuration)'
+        xcWorkspacePath: '$(workspacePath)'
+        xcodeVersion: '$(xcodeVersion)'
+        destinationSimulators: '$(destinationSimulator)'
+        destinationPlatformOption: '$(destinationPlatform)'
+        signingOption: "$(signingOption)"
+        args: "-resultBundlePath $(build.SourcesDirectory)/testResults"
+        useXcpretty: true
+        #xcprettyArgs
+        publishJUnitResults: true
+    - publish: testResults
+      artifact: "$(resultpath)"
+      condition: not(canceled())
+
+    ### Code Coverage
+    - script: gem install slather
+      displayName: 'Install Slather'
+      condition: always()
+
+    - script: slather coverage -x --scheme $(scheme) --workspace $(workspacePath) --output-directory $(coveragePath) $(projectPath)
+      displayName: 'Gather Code Coverage'
+      condition: always()
+
+    - task: PublishCodeCoverageResults@1
+      displayName: 'Publish Code Coverage'
+      condition: always()
+      inputs:
+        codeCoverageTool: 'Cobertura'
+        summaryFileLocation: '$(coveragePath)/cobertura.xml'
+
+##############################################################################
+##
+## Notification
+##
+  - job: PassedNotification
+    displayName: 'Notification Passed'
+    condition: succeeded()
+    dependsOn:
+    - XCTest
+    timeoutInMinutes: 5
+
+    steps:
+    - task: SendTelegramNotification@0
+      inputs:
+        botToken: '$(botToken)'
+        chats: '$(chats)'
+        message: '✅ <b>Project&#58;</b> <u>$(project)</u> <b>Scheme&#58;</b> <u>$(scheme)</u> <b>Target&#58;</b> <u>$(destinationSimulator)</u>'
+        taskStatus: false
+        teamUrl: true
+        buildNumber: true
+        buildQueuedBy: false
+
+  - job: FailedNotification
+    displayName: 'Notification Failed'
+    condition: failed()
+    dependsOn:
+    - XCTest
+    timeoutInMinutes: 5
+
+    steps:
+    - task: SendTelegramNotification@0
+      inputs:
+        botToken: '$(botToken)'
+        chats: '$(chats)'
+        message: '❌ <b>Project&#58;</b> <u>$(project)</u> <b>Scheme&#58;</b> <u>$(destinationSimulator)</u> <b>Target&#58;</b> <u>$(target)</u>'
+        taskStatus: false
+        teamUrl: true
+        buildNumber: true
+        buildQueuedBy: false

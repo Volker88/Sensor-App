@@ -213,7 +213,7 @@ struct SettingsScreen: View {
                         Slider(value: $zoom, in: 100...100000, step: 100)
                             .accessibility(identifier: "Zoom Slider")
                             .accessibility(label: Text("Zoom:", comment: "SettingsScreen - ZoomSlider"))
-                            .accessibility(value: Text("\(zoom, specifier: "%.1f") km", comment: "SettingsScreen - ZoomSlider")) //swiftlint:disable:this line_length
+                            .accessibility(value: Text("\(zoom, specifier: "%.1f") km", comment: "SettingsScreen - ZoomSlider")) // swiftlint:disable:this line_length
                         Text("100 km", comment: "SettingsScreen - 100km")
                     }
                 }
@@ -245,8 +245,8 @@ struct SettingsScreen: View {
                         Text("1", comment: "SettingsScreen - 1")
                         Slider(value: $graphMaxPoints, in: 1...1000, step: 1)
                             .accessibility(identifier: "Max Points Slider")
-                            .accessibility(label: Text("Maximum Points:", comment: "SettingsScreen - Max Points Slider")) //swiftlint:disable:this line_length
-                            .accessibility(value: Text("\(graphMaxPoints, specifier: "%.0f")", comment: "SettingsScreen - Max Points Slider")) //swiftlint:disable:this line_length
+                            .accessibility(label: Text("Maximum Points:", comment: "SettingsScreen - Max Points Slider")) // swiftlint:disable:this line_length
+                            .accessibility(value: Text("\(graphMaxPoints, specifier: "%.0f")", comment: "SettingsScreen - Max Points Slider")) // swiftlint:disable:this line_length
                         Text("1000", comment: "SettingsScreen - 1000")
                     }
                 }
@@ -255,7 +255,7 @@ struct SettingsScreen: View {
                     Button(action: {
                         saveSettings()
                     }) {
-                        //Label(NSLocalizedString("Discard Changes", comment: "NagvigationBarButton - Save"), systemImage: "return")
+                        // Label(NSLocalizedString("Discard Changes", comment: "NagvigationBarButton - Save"), systemImage: "return")
                         Text("Save", comment: "NagvigationBarButton - Save")
                             .accessibility(label: Text("Save", comment: "NagvigationBarButton - Save"))
                             .navigationBarItemModifier(accessibility: "Save Settings")
@@ -264,14 +264,14 @@ struct SettingsScreen: View {
                     Button(action: {
                         discardChanges(showNotification: true)
                     }) {
-                        //Label(NSLocalizedString("Discard ", comment: "NagvigationBarButton - Discard Changes"), systemImage: "gobackward")
+                        // Label(NSLocalizedString("Discard ", comment: "NagvigationBarButton - Discard Changes"), systemImage: "gobackward")
                         Text("Discard", comment: "NagvigationBarButton - Discard Changes")
                             .accessibility(label: Text("Discard", comment: "NagvigationBarButton - Discard Changes"))
                             .navigationBarItemModifier(accessibility: "Reset Settings")
                     }
                 }
             }
-            .navigationBarTitle("\(NSLocalizedString("Settings", comment: "NavigationBar Title - Settings"))", displayMode: .inline) //swiftlint:disable:this line_length
+            .navigationBarTitle("\(NSLocalizedString("Settings", comment: "NavigationBar Title - Settings"))", displayMode: .inline) // swiftlint:disable:this line_length
 
             // MARK: - NotificationView()
             NotificationView(notificationMessage: $notificationMessage, showNotification: $showNotification)
