@@ -1,0 +1,13 @@
+//
+//  Debug-Watch.xcconfig
+//  Sensor-App
+//
+//  Created by Volker Schmitt on 07.05.21.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+PRODUCT_BUNDLE_IDENTIFIER = $(inherited).Debug
+
+ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon

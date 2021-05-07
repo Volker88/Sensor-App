@@ -384,6 +384,10 @@
 		15445CC324F2DF6B006940C6 /* AttitudeList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttitudeList.swift; sourceTree = "<group>"; };
 		15445CC624F2E20D006940C6 /* AltitudeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AltitudeScreen.swift; sourceTree = "<group>"; };
 		15445CC824F2E213006940C6 /* AltitudeList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AltitudeList.swift; sourceTree = "<group>"; };
+		1548BA982645AE9A00BA18A5 /* Info-Debug.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Info-Debug.plist"; sourceTree = "<group>"; };
+		1548BA9A2645AECE00BA18A5 /* Info-Debug.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Info-Debug.plist"; sourceTree = "<group>"; };
+		1548BA9D2645AF9C00BA18A5 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		1548BA9E2645B2B300BA18A5 /* Debug-Watch.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Debug-Watch.xcconfig"; sourceTree = "<group>"; };
 		15657AAD2531E68000884941 /* Extension+URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+URL.swift"; sourceTree = "<group>"; };
 		158826EB24F276BD00631B87 /* AccelerationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccelerationScreen.swift; sourceTree = "<group>"; };
 		159230542514FC1E00B34F3C /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
@@ -447,6 +451,7 @@
 		1527B00E24C4AA240024DD78 = {
 			isa = PBXGroup;
 			children = (
+				1548BA9C2645AF6700BA18A5 /* Configuration */,
 				1542E2F124C4AD3B00FA2755 /* TestPlans */,
 				1527B01924C4AA240024DD78 /* Sensor-App */,
 				1527B04824C4AA620024DD78 /* Sensor-App-WatchApp */,
@@ -526,6 +531,7 @@
 			children = (
 				1527B04924C4AA630024DD78 /* Assets.xcassets */,
 				1527B04B24C4AA630024DD78 /* Info.plist */,
+				1548BA9A2645AECE00BA18A5 /* Info-Debug.plist */,
 			);
 			path = "Sensor-App-WatchApp";
 			sourceTree = "<group>";
@@ -702,13 +708,14 @@
 		1542E39C24C4AFED00FA2755 /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				1527B06124C4AA640024DD78 /* Preview Content */,
 				1527B05F24C4AA640024DD78 /* Assets.xcassets */,
-				1527B05D24C4AA630024DD78 /* ComplicationController.swift */,
+				1527B06524C4AA640024DD78 /* PushNotificationPayload.apns */,
+				1548BA982645AE9A00BA18A5 /* Info-Debug.plist */,
 				1527B06424C4AA640024DD78 /* Info.plist */,
+				1527B05D24C4AA630024DD78 /* ComplicationController.swift */,
 				1527B05924C4AA630024DD78 /* NotificationController.swift */,
 				1527B05B24C4AA630024DD78 /* NotificationView.swift */,
-				1527B06124C4AA640024DD78 /* Preview Content */,
-				1527B06524C4AA640024DD78 /* PushNotificationPayload.apns */,
 				1527B05524C4AA630024DD78 /* Sensor_AppApp.swift */,
 			);
 			path = Support;
@@ -872,6 +879,15 @@
 				159B640124DEB5C1009A1E35 /* Extension_Map.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		1548BA9C2645AF6700BA18A5 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				1548BA9D2645AF9C00BA18A5 /* Debug.xcconfig */,
+				1548BA9E2645B2B300BA18A5 /* Debug-Watch.xcconfig */,
+			);
+			path = Configuration;
 			sourceTree = "<group>";
 		};
 		158826ED24F29D7A00631B87 /* Location */ = {
@@ -1494,9 +1510,11 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				MY_BUILD_VERSION = 20210502.1;
+				MY_BUILD_VERSION = 20210507.1;
 				MY_VERSION = 3.2.0;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "VolkerSchmitt88-at-icloud.com.Sensor-App";
+				PRODUCT_NAME = "Sensor-App";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1552,8 +1570,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				MY_BUILD_VERSION = 20210502.1;
+				MY_BUILD_VERSION = 20210507.1;
 				MY_VERSION = 3.2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "VolkerSchmitt88-at-icloud.com.Sensor-App";
+				PRODUCT_NAME = "Sensor-App";
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -1563,9 +1583,10 @@
 		};
 		1527B03D24C4AA240024DD78 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1548BA9D2645AF9C00BA18A5 /* Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-V3";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "$(inherited)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"$(SRCROOT)/Sensor-App/Support/Preview Content\"";
@@ -1577,8 +1598,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "VolkerSchmitt88-at-icloud.com.Sensor-App";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(inherited)";
+				PRODUCT_NAME = "$(inherited)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1600,7 +1621,6 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "VolkerSchmitt88-at-icloud.com.Sensor-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1699,13 +1719,13 @@
 				DEVELOPMENT_ASSET_PATHS = "\"$(SRCROOT)/Sensor-App-WatchApp Extension/Support/Preview Content\"";
 				DEVELOPMENT_TEAM = NLF7894S7W;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/Sensor-App-WatchApp Extension/Support/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Sensor-App-WatchApp Extension/Support/Info-Debug.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "VolkerSchmitt88-at-icloud.com.Sensor-App.watchkitapp.watchkitextension";
+				PRODUCT_BUNDLE_IDENTIFIER = "VolkerSchmitt88-at-icloud.com.Sensor-App.Debug.watchkitapp.watchkitextension";
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1741,15 +1761,16 @@
 		};
 		1527B06E24C4AA640024DD78 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1548BA9E2645B2B300BA18A5 /* Debug-Watch.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-V3";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NLF7894S7W;
 				IBSC_MODULE = Sensor_App_WatchApp_Extension;
-				INFOPLIST_FILE = "$(SRCROOT)/Sensor-App-WatchApp/Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = "VolkerSchmitt88-at-icloud.com.Sensor-App.watchkitapp";
+				INFOPLIST_FILE = "$(SRCROOT)/Sensor-App-WatchApp/Info-Debug.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "VolkerSchmitt88-at-icloud.com.Sensor-App.Debug.watchkitapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
