@@ -84,5 +84,14 @@
             "Added Release Notes",
             "Fixed .csv export",
         ]
+    },
+    {
+        "id": 10,
+        "version": "3.2.0",
+        "notes":
+        [
+            "Added alternative App Icons",
+            "Minor Bug fixes and performance improvements",
+        ]
     }
 ]

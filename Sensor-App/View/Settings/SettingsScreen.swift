@@ -20,6 +20,7 @@ struct SettingsScreen: View {
     let notificationAPI = NotificationAPI()
 
     // MARK: - @State / @ObservedObject / @Binding
+    @StateObject var settingsVM = SettingsViewModel()
     @State private var notificationMessage = ""
     @State private var showNotification = false
     @State private var sideBarOpen: Bool = false
@@ -147,6 +148,19 @@ struct SettingsScreen: View {
                     Toggle(isOn: $showReleaseNotes, label: {
                         Text("Show Release Notes")
                     })
+
+                    Picker(
+                        selection: $settingsVM.currentAppIconIndex.onChange(settingsVM.changeIcon),
+                        label: Text("App Icon")
+                    ) {
+                        ForEach(0..<settingsVM.iconNames.count) { index in
+                            Image(uiImage: UIImage(named: "\(settingsVM.iconNames[index])") ?? UIImage())
+                                .resizable()
+                                .scaledToFit()
+                                .clipShape(RoundedRectangle(cornerRadius: 10))
+                                .frame(width: 50)
+                        }
+                    }
                 }
 
                 Section(header:
@@ -276,7 +290,6 @@ struct SettingsScreen: View {
             // MARK: - NotificationView()
             NotificationView(notificationMessage: $notificationMessage, showNotification: $showNotification)
         }
-
     }
 
     // MARK: - Body - View

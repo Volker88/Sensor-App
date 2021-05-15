@@ -84,5 +84,14 @@
             "Release Notes wurden hinzugefügt",
             ".csv Export wurde verbessert",
         ]
+    },
+    {
+        "id": 10,
+        "version": "3.2.0",
+        "notes":
+        [
+            "Alternative App Icons hinzugefügt",
+            "Kleinere Fehler wurden behoben",
+        ]
     }
 ]
