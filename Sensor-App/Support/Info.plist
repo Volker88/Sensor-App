@@ -29,6 +29,26 @@
 			<false/>
 		</dict>
 	</dict>
+	<key>CFBundleIcons~ipad</key>
+	<dict>
+		<key>CFBundleAlternateIcons</key>
+		<dict>
+			<key>Alternative-1</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>Alternative-1</string>
+				</array>
+			</dict>
+			<key>Alternative-2</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>Alternative-2</string>
+				</array>
+			</dict>
+		</dict>
+	</dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
