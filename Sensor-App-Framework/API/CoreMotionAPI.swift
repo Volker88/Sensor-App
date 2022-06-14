@@ -145,7 +145,7 @@ class CoreMotionAPI {
             motionCompletionHandler?(motionModel)
 
             // Altimeter
-            altimeterManager.startRelativeAltitudeUpdates(to: .main) { (altimeter, error) in
+            altimeterManager.startRelativeAltitudeUpdates(to: .main) { [self] (altimeter, error) in
                 guard let altimeter = altimeter, error == nil else {
                     Log.shared.add(.coreMotion, .error, "\(String(describing: error))")
                     return
