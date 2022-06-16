@@ -19,7 +19,7 @@ struct SidebarMenu: View {
         SideMenuView(width: 250,
                      isOpen: sidebarOpen,
                      menuClose: { sidebarOpen = false })
-            .animation(.easeInOut)
+            .animation(.easeInOut, value: sidebarOpen)
 //            .gesture(
 //                DragGesture(minimumDistance: 50)
 //                    .onChanged { value in

@@ -42,7 +42,8 @@ struct NotificationView: View {
                     stiffness: notificationSettings.springStiffness,
                     damping: notificationSettings.springDamping,
                     initialVelocity: notificationSettings.springVelocity
-                )
+                ),
+                value: showNotification
             )
     }
 }

@@ -82,7 +82,7 @@
         "notes":
         [
             "Added Release Notes",
-            "Fixed .csv export",
+            "Fixed .csv export"
         ]
     },
     {
@@ -91,7 +91,15 @@
         "notes":
         [
             "Added alternative App Icons",
-            "Minor Bug fixes and performance improvements",
+            "Minor Bug fixes and performance improvements"
+        ]
+    },
+    {
+        "id": 11,
+        "version": "4.0.0",
+        "notes":
+        [
+            "Requires minimum iOS 16 and watchOS 9"
         ]
     }
 ]

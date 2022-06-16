@@ -1,16 +1,14 @@
 {
-  "object": {
-    "pins": [
-      {
-        "package": "SwiftUIGraph",
-        "repositoryURL": "https://github.com/Volker88/SwiftUIGraph.git",
-        "state": {
-          "branch": null,
-          "revision": "1f3c13819b92f2a31ff89b7f0700353cd03070bd",
-          "version": "0.3.0"
-        }
+  "pins" : [
+    {
+      "identity" : "swiftuigraph",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Volker88/SwiftUIGraph.git",
+      "state" : {
+        "revision" : "56b3b2779605bf1dfcae061f625816dc170c3310",
+        "version" : "0.4.0"
       }
-    ]
-  },
-  "version": 1
+    }
+  ],
+  "version" : 2
 }
