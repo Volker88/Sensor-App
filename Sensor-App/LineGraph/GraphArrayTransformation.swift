@@ -17,7 +17,7 @@ class GraphArrayTransformation: ObservableObject {
     let settings = SettingsAPI()
 
     // MARK: - Define Constants / Variables
-    var array = [Double]()
+    var array = [DataPoint]()
     var showGraph: GraphDetail = .latitude
 
     // MARK: - Methods
@@ -30,41 +30,46 @@ class GraphArrayTransformation: ObservableObject {
                     to: settings.fetchUserSettings().GPSSpeedSetting
                 )
                 switch graph {
-                    case .latitude: array.append(value.latitude)
-                    case .longitude: array.append(value.longitude)
-                    case .altitude: array.append(value.altitude)
-                    case .speed: array.append(speed)
-                    case .course: array.append(value.course)
-                    case .horizontalAccuracy: array.append(value.horizontalAccuracy)
-                    case .verticalAccuracy: array.append(value.verticalAccuracy)
-                    case .GPSAccuracy: array.append(value.GPSAccuracy)
-                    default: array.append(0)
+                    case .latitude: addToArray(value.latitude)
+                    case .longitude: addToArray(value.longitude)
+                    case .altitude: addToArray(value.altitude)
+                    case .speed: addToArray(speed)
+                    case .course: addToArray(value.course)
+                    case .horizontalAccuracy: addToArray(value.horizontalAccuracy)
+                    case .verticalAccuracy: addToArray(value.verticalAccuracy)
+                    case .GPSAccuracy: addToArray(value.GPSAccuracy)
+                    default: addToArray(0)
                 }
             }
         }
+    }
+
+    func addToArray(_ value: Double) {
+        let dataPoint = DataPoint(index: array.count + 1, value: value)
+        array.append(dataPoint)
     }
 
     func transformMotion(motionModel: [MotionModel]?, graph: GraphDetail) { // swiftlint:disable:this line_length cyclomatic_complexity
         if motionModel!.count != 0 {
             _ = motionModel!.map { value in
                 switch graph {
-                    case .accelerationXAxis: array.append(value.accelerationXAxis)
-                    case .accelerationYAxis: array.append(value.accelerationYAxis)
-                    case .accelerationZAxis: array.append(value.accelerationZAxis)
-                    case .gravityXAxis: array.append(value.gravityXAxis)
-                    case .gravityYAxis: array.append(value.gravityYAxis)
-                    case .gravityZAxis: array.append(value.gravityZAxis)
-                    case .gyroXAxis: array.append(value.gyroXAxis)
-                    case .gyroYAxis: array.append(value.gyroYAxis)
-                    case .gyroZAxis: array.append(value.gyroZAxis)
-                    case .magnetometerXAxis: array.append(value.magnetometerXAxis)
-                    case .magnetometerYAxis: array.append(value.magnetometerYAxis)
-                    case .magnetometerZAxis: array.append(value.magnetometerZAxis)
-                    case .attitudeRoll: array.append(value.attitudeRoll * 180 / .pi)
-                    case .attitudePitch: array.append(value.attitudePitch * 180 / .pi)
-                    case .attitudeYaw: array.append(value.attitudeYaw * 180 / .pi)
-                    case .attitudeHeading: array.append(value.attitudeHeading)
-                    default: array.append(0)
+                case .accelerationXAxis: addToArray(value.accelerationXAxis)
+                    case .accelerationYAxis: addToArray(value.accelerationYAxis)
+                    case .accelerationZAxis: addToArray(value.accelerationZAxis)
+                    case .gravityXAxis: addToArray(value.gravityXAxis)
+                    case .gravityYAxis: addToArray(value.gravityYAxis)
+                    case .gravityZAxis: addToArray(value.gravityZAxis)
+                    case .gyroXAxis: addToArray(value.gyroXAxis)
+                    case .gyroYAxis: addToArray(value.gyroYAxis)
+                    case .gyroZAxis: addToArray(value.gyroZAxis)
+                    case .magnetometerXAxis: addToArray(value.magnetometerXAxis)
+                    case .magnetometerYAxis: addToArray(value.magnetometerYAxis)
+                    case .magnetometerZAxis: addToArray(value.magnetometerZAxis)
+                    case .attitudeRoll: addToArray(value.attitudeRoll * 180 / .pi)
+                    case .attitudePitch: addToArray(value.attitudePitch * 180 / .pi)
+                    case .attitudeYaw: addToArray(value.attitudeYaw * 180 / .pi)
+                    case .attitudeHeading: addToArray(value.attitudeHeading)
+                    default: addToArray(0)
                 }
             }
         }
@@ -83,12 +88,18 @@ class GraphArrayTransformation: ObservableObject {
                     to: settings.fetchUserSettings().altitudeHeightSetting
                 )
                 switch graph {
-                    case .pressureValue: array.append(pressure)
-                    case .relativeAltitudeValue: array.append(height)
-                    default: array.append(0)
+                    case .pressureValue: addToArray(pressure)
+                    case .relativeAltitudeValue: addToArray(height)
+                    default: addToArray(0)
                 }
             }
         }
     }
 
+}
+
+struct DataPoint: Identifiable {
+    let id = UUID()
+    let index: Int
+    let value: Double
 }

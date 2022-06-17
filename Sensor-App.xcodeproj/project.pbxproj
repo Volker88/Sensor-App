@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		15118001285CE74500097128 /* GraphDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E3C824C4B05400FA2755 /* GraphDetailModel.swift */; };
+		15118002285CE74600097128 /* GraphDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E3C824C4B05400FA2755 /* GraphDetailModel.swift */; };
 		151D316C24E955FB0090BC94 /* Sidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151D316B24E955FB0090BC94 /* Sidebar.swift */; };
 		151D316E24E956210090BC94 /* SidebarMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151D316D24E956210090BC94 /* SidebarMenu.swift */; };
 		151D317024E956380090BC94 /* SideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151D316F24E956380090BC94 /* SideMenuView.swift */; };
@@ -24,8 +26,7 @@
 		1527B05C24C4AA630024DD78 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1527B05B24C4AA630024DD78 /* NotificationView.swift */; };
 		1527B05E24C4AA630024DD78 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1527B05D24C4AA630024DD78 /* ComplicationController.swift */; };
 		1527B06324C4AA640024DD78 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1527B06224C4AA640024DD78 /* Preview Assets.xcassets */; };
-		1527B06824C4AA640024DD78 /* Sensor-App-WatchApp.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 1527B04724C4AA620024DD78 /* Sensor-App-WatchApp.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		1527B07324C4AB480024DD78 /* SwiftUIGraph in Frameworks */ = {isa = PBXBuildFile; productRef = 1527B07224C4AB480024DD78 /* SwiftUIGraph */; };
+		1527B06824C4AA640024DD78 /* Sensor-App-Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 1527B04724C4AA620024DD78 /* Sensor-App-Watch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		1527B07D24C4ACA20024DD78 /* Sensor_App_Framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 1527B07B24C4ACA20024DD78 /* Sensor_App_Framework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1527B08024C4ACA20024DD78 /* Sensor_App_Framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1527B07924C4ACA20024DD78 /* Sensor_App_Framework.framework */; };
 		1527B08124C4ACA20024DD78 /* Sensor_App_Framework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1527B07924C4ACA20024DD78 /* Sensor_App_Framework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -222,7 +223,7 @@
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
-				1527B06824C4AA640024DD78 /* Sensor-App-WatchApp.app in Embed Watch Content */,
+				1527B06824C4AA640024DD78 /* Sensor-App-Watch.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -257,7 +258,7 @@
 		1527B02E24C4AA240024DD78 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1527B03324C4AA240024DD78 /* Sensor-AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Sensor-AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1527B03924C4AA240024DD78 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1527B04724C4AA620024DD78 /* Sensor-App-WatchApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sensor-App-WatchApp.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1527B04724C4AA620024DD78 /* Sensor-App-Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sensor-App-Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1527B04924C4AA630024DD78 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1527B04B24C4AA630024DD78 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1527B05524C4AA630024DD78 /* Sensor_AppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sensor_AppApp.swift; sourceTree = "<group>"; };
@@ -384,7 +385,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1527B07324C4AB480024DD78 /* SwiftUIGraph in Frameworks */,
 				1527B08024C4ACA20024DD78 /* Sensor_App_Framework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -434,7 +434,6 @@
 		1527B00E24C4AA240024DD78 = {
 			isa = PBXGroup;
 			children = (
-				1548BA9C2645AF6700BA18A5 /* Configuration */,
 				1542E2F124C4AD3B00FA2755 /* TestPlans */,
 				1527B01924C4AA240024DD78 /* Sensor-App */,
 				1527B05424C4AA630024DD78 /* Sensor-App-WatchApp */,
@@ -451,7 +450,7 @@
 				1527B01724C4AA240024DD78 /* Sensor-App.app */,
 				1527B02824C4AA240024DD78 /* Sensor-AppTests.xctest */,
 				1527B03324C4AA240024DD78 /* Sensor-AppUITests.xctest */,
-				1527B04724C4AA620024DD78 /* Sensor-App-WatchApp.app */,
+				1527B04724C4AA620024DD78 /* Sensor-App-Watch.app */,
 				1527B07924C4ACA20024DD78 /* Sensor_App_Framework.framework */,
 			);
 			name = Products;
@@ -863,13 +862,6 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
-		1548BA9C2645AF6700BA18A5 /* Configuration */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Configuration;
-			sourceTree = "<group>";
-		};
 		158826ED24F29D7A00631B87 /* Location */ = {
 			isa = PBXGroup;
 			children = (
@@ -936,7 +928,6 @@
 			);
 			name = "Sensor-App";
 			packageProductDependencies = (
-				1527B07224C4AB480024DD78 /* SwiftUIGraph */,
 			);
 			productName = "Sensor-App";
 			productReference = 1527B01724C4AA240024DD78 /* Sensor-App.app */;
@@ -978,9 +969,9 @@
 			productReference = 1527B03324C4AA240024DD78 /* Sensor-AppUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
-		1527B04624C4AA620024DD78 /* Sensor-App-WatchApp */ = {
+		1527B04624C4AA620024DD78 /* Sensor-App-Watch */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1527B06D24C4AA640024DD78 /* Build configuration list for PBXNativeTarget "Sensor-App-WatchApp" */;
+			buildConfigurationList = 1527B06D24C4AA640024DD78 /* Build configuration list for PBXNativeTarget "Sensor-App-Watch" */;
 			buildPhases = (
 				15906B60258CCF800021E7BE /* SwiftLint */,
 				1527B04524C4AA620024DD78 /* Resources */,
@@ -991,9 +982,9 @@
 			);
 			dependencies = (
 			);
-			name = "Sensor-App-WatchApp";
+			name = "Sensor-App-Watch";
 			productName = "Sensor-App-WatchApp";
-			productReference = 1527B04724C4AA620024DD78 /* Sensor-App-WatchApp.app */;
+			productReference = 1527B04724C4AA620024DD78 /* Sensor-App-Watch.app */;
 			productType = "com.apple.product-type.application";
 		};
 		1527B07824C4ACA20024DD78 /* Sensor-App-Framework */ = {
@@ -1053,14 +1044,13 @@
 			);
 			mainGroup = 1527B00E24C4AA240024DD78;
 			packageReferences = (
-				1527B07124C4AB480024DD78 /* XCRemoteSwiftPackageReference "SwiftUIGraph" */,
 			);
 			productRefGroup = 1527B01824C4AA240024DD78 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				1527B01624C4AA240024DD78 /* Sensor-App */,
-				1527B04624C4AA620024DD78 /* Sensor-App-WatchApp */,
+				1527B04624C4AA620024DD78 /* Sensor-App-Watch */,
 				1527B07824C4ACA20024DD78 /* Sensor-App-Framework */,
 				1527B02724C4AA240024DD78 /* Sensor-AppTests */,
 				1527B03224C4AA240024DD78 /* Sensor-AppUITests */,
@@ -1291,6 +1281,7 @@
 				1542E3DD24C4B16600FA2755 /* AppUpdates.swift in Sources */,
 				1542E3AF24C4AFFB00FA2755 /* ContentView.swift in Sources */,
 				1542E41124C4B21A00FA2755 /* CoreLocationViewModel.swift in Sources */,
+				15118001285CE74500097128 /* GraphDetailModel.swift in Sources */,
 				1542E3AC24C4AFFB00FA2755 /* MagnetometerView.swift in Sources */,
 				1542E3E724C4B17B00FA2755 /* SettingsAPI.swift in Sources */,
 				1542E3A724C4AFFB00FA2755 /* AltitudeView.swift in Sources */,
@@ -1327,6 +1318,7 @@
 				1542E38024C4AF9300FA2755 /* CoreLocationAPI.swift in Sources */,
 				15BBEFA524FAC7B5008E2E4F /* Log.swift in Sources */,
 				153723A425332C7500061B24 /* Extension+Bundle.swift in Sources */,
+				15118002285CE74600097128 /* GraphDetailModel.swift in Sources */,
 				1542E38A24C4AF9300FA2755 /* UserSettings.swift in Sources */,
 				1542E39924C4AF9300FA2755 /* CoreMotionViewModel.swift in Sources */,
 				1542E37F24C4AF9300FA2755 /* CalculationAPI.swift in Sources */,
@@ -1368,7 +1360,7 @@
 		};
 		1527B06724C4AA640024DD78 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 1527B04624C4AA620024DD78 /* Sensor-App-WatchApp */;
+			target = 1527B04624C4AA620024DD78 /* Sensor-App-Watch */;
 			targetProxy = 1527B06624C4AA640024DD78 /* PBXContainerItemProxy */;
 		};
 		1527B07F24C4ACA20024DD78 /* PBXTargetDependency */ = {
@@ -1464,7 +1456,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				MY_BUILD_VERSION = 20220616.2;
+				MY_BUILD_VERSION = 20220617.1;
 				MY_VERSION = 4.0.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "VolkerSchmitt88-at-icloud.com.Sensor-App";
@@ -1525,7 +1517,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				MY_BUILD_VERSION = 20220616.2;
+				MY_BUILD_VERSION = 20220617.1;
 				MY_VERSION = 4.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "VolkerSchmitt88-at-icloud.com.Sensor-App";
 				PRODUCT_NAME = "Sensor-App";
@@ -1830,7 +1822,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1527B06D24C4AA640024DD78 /* Build configuration list for PBXNativeTarget "Sensor-App-WatchApp" */ = {
+		1527B06D24C4AA640024DD78 /* Build configuration list for PBXNativeTarget "Sensor-App-Watch" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1527B06E24C4AA640024DD78 /* Debug */,
@@ -1849,25 +1841,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		1527B07124C4AB480024DD78 /* XCRemoteSwiftPackageReference "SwiftUIGraph" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Volker88/SwiftUIGraph.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.2.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		1527B07224C4AB480024DD78 /* SwiftUIGraph */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 1527B07124C4AB480024DD78 /* XCRemoteSwiftPackageReference "SwiftUIGraph" */;
-			productName = SwiftUIGraph;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1527B00F24C4AA240024DD78 /* Project object */;
 }

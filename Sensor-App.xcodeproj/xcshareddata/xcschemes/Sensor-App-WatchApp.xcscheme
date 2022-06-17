@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "1527B04624C4AA620024DD78"
                BuildableName = "Sensor-App-WatchApp.app"
-               BlueprintName = "Sensor-App-WatchApp"
+               BlueprintName = "Sensor-App-Watch"
                ReferencedContainer = "container:Sensor-App.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -54,14 +54,14 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES"
-      notificationPayloadFile = "Sensor-App-WatchApp Extension/Support/PushNotificationPayload.apns">
+      notificationPayloadFile = "Sensor-App-WatchApp/Support/PushNotificationPayload.apns">
       <BuildableProductRunnable
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1527B04624C4AA620024DD78"
             BuildableName = "Sensor-App-WatchApp.app"
-            BlueprintName = "Sensor-App-WatchApp"
+            BlueprintName = "Sensor-App-Watch"
             ReferencedContainer = "container:Sensor-App.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -78,7 +78,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1527B04624C4AA620024DD78"
             BuildableName = "Sensor-App-WatchApp.app"
-            BlueprintName = "Sensor-App-WatchApp"
+            BlueprintName = "Sensor-App-Watch"
             ReferencedContainer = "container:Sensor-App.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

@@ -8,7 +8,7 @@
 
 // MARK: - Import
 import SwiftUI
-import SwiftUIGraph
+import Charts
 
 // MARK: - Struct
 struct LineGraphSubView: View {
@@ -17,7 +17,7 @@ struct LineGraphSubView: View {
     let settings = SettingsAPI()
 
     // MARK: - @State / @ObservedObject / @Binding
-    @ObservedObject var motionVM = CoreMotionViewModel()
+    @ObservedObject var motionVM = CoreMotionViewModel() // :CoreMotionViewModel 
     @ObservedObject var locationVM = CoreLocationViewModel()
     @ObservedObject var transformation = GraphArrayTransformation()
 
@@ -33,31 +33,25 @@ struct LineGraphSubView: View {
         } else if motionVM.altitudeArray.count != 0 {
             transformation.transformAltitude(altitudeModel: motionVM.altitudeArray, graph: showGraph)
         } else {
-            transformation.array = [0.0]
+            transformation.addToArray(0)
         }
     }
 
     // MARK: - Body - View
     var body: some View {
 
-        let lineGraphSettings: LineGraphSettings = LineGraphSettings(
-            maxPoints: settings.fetchUserSettings().graphMaxPoints,
-            decimalDigits: 3,
-            lineWitdh: 2,
-            lineColor: [.secondary],
-            textColor: .primary
-        )
+        #warning("FIX")
         transformGraphArray()
 
         // MARK: - Return View
-        return GeometryReader { geo in
+        return GeometryReader { _ in
             VStack {
-                LineGraphView(
-                    lineGraphPointsArray: transformation.array,
-                    lineGraphSettings: lineGraphSettings,
-                    graphWidth: geo.size.width - 10,
-                    graphHeight: 100
-                )
+                Chart(transformation.array) { item in
+                    LineMark(
+                        x: .value("", item.index),
+                        y: .value("", item.value)
+                    )
+                }
                 .frame(
                     minWidth: 150,
                     idealWidth: 200,
@@ -76,7 +70,7 @@ struct LineGraphSubView: View {
 struct LineGraphImplementation_Previews: PreviewProvider {
     static var previews: some View {
         ForEach([ColorScheme.light, .dark], id: \.self) { scheme in
-            LineGraphSubView(locationVM: CoreLocationViewModel(), showGraph: .speed)
+            LineGraphSubView(showGraph: .speed)
                 .colorScheme(scheme)
                 .previewLayout(.sizeThatFits)
         }
