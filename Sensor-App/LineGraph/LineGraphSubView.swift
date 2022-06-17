@@ -17,9 +17,9 @@ struct LineGraphSubView: View {
     let settings = SettingsAPI()
 
     // MARK: - @State / @ObservedObject / @Binding
-    @ObservedObject var motionVM = CoreMotionViewModel() // :CoreMotionViewModel 
+    @ObservedObject var motionVM = CoreMotionViewModel() // :CoreMotionViewModel
     @ObservedObject var locationVM = CoreLocationViewModel()
-    @ObservedObject var transformation = GraphArrayTransformation()
+    @StateObject var transformation = GraphArrayTransformation()
 
     // MARK: - Define Constants / Variables
     var showGraph: GraphDetail
@@ -40,9 +40,6 @@ struct LineGraphSubView: View {
     // MARK: - Body - View
     var body: some View {
 
-        #warning("FIX")
-        transformGraphArray()
-
         // MARK: - Return View
         return GeometryReader { _ in
             VStack {
@@ -52,6 +49,7 @@ struct LineGraphSubView: View {
                         y: .value("", item.value)
                     )
                 }
+                .chartXAxis(.hidden)
                 .frame(
                     minWidth: 150,
                     idealWidth: 200,
@@ -61,6 +59,12 @@ struct LineGraphSubView: View {
                     maxHeight: 100,
                     alignment: .leading
                 )
+            }
+            .onChange(of: locationVM.coreLocationArray.count) { _ in
+                transformGraphArray()
+            }
+            .onChange(of: motionVM.coreMotionArray.count) { _ in
+                transformGraphArray()
             }
         }
     }

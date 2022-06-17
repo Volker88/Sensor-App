@@ -1132,7 +1132,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "alias swiftlint=\"/opt/homebrew/bin/swiftlint\"\n\nif swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		15906B60258CCF800021E7BE /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1151,7 +1151,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "alias swiftlint=\"/opt/homebrew/bin/swiftlint\"\n\nif swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1456,7 +1456,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				MY_BUILD_VERSION = 20220617.1;
+				MY_BUILD_VERSION = 20220617.2;
 				MY_VERSION = 4.0.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "VolkerSchmitt88-at-icloud.com.Sensor-App";
@@ -1517,7 +1517,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				MY_BUILD_VERSION = 20220617.1;
+				MY_BUILD_VERSION = 20220617.2;
 				MY_VERSION = 4.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "VolkerSchmitt88-at-icloud.com.Sensor-App";
 				PRODUCT_NAME = "Sensor-App";

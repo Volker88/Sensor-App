@@ -17,12 +17,14 @@ class GraphArrayTransformation: ObservableObject {
     let settings = SettingsAPI()
 
     // MARK: - Define Constants / Variables
-    var array = [DataPoint]()
+    @Published var array = [DataPoint]()
     var showGraph: GraphDetail = .latitude
 
     // MARK: - Methods
     func transformLocation(locationModel: [LocationModel]?, graph: GraphDetail) {
         if locationModel!.count != 0 {
+            array.removeAll()
+
             _ = locationModel!.map { value in
 
                 let speed = calculationAPI.calculateSpeed(
@@ -45,12 +47,24 @@ class GraphArrayTransformation: ObservableObject {
     }
 
     func addToArray(_ value: Double) {
-        let dataPoint = DataPoint(index: array.count + 1, value: value)
+        let index = (array.last?.index ?? 0) + 1
+        let dataPoint = DataPoint(index: index, value: value)
         array.append(dataPoint)
+
+        if array.count > settings.fetchUserSettings().graphMaxPoints {
+            array.removeFirst()
+
+            for index in array.indices {
+                array[index].index = index
+            }
+
+        }
     }
 
     func transformMotion(motionModel: [MotionModel]?, graph: GraphDetail) { // swiftlint:disable:this line_length cyclomatic_complexity
         if motionModel!.count != 0 {
+            array.removeAll()
+
             _ = motionModel!.map { value in
                 switch graph {
                 case .accelerationXAxis: addToArray(value.accelerationXAxis)
@@ -100,6 +114,6 @@ class GraphArrayTransformation: ObservableObject {
 
 struct DataPoint: Identifiable {
     let id = UUID()
-    let index: Int
+    var index: Int
     let value: Double
 }
