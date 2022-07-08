@@ -9,15 +9,16 @@
 /* Begin PBXBuildFile section */
 		15118001285CE74500097128 /* GraphDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E3C824C4B05400FA2755 /* GraphDetailModel.swift */; };
 		15118002285CE74600097128 /* GraphDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E3C824C4B05400FA2755 /* GraphDetailModel.swift */; };
+		1514AAEC2878A0B000C4EC8C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1514AAEB2878A0B000C4EC8C /* ContentView.swift */; };
+		1514AAEE2878A16A00C4EC8C /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1514AAED2878A16A00C4EC8C /* AppState.swift */; };
+		1514AAF02878A2B200C4EC8C /* DetailColumn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1514AAEF2878A2B200C4EC8C /* DetailColumn.swift */; };
+		1514AAF22878B63100C4EC8C /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1514AAF12878B63100C4EC8C /* HomeScreen.swift */; };
 		151D316C24E955FB0090BC94 /* Sidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151D316B24E955FB0090BC94 /* Sidebar.swift */; };
-		151D316E24E956210090BC94 /* SidebarMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151D316D24E956210090BC94 /* SidebarMenu.swift */; };
-		151D317024E956380090BC94 /* SideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151D316F24E956380090BC94 /* SideMenuView.swift */; };
 		151D317224E956610090BC94 /* SwipeDirectionAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151D317124E956610090BC94 /* SwipeDirectionAPI.swift */; };
 		151D317324E956680090BC94 /* SwipeDirectionAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151D317124E956610090BC94 /* SwipeDirectionAPI.swift */; };
 		151D317524E956A10090BC94 /* SettingsOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151D317424E956A10090BC94 /* SettingsOverlay.swift */; };
-		151D317724E975560090BC94 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151D317624E975560090BC94 /* ContentView.swift */; };
 		151D317924E975F30090BC94 /* CustomNavigationViewStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151D317824E975F30090BC94 /* CustomNavigationViewStyle.swift */; };
-		1527B01B24C4AA240024DD78 /* Sensor_AppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1527B01A24C4AA240024DD78 /* Sensor_AppApp.swift */; };
+		1527B01B24C4AA240024DD78 /* SensorAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1527B01A24C4AA240024DD78 /* SensorAppApp.swift */; };
 		1527B01F24C4AA240024DD78 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1527B01E24C4AA240024DD78 /* Assets.xcassets */; };
 		1527B02224C4AA240024DD78 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1527B02124C4AA240024DD78 /* Preview Assets.xcassets */; };
 		1527B04A24C4AA630024DD78 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1527B04924C4AA630024DD78 /* Assets.xcassets */; };
@@ -58,7 +59,6 @@
 		1542E30724C4AF1000FA2755 /* AttitudeViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E2FD24C4AF1000FA2755 /* AttitudeViewUITests.swift */; };
 		1542E30824C4AF1000FA2755 /* LaunchPerformanceUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E2FE24C4AF1000FA2755 /* LaunchPerformanceUITests.swift */; };
 		1542E30924C4AF1000FA2755 /* SettingsViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E2FF24C4AF1000FA2755 /* SettingsViewUITests.swift */; };
-		1542E34E24C4AF5100FA2755 /* LineGraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E33F24C4AF5100FA2755 /* LineGraphTests.swift */; };
 		1542E34F24C4AF5100FA2755 /* ExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E34124C4AF5100FA2755 /* ExtensionTests.swift */; };
 		1542E35024C4AF5100FA2755 /* CalculationAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E34324C4AF5100FA2755 /* CalculationAPITests.swift */; };
 		1542E35124C4AF5100FA2755 /* SettingsAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E34424C4AF5100FA2755 /* SettingsAPITests.swift */; };
@@ -242,15 +242,16 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1514AAEB2878A0B000C4EC8C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		1514AAED2878A16A00C4EC8C /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		1514AAEF2878A2B200C4EC8C /* DetailColumn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailColumn.swift; sourceTree = "<group>"; };
+		1514AAF12878B63100C4EC8C /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
 		151D316B24E955FB0090BC94 /* Sidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sidebar.swift; sourceTree = "<group>"; };
-		151D316D24E956210090BC94 /* SidebarMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarMenu.swift; sourceTree = "<group>"; };
-		151D316F24E956380090BC94 /* SideMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuView.swift; sourceTree = "<group>"; };
 		151D317124E956610090BC94 /* SwipeDirectionAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeDirectionAPI.swift; sourceTree = "<group>"; };
 		151D317424E956A10090BC94 /* SettingsOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsOverlay.swift; sourceTree = "<group>"; };
-		151D317624E975560090BC94 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		151D317824E975F30090BC94 /* CustomNavigationViewStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationViewStyle.swift; sourceTree = "<group>"; };
 		1527B01724C4AA240024DD78 /* Sensor-App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sensor-App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1527B01A24C4AA240024DD78 /* Sensor_AppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sensor_AppApp.swift; sourceTree = "<group>"; };
+		1527B01A24C4AA240024DD78 /* SensorAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorAppApp.swift; sourceTree = "<group>"; };
 		1527B01E24C4AA240024DD78 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1527B02124C4AA240024DD78 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		1527B02324C4AA240024DD78 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -298,7 +299,6 @@
 		1542E2FD24C4AF1000FA2755 /* AttitudeViewUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttitudeViewUITests.swift; sourceTree = "<group>"; };
 		1542E2FE24C4AF1000FA2755 /* LaunchPerformanceUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchPerformanceUITests.swift; sourceTree = "<group>"; };
 		1542E2FF24C4AF1000FA2755 /* SettingsViewUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewUITests.swift; sourceTree = "<group>"; };
-		1542E33F24C4AF5100FA2755 /* LineGraphTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineGraphTests.swift; sourceTree = "<group>"; };
 		1542E34124C4AF5100FA2755 /* ExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionTests.swift; sourceTree = "<group>"; };
 		1542E34324C4AF5100FA2755 /* CalculationAPITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculationAPITests.swift; sourceTree = "<group>"; };
 		1542E34424C4AF5100FA2755 /* SettingsAPITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsAPITests.swift; sourceTree = "<group>"; };
@@ -420,17 +420,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		151D316A24E955E40090BC94 /* Sidebar */ = {
-			isa = PBXGroup;
-			children = (
-				151D316B24E955FB0090BC94 /* Sidebar.swift */,
-				151D316D24E956210090BC94 /* SidebarMenu.swift */,
-				151D316F24E956380090BC94 /* SideMenuView.swift */,
-				151D317424E956A10090BC94 /* SettingsOverlay.swift */,
-			);
-			path = Sidebar;
-			sourceTree = "<group>";
-		};
 		1527B00E24C4AA240024DD78 = {
 			isa = PBXGroup;
 			children = (
@@ -481,7 +470,6 @@
 				1527B02E24C4AA240024DD78 /* Info.plist */,
 				1542E34224C4AF5100FA2755 /* API */,
 				1542E34024C4AF5100FA2755 /* Customization */,
-				1542E33E24C4AF5100FA2755 /* LineGraph */,
 				1542E34624C4AF5100FA2755 /* View */,
 			);
 			path = "Sensor-AppTests";
@@ -575,14 +563,6 @@
 				1542E2F424C4AEA300FA2755 /* UnitTests.xctestplan */,
 			);
 			path = TestPlans;
-			sourceTree = "<group>";
-		};
-		1542E33E24C4AF5100FA2755 /* LineGraph */ = {
-			isa = PBXGroup;
-			children = (
-				1542E33F24C4AF5100FA2755 /* LineGraphTests.swift */,
-			);
-			path = LineGraph;
 			sourceTree = "<group>";
 		};
 		1542E34024C4AF5100FA2755 /* Customization */ = {
@@ -732,16 +712,17 @@
 		1542E3B224C4B05400FA2755 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				15445CCB24F2E942006940C6 /* Navigation */,
 				1535752624F26D3D00FA4A41 /* Acceleration */,
 				15445CC524F2E1F6006940C6 /* Altitude */,
 				15445CC024F2DF50006940C6 /* Attitude */,
 				15445CB124F2C018006940C6 /* Gravity */,
 				15445CB624F2D471006940C6 /* Gyroscope */,
-				15445CCB24F2E942006940C6 /* Home */,
 				158826ED24F29D7A00631B87 /* Location */,
 				15445CBB24F2D67C006940C6 /* Magnetometer */,
 				15445CCA24F2E935006940C6 /* Settings */,
-				151D316A24E955E40090BC94 /* Sidebar */,
+				153723352532FEA800061B24 /* ReleaseNotes.swift */,
+				1514AAF12878B63100C4EC8C /* HomeScreen.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -835,14 +816,17 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
-		15445CCB24F2E942006940C6 /* Home */ = {
+		15445CCB24F2E942006940C6 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
-				1527B01A24C4AA240024DD78 /* Sensor_AppApp.swift */,
-				151D317624E975560090BC94 /* ContentView.swift */,
-				153723352532FEA800061B24 /* ReleaseNotes.swift */,
+				1514AAED2878A16A00C4EC8C /* AppState.swift */,
+				1527B01A24C4AA240024DD78 /* SensorAppApp.swift */,
+				1514AAEB2878A0B000C4EC8C /* ContentView.swift */,
+				151D316B24E955FB0090BC94 /* Sidebar.swift */,
+				1514AAEF2878A2B200C4EC8C /* DetailColumn.swift */,
+				151D317424E956A10090BC94 /* SettingsOverlay.swift */,
 			);
-			path = Home;
+			path = Navigation;
 			sourceTree = "<group>";
 		};
 		15445CCC24F2E9DC006940C6 /* Customization */ = {
@@ -1163,11 +1147,13 @@
 				1542E3C924C4B05400FA2755 /* AltitudeView.swift in Sources */,
 				15445CBA24F2D4A5006940C6 /* GyroscopeList.swift in Sources */,
 				153C7695264FDD46001A0FD1 /* Extension+Binding.swift in Sources */,
+				1514AAEE2878A16A00C4EC8C /* AppState.swift in Sources */,
 				1542E3F324C4B1DF00FA2755 /* LocationModel.swift in Sources */,
 				1542E3F524C4B1E100FA2755 /* MapKitSettings.swift in Sources */,
 				1542E3E224C4B16D00FA2755 /* CoreMotionAPI.swift in Sources */,
 				153723CE25332CFD00061B24 /* ReleaseNotesModel.swift in Sources */,
 				1542E41024C4B21900FA2755 /* CoreLocationViewModel.swift in Sources */,
+				1514AAF22878B63100C4EC8C /* HomeScreen.swift in Sources */,
 				1542E3D924C4B05400FA2755 /* GraphArrayTransformation.swift in Sources */,
 				15445CBF24F2D6A1006940C6 /* MagnetometerList.swift in Sources */,
 				1542E3D124C4B05400FA2755 /* NotificationMessageView.swift in Sources */,
@@ -1206,7 +1192,6 @@
 				15441C0724EDA4A300DC7D41 /* DisclosureGroupModifier.swift in Sources */,
 				15445CC724F2E20D006940C6 /* AltitudeScreen.swift in Sources */,
 				1542E3FE24C4B1F300FA2755 /* SettingsForUserDefaults.swift in Sources */,
-				151D317024E956380090BC94 /* SideMenuView.swift in Sources */,
 				1535752B24F26D3D00FA4A41 /* AccelerationView.swift in Sources */,
 				1542E3DB24C4B05400FA2755 /* GraphDetailModel.swift in Sources */,
 				151D316C24E955FB0090BC94 /* Sidebar.swift in Sources */,
@@ -1216,16 +1201,16 @@
 				15445CB324F2C063006940C6 /* GravityScreen.swift in Sources */,
 				1542E3E424C4B17000FA2755 /* ExportAPI.swift in Sources */,
 				153C7692264FDB1D001A0FD1 /* SettingsViewModel.swift in Sources */,
+				1514AAF02878A2B200C4EC8C /* DetailColumn.swift in Sources */,
 				1542E3FB24C4B1ED00FA2755 /* NotificationTypes.swift in Sources */,
-				151D316E24E956210090BC94 /* SidebarMenu.swift in Sources */,
 				15442D8D24EAF1F600DCF523 /* CustomToolbar.swift in Sources */,
-				1527B01B24C4AA240024DD78 /* Sensor_AppApp.swift in Sources */,
+				1527B01B24C4AA240024DD78 /* SensorAppApp.swift in Sources */,
 				15445CBD24F2D693006940C6 /* MagnetometerScreen.swift in Sources */,
 				1542E40024C4B1F600FA2755 /* ToolBarButtonType.swift in Sources */,
 				158826EC24F276BD00631B87 /* AccelerationScreen.swift in Sources */,
 				1542E40F24C4B21700FA2755 /* CoreMotionViewModel.swift in Sources */,
+				1514AAEC2878A0B000C4EC8C /* ContentView.swift in Sources */,
 				1542E3D224C4B05400FA2755 /* NotificationView.swift in Sources */,
-				151D317724E975560090BC94 /* ContentView.swift in Sources */,
 				1542E3E824C4B19500FA2755 /* Extension+Double.swift in Sources */,
 				159B640324DEB5DC009A1E35 /* Extension_Map.swift in Sources */,
 				1542E3D524C4B05400FA2755 /* RefreshRateView.swift in Sources */,
@@ -1242,7 +1227,6 @@
 				1542E35824C4AF5100FA2755 /* GyroscopeViewTests.swift in Sources */,
 				1542E35624C4AF5100FA2755 /* MagnetometerViewTests.swift in Sources */,
 				1542E35424C4AF5100FA2755 /* AccelerationViewTests.swift in Sources */,
-				1542E34E24C4AF5100FA2755 /* LineGraphTests.swift in Sources */,
 				1542E34F24C4AF5100FA2755 /* ExtensionTests.swift in Sources */,
 				1542E35224C4AF5100FA2755 /* AppUpdatesTests.swift in Sources */,
 				1542E35924C4AF5100FA2755 /* AttitudeViewTests.swift in Sources */,
@@ -1456,7 +1440,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				MY_BUILD_VERSION = 20220617.2;
+				MY_BUILD_VERSION = 20220708.1;
 				MY_VERSION = 4.0.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "VolkerSchmitt88-at-icloud.com.Sensor-App";
@@ -1517,7 +1501,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				MY_BUILD_VERSION = 20220617.2;
+				MY_BUILD_VERSION = 20220708.1;
 				MY_VERSION = 4.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "VolkerSchmitt88-at-icloud.com.Sensor-App";
 				PRODUCT_NAME = "Sensor-App";

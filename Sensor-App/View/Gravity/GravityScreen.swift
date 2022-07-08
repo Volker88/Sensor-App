@@ -86,9 +86,6 @@ struct GravityScreen: View {
                     CustomToolbar(toolBarFunctionClosure: toolBarButtonTapped(button:))
                 }
 
-            // MARK: - SidebarMenu
-            SidebarMenu(sidebarOpen: $sideBarOpen)
-
             // MARK: - NotificationView()
             NotificationView(notificationMessage: $notificationMessage, showNotification: $showNotification)
         }
