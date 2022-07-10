@@ -6,8 +6,11 @@
 //
 
 import SwiftUI
+import StoreKit
 
 struct LocationScreen: View {
+
+    @Environment(\.requestReview) var requestReview
 
     let notificationAPI = NotificationAPI()
     let locationView = LocationView()
@@ -40,6 +43,11 @@ struct LocationScreen: View {
             NotificationView(notificationMessage: $notificationMessage, showNotification: $showNotification)
         }
         .navigationBarTitle("\(NSLocalizedString("Location", comment: "NavigationBar Title - Location"))", displayMode: .inline) // swiftlint:disable:this line_length
+        .onDisappear {
+            #if RELEASE
+            requestReview()
+            #endif
+        }
     }
 
     func toolBarButtonTapped(button: ToolBarButtonType) {
