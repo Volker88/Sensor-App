@@ -6,60 +6,31 @@
 //  Copyright © 2019 Volker Schmitt. All rights reserved.
 //
 
-// MARK: - Import
 import Foundation
 import CoreMotion
 
-// MARK: - Class Definition
 class CoreMotionAPI {
-
-    // MARK: - Initialize Classes
     let settings = SettingsAPI()
-
-    // MARK: - Initialize Classes
     private var motionManager = CMMotionManager()
     private var magnetManager = CMMagnetometerData()
     private var altimeterManager = CMAltimeter()
     private var attitude = CMAttitude()
 
-    // MARK: - Define Constants / Variables
     public var sensorUpdateInterval: Double
 
-    // MARK: - Initializer
     init() {
         sensorUpdateInterval = settings.fetchUserSettings().frequencySetting
     }
 
-    // MARK: - Closure to push MotionModel to ViewModel
-    ///
     ///  Completion Handler to receive MotionModel
-    ///
-    ///  - Note:
-    ///  - Remark:
-    ///
     ///  - Returns: CoreMotion
-    ///
     public var motionCompletionHandler: ((MotionModel) -> Void)?
 
-    ///
     ///  Completion Handler to receive AltitudeModel
-    ///
-    ///  - Note:
-    ///  - Remark:
-    ///
     ///  - Returns: AltitudeModel
-    ///
     public var altitudeCompletionHandler: ((AltitudeModel) -> Void)?
 
-    // MARK: - Methods
-    ///
     ///  Start Motion Sensor updates
-    ///
-    ///  - Note:
-    ///  - Remark:
-    ///
-    ///  - Returns:
-    ///
     public func motionUpdateStart() { // swiftlint:disable:this function_body_length
         motionManager.startDeviceMotionUpdates(using: .xTrueNorthZVertical, to: .main) { [self] (data, error) in
             guard let data = data, error == nil else {
@@ -169,14 +140,7 @@ class CoreMotionAPI {
         }
     }
 
-    ///
     ///  Stop Motion Sensor updates
-    ///
-    ///  - Note:
-    ///  - Remark:
-    ///
-    ///  - Returns:
-    ///
     public func motionUpdateStop() {
         motionManager.stopDeviceMotionUpdates()
         altimeterManager.stopRelativeAltitudeUpdates()

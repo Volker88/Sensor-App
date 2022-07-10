@@ -5,23 +5,11 @@
 //  Created by Volker Schmitt on 17.08.20.
 //
 
-// MARK: - Import
 import SwiftUI
 
-// MARK: - ToolBarView
 struct CustomToolbar: ToolbarContent {
-
-    // MARK: - @State / @ObservedObject / @Binding
-
-    // MARK: - Define Constants / Variables
     var toolBarFunctionClosure: (ToolBarButtonType) -> Void
 
-    // MARK: - Methods
-    func buttonTapped(type: ToolBarButtonType) {
-        toolBarFunctionClosure(type)
-    }
-
-    // MARK: - Body
     var body: some ToolbarContent {
 
         ToolbarItem(placement: .bottomBar) { Spacer() }
@@ -53,5 +41,9 @@ struct CustomToolbar: ToolbarContent {
         }
 
         ToolbarItem(placement: .bottomBar) { Spacer() }
+    }
+
+    func buttonTapped(type: ToolBarButtonType) {
+        toolBarFunctionClosure(type)
     }
 }

@@ -6,10 +6,8 @@
 //  Copyright © 2019 Volker Schmitt. All rights reserved.
 //
 
-// MARK: - Import
 import Foundation
 
-// MARK: - Struct Definition
 struct MotionModel: Hashable {
     let counter: Int
     let timestamp: String

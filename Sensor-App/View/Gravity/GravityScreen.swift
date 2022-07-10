@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct GravityScreen: View {
-
     let notificationAPI = NotificationAPI()
     let gravityView = GravityView()
 

@@ -9,7 +9,6 @@ import SwiftUI
 import StoreKit
 
 struct LocationScreen: View {
-
     @Environment(\.requestReview) var requestReview
 
     let notificationAPI = NotificationAPI()

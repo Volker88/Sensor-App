@@ -6,23 +6,13 @@
 //  Copyright © 2019 Volker Schmitt. All rights reserved.
 //
 
-// MARK: - Import
 import Foundation
 import SwiftUI
 
-// MARK: - Class Definition
 class NotificationAPI {
-
-    // MARK: - Define Constants / Variables
-
-    // MARK: - Methods
-    ///
     ///  Fetches the Notification Animation Settings
     ///
     ///  Fetches the settings for the notification animation and duration. All values are optional. Default values will be provided.
-    ///
-    ///  - Note:
-    ///  - Remark:
     ///
     ///  - Returns: NotificationAnimationModel
     ///
@@ -32,7 +22,6 @@ class NotificationAPI {
     ///  - Parameter damping: Spring damping
     ///  - Parameter velocity: Initial velocity
     ///  - Parameter duration: Duration how long the notification is shown
-    ///
     public func fetchNotificationAnimationSettings(
         offSetY: CGFloat? = -UIScreen.main.bounds.height / 3,
         mass: Double? = 1.0,
@@ -52,7 +41,6 @@ class NotificationAPI {
         return notificationAnimationSettings
     }
 
-    ///
     ///  Toggles notification based on type and duration
     ///
     ///  Generates the notification message and toggles the notification view
@@ -65,8 +53,6 @@ class NotificationAPI {
     ///  * deleted
     ///
     ///  - Note: Depending on the Notification Type, the notification message will be generated
-    ///  - Remark:
-    ///
     ///
     ///  - Returns: Notification Message, Boolean to toggle notification
     ///
@@ -89,16 +75,9 @@ class NotificationAPI {
         })
     }
 
-    ///
     ///  Fetches Notification Text based on notification Type
-    ///
-    ///  - Note:
-    ///  - Remark:
-    ///
     ///  - Returns: Notification Text
-    ///
     ///  - Parameter type: Notification Type
-    ///
     private func fetchNotificationText(type: NotificationTypes) -> String {
         var notificationText = ""
         switch type {

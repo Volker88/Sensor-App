@@ -6,13 +6,12 @@
 //  Copyright © 2019 Volker Schmitt. All rights reserved.
 //
 
-// MARK: - Import
 import XCTest
 @testable import Sensor_App
 
-// MARK: - Class Definition
 class CalculationAPITests: XCTestCase {
-
+    let calculationAPI = CalculationAPI()
+    
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
@@ -21,8 +20,6 @@ class CalculationAPITests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    // MARK: - Tests
-    let calculationAPI = CalculationAPI()
     func testSpeedCalculationAPI() throws {
         // Given
         let input = 10.0 // m/s
@@ -91,6 +88,4 @@ class CalculationAPITests: XCTestCase {
         XCTAssertEqual(feet, 3.28084, accuracy: 0.01, "1m does not equal 3.28084 feet")
         XCTAssertEqual(yard, 1.09361, accuracy: 0.01, "1m does not equal 1.09361 yard")
     }
-
-    // MARK: - Methods
 }

@@ -6,14 +6,11 @@
 //  Copyright © 2019 Volker Schmitt. All rights reserved.
 //
 
-// MARK: - Import
 import Foundation
 import SwiftUI
 
-// MARK: - Class Definition
 class SettingsAPI {
 
-    // MARK: - GPS Settings
     public let GPSSpeedSettings = [
         UnitSpeed.metersPerSecond.symbol,
         UnitSpeed.kilometersPerHour.symbol,
@@ -22,7 +19,6 @@ class SettingsAPI {
 
     public let GPSAccuracyOptions = ["Best", "10 Meter", "100 Meter", "Kilometer", "3 Kilometer"]
 
-    // MARK: - Altitude Settings
     public let altitudePressure = [
         UnitPressure.millibars.symbol,
         UnitPressure.bars.symbol,
@@ -43,12 +39,8 @@ class SettingsAPI {
         UnitLength.yards.symbol
     ]
 
-    // MARK: - UserDefaults
-    ///
     ///  Call this function to clear all UserDefaults
-    ///
     public func clearUserDefaults() {
-
         var userSettings = fetchUserSettings()
         let releaseNotes = userSettings.showReleaseNotes
         UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
@@ -64,9 +56,7 @@ class SettingsAPI {
     /// Read UserSettings
     ///
     /// This function returns UserSettings from UserDefaults and returns back standard settings if UserDefaults can't be fetched
-    ///
     /// - Returns: UserSettings
-    ///
     public func fetchUserSettings() -> UserSettings {
 
         var userSettings = UserSettings(
@@ -112,9 +102,7 @@ class SettingsAPI {
     /// Save UserSettings
     ///
     /// Save UserSettings to UserDefaults
-    ///
     /// - Parameter userSettings: Settings to save to UserDefaults
-    ///
     public func saveUserSettings(userSettings: UserSettings) {
         let encoder = JSONEncoder()
         let settings = userSettings
@@ -131,10 +119,8 @@ class SettingsAPI {
     /// Read MapKitSettings
     ///
     /// This function returns MapKitSettings from UserDefaults and returns back standard settings if MapKitSettings can't be fetched
-    ///
     /// - Precondition:iOS
     /// - Returns: UserSettings
-    ///
     @available(watchOS, unavailable)
     public func fetchMapKitSettings() -> MapKitSettings {
         var mapKitSettings = MapKitSettings(
@@ -165,10 +151,8 @@ class SettingsAPI {
     /// Save MapKitSettings
     ///
     /// Save MapKitSettings to UserDefaults
-    ///
     /// - Precondition:iOS
     /// - Parameter mapKitSettings: Settings to save to UserDefaults
-    ///
     @available(watchOS, unavailable)
     public func saveMapKitSettings(mapKitSettings: MapKitSettings) {
         let encoder = JSONEncoder()
@@ -183,17 +167,10 @@ class SettingsAPI {
         Log.shared.print("Save Settings: \(settings)")
     }
 
-    // MARK: - Methods
-    ///
     ///  Get  current timestamp
     ///
     ///  Get the current timestamp in dd-MM-yyyyy HH:mm:ss.SSS format
-    ///
-    ///  - Note:
-    ///  - Remark:
-    ///
     ///  - Returns: Current timestamp
-    ///
     public func getTimestamp() -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.setLocalizedDateFormatFromTemplate("ddMMyyyyHHmmssSSS")

@@ -5,25 +5,12 @@
 //  Created by Volker Schmitt on 23.08.20.
 //
 
-// MARK: - Import
 import SwiftUI
 
-// MARK: - Struct
 struct GravityList: View {
-
-    // MARK: - Initialize Classes
-
-    // MARK: - @State / @ObservedObject / @Binding
     @ObservedObject var motionVM: CoreMotionViewModel
 
-    // MARK: - Define Constants / Variables
-
-    // MARK: - Methods
-
-    // MARK: - Body - View
     var body: some View {
-
-        // MARK: - Return View
         List(motionVM.coreMotionArray.reversed(), id: \.self) { item in
             HStack {
                 Text("ID:\(item.counter)", comment: "GravityList - ID")
@@ -49,13 +36,9 @@ struct GravityList: View {
     }
 }
 
-// MARK: - Preview
 struct GravityList_Previews: PreviewProvider {
     static var previews: some View {
-        ForEach([ColorScheme.light, .dark], id: \.self) { scheme in
-            GravityList(motionVM: CoreMotionViewModel())
-                .colorScheme(scheme)
-                .previewLayout(.sizeThatFits)
-        }
+        GravityList(motionVM: CoreMotionViewModel())
+            .previewLayout(.sizeThatFits)
     }
 }

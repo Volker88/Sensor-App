@@ -6,19 +6,9 @@
 //  Copyright © 2019 Volker Schmitt. All rights reserved.
 //
 
-// MARK: - Import
-import Combine
-import SwiftUI
+import Foundation
 
-// MARK: - Class Definition
 class CoreMotionViewModel: ObservableObject {
-
-    // MARK: - Initialize Classes
-    let motionAPI = CoreMotionAPI()
-    let settings = SettingsAPI()
-
-    // MARK: - Define Constants / Variables
-    let debug = false
     @Published var coreMotionArray = [MotionModel]()
     @Published var altitudeArray = [AltitudeModel]()
     @Published var sensorUpdateInterval: Double = 1 {
@@ -27,12 +17,14 @@ class CoreMotionViewModel: ObservableObject {
         }
     }
 
-    // MARK: - Initializer
+    let motionAPI = CoreMotionAPI()
+    let settings = SettingsAPI()
+    let debug = false
+
     init() {
         sensorUpdateInterval = settings.fetchUserSettings().frequencySetting
     }
 
-    // MARK: - Methods
     func motionUpdateStart() {
         #if targetEnvironment(simulator)
         // swiftlint:disable line_length

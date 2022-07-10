@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct AccelerationScreen: View {
-
     let notificationAPI = NotificationAPI()
     let accelerationView = AccelerationView()
 

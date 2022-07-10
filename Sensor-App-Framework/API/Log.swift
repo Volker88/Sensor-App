@@ -5,14 +5,10 @@
 //  Created by Volker Schmitt on 29.08.20.
 //
 
-// MARK: - Import
 import Foundation
 import os
 
-// MARK: - Struct / Class Definition
 class Log {
-
-    // MARK: - Enum
     enum LogCategory: String {
         case scenePhase = "ScenePhase"
         case appUpdates = "AppUpdates"
@@ -22,23 +18,17 @@ class Log {
         case userDefaults = "UserDefaults"
     }
 
-    // MARK: - Define Constants / Variables
     static let shared = Log()
     private let bundleID = Bundle.main.bundleIdentifier
 
-    // MARK: - Initializer
     private init() {
     }
 
-    // MARK: - Methods
-    ///
     /// Write to Log
-    ///
     /// - Parameters:
     ///   - category: Log Category
     ///   - logType: Log Type
     ///   - message: Log Message
-    ///
     func add(_ category: LogCategory, _ logType: OSLogType, _ message: String) {
         let logger = Logger(subsystem: "\(bundleID!)", category: "\(category.rawValue)")
         switch logType {
@@ -57,11 +47,8 @@ class Log {
         }
     }
 
-    ///
     /// Print
-    ///
     /// - Parameter value: Any
-    ///
     func print(_ value: Any) {
         #if DEBUG
             Swift.print(value)

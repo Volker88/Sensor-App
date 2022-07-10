@@ -6,21 +6,15 @@
 //  Copyright © 2020 Volker Schmitt. All rights reserved.
 //
 
-// MARK: - Import
 import SwiftUI
-
-// MARK: - Class Definition
+// TODO: - Documentation
 class GraphArrayTransformation: ObservableObject {
+    @Published var array = [DataPoint]()
 
-    // MARK: - Initialize Classes
     let calculationAPI = CalculationAPI()
     let settings = SettingsAPI()
-
-    // MARK: - Define Constants / Variables
-    @Published var array = [DataPoint]()
     var showGraph: GraphDetail = .latitude
 
-    // MARK: - Methods
     func transformLocation(locationModel: [LocationModel]?, graph: GraphDetail) {
         if locationModel!.count != 0 {
             array.removeAll()

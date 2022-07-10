@@ -6,54 +6,19 @@
 //  Copyright © 2019 Volker Schmitt. All rights reserved.
 //
 
-// MARK: - Import
 import SwiftUI
 
-// MARK: - Struct
 struct MagnetometerView: View {
-
-    // MARK: - Initialize Classes
     let settings = SettingsAPI()
     let exportAPI = ExportAPI()
 
-    // MARK: - @State / @ObservedObject / @Binding
     @ObservedObject var motionVM = CoreMotionViewModel()
     @State private var showShareSheet = false
     @State private var fileToShare: URL?
-
-    // Show Graph
     @State private var showXAxis = false
     @State private var showYAxis = false
     @State private var showZAxis = false
 
-    // MARK: - Define Constants / Variables
-
-    // MARK: - Initializer
-
-    // MARK: - Methods
-    func shareCSV() {
-        motionVM.stopMotionUpdates()
-        var csvText = NSLocalizedString("ID;Time;X-Axis;Y-Axis;Z-Axis", comment: "Export CSV Headline - Magnetometer") + "\n" // swiftlint:disable:this line_length
-
-        _ = motionVM.coreMotionArray.map {
-            csvText += "\($0.counter);\($0.timestamp);\($0.magnetometerXAxis.localizedDecimal());\($0.magnetometerYAxis.localizedDecimal());\($0.magnetometerZAxis.localizedDecimal())\n" // swiftlint:disable:this line_length
-        }
-        fileToShare = exportAPI.getFile(exportText: csvText, filename: "magnetometer")
-    }
-
-    // MARK: - onAppear / onDisappear
-    func onAppear() {
-        // Start updating motion
-        motionVM.motionUpdateStart()
-        motionVM.sensorUpdateInterval = settings.fetchUserSettings().frequencySetting
-    }
-
-    func onDisappear() {
-        motionVM.stopMotionUpdates()
-        motionVM.coreMotionArray.removeAll()
-    }
-
-    // MARK: - Content
     var shareButton: some View {
         Button(action: {
             shareCSV()
@@ -62,10 +27,7 @@ struct MagnetometerView: View {
         }
     }
 
-    // MARK: - Body - View
     var body: some View {
-
-        // MARK: - Return View
         GeometryReader { geo in
             List {
                 Section(header: Text("Acceleration", comment: "AccelerationView - Section Header")) {
@@ -78,7 +40,7 @@ struct MagnetometerView: View {
                         label: {
                             Text("X-Axis: \(motionVM.coreMotionArray.last?.magnetometerXAxis ?? 0.0, specifier: "%.5f") µT", comment: "MagnetometerView - X-Axis") // swiftlint:disable:this line_length
                         })
-                        .disclosureGroupModifier(accessibility: "Toggle X-Axis Graph")
+                    .disclosureGroupModifier(accessibility: "Toggle X-Axis Graph")
 
                     DisclosureGroup(
                         isExpanded: $showYAxis,
@@ -89,7 +51,7 @@ struct MagnetometerView: View {
                         label: {
                             Text("Y-Axis: \(motionVM.coreMotionArray.last?.magnetometerYAxis ?? 0.0, specifier: "%.5f") µT", comment: "MagnetometerView - Y-Axis") // swiftlint:disable:this line_length
                         })
-                        .disclosureGroupModifier(accessibility: "Toggle Y-Axis Graph")
+                    .disclosureGroupModifier(accessibility: "Toggle Y-Axis Graph")
 
                     DisclosureGroup(
                         isExpanded: $showZAxis,
@@ -100,7 +62,7 @@ struct MagnetometerView: View {
                         label: {
                             Text("Z-Axis: \(motionVM.coreMotionArray.last?.magnetometerZAxis ?? 0.0, specifier: "%.5f") µT", comment: "MagnetometerView - Z-Axis") // swiftlint:disable:this line_length
                         })
-                        .disclosureGroupModifier(accessibility: "Toggle Z-Axis Graph")
+                    .disclosureGroupModifier(accessibility: "Toggle Z-Axis Graph")
                 }
 
                 Section(header: Text("Log", comment: "AccelerationView - Section Header"), footer: shareButton) {
@@ -132,16 +94,33 @@ struct MagnetometerView: View {
             ShareSheet(activityItems: [file])
         }
     }
+
+    func shareCSV() {
+        motionVM.stopMotionUpdates()
+        var csvText = NSLocalizedString("ID;Time;X-Axis;Y-Axis;Z-Axis", comment: "Export CSV Headline - Magnetometer") + "\n" // swiftlint:disable:this line_length
+
+        _ = motionVM.coreMotionArray.map {
+            csvText += "\($0.counter);\($0.timestamp);\($0.magnetometerXAxis.localizedDecimal());\($0.magnetometerYAxis.localizedDecimal());\($0.magnetometerZAxis.localizedDecimal())\n" // swiftlint:disable:this line_length
+        }
+        fileToShare = exportAPI.getFile(exportText: csvText, filename: "magnetometer")
+    }
+
+    func onAppear() {
+        // Start updating motion
+        motionVM.motionUpdateStart()
+        motionVM.sensorUpdateInterval = settings.fetchUserSettings().frequencySetting
+    }
+
+    func onDisappear() {
+        motionVM.stopMotionUpdates()
+        motionVM.coreMotionArray.removeAll()
+    }
 }
 
-// MARK: - Preview
 struct MagnetometerView_Previews: PreviewProvider {
     static var previews: some View {
-        ForEach([ColorScheme.light, .dark], id: \.self) { scheme in
-            NavigationView {
-                MagnetometerView()
-                    .colorScheme(scheme)
-            }
+        NavigationView {
+            MagnetometerView()
         }
     }
 }

@@ -6,10 +6,8 @@
 //  Copyright © 2020 Volker Schmitt. All rights reserved.
 //
 
-// MARK: - Import
 import Foundation
 
-// MARK: - MapKitSettings Enum
 enum MapType: String, Codable, CaseIterable {
     case standard = "Standard"
     case satellite = "Satellite"
@@ -19,7 +17,6 @@ enum MapType: String, Codable, CaseIterable {
     case mutedSandard = "Muted Standard"
 }
 
-// MARK: - MapKitSettings Struct
 struct MapKitSettings: Codable {
     var showsCompass: Bool
     var showsScale: Bool

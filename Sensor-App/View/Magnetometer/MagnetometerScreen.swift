@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct MagnetometerScreen: View {
-
     let notificationAPI = NotificationAPI()
     let magnetometerView = MagnetometerView()
 

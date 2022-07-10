@@ -6,45 +6,21 @@
 //  Copyright © 2019 Volker Schmitt. All rights reserved.
 //
 
-// MARK: - Import
 import SwiftUI
 
-// MARK: - Struct
 struct GyroscopeView: View {
-
-    // MARK: - Initialize Classes
     let settings = SettingsAPI()
 
-    // MARK: - @State / @ObservedObject / @Binding
     @ObservedObject var motionVM = CoreMotionViewModel()
     @State private var frequency = 1.0 // Default Frequency
 
-    // MARK: - Define Constants / Variables
-
-    // MARK: - Initializer
     init() {
         frequency = settings.fetchUserSettings().frequencySetting
         motionVM.sensorUpdateInterval = frequency
     }
 
-    // MARK: - Methods
-
-    // MARK: - onAppear / onDisappear
-    func onAppear() {
-        // Start updating motion
-        motionVM.motionUpdateStart()
-    }
-
-    func onDisappear() {
-        motionVM.stopMotionUpdates()
-        motionVM.coreMotionArray.removeAll()
-    }
-
-    // MARK: - Body - View
     var body: some View {
-
-        // MARK: - Return View
-        return List {
+        List {
             // swiftlint:disable line_length
             Text("X-Axis: \(motionVM.coreMotionArray.last?.gyroXAxis ?? 0.0, specifier: "%.5f") rad/s", comment: "GyroscopeView - X-Axis (watchOS)")
             Text("Y-Axis: \(motionVM.coreMotionArray.last?.gyroYAxis ?? 0.0, specifier: "%.5f") rad/s", comment: "GyroscopeView - Y-Axis (watchOS)")
@@ -56,9 +32,18 @@ struct GyroscopeView: View {
         .onAppear(perform: onAppear)
         .onDisappear(perform: onDisappear)
     }
+
+    func onAppear() {
+        // Start updating motion
+        motionVM.motionUpdateStart()
+    }
+
+    func onDisappear() {
+        motionVM.stopMotionUpdates()
+        motionVM.coreMotionArray.removeAll()
+    }
 }
 
-// MARK: - Preview
 struct GyroscopeView_Previews: PreviewProvider {
     static var previews: some View {
         Group {

@@ -8,28 +8,22 @@
 import SwiftUI
 
 struct ReleaseNotes: View {
+    @Environment(\.dismiss) var dismiss
 
-    // MARK: - Environment Objects
-    @Environment(\.presentationMode) var presentationMode
-
-    // MARK: - Initialize Classes
     let settings = SettingsAPI()
 
-    // MARK: - @State / @ObservedObject / @Binding
     @State private var showReleaseNotes = true
     @State private var releaseNotes: [ReleaseNotesModel]?
 
-    // MARK: - Content
     var closeButton: some View {
         Button(action: {
-            presentationMode.wrappedValue.dismiss()
+            dismiss()
         }) {
             Image(systemName: "xmark.circle")
                 .navigationBarItemModifier(accessibility: "Close")
         }
     }
 
-    // MARK: - Body
     var body: some View {
         NavigationView {
             List {
@@ -62,7 +56,6 @@ struct ReleaseNotes: View {
         }
     }
 
-    // MARK: - Methods
     func toggleSwitch(value: Bool) {
         var userSettings = settings.fetchUserSettings()
         userSettings.showReleaseNotes = value
@@ -82,12 +75,8 @@ struct ReleaseNotes: View {
     }
 }
 
-// MARK: - Preview
 struct ReleaseNotes_Previews: PreviewProvider {
     static var previews: some View {
-        ForEach([ColorScheme.light, .dark], id: \.self) { scheme in
-            ReleaseNotes()
-                .colorScheme(scheme)
-        }
+        ReleaseNotes()
     }
 }

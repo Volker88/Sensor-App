@@ -5,25 +5,12 @@
 //  Created by Volker Schmitt on 23.08.20.
 //
 
-// MARK: - Import
 import SwiftUI
 
-// MARK: - Struct
 struct GyroscopeList: View {
-
-    // MARK: - Initialize Classes
-
-    // MARK: - @State / @ObservedObject / @Binding
     @ObservedObject var motionVM: CoreMotionViewModel
 
-    // MARK: - Define Constants / Variables
-
-    // MARK: - Methods
-
-    // MARK: - Body - View
     var body: some View {
-
-        // MARK: - Return View
         List(motionVM.coreMotionArray.reversed(), id: \.self) { item in
             HStack {
                 Text("ID:\(item.counter)", comment: "GyroscopeList - ID")
@@ -49,13 +36,9 @@ struct GyroscopeList: View {
     }
 }
 
-// MARK: - Preview
 struct GyroscopeList_Previews: PreviewProvider {
     static var previews: some View {
-        ForEach([ColorScheme.light, .dark], id: \.self) { scheme in
-            GyroscopeList(motionVM: CoreMotionViewModel())
-                .colorScheme(scheme)
-                .previewLayout(.sizeThatFits)
-        }
+        GyroscopeList(motionVM: CoreMotionViewModel())
+            .previewLayout(.sizeThatFits)
     }
 }

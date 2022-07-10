@@ -6,11 +6,9 @@
 //  Copyright © 2019 Volker Schmitt. All rights reserved.
 //
 
-// MARK: - Import
 import XCTest
 @testable import Sensor_App
 
-// MARK: - Class Definition
 class ScreenshotUITests: BaseTestCase {
     func testScreenshot() throws {
         // Take Screenshot of Home View
@@ -78,7 +76,6 @@ class ScreenshotUITests: BaseTestCase {
         // app.navigationBars.buttons.element(boundBy: 0).tap()
     }
 
-    // MARK: - Methods
     func takeScreenshotOfCurrentView(name: String) {
         let fullScreenshot = XCUIScreen.main.screenshot()
 

@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct AltitudeScreen: View {
-
     let notificationAPI = NotificationAPI()
     let altitudeView = AltitudeView()
 

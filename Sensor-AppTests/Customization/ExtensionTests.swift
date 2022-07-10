@@ -6,13 +6,10 @@
 //  Copyright © 2020 Volker Schmitt. All rights reserved.
 //
 
-// MARK: - Import
 import XCTest
 @testable import Sensor_App
 
-// MARK: - Class Definition
 class ExtensionTests: XCTestCase {
-
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
@@ -21,7 +18,6 @@ class ExtensionTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    // MARK: - Tests
     func testDoubleExtensionRoundUp() throws {
         // Given
         let number = 100.000005
@@ -45,6 +41,4 @@ class ExtensionTests: XCTestCase {
         // Then
         XCTAssertEqual(rounded, 100.11111, "Rounded \(number) to \(rounded) does not equal 100.11111")
     }
-
-    // MARK: - Methods
 }

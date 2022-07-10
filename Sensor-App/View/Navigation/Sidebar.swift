@@ -73,7 +73,6 @@ struct Sidebar: View {
     }
 
     var body: some View {
-
         VStack(spacing: 0) {
             if sizeClass == .regular {
                 list

@@ -6,39 +6,31 @@
 //  Copyright © 2020 Volker Schmitt. All rights reserved.
 //
 
-// MARK: - Import
 import SwiftUI
 
-// MARK: - Struct / Class Definition
 class ExportAPI {
-
-    // MARK: - Methods
-    ///
     /// Export File
     ///
     /// Generate file and open Share Sheet
-    ///
     /// - Parameters:
     ///   - exportText: String
     ///   - filename: String
     ///   - fileExtension: String
-    ///
     /// - Returns: URL?
-    ///
     func getFile(exportText: String, filename: String, fileExtension: String = ".csv") -> URL? {
-           let fileName = "\(filename)\(fileExtension)"
-           let path = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(fileName)
+        let fileName = "\(filename)\(fileExtension)"
+        let path = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(fileName)
 
-           let exportText: String = exportText
+        let exportText: String = exportText
 
-           do {
-               try exportText.write(to: path!, atomically: true, encoding: String.Encoding.utf8)
+        do {
+            try exportText.write(to: path!, atomically: true, encoding: String.Encoding.utf8)
             Log.shared.add(.exportFile, .default, "\(path!)")
             Log.shared.add(.exportFile, .default, "\(exportText)")
-           } catch {
+        } catch {
             Log.shared.add(.exportFile, .fault, "\(error)")
-           }
+        }
 
-           return path
-       }
+        return path
+    }
 }

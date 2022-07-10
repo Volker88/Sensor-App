@@ -6,28 +6,13 @@
 //  Copyright © 2019 Volker Schmitt. All rights reserved.
 //
 
-// MARK: - Import
 import SwiftUI
 
-// MARK: - Struct
 struct ContentView: View {
-
-    // MARK: - Initialize Classes
-
-    // MARK: - @State / @ObservedObject / @Binding
     @State var showSettings = false
 
-    // MARK: - Define Constants / Variables
-
-    // MARK: - Initializer
-
-    // MARK: - Methods
-
-    // MARK: - Body
     var body: some View {
-
-        // MARK: - Return View
-        return List {
+        List {
             NavigationLink(destination: LocationView()) {
                 Text("Location", comment: "ContentView - Location (watchOS)")
             }
@@ -58,7 +43,6 @@ struct ContentView: View {
     }
 }
 
-// MARK: - Preview
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Group {

@@ -27,7 +27,6 @@ class BaseTestCase: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    // MARK: - Methods
     func moveToView(view: String) {
         app.navigationBars.buttons.element(boundBy: 0).tap()
         app.tables["Sidebar"].cells[view].buttons[view].tap()

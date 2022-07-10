@@ -6,10 +6,8 @@
 //  Copyright © 2020 Volker Schmitt. All rights reserved.
 //
 
-// MARK: - Import
 import Foundation
 
-// MARK: - UserSettings Struct
 struct UserSettings: Codable {
     var showReleaseNotes: Bool
     var GPSSpeedSetting: String

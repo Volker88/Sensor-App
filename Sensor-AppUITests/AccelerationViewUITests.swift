@@ -6,11 +6,9 @@
 //  Copyright © 2020 Volker Schmitt. All rights reserved.
 //
 
-// MARK: - Import
 import XCTest
 @testable import Sensor_App
 
-// MARK: - Class Definition
 class AccelerationViewUITests: BaseTestCase {
     func testAccelerationViewToolbarButtons() throws {
         // Go to Acceleration View

@@ -6,41 +6,17 @@
 //  Copyright © 2019 Volker Schmitt. All rights reserved.
 //
 
-// MARK: - Import
 import SwiftUI
 
-// MARK: - Struct
 struct LocationView: View {
-
-    // MARK: - Initialize Classes
     let locationAPI = CoreLocationAPI()
     let calculationAPI = CalculationAPI()
     let settings = SettingsAPI()
 
-    // MARK: - @State / @ObservedObject / @Binding
     @ObservedObject var locationVM = CoreLocationViewModel()
 
-    // MARK: - Define Constants / Variables
-
-    // MARK: - Initializer
-
-    // MARK: - Methods
-
-    // MARK: - onAppear / onDisappear
-    func onAppear() {
-        locationVM.startLocationUpdates()
-    }
-
-    func onDisappear() {
-        locationVM.stopLocationUpdates()
-        locationVM.coreLocationArray.removeAll()
-    }
-
-    // MARK: - Body - View
     var body: some View {
-
-        // MARK: - Return View
-        return List {
+        List {
             // swiftlint:disable line_length
             Text("Latitude: \(locationVM.coreLocationArray.last?.latitude ?? 0.0, specifier: "%.10f")° ± \(locationVM.coreLocationArray.last?.horizontalAccuracy ?? 0.0, specifier: "%.2f")m", comment: "LocationView - Latitude (watchOS)")
             Text("Longitude: \(locationVM.coreLocationArray.last?.longitude ?? 0.0, specifier: "%.10f")° ± \(locationVM.coreLocationArray.last?.horizontalAccuracy ?? 0.0, specifier: "%.2f")m", comment: "LocationView - Longitude (watchOS)")
@@ -53,11 +29,18 @@ struct LocationView: View {
         .font(.footnote)
         .onAppear(perform: onAppear)
         .onDisappear(perform: onDisappear)
+    }
 
+    func onAppear() {
+        locationVM.startLocationUpdates()
+    }
+
+    func onDisappear() {
+        locationVM.stopLocationUpdates()
+        locationVM.coreLocationArray.removeAll()
     }
 }
 
-// MARK: - Preview
 struct LocationView_Previews: PreviewProvider {
     static var previews: some View {
         Group {

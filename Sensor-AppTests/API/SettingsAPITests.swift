@@ -6,13 +6,12 @@
 //  Copyright © 2020 Volker Schmitt. All rights reserved.
 //
 
-// MARK: - Import
 import XCTest
 @testable import Sensor_App
 
-// MARK: - Class Definition
 class SettingsAPITests: XCTestCase {
-
+    let settingsAPI = SettingsAPI()
+    
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
@@ -21,8 +20,6 @@ class SettingsAPITests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    // MARK: - Tests
-    let settingsAPI = SettingsAPI()
     func testSaveAndReadFrequency() throws {
         // Given
         var settings = settingsAPI.fetchUserSettings()
@@ -87,6 +84,4 @@ class SettingsAPITests: XCTestCase {
         // Then
         XCTAssertEqual(height, "cm", "GPS Accuracy Setting should be cm but is \(height)")
     }
-
-    // MARK: - Methods
 }

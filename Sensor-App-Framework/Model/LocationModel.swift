@@ -6,10 +6,8 @@
 //  Copyright © 2019 Volker Schmitt. All rights reserved.
 //
 
-// MARK: - Import
 import Foundation
 
-// MARK: - Struct Definition
 struct LocationModel {
     let counter: Int // Counter
     var longitude: Double // Longitude in Degrees

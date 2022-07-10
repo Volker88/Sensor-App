@@ -6,11 +6,8 @@
 //  Copyright © 2019 Volker Schmitt. All rights reserved.
 //
 
-// MARK: - Import
-import Foundation
 import SwiftUI
 
-// MARK: - Struct Definition
 struct NotificationAnimationModel {
     let offSetY: CGFloat
     let springMass: Double

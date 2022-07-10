@@ -5,19 +5,12 @@
 //  Created by Volker Schmitt on 08.08.20.
 //
 
-// MARK: - Import
 import SwiftUI
 import MapKit
 
-// MARK: - Extension
 extension Map {
-
-    // MARK: - Round
-    ///
     /// MapStyle
-    ///
     /// - Returns: View
-    ///
     func mapStyle() -> some View {
         let settingsAPI = SettingsAPI()
         let mapKitSettings = settingsAPI.fetchMapKitSettings()

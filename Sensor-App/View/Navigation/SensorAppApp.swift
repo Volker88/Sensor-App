@@ -19,7 +19,7 @@ struct SensorAppApp: App {
         _appState = StateObject(wrappedValue: appState)
     }
 
-    @SceneBuilder var body: some Scene {
+    var body: some Scene {
         WindowGroup {
             ContentView()
                 .environmentObject(appState)

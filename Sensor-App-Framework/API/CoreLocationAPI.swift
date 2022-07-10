@@ -6,33 +6,18 @@
 //  Copyright © 2019 Volker Schmitt. All rights reserved.
 //
 
-// MARK: - Import
 import Foundation
 import CoreLocation
 
-// MARK: - Class Definition
 class CoreLocationAPI: CLLocationManager, CLLocationManagerDelegate {
-
-    // MARK: - Initialize Classes
-    let settings = SettingsAPI()
-
-    // MARK: - Initialize Classes
+    private let settings = SettingsAPI()
     private var locationManager: CLLocationManager = CLLocationManager()
 
-    // MARK: - Define Constants / Variables
-
-    // MARK: - Closure to push LocationModel to ViewModel
-    ///
     ///  Completion Handler to receive LocationModel Object
     ///
-    ///  - Note:
-    ///  - Remark:
-    ///
     ///  - Returns: LocationModel Object
-    ///
     public var locationCompletionHandler: ((LocationModel) -> Void)?
 
-    // MARK: - locationManager Methods
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = locations[locations.count - 1] // Last object from location Array
 
@@ -79,18 +64,9 @@ class CoreLocationAPI: CLLocationManager, CLLocationManagerDelegate {
         Log.shared.add(.coreLocation, .fault, "\(error)")
     }
 
-    // MARK: - Methods
-    // MARK: - Start / Stop GPS Method
-    ///
     ///  Start GPS updates
     ///
     ///   Starting GPS updates based on selected accuracy
-    ///
-    ///  - Note:
-    ///  - Remark:
-    ///
-    ///  - Returns:
-    ///
     public func startUpdatingGPS() { // Start getting GPS Coordinates
         // Define Accuracy based on selection - SettingsModel.GPSAccuracy
         let desiredAccuracy = settings.fetchUserSettings().GPSAccuracySetting
@@ -108,15 +84,7 @@ class CoreLocationAPI: CLLocationManager, CLLocationManagerDelegate {
         Log.shared.add(.coreLocation, .default, "Start Location Updates")
     }
 
-    ///
     ///  Stop GPS updates
-    ///
-    ///
-    ///  - Note:
-    ///  - Remark:
-    ///
-    ///  - Returns:
-    ///
     public func stopUpdatingGPS() {
         locationManager.delegate = self
         locationManager.stopUpdatingLocation()

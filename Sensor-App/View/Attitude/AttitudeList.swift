@@ -5,25 +5,12 @@
 //  Created by Volker Schmitt on 23.08.20.
 //
 
-// MARK: - Import
 import SwiftUI
 
-// MARK: - Struct
 struct AttitudeList: View {
-
-    // MARK: - Initialize Classes
-
-    // MARK: - @State / @ObservedObject / @Binding
     @ObservedObject var motionVM: CoreMotionViewModel
 
-    // MARK: - Define Constants / Variables
-
-    // MARK: - Methods
-
-    // MARK: - Body - View
     var body: some View {
-
-        // MARK: - Return View
         List(motionVM.coreMotionArray.reversed(), id: \.self) { item in
             HStack {
                 Text("ID:\(item.counter)", comment: "AttitudeList - ID")
@@ -51,13 +38,9 @@ struct AttitudeList: View {
     }
 }
 
-// MARK: - Preview
 struct AttitudeList_Previews: PreviewProvider {
     static var previews: some View {
-        ForEach([ColorScheme.light, .dark], id: \.self) { scheme in
-            AttitudeList(motionVM: CoreMotionViewModel())
-                .colorScheme(scheme)
-                .previewLayout(.sizeThatFits)
-        }
+        AttitudeList(motionVM: CoreMotionViewModel())
+            .previewLayout(.sizeThatFits)
     }
 }

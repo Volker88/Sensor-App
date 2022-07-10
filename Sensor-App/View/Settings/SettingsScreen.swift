@@ -6,20 +6,14 @@
 //  Copyright © 2019 Volker Schmitt. All rights reserved.
 //
 
-// MARK: - Import
 import SwiftUI
 
-// MARK: - Struct
 struct SettingsScreen: View {
+    @Environment(\.dismiss) var dismiss
 
-    // MARK: - Environment Objects
-    @Environment(\.presentationMode) var presentationMode
-
-    // MARK: - Initialize Classes
     let settings = SettingsAPI()
     let notificationAPI = NotificationAPI()
 
-    // MARK: - @State / @ObservedObject / @Binding
     @StateObject var settingsVM = SettingsViewModel()
     @State private var notificationMessage = ""
     @State private var showNotification = false
@@ -49,15 +43,188 @@ struct SettingsScreen: View {
     // Chart
     @State private var graphMaxPoints = 0.0
 
-    // MARK: - Define Constants / Variables
     let notificationSettings: NotificationAnimationModel
 
-    // MARK: - Initializer
     init() {
         notificationSettings = notificationAPI.fetchNotificationAnimationSettings()
     }
 
-    // MARK: - Methods
+    var closeButton: some View {
+        Button(action: {
+            discardView()
+        }) {
+            Image(systemName: "xmark.circle")
+                .accessibility(identifier: "Close")
+                .accessibilityIdentifier("Close")
+        }
+    }
+
+    var body: some View {
+        NavigationStack {
+            ZStack {
+                Form {
+                    Section(header:
+                                Text("General", comment: "SettingsScreen - General Section")
+                    ) {
+                        Toggle(isOn: $showReleaseNotes, label: {
+                            Text("Show Release Notes")
+                        })
+
+                        Picker(
+                            selection: $settingsVM.currentAppIconIndex.onChange(settingsVM.changeIcon),
+                            label: Text("App Icon")
+                        ) {
+                            ForEach(0..<settingsVM.iconNames.count, id: \.self) { index in
+                                Image(uiImage: UIImage(named: "\(settingsVM.iconNames[index])") ?? UIImage())
+                                    .resizable()
+                                    .scaledToFit()
+                                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                                    .frame(width: 50)
+                            }
+                        }
+                    }
+
+                    Section(header:
+                                Text("Location", comment: "SettingsScreen - Location Section")
+                    ) {
+                        Picker(
+                            selection: $speedSetting,
+                            label: Text("Speed Setting",
+                                        comment: "SettingsScreen - Speed Setting")
+                        ) {
+                            ForEach(0 ..< settings.GPSSpeedSettings.count, id: \.self) {
+                                Text(settings.GPSSpeedSettings[$0]).tag($0)
+                            }
+                        }
+                        .accessibility(identifier: "Speed Settings")
+                        Picker(
+                            selection: $accuracySetting,
+                            label: Text("Accuracy", comment: "SettingsScreen - Accuracy")
+                        ) {
+                            ForEach(0 ..< settings.GPSAccuracyOptions.count, id: \.self) {
+                                Text(settings.GPSAccuracyOptions[$0]).tag($0)
+                            }
+                        }
+                        .accessibility(identifier: "GPS Accuracy Settings")
+                    }
+
+                    Section(header:
+                                Text("Map", comment: "SettingsScreen - Map Section")
+                    ) {
+                        //                    Picker(selection: $selectedMapType, label: Text("Type", comment: "SettingsScreen - Type")) {
+                        //                        ForEach(0 ..< MapType.allCases.count, id: \.self) {
+                        //                            Text(MapType.allCases[$0].rawValue).tag($0)
+                        //                        }
+                        //                    }
+                        //                    .accessibility(identifier: "MapType Picker")
+
+                        //                    Toggle(isOn: $showsCompass) {
+                        //                        Text("Compass", comment: "SettingsScreen - Compass") // FIXME: - Not Working
+                        //                    }.accessibility(identifier: "Compass Toggle")
+                        //
+                        //                    Toggle(isOn: $showsScale) {
+                        //                        Text("Scale", comment: "SettingsScreen - Scale")
+                        //                    }.accessibility(identifier: "Scale Toggle")
+                        //
+                        //                    Toggle(isOn: $showsBuildings) {
+                        //                        Text("Buildings", comment: "SettingsScreen - Buildings")
+                        //                    }.accessibility(identifier: "Buildings Toggle")
+                        //
+                        //                    Toggle(isOn: $showsTraffic) {
+                        //                        Text("Traffic", comment: "SettingsScreen - Traffic")
+                        //                    }.accessibility(identifier: "Traffic Toggle")
+                        //
+                        //                    Toggle(isOn: $isRotateEnabled) {
+                        //                        Text("Rotation", comment: "SettingsScreen - Rotation") // FIXME: - Not Working
+                        //                    }.accessibility(identifier: "Rotate Toggle")
+                        //
+                        //                    Toggle(isOn: $isScrollEnabled) {
+                        //                        Text("Scroll", comment: "SettingsScreen - Scroll")  // FIXME: - Not Working
+                        //                    }.accessibility(identifier: "Scroll Toggle")
+
+                        Stepper(value: $zoom, in: 100...100000, step: 100) {
+                            Text("Zoom: \(zoom / 1000, specifier: "%.1f") km", comment: "SettingsScreen - Zoom")
+                        }.accessibility(identifier: "Zoom Stepper")
+
+                        HStack {
+                            Text("0.1 km", comment: "SettingsScreen - 0.1km")
+                            Slider(value: $zoom, in: 100...100000, step: 100)
+                                .accessibility(identifier: "Zoom Slider")
+                                .accessibility(label: Text("Zoom:", comment: "SettingsScreen - ZoomSlider"))
+                                .accessibility(value: Text("\(zoom, specifier: "%.1f") km", comment: "SettingsScreen - ZoomSlider")) // swiftlint:disable:this line_length
+                            Text("100 km", comment: "SettingsScreen - 100km")
+                        }
+                    }
+
+                    Section(header:
+                                Text("Altitude", comment: "SettingsScreen - Altitude Section")
+                    ) {
+                        Picker(
+                            selection: $pressureSetting,
+                            label: Text("Pressure", comment: "SettingsScreen - Pressure")
+                        ) {
+                            ForEach(0 ..< settings.altitudePressure.count, id: \.self) {
+                                Text(settings.altitudePressure[$0]).tag($0)
+                            }
+                        }
+                        .accessibility(identifier: "Pressure Settings")
+                        Picker(selection: $heightSetting, label: Text("Height", comment: "SettingsScreen - Height")) {
+                            ForEach(0 ..< settings.altitudeHeight.count, id: \.self) {
+                                Text(settings.altitudeHeight[$0]).tag($0)
+                            }
+                        }
+                        .accessibility(identifier: "Height Settings")
+                    }
+
+                    Section(header:
+                                Text("Graph", comment: "SettingsScreen - Graph Section")
+                    ) {
+                        Stepper(value: $graphMaxPoints, in: 1...1000, step: 1) {
+                            Text("Max Points: \(Int(graphMaxPoints))", comment: "SettingsScreen - Max Points")
+                        }.accessibility(identifier: "Max Points Stepper")
+                        HStack {
+                            Text("1", comment: "SettingsScreen - 1")
+                            Slider(value: $graphMaxPoints, in: 1...1000, step: 1)
+                                .accessibility(identifier: "Max Points Slider")
+                                .accessibility(label: Text("Maximum Points:", comment: "SettingsScreen - Max Points Slider")) // swiftlint:disable:this line_length
+                                .accessibility(value: Text("\(graphMaxPoints, specifier: "%.0f")", comment: "SettingsScreen - Max Points Slider")) // swiftlint:disable:this line_length
+                            Text("1000", comment: "SettingsScreen - 1000")
+                        }
+                    }
+
+                    Section {
+                        Button(action: {
+                            saveSettings()
+                        }) {
+                            // Label(NSLocalizedString("Discard Changes", comment: "NagvigationBarButton - Save"), systemImage: "return")
+                            Text("Save", comment: "NagvigationBarButton - Save")
+                                .accessibility(label: Text("Save", comment: "NagvigationBarButton - Save"))
+                                .navigationBarItemModifier(accessibility: "Save Settings")
+                        }
+
+                        Button(action: {
+                            discardChanges(showNotification: true)
+                        }) {
+                            // Label(NSLocalizedString("Discard ", comment: "NagvigationBarButton - Discard Changes"), systemImage: "gobackward")
+                            Text("Discard", comment: "NagvigationBarButton - Discard Changes")
+                                .accessibility(
+                                    label: Text("Discard", comment: "NagvigationBarButton - Discard Changes")
+                                )
+                                .navigationBarItemModifier(accessibility: "Reset Settings")
+                        }
+                    }
+                }
+                .navigationBarTitle("\(NSLocalizedString("Settings", comment: "NavigationBar Title - Settings"))", displayMode: .inline) // swiftlint:disable:this line_length
+
+                NotificationView(notificationMessage: $notificationMessage, showNotification: $showNotification)
+            }
+            .navigationBarItems(leading: closeButton)
+        }
+        .onAppear {
+            discardChanges(showNotification: false)
+        }
+    }
+
     func saveSettings() {
         // User Settings
         var userSettings = settings.fetchUserSettings()
@@ -123,197 +290,12 @@ struct SettingsScreen: View {
 
     func discardView() {
         discardChanges(showNotification: false)
-        presentationMode.wrappedValue.dismiss()
+        dismiss()
     }
-
-    // MARK: - onAppear / onDisappear
-
-    // MARK: - Content
-    var closeButton: some View {
-        Button(action: {
-            discardView()
-        }) {
-            Image(systemName: "xmark.circle")
-                .accessibility(identifier: "Close")
-                .accessibilityIdentifier("Close")
-        }
-    }
-
-    var content: some View {
-        ZStack {
-            Form {
-                Section(header:
-                            Text("General", comment: "SettingsScreen - General Section")
-                ) {
-                    Toggle(isOn: $showReleaseNotes, label: {
-                        Text("Show Release Notes")
-                    })
-
-                    Picker(
-                        selection: $settingsVM.currentAppIconIndex.onChange(settingsVM.changeIcon),
-                        label: Text("App Icon")
-                    ) {
-                        ForEach(0..<settingsVM.iconNames.count) { index in
-                            Image(uiImage: UIImage(named: "\(settingsVM.iconNames[index])") ?? UIImage())
-                                .resizable()
-                                .scaledToFit()
-                                .clipShape(RoundedRectangle(cornerRadius: 10))
-                                .frame(width: 50)
-                        }
-                    }
-                }
-
-                Section(header:
-                            Text("Location", comment: "SettingsScreen - Location Section")
-                ) {
-                    Picker(
-                        selection: $speedSetting,
-                        label: Text("Speed Setting",
-                                    comment: "SettingsScreen - Speed Setting")
-                    ) {
-                        ForEach(0 ..< settings.GPSSpeedSettings.count, id: \.self) {
-                            Text(settings.GPSSpeedSettings[$0]).tag($0)
-                        }
-                    }
-                    .accessibility(identifier: "Speed Settings")
-                    Picker(selection: $accuracySetting, label: Text("Accuracy", comment: "SettingsScreen - Accuracy")) {
-                        ForEach(0 ..< settings.GPSAccuracyOptions.count, id: \.self) {
-                            Text(settings.GPSAccuracyOptions[$0]).tag($0)
-                        }
-                    }
-                    .accessibility(identifier: "GPS Accuracy Settings")
-                }
-
-                Section(header:
-                            Text("Map", comment: "SettingsScreen - Map Section")
-                ) {
-                    //                    Picker(selection: $selectedMapType, label: Text("Type", comment: "SettingsScreen - Type")) {
-                    //                        ForEach(0 ..< MapType.allCases.count, id: \.self) {
-                    //                            Text(MapType.allCases[$0].rawValue).tag($0)
-                    //                        }
-                    //                    }
-                    //                    .accessibility(identifier: "MapType Picker")
-
-                    //                    Toggle(isOn: $showsCompass) {
-                    //                        Text("Compass", comment: "SettingsScreen - Compass") // FIXME: - Not Working
-                    //                    }.accessibility(identifier: "Compass Toggle")
-                    //
-                    //                    Toggle(isOn: $showsScale) {
-                    //                        Text("Scale", comment: "SettingsScreen - Scale")
-                    //                    }.accessibility(identifier: "Scale Toggle")
-                    //
-                    //                    Toggle(isOn: $showsBuildings) {
-                    //                        Text("Buildings", comment: "SettingsScreen - Buildings")
-                    //                    }.accessibility(identifier: "Buildings Toggle")
-                    //
-                    //                    Toggle(isOn: $showsTraffic) {
-                    //                        Text("Traffic", comment: "SettingsScreen - Traffic")
-                    //                    }.accessibility(identifier: "Traffic Toggle")
-                    //
-                    //                    Toggle(isOn: $isRotateEnabled) {
-                    //                        Text("Rotation", comment: "SettingsScreen - Rotation") // FIXME: - Not Working
-                    //                    }.accessibility(identifier: "Rotate Toggle")
-                    //
-                    //                    Toggle(isOn: $isScrollEnabled) {
-                    //                        Text("Scroll", comment: "SettingsScreen - Scroll")  // FIXME: - Not Working
-                    //                    }.accessibility(identifier: "Scroll Toggle")
-
-                    Stepper(value: $zoom, in: 100...100000, step: 100) {
-                        Text("Zoom: \(zoom / 1000, specifier: "%.1f") km", comment: "SettingsScreen - Zoom")
-                    }.accessibility(identifier: "Zoom Stepper")
-
-                    HStack {
-                        Text("0.1 km", comment: "SettingsScreen - 0.1km")
-                        Slider(value: $zoom, in: 100...100000, step: 100)
-                            .accessibility(identifier: "Zoom Slider")
-                            .accessibility(label: Text("Zoom:", comment: "SettingsScreen - ZoomSlider"))
-                            .accessibility(value: Text("\(zoom, specifier: "%.1f") km", comment: "SettingsScreen - ZoomSlider")) // swiftlint:disable:this line_length
-                        Text("100 km", comment: "SettingsScreen - 100km")
-                    }
-                }
-
-                Section(header:
-                            Text("Altitude", comment: "SettingsScreen - Altitude Section")
-                ) {
-                    Picker(selection: $pressureSetting, label: Text("Pressure", comment: "SettingsScreen - Pressure")) {
-                        ForEach(0 ..< settings.altitudePressure.count, id: \.self) {
-                            Text(settings.altitudePressure[$0]).tag($0)
-                        }
-                    }
-                    .accessibility(identifier: "Pressure Settings")
-                    Picker(selection: $heightSetting, label: Text("Height", comment: "SettingsScreen - Height")) {
-                        ForEach(0 ..< settings.altitudeHeight.count, id: \.self) {
-                            Text(settings.altitudeHeight[$0]).tag($0)
-                        }
-                    }
-                    .accessibility(identifier: "Height Settings")
-                }
-
-                Section(header:
-                            Text("Graph", comment: "SettingsScreen - Graph Section")
-                ) {
-                    Stepper(value: $graphMaxPoints, in: 1...1000, step: 1) {
-                        Text("Max Points: \(Int(graphMaxPoints))", comment: "SettingsScreen - Max Points")
-                    }.accessibility(identifier: "Max Points Stepper")
-                    HStack {
-                        Text("1", comment: "SettingsScreen - 1")
-                        Slider(value: $graphMaxPoints, in: 1...1000, step: 1)
-                            .accessibility(identifier: "Max Points Slider")
-                            .accessibility(label: Text("Maximum Points:", comment: "SettingsScreen - Max Points Slider")) // swiftlint:disable:this line_length
-                            .accessibility(value: Text("\(graphMaxPoints, specifier: "%.0f")", comment: "SettingsScreen - Max Points Slider")) // swiftlint:disable:this line_length
-                        Text("1000", comment: "SettingsScreen - 1000")
-                    }
-                }
-
-                Section {
-                    Button(action: {
-                        saveSettings()
-                    }) {
-                        // Label(NSLocalizedString("Discard Changes", comment: "NagvigationBarButton - Save"), systemImage: "return")
-                        Text("Save", comment: "NagvigationBarButton - Save")
-                            .accessibility(label: Text("Save", comment: "NagvigationBarButton - Save"))
-                            .navigationBarItemModifier(accessibility: "Save Settings")
-                    }
-
-                    Button(action: {
-                        discardChanges(showNotification: true)
-                    }) {
-                        // Label(NSLocalizedString("Discard ", comment: "NagvigationBarButton - Discard Changes"), systemImage: "gobackward")
-                        Text("Discard", comment: "NagvigationBarButton - Discard Changes")
-                            .accessibility(label: Text("Discard", comment: "NagvigationBarButton - Discard Changes"))
-                            .navigationBarItemModifier(accessibility: "Reset Settings")
-                    }
-                }
-            }
-            .navigationBarTitle("\(NSLocalizedString("Settings", comment: "NavigationBar Title - Settings"))", displayMode: .inline) // swiftlint:disable:this line_length
-
-            // MARK: - NotificationView()
-            NotificationView(notificationMessage: $notificationMessage, showNotification: $showNotification)
-        }
-    }
-
-    // MARK: - Body - View
-    var body: some View {
-
-        // MARK: - Return View
-        NavigationView {
-            content
-                .navigationBarItems(leading: closeButton)
-
-        }
-        .onAppear {
-            discardChanges(showNotification: false)
-        }
-    }
-
 }
 
-// MARK: - Preview
 struct SettingsScreen_Previews: PreviewProvider {
     static var previews: some View {
-        ForEach([ColorScheme.light, .dark], id: \.self) { scheme in
-            SettingsScreen()
-                .colorScheme(scheme)
-        }
+        SettingsScreen()
     }
 }

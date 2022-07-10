@@ -8,8 +8,8 @@
 import SwiftUI
 
 @main
-struct Sensor_AppApp: App { // swiftlint:disable:this type_name
-    @SceneBuilder var body: some Scene {
+struct SensorAppApp: App {
+    var body: some Scene {
         WindowGroup {
             NavigationView {
                 ContentView()

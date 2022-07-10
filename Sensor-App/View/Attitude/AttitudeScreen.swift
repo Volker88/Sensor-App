@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct AttitudeScreen: View {
-
     let notificationAPI = NotificationAPI()
     let attitudeView = AttitudeView()
 

@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct GyroscopeScreen: View {
-
     let notificationAPI = NotificationAPI()
     let gyroscopeView = GyroscopeView()
 

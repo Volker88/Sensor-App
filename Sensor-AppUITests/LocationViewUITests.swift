@@ -6,11 +6,9 @@
 //  Copyright © 2019 Volker Schmitt. All rights reserved.
 //
 
-// MARK: - Import
 import XCTest
 @testable import Sensor_App
 
-// MARK: - Class Definition
 class LocationViewUITests: BaseTestCase {
     func testLocationViewToolbarButtons() throws {
         // Go to Location View

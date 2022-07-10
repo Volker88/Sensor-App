@@ -6,55 +6,20 @@
 //  Copyright © 2019 Volker Schmitt. All rights reserved.
 //
 
-// MARK: - Import
 import SwiftUI
 
-// MARK: - Struct
 struct AttitudeView: View {
-
-    // MARK: - Initialize Classes
     let settings = SettingsAPI()
     let exportAPI = ExportAPI()
 
-    // MARK: - @State / @ObservedObject / @Binding
     @ObservedObject var motionVM = CoreMotionViewModel()
     @State private var showShareSheet = false
     @State private var fileToShare: URL?
-
-    // Show Graph
     @State private var showRoll = false
     @State private var showPitch = false
     @State private var showYaw = false
     @State private var showHeading = false
 
-    // MARK: - Define Constants / Variables
-
-    // MARK: - Initializer
-
-    // MARK: - Methods
-    func shareCSV() {
-        motionVM.stopMotionUpdates()
-        var csvText = NSLocalizedString("ID;Time;Roll;Pitch;Yaw;Heading", comment: "Export CSV Headline - attitude") + "\n" // swiftlint:disable:this line_length
-
-        _ = motionVM.coreMotionArray.map {
-            csvText += "\($0.counter);\($0.timestamp);\($0.attitudeRoll.localizedDecimal());\($0.attitudePitch.localizedDecimal());\($0.attitudeYaw.localizedDecimal());\($0.attitudeHeading.localizedDecimal())\n" // swiftlint:disable:this line_length
-        }
-        fileToShare = exportAPI.getFile(exportText: csvText, filename: "attitude")
-    }
-
-    // MARK: - onAppear / onDisappear
-    func onAppear() {
-        // Start updating motion
-        motionVM.motionUpdateStart()
-        motionVM.sensorUpdateInterval = settings.fetchUserSettings().frequencySetting
-    }
-
-    func onDisappear() {
-        motionVM.stopMotionUpdates()
-        motionVM.coreMotionArray.removeAll()
-    }
-
-    // MARK: - Content
     var shareButton: some View {
         Button(action: {
             shareCSV()
@@ -63,10 +28,7 @@ struct AttitudeView: View {
         }
     }
 
-    // MARK: - Body - View
     var body: some View {
-
-        // MARK: - Return View
         GeometryReader { geo in
             List {
                 Section(header: Text("Attitude", comment: "AttitudeView - Section Header")) {
@@ -79,7 +41,7 @@ struct AttitudeView: View {
                         label: {
                             Text("Roll: \((motionVM.coreMotionArray.last?.attitudeRoll ?? 0.0) * 180 / .pi, specifier: "%.5f")°", comment: "AttitudeView - Roll") // swiftlint:disable:this line_length
                         })
-                        .disclosureGroupModifier(accessibility: "Toggle Roll Graph")
+                    .disclosureGroupModifier(accessibility: "Toggle Roll Graph")
 
                     DisclosureGroup(
                         isExpanded: $showPitch,
@@ -90,7 +52,7 @@ struct AttitudeView: View {
                         label: {
                             Text("Pitch: \((motionVM.coreMotionArray.last?.attitudePitch ?? 0.0) * 180 / .pi, specifier: "%.5f")°", comment: "AttitudeView - Pitch") // swiftlint:disable:this line_length
                         })
-                        .disclosureGroupModifier(accessibility: "Toggle Pitch Graph")
+                    .disclosureGroupModifier(accessibility: "Toggle Pitch Graph")
 
                     DisclosureGroup(
                         isExpanded: $showYaw,
@@ -101,7 +63,7 @@ struct AttitudeView: View {
                         label: {
                             Text("Yaw: \((motionVM.coreMotionArray.last?.attitudeYaw ?? 0.0) * 180 / .pi, specifier: "%.5f")°", comment: "AttitudeView - Yaw") // swiftlint:disable:this line_length
                         })
-                        .disclosureGroupModifier(accessibility: "Toggle Yaw Graph")
+                    .disclosureGroupModifier(accessibility: "Toggle Yaw Graph")
 
                     DisclosureGroup(
                         isExpanded: $showHeading,
@@ -112,7 +74,7 @@ struct AttitudeView: View {
                         label: {
                             Text("Heading: \(motionVM.coreMotionArray.last?.attitudeHeading ?? 0.0, specifier: "%.5f")°", comment: "AttitudeView - Heading") // swiftlint:disable:this line_length
                         })
-                        .disclosureGroupModifier(accessibility: "Toggle Heading Graph")
+                    .disclosureGroupModifier(accessibility: "Toggle Heading Graph")
                 }
 
                 Section(header: Text("Log", comment: "AccelerationView - Section Header"), footer: shareButton) {
@@ -144,16 +106,33 @@ struct AttitudeView: View {
             ShareSheet(activityItems: [file])
         }
     }
+
+    func shareCSV() {
+        motionVM.stopMotionUpdates()
+        var csvText = NSLocalizedString("ID;Time;Roll;Pitch;Yaw;Heading", comment: "Export CSV Headline - attitude") + "\n" // swiftlint:disable:this line_length
+
+        _ = motionVM.coreMotionArray.map {
+            csvText += "\($0.counter);\($0.timestamp);\($0.attitudeRoll.localizedDecimal());\($0.attitudePitch.localizedDecimal());\($0.attitudeYaw.localizedDecimal());\($0.attitudeHeading.localizedDecimal())\n" // swiftlint:disable:this line_length
+        }
+        fileToShare = exportAPI.getFile(exportText: csvText, filename: "attitude")
+    }
+
+    func onAppear() {
+        // Start updating motion
+        motionVM.motionUpdateStart()
+        motionVM.sensorUpdateInterval = settings.fetchUserSettings().frequencySetting
+    }
+
+    func onDisappear() {
+        motionVM.stopMotionUpdates()
+        motionVM.coreMotionArray.removeAll()
+    }
 }
 
-// MARK: - Preview
 struct AttitudeView_Previews: PreviewProvider {
     static var previews: some View {
-        ForEach([ColorScheme.light, .dark], id: \.self) { scheme in
-            NavigationView {
-                AttitudeView()
-                    .colorScheme(scheme)
-            }
+        NavigationView {
+            AttitudeView()
         }
     }
 }

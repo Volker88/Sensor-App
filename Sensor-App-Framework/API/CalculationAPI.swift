@@ -6,31 +6,20 @@
 //  Copyright © 2019 Volker Schmitt. All rights reserved.
 //
 
-// MARK: - Import
 import Foundation
 
-// MARK: - Class Definition
 class CalculationAPI {
-
-    // MARK: - Initialize Classes
     let settings = SettingsAPI()
 
-    // MARK: - Methods
-    ///
     ///  Converts speed from GPS sensor into desired unit
     ///
     ///  Possible inputs for Parameter **to**
     ///  - km/h
     ///  - mph
     ///
-    ///  - Note:
-    ///  - Remark:
-    ///
     ///  - Returns: Speed in selected unit
-    ///
     ///  - Parameter ms: Input in **m/s**
     ///  - Parameter to: Target unit
-    ///
     public func calculateSpeed(ms: Double, to: String) -> Double { // Calculcate Speed
         var targetUnit: UnitSpeed = .metersPerSecond
 
@@ -46,7 +35,6 @@ class CalculationAPI {
         return output.value.rounded(toPlaces: 2)
     }
 
-    ///
     ///  Converts pressure from motion sensor into desired unit
     ///
     ///  Possible inputs for parameter **to**
@@ -59,14 +47,9 @@ class CalculationAPI {
     ///  * mmHG
     ///  * inHG
     ///
-    ///  - Note:
-    ///  - Remark:
-    ///
     ///  - Returns: Pressure in selected unit
-    ///
     ///  - Parameter pressure: Input in **kPa**
     ///  - Parameter to: Target unit
-    ///
     public func calculatePressure(pressure: Double, to: String) -> Double { // Calculate Pressure Units (input kPa)
         var targetUnit: UnitPressure = .kilopascals
 
@@ -88,7 +71,6 @@ class CalculationAPI {
         return output.value.rounded(toPlaces: 5)
     }
 
-    ///
     ///  Converts height into selected unit
     ///
     ///  Possible inputs for Parameter **to**
@@ -98,14 +80,9 @@ class CalculationAPI {
     ///  - feed
     ///  - yard
     ///
-    ///  - Note:
-    ///  - Remark:
-    ///
     ///  - Returns: Pressure in selected unit
-    ///
     ///  - Parameter height: Input in **m**
     ///  - Parameter to: Target unit
-    ///
     public func calculateHeight(height: Double, to: String) -> Double { // Calculate Height Units (input m)
         var targetUnit: UnitLength = .meters
 

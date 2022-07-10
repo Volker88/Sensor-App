@@ -6,10 +6,8 @@
 //  Copyright © 2019 Volker Schmitt. All rights reserved.
 //
 
-// MARK: - Import
 import Foundation
 
-// MARK: - ViewModel Types
 enum SensorType {
     case location
     case acceleration

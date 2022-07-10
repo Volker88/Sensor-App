@@ -6,10 +6,8 @@
 //  Copyright © 2020 Volker Schmitt. All rights reserved.
 //
 
-// MARK: - Import
 import Foundation
 
-// MARK: - ToolBarButton Types
 enum ToolBarButtonType {
     case play
     case pause
