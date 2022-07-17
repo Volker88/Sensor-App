@@ -14,7 +14,7 @@ enum MapType: String, Codable, CaseIterable {
     case hybrid = "Hybrid"
     case satelliteFlyover = "Satellite Flyover"
     case hybridFlyover = "Hybrid Flyover"
-    case mutedSandard = "Muted Standard"
+    case mutedStandard = "Muted Standard"
 }
 
 struct MapKitSettings: Codable {
@@ -23,6 +23,7 @@ struct MapKitSettings: Codable {
     var showsBuildings: Bool
     var showsTraffic: Bool
     var isRotateEnabled: Bool
+    var isPitchEnabled: Bool
     var isScrollEnabled: Bool
     var mapType: MapType
     var zoom: Double

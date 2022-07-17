@@ -12,40 +12,40 @@ struct LocationScreen: View {
     @Environment(\.requestReview) var requestReview
 
     let notificationAPI = NotificationAPI()
-    let locationView = LocationView()
+    let locationView: LocationView
 
-    @State private var sideBarOpen: Bool = false
+    @StateObject private var locationVM: CoreLocationViewModel
     @State private var showNotification = false
     @State private var notificationMessage = ""
     @State private var notificationDuration = 2.0
 
     init() {
+        let locationVM = CoreLocationViewModel()
+        _locationVM = StateObject(wrappedValue: locationVM)
+        locationView = LocationView(locationVM: locationVM)
         notificationDuration = notificationAPI.fetchNotificationAnimationSettings().duration
     }
 
     var body: some View {
         ZStack {
             locationView
-//                .frame(
-//                    minWidth: 0,
-//                    idealWidth: 100,
-//                    maxWidth: .infinity,
-//                    minHeight: 0,
-//                    idealHeight: 100,
-//                    maxHeight: .infinity,
-//                    alignment: .center
-//                )
                 .toolbar {
                     CustomToolbar(toolBarFunctionClosure: toolBarButtonTapped(button:))
                 }
 
             NotificationView(notificationMessage: $notificationMessage, showNotification: $showNotification)
         }
-        .navigationBarTitle("\(NSLocalizedString("Location", comment: "NavigationBar Title - Location"))", displayMode: .inline) // swiftlint:disable:this line_length
+        .navigationTitle(NSLocalizedString("Location", comment: "NavigationBar Title - Location"))
+        .navigationDestination(for: Route.self, destination: { route in
+            switch route {
+            case .location:
+                MapView()
+            }
+        })
         .onDisappear {
-            #if RELEASE
+#if RELEASE
             requestReview()
-            #endif
+#endif
         }
     }
 
@@ -54,13 +54,13 @@ struct LocationScreen: View {
 
         switch button {
             case .play:
-                locationView.locationVM.startLocationUpdates()
+                locationVM.startLocationUpdates()
                 messageType = .played
             case .pause:
-                locationView.locationVM.stopLocationUpdates()
+                locationVM.stopLocationUpdates()
                 messageType = .paused
             case .delete:
-                locationView.locationVM.coreLocationArray.removeAll()
+                locationVM.coreLocationArray.removeAll()
                 messageType = .deleted
                 Log.shared.add(.coreLocation, .default, "Deleted Location Data")
         }

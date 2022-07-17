@@ -27,7 +27,7 @@ struct GravityView: View {
             Text("Z-Axis: \(motionVM.coreMotionArray.last?.gravityZAxis ?? 0.0, specifier: "%.5f") g (9,81 m/s^2)", comment: "GravityView - Z-Axis (watchOS)")
             // swiftlint:enable line_length
         }
-        .navigationBarTitle("\(NSLocalizedString("Gravity", comment: "GravityView - NavigationBar Title (watchOS)"))")
+        .navigationTitle(NSLocalizedString("Gravity", comment: "GravityView - NavigationBar Title (watchOS)"))
         .font(.footnote)
         .onAppear(perform: onAppear)
         .onDisappear(perform: onDisappear)

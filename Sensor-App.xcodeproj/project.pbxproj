@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		15108ECE288341B600995007 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15108ECD288341B600995007 /* MapView.swift */; };
 		15118001285CE74500097128 /* GraphDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E3C824C4B05400FA2755 /* GraphDetailModel.swift */; };
 		15118002285CE74600097128 /* GraphDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E3C824C4B05400FA2755 /* GraphDetailModel.swift */; };
 		1514AAEC2878A0B000C4EC8C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1514AAEB2878A0B000C4EC8C /* ContentView.swift */; };
@@ -106,7 +107,6 @@
 		1542E3D024C4B05400FA2755 /* AttitudeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E3BA24C4B05400FA2755 /* AttitudeView.swift */; };
 		1542E3D124C4B05400FA2755 /* NotificationMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E3BD24C4B05400FA2755 /* NotificationMessageView.swift */; };
 		1542E3D224C4B05400FA2755 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E3BE24C4B05400FA2755 /* NotificationView.swift */; };
-		1542E3D424C4B05400FA2755 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E3C024C4B05400FA2755 /* MapView.swift */; };
 		1542E3D524C4B05400FA2755 /* RefreshRateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E3C124C4B05400FA2755 /* RefreshRateView.swift */; };
 		1542E3D624C4B05400FA2755 /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E3C224C4B05400FA2755 /* ShareSheet.swift */; };
 		1542E3D924C4B05400FA2755 /* GraphArrayTransformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E3C624C4B05400FA2755 /* GraphArrayTransformation.swift */; };
@@ -170,6 +170,7 @@
 		15445CC424F2DF6B006940C6 /* AttitudeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15445CC324F2DF6B006940C6 /* AttitudeList.swift */; };
 		15445CC724F2E20D006940C6 /* AltitudeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15445CC624F2E20D006940C6 /* AltitudeScreen.swift */; };
 		15445CC924F2E213006940C6 /* AltitudeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15445CC824F2E213006940C6 /* AltitudeList.swift */; };
+		15639493287DF35E00F97668 /* MapKitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15639492287DF35E00F97668 /* MapKitView.swift */; };
 		15657AAE2531E68000884941 /* Extension+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15657AAD2531E68000884941 /* Extension+URL.swift */; };
 		15657AB42531E6D300884941 /* Extension+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15657AAD2531E68000884941 /* Extension+URL.swift */; };
 		158826EC24F276BD00631B87 /* AccelerationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158826EB24F276BD00631B87 /* AccelerationScreen.swift */; };
@@ -238,6 +239,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		15108ECD288341B600995007 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		1514AAEB2878A0B000C4EC8C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1514AAED2878A16A00C4EC8C /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		1514AAEF2878A2B200C4EC8C /* DetailColumn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailColumn.swift; sourceTree = "<group>"; };
@@ -347,7 +349,6 @@
 		1542E3BA24C4B05400FA2755 /* AttitudeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttitudeView.swift; sourceTree = "<group>"; };
 		1542E3BD24C4B05400FA2755 /* NotificationMessageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationMessageView.swift; sourceTree = "<group>"; };
 		1542E3BE24C4B05400FA2755 /* NotificationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
-		1542E3C024C4B05400FA2755 /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		1542E3C124C4B05400FA2755 /* RefreshRateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshRateView.swift; sourceTree = "<group>"; };
 		1542E3C224C4B05400FA2755 /* ShareSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
 		1542E3C624C4B05400FA2755 /* GraphArrayTransformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphArrayTransformation.swift; sourceTree = "<group>"; };
@@ -365,6 +366,7 @@
 		15445CC324F2DF6B006940C6 /* AttitudeList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttitudeList.swift; sourceTree = "<group>"; };
 		15445CC624F2E20D006940C6 /* AltitudeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AltitudeScreen.swift; sourceTree = "<group>"; };
 		15445CC824F2E213006940C6 /* AltitudeList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AltitudeList.swift; sourceTree = "<group>"; };
+		15639492287DF35E00F97668 /* MapKitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapKitView.swift; sourceTree = "<group>"; };
 		15657AAD2531E68000884941 /* Extension+URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+URL.swift"; sourceTree = "<group>"; };
 		158826EB24F276BD00631B87 /* AccelerationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccelerationScreen.swift; sourceTree = "<group>"; };
 		159230542514FC1E00B34F3C /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
@@ -843,7 +845,8 @@
 			children = (
 				153F46CF24F4157E00E6F851 /* LocationScreen.swift */,
 				1542E3B924C4B05400FA2755 /* LocationView.swift */,
-				1542E3C024C4B05400FA2755 /* MapView.swift */,
+				15639492287DF35E00F97668 /* MapKitView.swift */,
+				15108ECD288341B600995007 /* MapView.swift */,
 			);
 			path = Location;
 			sourceTree = "<group>";
@@ -1137,6 +1140,7 @@
 				1542E3C924C4B05400FA2755 /* AltitudeView.swift in Sources */,
 				15445CBA24F2D4A5006940C6 /* GyroscopeList.swift in Sources */,
 				153C7695264FDD46001A0FD1 /* Extension+Binding.swift in Sources */,
+				15639493287DF35E00F97668 /* MapKitView.swift in Sources */,
 				1514AAEE2878A16A00C4EC8C /* AppState.swift in Sources */,
 				1542E3F324C4B1DF00FA2755 /* LocationModel.swift in Sources */,
 				1542E3F524C4B1E100FA2755 /* MapKitSettings.swift in Sources */,
@@ -1164,7 +1168,6 @@
 				1542E3E024C4B16A00FA2755 /* CoreLocationAPI.swift in Sources */,
 				1542E3ED24C4B1A900FA2755 /* NavigationBarItemModifier.swift in Sources */,
 				153723362532FEA800061B24 /* ReleaseNotes.swift in Sources */,
-				1542E3D424C4B05400FA2755 /* MapView.swift in Sources */,
 				15445CB524F2C2ED006940C6 /* GravityList.swift in Sources */,
 				15445CC424F2DF6B006940C6 /* AttitudeList.swift in Sources */,
 				1542E3CD24C4B05400FA2755 /* GravityView.swift in Sources */,
@@ -1189,6 +1192,7 @@
 				1542E3E424C4B17000FA2755 /* ExportAPI.swift in Sources */,
 				153C7692264FDB1D001A0FD1 /* SettingsViewModel.swift in Sources */,
 				1514AAF02878A2B200C4EC8C /* DetailColumn.swift in Sources */,
+				15108ECE288341B600995007 /* MapView.swift in Sources */,
 				1542E3FB24C4B1ED00FA2755 /* NotificationTypes.swift in Sources */,
 				15442D8D24EAF1F600DCF523 /* CustomToolbar.swift in Sources */,
 				1527B01B24C4AA240024DD78 /* SensorAppApp.swift in Sources */,
@@ -1426,7 +1430,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				MY_BUILD_VERSION = 20220710.3;
+				MY_BUILD_VERSION = 20220717.1;
 				MY_VERSION = 4.0.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "VolkerSchmitt88-at-icloud.com.Sensor-App";
@@ -1487,7 +1491,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				MY_BUILD_VERSION = 20220710.3;
+				MY_BUILD_VERSION = 20220717.1;
 				MY_VERSION = 4.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "VolkerSchmitt88-at-icloud.com.Sensor-App";
 				PRODUCT_NAME = "Sensor-App";

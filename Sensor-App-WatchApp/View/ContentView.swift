@@ -38,7 +38,7 @@ struct ContentView: View {
                 Text("Settings", comment: "ContentView - Settings (watchOS)")
             }
         }
-        .navigationBarTitle("\(NSLocalizedString("Home", comment: "ContentView - NavigationBar Title (watchOS)"))")
+        .navigationTitle(NSLocalizedString("Home", comment: "ContentView - NavigationBar Title (watchOS)"))
         .listStyle(CarouselListStyle())
     }
 }

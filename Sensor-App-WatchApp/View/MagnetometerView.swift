@@ -27,7 +27,7 @@ struct MagnetometerView: View {
             Text("Z-Axis: \(motionVM.coreMotionArray.last?.magnetometerZAxis ?? 0.0, specifier: "%.5f") µT", comment: "MagnetometerView - Z-Axis (watchOS)")
             // swiftlint:enable line_length
         }
-        .navigationBarTitle("\(NSLocalizedString("Magnetometer", comment: "MagnetometerView - NavigationBar Title (watchOS)"))") // swiftlint:disable:this line_length
+        .navigationTitle(NSLocalizedString("Magnetometer", comment: "MagnetometerView - NavigationBar Title (watchOS)"))
         .font(.footnote)
         .onAppear(perform: onAppear)
         .onDisappear(perform: onDisappear)

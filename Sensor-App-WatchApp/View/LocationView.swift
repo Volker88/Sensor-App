@@ -25,7 +25,7 @@ struct LocationView: View {
             Text(verbatim: "\(NSLocalizedString("Speed:", comment: "LocationView - Speed (watchOS)")) \(calculationAPI.calculateSpeed(ms: locationVM.coreLocationArray.last?.speed ?? 0.0, to: "\(settings.fetchUserSettings().GPSSpeedSetting)")) \(settings.fetchUserSettings().GPSSpeedSetting)")
             // swiftlint:enable line_length
         }
-        .navigationBarTitle("\(NSLocalizedString("Location", comment: "LocationView - NavigationBar Title (watchOS)"))")
+        .navigationTitle(NSLocalizedString("Location", comment: "LocationView - NavigationBar Title (watchOS)"))
         .font(.footnote)
         .onAppear(perform: onAppear)
         .onDisappear(perform: onDisappear)

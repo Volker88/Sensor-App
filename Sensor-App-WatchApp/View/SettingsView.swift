@@ -95,7 +95,7 @@ struct SettingsView: View {
                 }
             }
         }
-        .navigationBarTitle("\(NSLocalizedString("Settings", comment: "SettingsView - NavigationBar Title (watchOS)"))")
+        .navigationTitle(NSLocalizedString("Settings", comment: "SettingsView - NavigationBar Title (watchOS)"))
         .font(.footnote)
         .onAppear(perform: onDisappear)
     }

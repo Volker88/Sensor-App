@@ -13,7 +13,7 @@ struct LocationView: View {
     let settings = SettingsAPI()
     let exportAPI = ExportAPI()
 
-    @ObservedObject var locationVM = CoreLocationViewModel()
+    @ObservedObject var locationVM: CoreLocationViewModel
     @State private var showShareSheet = false
     @State private var fileToShare: URL?
     @State private var showLatitude = false
@@ -88,20 +88,10 @@ struct LocationView: View {
                             Text(verbatim: "\(NSLocalizedString("Speed:", comment: "LocationView - Speed")) \(calculationAPI.calculateSpeed(ms: locationVM.coreLocationArray.last?.speed ?? 0.0, to: "\(settings.fetchUserSettings().GPSSpeedSetting)")) \(settings.fetchUserSettings().GPSSpeedSetting)") // swiftlint:disable:this line_length
                         })
                     .disclosureGroupModifier(accessibility: "Toggle Speed Graph")
-                }
 
-                Section(header: Text("Map", comment: "LocationView - Section Header")) {
-                    MapView(locationVM: locationVM)
-                        .frame(
-                            minWidth: 0,
-                            idealWidth: geo.size.width,
-                            maxWidth: .infinity,
-                            minHeight: 0,
-                            idealHeight: geo.size.height,
-                            maxHeight: .infinity,
-                            alignment: .center
-                        )
-                        .cornerRadius(10)
+                    NavigationLink(value: Route.location) {
+                        Text("Map", comment: "LocationView - Map")
+                    }
                 }
             }
             .listStyle(InsetGroupedListStyle())
@@ -114,14 +104,13 @@ struct LocationView: View {
                 maxHeight: .infinity,
                 alignment: .leading
             )
-
-        }
-        .onAppear(perform: onAppear)
-        .onDisappear(perform: onDisappear)
-        .sheet(item: $fileToShare, onDismiss: {
-            onAppear()
-        }) { file in
-            ShareSheet(activityItems: [file])
+            .onAppear(perform: onAppear)
+            .onDisappear(perform: onDisappear)
+            .sheet(item: $fileToShare, onDismiss: {
+                onAppear()
+            }) { file in
+                ShareSheet(activityItems: [file])
+            }
         }
     }
 
@@ -140,14 +129,13 @@ struct LocationView: View {
 
     func onDisappear() {
         locationVM.stopLocationUpdates()
-        locationVM.coreLocationArray.removeAll()
     }
 }
 
 struct LocationView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            LocationView()
+            LocationView(locationVM: CoreLocationViewModel())
         }
     }
 }

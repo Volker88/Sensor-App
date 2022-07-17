@@ -27,7 +27,7 @@ struct AttitudeView: View {
             Text("Heading: \(motionVM.coreMotionArray.last?.attitudeHeading ?? 0.0, specifier: "%.5f")°", comment: "AttitudeView - Heading (watchOS)")
             // swiftlint:enable line_length
         }
-        .navigationBarTitle("\(NSLocalizedString("Attitude", comment: "AttitudeView - NavigationBar Title (watchOS)"))")
+        .navigationTitle(NSLocalizedString("Attitude", comment: "AttitudeView - NavigationBar Title (watchOS)"))
         .font(.footnote)
         .onAppear(perform: onAppear)
         .onDisappear(perform: onDisappear)

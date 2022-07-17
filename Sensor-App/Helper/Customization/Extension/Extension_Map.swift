@@ -23,7 +23,7 @@ extension Map {
             case .hybrid: map.mapType = MKMapType.hybrid
             case .satelliteFlyover: map.mapType = MKMapType.satelliteFlyover
             case .hybridFlyover: map.mapType = MKMapType.hybridFlyover
-            case .mutedSandard: map.mapType = MKMapType.mutedStandard
+            case .mutedStandard: map.mapType = MKMapType.mutedStandard
         }
 
         map.showsCompass = mapKitSettings.showsCompass

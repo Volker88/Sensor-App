@@ -14,7 +14,11 @@ class CoreLocationViewModel: ObservableObject {
 
     let locationAPI = CoreLocationAPI()
     let settingsAPI = SettingsAPI()
-
+    
+    init() {
+        startLocationUpdates()
+    }
+   
     func startLocationUpdates() {
 #if targetEnvironment(simulator)
         // swiftlint:disable line_length

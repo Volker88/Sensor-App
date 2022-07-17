@@ -13,20 +13,20 @@ class AppUpdatesTests: XCTestCase {
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
-    
+
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
-    
+
     func testAppUpdates() throws {
         // Given
         let appUpdates = AppUpdates()
         UserDefaults.standard.removeObject(forKey: "CurrentAppVersion")
         appUpdates.checkForUpdate()
-        
+
         // When
         let userDefaultsForSpeedSetting = UserDefaults.standard.string(forKey: "\(SettingsForUserDefaults.GPSSpeedSetting)") // swiftlint:disable:this line_length
-        
+
         // Then
         XCTAssertNil(userDefaultsForSpeedSetting, "UserDefaults are still present")
     }

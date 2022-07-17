@@ -17,7 +17,6 @@ struct SettingsScreen: View {
     @StateObject var settingsVM = SettingsViewModel()
     @State private var notificationMessage = ""
     @State private var showNotification = false
-    @State private var sideBarOpen: Bool = false
 
     // General
     @State private var showReleaseNotes = true
@@ -33,6 +32,7 @@ struct SettingsScreen: View {
     @State private var showsBuildings = false
     @State private var showsTraffic = false
     @State private var isRotateEnabled = false
+    @State private var isPitchEnabled = false
     @State private var isScrollEnabled = false
     @State private var zoom = 0.0
 
@@ -111,36 +111,40 @@ struct SettingsScreen: View {
                     Section(header:
                                 Text("Map", comment: "SettingsScreen - Map Section")
                     ) {
-                        //                    Picker(selection: $selectedMapType, label: Text("Type", comment: "SettingsScreen - Type")) {
-                        //                        ForEach(0 ..< MapType.allCases.count, id: \.self) {
-                        //                            Text(MapType.allCases[$0].rawValue).tag($0)
-                        //                        }
-                        //                    }
-                        //                    .accessibility(identifier: "MapType Picker")
+                        Picker(selection: $selectedMapType, label: Text("Type", comment: "SettingsScreen - Type")) {
+                            ForEach(0 ..< MapType.allCases.count, id: \.self) {
+                                Text(MapType.allCases[$0].rawValue).tag($0)
+                            }
+                        }
+                        .accessibility(identifier: "MapType Picker")
 
-                        //                    Toggle(isOn: $showsCompass) {
-                        //                        Text("Compass", comment: "SettingsScreen - Compass") // FIXME: - Not Working
-                        //                    }.accessibility(identifier: "Compass Toggle")
-                        //
-                        //                    Toggle(isOn: $showsScale) {
-                        //                        Text("Scale", comment: "SettingsScreen - Scale")
-                        //                    }.accessibility(identifier: "Scale Toggle")
-                        //
-                        //                    Toggle(isOn: $showsBuildings) {
-                        //                        Text("Buildings", comment: "SettingsScreen - Buildings")
-                        //                    }.accessibility(identifier: "Buildings Toggle")
-                        //
-                        //                    Toggle(isOn: $showsTraffic) {
-                        //                        Text("Traffic", comment: "SettingsScreen - Traffic")
-                        //                    }.accessibility(identifier: "Traffic Toggle")
-                        //
-                        //                    Toggle(isOn: $isRotateEnabled) {
-                        //                        Text("Rotation", comment: "SettingsScreen - Rotation") // FIXME: - Not Working
-                        //                    }.accessibility(identifier: "Rotate Toggle")
-                        //
-                        //                    Toggle(isOn: $isScrollEnabled) {
-                        //                        Text("Scroll", comment: "SettingsScreen - Scroll")  // FIXME: - Not Working
-                        //                    }.accessibility(identifier: "Scroll Toggle")
+                        Toggle(isOn: $showsCompass) {
+                            Text("Compass", comment: "SettingsScreen - Compass")
+                        }.accessibility(identifier: "Compass Toggle")
+
+                        Toggle(isOn: $showsScale) {
+                            Text("Scale", comment: "SettingsScreen - Scale")
+                        }.accessibility(identifier: "Scale Toggle")
+
+                        Toggle(isOn: $showsBuildings) {
+                            Text("Buildings", comment: "SettingsScreen - Buildings")
+                        }.accessibility(identifier: "Buildings Toggle")
+
+                        Toggle(isOn: $showsTraffic) {
+                            Text("Traffic", comment: "SettingsScreen - Traffic")
+                        }.accessibility(identifier: "Traffic Toggle")
+
+                        Toggle(isOn: $isRotateEnabled) {
+                            Text("Rotation", comment: "SettingsScreen - Rotation")
+                        }.accessibility(identifier: "Rotate Toggle")
+                        
+                        Toggle(isOn: $isPitchEnabled) {
+                            Text("Pitch", comment: "SettingsScreen - Pitch")
+                        }.accessibility(identifier: "Pitch Toggle")
+
+                        Toggle(isOn: $isScrollEnabled) {
+                            Text("Scroll", comment: "SettingsScreen - Scroll")
+                        }.accessibility(identifier: "Scroll Toggle")
 
                         Stepper(value: $zoom, in: 100...100000, step: 100) {
                             Text("Zoom: \(zoom / 1000, specifier: "%.1f") km", comment: "SettingsScreen - Zoom")
@@ -196,7 +200,6 @@ struct SettingsScreen: View {
                         Button(action: {
                             saveSettings()
                         }) {
-                            // Label(NSLocalizedString("Discard Changes", comment: "NagvigationBarButton - Save"), systemImage: "return")
                             Text("Save", comment: "NagvigationBarButton - Save")
                                 .accessibility(label: Text("Save", comment: "NagvigationBarButton - Save"))
                                 .navigationBarItemModifier(accessibility: "Save Settings")
@@ -205,7 +208,6 @@ struct SettingsScreen: View {
                         Button(action: {
                             discardChanges(showNotification: true)
                         }) {
-                            // Label(NSLocalizedString("Discard ", comment: "NagvigationBarButton - Discard Changes"), systemImage: "gobackward")
                             Text("Discard", comment: "NagvigationBarButton - Discard Changes")
                                 .accessibility(
                                     label: Text("Discard", comment: "NagvigationBarButton - Discard Changes")
@@ -214,7 +216,7 @@ struct SettingsScreen: View {
                         }
                     }
                 }
-                .navigationBarTitle("\(NSLocalizedString("Settings", comment: "NavigationBar Title - Settings"))", displayMode: .inline) // swiftlint:disable:this line_length
+                .navigationTitle(NSLocalizedString("Settings", comment: "NavigationBar Title - Settings"))
 
                 NotificationView(notificationMessage: $notificationMessage, showNotification: $showNotification)
             }
@@ -245,6 +247,7 @@ struct SettingsScreen: View {
         mapKitSettings.showsBuildings = showsBuildings
         mapKitSettings.showsTraffic = showsTraffic
         mapKitSettings.isRotateEnabled = isRotateEnabled
+        mapKitSettings.isPitchEnabled = isPitchEnabled
         mapKitSettings.isScrollEnabled = isScrollEnabled
         mapKitSettings.zoom = zoom
 
@@ -276,6 +279,7 @@ struct SettingsScreen: View {
         showsBuildings = mapKitSettings.showsBuildings
         showsTraffic = mapKitSettings.showsTraffic
         isRotateEnabled = mapKitSettings.isRotateEnabled
+        isPitchEnabled = mapKitSettings.isPitchEnabled
         isScrollEnabled = mapKitSettings.isScrollEnabled
         zoom = mapKitSettings.zoom
 

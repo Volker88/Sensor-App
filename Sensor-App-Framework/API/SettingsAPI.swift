@@ -129,6 +129,7 @@ class SettingsAPI {
             showsBuildings: true,
             showsTraffic: true,
             isRotateEnabled: true,
+            isPitchEnabled: true,
             isScrollEnabled: true,
             mapType: .standard,
             zoom: 500
