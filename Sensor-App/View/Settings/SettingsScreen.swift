@@ -18,31 +18,6 @@ struct SettingsScreen: View {
     @State private var notificationMessage = ""
     @State private var showNotification = false
 
-    // General
-    @State private var showReleaseNotes = true
-
-    // Location
-    @State private var speedSetting = 0
-    @State private var accuracySetting = 0
-
-    // Map
-    @State private var selectedMapType = 0
-    @State private var showsCompass = false
-    @State private var showsScale = false
-    @State private var showsBuildings = false
-    @State private var showsTraffic = false
-    @State private var isRotateEnabled = false
-    @State private var isPitchEnabled = false
-    @State private var isScrollEnabled = false
-    @State private var zoom = 0.0
-
-    // Altitude
-    @State private var pressureSetting = 0
-    @State private var heightSetting = 0
-
-    // Chart
-    @State private var graphMaxPoints = 0.0
-
     let notificationSettings: NotificationAnimationModel
 
     init() {
@@ -66,20 +41,24 @@ struct SettingsScreen: View {
                     Section(header:
                                 Text("General", comment: "SettingsScreen - General Section")
                     ) {
-                        Toggle(isOn: $showReleaseNotes, label: {
-                            Text("Show Release Notes")
+                        Toggle(isOn: $settingsVM.userSettings.showReleaseNotes, label: {
+                            Text("Show Release Notes", comment: "SettingsScreen - Show Release Notes")
                         })
-
-                        Picker(
-                            selection: $settingsVM.currentAppIconIndex.onChange(settingsVM.changeIcon),
-                            label: Text("App Icon")
-                        ) {
+                    }
+                    Section(header:
+                                Text("App Icon", comment: "SettingsScreen - App Icon")
+                    ) {
+                        HStack {
                             ForEach(0..<settingsVM.iconNames.count, id: \.self) { index in
                                 Image(uiImage: UIImage(named: "\(settingsVM.iconNames[index])") ?? UIImage())
                                     .resizable()
                                     .scaledToFit()
                                     .clipShape(RoundedRectangle(cornerRadius: 10))
-                                    .frame(width: 50)
+                                    .conditionalOverlay(visible: settingsVM.currentAppIconIndex == index)
+                                    .onTapGesture {
+                                        settingsVM.currentAppIconIndex = index
+                                        settingsVM.changeIcon(value: index)
+                                    }
                             }
                         }
                     }
@@ -88,7 +67,7 @@ struct SettingsScreen: View {
                                 Text("Location", comment: "SettingsScreen - Location Section")
                     ) {
                         Picker(
-                            selection: $speedSetting,
+                            selection: $settingsVM.speedSetting,
                             label: Text("Speed Setting",
                                         comment: "SettingsScreen - Speed Setting")
                         ) {
@@ -98,7 +77,7 @@ struct SettingsScreen: View {
                         }
                         .accessibility(identifier: "Speed Settings")
                         Picker(
-                            selection: $accuracySetting,
+                            selection: $settingsVM.accuracySetting,
                             label: Text("Accuracy", comment: "SettingsScreen - Accuracy")
                         ) {
                             ForEach(0 ..< settings.GPSAccuracyOptions.count, id: \.self) {
@@ -111,51 +90,53 @@ struct SettingsScreen: View {
                     Section(header:
                                 Text("Map", comment: "SettingsScreen - Map Section")
                     ) {
-                        Picker(selection: $selectedMapType, label: Text("Type", comment: "SettingsScreen - Type")) {
-                            ForEach(0 ..< MapType.allCases.count, id: \.self) {
-                                Text(MapType.allCases[$0].rawValue).tag($0)
+                        Picker(selection: $settingsVM.mapSettings.mapType, label:
+                                Text("Type", comment: "SettingsScreen - Type")) {
+                            ForEach(MapType.allCases, id: \.self) { type in
+                                Text(type.rawValue).tag(type)
                             }
                         }
-                        .accessibility(identifier: "MapType Picker")
+                                .accessibility(identifier: "MapType Picker")
 
-                        Toggle(isOn: $showsCompass) {
+                        Toggle(isOn: $settingsVM.mapSettings.showsCompass) {
                             Text("Compass", comment: "SettingsScreen - Compass")
                         }.accessibility(identifier: "Compass Toggle")
 
-                        Toggle(isOn: $showsScale) {
+                        Toggle(isOn: $settingsVM.mapSettings.showsScale) {
                             Text("Scale", comment: "SettingsScreen - Scale")
                         }.accessibility(identifier: "Scale Toggle")
 
-                        Toggle(isOn: $showsBuildings) {
+                        Toggle(isOn: $settingsVM.mapSettings.showsBuildings) {
                             Text("Buildings", comment: "SettingsScreen - Buildings")
                         }.accessibility(identifier: "Buildings Toggle")
 
-                        Toggle(isOn: $showsTraffic) {
+                        Toggle(isOn: $settingsVM.mapSettings.showsTraffic) {
                             Text("Traffic", comment: "SettingsScreen - Traffic")
                         }.accessibility(identifier: "Traffic Toggle")
 
-                        Toggle(isOn: $isRotateEnabled) {
+                        Toggle(isOn: $settingsVM.mapSettings.isRotateEnabled) {
                             Text("Rotation", comment: "SettingsScreen - Rotation")
                         }.accessibility(identifier: "Rotate Toggle")
-                        
-                        Toggle(isOn: $isPitchEnabled) {
+
+                        Toggle(isOn: $settingsVM.mapSettings.isPitchEnabled) {
                             Text("Pitch", comment: "SettingsScreen - Pitch")
                         }.accessibility(identifier: "Pitch Toggle")
 
-                        Toggle(isOn: $isScrollEnabled) {
+                        Toggle(isOn: $settingsVM.mapSettings.isScrollEnabled) {
                             Text("Scroll", comment: "SettingsScreen - Scroll")
                         }.accessibility(identifier: "Scroll Toggle")
 
-                        Stepper(value: $zoom, in: 100...100000, step: 100) {
-                            Text("Zoom: \(zoom / 1000, specifier: "%.1f") km", comment: "SettingsScreen - Zoom")
+                        Stepper(value: $settingsVM.mapSettings.zoom, in: 100...100000, step: 100) {
+                            Text("Zoom: \(settingsVM.mapSettings.zoom / 1000, specifier: "%.1f") km",
+                                 comment: "SettingsScreen - Zoom")
                         }.accessibility(identifier: "Zoom Stepper")
 
                         HStack {
                             Text("0.1 km", comment: "SettingsScreen - 0.1km")
-                            Slider(value: $zoom, in: 100...100000, step: 100)
+                            Slider(value: $settingsVM.mapSettings.zoom, in: 100...100000, step: 100)
                                 .accessibility(identifier: "Zoom Slider")
                                 .accessibility(label: Text("Zoom:", comment: "SettingsScreen - ZoomSlider"))
-                                .accessibility(value: Text("\(zoom, specifier: "%.1f") km", comment: "SettingsScreen - ZoomSlider")) // swiftlint:disable:this line_length
+                                .accessibility(value: Text("\(settingsVM.mapSettings.zoom, specifier: "%.1f") km", comment: "SettingsScreen - ZoomSlider")) // swiftlint:disable:this line_length
                             Text("100 km", comment: "SettingsScreen - 100km")
                         }
                     }
@@ -164,7 +145,7 @@ struct SettingsScreen: View {
                                 Text("Altitude", comment: "SettingsScreen - Altitude Section")
                     ) {
                         Picker(
-                            selection: $pressureSetting,
+                            selection: $settingsVM.pressureSetting,
                             label: Text("Pressure", comment: "SettingsScreen - Pressure")
                         ) {
                             ForEach(0 ..< settings.altitudePressure.count, id: \.self) {
@@ -172,7 +153,8 @@ struct SettingsScreen: View {
                             }
                         }
                         .accessibility(identifier: "Pressure Settings")
-                        Picker(selection: $heightSetting, label: Text("Height", comment: "SettingsScreen - Height")) {
+                        Picker(selection: $settingsVM.heightSetting, label: Text("Height",
+                                                                                 comment: "SettingsScreen - Height")) {
                             ForEach(0 ..< settings.altitudeHeight.count, id: \.self) {
                                 Text(settings.altitudeHeight[$0]).tag($0)
                             }
@@ -183,15 +165,20 @@ struct SettingsScreen: View {
                     Section(header:
                                 Text("Graph", comment: "SettingsScreen - Graph Section")
                     ) {
-                        Stepper(value: $graphMaxPoints, in: 1...1000, step: 1) {
-                            Text("Max Points: \(Int(graphMaxPoints))", comment: "SettingsScreen - Max Points")
+                        Stepper(value: $settingsVM.userSettings.graphMaxPoints, in: 1...1000, step: 1) {
+                            Text("Max Points: \(settingsVM.userSettings.graphMaxPoints, specifier: "%.0f")",
+                                 comment: "SettingsScreen - Max Points")
                         }.accessibility(identifier: "Max Points Stepper")
                         HStack {
                             Text("1", comment: "SettingsScreen - 1")
-                            Slider(value: $graphMaxPoints, in: 1...1000, step: 1)
-                                .accessibility(identifier: "Max Points Slider")
-                                .accessibility(label: Text("Maximum Points:", comment: "SettingsScreen - Max Points Slider")) // swiftlint:disable:this line_length
-                                .accessibility(value: Text("\(graphMaxPoints, specifier: "%.0f")", comment: "SettingsScreen - Max Points Slider")) // swiftlint:disable:this line_length
+                            Slider(
+                                value: $settingsVM.userSettings.graphMaxPoints,
+                                in: 1...1000,
+                                step: 1
+                            )
+                            .accessibility(identifier: "Max Points Slider")
+                            .accessibility(label: Text("Maximum Points:", comment: "SettingsScreen - Max Points Slider")) // swiftlint:disable:this line_length
+                            .accessibility(value: Text("\(settingsVM.userSettings.graphMaxPoints, specifier: "%.0f")", comment: "SettingsScreen - Max Points Slider")) // swiftlint:disable:this line_length
                             Text("1000", comment: "SettingsScreen - 1000")
                         }
                     }
@@ -228,30 +215,7 @@ struct SettingsScreen: View {
     }
 
     func saveSettings() {
-        // User Settings
-        var userSettings = settings.fetchUserSettings()
-        userSettings.showReleaseNotes = showReleaseNotes
-        userSettings.GPSSpeedSetting = settings.GPSSpeedSettings[speedSetting]
-        userSettings.GPSAccuracySetting = settings.GPSAccuracyOptions[accuracySetting]
-        userSettings.pressureSetting = settings.altitudePressure[pressureSetting]
-        userSettings.altitudeHeightSetting = settings.altitudeHeight[heightSetting]
-        userSettings.graphMaxPoints = Int(graphMaxPoints)
-
-        settings.saveUserSettings(userSettings: userSettings)
-
-        // MapKit Settings
-        var mapKitSettings = settings.fetchMapKitSettings()
-        mapKitSettings.mapType = MapType.allCases[selectedMapType]
-        mapKitSettings.showsCompass = showsCompass
-        mapKitSettings.showsScale = showsScale
-        mapKitSettings.showsBuildings = showsBuildings
-        mapKitSettings.showsTraffic = showsTraffic
-        mapKitSettings.isRotateEnabled = isRotateEnabled
-        mapKitSettings.isPitchEnabled = isPitchEnabled
-        mapKitSettings.isScrollEnabled = isScrollEnabled
-        mapKitSettings.zoom = zoom
-
-        settings.saveMapKitSettings(mapKitSettings: mapKitSettings)
+        settingsVM.saveSettings()
 
         // Show Notification
         notificationAPI.toggleNotification(type: .saved, duration: nil) { (message, show) in
@@ -261,27 +225,7 @@ struct SettingsScreen: View {
     }
 
     func discardChanges(showNotification: Bool) {
-        // General
-        showReleaseNotes = settings.fetchUserSettings().showReleaseNotes
-
-        // User Settings
-        speedSetting = settings.GPSSpeedSettings.firstIndex(of: settings.fetchUserSettings().GPSSpeedSetting)!
-        accuracySetting = settings.GPSAccuracyOptions.firstIndex(of: settings.fetchUserSettings().GPSAccuracySetting)!
-        pressureSetting = settings.altitudePressure.firstIndex(of: settings.fetchUserSettings().pressureSetting)!
-        heightSetting = settings.altitudeHeight.firstIndex(of: settings.fetchUserSettings().altitudeHeightSetting)!
-        graphMaxPoints = Double(settings.fetchUserSettings().graphMaxPoints)
-
-        // MapKit Settings
-        let mapKitSettings = settings.fetchMapKitSettings()
-        selectedMapType = MapType.allCases.firstIndex(of: settings.fetchMapKitSettings().mapType)!
-        showsCompass = mapKitSettings.showsCompass
-        showsScale = mapKitSettings.showsScale
-        showsBuildings = mapKitSettings.showsBuildings
-        showsTraffic = mapKitSettings.showsTraffic
-        isRotateEnabled = mapKitSettings.isRotateEnabled
-        isPitchEnabled = mapKitSettings.isPitchEnabled
-        isScrollEnabled = mapKitSettings.isScrollEnabled
-        zoom = mapKitSettings.zoom
+        settingsVM.discardChanges()
 
         // Show Notification
         if showNotification == true {

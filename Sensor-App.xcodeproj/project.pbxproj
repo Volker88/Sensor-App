@@ -14,6 +14,7 @@
 		1514AAEE2878A16A00C4EC8C /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1514AAED2878A16A00C4EC8C /* AppState.swift */; };
 		1514AAF02878A2B200C4EC8C /* DetailColumn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1514AAEF2878A2B200C4EC8C /* DetailColumn.swift */; };
 		1514AAF22878B63100C4EC8C /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1514AAF12878B63100C4EC8C /* HomeScreen.swift */; };
+		1515F5EF2885EBB500F3C509 /* ConditionalOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1515F5EE2885EBB500F3C509 /* ConditionalOverlay.swift */; };
 		151D316C24E955FB0090BC94 /* Sidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151D316B24E955FB0090BC94 /* Sidebar.swift */; };
 		151D317524E956A10090BC94 /* SettingsOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151D317424E956A10090BC94 /* SettingsOverlay.swift */; };
 		1527B01B24C4AA240024DD78 /* SensorAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1527B01A24C4AA240024DD78 /* SensorAppApp.swift */; };
@@ -39,9 +40,6 @@
 		153723BD25332CBB00061B24 /* ReleaseNotesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153723BC25332CBB00061B24 /* ReleaseNotesModel.swift */; };
 		153723CE25332CFD00061B24 /* ReleaseNotesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153723BC25332CBB00061B24 /* ReleaseNotesModel.swift */; };
 		153723D425332D0B00061B24 /* Extension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153723B525332C9E00061B24 /* Extension+String.swift */; };
-		153C768B264FD035001A0FD1 /* Alternative-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 153C7688264FD035001A0FD1 /* Alternative-2.png */; };
-		153C768C264FD035001A0FD1 /* Alternative-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 153C7689264FD035001A0FD1 /* Alternative-1.png */; };
-		153C7690264FD5B8001A0FD1 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 153C768F264FD5B8001A0FD1 /* Default.png */; };
 		153C7692264FDB1D001A0FD1 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153C7691264FDB1D001A0FD1 /* SettingsViewModel.swift */; };
 		153C7693264FDB1D001A0FD1 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153C7691264FDB1D001A0FD1 /* SettingsViewModel.swift */; };
 		153C7695264FDD46001A0FD1 /* Extension+Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153C7694264FDD46001A0FD1 /* Extension+Binding.swift */; };
@@ -244,6 +242,7 @@
 		1514AAED2878A16A00C4EC8C /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		1514AAEF2878A2B200C4EC8C /* DetailColumn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailColumn.swift; sourceTree = "<group>"; };
 		1514AAF12878B63100C4EC8C /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
+		1515F5EE2885EBB500F3C509 /* ConditionalOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionalOverlay.swift; sourceTree = "<group>"; };
 		151D316B24E955FB0090BC94 /* Sidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sidebar.swift; sourceTree = "<group>"; };
 		151D317424E956A10090BC94 /* SettingsOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsOverlay.swift; sourceTree = "<group>"; };
 		1527B01724C4AA240024DD78 /* Sensor-App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sensor-App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -275,9 +274,6 @@
 		153723A325332C7500061B24 /* Extension+Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Bundle.swift"; sourceTree = "<group>"; };
 		153723B525332C9E00061B24 /* Extension+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+String.swift"; sourceTree = "<group>"; };
 		153723BC25332CBB00061B24 /* ReleaseNotesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseNotesModel.swift; sourceTree = "<group>"; };
-		153C7688264FD035001A0FD1 /* Alternative-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Alternative-2.png"; sourceTree = "<group>"; };
-		153C7689264FD035001A0FD1 /* Alternative-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Alternative-1.png"; sourceTree = "<group>"; };
-		153C768F264FD5B8001A0FD1 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		153C7691264FDB1D001A0FD1 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		153C7694264FDD46001A0FD1 /* Extension+Binding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Binding.swift"; sourceTree = "<group>"; };
 		153F46CF24F4157E00E6F851 /* LocationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationScreen.swift; sourceTree = "<group>"; };
@@ -539,16 +535,6 @@
 			path = ReleaseNotes;
 			sourceTree = "<group>";
 		};
-		153C767C264FCE1B001A0FD1 /* AppIcons */ = {
-			isa = PBXGroup;
-			children = (
-				153C768F264FD5B8001A0FD1 /* Default.png */,
-				153C7689264FD035001A0FD1 /* Alternative-1.png */,
-				153C7688264FD035001A0FD1 /* Alternative-2.png */,
-			);
-			path = AppIcons;
-			sourceTree = "<group>";
-		};
 		1542E2F124C4AD3B00FA2755 /* TestPlans */ = {
 			isa = PBXGroup;
 			children = (
@@ -694,7 +680,6 @@
 		1542E3B024C4B03700FA2755 /* Support */ = {
 			isa = PBXGroup;
 			children = (
-				153C767C264FCE1B001A0FD1 /* AppIcons */,
 				1527B02024C4AA240024DD78 /* Preview Content */,
 				1542E3B124C4B04600FA2755 /* MyPlayground.playground */,
 				1527B01E24C4AA240024DD78 /* Assets.xcassets */,
@@ -856,6 +841,7 @@
 			children = (
 				1542E36F24C4AF9300FA2755 /* NavigationBarItemModifier.swift */,
 				15441C0624EDA4A300DC7D41 /* DisclosureGroupModifier.swift */,
+				1515F5EE2885EBB500F3C509 /* ConditionalOverlay.swift */,
 			);
 			path = CustomModifier;
 			sourceTree = "<group>";
@@ -1041,10 +1027,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1527B02224C4AA240024DD78 /* Preview Assets.xcassets in Resources */,
-				153C768B264FD035001A0FD1 /* Alternative-2.png in Resources */,
 				1542E40924C4B20A00FA2755 /* InfoPlist.strings in Resources */,
-				153C7690264FD5B8001A0FD1 /* Default.png in Resources */,
-				153C768C264FD035001A0FD1 /* Alternative-1.png in Resources */,
 				1542E40424C4B1FE00FA2755 /* Localizable.strings in Resources */,
 				1527B01F24C4AA240024DD78 /* Assets.xcassets in Resources */,
 				1537239325332A9F00061B24 /* ReleaseNotes.json in Resources */,
@@ -1196,6 +1179,7 @@
 				1542E3FB24C4B1ED00FA2755 /* NotificationTypes.swift in Sources */,
 				15442D8D24EAF1F600DCF523 /* CustomToolbar.swift in Sources */,
 				1527B01B24C4AA240024DD78 /* SensorAppApp.swift in Sources */,
+				1515F5EF2885EBB500F3C509 /* ConditionalOverlay.swift in Sources */,
 				15445CBD24F2D693006940C6 /* MagnetometerScreen.swift in Sources */,
 				1542E40024C4B1F600FA2755 /* ToolBarButtonType.swift in Sources */,
 				158826EC24F276BD00631B87 /* AccelerationScreen.swift in Sources */,
@@ -1430,7 +1414,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				MY_BUILD_VERSION = 20220717.1;
+				MY_BUILD_VERSION = 20220719.1;
 				MY_VERSION = 4.0.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "VolkerSchmitt88-at-icloud.com.Sensor-App";
@@ -1491,7 +1475,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				MY_BUILD_VERSION = 20220717.1;
+				MY_BUILD_VERSION = 20220719.1;
 				MY_VERSION = 4.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "VolkerSchmitt88-at-icloud.com.Sensor-App";
 				PRODUCT_NAME = "Sensor-App";

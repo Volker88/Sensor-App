@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct UserSettings: Codable {
     var showReleaseNotes: Bool
@@ -15,5 +16,5 @@ struct UserSettings: Codable {
     var frequencySetting: Double
     var pressureSetting: String
     var altitudeHeightSetting: String
-    var graphMaxPoints: Int
+    var graphMaxPoints: Double
 }

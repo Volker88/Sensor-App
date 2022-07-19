@@ -45,7 +45,7 @@ class GraphArrayTransformation: ObservableObject {
         let dataPoint = DataPoint(index: index, value: value)
         array.append(dataPoint)
 
-        if array.count > settings.fetchUserSettings().graphMaxPoints {
+        if array.count > Int(settings.fetchUserSettings().graphMaxPoints) {
             array.removeFirst()
 
             for index in array.indices {
