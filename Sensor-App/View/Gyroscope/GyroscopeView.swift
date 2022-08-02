@@ -34,7 +34,7 @@ struct GyroscopeView: View {
                     DisclosureGroup(
                         isExpanded: $showXAxis,
                         content: {
-                            LineGraphSubView(motionVM: motionVM, showGraph: .gyroXAxis)
+                            LineGraphSubView(motionVM: motionVM, graph: .motion, showGraph: .gyroXAxis)
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {
@@ -45,7 +45,7 @@ struct GyroscopeView: View {
                     DisclosureGroup(
                         isExpanded: $showYAxis,
                         content: {
-                            LineGraphSubView(motionVM: motionVM, showGraph: .gyroYAxis)
+                            LineGraphSubView(motionVM: motionVM, graph: .motion, showGraph: .gyroYAxis)
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {
@@ -56,7 +56,7 @@ struct GyroscopeView: View {
                     DisclosureGroup(
                         isExpanded: $showZAxis,
                         content: {
-                            LineGraphSubView(motionVM: motionVM, showGraph: .gyroZAxis)
+                            LineGraphSubView(motionVM: motionVM, graph: .motion, showGraph: .gyroZAxis)
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {

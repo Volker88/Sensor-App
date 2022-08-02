@@ -34,7 +34,7 @@ struct AccelerationView: View {
                     DisclosureGroup(
                         isExpanded: $showXAxis,
                         content: {
-                            LineGraphSubView(motionVM: motionVM, showGraph: .accelerationXAxis)
+                            LineGraphSubView(motionVM: motionVM, graph: .motion, showGraph: .accelerationXAxis)
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {
@@ -45,7 +45,7 @@ struct AccelerationView: View {
                     DisclosureGroup(
                         isExpanded: $showYAxis,
                         content: {
-                            LineGraphSubView(motionVM: motionVM, showGraph: .accelerationXAxis)
+                            LineGraphSubView(motionVM: motionVM, graph: .motion, showGraph: .accelerationYAxis)
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {
@@ -56,7 +56,7 @@ struct AccelerationView: View {
                     DisclosureGroup(
                         isExpanded: $showZAxis,
                         content: {
-                            LineGraphSubView(motionVM: motionVM, showGraph: .accelerationZAxis)
+                            LineGraphSubView(motionVM: motionVM, graph: .motion, showGraph: .accelerationZAxis)
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {

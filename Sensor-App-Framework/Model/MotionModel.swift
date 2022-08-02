@@ -29,3 +29,27 @@ struct MotionModel: Hashable {
     let attitudeYaw: Double
     let attitudeHeading: Double
 }
+
+extension MotionModel {
+    func graphValue(for graph: GraphDetail) -> Double { // swiftlint:disable:this cyclomatic_complexity
+        switch graph {
+            case .accelerationXAxis: return accelerationXAxis
+            case .accelerationYAxis: return accelerationYAxis
+            case .accelerationZAxis: return accelerationZAxis
+            case .gravityXAxis: return gravityXAxis
+            case .gravityYAxis: return gravityYAxis
+            case .gravityZAxis: return gravityZAxis
+            case .gyroXAxis: return gyroXAxis
+            case .gyroYAxis: return gyroYAxis
+            case .gyroZAxis: return gyroZAxis
+            case .magnetometerXAxis: return magnetometerXAxis
+            case .magnetometerYAxis: return magnetometerYAxis
+            case .magnetometerZAxis: return magnetometerZAxis
+            case .attitudeRoll: return attitudeRoll * 180 / .pi
+            case .attitudePitch: return attitudePitch * 180 / .pi
+            case .attitudeYaw: return attitudeYaw * 180 / .pi
+            case .attitudeHeading: return attitudeHeading
+            default: return 0
+        }
+    }
+}

@@ -41,3 +41,9 @@ enum GraphDetail {
     case pressureValue
     case relativeAltitudeValue
 }
+
+enum Graph {
+    case location
+    case motion
+    case altitude
+}

@@ -34,7 +34,7 @@ struct GravityView: View {
                     DisclosureGroup(
                         isExpanded: $showXAxis,
                         content: {
-                            LineGraphSubView(motionVM: motionVM, showGraph: .gravityXAxis)
+                            LineGraphSubView(motionVM: motionVM, graph: .motion, showGraph: .gravityXAxis)
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {
@@ -45,7 +45,7 @@ struct GravityView: View {
                     DisclosureGroup(
                         isExpanded: $showYAxis,
                         content: {
-                            LineGraphSubView(motionVM: motionVM, showGraph: .gravityYAxis)
+                            LineGraphSubView(motionVM: motionVM, graph: .motion, showGraph: .gravityYAxis)
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {
@@ -56,7 +56,7 @@ struct GravityView: View {
                     DisclosureGroup(
                         isExpanded: $showZAxis,
                         content: {
-                            LineGraphSubView(motionVM: motionVM, showGraph: .gravityZAxis)
+                            LineGraphSubView(motionVM: motionVM, graph: .motion, showGraph: .gravityZAxis)
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {

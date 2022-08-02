@@ -37,7 +37,7 @@ struct LocationView: View {
                     DisclosureGroup(
                         isExpanded: $showLatitude,
                         content: {
-                            LineGraphSubView(locationVM: locationVM, showGraph: .latitude)
+                            LineGraphSubView(locationVM: locationVM, graph: .location, showGraph: .latitude)
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {
@@ -48,7 +48,7 @@ struct LocationView: View {
                     DisclosureGroup(
                         isExpanded: $showLongitude,
                         content: {
-                            LineGraphSubView(locationVM: locationVM, showGraph: .longitude)
+                            LineGraphSubView(locationVM: locationVM, graph: .location, showGraph: .longitude)
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {
@@ -59,7 +59,7 @@ struct LocationView: View {
                     DisclosureGroup(
                         isExpanded: $showAltitude,
                         content: {
-                            LineGraphSubView(locationVM: locationVM, showGraph: .altitude)
+                            LineGraphSubView(locationVM: locationVM, graph: .location, showGraph: .altitude)
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {
@@ -70,7 +70,7 @@ struct LocationView: View {
                     DisclosureGroup(
                         isExpanded: $showDirection,
                         content: {
-                            LineGraphSubView(locationVM: locationVM, showGraph: .course)
+                            LineGraphSubView(locationVM: locationVM, graph: .location, showGraph: .course)
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {
@@ -81,7 +81,7 @@ struct LocationView: View {
                     DisclosureGroup(
                         isExpanded: $showSpeed,
                         content: {
-                            LineGraphSubView(locationVM: locationVM, showGraph: .speed)
+                            LineGraphSubView(locationVM: locationVM, graph: .location, showGraph: .speed)
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {

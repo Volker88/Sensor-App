@@ -35,7 +35,7 @@ struct AttitudeView: View {
                     DisclosureGroup(
                         isExpanded: $showRoll,
                         content: {
-                            LineGraphSubView(motionVM: motionVM, showGraph: .attitudeRoll)
+                            LineGraphSubView(motionVM: motionVM, graph: .motion, showGraph: .attitudeRoll)
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {
@@ -46,7 +46,7 @@ struct AttitudeView: View {
                     DisclosureGroup(
                         isExpanded: $showPitch,
                         content: {
-                            LineGraphSubView(motionVM: motionVM, showGraph: .attitudePitch)
+                            LineGraphSubView(motionVM: motionVM, graph: .motion, showGraph: .attitudePitch)
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {
@@ -57,7 +57,7 @@ struct AttitudeView: View {
                     DisclosureGroup(
                         isExpanded: $showYaw,
                         content: {
-                            LineGraphSubView(motionVM: motionVM, showGraph: .attitudeYaw)
+                            LineGraphSubView(motionVM: motionVM, graph: .motion, showGraph: .attitudeYaw)
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {
@@ -68,7 +68,7 @@ struct AttitudeView: View {
                     DisclosureGroup(
                         isExpanded: $showHeading,
                         content: {
-                            LineGraphSubView(motionVM: motionVM, showGraph: .attitudeHeading)
+                            LineGraphSubView(motionVM: motionVM, graph: .motion, showGraph: .attitudeHeading)
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {

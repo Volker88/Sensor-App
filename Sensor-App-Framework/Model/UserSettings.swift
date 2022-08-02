@@ -17,4 +17,8 @@ struct UserSettings: Codable {
     var pressureSetting: String
     var altitudeHeightSetting: String
     var graphMaxPoints: Double
+
+    func graphMaxPointsInt() -> Int {
+        Int(graphMaxPoints)
+    }
 }

@@ -34,7 +34,7 @@ struct MagnetometerView: View {
                     DisclosureGroup(
                         isExpanded: $showXAxis,
                         content: {
-                            LineGraphSubView(motionVM: motionVM, showGraph: .magnetometerXAxis)
+                            LineGraphSubView(motionVM: motionVM, graph: .motion, showGraph: .magnetometerXAxis)
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {
@@ -45,7 +45,7 @@ struct MagnetometerView: View {
                     DisclosureGroup(
                         isExpanded: $showYAxis,
                         content: {
-                            LineGraphSubView(motionVM: motionVM, showGraph: .magnetometerYAxis)
+                            LineGraphSubView(motionVM: motionVM, graph: .motion, showGraph: .magnetometerYAxis)
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {
@@ -56,7 +56,7 @@ struct MagnetometerView: View {
                     DisclosureGroup(
                         isExpanded: $showZAxis,
                         content: {
-                            LineGraphSubView(motionVM: motionVM, showGraph: .magnetometerZAxis)
+                            LineGraphSubView(motionVM: motionVM, graph: .motion, showGraph: .magnetometerZAxis)
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {

@@ -34,7 +34,7 @@ struct AltitudeView: View {
                     DisclosureGroup(
                         isExpanded: $showPressure,
                         content: {
-                            LineGraphSubView(motionVM: motionVM, showGraph: .pressureValue)
+                            LineGraphSubView(motionVM: motionVM, graph: .altitude, showGraph: .pressureValue)
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {
@@ -45,7 +45,7 @@ struct AltitudeView: View {
                     DisclosureGroup(
                         isExpanded: $showRelativeAltitudeChange,
                         content: {
-                            LineGraphSubView(motionVM: motionVM, showGraph: .relativeAltitudeValue)
+                            LineGraphSubView(motionVM: motionVM, graph: .altitude, showGraph: .relativeAltitudeValue)
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {
