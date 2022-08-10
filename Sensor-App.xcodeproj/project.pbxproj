@@ -106,7 +106,6 @@
 		1542E3D124C4B05400FA2755 /* NotificationMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E3BD24C4B05400FA2755 /* NotificationMessageView.swift */; };
 		1542E3D224C4B05400FA2755 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E3BE24C4B05400FA2755 /* NotificationView.swift */; };
 		1542E3D524C4B05400FA2755 /* RefreshRateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E3C124C4B05400FA2755 /* RefreshRateView.swift */; };
-		1542E3D624C4B05400FA2755 /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E3C224C4B05400FA2755 /* ShareSheet.swift */; };
 		1542E3DA24C4B05400FA2755 /* LineGraphSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E3C724C4B05400FA2755 /* LineGraphSubView.swift */; };
 		1542E3DB24C4B05400FA2755 /* GraphDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E3C824C4B05400FA2755 /* GraphDetailModel.swift */; };
 		1542E3DC24C4B16500FA2755 /* AppUpdates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1542E36024C4AF9300FA2755 /* AppUpdates.swift */; };
@@ -170,6 +169,7 @@
 		15639493287DF35E00F97668 /* MapKitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15639492287DF35E00F97668 /* MapKitView.swift */; };
 		15657AAE2531E68000884941 /* Extension+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15657AAD2531E68000884941 /* Extension+URL.swift */; };
 		15657AB42531E6D300884941 /* Extension+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15657AAD2531E68000884941 /* Extension+URL.swift */; };
+		1570AC9528A435EE00D02379 /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1570AC9428A435EE00D02379 /* ShareSheet.swift */; };
 		158826EC24F276BD00631B87 /* AccelerationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158826EB24F276BD00631B87 /* AccelerationScreen.swift */; };
 		159230552514FC1E00B34F3C /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159230542514FC1E00B34F3C /* SettingsScreen.swift */; };
 		159B640324DEB5DC009A1E35 /* Extension_Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159B640124DEB5C1009A1E35 /* Extension_Map.swift */; };
@@ -345,7 +345,6 @@
 		1542E3BD24C4B05400FA2755 /* NotificationMessageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationMessageView.swift; sourceTree = "<group>"; };
 		1542E3BE24C4B05400FA2755 /* NotificationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		1542E3C124C4B05400FA2755 /* RefreshRateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshRateView.swift; sourceTree = "<group>"; };
-		1542E3C224C4B05400FA2755 /* ShareSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
 		1542E3C724C4B05400FA2755 /* LineGraphSubView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineGraphSubView.swift; sourceTree = "<group>"; };
 		1542E3C824C4B05400FA2755 /* GraphDetailModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphDetailModel.swift; sourceTree = "<group>"; };
 		15441C0624EDA4A300DC7D41 /* DisclosureGroupModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisclosureGroupModifier.swift; sourceTree = "<group>"; };
@@ -362,6 +361,7 @@
 		15445CC824F2E213006940C6 /* AltitudeList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AltitudeList.swift; sourceTree = "<group>"; };
 		15639492287DF35E00F97668 /* MapKitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapKitView.swift; sourceTree = "<group>"; };
 		15657AAD2531E68000884941 /* Extension+URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+URL.swift"; sourceTree = "<group>"; };
+		1570AC9428A435EE00D02379 /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
 		158826EB24F276BD00631B87 /* AccelerationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccelerationScreen.swift; sourceTree = "<group>"; };
 		159230542514FC1E00B34F3C /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
 		159B640124DEB5C1009A1E35 /* Extension_Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension_Map.swift; sourceTree = "<group>"; };
@@ -711,7 +711,7 @@
 				1542E3BC24C4B05400FA2755 /* Notification */,
 				1542E3C124C4B05400FA2755 /* RefreshRateView.swift */,
 				15442D8C24EAF1F600DCF523 /* CustomToolbar.swift */,
-				1542E3C224C4B05400FA2755 /* ShareSheet.swift */,
+				1570AC9428A435EE00D02379 /* ShareSheet.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -1127,6 +1127,7 @@
 				1542E3E224C4B16D00FA2755 /* CoreMotionAPI.swift in Sources */,
 				153723CE25332CFD00061B24 /* ReleaseNotesModel.swift in Sources */,
 				1542E41024C4B21900FA2755 /* CoreLocationViewModel.swift in Sources */,
+				1570AC9528A435EE00D02379 /* ShareSheet.swift in Sources */,
 				1514AAF22878B63100C4EC8C /* HomeScreen.swift in Sources */,
 				15445CBF24F2D6A1006940C6 /* MagnetometerList.swift in Sources */,
 				1542E3D124C4B05400FA2755 /* NotificationMessageView.swift in Sources */,
@@ -1142,7 +1143,6 @@
 				153723D425332D0B00061B24 /* Extension+String.swift in Sources */,
 				1542E3FC24C4B1EF00FA2755 /* SensorType.swift in Sources */,
 				1542E3E624C4B17A00FA2755 /* SettingsAPI.swift in Sources */,
-				1542E3D624C4B05400FA2755 /* ShareSheet.swift in Sources */,
 				1542E3F924C4B1EA00FA2755 /* NotificationModel.swift in Sources */,
 				1542E3E024C4B16A00FA2755 /* CoreLocationAPI.swift in Sources */,
 				1542E3ED24C4B1A900FA2755 /* NavigationBarItemModifier.swift in Sources */,
@@ -1410,7 +1410,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				MY_BUILD_VERSION = 20220802.1;
+				MY_BUILD_VERSION = 20220810.1;
 				MY_VERSION = 4.0.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "VolkerSchmitt88-at-icloud.com.Sensor-App";
@@ -1471,7 +1471,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				MY_BUILD_VERSION = 20220802.1;
+				MY_BUILD_VERSION = 20220810.1;
 				MY_VERSION = 4.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "VolkerSchmitt88-at-icloud.com.Sensor-App";
 				PRODUCT_NAME = "Sensor-App";

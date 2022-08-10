@@ -14,18 +14,8 @@ struct AltitudeView: View {
     let exportAPI = ExportAPI()
 
     @ObservedObject var motionVM = CoreMotionViewModel()
-    @State private var showShareSheet = false
-    @State private var fileToShare: URL?
     @State private var showPressure = false
     @State private var showRelativeAltitudeChange = false
-
-    var shareButton: some View {
-        Button(action: {
-            shareCSV()
-        }) {
-            Label(NSLocalizedString("Export", comment: "AccelerationView - Export List"), systemImage: "square.and.arrow.up") // swiftlint:disable:this line_length
-        }
-    }
 
     var body: some View {
         GeometryReader { geo in
@@ -54,7 +44,9 @@ struct AltitudeView: View {
                     .disclosureGroupModifier(accessibility: "Toggle Altitude Graph")
                 }
 
-                Section(header: Text("Log", comment: "AccelerationView - Section Header"), footer: shareButton) {
+                Section(header: Text("Log", comment: "AccelerationView - Section Header"),
+                        footer: ShareSheet(url: shareCSV())
+                ) {
                     AltitudeList(motionVM: motionVM)
                         .frame(height: 200, alignment: .center)
                 }
@@ -72,21 +64,16 @@ struct AltitudeView: View {
         }
         .onAppear(perform: onAppear)
         .onDisappear(perform: onDisappear)
-        .sheet(item: $fileToShare, onDismiss: {
-            onAppear()
-        }) { file in
-            ShareSheet(activityItems: [file])
-        }
     }
 
-    func shareCSV() {
+    func shareCSV() -> URL {
         motionVM.stopMotionUpdates()
         var csvText = NSLocalizedString("ID;Time;Pressure;Altitude change", comment: "Export CSV Headline - altitude") + "\n" // swiftlint:disable:this line_length
 
         _ = motionVM.altitudeArray.map {
             csvText += "\($0.counter);\($0.timestamp);\(calculationAPI.calculatePressure(pressure: $0.pressureValue, to: settings.fetchUserSettings().pressureSetting).localizedDecimal());\(calculationAPI.calculateHeight(height: $0.relativeAltitudeValue, to: settings.fetchUserSettings().altitudeHeightSetting).localizedDecimal())\n" // swiftlint:disable:this line_length
         }
-        fileToShare = exportAPI.getFile(exportText: csvText, filename: "altitude")
+        return exportAPI.getFile(exportText: csvText, filename: "altitude")
     }
 
     func onAppear() {

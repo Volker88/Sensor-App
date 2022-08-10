@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+#warning("Fix Home Screen")
 struct HomeScreen: View {
     var body: some View {
         Text("Hello, World!")

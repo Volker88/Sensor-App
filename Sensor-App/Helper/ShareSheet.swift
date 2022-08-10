@@ -2,30 +2,24 @@
 //  ShareSheet.swift
 //  Sensor-App
 //
-//  Created by Volker Schmitt on 04.07.20.
-//  Copyright © 2020 Volker Schmitt. All rights reserved.
+//  Created by Volker Schmitt on 10.08.22.
 //
+// swiftlint:disable line_length
 
 import SwiftUI
 
-struct ShareSheet: UIViewControllerRepresentable {
-    typealias Callback = (_ activityType: UIActivity.ActivityType?, _ completed: Bool, _ returnedItems: [Any]?, _ error: Error?) -> Void // swiftlint:disable:this line_length
+struct ShareSheet: View {
+    let url: URL
 
-    let activityItems: [Any]
-    let applicationActivities: [UIActivity]? = nil
-    let excludedActivityTypes: [UIActivity.ActivityType]? = nil
-    let callback: Callback? = nil
-
-    func makeUIViewController(context: Context) -> UIActivityViewController {
-        let controller = UIActivityViewController(
-            activityItems: activityItems,
-            applicationActivities: applicationActivities)
-        controller.excludedActivityTypes = excludedActivityTypes
-        controller.completionWithItemsHandler = callback
-        return controller
+    var body: some View {
+        ShareLink(item: url) {
+            Label(NSLocalizedString("Export", comment: "AccelerationView - Export List"), systemImage: "square.and.arrow.up")
+        }
     }
+}
 
-    func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {
-        // nothing to do here
+struct ShareSheet_Previews: PreviewProvider {
+    static var previews: some View {
+        ShareSheet(url: URL(string: "https://www.apple.com")!)
     }
 }

@@ -14,26 +14,19 @@ struct LocationView: View {
     let exportAPI = ExportAPI()
 
     @ObservedObject var locationVM: CoreLocationViewModel
-    @State private var showShareSheet = false
-    @State private var fileToShare: URL?
     @State private var showLatitude = false
     @State private var showLongitude = false
     @State private var showAltitude = false
     @State private var showDirection = false
     @State private var showSpeed = false
 
-    var shareButton: some View {
-        Button(action: {
-            shareCSV()
-        }) {
-            Label(NSLocalizedString("Export", comment: "LocationView - Export List"), systemImage: "square.and.arrow.up") // swiftlint:disable:this line_length
-        }
-    }
-
     var body: some View {
         GeometryReader { geo in
             List {
-                Section(header: Text("Location", comment: "LocationView - Section Header"), footer: shareButton) {
+                Section(
+                    header: Text("Location", comment: "LocationView - Section Header"),
+                    footer: ShareSheet(url: shareCSV())
+                ) {
                     DisclosureGroup(
                         isExpanded: $showLatitude,
                         content: {
@@ -106,21 +99,16 @@ struct LocationView: View {
             )
             .onAppear(perform: onAppear)
             .onDisappear(perform: onDisappear)
-            .sheet(item: $fileToShare, onDismiss: {
-                onAppear()
-            }) { file in
-                ShareSheet(activityItems: [file])
-            }
         }
     }
 
-    func shareCSV() {
+    func shareCSV() -> URL {
         var csvText = NSLocalizedString("ID;Time;Longitude;Latitude;Altitude;Speed;Course", comment: "Export CSV Headline - Location") + "\n" // swiftlint:disable:this line_length
 
         _ = locationVM.coreLocationArray.map {
             csvText += "\($0.counter);\($0.timestamp);\($0.longitude.localizedDecimal());\($0.latitude.localizedDecimal());\($0.altitude.localizedDecimal());\($0.speed.localizedDecimal());\($0.course.localizedDecimal())\n" // swiftlint:disable:this line_length
         }
-        fileToShare = exportAPI.getFile(exportText: csvText, filename: "location")
+        return exportAPI.getFile(exportText: csvText, filename: "location")
     }
 
     func onAppear() {

@@ -17,7 +17,7 @@ class ExportAPI {
     ///   - filename: String
     ///   - fileExtension: String
     /// - Returns: URL?
-    func getFile(exportText: String, filename: String, fileExtension: String = ".csv") -> URL? {
+    func getFile(exportText: String, filename: String, fileExtension: String = ".csv") -> URL {
         let fileName = "\(filename)\(fileExtension)"
         let path = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(fileName)
 
@@ -31,6 +31,6 @@ class ExportAPI {
             Log.shared.add(.exportFile, .fault, "\(error)")
         }
 
-        return path
+        return path!
     }
 }
