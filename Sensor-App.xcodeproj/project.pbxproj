@@ -26,7 +26,6 @@
 		1527B05C24C4AA630024DD78 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1527B05B24C4AA630024DD78 /* NotificationView.swift */; };
 		1527B05E24C4AA630024DD78 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1527B05D24C4AA630024DD78 /* ComplicationController.swift */; };
 		1527B06324C4AA640024DD78 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1527B06224C4AA640024DD78 /* Preview Assets.xcassets */; };
-		1527B06824C4AA640024DD78 /* Sensor-App-Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 1527B04724C4AA620024DD78 /* Sensor-App-Watch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		1527B07D24C4ACA20024DD78 /* Sensor_App_Framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 1527B07B24C4ACA20024DD78 /* Sensor_App_Framework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1527B08024C4ACA20024DD78 /* Sensor_App_Framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1527B07924C4ACA20024DD78 /* Sensor_App_Framework.framework */; };
 		1527B08124C4ACA20024DD78 /* Sensor_App_Framework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1527B07924C4ACA20024DD78 /* Sensor_App_Framework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -172,6 +171,7 @@
 		1570AC9528A435EE00D02379 /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1570AC9428A435EE00D02379 /* ShareSheet.swift */; };
 		158826EC24F276BD00631B87 /* AccelerationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158826EB24F276BD00631B87 /* AccelerationScreen.swift */; };
 		159230552514FC1E00B34F3C /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159230542514FC1E00B34F3C /* SettingsScreen.swift */; };
+		1599F0BE28C135A2003CEF46 /* Sensor-App-Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 1527B04724C4AA620024DD78 /* Sensor-App-Watch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		159B640324DEB5DC009A1E35 /* Extension_Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159B640124DEB5C1009A1E35 /* Extension_Map.swift */; };
 		15B512F92607703C00A579C3 /* BaseTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B512F82607703C00A579C3 /* BaseTestCase.swift */; };
 		15BBEFA524FAC7B5008E2E4F /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BBEFA424FAC7B5008E2E4F /* Log.swift */; };
@@ -194,19 +194,19 @@
 			remoteGlobalIDString = 1527B01624C4AA240024DD78;
 			remoteInfo = "Sensor-App";
 		};
-		1527B06624C4AA640024DD78 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1527B00F24C4AA240024DD78 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 1527B04624C4AA620024DD78;
-			remoteInfo = "Sensor-App-WatchApp";
-		};
 		1527B07E24C4ACA20024DD78 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 1527B00F24C4AA240024DD78 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 1527B07824C4ACA20024DD78;
 			remoteInfo = "Sensor-App-Framework";
+		};
+		1599F0BC28C13597003CEF46 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1527B00F24C4AA240024DD78 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1527B04624C4AA620024DD78;
+			remoteInfo = "Sensor-App-Watch";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -217,7 +217,7 @@
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
-				1527B06824C4AA640024DD78 /* Sensor-App-Watch.app in Embed Watch Content */,
+				1599F0BE28C135A2003CEF46 /* Sensor-App-Watch.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -883,7 +883,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				1527B06724C4AA640024DD78 /* PBXTargetDependency */,
+				1599F0BD28C13597003CEF46 /* PBXTargetDependency */,
 				1527B07F24C4ACA20024DD78 /* PBXTargetDependency */,
 			);
 			name = "Sensor-App";
@@ -1312,15 +1312,15 @@
 			target = 1527B01624C4AA240024DD78 /* Sensor-App */;
 			targetProxy = 1527B03424C4AA240024DD78 /* PBXContainerItemProxy */;
 		};
-		1527B06724C4AA640024DD78 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 1527B04624C4AA620024DD78 /* Sensor-App-Watch */;
-			targetProxy = 1527B06624C4AA640024DD78 /* PBXContainerItemProxy */;
-		};
 		1527B07F24C4ACA20024DD78 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 1527B07824C4ACA20024DD78 /* Sensor-App-Framework */;
 			targetProxy = 1527B07E24C4ACA20024DD78 /* PBXContainerItemProxy */;
+		};
+		1599F0BD28C13597003CEF46 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1527B04624C4AA620024DD78 /* Sensor-App-Watch */;
+			targetProxy = 1599F0BC28C13597003CEF46 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1410,7 +1410,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				MY_BUILD_VERSION = 20220810.1;
+				MY_BUILD_VERSION = 20220901.1;
 				MY_VERSION = 4.0.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "VolkerSchmitt88-at-icloud.com.Sensor-App";
@@ -1471,7 +1471,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				MY_BUILD_VERSION = 20220810.1;
+				MY_BUILD_VERSION = 20220901.1;
 				MY_VERSION = 4.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "VolkerSchmitt88-at-icloud.com.Sensor-App";
 				PRODUCT_NAME = "Sensor-App";
@@ -1557,6 +1557,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "VolkerSchmitt88-at-icloud.com.Sensor-AppTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Sensor-App.app/Sensor-App";
@@ -1579,6 +1582,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "VolkerSchmitt88-at-icloud.com.Sensor-AppTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Sensor-App.app/Sensor-App";
@@ -1599,6 +1605,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "VolkerSchmitt88-at-icloud.com.Sensor-AppUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = "Sensor-App";
@@ -1619,6 +1628,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "VolkerSchmitt88-at-icloud.com.Sensor-AppUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = "Sensor-App";

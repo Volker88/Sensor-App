@@ -29,7 +29,7 @@
 	<true/>
 	<key>WKCompanionAppBundleIdentifier</key>
 	<string>VolkerSchmitt88-at-icloud.com.Sensor-App</string>
-	<key>WKWatchKitApp</key>
+	<key>WKRunsIndependentlyOfCompanionApp</key>
 	<false/>
 </dict>
 </plist>
