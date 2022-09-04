@@ -47,6 +47,7 @@ struct ReleaseNotes: View {
                     Toggle(isOn: $showReleaseNotes, label: {
                         Text("Show")
                     })
+                    .toggleStyle(.switch)
                     .onChange(of: showReleaseNotes, perform: { value in
                         toggleSwitch(value: value)
                     })

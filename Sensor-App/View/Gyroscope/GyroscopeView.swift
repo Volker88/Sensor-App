@@ -9,10 +9,10 @@
 import SwiftUI
 
 struct GyroscopeView: View {
-    let settings = SettingsAPI()
     let exportAPI = ExportAPI()
 
-    @ObservedObject var motionVM = CoreMotionViewModel()
+    @EnvironmentObject var settings: SettingsAPI
+    @EnvironmentObject var motionVM: CoreMotionViewModel
     @State private var showXAxis = false
     @State private var showYAxis = false
     @State private var showZAxis = false
@@ -84,7 +84,6 @@ struct GyroscopeView: View {
     }
 
     func shareCSV() -> URL {
-        motionVM.stopMotionUpdates()
         var csvText = NSLocalizedString("ID;Time;X-Axis;Y-Axis;Z-Axis", comment: "Export CSV Headline - Acceleration") + "\n" // swiftlint:disable:this line_length
 
         _ = motionVM.coreMotionArray.map {

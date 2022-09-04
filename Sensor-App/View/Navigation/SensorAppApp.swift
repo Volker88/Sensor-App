@@ -11,8 +11,10 @@ import SwiftUI
 struct SensorAppApp: App {
     @Environment(\.scenePhase) var scenePhase
 
-    @ObservedObject var update = AppUpdates()
+    @StateObject var update = AppUpdates()
     @StateObject var appState: AppState
+    @StateObject var motionVM = CoreMotionViewModel()
+    let settingsAPI = SettingsAPI()
 
     init() {
         let appState = AppState()
@@ -23,6 +25,8 @@ struct SensorAppApp: App {
         WindowGroup {
             ContentView()
                 .environmentObject(appState)
+                .environmentObject(motionVM)
+                .environmentObject(settingsAPI)
                 .onChange(of: scenePhase) { phase in
                     switch phase {
                         case .active:

@@ -11,6 +11,7 @@ struct AltitudeScreen: View {
     let notificationAPI = NotificationAPI()
     let altitudeView = AltitudeView()
 
+    @EnvironmentObject var motionVM: CoreMotionViewModel
     @State private var showNotification = false
     @State private var notificationMessage = ""
     @State private var notificationDuration = 2.0
@@ -35,17 +36,17 @@ struct AltitudeScreen: View {
         var messageType: NotificationTypes?
 
         switch button {
-            case .play:
-                altitudeView.motionVM.motionUpdateStart()
-                messageType = .played
-            case .pause:
-                altitudeView.motionVM.stopMotionUpdates()
-                messageType = .paused
-            case .delete:
-                altitudeView.motionVM.coreMotionArray.removeAll()
-                altitudeView.motionVM.altitudeArray.removeAll()
-                messageType = .deleted
-                Log.shared.add(.coreLocation, .default, "Deleted Motion Data")
+        case .play:
+            motionVM.motionUpdateStart()
+            messageType = .played
+        case .pause:
+            motionVM.stopMotionUpdates()
+            messageType = .paused
+        case .delete:
+            motionVM.coreMotionArray.removeAll()
+            motionVM.altitudeArray.removeAll()
+            messageType = .deleted
+            Log.shared.add(.coreLocation, .default, "Deleted Motion Data")
         }
 
         if messageType != nil {
@@ -59,8 +60,8 @@ struct AltitudeScreen: View {
 
 struct AltitudeScreen_Previews: PreviewProvider {
     static var previews: some View {
-            NavigationView {
-                AltitudeScreen()
-            }
+        NavigationView {
+            AltitudeScreen()
+        }
     }
 }

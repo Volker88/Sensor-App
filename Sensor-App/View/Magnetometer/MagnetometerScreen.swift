@@ -11,6 +11,7 @@ struct MagnetometerScreen: View {
     let notificationAPI = NotificationAPI()
     let magnetometerView = MagnetometerView()
 
+    @EnvironmentObject var motionVM: CoreMotionViewModel
     @State private var showNotification = false
     @State private var notificationMessage = ""
     @State private var notificationDuration = 2.0
@@ -36,14 +37,14 @@ struct MagnetometerScreen: View {
 
         switch button {
             case .play:
-                magnetometerView.motionVM.motionUpdateStart()
+                motionVM.motionUpdateStart()
                 messageType = .played
             case .pause:
-                magnetometerView.motionVM.stopMotionUpdates()
+                motionVM.stopMotionUpdates()
                 messageType = .paused
             case .delete:
-                magnetometerView.motionVM.coreMotionArray.removeAll()
-                magnetometerView.motionVM.altitudeArray.removeAll()
+                motionVM.coreMotionArray.removeAll()
+                motionVM.altitudeArray.removeAll()
                 messageType = .deleted
                 Log.shared.add(.coreLocation, .default, "Deleted Motion Data")
         }

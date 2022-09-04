@@ -11,6 +11,7 @@ struct GravityScreen: View {
     let notificationAPI = NotificationAPI()
     let gravityView = GravityView()
 
+    @EnvironmentObject var motionVM: CoreMotionViewModel
     @State private var showNotification = false
     @State private var notificationMessage = ""
     @State private var notificationDuration = 2.0
@@ -35,17 +36,17 @@ struct GravityScreen: View {
         var messageType: NotificationTypes?
 
         switch button {
-            case .play:
-                gravityView.motionVM.motionUpdateStart()
-                messageType = .played
-            case .pause:
-                gravityView.motionVM.stopMotionUpdates()
-                messageType = .paused
-            case .delete:
-                gravityView.motionVM.coreMotionArray.removeAll()
-                gravityView.motionVM.altitudeArray.removeAll()
-                messageType = .deleted
-                Log.shared.add(.coreLocation, .default, "Deleted Motion Data")
+        case .play:
+            motionVM.motionUpdateStart()
+            messageType = .played
+        case .pause:
+            motionVM.stopMotionUpdates()
+            messageType = .paused
+        case .delete:
+            motionVM.coreMotionArray.removeAll()
+            motionVM.altitudeArray.removeAll()
+            messageType = .deleted
+            Log.shared.add(.coreLocation, .default, "Deleted Motion Data")
         }
 
         if messageType != nil {
@@ -59,8 +60,8 @@ struct GravityScreen: View {
 
 struct GravityScreen_Previews: PreviewProvider {
     static var previews: some View {
-            NavigationView {
-                GravityScreen()
-            }
+        NavigationView {
+            GravityScreen()
+        }
     }
 }

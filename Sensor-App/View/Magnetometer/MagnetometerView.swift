@@ -9,10 +9,10 @@
 import SwiftUI
 
 struct MagnetometerView: View {
-    let settings = SettingsAPI()
     let exportAPI = ExportAPI()
 
-    @ObservedObject var motionVM = CoreMotionViewModel()
+    @EnvironmentObject var settings: SettingsAPI
+    @EnvironmentObject var motionVM: CoreMotionViewModel
     @State private var showShareSheet = false
     @State private var fileToShare: URL?
     @State private var showXAxis = false
@@ -86,7 +86,6 @@ struct MagnetometerView: View {
     }
 
     func shareCSV() -> URL {
-        motionVM.stopMotionUpdates()
         var csvText = NSLocalizedString("ID;Time;X-Axis;Y-Axis;Z-Axis", comment: "Export CSV Headline - Magnetometer") + "\n" // swiftlint:disable:this line_length
 
         _ = motionVM.coreMotionArray.map {

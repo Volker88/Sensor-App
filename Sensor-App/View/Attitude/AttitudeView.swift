@@ -9,10 +9,10 @@
 import SwiftUI
 
 struct AttitudeView: View {
-    let settings = SettingsAPI()
     let exportAPI = ExportAPI()
 
-    @ObservedObject var motionVM = CoreMotionViewModel()
+    @EnvironmentObject var settings: SettingsAPI
+    @EnvironmentObject var motionVM: CoreMotionViewModel
     @State private var showRoll = false
     @State private var showPitch = false
     @State private var showYaw = false
@@ -96,7 +96,6 @@ struct AttitudeView: View {
     }
 
     func shareCSV() -> URL {
-        motionVM.stopMotionUpdates()
         var csvText = NSLocalizedString("ID;Time;Roll;Pitch;Yaw;Heading", comment: "Export CSV Headline - attitude") + "\n" // swiftlint:disable:this line_length
 
         _ = motionVM.coreMotionArray.map {

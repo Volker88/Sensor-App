@@ -10,10 +10,10 @@ import SwiftUI
 
 struct AltitudeView: View {
     let calculationAPI = CalculationAPI()
-    let settings = SettingsAPI()
     let exportAPI = ExportAPI()
 
-    @ObservedObject var motionVM = CoreMotionViewModel()
+    @EnvironmentObject var settings: SettingsAPI
+    @EnvironmentObject var motionVM: CoreMotionViewModel
     @State private var showPressure = false
     @State private var showRelativeAltitudeChange = false
 
@@ -67,7 +67,6 @@ struct AltitudeView: View {
     }
 
     func shareCSV() -> URL {
-        motionVM.stopMotionUpdates()
         var csvText = NSLocalizedString("ID;Time;Pressure;Altitude change", comment: "Export CSV Headline - altitude") + "\n" // swiftlint:disable:this line_length
 
         _ = motionVM.altitudeArray.map {

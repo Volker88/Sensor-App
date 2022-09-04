@@ -9,7 +9,7 @@
 import Foundation
 import SwiftUI
 
-class SettingsAPI {
+class SettingsAPI: ObservableObject {
 
     public let GPSSpeedSettings = [
         UnitSpeed.metersPerSecond.symbol,

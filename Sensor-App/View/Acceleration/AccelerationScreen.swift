@@ -11,6 +11,7 @@ struct AccelerationScreen: View {
     let notificationAPI = NotificationAPI()
     let accelerationView = AccelerationView()
 
+    @EnvironmentObject var motionVM: CoreMotionViewModel
     @State private var showNotification = false
     @State private var notificationMessage = ""
     @State private var notificationDuration = 2.0
@@ -35,17 +36,17 @@ struct AccelerationScreen: View {
         var messageType: NotificationTypes?
 
         switch button {
-            case .play:
-                accelerationView.motionVM.motionUpdateStart()
-                messageType = .played
-            case .pause:
-                accelerationView.motionVM.stopMotionUpdates()
-                messageType = .paused
-            case .delete:
-                accelerationView.motionVM.coreMotionArray.removeAll()
-                accelerationView.motionVM.altitudeArray.removeAll()
-                messageType = .deleted
-                Log.shared.add(.coreLocation, .default, "Deleted Motion Data")
+        case .play:
+            motionVM.motionUpdateStart()
+            messageType = .played
+        case .pause:
+            motionVM.stopMotionUpdates()
+            messageType = .paused
+        case .delete:
+            motionVM.coreMotionArray.removeAll()
+            motionVM.altitudeArray.removeAll()
+            messageType = .deleted
+            Log.shared.add(.coreLocation, .default, "Deleted Motion Data")
         }
 
         if messageType != nil {
