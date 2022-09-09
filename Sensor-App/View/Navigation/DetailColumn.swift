@@ -28,6 +28,8 @@ struct DetailColumn: View {
                 AttitudeScreen()
             case .altitude:
                 AltitudeScreen()
+            case .settings:
+                SettingsScreen()
         }
     }
 }

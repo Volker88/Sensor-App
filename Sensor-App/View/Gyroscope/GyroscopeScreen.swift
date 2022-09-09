@@ -12,6 +12,7 @@ struct GyroscopeScreen: View {
     let gyroscopeView = GyroscopeView()
 
     @EnvironmentObject var motionVM: CoreMotionViewModel
+    @EnvironmentObject var settings: SettingsAPI
     @State private var showNotification = false
     @State private var notificationMessage = ""
     @State private var notificationDuration = 2.0
@@ -30,6 +31,18 @@ struct GyroscopeScreen: View {
             NotificationView(notificationMessage: $notificationMessage, showNotification: $showNotification)
         }
         .navigationTitle(NSLocalizedString("Gyroscope", comment: "NavigationBar Title - Gyroscope"))
+        .navigationDestination(for: Route.self, destination: { route in
+            switch route {
+                case .gyroscopeList:
+                    GyroscopeList()
+                default:
+                    EmptyView()
+
+            }
+        })
+        .onAppear {
+            motionVM.start()
+        }
     }
 
     func toolBarButtonTapped(button: ToolBarButtonType) {
@@ -60,7 +73,7 @@ struct GyroscopeScreen: View {
 
 struct GyroscopeScreen_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
+        NavigationStack {
             GyroscopeScreen()
         }
     }

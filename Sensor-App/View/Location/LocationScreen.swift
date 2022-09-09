@@ -38,8 +38,10 @@ struct LocationScreen: View {
         .navigationTitle(NSLocalizedString("Location", comment: "NavigationBar Title - Location"))
         .navigationDestination(for: Route.self, destination: { route in
             switch route {
-            case .location:
-                MapView()
+                case .location:
+                    MapView()
+                default:
+                    MapView()
             }
         })
         .onDisappear {
@@ -76,7 +78,7 @@ struct LocationScreen: View {
 
 struct LocationScreen_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
+        NavigationStack {
             LocationScreen()
         }
     }

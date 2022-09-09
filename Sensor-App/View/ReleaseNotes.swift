@@ -25,7 +25,7 @@ struct ReleaseNotes: View {
     }
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             List {
                 if let releaseNotes = releaseNotes {
                     ForEach(releaseNotes.reversed()) { item in

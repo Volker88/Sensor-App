@@ -25,6 +25,19 @@ class CoreMotionViewModel: ObservableObject {
         sensorUpdateInterval = settings.fetchUserSettings().frequencySetting
     }
 
+    // MARK: - onAppear / onDisappear
+    func start() {
+        motionUpdateStart()
+        altitudeUpdateStart()
+        sensorUpdateInterval = settings.fetchUserSettings().frequencySetting
+    }
+
+    func stop() {
+        stopMotionUpdates()
+        coreMotionArray.removeAll()
+    }
+
+    // MARK: - Methods to Start / Stop
     func motionUpdateStart() {
 #if targetEnvironment(simulator)
         mockData()
@@ -114,6 +127,7 @@ class CoreMotionViewModel: ObservableObject {
         motionAPI.motionUpdateStop()
     }
 
+    // MARK: - Mock data for Simulator
     func mockData() {
         // swiftlint:disable line_length
         var counter = 1

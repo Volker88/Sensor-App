@@ -9,9 +9,7 @@
 import SwiftUI
 
 struct AccelerationView: View {
-    let exportAPI = ExportAPI()
-
-    @EnvironmentObject var settings: SettingsAPI
+    @EnvironmentObject private var appState: AppState
     @EnvironmentObject var motionVM: CoreMotionViewModel
     @State private var showXAxis = false
     @State private var showYAxis = false
@@ -53,14 +51,10 @@ struct AccelerationView: View {
                             Text("Z-Axis: \(motionVM.coreMotionArray.last?.accelerationZAxis ?? 0.0, specifier: "%.5f") m/s^2", comment: "AccelerationView - Z-Axis") // swiftlint:disable:this line_length
                         })
                     .disclosureGroupModifier(accessibility: "Toggle Z-Axis Graph")
-                }
 
-                Section(
-                    header: Text("Log", comment: "AccelerationView - Section Header"),
-                    footer: ShareSheet(url: shareCSV())
-                ) {
-                    AccelerationList(motionVM: motionVM)
-                        .frame(height: 200, alignment: .center)
+                    NavigationLink(value: Route.accelerationList) {
+                        Text("Log", comment: "AccelerationView - Log")
+                    }
                 }
 
                 Section(header: Text("Refresh Rate", comment: "AccelerationView - Section Header")) {
@@ -68,7 +62,7 @@ struct AccelerationView: View {
                     RefreshRateView(motionVM: motionVM, show: "slider")
                 }
             }
-            .listStyle(InsetGroupedListStyle())
+            .listStyle(.insetGrouped)
             .frame(
                 minWidth: 0,
                 idealWidth: geo.size.width,
@@ -79,34 +73,12 @@ struct AccelerationView: View {
                 alignment: .leading
             )
         }
-        .onAppear(perform: onAppear)
-        .onDisappear(perform: onDisappear)
-    }
-
-    func shareCSV() -> URL {
-        var csvText = NSLocalizedString("ID;Time;X-Axis;Y-Axis;Z-Axis", comment: "Export CSV Headline - Acceleration") + "\n" // swiftlint:disable:this line_length
-
-        _ = motionVM.coreMotionArray.map {
-            csvText += "\($0.counter);\($0.timestamp);\($0.accelerationXAxis.localizedDecimal());\($0.accelerationYAxis.localizedDecimal());\($0.accelerationZAxis.localizedDecimal())\n" // swiftlint:disable:this line_length
-        }
-        return exportAPI.getFile(exportText: csvText, filename: "acceleration")
-    }
-
-    func onAppear() {
-        // Start updating motion
-        motionVM.motionUpdateStart()
-        motionVM.sensorUpdateInterval = settings.fetchUserSettings().frequencySetting
-    }
-
-    func onDisappear() {
-        motionVM.stopMotionUpdates()
-        motionVM.coreMotionArray.removeAll()
     }
 }
 
 struct AccelerationView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
+        NavigationStack {
             AccelerationView()
         }
     }

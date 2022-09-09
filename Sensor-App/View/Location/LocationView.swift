@@ -122,7 +122,7 @@ struct LocationView: View {
 
 struct LocationView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
+        NavigationStack {
             LocationView(locationVM: CoreLocationViewModel())
         }
     }

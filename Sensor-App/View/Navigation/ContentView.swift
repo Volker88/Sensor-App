@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var motionVM: CoreMotionViewModel
     @EnvironmentObject private var appState: AppState
     @State private var showSidebar: NavigationSplitViewVisibility = .all
 
@@ -20,8 +21,10 @@ struct ContentView: View {
             }
         }
         .onChange(of: appState.selectedScreen) { _ in
-            appState.path.removeAll()
+//            appState.path.removeAll()
+            motionVM.stop()
         }
+
     }
 }
 

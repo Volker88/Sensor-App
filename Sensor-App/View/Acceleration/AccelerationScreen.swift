@@ -12,6 +12,7 @@ struct AccelerationScreen: View {
     let accelerationView = AccelerationView()
 
     @EnvironmentObject var motionVM: CoreMotionViewModel
+    @EnvironmentObject var settings: SettingsAPI
     @State private var showNotification = false
     @State private var notificationMessage = ""
     @State private var notificationDuration = 2.0
@@ -30,23 +31,35 @@ struct AccelerationScreen: View {
             NotificationView(notificationMessage: $notificationMessage, showNotification: $showNotification)
         }
         .navigationTitle(NSLocalizedString("Acceleration", comment: "NavigationBar Title - Acceleration"))
+        .navigationDestination(for: Route.self, destination: { route in
+            switch route {
+                case .accelerationList:
+                    AccelerationList()
+                default:
+                    EmptyView()
+
+            }
+        })
+        .onAppear {
+            motionVM.start()
+        }
     }
 
     func toolBarButtonTapped(button: ToolBarButtonType) {
         var messageType: NotificationTypes?
 
         switch button {
-        case .play:
-            motionVM.motionUpdateStart()
-            messageType = .played
-        case .pause:
-            motionVM.stopMotionUpdates()
-            messageType = .paused
-        case .delete:
-            motionVM.coreMotionArray.removeAll()
-            motionVM.altitudeArray.removeAll()
-            messageType = .deleted
-            Log.shared.add(.coreLocation, .default, "Deleted Motion Data")
+            case .play:
+                motionVM.motionUpdateStart()
+                messageType = .played
+            case .pause:
+                motionVM.stopMotionUpdates()
+                messageType = .paused
+            case .delete:
+                motionVM.coreMotionArray.removeAll()
+                motionVM.altitudeArray.removeAll()
+                messageType = .deleted
+                Log.shared.add(.coreLocation, .default, "Deleted Motion Data")
         }
 
         if messageType != nil {
@@ -60,7 +73,7 @@ struct AccelerationScreen: View {
 
 struct AccelerationScreen_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
+        NavigationStack {
             AccelerationScreen()
         }
     }

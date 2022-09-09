@@ -65,14 +65,10 @@ struct AttitudeView: View {
                             Text("Heading: \(motionVM.coreMotionArray.last?.attitudeHeading ?? 0.0, specifier: "%.5f")°", comment: "AttitudeView - Heading") // swiftlint:disable:this line_length
                         })
                     .disclosureGroupModifier(accessibility: "Toggle Heading Graph")
-                }
 
-                Section(
-                    header: Text("Log", comment: "AccelerationView - Section Header"),
-                    footer: ShareSheet(url: shareCSV())
-                ) {
-                    AttitudeList(motionVM: motionVM)
-                        .frame(height: 200, alignment: .center)
+                    NavigationLink(value: Route.attitudeList) {
+                        Text("Log", comment: "AttitudeView - Log")
+                    }
                 }
 
                 Section(header: Text("Refresh Rate", comment: "AccelerationView - Section Header")) {
@@ -80,7 +76,7 @@ struct AttitudeView: View {
                     RefreshRateView(motionVM: motionVM, show: "slider")
                 }
             }
-            .listStyle(InsetGroupedListStyle())
+            .listStyle(.insetGrouped)
             .frame(
                 minWidth: 0,
                 idealWidth: geo.size.width,
@@ -91,34 +87,12 @@ struct AttitudeView: View {
                 alignment: .leading
             )
         }
-        .onAppear(perform: onAppear)
-        .onDisappear(perform: onDisappear)
-    }
-
-    func shareCSV() -> URL {
-        var csvText = NSLocalizedString("ID;Time;Roll;Pitch;Yaw;Heading", comment: "Export CSV Headline - attitude") + "\n" // swiftlint:disable:this line_length
-
-        _ = motionVM.coreMotionArray.map {
-            csvText += "\($0.counter);\($0.timestamp);\($0.attitudeRoll.localizedDecimal());\($0.attitudePitch.localizedDecimal());\($0.attitudeYaw.localizedDecimal());\($0.attitudeHeading.localizedDecimal())\n" // swiftlint:disable:this line_length
-        }
-        return exportAPI.getFile(exportText: csvText, filename: "attitude")
-    }
-
-    func onAppear() {
-        // Start updating motion
-        motionVM.motionUpdateStart()
-        motionVM.sensorUpdateInterval = settings.fetchUserSettings().frequencySetting
-    }
-
-    func onDisappear() {
-        motionVM.stopMotionUpdates()
-        motionVM.coreMotionArray.removeAll()
     }
 }
 
 struct AttitudeView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
+        NavigationStack {
             AttitudeView()
         }
     }

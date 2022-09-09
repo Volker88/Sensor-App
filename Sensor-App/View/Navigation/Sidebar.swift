@@ -11,8 +11,6 @@ struct Sidebar: View {
     @Environment(\.horizontalSizeClass) var sizeClass
     @EnvironmentObject private var appState: AppState
 
-    @State private var showSettings = false
-
     var list: some View {
         List(selection: $appState.selectedScreen) {
             if sizeClass == .regular {
@@ -56,27 +54,20 @@ struct Sidebar: View {
                 Label(NSLocalizedString("Altitude", comment: "Sidebbar - Altitude"), systemImage: "globe")
                     .accessibility(identifier: "Altitude")
             }
-            if sizeClass == .compact {
-                Button {
-                    showSettings.toggle()
-                } label: {
-                    Label(NSLocalizedString("Settings", comment: "Sidebbar - Settings"), systemImage: "gear")
-                        .accessibility(identifier: "Settings")
-                }
+
+            NavigationLink(value: Screen.settings) {
+                Label(NSLocalizedString("Settings", comment: "Sidebbar - Settings"), systemImage: "gear")
+                    .accessibility(identifier: "Settings")
             }
         }
         .listStyle(.sidebar)
         .accessibilityIdentifier("\(NSLocalizedString("debar", comment: "NavigationBar Title - Sidebar"))")
-        .sheet(isPresented: $showSettings) {
-            SettingsScreen()
-        }
     }
 
     var body: some View {
         VStack(spacing: 0) {
             if sizeClass == .regular {
                 list
-                SettingsOverlay()
             } else {
                 list
                     .navigationTitle("Home")

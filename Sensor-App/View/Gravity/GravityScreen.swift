@@ -12,6 +12,7 @@ struct GravityScreen: View {
     let gravityView = GravityView()
 
     @EnvironmentObject var motionVM: CoreMotionViewModel
+    @EnvironmentObject var settings: SettingsAPI
     @State private var showNotification = false
     @State private var notificationMessage = ""
     @State private var notificationDuration = 2.0
@@ -30,6 +31,18 @@ struct GravityScreen: View {
             NotificationView(notificationMessage: $notificationMessage, showNotification: $showNotification)
         }
         .navigationTitle(NSLocalizedString("Gravity", comment: "NavigationBar Title - Gravity"))
+        .navigationDestination(for: Route.self, destination: { route in
+            switch route {
+                case .gravityList:
+                    GravityList()
+                default:
+                    EmptyView()
+
+            }
+        })
+        .onAppear {
+            motionVM.start()
+        }
     }
 
     func toolBarButtonTapped(button: ToolBarButtonType) {
@@ -60,7 +73,7 @@ struct GravityScreen: View {
 
 struct GravityScreen_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
+        NavigationStack {
             GravityScreen()
         }
     }

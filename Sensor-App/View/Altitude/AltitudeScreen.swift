@@ -12,6 +12,7 @@ struct AltitudeScreen: View {
     let altitudeView = AltitudeView()
 
     @EnvironmentObject var motionVM: CoreMotionViewModel
+    @EnvironmentObject var settings: SettingsAPI
     @State private var showNotification = false
     @State private var notificationMessage = ""
     @State private var notificationDuration = 2.0
@@ -30,6 +31,18 @@ struct AltitudeScreen: View {
             NotificationView(notificationMessage: $notificationMessage, showNotification: $showNotification)
         }
         .navigationTitle(NSLocalizedString("Altitude", comment: "NavigationBar Title - Altitude"))
+        .navigationDestination(for: Route.self, destination: { route in
+            switch route {
+                case .altitudeList:
+                    AltitudeList()
+                default:
+                    EmptyView()
+
+            }
+        })
+        .onAppear {
+            motionVM.start()
+        }
     }
 
     func toolBarButtonTapped(button: ToolBarButtonType) {
@@ -37,7 +50,7 @@ struct AltitudeScreen: View {
 
         switch button {
         case .play:
-            motionVM.motionUpdateStart()
+            motionVM.altitudeUpdateStart()
             messageType = .played
         case .pause:
             motionVM.stopMotionUpdates()
@@ -60,7 +73,7 @@ struct AltitudeScreen: View {
 
 struct AltitudeScreen_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
+        NavigationStack {
             AltitudeScreen()
         }
     }

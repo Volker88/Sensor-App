@@ -30,6 +30,18 @@ struct AttitudeScreen: View {
             NotificationView(notificationMessage: $notificationMessage, showNotification: $showNotification)
         }
         .navigationTitle(NSLocalizedString("Attitude", comment: "NavigationBar Title - Attitude"))
+        .navigationDestination(for: Route.self, destination: { route in
+            switch route {
+                case .attitudeList:
+                    AttitudeList()
+                default:
+                    EmptyView()
+
+            }
+        })
+        .onAppear {
+            motionVM.start()
+        }
     }
 
     func toolBarButtonTapped(button: ToolBarButtonType) {
@@ -60,7 +72,7 @@ struct AttitudeScreen: View {
 
 struct AttitudeScreen_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
+        NavigationStack {
             AttitudeScreen()
         }
     }

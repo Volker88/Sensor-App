@@ -54,14 +54,9 @@ struct GravityView: View {
                         })
                     .disclosureGroupModifier(accessibility: "Toggle Z-Axis Graph")
 
-                }
-
-                Section(
-                    header: Text("Log", comment: "AccelerationView - Section Header"),
-                    footer: ShareSheet(url: shareCSV())
-                ) {
-                    GravityList(motionVM: motionVM)
-                        .frame(height: 200, alignment: .center)
+                    NavigationLink(value: Route.gravityList) {
+                        Text("Log", comment: "GravityView - Log")
+                    }
                 }
 
                 Section(header: Text("Refresh Rate", comment: "AccelerationView - Section Header")) {
@@ -69,7 +64,7 @@ struct GravityView: View {
                     RefreshRateView(motionVM: motionVM, show: "slider")
                 }
             }
-            .listStyle(InsetGroupedListStyle())
+            .listStyle(.insetGrouped)
             .frame(
                 minWidth: 0,
                 idealWidth: geo.size.width,
@@ -79,36 +74,13 @@ struct GravityView: View {
                 maxHeight: geo.size.height,
                 alignment: .leading
             )
-
         }
-        .onAppear(perform: onAppear)
-        .onDisappear(perform: onDisappear)
-    }
-
-    func shareCSV() -> URL {
-        var csvText = NSLocalizedString("ID;Time;X-Axis;Y-Axis;Z-Axis", comment: "Export CSV Headline - Gravity") + "\n"
-
-        _ = motionVM.coreMotionArray.map {
-            csvText += "\($0.counter);\($0.timestamp);\($0.gravityXAxis.localizedDecimal());\($0.gravityYAxis.localizedDecimal());\($0.gravityZAxis.localizedDecimal())\n" // swiftlint:disable:this line_length
-        }
-        return exportAPI.getFile(exportText: csvText, filename: "gravity")
-    }
-
-    func onAppear() {
-        // Start updating motion
-        motionVM.motionUpdateStart()
-        motionVM.sensorUpdateInterval = settings.fetchUserSettings().frequencySetting
-    }
-
-    func onDisappear() {
-        motionVM.stopMotionUpdates()
-        motionVM.coreMotionArray.removeAll()
     }
 }
 
 struct GravityView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
+        NavigationStack {
             GravityView()
         }
     }

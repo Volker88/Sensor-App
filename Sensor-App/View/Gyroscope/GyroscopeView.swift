@@ -9,9 +9,7 @@
 import SwiftUI
 
 struct GyroscopeView: View {
-    let exportAPI = ExportAPI()
-
-    @EnvironmentObject var settings: SettingsAPI
+    @EnvironmentObject private var appState: AppState
     @EnvironmentObject var motionVM: CoreMotionViewModel
     @State private var showXAxis = false
     @State private var showYAxis = false
@@ -28,7 +26,7 @@ struct GyroscopeView: View {
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {
-                            Text("X-Axis: \(motionVM.coreMotionArray.last?.gyroXAxis ?? 0.0, specifier: "%.5f") rad/s", comment: "GyrsocopeView - X-Axis") // swiftlint:disable:this line_length
+                            Text("X-Axis: \(motionVM.coreMotionArray.last?.gyroXAxis ?? 0.0, specifier: "%.5f") rad/s", comment: "GyroscopeView - X-Axis") // swiftlint:disable:this line_length
                         })
                     .disclosureGroupModifier(accessibility: "Toggle X-Axis Graph")
 
@@ -39,7 +37,7 @@ struct GyroscopeView: View {
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {
-                            Text("Y-Axis: \(motionVM.coreMotionArray.last?.gyroYAxis ?? 0.0, specifier: "%.5f") rad/s", comment: "GyrsocopeView - Y-Axis") // swiftlint:disable:this line_length
+                            Text("Y-Axis: \(motionVM.coreMotionArray.last?.gyroYAxis ?? 0.0, specifier: "%.5f") rad/s", comment: "GyroscopeView - Y-Axis") // swiftlint:disable:this line_length
                         })
                     .disclosureGroupModifier(accessibility: "Toggle Y-Axis Graph")
 
@@ -50,25 +48,21 @@ struct GyroscopeView: View {
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {
-                            Text("Z-Axis: \(motionVM.coreMotionArray.last?.gyroZAxis ?? 0.0, specifier: "%.5f") rad/s", comment: "GyrsocopeView - Z-Axis") // swiftlint:disable:this line_length
+                            Text("Z-Axis: \(motionVM.coreMotionArray.last?.gyroZAxis ?? 0.0, specifier: "%.5f") rad/s", comment: "GyroscopeView - Z-Axis") // swiftlint:disable:this line_length
                         })
                     .disclosureGroupModifier(accessibility: "Toggle Z-Axis Graph")
+
+                    NavigationLink(value: Route.gyroscopeList) {
+                        Text("Log", comment: "GyroscopeView - Log")
+                    }
                 }
 
-                Section(
-                    header: Text("Log", comment: "AccelerationView - Section Header"),
-                    footer: ShareSheet(url: shareCSV())
-                ) {
-                    GyroscopeList(motionVM: motionVM)
-                        .frame(height: 200, alignment: .center)
-                }
-
-                Section(header: Text("Refresh Rate", comment: "AccelerationView - Section Header")) {
+                Section(header: Text("Refresh Rate", comment: "GyroscopeView - Section Header")) {
                     RefreshRateView(motionVM: motionVM, show: "header")
                     RefreshRateView(motionVM: motionVM, show: "slider")
                 }
             }
-            .listStyle(InsetGroupedListStyle())
+            .listStyle(.insetGrouped)
             .frame(
                 minWidth: 0,
                 idealWidth: geo.size.width,
@@ -79,34 +73,12 @@ struct GyroscopeView: View {
                 alignment: .leading
             )
         }
-        .onAppear(perform: onAppear)
-        .onDisappear(perform: onDisappear)
-    }
-
-    func shareCSV() -> URL {
-        var csvText = NSLocalizedString("ID;Time;X-Axis;Y-Axis;Z-Axis", comment: "Export CSV Headline - Acceleration") + "\n" // swiftlint:disable:this line_length
-
-        _ = motionVM.coreMotionArray.map {
-            csvText += "\($0.counter);\($0.timestamp);\($0.gyroXAxis.localizedDecimal());\($0.gyroYAxis.localizedDecimal());\($0.gyroZAxis.localizedDecimal())\n" // swiftlint:disable:this line_length
-        }
-        return exportAPI.getFile(exportText: csvText, filename: "acceleration")
-    }
-
-    func onAppear() {
-        // Start updating motion
-        motionVM.motionUpdateStart()
-        motionVM.sensorUpdateInterval = settings.fetchUserSettings().frequencySetting
-    }
-
-    func onDisappear() {
-        motionVM.stopMotionUpdates()
-        motionVM.coreMotionArray.removeAll()
     }
 }
 
 struct GyroscopeView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
+        NavigationStack {
             GyroscopeView()
         }
     }

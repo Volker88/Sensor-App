@@ -18,21 +18,24 @@ struct RefreshRateView: View {
         if show == "header" {
             HStack {
                 Text("\(NSLocalizedString("Frequency:", comment: "RefreshRateView - Frequency")) \(Double(motionVM.sensorUpdateInterval), specifier: "%.1f") Hz", comment: "RefreshRateView - Refresh Rate") // swiftlint:disable:this line_length
-                Stepper("", value: $motionVM.sensorUpdateInterval, in: 1...10, step: 0.1)
+                Stepper("", value: $motionVM.sensorUpdateInterval, in: 0.1...5, step: 0.1, onEditingChanged: { _ in
+                    updateSlider()
+                })
             }
         } else if show == "slider" {
             HStack {
-                Text("1", comment: "RefreshRateView - Label 1")
+                Text("0.1", comment: "RefreshRateView - Label 1")
 
-                Slider(value: $motionVM.sensorUpdateInterval, in: 1...10, step: 0.1) { _ in
+                Slider(value: $motionVM.sensorUpdateInterval, in: 0.1...5, step: 0.1) { _ in
                     updateSlider()
                 }
                 .accessibility(label: Text("Refresh Rate", comment: "RefreshRateView - Slider"))
                 .accessibility(value: Text("\(motionVM.sensorUpdateInterval, specifier: "%.1f") per Second", comment: "RefreshRateView - Value")) // swiftlint:disable:this line_length
                 .accessibility(identifier: "Frequency Slider")
-                Text("10", comment: "RefreshRateView - Label 10")
+                Text("5", comment: "RefreshRateView - Label 10")
             }
         }
+
     }
 
     func updateSlider() {

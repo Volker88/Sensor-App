@@ -16,7 +16,6 @@
 		1514AAF22878B63100C4EC8C /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1514AAF12878B63100C4EC8C /* HomeScreen.swift */; };
 		1515F5EF2885EBB500F3C509 /* ConditionalOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1515F5EE2885EBB500F3C509 /* ConditionalOverlay.swift */; };
 		151D316C24E955FB0090BC94 /* Sidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151D316B24E955FB0090BC94 /* Sidebar.swift */; };
-		151D317524E956A10090BC94 /* SettingsOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151D317424E956A10090BC94 /* SettingsOverlay.swift */; };
 		1527B01B24C4AA240024DD78 /* SensorAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1527B01A24C4AA240024DD78 /* SensorAppApp.swift */; };
 		1527B01F24C4AA240024DD78 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1527B01E24C4AA240024DD78 /* Assets.xcassets */; };
 		1527B02224C4AA240024DD78 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1527B02124C4AA240024DD78 /* Preview Assets.xcassets */; };
@@ -243,7 +242,6 @@
 		1514AAF12878B63100C4EC8C /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
 		1515F5EE2885EBB500F3C509 /* ConditionalOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionalOverlay.swift; sourceTree = "<group>"; };
 		151D316B24E955FB0090BC94 /* Sidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sidebar.swift; sourceTree = "<group>"; };
-		151D317424E956A10090BC94 /* SettingsOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsOverlay.swift; sourceTree = "<group>"; };
 		1527B01724C4AA240024DD78 /* Sensor-App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sensor-App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1527B01A24C4AA240024DD78 /* SensorAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorAppApp.swift; sourceTree = "<group>"; };
 		1527B01E24C4AA240024DD78 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -699,7 +697,6 @@
 				15445CBB24F2D67C006940C6 /* Magnetometer */,
 				15445CCA24F2E935006940C6 /* Settings */,
 				153723352532FEA800061B24 /* ReleaseNotes.swift */,
-				1514AAF12878B63100C4EC8C /* HomeScreen.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -796,11 +793,11 @@
 			isa = PBXGroup;
 			children = (
 				1514AAED2878A16A00C4EC8C /* AppState.swift */,
-				1527B01A24C4AA240024DD78 /* SensorAppApp.swift */,
 				1514AAEB2878A0B000C4EC8C /* ContentView.swift */,
-				151D316B24E955FB0090BC94 /* Sidebar.swift */,
 				1514AAEF2878A2B200C4EC8C /* DetailColumn.swift */,
-				151D317424E956A10090BC94 /* SettingsOverlay.swift */,
+				1514AAF12878B63100C4EC8C /* HomeScreen.swift */,
+				1527B01A24C4AA240024DD78 /* SensorAppApp.swift */,
+				151D316B24E955FB0090BC94 /* Sidebar.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -1134,7 +1131,6 @@
 				15657AB42531E6D300884941 /* Extension+URL.swift in Sources */,
 				1542E3F024C4B1D500FA2755 /* AltitudeModel.swift in Sources */,
 				1542E3CB24C4B05400FA2755 /* GyroscopeView.swift in Sources */,
-				151D317524E956A10090BC94 /* SettingsOverlay.swift in Sources */,
 				1542E3CE24C4B05400FA2755 /* MagnetometerView.swift in Sources */,
 				153723AF25332C8000061B24 /* Extension+Bundle.swift in Sources */,
 				1542E3DE24C4B16800FA2755 /* CalculationAPI.swift in Sources */,
@@ -1410,7 +1406,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				MY_BUILD_VERSION = 20220904.1;
+				MY_BUILD_VERSION = 20220909.1;
 				MY_VERSION = 4.0.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "VolkerSchmitt88-at-icloud.com.Sensor-App";
@@ -1471,7 +1467,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				MY_BUILD_VERSION = 20220904.1;
+				MY_BUILD_VERSION = 20220909.1;
 				MY_VERSION = 4.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "VolkerSchmitt88-at-icloud.com.Sensor-App";
 				PRODUCT_NAME = "Sensor-App";

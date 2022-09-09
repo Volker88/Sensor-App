@@ -12,6 +12,7 @@ struct MagnetometerScreen: View {
     let magnetometerView = MagnetometerView()
 
     @EnvironmentObject var motionVM: CoreMotionViewModel
+    @EnvironmentObject var settings: SettingsAPI
     @State private var showNotification = false
     @State private var notificationMessage = ""
     @State private var notificationDuration = 2.0
@@ -30,6 +31,18 @@ struct MagnetometerScreen: View {
             NotificationView(notificationMessage: $notificationMessage, showNotification: $showNotification)
         }
         .navigationTitle(NSLocalizedString("Magnetometer", comment: "NavigationBar Title - Magnetometer"))
+        .navigationDestination(for: Route.self, destination: { route in
+            switch route {
+                case .magnetometerList:
+                    MagnetometerList()
+                default:
+                    EmptyView()
+
+            }
+        })
+        .onAppear {
+            motionVM.start()
+        }
     }
 
     func toolBarButtonTapped(button: ToolBarButtonType) {
@@ -60,7 +73,7 @@ struct MagnetometerScreen: View {
 
 struct MagnetometerScreen_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
+        NavigationStack {
             MagnetometerScreen()
         }
     }

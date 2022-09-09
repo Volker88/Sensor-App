@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct MagnetometerList: View {
-    @ObservedObject var motionVM: CoreMotionViewModel
+    @EnvironmentObject var motionVM: CoreMotionViewModel
+    let exportAPI = ExportAPI()
 
     var body: some View {
         List(motionVM.coreMotionArray.reversed(), id: \.self) { item in
@@ -23,22 +24,42 @@ struct MagnetometerList: View {
             }
             .font(.footnote)
         }
-        .listStyle(PlainListStyle())
-        .frame(
-            minWidth: 0,
-            idealWidth: 100,
-            maxWidth: .infinity,
-            minHeight: 0,
-            idealHeight: 250,
-            maxHeight: 250,
-            alignment: .center
-        )
+        .navigationTitle(NSLocalizedString("Magnetometer", comment: "NavigationBar Title - MagnetometerList"))
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                ShareSheet(url: shareCSV())
+            }
+            CustomToolbar(toolBarFunctionClosure: toolBarButtonTapped(button:))
+        }
+    }
+
+    func toolBarButtonTapped(button: ToolBarButtonType) {
+        switch button {
+            case .play:
+                motionVM.motionUpdateStart()
+            case .pause:
+                motionVM.stopMotionUpdates()
+            case .delete:
+                motionVM.coreMotionArray.removeAll()
+                motionVM.altitudeArray.removeAll()
+                Log.shared.add(.coreLocation, .default, "Deleted Motion Data")
+        }
+    }
+
+    func shareCSV() -> URL {
+        var csvText = NSLocalizedString("ID;Time;X-Axis;Y-Axis;Z-Axis", comment: "Export CSV Headline - Magnetometer") + "\n" // swiftlint:disable:this line_length
+
+        _ = motionVM.coreMotionArray.map {
+            csvText += "\($0.counter);\($0.timestamp);\($0.magnetometerXAxis.localizedDecimal());\($0.magnetometerYAxis.localizedDecimal());\($0.magnetometerZAxis.localizedDecimal())\n" // swiftlint:disable:this line_length
+        }
+        return exportAPI.getFile(exportText: csvText, filename: "magnetometer")
     }
 }
 
 struct MagnetometerList_Previews: PreviewProvider {
     static var previews: some View {
-        MagnetometerList(motionVM: CoreMotionViewModel())
-            .previewLayout(.sizeThatFits)
+        NavigationStack {
+            MagnetometerList()
+        }
     }
 }

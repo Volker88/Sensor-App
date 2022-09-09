@@ -21,8 +21,15 @@ enum Screen: Hashable {
     case magnetometer
     case attitude
     case altitude
+    case settings
 }
 
 enum Route: Hashable {
     case location
+    case accelerationList
+    case altitudeList
+    case attitudeList
+    case gravityList
+    case gyroscopeList
+    case magnetometerList
 }

@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct AttitudeList: View {
-    @ObservedObject var motionVM: CoreMotionViewModel
+    @EnvironmentObject var motionVM: CoreMotionViewModel
+    let exportAPI = ExportAPI()
 
     var body: some View {
         List(motionVM.coreMotionArray.reversed(), id: \.self) { item in
@@ -25,22 +26,43 @@ struct AttitudeList: View {
             }
             .font(.footnote)
         }
-        .listStyle(PlainListStyle())
-        .frame(
-            minWidth: 0,
-            idealWidth: 100,
-            maxWidth: .infinity,
-            minHeight: 0,
-            idealHeight: 250,
-            maxHeight: 250,
-            alignment: .center
-        )
+        .listStyle(.plain)
+        .navigationTitle(NSLocalizedString("Attitude", comment: "NavigationBar Title - Attitude"))
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                ShareSheet(url: shareCSV())
+            }
+            CustomToolbar(toolBarFunctionClosure: toolBarButtonTapped(button:))
+        }
+    }
+
+    func toolBarButtonTapped(button: ToolBarButtonType) {
+        switch button {
+            case .play:
+                motionVM.motionUpdateStart()
+            case .pause:
+                motionVM.stopMotionUpdates()
+            case .delete:
+                motionVM.coreMotionArray.removeAll()
+                motionVM.altitudeArray.removeAll()
+                Log.shared.add(.coreLocation, .default, "Deleted Motion Data")
+        }
+    }
+
+    func shareCSV() -> URL {
+        var csvText = NSLocalizedString("ID;Time;Roll;Pitch;Yaw;Heading", comment: "Export CSV Headline - attitude") + "\n" // swiftlint:disable:this line_length
+
+        _ = motionVM.coreMotionArray.map {
+            csvText += "\($0.counter);\($0.timestamp);\($0.attitudeRoll.localizedDecimal());\($0.attitudePitch.localizedDecimal());\($0.attitudeYaw.localizedDecimal());\($0.attitudeHeading.localizedDecimal())\n" // swiftlint:disable:this line_length
+        }
+        return exportAPI.getFile(exportText: csvText, filename: "attitude")
     }
 }
 
 struct AttitudeList_Previews: PreviewProvider {
     static var previews: some View {
-        AttitudeList(motionVM: CoreMotionViewModel())
-            .previewLayout(.sizeThatFits)
+        NavigationStack {
+            AttitudeList()
+        }
     }
 }
