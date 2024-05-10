@@ -57,3 +57,4 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         handler(nil)
     }
 }
+// swiftlint:enable line_length

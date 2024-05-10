@@ -37,3 +37,4 @@ extension Bundle {
         }
     }
 }
+// swiftlint:enable line_length

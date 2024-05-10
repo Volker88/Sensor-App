@@ -4,7 +4,7 @@
 //
 //  Created by Volker Schmitt on 10.08.22.
 //
-// swiftlint:disable line_length
+//
 
 import SwiftUI
 
@@ -13,7 +13,8 @@ struct ShareSheet: View {
 
     var body: some View {
         ShareLink(item: url) {
-            Label(NSLocalizedString("Export", comment: "AccelerationView - Export List"), systemImage: "square.and.arrow.up")
+            Label(NSLocalizedString("Export", comment: "AccelerationView - Export List"),
+                  systemImage: "square.and.arrow.up")
         }
     }
 }
