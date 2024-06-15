@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-extension String: Identifiable {
+extension String: Swift.Identifiable {
     public var id: String {
         self
     }

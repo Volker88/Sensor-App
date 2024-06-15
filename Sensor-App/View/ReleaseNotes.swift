@@ -48,9 +48,9 @@ struct ReleaseNotes: View {
                         Text("Show")
                     })
                     .toggleStyle(.switch)
-                    .onChange(of: showReleaseNotes, perform: { value in
+                    .onChange(of: showReleaseNotes) { _, value in
                         toggleSwitch(value: value)
-                    })
+                    }
                 }
             }
             .onAppear(perform: onAppear)

@@ -21,7 +21,7 @@ struct AltitudeView: View {
     var body: some View {
         GeometryReader { geo in
             List {
-                Section(header: Text("Acceleration", comment: "AccelerationView - Section Header")) {
+                Section(header: Text("Altitude", comment: "AltitudeView - Section Header")) {
                     DisclosureGroup(
                         isExpanded: $showPressure,
                         content: {

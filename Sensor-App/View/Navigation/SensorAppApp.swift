@@ -27,7 +27,8 @@ struct SensorAppApp: App {
                 .environmentObject(appState)
                 .environmentObject(motionVM)
                 .environmentObject(settingsAPI)
-                .onChange(of: scenePhase) { phase in
+
+                .onChange(of: scenePhase) { _, phase in
                     switch phase {
                         case .active:
                             Log.shared.add(.scenePhase, .default, "ScenePhase: Active")

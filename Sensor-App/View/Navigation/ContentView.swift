@@ -20,7 +20,7 @@ struct ContentView: View {
                 DetailColumn()
             }
         }
-        .onChange(of: appState.selectedScreen) { _ in
+        .onChange(of: appState.selectedScreen) {
 //            appState.path.removeAll()
             motionVM.stop()
         }
