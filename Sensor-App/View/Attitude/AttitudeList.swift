@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import OSLog
 
 struct AttitudeList: View {
     @EnvironmentObject var motionVM: CoreMotionViewModel
@@ -45,7 +46,7 @@ struct AttitudeList: View {
             case .delete:
                 motionVM.coreMotionArray.removeAll()
                 motionVM.altitudeArray.removeAll()
-                Log.shared.add(.coreLocation, .default, "Deleted Motion Data")
+                Logger.coreLocation.debug("Deleted Motion Data")
         }
     }
 
@@ -53,7 +54,7 @@ struct AttitudeList: View {
         var csvText = NSLocalizedString("ID;Time;Roll;Pitch;Yaw;Heading", comment: "Export CSV Headline - attitude") + "\n" // swiftlint:disable:this line_length
 
         _ = motionVM.coreMotionArray.map {
-            csvText += "\($0.counter);\($0.timestamp);\($0.attitudeRoll.localizedDecimal());\($0.attitudePitch.localizedDecimal());\($0.attitudeYaw.localizedDecimal());\($0.attitudeHeading.localizedDecimal())\n" // swiftlint:disable:this line_length
+            csvText += "\($0.counter);\($0.timestamp);\($0.attitudeRoll.localizedDecimal());\($0.attitudePitch.localizedDecimal());\($0.attitudeYaw.localizedDecimal());\($0.attitudeHeading.localizedDecimal())\n"
         }
         return exportAPI.getFile(exportText: csvText, filename: "attitude")
     }

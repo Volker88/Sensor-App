@@ -26,7 +26,7 @@ struct GyroscopeView: View {
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {
-                            Text("X-Axis: \(motionVM.coreMotionArray.last?.gyroXAxis ?? 0.0, specifier: "%.5f") rad/s", comment: "GyroscopeView - X-Axis") // swiftlint:disable:this line_length
+                            Text("X-Axis: \(motionVM.coreMotionArray.last?.gyroXAxis ?? 0.0, specifier: "%.5f") rad/s", comment: "GyroscopeView - X-Axis")
                         })
                     .disclosureGroupModifier(accessibility: "Toggle X-Axis Graph")
 
@@ -37,7 +37,7 @@ struct GyroscopeView: View {
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {
-                            Text("Y-Axis: \(motionVM.coreMotionArray.last?.gyroYAxis ?? 0.0, specifier: "%.5f") rad/s", comment: "GyroscopeView - Y-Axis") // swiftlint:disable:this line_length
+                            Text("Y-Axis: \(motionVM.coreMotionArray.last?.gyroYAxis ?? 0.0, specifier: "%.5f") rad/s", comment: "GyroscopeView - Y-Axis")
                         })
                     .disclosureGroupModifier(accessibility: "Toggle Y-Axis Graph")
 
@@ -48,7 +48,7 @@ struct GyroscopeView: View {
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {
-                            Text("Z-Axis: \(motionVM.coreMotionArray.last?.gyroZAxis ?? 0.0, specifier: "%.5f") rad/s", comment: "GyroscopeView - Z-Axis") // swiftlint:disable:this line_length
+                            Text("Z-Axis: \(motionVM.coreMotionArray.last?.gyroZAxis ?? 0.0, specifier: "%.5f") rad/s", comment: "GyroscopeView - Z-Axis")
                         })
                     .disclosureGroupModifier(accessibility: "Toggle Z-Axis Graph")
 

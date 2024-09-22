@@ -15,6 +15,7 @@ class BaseTestCase: XCTestCase {
         continueAfterFailure = false
 
         // Clear User Defaults
+        // swiftlint:disable:next force_unwrapping
         UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
         UserDefaults.standard.synchronize()
 

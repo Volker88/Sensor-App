@@ -21,6 +21,6 @@ struct ShareSheet: View {
 
 struct ShareSheet_Previews: PreviewProvider {
     static var previews: some View {
-        ShareSheet(url: URL(string: "https://www.apple.com")!)
+        ShareSheet(url: URL(string: "https://www.apple.com")!) // swiftlint:disable:this force_unwrapping
     }
 }

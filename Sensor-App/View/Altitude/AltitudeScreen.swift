@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import OSLog
 
 struct AltitudeScreen: View {
     let notificationAPI = NotificationAPI()
@@ -49,21 +50,21 @@ struct AltitudeScreen: View {
         var messageType: NotificationTypes?
 
         switch button {
-        case .play:
-            motionVM.altitudeUpdateStart()
-            messageType = .played
-        case .pause:
-            motionVM.stopMotionUpdates()
-            messageType = .paused
-        case .delete:
-            motionVM.coreMotionArray.removeAll()
-            motionVM.altitudeArray.removeAll()
-            messageType = .deleted
-            Log.shared.add(.coreLocation, .default, "Deleted Motion Data")
+            case .play:
+                motionVM.altitudeUpdateStart()
+                messageType = .played
+            case .pause:
+                motionVM.stopMotionUpdates()
+                messageType = .paused
+            case .delete:
+                motionVM.coreMotionArray.removeAll()
+                motionVM.altitudeArray.removeAll()
+                messageType = .deleted
+                Logger.coreLocation.debug("Deleted Motion Data")
         }
 
-        if messageType != nil {
-            notificationAPI.toggleNotification(type: messageType!, duration: notificationDuration) { (message, show) in
+        if let messageType {
+            notificationAPI.toggleNotification(type: messageType, duration: notificationDuration) { (message, show) in
                 notificationMessage = message
                 showNotification = show
             }

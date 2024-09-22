@@ -29,7 +29,7 @@ struct AltitudeView: View {
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {
-                            Text("Pressure: \(calculationAPI.calculatePressure(pressure: motionVM.altitudeArray.last?.pressureValue ?? 0.0, to: settings.fetchUserSettings().pressureSetting), specifier: "%.5f") \(settings.fetchUserSettings().pressureSetting)", comment: "AltitudeView - Pressure") // swiftlint:disable:this line_length
+                            Text("Pressure: \(calculationAPI.calculatePressure(pressure: motionVM.altitudeArray.last?.pressureValue ?? 0.0, to: settings.fetchUserSettings().pressureSetting), specifier: "%.5f") \(settings.fetchUserSettings().pressureSetting)", comment: "AltitudeView - Pressure")
                         })
                     .disclosureGroupModifier(accessibility: "Toggle Pressure Graph")
 
@@ -40,7 +40,7 @@ struct AltitudeView: View {
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {
-                            Text("Altitude change: \(calculationAPI.calculateHeight(height: motionVM.altitudeArray.last?.relativeAltitudeValue ?? 0.0, to: settings.fetchUserSettings().altitudeHeightSetting), specifier: "%.5f") \(settings.fetchUserSettings().altitudeHeightSetting)", comment: "AltitudeView - Altitude") // swiftlint:disable:this line_length
+                            Text("Altitude change: \(calculationAPI.calculateHeight(height: motionVM.altitudeArray.last?.relativeAltitudeValue ?? 0.0, to: settings.fetchUserSettings().altitudeHeightSetting), specifier: "%.5f") \(settings.fetchUserSettings().altitudeHeightSetting)", comment: "AltitudeView - Altitude")
                         })
                     .disclosureGroupModifier(accessibility: "Toggle Altitude Graph")
 

@@ -2,14 +2,15 @@
   "configurations" : [
     {
       "id" : "C56CC015-D669-48A7-9DD9-3B79A697EF0E",
-      "name" : "Configuration 1",
+      "name" : "Configuration 1 (us)",
       "options" : {
-
+        "language" : "en",
+        "region" : "US"
       }
     },
     {
       "id" : "6780A5D9-DB44-4B86-9640-9795AE65EC0B",
-      "name" : "Configuration 2",
+      "name" : "Configuration 2 (de)",
       "options" : {
         "language" : "de",
         "region" : "DE"

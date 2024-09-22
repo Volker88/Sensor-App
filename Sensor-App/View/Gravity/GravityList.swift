@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import OSLog
 
 struct GravityList: View {
     @EnvironmentObject var motionVM: CoreMotionViewModel
@@ -43,7 +44,7 @@ struct GravityList: View {
             case .delete:
                 motionVM.coreMotionArray.removeAll()
                 motionVM.altitudeArray.removeAll()
-                Log.shared.add(.coreLocation, .default, "Deleted Motion Data")
+                Logger.coreLocation.debug("Deleted Motion Data")
         }
     }
 
@@ -51,7 +52,7 @@ struct GravityList: View {
         var csvText = NSLocalizedString("ID;Time;X-Axis;Y-Axis;Z-Axis", comment: "Export CSV Headline - Gravity") + "\n"
 
         _ = motionVM.coreMotionArray.map {
-            csvText += "\($0.counter);\($0.timestamp);\($0.gravityXAxis.localizedDecimal());\($0.gravityYAxis.localizedDecimal());\($0.gravityZAxis.localizedDecimal())\n" // swiftlint:disable:this line_length
+            csvText += "\($0.counter);\($0.timestamp);\($0.gravityXAxis.localizedDecimal());\($0.gravityYAxis.localizedDecimal());\($0.gravityZAxis.localizedDecimal())\n"
         }
         return exportAPI.getFile(exportText: csvText, filename: "gravity")
     }

@@ -122,7 +122,7 @@ struct SettingsScreen: View {
                         Slider(value: $settingsVM.mapSettings.zoom, in: 100...100000, step: 100)
                             .accessibility(identifier: "Zoom Slider")
                             .accessibility(label: Text("Zoom:", comment: "SettingsScreen - ZoomSlider"))
-                            .accessibility(value: Text("\(settingsVM.mapSettings.zoom, specifier: "%.1f") km", comment: "SettingsScreen - ZoomSlider")) // swiftlint:disable:this line_length
+                            .accessibility(value: Text("\(settingsVM.mapSettings.zoom, specifier: "%.1f") km", comment: "SettingsScreen - ZoomSlider"))
                         Text("100 km", comment: "SettingsScreen - 100km")
                     }
                 }
@@ -164,8 +164,8 @@ struct SettingsScreen: View {
                             step: 1
                         )
                         .accessibility(identifier: "Max Points Slider")
-                        .accessibility(label: Text("Maximum Points:", comment: "SettingsScreen - Max Points Slider")) // swiftlint:disable:this line_length
-                        .accessibility(value: Text("\(settingsVM.userSettings.graphMaxPoints, specifier: "%.0f")", comment: "SettingsScreen - Max Points Slider")) // swiftlint:disable:this line_length
+                        .accessibility(label: Text("Maximum Points:", comment: "SettingsScreen - Max Points Slider"))
+                        .accessibility(value: Text("\(settingsVM.userSettings.graphMaxPoints, specifier: "%.0f")", comment: "SettingsScreen - Max Points Slider"))
                         Text("1000", comment: "SettingsScreen - 1000")
                     }
                 }
@@ -186,7 +186,6 @@ struct SettingsScreen: View {
                     }
                 }
                 .buttonStyle(BorderlessButtonStyle())
-#warning("Xcode 14 beta 6 bug - Publishing changes from within view updates")
             }
             .navigationTitle(NSLocalizedString("Settings", comment: "NavigationBar Title - Settings"))
 

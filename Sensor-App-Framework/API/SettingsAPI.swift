@@ -8,6 +8,7 @@
 
 import Foundation
 import SwiftUI
+import OSLog
 
 class SettingsAPI: ObservableObject {
 
@@ -43,6 +44,8 @@ class SettingsAPI: ObservableObject {
     public func clearUserDefaults() {
         var userSettings = fetchUserSettings()
         let releaseNotes = userSettings.showReleaseNotes
+
+        // swiftlint:disable:next force_unwrapping
         UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
         UserDefaults.standard.synchronize()
 
@@ -50,7 +53,7 @@ class SettingsAPI: ObservableObject {
 
         saveUserSettings(userSettings: userSettings)
 
-        Log.shared.add(.userDefaults, .default, "Clear Userdefaults")
+        Logger.userDefaults.debug("Clear Userdefaults")
     }
 
     /// Read UserSettings
@@ -73,10 +76,8 @@ class SettingsAPI: ObservableObject {
             let decoder = JSONDecoder()
             if let decoded = try? decoder.decode(UserSettings.self, from: settings) {
                 userSettings = decoded
-                Log.shared.print("Read Settings: \(userSettings)")
-                Log.shared.add(.userDefaults, .default, "UserSettings fetched: \(userSettings)")
             } else {
-                Log.shared.add(.userDefaults, .error, "UserSettings could not be fetched")
+                Logger.userDefaults.error("UserSettings could not be fetched")
             }
         }
 
@@ -109,10 +110,8 @@ class SettingsAPI: ObservableObject {
 
         if let data = try? encoder.encode(settings) {
             UserDefaults.standard.set(data, forKey: "UserSettings")
-            Log.shared.print("Save Settings: \(settings)")
-            Log.shared.add(.userDefaults, .default, "UserSettings saved: \(settings)")
         } else {
-            Log.shared.add(.userDefaults, .error, "UserSettings could not be saved")
+            Logger.userDefaults.error("UserSettings could not be saved")
         }
     }
 
@@ -139,12 +138,10 @@ class SettingsAPI: ObservableObject {
             let decoder = JSONDecoder()
             if let decoded = try? decoder.decode(MapKitSettings.self, from: settings) {
                 mapKitSettings = decoded
-                Log.shared.add(.userDefaults, .default, "MapKitSettings fetched: \(mapKitSettings)")
             } else {
-                Log.shared.add(.userDefaults, .error, "MapKitSettings could not be fetched")
+                Logger.userDefaults.error("MapKitSettings could not be fetched")
             }
         }
-        Log.shared.print("Read Settings: \(mapKitSettings)")
 
         return mapKitSettings
     }
@@ -161,11 +158,9 @@ class SettingsAPI: ObservableObject {
 
         if let data = try? encoder.encode(settings) {
             UserDefaults.standard.set(data, forKey: "MapKitSettings")
-            Log.shared.add(.userDefaults, .default, "MapKitSettings saved: \(settings)")
         } else {
-            Log.shared.add(.userDefaults, .error, "MapKitSettings could not be fsaved")
+            Logger.userDefaults.error("MapKitSettings could not be fsaved")
         }
-        Log.shared.print("Save Settings: \(settings)")
     }
 
     ///  Get  current timestamp

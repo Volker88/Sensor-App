@@ -25,7 +25,7 @@ class AppUpdatesTests: XCTestCase {
         appUpdates.checkForUpdate()
 
         // When
-        let userDefaultsForSpeedSetting = UserDefaults.standard.string(forKey: "\(SettingsForUserDefaults.GPSSpeedSetting)") // swiftlint:disable:this line_length
+        let userDefaultsForSpeedSetting = UserDefaults.standard.string(forKey: "\(SettingsForUserDefaults.GPSSpeedSetting)")
 
         // Then
         XCTAssertNil(userDefaultsForSpeedSetting, "UserDefaults are still present")

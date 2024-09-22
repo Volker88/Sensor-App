@@ -29,7 +29,7 @@ struct AttitudeView: View {
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {
-                            Text("Roll: \((motionVM.coreMotionArray.last?.attitudeRoll ?? 0.0) * 180 / .pi, specifier: "%.5f")°", comment: "AttitudeView - Roll") // swiftlint:disable:this line_length
+                            Text("Roll: \((motionVM.coreMotionArray.last?.attitudeRoll ?? 0.0) * 180 / .pi, specifier: "%.5f")°", comment: "AttitudeView - Roll")
                         })
                     .disclosureGroupModifier(accessibility: "Toggle Roll Graph")
 
@@ -40,7 +40,7 @@ struct AttitudeView: View {
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {
-                            Text("Pitch: \((motionVM.coreMotionArray.last?.attitudePitch ?? 0.0) * 180 / .pi, specifier: "%.5f")°", comment: "AttitudeView - Pitch") // swiftlint:disable:this line_length
+                            Text("Pitch: \((motionVM.coreMotionArray.last?.attitudePitch ?? 0.0) * 180 / .pi, specifier: "%.5f")°", comment: "AttitudeView - Pitch")
                         })
                     .disclosureGroupModifier(accessibility: "Toggle Pitch Graph")
 
@@ -51,7 +51,7 @@ struct AttitudeView: View {
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {
-                            Text("Yaw: \((motionVM.coreMotionArray.last?.attitudeYaw ?? 0.0) * 180 / .pi, specifier: "%.5f")°", comment: "AttitudeView - Yaw") // swiftlint:disable:this line_length
+                            Text("Yaw: \((motionVM.coreMotionArray.last?.attitudeYaw ?? 0.0) * 180 / .pi, specifier: "%.5f")°", comment: "AttitudeView - Yaw")
                         })
                     .disclosureGroupModifier(accessibility: "Toggle Yaw Graph")
 
@@ -62,7 +62,7 @@ struct AttitudeView: View {
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {
-                            Text("Heading: \(motionVM.coreMotionArray.last?.attitudeHeading ?? 0.0, specifier: "%.5f")°", comment: "AttitudeView - Heading") // swiftlint:disable:this line_length
+                            Text("Heading: \(motionVM.coreMotionArray.last?.attitudeHeading ?? 0.0, specifier: "%.5f")°", comment: "AttitudeView - Heading")
                         })
                     .disclosureGroupModifier(accessibility: "Toggle Heading Graph")
 

@@ -26,7 +26,7 @@ struct AccelerationView: View {
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {
-                            Text("X-Axis: \(motionVM.coreMotionArray.last?.accelerationXAxis ?? 0.0, specifier: "%.5f") m/s^2", comment: "AccelerationView - X-Axis") // swiftlint:disable:this line_length
+                            Text("X-Axis: \(motionVM.coreMotionArray.last?.accelerationXAxis ?? 0.0, specifier: "%.5f") m/s^2", comment: "AccelerationView - X-Axis")
                         })
                     .disclosureGroupModifier(accessibility: "Toggle X-Axis Graph")
 
@@ -37,7 +37,7 @@ struct AccelerationView: View {
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {
-                            Text("Y-Axis: \(motionVM.coreMotionArray.last?.accelerationYAxis ?? 0.0, specifier: "%.5f") m/s^2", comment: "AccelerationView - Y-Axis") // swiftlint:disable:this line_length
+                            Text("Y-Axis: \(motionVM.coreMotionArray.last?.accelerationYAxis ?? 0.0, specifier: "%.5f") m/s^2", comment: "AccelerationView - Y-Axis")
                         })
                     .disclosureGroupModifier(accessibility: "Toggle Y-Axis Graph")
 
@@ -48,7 +48,7 @@ struct AccelerationView: View {
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {
-                            Text("Z-Axis: \(motionVM.coreMotionArray.last?.accelerationZAxis ?? 0.0, specifier: "%.5f") m/s^2", comment: "AccelerationView - Z-Axis") // swiftlint:disable:this line_length
+                            Text("Z-Axis: \(motionVM.coreMotionArray.last?.accelerationZAxis ?? 0.0, specifier: "%.5f") m/s^2", comment: "AccelerationView - Z-Axis")
                         })
                     .disclosureGroupModifier(accessibility: "Toggle Z-Axis Graph")
 

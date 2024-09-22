@@ -21,11 +21,9 @@ struct AccelerationView: View {
 
     var body: some View {
         List {
-            // swiftlint:disable line_length
             Text("X-Axis: \(motionVM.coreMotionArray.last?.accelerationXAxis ?? 0.0, specifier: "%.5f") m/s^2", comment: "AccelerationView - X-Axis (watchOS)")
             Text("Y-Axis: \(motionVM.coreMotionArray.last?.accelerationYAxis ?? 0.0, specifier: "%.5f") m/s^2", comment: "AccelerationView - Y-Axis (watchOS)")
             Text("Z-Axis: \(motionVM.coreMotionArray.last?.accelerationZAxis ?? 0.0, specifier: "%.5f") m/s^2", comment: "AccelerationView - Z-Axis (watchOS)")
-            // swiftlint:enable line_length
         }
         .navigationTitle(NSLocalizedString("Acceleration", comment: "AccelerationView - NavigationBar Title (watchOS)"))
         .font(.footnote)

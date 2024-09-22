@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import OSLog
 
 class ExportAPI {
     /// Export File
@@ -18,6 +19,7 @@ class ExportAPI {
     ///   - fileExtension: String
     /// - Returns: URL?
     func getFile(exportText: String, filename: String, fileExtension: String = ".csv") -> URL {
+        // swiftlint:disable force_unwrapping
         let fileName = "\(filename)\(fileExtension)"
         let path = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(fileName)
 
@@ -25,12 +27,13 @@ class ExportAPI {
 
         do {
             try exportText.write(to: path!, atomically: true, encoding: String.Encoding.utf8)
-            Log.shared.add(.exportFile, .default, "\(path!)")
-            Log.shared.add(.exportFile, .default, "\(exportText)")
+            Logger.exportFile.debug("\(path!)")
+            Logger.exportFile.debug("\(exportText)")
         } catch {
-            Log.shared.add(.exportFile, .fault, "\(error)")
+            Logger.exportFile.error("\(error)")
         }
 
         return path!
+        // swiftlint:enable force_unwrapping
     }
 }

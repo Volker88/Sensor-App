@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import OSLog
 
 struct AccelerationList: View {
     @EnvironmentObject var motionVM: CoreMotionViewModel
@@ -43,7 +44,7 @@ struct AccelerationList: View {
             case .delete:
                 motionVM.coreMotionArray.removeAll()
                 motionVM.altitudeArray.removeAll()
-                Log.shared.add(.coreLocation, .default, "Deleted Motion Data")
+                Logger.coreLocation.debug("Deleted Motion Data")
         }
     }
 
@@ -51,7 +52,7 @@ struct AccelerationList: View {
         var csvText = NSLocalizedString("ID;Time;X-Axis;Y-Axis;Z-Axis", comment: "Export CSV Headline - Acceleration") + "\n" // swiftlint:disable:this line_length
 
         _ = motionVM.coreMotionArray.map {
-            csvText += "\($0.counter);\($0.timestamp);\($0.accelerationXAxis.localizedDecimal());\($0.accelerationYAxis.localizedDecimal());\($0.accelerationZAxis.localizedDecimal())\n" // swiftlint:disable:this line_length
+            csvText += "\($0.counter);\($0.timestamp);\($0.accelerationXAxis.localizedDecimal());\($0.accelerationYAxis.localizedDecimal());\($0.accelerationZAxis.localizedDecimal())\n"
         }
         return exportAPI.getFile(exportText: csvText, filename: "acceleration")
     }

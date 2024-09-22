@@ -7,6 +7,7 @@
 
 import SwiftUI
 import StoreKit
+import OSLog
 
 struct LocationScreen: View {
     @Environment(\.requestReview) var requestReview
@@ -64,11 +65,11 @@ struct LocationScreen: View {
             case .delete:
                 locationVM.coreLocationArray.removeAll()
                 messageType = .deleted
-                Log.shared.add(.coreLocation, .default, "Deleted Location Data")
+                Logger.coreLocation.debug("Deleted Location Data")
         }
 
-        if messageType != nil {
-            notificationAPI.toggleNotification(type: messageType!, duration: notificationDuration) { (message, show) in
+        if let messageType {
+            notificationAPI.toggleNotification(type: messageType, duration: notificationDuration) { (message, show) in
                 notificationMessage = message
                 showNotification = show
             }

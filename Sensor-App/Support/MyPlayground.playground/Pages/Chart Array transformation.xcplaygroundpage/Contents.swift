@@ -6,7 +6,7 @@ var transformedArray = [Double]()
 
 let dataArray = data
 
-let dataArrayMaxValue = dataArray.map(abs).max()!
+let dataArrayMaxValue = dataArray.map(abs).max()! // swiftlint:disable:this force_unwrapping
 
 print("Max Value: \(dataArrayMaxValue)")
 

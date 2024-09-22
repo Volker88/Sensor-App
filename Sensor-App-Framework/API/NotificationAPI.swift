@@ -31,12 +31,12 @@ class NotificationAPI {
         duration: Double? = 2.0
     ) -> NotificationAnimationModel {
         let notificationAnimationSettings = NotificationAnimationModel(
-            offSetY: offSetY!,
-            springMass: mass!,
-            springStiffness: stiffness!,
-            springDamping: damping!,
-            springVelocity: velocity!,
-            duration: duration!
+            offSetY: offSetY ?? -UIScreen.main.bounds.height / 3,
+            springMass: mass ?? 1.0,
+            springStiffness: stiffness ?? 100.0,
+            springDamping: damping ?? 10.0,
+            springVelocity: velocity ?? 0.0,
+            duration: duration ?? 2.0
         )
         return notificationAnimationSettings
     }

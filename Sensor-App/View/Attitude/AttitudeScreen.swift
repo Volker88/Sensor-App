@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import OSLog
 
 struct AttitudeScreen: View {
     let notificationAPI = NotificationAPI()
@@ -58,11 +59,11 @@ struct AttitudeScreen: View {
             motionVM.coreMotionArray.removeAll()
             motionVM.altitudeArray.removeAll()
             messageType = .deleted
-            Log.shared.add(.coreLocation, .default, "Deleted Motion Data")
+            Logger.coreLocation.debug("Deleted Motion Data")
         }
 
-        if messageType != nil {
-            notificationAPI.toggleNotification(type: messageType!, duration: notificationDuration) { (message, show) in
+        if let messageType {
+            notificationAPI.toggleNotification(type: messageType, duration: notificationDuration) { (message, show) in
                 notificationMessage = message
                 showNotification = show
             }

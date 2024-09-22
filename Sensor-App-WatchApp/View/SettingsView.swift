@@ -21,10 +21,10 @@ struct SettingsView: View {
 
     init() {
         refreshRate = settings.fetchUserSettings().frequencySetting
-        speedSetting = settings.GPSSpeedSettings.firstIndex(of: settings.fetchUserSettings().GPSSpeedSetting)!
-        accuracySetting = settings.GPSAccuracyOptions.firstIndex(of: settings.fetchUserSettings().GPSAccuracySetting)!
-        pressureSetting = settings.altitudePressure.firstIndex(of: settings.fetchUserSettings().pressureSetting)!
-        heightSetting = settings.altitudeHeight.firstIndex(of: settings.fetchUserSettings().altitudeHeightSetting)!
+        speedSetting = settings.GPSSpeedSettings.firstIndex(of: settings.fetchUserSettings().GPSSpeedSetting) ?? 0
+        accuracySetting = settings.GPSAccuracyOptions.firstIndex(of: settings.fetchUserSettings().GPSAccuracySetting) ?? 0 // swiftlint:disable:this line_length
+        pressureSetting = settings.altitudePressure.firstIndex(of: settings.fetchUserSettings().pressureSetting) ?? 0
+        heightSetting = settings.altitudeHeight.firstIndex(of: settings.fetchUserSettings().altitudeHeightSetting) ?? 0
     }
 
     var body: some View {
@@ -72,7 +72,7 @@ struct SettingsView: View {
             Section(header:
                         Text("Refresh Rate", comment: "SettingsView - Refresh Rate Section (watchOS)")
             ) {
-                Text("\(NSLocalizedString("Frequency:", comment: "SettingsView - Frequency (watchOS)")) \(Int(refreshRate)) Hz", comment: "SettingsView - Frequency (watchOS)") // swiftlint:disable:this line_length
+                Text("\(NSLocalizedString("Frequency:", comment: "SettingsView - Frequency (watchOS)")) \(Int(refreshRate)) Hz", comment: "SettingsView - Frequency (watchOS)")
                 Slider(value: $refreshRate, in: 1...10, step: 1) { _ in
 
                 }
@@ -116,10 +116,10 @@ struct SettingsView: View {
     }
 
     func discardChanges(showNotification: Bool) {
-        speedSetting = settings.GPSSpeedSettings.firstIndex(of: settings.fetchUserSettings().GPSSpeedSetting)!
-        accuracySetting = settings.GPSAccuracyOptions.firstIndex(of: settings.fetchUserSettings().GPSAccuracySetting)!
-        pressureSetting = settings.altitudePressure.firstIndex(of: settings.fetchUserSettings().pressureSetting)!
-        heightSetting = settings.altitudeHeight.firstIndex(of: settings.fetchUserSettings().altitudeHeightSetting)!
+        speedSetting = settings.GPSSpeedSettings.firstIndex(of: settings.fetchUserSettings().GPSSpeedSetting) ?? 0
+        accuracySetting = settings.GPSAccuracyOptions.firstIndex(of: settings.fetchUserSettings().GPSAccuracySetting) ?? 0 // swiftlint:disable:this line_length
+        pressureSetting = settings.altitudePressure.firstIndex(of: settings.fetchUserSettings().pressureSetting) ?? 0
+        heightSetting = settings.altitudeHeight.firstIndex(of: settings.fetchUserSettings().altitudeHeightSetting) ?? 0
         refreshRate = settings.fetchUserSettings().frequencySetting
 
         if showNotification == true {

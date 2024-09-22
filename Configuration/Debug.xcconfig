@@ -1,0 +1,16 @@
+//
+//  Debug.xcconfig
+//  Sensor-App
+//
+//  Created by Volker Schmitt on 12.09.2024.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+#include "General.xcconfig"
+
+// MARK: - DEBUG-specific settings
+BUNDLE_IDENTIFIER = VolkerSchmitt88-at-icloud.com.Sensor-App.dev
+APP_DISPLAY_NAME = Sensor-App
+PRIMARY_APP_ICON = AppIcon-V1

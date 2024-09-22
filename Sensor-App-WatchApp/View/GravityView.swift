@@ -21,11 +21,9 @@ struct GravityView: View {
 
     var body: some View {
         List {
-            // swiftlint:disable line_length
             Text("X-Axis: \(motionVM.coreMotionArray.last?.gravityXAxis ?? 0.0, specifier: "%.5f") g (9,81 m/s^2)", comment: "GravityView - X-Axis (watchOS)")
             Text("Y-Axis: \(motionVM.coreMotionArray.last?.gravityYAxis ?? 0.0, specifier: "%.5f") g (9,81 m/s^2)", comment: "GravityView - Y-Axis (watchOS)")
             Text("Z-Axis: \(motionVM.coreMotionArray.last?.gravityZAxis ?? 0.0, specifier: "%.5f") g (9,81 m/s^2)", comment: "GravityView - Z-Axis (watchOS)")
-            // swiftlint:enable line_length
         }
         .navigationTitle(NSLocalizedString("Gravity", comment: "GravityView - NavigationBar Title (watchOS)"))
         .font(.footnote)

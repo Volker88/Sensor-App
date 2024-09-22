@@ -20,12 +20,10 @@ struct AttitudeView: View {
 
     var body: some View {
         List {
-            // swiftlint:disable line_length
             Text("Roll: \((motionVM.coreMotionArray.last?.attitudeRoll ?? 0.0) * 180 / .pi, specifier: "%.5f")°", comment: "AttitudeView - Roll (watchOS)")
             Text("Pitch: \((motionVM.coreMotionArray.last?.attitudePitch ?? 0.0) * 180 / .pi, specifier: "%.5f")°", comment: "AttitudeView - Pitch (watchOS)")
             Text("Yaw: \((motionVM.coreMotionArray.last?.attitudeYaw ?? 0.0) * 180 / .pi, specifier: "%.5f")°", comment: "AttitudeView - Yaw (watchOS)")
             Text("Heading: \(motionVM.coreMotionArray.last?.attitudeHeading ?? 0.0, specifier: "%.5f")°", comment: "AttitudeView - Heading (watchOS)")
-            // swiftlint:enable line_length
         }
         .navigationTitle(NSLocalizedString("Attitude", comment: "AttitudeView - NavigationBar Title (watchOS)"))
         .font(.footnote)

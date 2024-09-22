@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import OSLog
 
 @main
 struct SensorAppApp: App {
@@ -27,17 +28,16 @@ struct SensorAppApp: App {
                 .environmentObject(appState)
                 .environmentObject(motionVM)
                 .environmentObject(settingsAPI)
-
                 .onChange(of: scenePhase) { _, phase in
                     switch phase {
                         case .active:
-                            Log.shared.add(.scenePhase, .default, "ScenePhase: Active")
+                            Logger.scenePhase.debug("ScenePhase: Active")
                         case .inactive:
-                            Log.shared.add(.scenePhase, .default, "ScenePhase: Inactive")
+                            Logger.scenePhase.debug("ScenePhase: Inactive")
                         case .background:
-                            Log.shared.add(.scenePhase, .default, "ScenePhase: Background")
+                            Logger.scenePhase.debug("ScenePhase: Background")
                         @unknown default:
-                            Log.shared.add(.scenePhase, .error, "ScenePhase: Unknown")
+                            Logger.scenePhase.debug("ScenePhase: Unknown")
                     }
                 }
                 .onAppear {

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import OSLog
 
 struct ReleaseNotes: View {
     @Environment(\.dismiss) var dismiss
@@ -62,7 +63,7 @@ struct ReleaseNotes: View {
         userSettings.showReleaseNotes = value
         settings.saveUserSettings(userSettings: userSettings)
 
-        Log.shared.add(.appUpdates, .default, "Show Release Notes: \(value)")
+        Logger.appUpdate.debug("Show Release Notes: \(value)")
     }
 
     func onAppear() {

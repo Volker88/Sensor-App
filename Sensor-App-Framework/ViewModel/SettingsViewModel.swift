@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@MainActor
 class SettingsViewModel: ObservableObject {
 
     @Published var currentAppIconIndex = 0
@@ -60,10 +61,10 @@ class SettingsViewModel: ObservableObject {
 
     func discardChanges() {
         // swiftlint:disable line_length
-        speedSetting = settingsAPI.GPSSpeedSettings.firstIndex(of: settingsAPI.fetchUserSettings().GPSSpeedSetting)!
-        accuracySetting = settingsAPI.GPSAccuracyOptions.firstIndex(of: settingsAPI.fetchUserSettings().GPSAccuracySetting)!
-        pressureSetting = settingsAPI.altitudePressure.firstIndex(of: settingsAPI.fetchUserSettings().pressureSetting)!
-        heightSetting = settingsAPI.altitudeHeight.firstIndex(of: settingsAPI.fetchUserSettings().altitudeHeightSetting)!
+        speedSetting = settingsAPI.GPSSpeedSettings.firstIndex(of: settingsAPI.fetchUserSettings().GPSSpeedSetting) ?? 0
+        accuracySetting = settingsAPI.GPSAccuracyOptions.firstIndex(of: settingsAPI.fetchUserSettings().GPSAccuracySetting) ?? 0
+        pressureSetting = settingsAPI.altitudePressure.firstIndex(of: settingsAPI.fetchUserSettings().pressureSetting) ?? 0
+        heightSetting = settingsAPI.altitudeHeight.firstIndex(of: settingsAPI.fetchUserSettings().altitudeHeightSetting) ?? 0
         // swiftlint:enable line_length
 
         mapSettings = settingsAPI.fetchMapKitSettings()

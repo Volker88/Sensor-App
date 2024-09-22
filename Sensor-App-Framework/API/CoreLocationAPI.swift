@@ -8,17 +8,18 @@
 
 import Foundation
 import CoreLocation
+import OSLog
 
 class CoreLocationAPI: CLLocationManager, CLLocationManagerDelegate {
     private let settings = SettingsAPI()
-    private var locationManager: CLLocationManager = CLLocationManager()
+    private var locationManager = CLLocationManager()
 
     ///  Completion Handler to receive LocationModel Object
     ///
     ///  - Returns: LocationModel Object
     public var locationCompletionHandler: ((LocationModel) -> Void)?
 
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    nonisolated func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = locations[locations.count - 1] // Last object from location Array
 
         // GPS Information
@@ -31,17 +32,6 @@ class CoreLocationAPI: CLLocationManager, CLLocationManagerDelegate {
         let verticalAccuracy = location.verticalAccuracy // Accuracy in Meters
         let GPSAccuracy = locationManager.desiredAccuracy // GPS Desired Accuracy
         // let timestamp = location.timestamp // Timestamp of the measurement
-
-        // Print all GPS Variables for Debug
-        Log.shared.print("Latitude: \(latitude)")
-        Log.shared.print("Longitude: \(longitude)")
-        Log.shared.print("Horizontal Accuracy: \(horizontalAccuracy)")
-        Log.shared.print("Altitude: \(altitude)")
-        Log.shared.print("VerticalAccuracy: \(verticalAccuracy)")
-        Log.shared.print("Speed in m/s: \(speed)")
-        Log.shared.print("Direction: \(course)")
-        Log.shared.print("Timestamp: \(settings.getTimestamp())")
-        Log.shared.print("Desired Accuracy: \(GPSAccuracy)")
 
         // Creating LocationModel
         let locationModel = LocationModel(
@@ -61,7 +51,7 @@ class CoreLocationAPI: CLLocationManager, CLLocationManagerDelegate {
     }
 
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        Log.shared.add(.coreLocation, .fault, "\(error)")
+        Logger.coreLocation.error("\(error)")
     }
 
     ///  Start GPS updates
@@ -81,13 +71,14 @@ class CoreLocationAPI: CLLocationManager, CLLocationManagerDelegate {
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization() // Asks for permission to access GPS
         locationManager.startUpdatingLocation() // Start Updating Location
-        Log.shared.add(.coreLocation, .default, "Start Location Updates")
+
+        Logger.coreLocation.debug("Start Location Updates")
     }
 
     ///  Stop GPS updates
     public func stopUpdatingGPS() {
         locationManager.delegate = self
         locationManager.stopUpdatingLocation()
-        Log.shared.add(.coreLocation, .default, "Stop Location Updates")
+        Logger.coreLocation.debug("Stop Location Updates")
     }
 }
