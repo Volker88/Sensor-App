@@ -123,7 +123,6 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				/Localized/Translation/InfoPlist.strings,
-				/Localized/Translation/Localizable.strings,
 			);
 			target = 1527B02724C4AA240024DD78 /* Sensor-AppTests */;
 		};
@@ -131,7 +130,6 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				/Localized/Translation/InfoPlist.strings,
-				/Localized/Translation/Localizable.strings,
 			);
 			target = 1527B03224C4AA240024DD78 /* Sensor-AppUITests */;
 		};
