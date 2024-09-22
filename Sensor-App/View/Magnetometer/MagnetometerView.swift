@@ -9,79 +9,66 @@
 import SwiftUI
 
 struct MagnetometerView: View {
-    @EnvironmentObject private var appState: AppState
-    @EnvironmentObject var motionVM: CoreMotionViewModel
-    @State private var showShareSheet = false
-    @State private var fileToShare: URL?
+
+    @Environment(MotionManager.self) private var motionManager
+
     @State private var showXAxis = false
     @State private var showYAxis = false
     @State private var showZAxis = false
 
+    // MARK: - Body
     var body: some View {
-        GeometryReader { geo in
-            List {
-                Section(header: Text("Acceleration", comment: "AccelerationView - Section Header")) {
-                    DisclosureGroup(
-                        isExpanded: $showXAxis,
-                        content: {
-                            LineGraphSubView(motionVM: motionVM, graph: .motion, showGraph: .magnetometerXAxis)
-                                .frame(height: 100, alignment: .leading)
-                        },
-                        label: {
-                            Text("X-Axis: \(motionVM.coreMotionArray.last?.magnetometerXAxis ?? 0.0, specifier: "%.5f") µT", comment: "MagnetometerView - X-Axis") // swiftlint:disable:this line_length
-                        })
-                    .disclosureGroupModifier(accessibility: "Toggle X-Axis Graph")
+        List {
+            Section(header: Text("Acceleration", comment: "AccelerationView - Section Header")) {
+                DisclosureGroup(
+                    isExpanded: $showXAxis,
+                    content: {
+                        LineGraphSubView(graph: .motion, showGraph: .magnetometerXAxis)
+                            .frame(height: 100, alignment: .leading)
+                    },
+                    label: {
+                        Text("X-Axis: \(motionManager.motion?.magnetometerXAxis ?? 0.0, specifier: "%.5f") µT", comment: "MagnetometerView - X-Axis")
+                    })
+                .disclosureGroupModifier(accessibility: "Toggle X-Axis Graph")
 
-                    DisclosureGroup(
-                        isExpanded: $showYAxis,
-                        content: {
-                            LineGraphSubView(motionVM: motionVM, graph: .motion, showGraph: .magnetometerYAxis)
-                                .frame(height: 100, alignment: .leading)
-                        },
-                        label: {
-                            Text("Y-Axis: \(motionVM.coreMotionArray.last?.magnetometerYAxis ?? 0.0, specifier: "%.5f") µT", comment: "MagnetometerView - Y-Axis") // swiftlint:disable:this line_length
-                        })
-                    .disclosureGroupModifier(accessibility: "Toggle Y-Axis Graph")
+                DisclosureGroup(
+                    isExpanded: $showYAxis,
+                    content: {
+                        LineGraphSubView(graph: .motion, showGraph: .magnetometerYAxis)
+                            .frame(height: 100, alignment: .leading)
+                    },
+                    label: {
+                        Text("Y-Axis: \(motionManager.motion?.magnetometerYAxis ?? 0.0, specifier: "%.5f") µT", comment: "MagnetometerView - Y-Axis")
+                    })
+                .disclosureGroupModifier(accessibility: "Toggle Y-Axis Graph")
 
-                    DisclosureGroup(
-                        isExpanded: $showZAxis,
-                        content: {
-                            LineGraphSubView(motionVM: motionVM, graph: .motion, showGraph: .magnetometerZAxis)
-                                .frame(height: 100, alignment: .leading)
-                        },
-                        label: {
-                            Text("Z-Axis: \(motionVM.coreMotionArray.last?.magnetometerZAxis ?? 0.0, specifier: "%.5f") µT", comment: "MagnetometerView - Z-Axis") // swiftlint:disable:this line_length
-                        })
-                    .disclosureGroupModifier(accessibility: "Toggle Z-Axis Graph")
+                DisclosureGroup(
+                    isExpanded: $showZAxis,
+                    content: {
+                        LineGraphSubView(graph: .motion, showGraph: .magnetometerZAxis)
+                            .frame(height: 100, alignment: .leading)
+                    },
+                    label: {
+                        Text("Z-Axis: \(motionManager.motion?.magnetometerZAxis ?? 0.0, specifier: "%.5f") µT", comment: "MagnetometerView - Z-Axis")
+                    })
+                .disclosureGroupModifier(accessibility: "Toggle Z-Axis Graph")
 
-                    NavigationLink(value: Route.magnetometerList) {
-                        Text("Log", comment: "MagnetometerView - Log")
-                    }
-                }
-
-                Section(header: Text("Refresh Rate", comment: "MagnetometerView - Section Header")) {
-                    RefreshRateView(motionVM: motionVM, show: "header")
-                    RefreshRateView(motionVM: motionVM, show: "slider")
+                NavigationLink(value: Route.magnetometerList) {
+                    Text("Log", comment: "MagnetometerView - Log")
                 }
             }
-            .listStyle(.insetGrouped)
-            .frame(
-                minWidth: 0,
-                idealWidth: geo.size.width,
-                maxWidth: .infinity,
-                minHeight: 0,
-                idealHeight: geo.size.height,
-                maxHeight: geo.size.height,
-                alignment: .leading
-            )
+
+            Section(header: Text("Refresh Rate", comment: "MagnetometerView - Section Header")) {
+                RefreshRateView(show: "header")
+                RefreshRateView(show: "slider")
+            }
         }
+        .listStyle(.insetGrouped)
     }
 }
 
-struct MagnetometerView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationStack {
-            MagnetometerView()
-        }
-    }
+// MARK: - Preview
+#Preview {
+    MagnetometerView()
+        .previewNavigationStackWrapper()
 }

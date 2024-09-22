@@ -4,6 +4,12 @@ identifier_name:
     - to
     - ms
     - pa
+    - i
+    - j
+    - k
+    - x
+    - y
+    - z
 
 disabled_rules:
   - multiple_closures_with_trailing_closure
@@ -14,4 +20,25 @@ disabled_rules:
   - unused_capture_list
 
 line_length:
+  warning: 120
   ignores_comments: true
+  ignores_urls: true
+  ignores_function_declarations: true
+  ignores_interpolated_strings: true
+  
+opt_in_rules:
+  - deployment_target
+  - force_unwrapping
+  - redundant_type_annotation
+  - force_try
+  - operator_usage_whitespace
+
+deployment_target:
+    iOSApplicationExtension_deployment_target:      "${deployment_target_iOS}"
+    iOS_deployment_target:                          "${deployment_target_iOS}"
+    macOSApplicationExtension_deployment_target:    "${deployment_target_macOS}"
+    macOS_deployment_target:                        "${deployment_target_macOS}"
+    tvOSApplicationExtension_deployment_target:     "${deployment_target_tvOS}"
+    tvOS_deployment_target:                         "${deployment_target_tvOS}"
+    watchOSApplicationExtension_deployment_target:  "${deployment_target_watchOS}"
+    watchOS_deployment_target:                      "${deployment_target_watchOS}"

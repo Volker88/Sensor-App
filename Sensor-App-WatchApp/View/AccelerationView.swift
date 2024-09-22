@@ -9,23 +9,18 @@
 import SwiftUI
 
 struct AccelerationView: View {
-    let settings = SettingsAPI()
 
-    @ObservedObject var motionVM = CoreMotionViewModel()
+    @Environment(SettingsManager.self) private var settingsManager
+    @Environment(MotionManager.self) private var motionManager
+
     @State private var frequency = 1.0 // Default Frequency
 
-    init() {
-        frequency = settings.fetchUserSettings().frequencySetting
-        motionVM.sensorUpdateInterval = frequency
-    }
-
+    // MARK: - Body
     var body: some View {
         List {
-            // swiftlint:disable line_length
-            Text("X-Axis: \(motionVM.coreMotionArray.last?.accelerationXAxis ?? 0.0, specifier: "%.5f") m/s^2", comment: "AccelerationView - X-Axis (watchOS)")
-            Text("Y-Axis: \(motionVM.coreMotionArray.last?.accelerationYAxis ?? 0.0, specifier: "%.5f") m/s^2", comment: "AccelerationView - Y-Axis (watchOS)")
-            Text("Z-Axis: \(motionVM.coreMotionArray.last?.accelerationZAxis ?? 0.0, specifier: "%.5f") m/s^2", comment: "AccelerationView - Z-Axis (watchOS)")
-            // swiftlint:enable line_length
+            Text("X-Axis: \(motionManager.motion?.accelerationXAxis ?? 0.0, specifier: "%.5f") m/s^2", comment: "AccelerationView - X-Axis (watchOS)")
+            Text("Y-Axis: \(motionManager.motion?.accelerationYAxis ?? 0.0, specifier: "%.5f") m/s^2", comment: "AccelerationView - Y-Axis (watchOS)")
+            Text("Z-Axis: \(motionManager.motion?.accelerationZAxis ?? 0.0, specifier: "%.5f") m/s^2", comment: "AccelerationView - Z-Axis (watchOS)")
         }
         .navigationTitle(NSLocalizedString("Acceleration", comment: "AccelerationView - NavigationBar Title (watchOS)"))
         .font(.footnote)
@@ -33,22 +28,24 @@ struct AccelerationView: View {
         .onDisappear(perform: onDisappear)
     }
 
+    // MARK: - Methods
     func onAppear() {
+        frequency = settingsManager.fetchUserSettings().frequencySetting
+        motionManager.sensorUpdateInterval = frequency
+
         // Start updating motion
-        motionVM.motionUpdateStart()
+        motionManager.sensorUpdateInterval = frequency
+        motionManager.startMotionUpdates()
     }
 
     func onDisappear() {
-        motionVM.stopMotionUpdates()
-        motionVM.coreMotionArray.removeAll()
+        motionManager.stopMotionUpdates()
+        motionManager.resetMotionUpdates()
     }
 }
 
-struct AccelerationView_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            AccelerationView().previewDevice("Apple Watch Series 3 - 38mm")
-            AccelerationView().previewDevice("Apple Watch Series 4 - 44mm")
-        }
-    }
+// MARK: - Preview
+#Preview {
+    AccelerationView()
+        .previewNavigationStackWrapper()
 }

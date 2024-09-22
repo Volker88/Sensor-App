@@ -8,11 +8,14 @@
 import SwiftUI
 
 struct MagnetometerList: View {
-    @EnvironmentObject var motionVM: CoreMotionViewModel
-    let exportAPI = ExportAPI()
 
+    @Environment(MotionManager.self) private var motionManager
+
+    private let exportManager = ExportManager()
+
+    // MARK: - Body
     var body: some View {
-        List(motionVM.coreMotionArray.reversed(), id: \.self) { item in
+        List(motionManager.motionArray.reversed(), id: \.self) { item in
             HStack {
                 Text("ID:\(item.counter)", comment: "MagnetometerList - ID")
                 Spacer()
@@ -29,37 +32,23 @@ struct MagnetometerList: View {
             ToolbarItem(placement: .navigationBarTrailing) {
                 ShareSheet(url: shareCSV())
             }
-            CustomToolbar(toolBarFunctionClosure: toolBarButtonTapped(button:))
+            CustomToolbar()
         }
     }
 
-    func toolBarButtonTapped(button: ToolBarButtonType) {
-        switch button {
-            case .play:
-                motionVM.motionUpdateStart()
-            case .pause:
-                motionVM.stopMotionUpdates()
-            case .delete:
-                motionVM.coreMotionArray.removeAll()
-                motionVM.altitudeArray.removeAll()
-                Log.shared.add(.coreLocation, .default, "Deleted Motion Data")
-        }
-    }
-
+    // MARK: - Methods
     func shareCSV() -> URL {
         var csvText = NSLocalizedString("ID;Time;X-Axis;Y-Axis;Z-Axis", comment: "Export CSV Headline - Magnetometer") + "\n" // swiftlint:disable:this line_length
 
-        _ = motionVM.coreMotionArray.map {
-            csvText += "\($0.counter);\($0.timestamp);\($0.magnetometerXAxis.localizedDecimal());\($0.magnetometerYAxis.localizedDecimal());\($0.magnetometerZAxis.localizedDecimal())\n" // swiftlint:disable:this line_length
+        _ = motionManager.motionArray.map {
+            csvText += "\($0.counter);\($0.timestamp);\($0.magnetometerXAxis.localizedDecimal());\($0.magnetometerYAxis.localizedDecimal());\($0.magnetometerZAxis.localizedDecimal())\n"
         }
-        return exportAPI.getFile(exportText: csvText, filename: "magnetometer")
+        return exportManager.getFile(exportText: csvText, filename: "magnetometer")
     }
 }
 
-struct MagnetometerList_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationStack {
-            MagnetometerList()
-        }
-    }
+// MARK: - Preview
+#Preview {
+    MagnetometerList()
+        .previewNavigationStackWrapper()
 }

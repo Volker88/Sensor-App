@@ -9,23 +9,18 @@
 import SwiftUI
 
 struct GyroscopeView: View {
-    let settings = SettingsAPI()
 
-    @ObservedObject var motionVM = CoreMotionViewModel()
+    @Environment(SettingsManager.self) private var settingsManager
+    @Environment(MotionManager.self) private var motionManager
+
     @State private var frequency = 1.0 // Default Frequency
 
-    init() {
-        frequency = settings.fetchUserSettings().frequencySetting
-        motionVM.sensorUpdateInterval = frequency
-    }
-
+    // MARK: - Body
     var body: some View {
         List {
-            // swiftlint:disable line_length
-            Text("X-Axis: \(motionVM.coreMotionArray.last?.gyroXAxis ?? 0.0, specifier: "%.5f") rad/s", comment: "GyroscopeView - X-Axis (watchOS)")
-            Text("Y-Axis: \(motionVM.coreMotionArray.last?.gyroYAxis ?? 0.0, specifier: "%.5f") rad/s", comment: "GyroscopeView - Y-Axis (watchOS)")
-            Text("Z-Axis: \(motionVM.coreMotionArray.last?.gyroZAxis ?? 0.0, specifier: "%.5f") rad/s", comment: "GyroscopeView - Z-Axis (watchOS)")
-            // swiftlint:enable line_length
+            Text("X-Axis: \(motionManager.motion?.gyroXAxis ?? 0.0, specifier: "%.5f") rad/s", comment: "GyroscopeView - X-Axis (watchOS)")
+            Text("Y-Axis: \(motionManager.motion?.gyroYAxis ?? 0.0, specifier: "%.5f") rad/s", comment: "GyroscopeView - Y-Axis (watchOS)")
+            Text("Z-Axis: \(motionManager.motion?.gyroZAxis ?? 0.0, specifier: "%.5f") rad/s", comment: "GyroscopeView - Z-Axis (watchOS)")
         }
         .navigationTitle(NSLocalizedString("Gyroscope", comment: "GyroscopeView - NavigationBar Title (watchOS)"))
         .font(.footnote)
@@ -33,22 +28,24 @@ struct GyroscopeView: View {
         .onDisappear(perform: onDisappear)
     }
 
+    // MARK: - Methods
     func onAppear() {
+        frequency = settingsManager.fetchUserSettings().frequencySetting
+        motionManager.sensorUpdateInterval = frequency
+
         // Start updating motion
-        motionVM.motionUpdateStart()
+        motionManager.sensorUpdateInterval = frequency
+        motionManager.startMotionUpdates()
     }
 
     func onDisappear() {
-        motionVM.stopMotionUpdates()
-        motionVM.coreMotionArray.removeAll()
+        motionManager.stopMotionUpdates()
+        motionManager.resetMotionUpdates()
     }
 }
 
-struct GyroscopeView_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            GyroscopeView().previewDevice("Apple Watch Series 3 - 38mm")
-            GyroscopeView().previewDevice("Apple Watch Series 4 - 44mm")
-        }
-    }
+// MARK: - Preview
+#Preview {
+    GyroscopeView()
+        .previewNavigationStackWrapper()
 }

@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct MapView: View {
+
+    // MARK: - Body
     var body: some View {
         MapKitView()
             .navigationTitle(NSLocalizedString("Map", comment: "NavigationBar Title - Map"))
@@ -15,8 +17,8 @@ struct MapView: View {
     }
 }
 
-struct MapView_Previews: PreviewProvider {
-    static var previews: some View {
-        MapView()
-    }
+// MARK: - Preview
+#Preview {
+    MapView()
+        .previewNavigationStackWrapper()
 }

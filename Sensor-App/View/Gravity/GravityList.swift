@@ -8,11 +8,14 @@
 import SwiftUI
 
 struct GravityList: View {
-    @EnvironmentObject var motionVM: CoreMotionViewModel
-    let exportAPI = ExportAPI()
 
+    @Environment(MotionManager.self) private var motionManager
+
+    private let exportManager = ExportManager()
+
+    // MARK: - Body
     var body: some View {
-        List(motionVM.coreMotionArray.reversed(), id: \.self) { item in
+        List(motionManager.motionArray.reversed(), id: \.self) { item in
             HStack {
                 Text("ID:\(item.counter)", comment: "GravityList - ID")
                 Spacer()
@@ -30,37 +33,23 @@ struct GravityList: View {
             ToolbarItem(placement: .navigationBarTrailing) {
                 ShareSheet(url: shareCSV())
             }
-            CustomToolbar(toolBarFunctionClosure: toolBarButtonTapped(button:))
+            CustomToolbar()
         }
     }
 
-    func toolBarButtonTapped(button: ToolBarButtonType) {
-        switch button {
-            case .play:
-                motionVM.motionUpdateStart()
-            case .pause:
-                motionVM.stopMotionUpdates()
-            case .delete:
-                motionVM.coreMotionArray.removeAll()
-                motionVM.altitudeArray.removeAll()
-                Log.shared.add(.coreLocation, .default, "Deleted Motion Data")
-        }
-    }
-
+    // MARK: - Methods
     func shareCSV() -> URL {
         var csvText = NSLocalizedString("ID;Time;X-Axis;Y-Axis;Z-Axis", comment: "Export CSV Headline - Gravity") + "\n"
 
-        _ = motionVM.coreMotionArray.map {
-            csvText += "\($0.counter);\($0.timestamp);\($0.gravityXAxis.localizedDecimal());\($0.gravityYAxis.localizedDecimal());\($0.gravityZAxis.localizedDecimal())\n" // swiftlint:disable:this line_length
+        _ = motionManager.motionArray.map {
+            csvText += "\($0.counter);\($0.timestamp);\($0.gravityXAxis.localizedDecimal());\($0.gravityYAxis.localizedDecimal());\($0.gravityZAxis.localizedDecimal())\n"
         }
-        return exportAPI.getFile(exportText: csvText, filename: "gravity")
+        return exportManager.getFile(exportText: csvText, filename: "gravity")
     }
 }
 
-struct GravityList_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationStack {
-            GravityList()
-        }
-    }
+// MARK: - Preview
+#Preview {
+    GravityList()
+        .previewNavigationStackWrapper()
 }

@@ -9,23 +9,18 @@
 import SwiftUI
 
 struct GravityView: View {
-    let settings = SettingsAPI()
 
-    @ObservedObject var motionVM = CoreMotionViewModel()
+    @Environment(SettingsManager.self) private var settingsManager
+    @Environment(MotionManager.self) private var motionManager
+
     @State private var frequency = 1.0 // Default Frequency
 
-    init() {
-        frequency = settings.fetchUserSettings().frequencySetting
-        motionVM.sensorUpdateInterval = frequency
-    }
-
+    // MARK: - Body
     var body: some View {
         List {
-            // swiftlint:disable line_length
-            Text("X-Axis: \(motionVM.coreMotionArray.last?.gravityXAxis ?? 0.0, specifier: "%.5f") g (9,81 m/s^2)", comment: "GravityView - X-Axis (watchOS)")
-            Text("Y-Axis: \(motionVM.coreMotionArray.last?.gravityYAxis ?? 0.0, specifier: "%.5f") g (9,81 m/s^2)", comment: "GravityView - Y-Axis (watchOS)")
-            Text("Z-Axis: \(motionVM.coreMotionArray.last?.gravityZAxis ?? 0.0, specifier: "%.5f") g (9,81 m/s^2)", comment: "GravityView - Z-Axis (watchOS)")
-            // swiftlint:enable line_length
+            Text("X-Axis: \(motionManager.motion?.gravityXAxis ?? 0.0, specifier: "%.5f") g (9,81 m/s^2)", comment: "GravityView - X-Axis (watchOS)")
+            Text("Y-Axis: \(motionManager.motion?.gravityYAxis ?? 0.0, specifier: "%.5f") g (9,81 m/s^2)", comment: "GravityView - Y-Axis (watchOS)")
+            Text("Z-Axis: \(motionManager.motion?.gravityZAxis ?? 0.0, specifier: "%.5f") g (9,81 m/s^2)", comment: "GravityView - Z-Axis (watchOS)")
         }
         .navigationTitle(NSLocalizedString("Gravity", comment: "GravityView - NavigationBar Title (watchOS)"))
         .font(.footnote)
@@ -33,22 +28,23 @@ struct GravityView: View {
         .onDisappear(perform: onDisappear)
     }
 
+    // MARK: - Methods
     func onAppear() {
+        frequency = settingsManager.fetchUserSettings().frequencySetting
+        motionManager.sensorUpdateInterval = frequency
+
         // Start updating motion
-        motionVM.motionUpdateStart()
+        motionManager.sensorUpdateInterval = frequency
+        motionManager.startMotionUpdates()
     }
 
     func onDisappear() {
-        motionVM.motionUpdateStart()
-        motionVM.coreMotionArray.removeAll()
+        motionManager.startMotionUpdates()
+        motionManager.resetMotionUpdates()
     }
 }
 
-struct GravityView_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            GravityView().previewDevice("Apple Watch Series 3 - 38mm")
-            GravityView().previewDevice("Apple Watch Series 4 - 44mm")
-        }
-    }
+#Preview {
+    GravityView()
+        .previewNavigationStackWrapper()
 }

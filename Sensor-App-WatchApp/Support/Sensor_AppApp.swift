@@ -9,11 +9,22 @@ import SwiftUI
 
 @main
 struct SensorAppApp: App {
+
+    @State private var locationManager = LocationManager()
+    @State private var motionManager = MotionManager()
+    @State private var settingsManager = SettingsManager()
+    @State private var calculationManager = CalculationManager()
+
+    // MARK: - Body
     var body: some Scene {
         WindowGroup {
             NavigationStack {
                 ContentView()
             }
+            .environment(locationManager)
+            .environment(motionManager)
+            .environment(calculationManager)
+            .environment(settingsManager)
         }
 
         WKNotificationScene(controller: NotificationController.self, category: "myCategory")
