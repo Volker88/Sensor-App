@@ -1,9 +1,9 @@
 {
   "images" : [
     {
-      "filename" : "watch-marketing.png",
+      "filename" : "ios-marketing.png",
       "idiom" : "universal",
-      "platform" : "watchos",
+      "platform" : "ios",
       "size" : "1024x1024"
     }
   ],
