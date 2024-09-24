@@ -10,7 +10,7 @@ import OSLog
 
 struct AttitudeList: View {
     @EnvironmentObject var motionVM: CoreMotionViewModel
-    let exportAPI = ExportAPI()
+    @Environment(ExportManager.self) var exportManager
 
     var body: some View {
         List(motionVM.coreMotionArray.reversed(), id: \.self) { item in
@@ -56,7 +56,7 @@ struct AttitudeList: View {
         _ = motionVM.coreMotionArray.map {
             csvText += "\($0.counter);\($0.timestamp);\($0.attitudeRoll.localizedDecimal());\($0.attitudePitch.localizedDecimal());\($0.attitudeYaw.localizedDecimal());\($0.attitudeHeading.localizedDecimal())\n"
         }
-        return exportAPI.getFile(exportText: csvText, filename: "attitude")
+        return exportManager.getFile(exportText: csvText, filename: "attitude")
     }
 }
 

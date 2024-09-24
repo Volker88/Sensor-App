@@ -10,7 +10,7 @@ import OSLog
 
 struct GyroscopeList: View {
     @EnvironmentObject var motionVM: CoreMotionViewModel
-    let exportAPI = ExportAPI()
+    @Environment(ExportManager.self) var exportManager
 
     var body: some View {
         List(motionVM.coreMotionArray.reversed(), id: \.self) { item in
@@ -54,7 +54,7 @@ struct GyroscopeList: View {
         _ = motionVM.coreMotionArray.map {
             csvText += "\($0.counter);\($0.timestamp);\($0.gyroXAxis.localizedDecimal());\($0.gyroYAxis.localizedDecimal());\($0.gyroZAxis.localizedDecimal())\n"
         }
-        return exportAPI.getFile(exportText: csvText, filename: "gyroscope")
+        return exportManager.getFile(exportText: csvText, filename: "gyroscope")
     }
 }
 

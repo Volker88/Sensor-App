@@ -10,7 +10,8 @@ import Foundation
 import CoreLocation
 import OSLog
 
-class CoreLocationAPI: CLLocationManager, CLLocationManagerDelegate {
+@available(*, deprecated, message: "Remove for Swift 6")
+class CoreLocationAPI2: CLLocationManager, CLLocationManagerDelegate {
     private let settings = SettingsAPI()
     private var locationManager = CLLocationManager()
 

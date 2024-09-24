@@ -10,7 +10,6 @@ import SwiftUI
 
 struct AltitudeView: View {
     let calculationAPI = CalculationAPI()
-    let exportAPI = ExportAPI()
 
     @EnvironmentObject var settings: SettingsAPI
     @EnvironmentObject private var appState: AppState

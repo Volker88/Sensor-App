@@ -10,7 +10,7 @@ import OSLog
 
 struct AccelerationList: View {
     @EnvironmentObject var motionVM: CoreMotionViewModel
-    let exportAPI = ExportAPI()
+    @Environment(ExportManager.self) var exportManager
 
     var body: some View {
         List(motionVM.coreMotionArray.reversed(), id: \.self) { item in
@@ -54,7 +54,7 @@ struct AccelerationList: View {
         _ = motionVM.coreMotionArray.map {
             csvText += "\($0.counter);\($0.timestamp);\($0.accelerationXAxis.localizedDecimal());\($0.accelerationYAxis.localizedDecimal());\($0.accelerationZAxis.localizedDecimal())\n"
         }
-        return exportAPI.getFile(exportText: csvText, filename: "acceleration")
+        return exportManager.getFile(exportText: csvText, filename: "acceleration")
     }
 }
 

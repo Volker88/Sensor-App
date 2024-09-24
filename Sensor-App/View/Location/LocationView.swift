@@ -11,9 +11,10 @@ import SwiftUI
 struct LocationView: View {
     let calculationAPI = CalculationAPI()
     let settings = SettingsAPI()
-    let exportAPI = ExportAPI()
 
-    @ObservedObject var locationVM: CoreLocationViewModel
+    @Environment(LocationManager.self) var locationManager
+    @Environment(ExportManager.self) var exportManager
+
     @State private var showLatitude = false
     @State private var showLongitude = false
     @State private var showAltitude = false
@@ -30,55 +31,55 @@ struct LocationView: View {
                     DisclosureGroup(
                         isExpanded: $showLatitude,
                         content: {
-                            LineGraphSubView(locationVM: locationVM, graph: .location, showGraph: .latitude)
+                            LineGraphSubView(graph: .location, showGraph: .latitude)
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {
-                            Text("Latitude: \(locationVM.coreLocationArray.last?.latitude ?? 0.0, specifier: "%.6f")° ± \(locationVM.coreLocationArray.last?.horizontalAccuracy ?? 0.0, specifier: "%.2f")m", comment: "LocationView - Latitude")
+                            Text("Latitude: \(locationManager.location?.latitude ?? 0.0, specifier: "%.6f")° ± \(locationManager.location?.horizontalAccuracy ?? 0.0, specifier: "%.2f")m", comment: "LocationView - Latitude")
                         })
                     .disclosureGroupModifier(accessibility: "Toggle Latitude Graph")
 
                     DisclosureGroup(
                         isExpanded: $showLongitude,
                         content: {
-                            LineGraphSubView(locationVM: locationVM, graph: .location, showGraph: .longitude)
+                            LineGraphSubView(graph: .location, showGraph: .longitude)
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {
-                            Text("Longitude: \(locationVM.coreLocationArray.last?.longitude ?? 0.0, specifier: "%.6f")° ± \(locationVM.coreLocationArray.last?.horizontalAccuracy ?? 0.0, specifier: "%.2f")m", comment: "LocationView - Longitude")
+                            Text("Longitude: \(locationManager.location?.longitude ?? 0.0, specifier: "%.6f")° ± \(locationManager.location?.horizontalAccuracy ?? 0.0, specifier: "%.2f")m", comment: "LocationView - Longitude")
                         })
                     .disclosureGroupModifier(accessibility: "Toggle Longitude Graph")
 
                     DisclosureGroup(
                         isExpanded: $showAltitude,
                         content: {
-                            LineGraphSubView(locationVM: locationVM, graph: .location, showGraph: .altitude)
+                            LineGraphSubView(graph: .location, showGraph: .altitude)
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {
-                            Text("Altitude: \(locationVM.coreLocationArray.last?.altitude ?? 0.0, specifier: "%.2f") ± \(locationVM.coreLocationArray.last?.verticalAccuracy ?? 0.0, specifier: "%.2f")m", comment: "LocationView - Altitude")
+                            Text("Altitude: \(locationManager.location?.altitude ?? 0.0, specifier: "%.2f") ± \(locationManager.location?.verticalAccuracy ?? 0.0, specifier: "%.2f")m", comment: "LocationView - Altitude")
                         })
                     .disclosureGroupModifier(accessibility: "Toggle Altitude Graph")
 
                     DisclosureGroup(
                         isExpanded: $showDirection,
                         content: {
-                            LineGraphSubView(locationVM: locationVM, graph: .location, showGraph: .course)
+                            LineGraphSubView(graph: .location, showGraph: .course)
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {
-                            Text("Direction: \(locationVM.coreLocationArray.last?.course ?? 0.0, specifier: "%.2f")°", comment: "LocationView - Direction")
+                            Text("Direction: \(locationManager.location?.course ?? 0.0, specifier: "%.2f")°", comment: "LocationView - Direction")
                         })
                     .disclosureGroupModifier(accessibility: "Toggle Direction Graph")
 
                     DisclosureGroup(
                         isExpanded: $showSpeed,
                         content: {
-                            LineGraphSubView(locationVM: locationVM, graph: .location, showGraph: .speed)
+                            LineGraphSubView(graph: .location, showGraph: .speed)
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {
-                            Text(verbatim: "\(NSLocalizedString("Speed:", comment: "LocationView - Speed")) \(calculationAPI.calculateSpeed(ms: locationVM.coreLocationArray.last?.speed ?? 0.0, to: "\(settings.fetchUserSettings().GPSSpeedSetting)")) \(settings.fetchUserSettings().GPSSpeedSetting)")
+                            Text(verbatim: "\(NSLocalizedString("Speed:", comment: "LocationView - Speed")) \(calculationAPI.calculateSpeed(ms: locationManager.location?.speed ?? 0.0, to: "\(settings.fetchUserSettings().GPSSpeedSetting)")) \(settings.fetchUserSettings().GPSSpeedSetting)")
                         })
                     .disclosureGroupModifier(accessibility: "Toggle Speed Graph")
 
@@ -105,25 +106,26 @@ struct LocationView: View {
     func shareCSV() -> URL {
         var csvText = NSLocalizedString("ID;Time;Longitude;Latitude;Altitude;Speed;Course", comment: "Export CSV Headline - Location") + "\n" // swiftlint:disable:this line_length
 
-        _ = locationVM.coreLocationArray.map {
+        _ = locationManager.locationArray.map {
             csvText += "\($0.counter);\($0.timestamp);\($0.longitude.localizedDecimal());\($0.latitude.localizedDecimal());\($0.altitude.localizedDecimal());\($0.speed.localizedDecimal());\($0.course.localizedDecimal())\n"
         }
-        return exportAPI.getFile(exportText: csvText, filename: "location")
+        return exportManager.getFile(exportText: csvText, filename: "location")
     }
 
     func onAppear() {
-        locationVM.startLocationUpdates()
+        locationManager.startLocationUpdates()
     }
 
     func onDisappear() {
-        locationVM.stopLocationUpdates()
+        locationManager.stopLocationUpdates()
+        locationManager.resetLocationUpdates()
     }
 }
 
 struct LocationView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            LocationView(locationVM: CoreLocationViewModel())
+            LocationView()
         }
     }
 }

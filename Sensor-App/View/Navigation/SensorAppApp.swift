@@ -15,6 +15,10 @@ struct SensorAppApp: App {
     @StateObject var update = AppUpdates()
     @StateObject var appState: AppState
     @StateObject var motionVM = CoreMotionViewModel()
+
+    @State private var locationManager = LocationManager()
+    @State private var exportManager = ExportManager()
+
     let settingsAPI = SettingsAPI()
 
     init() {
@@ -28,6 +32,8 @@ struct SensorAppApp: App {
                 .environmentObject(appState)
                 .environmentObject(motionVM)
                 .environmentObject(settingsAPI)
+                .environment(locationManager)
+                .environment(exportManager)
                 .onChange(of: scenePhase) { _, phase in
                     switch phase {
                         case .active:

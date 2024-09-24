@@ -10,7 +10,7 @@ import OSLog
 
 struct GravityList: View {
     @EnvironmentObject var motionVM: CoreMotionViewModel
-    let exportAPI = ExportAPI()
+    @Environment(ExportManager.self) var exportManager
 
     var body: some View {
         List(motionVM.coreMotionArray.reversed(), id: \.self) { item in
@@ -54,7 +54,7 @@ struct GravityList: View {
         _ = motionVM.coreMotionArray.map {
             csvText += "\($0.counter);\($0.timestamp);\($0.gravityXAxis.localizedDecimal());\($0.gravityYAxis.localizedDecimal());\($0.gravityZAxis.localizedDecimal())\n"
         }
-        return exportAPI.getFile(exportText: csvText, filename: "gravity")
+        return exportManager.getFile(exportText: csvText, filename: "gravity")
     }
 }
 

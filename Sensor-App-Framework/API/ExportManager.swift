@@ -1,5 +1,5 @@
 //
-//  ExportAPI.swift
+//  ExportManager.swift
 //  Sensor-App-Framework
 //
 //  Created by Volker Schmitt on 29.06.20.
@@ -9,7 +9,8 @@
 import SwiftUI
 import OSLog
 
-class ExportAPI {
+@Observable
+class ExportManager {
     /// Export File
     ///
     /// Generate file and open Share Sheet

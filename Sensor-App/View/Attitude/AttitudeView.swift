@@ -9,7 +9,6 @@
 import SwiftUI
 
 struct AttitudeView: View {
-    let exportAPI = ExportAPI()
 
     @EnvironmentObject var settings: SettingsAPI
     @EnvironmentObject var motionVM: CoreMotionViewModel

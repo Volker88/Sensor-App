@@ -10,10 +10,10 @@ import OSLog
 
 struct AltitudeList: View {
     @EnvironmentObject var motionVM: CoreMotionViewModel
+    @Environment(ExportManager.self) var exportManager
 
     let calculationAPI = CalculationAPI()
     let settings = SettingsAPI()
-    let exportAPI = ExportAPI()
 
     var body: some View {
         List(motionVM.altitudeArray.reversed(), id: \.self) { item in
@@ -55,7 +55,7 @@ struct AltitudeList: View {
         _ = motionVM.altitudeArray.map {
             csvText += "\($0.counter);\($0.timestamp);\(calculationAPI.calculatePressure(pressure: $0.pressureValue, to: settings.fetchUserSettings().pressureSetting).localizedDecimal());\(calculationAPI.calculateHeight(height: $0.relativeAltitudeValue, to: settings.fetchUserSettings().altitudeHeightSetting).localizedDecimal())\n"
         }
-        return exportAPI.getFile(exportText: csvText, filename: "altitude")
+        return exportManager.getFile(exportText: csvText, filename: "altitude")
     }
 }
 

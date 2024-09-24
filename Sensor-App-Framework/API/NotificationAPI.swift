@@ -23,7 +23,7 @@ class NotificationAPI {
     ///  - Parameter velocity: Initial velocity
     ///  - Parameter duration: Duration how long the notification is shown
     public func fetchNotificationAnimationSettings(
-        offSetY: CGFloat? = -UIScreen.main.bounds.height / 3,
+        offSetY: CGFloat? = 10, // -UIScreen.main.bounds.height / 3,
         mass: Double? = 1.0,
         stiffness: Double? = 100.0,
         damping: Double? = 10.0,
@@ -31,7 +31,7 @@ class NotificationAPI {
         duration: Double? = 2.0
     ) -> NotificationAnimationModel {
         let notificationAnimationSettings = NotificationAnimationModel(
-            offSetY: offSetY ?? -UIScreen.main.bounds.height / 3,
+            offSetY: offSetY ?? 10, // -UIScreen.main.bounds.height / 3,
             springMass: mass ?? 1.0,
             springStiffness: stiffness ?? 100.0,
             springDamping: damping ?? 10.0,
@@ -71,7 +71,7 @@ class NotificationAPI {
         completion(notificationMessage, showNotification)
         DispatchQueue.main.asyncAfter(deadline: .now() + duration, execute: {
             showNotification = false
-            completion(notificationMessage, showNotification)
+//            completion(notificationMessage, showNotification)
         })
     }
 

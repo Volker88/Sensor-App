@@ -9,7 +9,6 @@
 import SwiftUI
 
 struct GravityView: View {
-    let exportAPI = ExportAPI()
 
     @EnvironmentObject var settings: SettingsAPI
     @EnvironmentObject var motionVM: CoreMotionViewModel

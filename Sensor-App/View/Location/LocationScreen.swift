@@ -11,25 +11,21 @@ import OSLog
 
 struct LocationScreen: View {
     @Environment(\.requestReview) var requestReview
+    @Environment(LocationManager.self) var locationManager
 
     let notificationAPI = NotificationAPI()
-    let locationView: LocationView
 
-    @StateObject private var locationVM: CoreLocationViewModel
     @State private var showNotification = false
     @State private var notificationMessage = ""
     @State private var notificationDuration = 2.0
 
     init() {
-        let locationVM = CoreLocationViewModel()
-        _locationVM = StateObject(wrappedValue: locationVM)
-        locationView = LocationView(locationVM: locationVM)
         notificationDuration = notificationAPI.fetchNotificationAnimationSettings().duration
     }
 
     var body: some View {
         ZStack {
-            locationView
+            LocationView()
                 .toolbar {
                     CustomToolbar(toolBarFunctionClosure: toolBarButtonTapped(button:))
                 }
@@ -57,13 +53,13 @@ struct LocationScreen: View {
 
         switch button {
             case .play:
-                locationVM.startLocationUpdates()
+                locationManager.startLocationUpdates()
                 messageType = .played
             case .pause:
-                locationVM.stopLocationUpdates()
+                locationManager.stopLocationUpdates()
                 messageType = .paused
             case .delete:
-                locationVM.coreLocationArray.removeAll()
+                locationManager.resetLocationUpdates()
                 messageType = .deleted
                 Logger.coreLocation.debug("Deleted Location Data")
         }

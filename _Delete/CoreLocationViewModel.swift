@@ -9,10 +9,11 @@
 import Foundation
 import MapKit
 
-class CoreLocationViewModel: ObservableObject {
+@available(*, deprecated, message: "Remove for Swift 6")
+class CoreLocationViewModel2: ObservableObject {
     @Published var coreLocationArray = [LocationModel]()
 
-    let locationAPI = CoreLocationAPI()
+    let locationAPI = CoreLocationAPI2()
     let settingsAPI = SettingsAPI()
 
     init() {
@@ -20,33 +21,33 @@ class CoreLocationViewModel: ObservableObject {
     }
 
     func startLocationUpdates() {
-#if targetEnvironment(simulator)
-        mockData()
-#endif
-
-        DispatchQueue.global(qos: .userInteractive).async { [self] in
-            locationAPI.startUpdatingGPS()
-            locationAPI.locationCompletionHandler = { [self] GPS in
-
-                // Append LocationModel to coreLocationArray
-                DispatchQueue.main.async { [self] in
-                    coreLocationArray.append(
-                        LocationModel(
-                            counter: coreLocationArray.count + 1,
-                            longitude: GPS.longitude,
-                            latitude: GPS.latitude,
-                            altitude: GPS.altitude,
-                            speed: GPS.speed,
-                            course: GPS.course,
-                            horizontalAccuracy: GPS.horizontalAccuracy,
-                            verticalAccuracy: GPS.verticalAccuracy,
-                            timestamp: GPS.timestamp,
-                            GPSAccuracy: GPS.GPSAccuracy
-                        )
-                    )
-                }
-            }
-        }
+// #if targetEnvironment(simulator)
+//        mockData()
+// #endif
+//
+//        DispatchQueue.global(qos: .userInteractive).async { [self] in
+//            locationAPI.startUpdatingGPS()
+//            locationAPI.locationCompletionHandler = { [self] GPS in
+//
+//                // Append LocationModel to coreLocationArray
+//                DispatchQueue.main.async { [self] in
+//                    coreLocationArray.append(
+//                        LocationModel(
+//                            counter: coreLocationArray.count + 1,
+//                            longitude: GPS.longitude,
+//                            latitude: GPS.latitude,
+//                            altitude: GPS.altitude,
+//                            speed: GPS.speed,
+//                            course: GPS.course,
+//                            horizontalAccuracy: GPS.horizontalAccuracy,
+//                            verticalAccuracy: GPS.verticalAccuracy,
+//                            timestamp: GPS.timestamp,
+//                            GPSAccuracy: GPS.GPSAccuracy
+//                        )
+//                    )
+//                }
+//            }
+//        }
     }
 
     func stopLocationUpdates() {

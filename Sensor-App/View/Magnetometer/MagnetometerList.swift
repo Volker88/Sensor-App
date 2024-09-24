@@ -10,7 +10,7 @@ import OSLog
 
 struct MagnetometerList: View {
     @EnvironmentObject var motionVM: CoreMotionViewModel
-    let exportAPI = ExportAPI()
+    @Environment(ExportManager.self) var exportManager
 
     var body: some View {
         List(motionVM.coreMotionArray.reversed(), id: \.self) { item in
@@ -53,7 +53,7 @@ struct MagnetometerList: View {
         _ = motionVM.coreMotionArray.map {
             csvText += "\($0.counter);\($0.timestamp);\($0.magnetometerXAxis.localizedDecimal());\($0.magnetometerYAxis.localizedDecimal());\($0.magnetometerZAxis.localizedDecimal())\n"
         }
-        return exportAPI.getFile(exportText: csvText, filename: "magnetometer")
+        return exportManager.getFile(exportText: csvText, filename: "magnetometer")
     }
 }
 
