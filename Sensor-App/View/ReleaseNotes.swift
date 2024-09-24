@@ -10,8 +10,7 @@ import OSLog
 
 struct ReleaseNotes: View {
     @Environment(\.dismiss) var dismiss
-
-    let settings = SettingsAPI()
+    @Environment(SettingsManager.self) var settingsManager
 
     @State private var showReleaseNotes = true
     @State private var releaseNotes: [ReleaseNotesModel]?
@@ -59,15 +58,15 @@ struct ReleaseNotes: View {
     }
 
     func toggleSwitch(value: Bool) {
-        var userSettings = settings.fetchUserSettings()
+        var userSettings = settingsManager.fetchUserSettings()
         userSettings.showReleaseNotes = value
-        settings.saveUserSettings(userSettings: userSettings)
+        settingsManager.saveUserSettings(userSettings: userSettings)
 
         Logger.appUpdate.debug("Show Release Notes: \(value)")
     }
 
     func onAppear() {
-        showReleaseNotes = settings.fetchUserSettings().showReleaseNotes
+        showReleaseNotes = settingsManager.fetchUserSettings().showReleaseNotes
         releaseNotes = loadJson()
     }
 

@@ -9,13 +9,14 @@
 import SwiftUI
 
 struct AccelerationView: View {
-    let settings = SettingsAPI()
+    @Environment(SettingsManager.self) var settingsManager
+    @Environment(CalculationManager.self) var calculationManager
 
     @ObservedObject var motionVM = CoreMotionViewModel()
     @State private var frequency = 1.0 // Default Frequency
 
     init() {
-        frequency = settings.fetchUserSettings().frequencySetting
+        frequency = settingsManager.fetchUserSettings().frequencySetting
         motionVM.sensorUpdateInterval = frequency
     }
 

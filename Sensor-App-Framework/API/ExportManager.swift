@@ -9,7 +9,6 @@
 import SwiftUI
 import OSLog
 
-@Observable
 class ExportManager {
     /// Export File
     ///

@@ -12,7 +12,7 @@ import OSLog
 class AppUpdates: ObservableObject {
     @Published var showReleaseNotes = false
 
-    let settings = SettingsAPI()
+    let settings = SettingsManager()
 
     /// Call this function to check if the app version is up to date
     public func checkForUpdate() {

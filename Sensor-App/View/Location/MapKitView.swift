@@ -9,9 +9,10 @@ import SwiftUI
 import MapKit
 
 struct MapKitView: UIViewRepresentable {
+    @Environment(SettingsManager.self) var settingsManager
+
     let mapView = MKMapView()
 
-    let settings = SettingsAPI()
     var fullScreen: Bool
 
     init(fullScreen: Bool = false) {
@@ -26,7 +27,7 @@ struct MapKitView: UIViewRepresentable {
     func updateUIView(_ view: MKMapView, context: Context) {
 
         // Settings
-        let mapKitSettings = settings.fetchMapKitSettings()
+        let mapKitSettings = settingsManager.fetchMapKitSettings()
 
         view.showsUserLocation = true
         view.showsCompass = mapKitSettings.showsCompass

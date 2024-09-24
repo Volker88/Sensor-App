@@ -14,7 +14,7 @@ class CoreLocationViewModel2: ObservableObject {
     @Published var coreLocationArray = [LocationModel]()
 
     let locationAPI = CoreLocationAPI2()
-    let settingsAPI = SettingsAPI()
+    let settingsAPI = SettingsManager()
 
     init() {
         startLocationUpdates()

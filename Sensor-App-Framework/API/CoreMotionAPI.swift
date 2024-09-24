@@ -11,7 +11,7 @@ import CoreMotion
 import OSLog
 
 class CoreMotionAPI {
-    let settings = SettingsAPI()
+    let settings = SettingsManager()
     private var motionManager = CMMotionManager()
     private var magnetManager = CMMagnetometerData()
     private var altimeterManager = CMAltimeter()

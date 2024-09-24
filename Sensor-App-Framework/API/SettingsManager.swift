@@ -10,7 +10,8 @@ import Foundation
 import SwiftUI
 import OSLog
 
-class SettingsAPI: ObservableObject {
+@Observable
+class SettingsManager {
 
     public let GPSSpeedSettings = [
         UnitSpeed.metersPerSecond.symbol,

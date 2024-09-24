@@ -1,5 +1,5 @@
 //
-//  CalculationAPI.swift
+//  CalculationManager.swift
 //  Sensor-App
 //
 //  Created by Volker Schmitt on 03.09.19.
@@ -8,8 +8,9 @@
 
 import Foundation
 
-class CalculationAPI {
-    let settings = SettingsAPI()
+@Observable
+class CalculationManager {
+    let settings = SettingsManager()
 
     ///  Converts speed from GPS sensor into desired unit
     ///

@@ -9,11 +9,11 @@
 import SwiftUI
 
 struct LocationView: View {
-    let calculationAPI = CalculationAPI()
-    let settings = SettingsAPI()
 
     @Environment(LocationManager.self) var locationManager
-    @Environment(ExportManager.self) var exportManager
+    let exportManager = ExportManager()
+    @Environment(SettingsManager.self) var settingsManager
+    @Environment(CalculationManager.self) var calculationManager
 
     @State private var showLatitude = false
     @State private var showLongitude = false
@@ -79,7 +79,7 @@ struct LocationView: View {
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {
-                            Text(verbatim: "\(NSLocalizedString("Speed:", comment: "LocationView - Speed")) \(calculationAPI.calculateSpeed(ms: locationManager.location?.speed ?? 0.0, to: "\(settings.fetchUserSettings().GPSSpeedSetting)")) \(settings.fetchUserSettings().GPSSpeedSetting)")
+                            Text(verbatim: "\(NSLocalizedString("Speed:", comment: "LocationView - Speed")) \(calculationManager.calculateSpeed(ms: locationManager.location?.speed ?? 0.0, to: "\(settingsManager.fetchUserSettings().GPSSpeedSetting)")) \(settingsManager.fetchUserSettings().GPSSpeedSetting)")
                         })
                     .disclosureGroupModifier(accessibility: "Toggle Speed Graph")
 

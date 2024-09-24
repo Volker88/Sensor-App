@@ -19,7 +19,7 @@ class SettingsViewModel: ObservableObject {
     @Published var pressureSetting = 0
     @Published var heightSetting = 0
 
-    let settingsAPI = SettingsAPI()
+    let settingsAPI = SettingsManager()
 
     var iconNames: [String] = [ "AppIcon-V3", "AppIcon-V1", "AppIcon-V2"]
 

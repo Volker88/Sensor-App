@@ -17,7 +17,7 @@ class LocationManager {
 
     var updatesStarted: Bool = false
 
-    private let settings = SettingsAPI()
+    private let settings = SettingsManager()
     private var locationManager = CLLocationManager()
     private var index = 1
 

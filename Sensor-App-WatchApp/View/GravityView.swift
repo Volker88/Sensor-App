@@ -9,13 +9,13 @@
 import SwiftUI
 
 struct GravityView: View {
-    let settings = SettingsAPI()
+    @Environment(SettingsManager.self) var settingsManager
 
     @ObservedObject var motionVM = CoreMotionViewModel()
     @State private var frequency = 1.0 // Default Frequency
 
     init() {
-        frequency = settings.fetchUserSettings().frequencySetting
+        frequency = settingsManager.fetchUserSettings().frequencySetting
         motionVM.sensorUpdateInterval = frequency
     }
 

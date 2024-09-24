@@ -12,7 +12,7 @@ import OSLog
 
 @available(*, deprecated, message: "Remove for Swift 6")
 class CoreLocationAPI2: CLLocationManager, CLLocationManagerDelegate {
-    private let settings = SettingsAPI()
+    private let settings = SettingsManager()
     private var locationManager = CLLocationManager()
 
     ///  Completion Handler to receive LocationModel Object

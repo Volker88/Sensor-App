@@ -10,7 +10,7 @@ import OSLog
 
 struct AttitudeList: View {
     @EnvironmentObject var motionVM: CoreMotionViewModel
-    @Environment(ExportManager.self) var exportManager
+    let exportManager = ExportManager()
 
     var body: some View {
         List(motionVM.coreMotionArray.reversed(), id: \.self) { item in

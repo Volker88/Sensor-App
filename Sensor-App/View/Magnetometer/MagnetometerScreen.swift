@@ -13,7 +13,6 @@ struct MagnetometerScreen: View {
     let magnetometerView = MagnetometerView()
 
     @EnvironmentObject var motionVM: CoreMotionViewModel
-    @EnvironmentObject var settings: SettingsAPI
     @State private var showNotification = false
     @State private var notificationMessage = ""
     @State private var notificationDuration = 2.0

@@ -9,9 +9,10 @@
 import SwiftUI
 
 struct RefreshRateView: View {
+    @Environment(SettingsManager.self) var settingsManager
+
     @ObservedObject var motionVM: CoreMotionViewModel
 
-    let settings = SettingsAPI()
     let show: String
 
     var body: some View {
@@ -39,9 +40,9 @@ struct RefreshRateView: View {
     }
 
     func updateSlider() {
-        var userSettings = settings.fetchUserSettings()
+        var userSettings = settingsManager.fetchUserSettings()
         userSettings.frequencySetting = motionVM.sensorUpdateInterval
-        settings.saveUserSettings(userSettings: userSettings)
+        settingsManager.saveUserSettings(userSettings: userSettings)
     }
 }
 

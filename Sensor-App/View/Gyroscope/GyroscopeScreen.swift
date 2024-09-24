@@ -13,7 +13,6 @@ struct GyroscopeScreen: View {
     let gyroscopeView = GyroscopeView()
 
     @EnvironmentObject var motionVM: CoreMotionViewModel
-    @EnvironmentObject var settings: SettingsAPI
     @State private var showNotification = false
     @State private var notificationMessage = ""
     @State private var notificationDuration = 2.0

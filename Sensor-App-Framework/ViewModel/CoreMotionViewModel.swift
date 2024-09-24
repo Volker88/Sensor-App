@@ -18,7 +18,7 @@ class CoreMotionViewModel: ObservableObject {
     }
 
     let motionAPI = CoreMotionAPI()
-    let settings = SettingsAPI()
+    let settings = SettingsManager()
     let debug = false
 
     init() {

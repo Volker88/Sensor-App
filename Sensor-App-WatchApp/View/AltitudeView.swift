@@ -9,21 +9,21 @@
 import SwiftUI
 
 struct AltitudeView: View {
-    let calculationAPI = CalculationAPI()
-    let settings = SettingsAPI()
+    @Environment(SettingsManager.self) var settingsManager
+    @Environment(CalculationManager.self) var calculationManager
 
     @ObservedObject var motionVM = CoreMotionViewModel()
     @State private var frequency = 1.0 // Default Frequency
 
     init() {
-        frequency = settings.fetchUserSettings().frequencySetting
+        frequency = settingsManager.fetchUserSettings().frequencySetting
         motionVM.sensorUpdateInterval = frequency
     }
 
     var body: some View {
         List {
-            Text("Pressure: \(calculationAPI.calculatePressure(pressure: motionVM.altitudeArray.last?.pressureValue ?? 0.0, to: settings.fetchUserSettings().pressureSetting), specifier: "%.5f") \(settings.fetchUserSettings().pressureSetting)", comment: "AltitudeView - Pressure (watchOS)")
-            Text("Altitude change: \(calculationAPI.calculateHeight(height: motionVM.altitudeArray.last?.relativeAltitudeValue ?? 0.0, to: settings.fetchUserSettings().altitudeHeightSetting), specifier: "%.5f") \(settings.fetchUserSettings().altitudeHeightSetting)", comment: "AltitudeView - Altitude Change (watchOS)")
+            Text("Pressure: \(calculationManager.calculatePressure(pressure: motionVM.altitudeArray.last?.pressureValue ?? 0.0, to: settingsManager.fetchUserSettings().pressureSetting), specifier: "%.5f") \(settingsManager.fetchUserSettings().pressureSetting)", comment: "AltitudeView - Pressure (watchOS)")
+            Text("Altitude change: \(calculationManager.calculateHeight(height: motionVM.altitudeArray.last?.relativeAltitudeValue ?? 0.0, to: settingsManager.fetchUserSettings().altitudeHeightSetting), specifier: "%.5f") \(settingsManager.fetchUserSettings().altitudeHeightSetting)", comment: "AltitudeView - Altitude Change (watchOS)")
         }
         .navigationTitle(NSLocalizedString("Altitude", comment: "AltitudeView - NavigationBar Title (watchOS)"))
         .font(.footnote)

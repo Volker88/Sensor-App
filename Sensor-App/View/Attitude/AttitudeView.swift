@@ -10,7 +10,6 @@ import SwiftUI
 
 struct AttitudeView: View {
 
-    @EnvironmentObject var settings: SettingsAPI
     @EnvironmentObject var motionVM: CoreMotionViewModel
     @State private var showRoll = false
     @State private var showPitch = false

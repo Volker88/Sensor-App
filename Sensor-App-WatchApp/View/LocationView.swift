@@ -11,9 +11,8 @@ import SwiftUI
 struct LocationView: View {
 
     @Environment(LocationManager.self) var locationManager
-
-    let calculationAPI = CalculationAPI()
-    let settings = SettingsAPI()
+    @Environment(SettingsManager.self) var settingsManager
+    @Environment(CalculationManager.self) var calculationManager
 
     var body: some View {
         List {
@@ -21,7 +20,7 @@ struct LocationView: View {
             Text("Longitude: \(locationManager.location?.longitude ?? 0.0, specifier: "%.10f")° ± \(locationManager.location?.horizontalAccuracy ?? 0.0, specifier: "%.2f")m", comment: "LocationView - Longitude (watchOS)")
             Text("Altitude: \(locationManager.location?.altitude ?? 0.0, specifier: "%.2f") ± \(locationManager.location?.verticalAccuracy ?? 0.0, specifier: "%.2f")m", comment: "LocationView - Altitude (watchOS)")
             Text("Direction: \(locationManager.location?.course ?? 0.0, specifier: "%.2f")°", comment: "LocationView - Direction (watchOS)")
-            Text(verbatim: "\(NSLocalizedString("Speed:", comment: "LocationView - Speed (watchOS)")) \(calculationAPI.calculateSpeed(ms: locationManager.location?.speed ?? 0.0, to: "\(settings.fetchUserSettings().GPSSpeedSetting)")) \(settings.fetchUserSettings().GPSSpeedSetting)")
+            Text(verbatim: "\(NSLocalizedString("Speed:", comment: "LocationView - Speed (watchOS)")) \(calculationManager.calculateSpeed(ms: locationManager.location?.speed ?? 0.0, to: "\(settingsManager.fetchUserSettings().GPSSpeedSetting)")) \(settingsManager.fetchUserSettings().GPSSpeedSetting)")
         }
         .navigationTitle(NSLocalizedString("Location", comment: "LocationView - NavigationBar Title (watchOS)"))
         .font(.footnote)

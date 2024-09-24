@@ -9,9 +9,9 @@
 import SwiftUI
 
 struct AltitudeView: View {
-    let calculationAPI = CalculationAPI()
+    @Environment(SettingsManager.self) var settingsManager
+    @Environment(CalculationManager.self) var calculationManager
 
-    @EnvironmentObject var settings: SettingsAPI
     @EnvironmentObject private var appState: AppState
     @EnvironmentObject var motionVM: CoreMotionViewModel
     @State private var showPressure = false
@@ -28,7 +28,7 @@ struct AltitudeView: View {
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {
-                            Text("Pressure: \(calculationAPI.calculatePressure(pressure: motionVM.altitudeArray.last?.pressureValue ?? 0.0, to: settings.fetchUserSettings().pressureSetting), specifier: "%.5f") \(settings.fetchUserSettings().pressureSetting)", comment: "AltitudeView - Pressure")
+                            Text("Pressure: \(calculationManager.calculatePressure(pressure: motionVM.altitudeArray.last?.pressureValue ?? 0.0, to: settingsManager.fetchUserSettings().pressureSetting), specifier: "%.5f") \(settingsManager.fetchUserSettings().pressureSetting)", comment: "AltitudeView - Pressure")
                         })
                     .disclosureGroupModifier(accessibility: "Toggle Pressure Graph")
 
@@ -39,7 +39,7 @@ struct AltitudeView: View {
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {
-                            Text("Altitude change: \(calculationAPI.calculateHeight(height: motionVM.altitudeArray.last?.relativeAltitudeValue ?? 0.0, to: settings.fetchUserSettings().altitudeHeightSetting), specifier: "%.5f") \(settings.fetchUserSettings().altitudeHeightSetting)", comment: "AltitudeView - Altitude")
+                            Text("Altitude change: \(calculationManager.calculateHeight(height: motionVM.altitudeArray.last?.relativeAltitudeValue ?? 0.0, to: settingsManager.fetchUserSettings().altitudeHeightSetting), specifier: "%.5f") \(settingsManager.fetchUserSettings().altitudeHeightSetting)", comment: "AltitudeView - Altitude")
                         })
                     .disclosureGroupModifier(accessibility: "Toggle Altitude Graph")
 

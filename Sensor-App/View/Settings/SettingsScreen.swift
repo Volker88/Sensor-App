@@ -13,7 +13,8 @@ struct SettingsScreen: View {
     @State private var notificationMessage = ""
     @State private var showNotification = false
 
-    let settings = SettingsAPI()
+    @Environment(SettingsManager.self) var settingsManager
+
     let notificationAPI = NotificationAPI()
     let notificationSettings: NotificationAnimationModel
 
@@ -57,8 +58,8 @@ struct SettingsScreen: View {
                         label: Text("Speed Setting",
                                     comment: "SettingsScreen - Speed Setting")
                     ) {
-                        ForEach(0 ..< settings.GPSSpeedSettings.count, id: \.self) {
-                            Text(settings.GPSSpeedSettings[$0]).tag($0)
+                        ForEach(0 ..< settingsManager.GPSSpeedSettings.count, id: \.self) {
+                            Text(settingsManager.GPSSpeedSettings[$0]).tag($0)
                         }
                     }
                     .accessibility(identifier: "Speed Settings")
@@ -66,8 +67,8 @@ struct SettingsScreen: View {
                         selection: $settingsVM.accuracySetting,
                         label: Text("Accuracy", comment: "SettingsScreen - Accuracy")
                     ) {
-                        ForEach(0 ..< settings.GPSAccuracyOptions.count, id: \.self) {
-                            Text(settings.GPSAccuracyOptions[$0]).tag($0)
+                        ForEach(0 ..< settingsManager.GPSAccuracyOptions.count, id: \.self) {
+                            Text(settingsManager.GPSAccuracyOptions[$0]).tag($0)
                         }
                     }
                     .accessibility(identifier: "GPS Accuracy Settings")
@@ -134,16 +135,16 @@ struct SettingsScreen: View {
                         selection: $settingsVM.pressureSetting,
                         label: Text("Pressure", comment: "SettingsScreen - Pressure")
                     ) {
-                        ForEach(0 ..< settings.altitudePressure.count, id: \.self) {
-                            Text(settings.altitudePressure[$0]).tag($0)
+                        ForEach(0 ..< settingsManager.altitudePressure.count, id: \.self) {
+                            Text(settingsManager.altitudePressure[$0]).tag($0)
                         }
                     }
                     .accessibility(identifier: "Pressure Settings")
                     Picker(selection: $settingsVM.heightSetting, label: Text("Height",
                                                                              comment: "SettingsScreen - Height")
                     ) {
-                        ForEach(0 ..< settings.altitudeHeight.count, id: \.self) {
-                            Text(settings.altitudeHeight[$0]).tag($0)
+                        ForEach(0 ..< settingsManager.altitudeHeight.count, id: \.self) {
+                            Text(settingsManager.altitudeHeight[$0]).tag($0)
                         }
                     }
                     .accessibility(identifier: "Height Settings")

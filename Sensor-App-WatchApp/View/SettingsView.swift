@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct SettingsView: View {
-    let settings = SettingsAPI()
+    @Environment(SettingsManager.self) var settingsManager
 
     @State private var showingDiscardAlert = false
     @State private var showingSaveAlert = false
@@ -20,11 +20,11 @@ struct SettingsView: View {
     @State var heightSetting = 0
 
     init() {
-        refreshRate = settings.fetchUserSettings().frequencySetting
-        speedSetting = settings.GPSSpeedSettings.firstIndex(of: settings.fetchUserSettings().GPSSpeedSetting) ?? 0
-        accuracySetting = settings.GPSAccuracyOptions.firstIndex(of: settings.fetchUserSettings().GPSAccuracySetting) ?? 0 // swiftlint:disable:this line_length
-        pressureSetting = settings.altitudePressure.firstIndex(of: settings.fetchUserSettings().pressureSetting) ?? 0
-        heightSetting = settings.altitudeHeight.firstIndex(of: settings.fetchUserSettings().altitudeHeightSetting) ?? 0
+        refreshRate = settingsManager.fetchUserSettings().frequencySetting
+        speedSetting = settingsManager.GPSSpeedSettings.firstIndex(of: settingsManager.fetchUserSettings().GPSSpeedSetting) ?? 0
+        accuracySetting = settingsManager.GPSAccuracyOptions.firstIndex(of: settingsManager.fetchUserSettings().GPSAccuracySetting) ?? 0 // swiftlint:disable:this line_length
+        pressureSetting = settingsManager.altitudePressure.firstIndex(of: settingsManager.fetchUserSettings().pressureSetting) ?? 0
+        heightSetting = settingsManager.altitudeHeight.firstIndex(of: settingsManager.fetchUserSettings().altitudeHeightSetting) ?? 0
     }
 
     var body: some View {
@@ -36,16 +36,16 @@ struct SettingsView: View {
                     selection: $speedSetting,
                     label: Text("Speed Setting", comment: "SettingsView - Speed Setting (watchOS)")
                 ) {
-                    ForEach(0 ..< settings.GPSSpeedSettings.count, id: \.self) {
-                        Text(settings.GPSSpeedSettings[$0]).tag($0)
+                    ForEach(0 ..< settingsManager.GPSSpeedSettings.count, id: \.self) {
+                        Text(settingsManager.GPSSpeedSettings[$0]).tag($0)
                     }
                 }
                 Picker(
                     selection: $accuracySetting,
                     label: Text("Accuracy", comment: "SettingsView - Accuracy (watchOS)")
                 ) {
-                    ForEach(0 ..< settings.GPSAccuracyOptions.count, id: \.self) {
-                        Text(settings.GPSAccuracyOptions[$0]).tag($0)
+                    ForEach(0 ..< settingsManager.GPSAccuracyOptions.count, id: \.self) {
+                        Text(settingsManager.GPSAccuracyOptions[$0]).tag($0)
                     }
                 }
             }
@@ -56,16 +56,16 @@ struct SettingsView: View {
                     selection: $pressureSetting,
                     label: Text("Pressure", comment: "SettingsView - Pressure (watchOS)")
                 ) {
-                    ForEach(0 ..< settings.altitudePressure.count, id: \.self) {
-                        Text(settings.altitudePressure[$0]).tag($0)
+                    ForEach(0 ..< settingsManager.altitudePressure.count, id: \.self) {
+                        Text(settingsManager.altitudePressure[$0]).tag($0)
                     }
                 }
                 Picker(
                     selection: $heightSetting,
                     label: Text("Height", comment: "SettingsView - Height (watchOS)")
                 ) {
-                    ForEach(0 ..< settings.altitudeHeight.count, id: \.self) {
-                        Text(settings.altitudeHeight[$0]).tag($0)
+                    ForEach(0 ..< settingsManager.altitudeHeight.count, id: \.self) {
+                        Text(settingsManager.altitudeHeight[$0]).tag($0)
                     }
                 }
             }
@@ -101,13 +101,13 @@ struct SettingsView: View {
     }
 
     func saveSettings() {
-        var userSettings = settings.fetchUserSettings()
-        userSettings.GPSSpeedSetting = settings.GPSSpeedSettings[speedSetting]
-        userSettings.GPSAccuracySetting = settings.GPSAccuracyOptions[accuracySetting]
-        userSettings.pressureSetting = settings.altitudePressure[pressureSetting]
-        userSettings.altitudeHeightSetting = settings.altitudeHeight[heightSetting]
+        var userSettings = settingsManager.fetchUserSettings()
+        userSettings.GPSSpeedSetting = settingsManager.GPSSpeedSettings[speedSetting]
+        userSettings.GPSAccuracySetting = settingsManager.GPSAccuracyOptions[accuracySetting]
+        userSettings.pressureSetting = settingsManager.altitudePressure[pressureSetting]
+        userSettings.altitudeHeightSetting = settingsManager.altitudeHeight[heightSetting]
         userSettings.frequencySetting = refreshRate
-        settings.saveUserSettings(userSettings: userSettings)
+        settingsManager.saveUserSettings(userSettings: userSettings)
 
         showingSaveAlert = true
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: {
@@ -116,11 +116,11 @@ struct SettingsView: View {
     }
 
     func discardChanges(showNotification: Bool) {
-        speedSetting = settings.GPSSpeedSettings.firstIndex(of: settings.fetchUserSettings().GPSSpeedSetting) ?? 0
-        accuracySetting = settings.GPSAccuracyOptions.firstIndex(of: settings.fetchUserSettings().GPSAccuracySetting) ?? 0 // swiftlint:disable:this line_length
-        pressureSetting = settings.altitudePressure.firstIndex(of: settings.fetchUserSettings().pressureSetting) ?? 0
-        heightSetting = settings.altitudeHeight.firstIndex(of: settings.fetchUserSettings().altitudeHeightSetting) ?? 0
-        refreshRate = settings.fetchUserSettings().frequencySetting
+        speedSetting = settingsManager.GPSSpeedSettings.firstIndex(of: settingsManager.fetchUserSettings().GPSSpeedSetting) ?? 0
+        accuracySetting = settingsManager.GPSAccuracyOptions.firstIndex(of: settingsManager.fetchUserSettings().GPSAccuracySetting) ?? 0 // swiftlint:disable:this line_length
+        pressureSetting = settingsManager.altitudePressure.firstIndex(of: settingsManager.fetchUserSettings().pressureSetting) ?? 0
+        heightSetting = settingsManager.altitudeHeight.firstIndex(of: settingsManager.fetchUserSettings().altitudeHeightSetting) ?? 0
+        refreshRate = settingsManager.fetchUserSettings().frequencySetting
 
         if showNotification == true {
             showingDiscardAlert = true

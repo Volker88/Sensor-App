@@ -9,8 +9,6 @@
 import SwiftUI
 
 struct GravityView: View {
-
-    @EnvironmentObject var settings: SettingsAPI
     @EnvironmentObject var motionVM: CoreMotionViewModel
     @State private var showXAxis = false
     @State private var showYAxis = false

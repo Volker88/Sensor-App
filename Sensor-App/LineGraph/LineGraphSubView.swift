@@ -13,8 +13,8 @@ struct LineGraphSubView: View {
     @ObservedObject var motionVM: CoreMotionViewModel
 
     @Environment(LocationManager.self) var locationManager
+    @Environment(SettingsManager.self) var settingsManager
 
-    let settings = SettingsAPI()
     var graph: Graph
     var showGraph: GraphDetail
 
@@ -30,7 +30,7 @@ struct LineGraphSubView: View {
 
     var motion: some View {
         Chart(
-            motionVM.coreMotionArray.suffix(settings.fetchUserSettings().graphMaxPointsInt()),
+            motionVM.coreMotionArray.suffix(settingsManager.fetchUserSettings().graphMaxPointsInt()),
             id: \.self
         ) { item in
             LineMark(
@@ -42,7 +42,7 @@ struct LineGraphSubView: View {
 
     var location: some View {
         Chart(
-            locationManager.locationArray.suffix(settings.fetchUserSettings().graphMaxPointsInt()),
+            locationManager.locationArray.suffix(settingsManager.fetchUserSettings().graphMaxPointsInt()),
             id: \.self
         ) { item in
             LineMark(
