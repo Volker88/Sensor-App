@@ -9,13 +9,13 @@ import SwiftUI
 import OSLog
 
 struct AltitudeList: View {
-    @EnvironmentObject var motionVM: CoreMotionViewModel
+    @Environment(MotionManager.self) var motionManager
     let exportManager = ExportManager()
     @Environment(CalculationManager.self) var calculationManager
     @Environment(SettingsManager.self) var settingsManager
 
     var body: some View {
-        List(motionVM.altitudeArray.reversed(), id: \.self) { item in
+        List(motionManager.altitudeArray.reversed(), id: \.self) { item in
             HStack {
                 Text("ID:\(item.counter)", comment: "AltitudeList - ID")
                 Spacer()
@@ -38,12 +38,11 @@ struct AltitudeList: View {
     func toolBarButtonTapped(button: ToolBarButtonType) {
         switch button {
             case .play:
-                motionVM.altitudeUpdateStart()
+                motionManager.startAltitudeUpdates()
             case .pause:
-                motionVM.stopMotionUpdates()
+                motionManager.stopMotionUpdates()
             case .delete:
-                motionVM.coreMotionArray.removeAll()
-                motionVM.altitudeArray.removeAll()
+                motionManager.resetMotionUpdates()
                 Logger.coreLocation.debug("Deleted Motion Data")
         }
     }
@@ -51,7 +50,7 @@ struct AltitudeList: View {
     func shareCSV() -> URL {
         var csvText = NSLocalizedString("ID;Time;Pressure;Altitude change", comment: "Export CSV Headline - altitude") + "\n" // swiftlint:disable:this line_length
 
-        _ = motionVM.altitudeArray.map {
+        _ = motionManager.altitudeArray.map {
             csvText += "\($0.counter);\($0.timestamp);\(calculationManager.calculatePressure(pressure: $0.pressureValue, to: settingsManager.fetchUserSettings().pressureSetting).localizedDecimal());\(calculationManager.calculateHeight(height: $0.relativeAltitudeValue, to: settingsManager.fetchUserSettings().altitudeHeightSetting).localizedDecimal())\n"
         }
         return exportManager.getFile(exportText: csvText, filename: "altitude")

@@ -36,9 +36,8 @@
       "comment" : "SettingsScreen - 1",
       "shouldTranslate" : false
     },
-    "5" : {
-      "comment" : "RefreshRateView - Label 10",
-      "shouldTranslate" : false
+    "50" : {
+      "comment" : "RefreshRateView - Label 10"
     },
     "100 km" : {
       "comment" : "SettingsScreen - 100km",

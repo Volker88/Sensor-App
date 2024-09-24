@@ -10,20 +10,19 @@ import SwiftUI
 
 struct GravityView: View {
     @Environment(SettingsManager.self) var settingsManager
-
-    @ObservedObject var motionVM = CoreMotionViewModel()
+    @Environment(MotionManager.self) var motionManager
     @State private var frequency = 1.0 // Default Frequency
 
     init() {
         frequency = settingsManager.fetchUserSettings().frequencySetting
-        motionVM.sensorUpdateInterval = frequency
+        motionManager.sensorUpdateInterval = frequency
     }
 
     var body: some View {
         List {
-            Text("X-Axis: \(motionVM.coreMotionArray.last?.gravityXAxis ?? 0.0, specifier: "%.5f") g (9,81 m/s^2)", comment: "GravityView - X-Axis (watchOS)")
-            Text("Y-Axis: \(motionVM.coreMotionArray.last?.gravityYAxis ?? 0.0, specifier: "%.5f") g (9,81 m/s^2)", comment: "GravityView - Y-Axis (watchOS)")
-            Text("Z-Axis: \(motionVM.coreMotionArray.last?.gravityZAxis ?? 0.0, specifier: "%.5f") g (9,81 m/s^2)", comment: "GravityView - Z-Axis (watchOS)")
+            Text("X-Axis: \(motionManager.motion?.gravityXAxis ?? 0.0, specifier: "%.5f") g (9,81 m/s^2)", comment: "GravityView - X-Axis (watchOS)")
+            Text("Y-Axis: \(motionManager.motion?.gravityYAxis ?? 0.0, specifier: "%.5f") g (9,81 m/s^2)", comment: "GravityView - Y-Axis (watchOS)")
+            Text("Z-Axis: \(motionManager.motion?.gravityZAxis ?? 0.0, specifier: "%.5f") g (9,81 m/s^2)", comment: "GravityView - Z-Axis (watchOS)")
         }
         .navigationTitle(NSLocalizedString("Gravity", comment: "GravityView - NavigationBar Title (watchOS)"))
         .font(.footnote)
@@ -33,12 +32,13 @@ struct GravityView: View {
 
     func onAppear() {
         // Start updating motion
-        motionVM.motionUpdateStart()
+        motionManager.sensorUpdateInterval = frequency
+        motionManager.startMotionUpdates()
     }
 
     func onDisappear() {
-        motionVM.motionUpdateStart()
-        motionVM.coreMotionArray.removeAll()
+        motionManager.startMotionUpdates()
+        motionManager.resetMotionUpdates()
     }
 }
 

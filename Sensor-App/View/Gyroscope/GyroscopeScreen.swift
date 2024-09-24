@@ -10,9 +10,9 @@ import OSLog
 
 struct GyroscopeScreen: View {
     let notificationAPI = NotificationAPI()
-    let gyroscopeView = GyroscopeView()
 
-    @EnvironmentObject var motionVM: CoreMotionViewModel
+    @Environment(MotionManager.self) var motionManager
+
     @State private var showNotification = false
     @State private var notificationMessage = ""
     @State private var notificationDuration = 2.0
@@ -23,7 +23,7 @@ struct GyroscopeScreen: View {
 
     var body: some View {
         ZStack {
-            gyroscopeView
+            GyroscopeView()
                 .toolbar {
                     CustomToolbar(toolBarFunctionClosure: toolBarButtonTapped(button:))
                 }
@@ -41,7 +41,7 @@ struct GyroscopeScreen: View {
             }
         })
         .onAppear {
-            motionVM.start()
+            motionManager.startMotionUpdates()
         }
     }
 
@@ -50,14 +50,13 @@ struct GyroscopeScreen: View {
 
         switch button {
         case .play:
-            motionVM.motionUpdateStart()
+                motionManager.startMotionUpdates()
             messageType = .played
         case .pause:
-            motionVM.stopMotionUpdates()
+                motionManager.stopMotionUpdates()
             messageType = .paused
         case .delete:
-            motionVM.coreMotionArray.removeAll()
-            motionVM.altitudeArray.removeAll()
+                motionManager.resetMotionUpdates()
             messageType = .deleted
             Logger.coreLocation.debug("Deleted Motion Data")
         }

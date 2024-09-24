@@ -10,7 +10,8 @@ import SwiftUI
 
 struct GyroscopeView: View {
     @EnvironmentObject private var appState: AppState
-    @EnvironmentObject var motionVM: CoreMotionViewModel
+
+    @Environment(MotionManager.self) var motionManager
     @State private var showXAxis = false
     @State private var showYAxis = false
     @State private var showZAxis = false
@@ -22,33 +23,33 @@ struct GyroscopeView: View {
                     DisclosureGroup(
                         isExpanded: $showXAxis,
                         content: {
-                            LineGraphSubView(motionVM: motionVM, graph: .motion, showGraph: .gyroXAxis)
+                            LineGraphSubView(graph: .motion, showGraph: .gyroXAxis)
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {
-                            Text("X-Axis: \(motionVM.coreMotionArray.last?.gyroXAxis ?? 0.0, specifier: "%.5f") rad/s", comment: "GyroscopeView - X-Axis")
+                            Text("X-Axis: \(motionManager.motion?.gyroXAxis ?? 0.0, specifier: "%.5f") rad/s", comment: "GyroscopeView - X-Axis")
                         })
                     .disclosureGroupModifier(accessibility: "Toggle X-Axis Graph")
 
                     DisclosureGroup(
                         isExpanded: $showYAxis,
                         content: {
-                            LineGraphSubView(motionVM: motionVM, graph: .motion, showGraph: .gyroYAxis)
+                            LineGraphSubView(graph: .motion, showGraph: .gyroYAxis)
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {
-                            Text("Y-Axis: \(motionVM.coreMotionArray.last?.gyroYAxis ?? 0.0, specifier: "%.5f") rad/s", comment: "GyroscopeView - Y-Axis")
+                            Text("Y-Axis: \(motionManager.motion?.gyroYAxis ?? 0.0, specifier: "%.5f") rad/s", comment: "GyroscopeView - Y-Axis")
                         })
                     .disclosureGroupModifier(accessibility: "Toggle Y-Axis Graph")
 
                     DisclosureGroup(
                         isExpanded: $showZAxis,
                         content: {
-                            LineGraphSubView(motionVM: motionVM, graph: .motion, showGraph: .gyroZAxis)
+                            LineGraphSubView(graph: .motion, showGraph: .gyroZAxis)
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {
-                            Text("Z-Axis: \(motionVM.coreMotionArray.last?.gyroZAxis ?? 0.0, specifier: "%.5f") rad/s", comment: "GyroscopeView - Z-Axis")
+                            Text("Z-Axis: \(motionManager.motion?.gyroZAxis ?? 0.0, specifier: "%.5f") rad/s", comment: "GyroscopeView - Z-Axis")
                         })
                     .disclosureGroupModifier(accessibility: "Toggle Z-Axis Graph")
 
@@ -58,8 +59,8 @@ struct GyroscopeView: View {
                 }
 
                 Section(header: Text("Refresh Rate", comment: "GyroscopeView - Section Header")) {
-                    RefreshRateView(motionVM: motionVM, show: "header")
-                    RefreshRateView(motionVM: motionVM, show: "slider")
+                    RefreshRateView(show: "header")
+                    RefreshRateView(show: "slider")
                 }
             }
             .listStyle(.insetGrouped)

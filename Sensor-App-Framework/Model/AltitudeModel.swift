@@ -14,3 +14,13 @@ struct AltitudeModel: Hashable {
     let pressureValue: Double
     let relativeAltitudeValue: Double
 }
+
+extension AltitudeModel {
+    func graphValue(for graph: GraphDetail) -> Double {
+        switch graph {
+            case .pressureValue: return pressureValue
+            case .relativeAltitudeValue: return relativeAltitudeValue
+            default: return 0
+        }
+    }
+}

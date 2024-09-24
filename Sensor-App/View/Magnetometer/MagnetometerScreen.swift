@@ -10,9 +10,9 @@ import OSLog
 
 struct MagnetometerScreen: View {
     let notificationAPI = NotificationAPI()
-    let magnetometerView = MagnetometerView()
 
-    @EnvironmentObject var motionVM: CoreMotionViewModel
+    @Environment(MotionManager.self) var motionManager
+
     @State private var showNotification = false
     @State private var notificationMessage = ""
     @State private var notificationDuration = 2.0
@@ -23,7 +23,7 @@ struct MagnetometerScreen: View {
 
     var body: some View {
         ZStack {
-            magnetometerView
+            MagnetometerView()
                 .toolbar {
                     CustomToolbar(toolBarFunctionClosure: toolBarButtonTapped(button:))
                 }
@@ -41,7 +41,7 @@ struct MagnetometerScreen: View {
             }
         })
         .onAppear {
-            motionVM.start()
+            motionManager.startMotionUpdates()
         }
     }
 
@@ -50,14 +50,13 @@ struct MagnetometerScreen: View {
 
         switch button {
             case .play:
-                motionVM.motionUpdateStart()
+                motionManager.startMotionUpdates()
                 messageType = .played
             case .pause:
-                motionVM.stopMotionUpdates()
+                motionManager.stopMotionUpdates()
                 messageType = .paused
             case .delete:
-                motionVM.coreMotionArray.removeAll()
-                motionVM.altitudeArray.removeAll()
+                motionManager.resetMotionUpdates()
                 messageType = .deleted
                 Logger.coreLocation.debug("Deleted Motion Data")
         }

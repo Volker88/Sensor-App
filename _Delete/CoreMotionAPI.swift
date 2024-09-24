@@ -10,6 +10,7 @@ import Foundation
 import CoreMotion
 import OSLog
 
+@available(*, deprecated, message: "Remove for Swift 6")
 class CoreMotionAPI {
     let settings = SettingsManager()
     private var motionManager = CMMotionManager()

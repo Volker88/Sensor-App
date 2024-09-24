@@ -11,19 +11,19 @@ import SwiftUI
 struct AltitudeView: View {
     @Environment(SettingsManager.self) var settingsManager
     @Environment(CalculationManager.self) var calculationManager
+    @Environment(MotionManager.self) var motionManager
 
-    @ObservedObject var motionVM = CoreMotionViewModel()
     @State private var frequency = 1.0 // Default Frequency
 
     init() {
         frequency = settingsManager.fetchUserSettings().frequencySetting
-        motionVM.sensorUpdateInterval = frequency
+        motionManager.sensorUpdateInterval = frequency
     }
 
     var body: some View {
         List {
-            Text("Pressure: \(calculationManager.calculatePressure(pressure: motionVM.altitudeArray.last?.pressureValue ?? 0.0, to: settingsManager.fetchUserSettings().pressureSetting), specifier: "%.5f") \(settingsManager.fetchUserSettings().pressureSetting)", comment: "AltitudeView - Pressure (watchOS)")
-            Text("Altitude change: \(calculationManager.calculateHeight(height: motionVM.altitudeArray.last?.relativeAltitudeValue ?? 0.0, to: settingsManager.fetchUserSettings().altitudeHeightSetting), specifier: "%.5f") \(settingsManager.fetchUserSettings().altitudeHeightSetting)", comment: "AltitudeView - Altitude Change (watchOS)")
+            Text("Pressure: \(calculationManager.calculatePressure(pressure: motionManager.altitude?.pressureValue ?? 0.0, to: settingsManager.fetchUserSettings().pressureSetting), specifier: "%.5f") \(settingsManager.fetchUserSettings().pressureSetting)", comment: "AltitudeView - Pressure (watchOS)")
+            Text("Altitude change: \(calculationManager.calculateHeight(height: motionManager.altitude?.relativeAltitudeValue ?? 0.0, to: settingsManager.fetchUserSettings().altitudeHeightSetting), specifier: "%.5f") \(settingsManager.fetchUserSettings().altitudeHeightSetting)", comment: "AltitudeView - Altitude Change (watchOS)")
         }
         .navigationTitle(NSLocalizedString("Altitude", comment: "AltitudeView - NavigationBar Title (watchOS)"))
         .font(.footnote)
@@ -33,12 +33,12 @@ struct AltitudeView: View {
 
     func onAppear() {
         // Start updating motion
-        motionVM.altitudeUpdateStart()
+        motionManager.startAltitudeUpdates()
     }
 
     func onDisappear() {
-        motionVM.stopMotionUpdates()
-        motionVM.coreMotionArray.removeAll()
+        motionManager.stopMotionUpdates()
+        motionManager.resetMotionUpdates()
     }
 }
 

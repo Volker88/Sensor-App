@@ -9,11 +9,11 @@ import SwiftUI
 import OSLog
 
 struct AttitudeList: View {
-    @EnvironmentObject var motionVM: CoreMotionViewModel
+    @Environment(MotionManager.self) var motionManager
     let exportManager = ExportManager()
 
     var body: some View {
-        List(motionVM.coreMotionArray.reversed(), id: \.self) { item in
+        List(motionManager.motionArray.reversed(), id: \.self) { item in
             HStack {
                 Text("ID:\(item.counter)", comment: "AttitudeList - ID")
                 Spacer()
@@ -40,12 +40,11 @@ struct AttitudeList: View {
     func toolBarButtonTapped(button: ToolBarButtonType) {
         switch button {
             case .play:
-                motionVM.motionUpdateStart()
+                motionManager.startMotionUpdates()
             case .pause:
-                motionVM.stopMotionUpdates()
+                motionManager.stopMotionUpdates()
             case .delete:
-                motionVM.coreMotionArray.removeAll()
-                motionVM.altitudeArray.removeAll()
+                motionManager.resetMotionUpdates()
                 Logger.coreLocation.debug("Deleted Motion Data")
         }
     }
@@ -53,7 +52,7 @@ struct AttitudeList: View {
     func shareCSV() -> URL {
         var csvText = NSLocalizedString("ID;Time;Roll;Pitch;Yaw;Heading", comment: "Export CSV Headline - attitude") + "\n" // swiftlint:disable:this line_length
 
-        _ = motionVM.coreMotionArray.map {
+        _ = motionManager.motionArray.map {
             csvText += "\($0.counter);\($0.timestamp);\($0.attitudeRoll.localizedDecimal());\($0.attitudePitch.localizedDecimal());\($0.attitudeYaw.localizedDecimal());\($0.attitudeHeading.localizedDecimal())\n"
         }
         return exportManager.getFile(exportText: csvText, filename: "attitude")

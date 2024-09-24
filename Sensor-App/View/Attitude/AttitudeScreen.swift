@@ -10,9 +10,8 @@ import OSLog
 
 struct AttitudeScreen: View {
     let notificationAPI = NotificationAPI()
-    let attitudeView = AttitudeView()
 
-    @EnvironmentObject var motionVM: CoreMotionViewModel
+    @Environment(MotionManager.self) var motionManager
     @State private var showNotification = false
     @State private var notificationMessage = ""
     @State private var notificationDuration = 2.0
@@ -23,7 +22,7 @@ struct AttitudeScreen: View {
 
     var body: some View {
         ZStack {
-            attitudeView
+            AttitudeView()
                 .toolbar {
                     CustomToolbar(toolBarFunctionClosure: toolBarButtonTapped(button:))
                 }
@@ -41,7 +40,7 @@ struct AttitudeScreen: View {
             }
         })
         .onAppear {
-            motionVM.start()
+            motionManager.startMotionUpdates()
         }
     }
 
@@ -49,17 +48,16 @@ struct AttitudeScreen: View {
         var messageType: NotificationTypes?
 
         switch button {
-        case .play:
-            motionVM.motionUpdateStart()
-            messageType = .played
-        case .pause:
-            motionVM.stopMotionUpdates()
-            messageType = .paused
-        case .delete:
-            motionVM.coreMotionArray.removeAll()
-            motionVM.altitudeArray.removeAll()
-            messageType = .deleted
-            Logger.coreLocation.debug("Deleted Motion Data")
+            case .play:
+                motionManager.startMotionUpdates()
+                messageType = .played
+            case .pause:
+                motionManager.stopMotionUpdates()
+                messageType = .paused
+            case .delete:
+                motionManager.resetMotionUpdates()
+                messageType = .deleted
+                Logger.coreLocation.debug("Deleted Motion Data")
         }
 
         if let messageType {

@@ -14,9 +14,9 @@ struct SensorAppApp: App {
 
     @StateObject var update = AppUpdates()
     @StateObject var appState: AppState
-    @StateObject var motionVM = CoreMotionViewModel()
 
     @State private var locationManager = LocationManager()
+    @State private var motionManager = MotionManager()
     @State private var settingsManager = SettingsManager()
     @State private var calculationManager = CalculationManager()
 
@@ -29,7 +29,7 @@ struct SensorAppApp: App {
         WindowGroup {
             ContentView()
                 .environmentObject(appState)
-                .environmentObject(motionVM)
+                .environment(motionManager)
                 .environment(calculationManager)
                 .environment(settingsManager)
                 .environment(locationManager)

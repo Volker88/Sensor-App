@@ -9,11 +9,11 @@
 import SwiftUI
 
 struct AltitudeView: View {
+    @Environment(MotionManager.self) var motionManager
     @Environment(SettingsManager.self) var settingsManager
     @Environment(CalculationManager.self) var calculationManager
 
     @EnvironmentObject private var appState: AppState
-    @EnvironmentObject var motionVM: CoreMotionViewModel
     @State private var showPressure = false
     @State private var showRelativeAltitudeChange = false
 
@@ -24,22 +24,22 @@ struct AltitudeView: View {
                     DisclosureGroup(
                         isExpanded: $showPressure,
                         content: {
-                            LineGraphSubView(motionVM: motionVM, graph: .altitude, showGraph: .pressureValue)
+                            LineGraphSubView(graph: .altitude, showGraph: .pressureValue)
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {
-                            Text("Pressure: \(calculationManager.calculatePressure(pressure: motionVM.altitudeArray.last?.pressureValue ?? 0.0, to: settingsManager.fetchUserSettings().pressureSetting), specifier: "%.5f") \(settingsManager.fetchUserSettings().pressureSetting)", comment: "AltitudeView - Pressure")
+                            Text("Pressure: \(calculationManager.calculatePressure(pressure: motionManager.altitude?.pressureValue ?? 0.0, to: settingsManager.fetchUserSettings().pressureSetting), specifier: "%.5f") \(settingsManager.fetchUserSettings().pressureSetting)", comment: "AltitudeView - Pressure")
                         })
                     .disclosureGroupModifier(accessibility: "Toggle Pressure Graph")
 
                     DisclosureGroup(
                         isExpanded: $showRelativeAltitudeChange,
                         content: {
-                            LineGraphSubView(motionVM: motionVM, graph: .altitude, showGraph: .relativeAltitudeValue)
+                            LineGraphSubView(graph: .altitude, showGraph: .relativeAltitudeValue)
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {
-                            Text("Altitude change: \(calculationManager.calculateHeight(height: motionVM.altitudeArray.last?.relativeAltitudeValue ?? 0.0, to: settingsManager.fetchUserSettings().altitudeHeightSetting), specifier: "%.5f") \(settingsManager.fetchUserSettings().altitudeHeightSetting)", comment: "AltitudeView - Altitude")
+                            Text("Altitude change: \(calculationManager.calculateHeight(height: motionManager.altitude?.relativeAltitudeValue ?? 0.0, to: settingsManager.fetchUserSettings().altitudeHeightSetting), specifier: "%.5f") \(settingsManager.fetchUserSettings().altitudeHeightSetting)", comment: "AltitudeView - Altitude")
                         })
                     .disclosureGroupModifier(accessibility: "Toggle Altitude Graph")
 
@@ -49,8 +49,8 @@ struct AltitudeView: View {
                 }
 
                 Section(header: Text("Refresh Rate", comment: "AltitudeView - Section Header")) {
-                    RefreshRateView(motionVM: motionVM, show: "header")
-                    RefreshRateView(motionVM: motionVM, show: "slider")
+                    RefreshRateView(show: "header")
+                    RefreshRateView(show: "slider")
                 }
             }
             .listStyle(.insetGrouped)

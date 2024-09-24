@@ -10,7 +10,8 @@ import SwiftUI
 
 struct AttitudeView: View {
 
-    @EnvironmentObject var motionVM: CoreMotionViewModel
+    @Environment(MotionManager.self) var motionManager
+
     @State private var showRoll = false
     @State private var showPitch = false
     @State private var showYaw = false
@@ -23,44 +24,44 @@ struct AttitudeView: View {
                     DisclosureGroup(
                         isExpanded: $showRoll,
                         content: {
-                            LineGraphSubView(motionVM: motionVM, graph: .motion, showGraph: .attitudeRoll)
+                            LineGraphSubView(graph: .motion, showGraph: .attitudeRoll)
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {
-                            Text("Roll: \((motionVM.coreMotionArray.last?.attitudeRoll ?? 0.0) * 180 / .pi, specifier: "%.5f")°", comment: "AttitudeView - Roll")
+                            Text("Roll: \((motionManager.motion?.attitudeRoll ?? 0.0) * 180 / .pi, specifier: "%.5f")°", comment: "AttitudeView - Roll")
                         })
                     .disclosureGroupModifier(accessibility: "Toggle Roll Graph")
 
                     DisclosureGroup(
                         isExpanded: $showPitch,
                         content: {
-                            LineGraphSubView(motionVM: motionVM, graph: .motion, showGraph: .attitudePitch)
+                            LineGraphSubView(graph: .motion, showGraph: .attitudePitch)
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {
-                            Text("Pitch: \((motionVM.coreMotionArray.last?.attitudePitch ?? 0.0) * 180 / .pi, specifier: "%.5f")°", comment: "AttitudeView - Pitch")
+                            Text("Pitch: \((motionManager.motion?.attitudePitch ?? 0.0) * 180 / .pi, specifier: "%.5f")°", comment: "AttitudeView - Pitch")
                         })
                     .disclosureGroupModifier(accessibility: "Toggle Pitch Graph")
 
                     DisclosureGroup(
                         isExpanded: $showYaw,
                         content: {
-                            LineGraphSubView(motionVM: motionVM, graph: .motion, showGraph: .attitudeYaw)
+                            LineGraphSubView(graph: .motion, showGraph: .attitudeYaw)
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {
-                            Text("Yaw: \((motionVM.coreMotionArray.last?.attitudeYaw ?? 0.0) * 180 / .pi, specifier: "%.5f")°", comment: "AttitudeView - Yaw")
+                            Text("Yaw: \((motionManager.motion?.attitudeYaw ?? 0.0) * 180 / .pi, specifier: "%.5f")°", comment: "AttitudeView - Yaw")
                         })
                     .disclosureGroupModifier(accessibility: "Toggle Yaw Graph")
 
                     DisclosureGroup(
                         isExpanded: $showHeading,
                         content: {
-                            LineGraphSubView(motionVM: motionVM, graph: .motion, showGraph: .attitudeHeading)
+                            LineGraphSubView(graph: .motion, showGraph: .attitudeHeading)
                                 .frame(height: 100, alignment: .leading)
                         },
                         label: {
-                            Text("Heading: \(motionVM.coreMotionArray.last?.attitudeHeading ?? 0.0, specifier: "%.5f")°", comment: "AttitudeView - Heading")
+                            Text("Heading: \(motionManager.motion?.attitudeHeading ?? 0.0, specifier: "%.5f")°", comment: "AttitudeView - Heading")
                         })
                     .disclosureGroupModifier(accessibility: "Toggle Heading Graph")
 
@@ -70,8 +71,8 @@ struct AttitudeView: View {
                 }
 
                 Section(header: Text("Refresh Rate", comment: "AccelerationView - Section Header")) {
-                    RefreshRateView(motionVM: motionVM, show: "header")
-                    RefreshRateView(motionVM: motionVM, show: "slider")
+                    RefreshRateView(show: "header")
+                    RefreshRateView(show: "slider")
                 }
             }
             .listStyle(.insetGrouped)

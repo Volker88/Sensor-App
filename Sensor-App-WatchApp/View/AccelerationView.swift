@@ -11,20 +11,20 @@ import SwiftUI
 struct AccelerationView: View {
     @Environment(SettingsManager.self) var settingsManager
     @Environment(CalculationManager.self) var calculationManager
+    @Environment(MotionManager.self) var motionManager
 
-    @ObservedObject var motionVM = CoreMotionViewModel()
     @State private var frequency = 1.0 // Default Frequency
 
     init() {
         frequency = settingsManager.fetchUserSettings().frequencySetting
-        motionVM.sensorUpdateInterval = frequency
+        motionManager.sensorUpdateInterval = frequency
     }
 
     var body: some View {
         List {
-            Text("X-Axis: \(motionVM.coreMotionArray.last?.accelerationXAxis ?? 0.0, specifier: "%.5f") m/s^2", comment: "AccelerationView - X-Axis (watchOS)")
-            Text("Y-Axis: \(motionVM.coreMotionArray.last?.accelerationYAxis ?? 0.0, specifier: "%.5f") m/s^2", comment: "AccelerationView - Y-Axis (watchOS)")
-            Text("Z-Axis: \(motionVM.coreMotionArray.last?.accelerationZAxis ?? 0.0, specifier: "%.5f") m/s^2", comment: "AccelerationView - Z-Axis (watchOS)")
+            Text("X-Axis: \(motionManager.motion?.accelerationXAxis ?? 0.0, specifier: "%.5f") m/s^2", comment: "AccelerationView - X-Axis (watchOS)")
+            Text("Y-Axis: \(motionManager.motion?.accelerationYAxis ?? 0.0, specifier: "%.5f") m/s^2", comment: "AccelerationView - Y-Axis (watchOS)")
+            Text("Z-Axis: \(motionManager.motion?.accelerationZAxis ?? 0.0, specifier: "%.5f") m/s^2", comment: "AccelerationView - Z-Axis (watchOS)")
         }
         .navigationTitle(NSLocalizedString("Acceleration", comment: "AccelerationView - NavigationBar Title (watchOS)"))
         .font(.footnote)
@@ -34,12 +34,13 @@ struct AccelerationView: View {
 
     func onAppear() {
         // Start updating motion
-        motionVM.motionUpdateStart()
+        motionManager.sensorUpdateInterval = frequency
+        motionManager.startMotionUpdates()
     }
 
     func onDisappear() {
-        motionVM.stopMotionUpdates()
-        motionVM.coreMotionArray.removeAll()
+        motionManager.stopMotionUpdates()
+        motionManager.resetMotionUpdates()
     }
 }
 

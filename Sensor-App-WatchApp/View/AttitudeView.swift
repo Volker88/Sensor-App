@@ -12,8 +12,8 @@ struct AttitudeView: View {
 
     @Environment(SettingsManager.self) var settingsManager
     @Environment(CalculationManager.self) var calculationManager
+    @Environment(MotionManager.self) var motionManager
 
-    @ObservedObject var motionVM = CoreMotionViewModel()
     @State private var frequency = 1.0 // Default Frequency
 
     init() {
@@ -22,10 +22,10 @@ struct AttitudeView: View {
 
     var body: some View {
         List {
-            Text("Roll: \((motionVM.coreMotionArray.last?.attitudeRoll ?? 0.0) * 180 / .pi, specifier: "%.5f")°", comment: "AttitudeView - Roll (watchOS)")
-            Text("Pitch: \((motionVM.coreMotionArray.last?.attitudePitch ?? 0.0) * 180 / .pi, specifier: "%.5f")°", comment: "AttitudeView - Pitch (watchOS)")
-            Text("Yaw: \((motionVM.coreMotionArray.last?.attitudeYaw ?? 0.0) * 180 / .pi, specifier: "%.5f")°", comment: "AttitudeView - Yaw (watchOS)")
-            Text("Heading: \(motionVM.coreMotionArray.last?.attitudeHeading ?? 0.0, specifier: "%.5f")°", comment: "AttitudeView - Heading (watchOS)")
+            Text("Roll: \((motionManager.motion?.attitudeRoll ?? 0.0) * 180 / .pi, specifier: "%.5f")°", comment: "AttitudeView - Roll (watchOS)")
+            Text("Pitch: \((motionManager.motion?.attitudePitch ?? 0.0) * 180 / .pi, specifier: "%.5f")°", comment: "AttitudeView - Pitch (watchOS)")
+            Text("Yaw: \((motionManager.motion?.attitudeYaw ?? 0.0) * 180 / .pi, specifier: "%.5f")°", comment: "AttitudeView - Yaw (watchOS)")
+            Text("Heading: \(motionManager.motion?.attitudeHeading ?? 0.0, specifier: "%.5f")°", comment: "AttitudeView - Heading (watchOS)")
         }
         .navigationTitle(NSLocalizedString("Attitude", comment: "AttitudeView - NavigationBar Title (watchOS)"))
         .font(.footnote)
@@ -35,13 +35,13 @@ struct AttitudeView: View {
 
     func onAppear() {
         // Start updating motion
-        motionVM.motionUpdateStart()
-        motionVM.sensorUpdateInterval = frequency
+        motionManager.startMotionUpdates()
+        motionManager.sensorUpdateInterval = frequency
     }
 
     func onDisappear() {
-        motionVM.stopMotionUpdates()
-        motionVM.coreMotionArray.removeAll()
+        motionManager.stopMotionUpdates()
+        motionManager.resetMotionUpdates()
     }
 }
 

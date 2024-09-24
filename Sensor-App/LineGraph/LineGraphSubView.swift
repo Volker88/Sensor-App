@@ -10,27 +10,37 @@ import SwiftUI
 import Charts
 
 struct LineGraphSubView: View {
-    @ObservedObject var motionVM: CoreMotionViewModel
 
     @Environment(LocationManager.self) var locationManager
+    @Environment(MotionManager.self) var motionManager
     @Environment(SettingsManager.self) var settingsManager
 
     var graph: Graph
     var showGraph: GraphDetail
 
     init(
-        motionVM: CoreMotionViewModel? = nil,
         graph: Graph,
         showGraph: GraphDetail
     ) {
-        self.motionVM = motionVM ?? CoreMotionViewModel()
         self.graph = graph
         self.showGraph = showGraph
     }
 
     var motion: some View {
         Chart(
-            motionVM.coreMotionArray.suffix(settingsManager.fetchUserSettings().graphMaxPointsInt()),
+            motionManager.motionArray.suffix(settingsManager.fetchUserSettings().graphMaxPointsInt()),
+            id: \.self
+        ) { item in
+            LineMark(
+                x: .value("", item.timestamp),
+                y: .value("", item.graphValue(for: showGraph))
+            )
+        }
+    }
+
+    var altitude: some View {
+        Chart(
+            motionManager.altitudeArray.suffix(settingsManager.fetchUserSettings().graphMaxPointsInt()),
             id: \.self
         ) { item in
             LineMark(
@@ -58,6 +68,8 @@ struct LineGraphSubView: View {
                 Group {
                     if graph == .location {
                         location
+                    } else if graph == .altitude {
+                        altitude
                     } else {
                         motion
                     }

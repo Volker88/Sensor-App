@@ -20,11 +20,13 @@ struct SettingsView: View {
     @State var heightSetting = 0
 
     init() {
+        // swiftlint:disable line_length
         refreshRate = settingsManager.fetchUserSettings().frequencySetting
         speedSetting = settingsManager.GPSSpeedSettings.firstIndex(of: settingsManager.fetchUserSettings().GPSSpeedSetting) ?? 0
-        accuracySetting = settingsManager.GPSAccuracyOptions.firstIndex(of: settingsManager.fetchUserSettings().GPSAccuracySetting) ?? 0 // swiftlint:disable:this line_length
+        accuracySetting = settingsManager.GPSAccuracyOptions.firstIndex(of: settingsManager.fetchUserSettings().GPSAccuracySetting) ?? 0
         pressureSetting = settingsManager.altitudePressure.firstIndex(of: settingsManager.fetchUserSettings().pressureSetting) ?? 0
         heightSetting = settingsManager.altitudeHeight.firstIndex(of: settingsManager.fetchUserSettings().altitudeHeightSetting) ?? 0
+        // swiftlint:enable line_length
     }
 
     var body: some View {
@@ -116,11 +118,13 @@ struct SettingsView: View {
     }
 
     func discardChanges(showNotification: Bool) {
+        // swiftlint:disable line_length
         speedSetting = settingsManager.GPSSpeedSettings.firstIndex(of: settingsManager.fetchUserSettings().GPSSpeedSetting) ?? 0
-        accuracySetting = settingsManager.GPSAccuracyOptions.firstIndex(of: settingsManager.fetchUserSettings().GPSAccuracySetting) ?? 0 // swiftlint:disable:this line_length
+        accuracySetting = settingsManager.GPSAccuracyOptions.firstIndex(of: settingsManager.fetchUserSettings().GPSAccuracySetting) ?? 0
         pressureSetting = settingsManager.altitudePressure.firstIndex(of: settingsManager.fetchUserSettings().pressureSetting) ?? 0
         heightSetting = settingsManager.altitudeHeight.firstIndex(of: settingsManager.fetchUserSettings().altitudeHeightSetting) ?? 0
         refreshRate = settingsManager.fetchUserSettings().frequencySetting
+        // swiftlint:enable line_length
 
         if showNotification == true {
             showingDiscardAlert = true

@@ -12,20 +12,19 @@ struct GyroscopeView: View {
 
     @Environment(SettingsManager.self) var settingsManager
     @Environment(CalculationManager.self) var calculationManager
-
-    @ObservedObject var motionVM = CoreMotionViewModel()
+    @Environment(MotionManager.self) var motionManager
     @State private var frequency = 1.0 // Default Frequency
 
     init() {
         frequency = settingsManager.fetchUserSettings().frequencySetting
-        motionVM.sensorUpdateInterval = frequency
+        motionManager.sensorUpdateInterval = frequency
     }
 
     var body: some View {
         List {
-            Text("X-Axis: \(motionVM.coreMotionArray.last?.gyroXAxis ?? 0.0, specifier: "%.5f") rad/s", comment: "GyroscopeView - X-Axis (watchOS)")
-            Text("Y-Axis: \(motionVM.coreMotionArray.last?.gyroYAxis ?? 0.0, specifier: "%.5f") rad/s", comment: "GyroscopeView - Y-Axis (watchOS)")
-            Text("Z-Axis: \(motionVM.coreMotionArray.last?.gyroZAxis ?? 0.0, specifier: "%.5f") rad/s", comment: "GyroscopeView - Z-Axis (watchOS)")
+            Text("X-Axis: \(motionManager.motion?.gyroXAxis ?? 0.0, specifier: "%.5f") rad/s", comment: "GyroscopeView - X-Axis (watchOS)")
+            Text("Y-Axis: \(motionManager.motion?.gyroYAxis ?? 0.0, specifier: "%.5f") rad/s", comment: "GyroscopeView - Y-Axis (watchOS)")
+            Text("Z-Axis: \(motionManager.motion?.gyroZAxis ?? 0.0, specifier: "%.5f") rad/s", comment: "GyroscopeView - Z-Axis (watchOS)")
         }
         .navigationTitle(NSLocalizedString("Gyroscope", comment: "GyroscopeView - NavigationBar Title (watchOS)"))
         .font(.footnote)
@@ -35,12 +34,13 @@ struct GyroscopeView: View {
 
     func onAppear() {
         // Start updating motion
-        motionVM.motionUpdateStart()
+        motionManager.sensorUpdateInterval = frequency
+        motionManager.startMotionUpdates()
     }
 
     func onDisappear() {
-        motionVM.stopMotionUpdates()
-        motionVM.coreMotionArray.removeAll()
+        motionManager.stopMotionUpdates()
+        motionManager.resetMotionUpdates()
     }
 }
 

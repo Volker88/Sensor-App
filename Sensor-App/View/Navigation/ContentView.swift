@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
-    @EnvironmentObject var motionVM: CoreMotionViewModel
+
+    @Environment(MotionManager.self) var motionManager
+
     @EnvironmentObject private var appState: AppState
     @State private var showSidebar: NavigationSplitViewVisibility = .all
 
@@ -21,8 +23,7 @@ struct ContentView: View {
             }
         }
         .onChange(of: appState.selectedScreen) {
-//            appState.path.removeAll()
-            motionVM.stop()
+            motionManager.stopMotionUpdates()
         }
 
     }

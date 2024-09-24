@@ -10,9 +10,8 @@ import OSLog
 
 struct AltitudeScreen: View {
     let notificationAPI = NotificationAPI()
-    let altitudeView = AltitudeView()
 
-    @EnvironmentObject var motionVM: CoreMotionViewModel
+    @Environment(MotionManager.self) var motionManager
 
     @State private var showNotification = false
     @State private var notificationMessage = ""
@@ -24,7 +23,7 @@ struct AltitudeScreen: View {
 
     var body: some View {
         ZStack {
-            altitudeView
+            AltitudeView()
                 .toolbar {
                     CustomToolbar(toolBarFunctionClosure: toolBarButtonTapped(button:))
                 }
@@ -42,7 +41,7 @@ struct AltitudeScreen: View {
             }
         })
         .onAppear {
-            motionVM.start()
+            motionManager.startAltitudeUpdates()
         }
     }
 
@@ -51,14 +50,13 @@ struct AltitudeScreen: View {
 
         switch button {
             case .play:
-                motionVM.altitudeUpdateStart()
+                motionManager.startAltitudeUpdates()
                 messageType = .played
             case .pause:
-                motionVM.stopMotionUpdates()
+                motionManager.stopMotionUpdates()
                 messageType = .paused
             case .delete:
-                motionVM.coreMotionArray.removeAll()
-                motionVM.altitudeArray.removeAll()
+                motionManager.resetMotionUpdates()
                 messageType = .deleted
                 Logger.coreLocation.debug("Deleted Motion Data")
         }

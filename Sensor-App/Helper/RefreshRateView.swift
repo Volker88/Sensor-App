@@ -10,38 +10,42 @@ import SwiftUI
 
 struct RefreshRateView: View {
     @Environment(SettingsManager.self) var settingsManager
-
-    @ObservedObject var motionVM: CoreMotionViewModel
+    @Environment(MotionManager.self) var motionManager
 
     let show: String
 
     var body: some View {
-        if show == "header" {
-            HStack {
-                Text("\(NSLocalizedString("Frequency:", comment: "RefreshRateView - Frequency")) \(Double(motionVM.sensorUpdateInterval), specifier: "%.1f") Hz", comment: "RefreshRateView - Refresh Rate")
-                Stepper("", value: $motionVM.sensorUpdateInterval, in: 0.1...5, step: 0.1, onEditingChanged: { _ in
-                    updateSlider()
-                })
-            }
-        } else if show == "slider" {
-            HStack {
-                Text("0.1", comment: "RefreshRateView - Label 1")
-
-                Slider(value: $motionVM.sensorUpdateInterval, in: 0.1...5, step: 0.1) { _ in
-                    updateSlider()
+        Group {
+            if show == "header" {
+                HStack {
+                    Text("\(NSLocalizedString("Frequency:", comment: "RefreshRateView - Frequency")) \(Double(motionManager.sensorUpdateInterval), specifier: "%.1f") Hz", comment: "RefreshRateView - Refresh Rate")
+                    Stepper("", value: Bindable(motionManager).sensorUpdateInterval, in: 0.1...50, step: 0.1,
+                            onEditingChanged: { _ in
+                        updateSlider()
+                    })
                 }
-                .accessibility(label: Text("Refresh Rate", comment: "RefreshRateView - Slider"))
-                .accessibility(value: Text("\(motionVM.sensorUpdateInterval, specifier: "%.1f") per Second", comment: "RefreshRateView - Value"))
-                .accessibility(identifier: "Frequency Slider")
-                Text("5", comment: "RefreshRateView - Label 10")
+            } else if show == "slider" {
+                HStack {
+                    Text("0.1", comment: "RefreshRateView - Label 1")
+
+                    Slider(value: Bindable(motionManager).sensorUpdateInterval, in: 0.1...50, step: 0.1) { _ in
+                        updateSlider()
+                    }
+                    .accessibility(label: Text("Refresh Rate", comment: "RefreshRateView - Slider"))
+                    .accessibility(value: Text("\(motionManager.sensorUpdateInterval, specifier: "%.1f") per Second", comment: "RefreshRateView - Value"))
+                    .accessibility(identifier: "Frequency Slider")
+                    Text("50", comment: "RefreshRateView - Label 10")
+                }
             }
         }
-
+        .onAppear {
+            motionManager.sensorUpdateInterval = settingsManager.fetchUserSettings().frequencySetting
+        }
     }
 
     func updateSlider() {
         var userSettings = settingsManager.fetchUserSettings()
-        userSettings.frequencySetting = motionVM.sensorUpdateInterval
+        userSettings.frequencySetting = motionManager.sensorUpdateInterval
         settingsManager.saveUserSettings(userSettings: userSettings)
     }
 }
@@ -49,8 +53,8 @@ struct RefreshRateView: View {
 struct RefreshRateView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            RefreshRateView(motionVM: CoreMotionViewModel(), show: "header")
-            RefreshRateView(motionVM: CoreMotionViewModel(), show: "slider")
+            RefreshRateView(show: "header")
+            RefreshRateView(show: "slider")
         }
         .previewLayout(.sizeThatFits)
     }

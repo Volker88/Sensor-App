@@ -8,6 +8,7 @@
 
 import Foundation
 
+@available(*, deprecated, message: "Remove for Swift 6")
 class CoreMotionViewModel: ObservableObject {
     @Published var coreMotionArray = [MotionModel]()
     @Published var altitudeArray = [AltitudeModel]()
@@ -129,7 +130,6 @@ class CoreMotionViewModel: ObservableObject {
 
     // MARK: - Mock data for Simulator
     func mockData() {
-        // swiftlint:disable line_length
 //        var counter = 1
 //
 //        for _ in 1...300 {
@@ -151,6 +151,5 @@ class CoreMotionViewModel: ObservableObject {
 //                counter += 1
 //            }
 //        }
-        // swiftlint:enable line_length
     }
 }
