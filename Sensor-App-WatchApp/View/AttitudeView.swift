@@ -10,16 +10,13 @@ import SwiftUI
 
 struct AttitudeView: View {
 
-    @Environment(SettingsManager.self) var settingsManager
-    @Environment(CalculationManager.self) var calculationManager
-    @Environment(MotionManager.self) var motionManager
+    @Environment(SettingsManager.self) private var settingsManager
+    @Environment(CalculationManager.self) private var calculationManager
+    @Environment(MotionManager.self) private var motionManager
 
     @State private var frequency = 1.0 // Default Frequency
 
-    init() {
-        frequency = settingsManager.fetchUserSettings().frequencySetting
-    }
-
+    // MARK: - Body
     var body: some View {
         List {
             Text("Roll: \((motionManager.motion?.attitudeRoll ?? 0.0) * 180 / .pi, specifier: "%.5f")°", comment: "AttitudeView - Roll (watchOS)")
@@ -33,7 +30,11 @@ struct AttitudeView: View {
         .onDisappear(perform: onDisappear)
     }
 
+    // MARK: - Methods
     func onAppear() {
+        frequency = settingsManager.fetchUserSettings().frequencySetting
+        motionManager.sensorUpdateInterval = frequency
+
         // Start updating motion
         motionManager.startMotionUpdates()
         motionManager.sensorUpdateInterval = frequency
@@ -45,11 +46,8 @@ struct AttitudeView: View {
     }
 }
 
-struct AttitudeView_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            AttitudeView().previewDevice("Apple Watch Series 3 - 38mm")
-            AttitudeView().previewDevice("Apple Watch Series 4 - 44mm")
-        }
-    }
+// MARK: - Preview
+#Preview {
+    AttitudeView()
+        .previewNavigationStackWrapper()
 }

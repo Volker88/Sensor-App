@@ -10,16 +10,13 @@ import SwiftUI
 
 struct GyroscopeView: View {
 
-    @Environment(SettingsManager.self) var settingsManager
-    @Environment(CalculationManager.self) var calculationManager
-    @Environment(MotionManager.self) var motionManager
+    @Environment(SettingsManager.self) private var settingsManager
+    @Environment(CalculationManager.self) private var calculationManager
+    @Environment(MotionManager.self) private var motionManager
+
     @State private var frequency = 1.0 // Default Frequency
 
-    init() {
-        frequency = settingsManager.fetchUserSettings().frequencySetting
-        motionManager.sensorUpdateInterval = frequency
-    }
-
+    // MARK: - Body
     var body: some View {
         List {
             Text("X-Axis: \(motionManager.motion?.gyroXAxis ?? 0.0, specifier: "%.5f") rad/s", comment: "GyroscopeView - X-Axis (watchOS)")
@@ -32,7 +29,11 @@ struct GyroscopeView: View {
         .onDisappear(perform: onDisappear)
     }
 
+    // MARK: - Methods
     func onAppear() {
+        frequency = settingsManager.fetchUserSettings().frequencySetting
+        motionManager.sensorUpdateInterval = frequency
+
         // Start updating motion
         motionManager.sensorUpdateInterval = frequency
         motionManager.startMotionUpdates()
@@ -44,11 +45,8 @@ struct GyroscopeView: View {
     }
 }
 
-struct GyroscopeView_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            GyroscopeView().previewDevice("Apple Watch Series 3 - 38mm")
-            GyroscopeView().previewDevice("Apple Watch Series 4 - 44mm")
-        }
-    }
+// MARK: - Preview
+#Preview {
+    GyroscopeView()
+        .previewNavigationStackWrapper()
 }

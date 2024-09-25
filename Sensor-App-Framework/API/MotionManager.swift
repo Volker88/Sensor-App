@@ -28,7 +28,8 @@ class MotionManager {
         }
     }
 
-    private var counter = 1
+    private var motionCounter = 1
+    private var altitudeCounter = 1
 
     // MARK: - Methods
     func startMotionUpdates() {
@@ -38,7 +39,7 @@ class MotionManager {
 
             if let data {
                 let model = MotionModel(
-                    counter: self.counter,
+                    counter: self.motionCounter,
                     timestamp: Date().formatted(),
                     accelerationXAxis: data.userAcceleration.x,
                     accelerationYAxis: data.userAcceleration.y,
@@ -62,7 +63,7 @@ class MotionManager {
                     self.motion = model
                     self.motionArray.append(model)
 
-                    self.counter += 1
+                    self.motionCounter += 1
                 }
             }
         }
@@ -73,12 +74,11 @@ class MotionManager {
             guard let self = self else { return }
 
             if let data {
-
                 let pressureValue = Double(truncating: data.pressure) // pressure in kPa
                 let relativeAltitudeValue = Double(truncating: data.relativeAltitude) // change in m
 
                 let model = AltitudeModel(
-                    counter: counter,
+                    counter: altitudeCounter,
                     timestamp: Date().formatted(),
                     pressureValue: pressureValue,
                     relativeAltitudeValue: relativeAltitudeValue
@@ -87,7 +87,7 @@ class MotionManager {
                 DispatchQueue.main.async {
                     self.altitude = model
                     self.altitudeArray.append(model)
-                    self.counter += 1
+                    self.altitudeCounter += 1
                 }
             }
         }
@@ -101,6 +101,7 @@ class MotionManager {
         motionArray.removeAll()
         altitudeArray.removeAll()
 
-        counter = 1
+        motionCounter = 1
+        altitudeCounter = 1
     }
 }

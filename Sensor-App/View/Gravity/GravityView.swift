@@ -10,14 +10,15 @@ import SwiftUI
 
 struct GravityView: View {
 
-    @Environment(MotionManager.self) var motionManager
+    @Environment(MotionManager.self) private var motionManager
 
     @State private var showXAxis = false
     @State private var showYAxis = false
     @State private var showZAxis = false
 
+    // MARK: - Body
     var body: some View {
-        GeometryReader { geo in
+        GeometryReader { geo in // TODO: - Remove GeometryReader
             List {
                 Section(header: Text("Gravity", comment: "GravityView - Section Header")) {
                     DisclosureGroup(
@@ -77,10 +78,8 @@ struct GravityView: View {
     }
 }
 
-struct GravityView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationStack {
-            GravityView()
-        }
-    }
+// MARK: - Preview
+#Preview {
+    GravityView()
+        .previewNavigationStackWrapper()
 }

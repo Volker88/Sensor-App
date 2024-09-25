@@ -21,11 +21,15 @@ extension Logger {
     /// Log ``AppUpdates`` events
     static let appUpdate = Logger(subsystem: subsystem, category: "appUpdate")
 
+    /// Log ``coreLocation`` events
     static let coreLocation = Logger(subsystem: subsystem, category: "coreLocation")
 
+    /// Log ``coreMotion`` events
     static let coreMotion = Logger(subsystem: subsystem, category: "coreMotion")
 
+    /// Log ``ExportManager`` events
     static let exportFile = Logger(subsystem: subsystem, category: "exportFile")
 
+    /// Log ``userDefaults`` events
     static let userDefaults = Logger(subsystem: subsystem, category: "userDefaults")
 }

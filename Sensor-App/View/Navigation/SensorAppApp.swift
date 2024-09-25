@@ -10,29 +10,24 @@ import OSLog
 
 @main
 struct SensorAppApp: App {
-    @Environment(\.scenePhase) var scenePhase
 
-    @StateObject var update = AppUpdates()
-    @StateObject var appState: AppState
+    @Environment(\.scenePhase) private var scenePhase
 
+    @State private var appState = AppState()
+    @State private var update = AppUpdates()
     @State private var locationManager = LocationManager()
     @State private var motionManager = MotionManager()
     @State private var settingsManager = SettingsManager()
     @State private var calculationManager = CalculationManager()
 
-    init() {
-        let appState = AppState()
-        _appState = StateObject(wrappedValue: appState)
-    }
-
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environmentObject(appState)
+                .environment(appState)
+                .environment(locationManager)
                 .environment(motionManager)
                 .environment(calculationManager)
                 .environment(settingsManager)
-                .environment(locationManager)
                 .onChange(of: scenePhase) { _, phase in
                     switch phase {
                         case .active:
@@ -49,7 +44,7 @@ struct SensorAppApp: App {
                     update.checkForUpdate()
                 }
                 .sheet(isPresented: $update.showReleaseNotes) { ReleaseNotes() }
-            // .sheet(isPresented: .constant(true)) { ReleaseNotes() }
+                .withNotificationView()
         }
     }
 }

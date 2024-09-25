@@ -9,15 +9,14 @@
 import SwiftUI
 
 struct GravityView: View {
-    @Environment(SettingsManager.self) var settingsManager
-    @Environment(MotionManager.self) var motionManager
+
+    @Environment(SettingsManager.self) private var settingsManager
+    @Environment(CalculationManager.self) private var calculationManager
+    @Environment(MotionManager.self) private var motionManager
+
     @State private var frequency = 1.0 // Default Frequency
 
-    init() {
-        frequency = settingsManager.fetchUserSettings().frequencySetting
-        motionManager.sensorUpdateInterval = frequency
-    }
-
+    // MARK: - Body
     var body: some View {
         List {
             Text("X-Axis: \(motionManager.motion?.gravityXAxis ?? 0.0, specifier: "%.5f") g (9,81 m/s^2)", comment: "GravityView - X-Axis (watchOS)")
@@ -30,7 +29,11 @@ struct GravityView: View {
         .onDisappear(perform: onDisappear)
     }
 
+    // MARK: - Methods
     func onAppear() {
+        frequency = settingsManager.fetchUserSettings().frequencySetting
+        motionManager.sensorUpdateInterval = frequency
+
         // Start updating motion
         motionManager.sensorUpdateInterval = frequency
         motionManager.startMotionUpdates()
@@ -42,11 +45,7 @@ struct GravityView: View {
     }
 }
 
-struct GravityView_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            GravityView().previewDevice("Apple Watch Series 3 - 38mm")
-            GravityView().previewDevice("Apple Watch Series 4 - 44mm")
-        }
-    }
+#Preview {
+    GravityView()
+        .previewNavigationStackWrapper()
 }

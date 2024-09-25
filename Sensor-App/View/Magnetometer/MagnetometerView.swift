@@ -10,17 +10,15 @@ import SwiftUI
 
 struct MagnetometerView: View {
 
-    @Environment(MotionManager.self) var motionManager
+    @Environment(MotionManager.self) private var motionManager
 
-    @EnvironmentObject private var appState: AppState
-    @State private var showShareSheet = false
-    @State private var fileToShare: URL?
     @State private var showXAxis = false
     @State private var showYAxis = false
     @State private var showZAxis = false
 
+    // MARK: - Body
     var body: some View {
-        GeometryReader { geo in
+        GeometryReader { geo in // TODO: - Remove GeometryReader
             List {
                 Section(header: Text("Acceleration", comment: "AccelerationView - Section Header")) {
                     DisclosureGroup(
@@ -80,10 +78,8 @@ struct MagnetometerView: View {
     }
 }
 
-struct MagnetometerView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationStack {
-            MagnetometerView()
-        }
-    }
+// MARK: - Preview
+#Preview {
+    MagnetometerView()
+        .previewNavigationStackWrapper()
 }

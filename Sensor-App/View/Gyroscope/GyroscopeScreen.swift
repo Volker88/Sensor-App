@@ -6,74 +6,34 @@
 //
 
 import SwiftUI
-import OSLog
 
 struct GyroscopeScreen: View {
-    let notificationAPI = NotificationAPI()
 
-    @Environment(MotionManager.self) var motionManager
+    @Environment(MotionManager.self) private var motionManager
 
-    @State private var showNotification = false
-    @State private var notificationMessage = ""
-    @State private var notificationDuration = 2.0
-
-    init() {
-        notificationDuration = notificationAPI.fetchNotificationAnimationSettings().duration
-    }
-
+    // MARK: - Body
     var body: some View {
-        ZStack {
-            GyroscopeView()
-                .toolbar {
-                    CustomToolbar(toolBarFunctionClosure: toolBarButtonTapped(button:))
+        GyroscopeView()
+            .toolbar {
+                CustomToolbar()
+            }
+            .navigationTitle(NSLocalizedString("Gyroscope", comment: "NavigationBar Title - Gyroscope"))
+            .navigationDestination(for: Route.self, destination: { route in
+                switch route {
+                    case .gyroscopeList:
+                        GyroscopeList()
+                    default:
+                        EmptyView()
                 }
-
-            NotificationView(notificationMessage: $notificationMessage, showNotification: $showNotification)
-        }
-        .navigationTitle(NSLocalizedString("Gyroscope", comment: "NavigationBar Title - Gyroscope"))
-        .navigationDestination(for: Route.self, destination: { route in
-            switch route {
-                case .gyroscopeList:
-                    GyroscopeList()
-                default:
-                    EmptyView()
-
-            }
-        })
-        .onAppear {
-            motionManager.startMotionUpdates()
-        }
-    }
-
-    func toolBarButtonTapped(button: ToolBarButtonType) {
-        var messageType: NotificationTypes?
-
-        switch button {
-        case .play:
+            })
+            .onAppear {
                 motionManager.startMotionUpdates()
-            messageType = .played
-        case .pause:
-                motionManager.stopMotionUpdates()
-            messageType = .paused
-        case .delete:
-                motionManager.resetMotionUpdates()
-            messageType = .deleted
-            Logger.coreLocation.debug("Deleted Motion Data")
-        }
-
-        if let messageType {
-            notificationAPI.toggleNotification(type: messageType, duration: notificationDuration) { (message, show) in
-                notificationMessage = message
-                showNotification = show
             }
-        }
     }
 }
 
-struct GyroscopeScreen_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationStack {
-            GyroscopeScreen()
-        }
-    }
+// MARK: - Preview
+#Preview {
+    GyroscopeScreen()
+        .previewNavigationStackWrapper()
 }

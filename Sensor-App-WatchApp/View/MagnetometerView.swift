@@ -10,16 +10,13 @@ import SwiftUI
 
 struct MagnetometerView: View {
 
-    @Environment(SettingsManager.self) var settingsManager
-    @Environment(MotionManager.self) var motionManager
+    @Environment(SettingsManager.self) private var settingsManager
+    @Environment(CalculationManager.self) private var calculationManager
+    @Environment(MotionManager.self) private var motionManager
 
     @State private var frequency = 1.0 // Default Frequency
 
-    init() {
-        frequency = settingsManager.fetchUserSettings().frequencySetting
-        motionManager.sensorUpdateInterval = frequency
-    }
-
+    // MARK: - Body
     var body: some View {
         List {
             Text("X-Axis: \(motionManager.motion?.magnetometerXAxis ?? 0.0, specifier: "%.5f") µT", comment: "MagnetometerView - X-Axis (watchOS)")
@@ -32,7 +29,11 @@ struct MagnetometerView: View {
         .onDisappear(perform: onDisappear)
     }
 
+    // MARK: - Methods
     func onAppear() {
+        frequency = settingsManager.fetchUserSettings().frequencySetting
+        motionManager.sensorUpdateInterval = frequency
+
         // Start updating motion
         motionManager.sensorUpdateInterval = frequency
         motionManager.startMotionUpdates()
@@ -44,11 +45,8 @@ struct MagnetometerView: View {
     }
 }
 
-struct MagnetometerView_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            MagnetometerView().previewDevice("Apple Watch Series 3 - 38mm")
-            MagnetometerView().previewDevice("Apple Watch Series 4 - 44mm")
-        }
-    }
+// MARK: - Preview
+#Preview {
+    MagnetometerView()
+        .previewNavigationStackWrapper()
 }

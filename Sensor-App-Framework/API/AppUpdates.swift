@@ -6,11 +6,12 @@
 //  Copyright © 2020 Volker Schmitt. All rights reserved.
 //
 
-import Foundation
+import SwiftUI
 import OSLog
 
-class AppUpdates: ObservableObject {
-    @Published var showReleaseNotes = false
+@Observable
+class AppUpdates {
+    var showReleaseNotes = false
 
     let settings = SettingsManager()
 

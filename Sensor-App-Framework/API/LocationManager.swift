@@ -21,16 +21,20 @@ class LocationManager {
     private var locationManager = CLLocationManager()
     private var index = 1
 
+    init() {
+        locationManager.requestWhenInUseAuthorization()
+    }
+
     func startLocationUpdates() {
         updatesStarted = true
 
         // MARK: - Handle authorizationStatus
         if locationManager.authorizationStatus == .notDetermined {
-
+print("Not Determined")
         } else if locationManager.authorizationStatus == .denied {
-
+            print("Denied")
         } else if locationManager.authorizationStatus == .restricted {
-
+            print("Restricted")
         }
 
         Task {

@@ -10,15 +10,15 @@ import SwiftUI
 
 struct AccelerationView: View {
 
-    @Environment(MotionManager.self) var motionManager
+    @Environment(MotionManager.self) private var motionManager
 
-    @EnvironmentObject private var appState: AppState
     @State private var showXAxis = false
     @State private var showYAxis = false
     @State private var showZAxis = false
 
+    // MARK: - Body
     var body: some View {
-        GeometryReader { geo in
+        GeometryReader { geo in // TODO: - Remove GeometryReader
             List {
                 Section(header: Text("Acceleration", comment: "AccelerationView - Section Header")) {
                     DisclosureGroup(
@@ -78,10 +78,8 @@ struct AccelerationView: View {
     }
 }
 
-struct AccelerationView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationStack {
-            AccelerationView()
-        }
-    }
+// MARK: - Preview
+#Preview {
+    AccelerationView()
+        .previewNavigationStackWrapper()
 }

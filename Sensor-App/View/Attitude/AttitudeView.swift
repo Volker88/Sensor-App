@@ -10,15 +10,16 @@ import SwiftUI
 
 struct AttitudeView: View {
 
-    @Environment(MotionManager.self) var motionManager
+    @Environment(MotionManager.self) private var motionManager
 
     @State private var showRoll = false
     @State private var showPitch = false
     @State private var showYaw = false
     @State private var showHeading = false
 
+    // MARK: - Body
     var body: some View {
-        GeometryReader { geo in
+        GeometryReader { geo in // TODO: - Remove GeometryReader
             List {
                 Section(header: Text("Attitude", comment: "AttitudeView - Section Header")) {
                     DisclosureGroup(
@@ -89,10 +90,8 @@ struct AttitudeView: View {
     }
 }
 
-struct AttitudeView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationStack {
-            AttitudeView()
-        }
-    }
+// MARK: - Preview
+#Preview {
+    AttitudeView()
+        .previewNavigationStackWrapper()
 }

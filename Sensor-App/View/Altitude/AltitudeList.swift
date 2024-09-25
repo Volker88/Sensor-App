@@ -6,14 +6,16 @@
 //
 
 import SwiftUI
-import OSLog
 
 struct AltitudeList: View {
-    @Environment(MotionManager.self) var motionManager
-    let exportManager = ExportManager()
-    @Environment(CalculationManager.self) var calculationManager
-    @Environment(SettingsManager.self) var settingsManager
 
+    @Environment(MotionManager.self) private var motionManager
+    @Environment(CalculationManager.self) private var calculationManager
+    @Environment(SettingsManager.self) private var settingsManager
+
+    private let exportManager = ExportManager()
+
+    // MARK: - Body
     var body: some View {
         List(motionManager.altitudeArray.reversed(), id: \.self) { item in
             HStack {
@@ -31,22 +33,11 @@ struct AltitudeList: View {
             ToolbarItem(placement: .navigationBarTrailing) {
                 ShareSheet(url: shareCSV())
             }
-            CustomToolbar(toolBarFunctionClosure: toolBarButtonTapped(button:))
+            CustomToolbar()
         }
     }
 
-    func toolBarButtonTapped(button: ToolBarButtonType) {
-        switch button {
-            case .play:
-                motionManager.startAltitudeUpdates()
-            case .pause:
-                motionManager.stopMotionUpdates()
-            case .delete:
-                motionManager.resetMotionUpdates()
-                Logger.coreLocation.debug("Deleted Motion Data")
-        }
-    }
-
+    // MARK: - Methods
     func shareCSV() -> URL {
         var csvText = NSLocalizedString("ID;Time;Pressure;Altitude change", comment: "Export CSV Headline - altitude") + "\n" // swiftlint:disable:this line_length
 
@@ -57,10 +48,8 @@ struct AltitudeList: View {
     }
 }
 
-struct AltitudeList_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationStack {
-            AltitudeList()
-        }
-    }
+// MARK: - Preview
+#Preview {
+    AltitudeList()
+        .previewNavigationStackWrapper()
 }

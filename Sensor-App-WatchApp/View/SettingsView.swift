@@ -9,26 +9,17 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @Environment(SettingsManager.self) var settingsManager
 
-    @State private var showingDiscardAlert = false
-    @State private var showingSaveAlert = false
-    @State var refreshRate: Double = 1
-    @State var speedSetting = 0
-    @State var accuracySetting = 0
-    @State var pressureSetting = 0
-    @State var heightSetting = 0
+    @Environment(\.dismiss) var dismiss
+    @Environment(SettingsManager.self) private var settingsManager
 
-    init() {
-        // swiftlint:disable line_length
-        refreshRate = settingsManager.fetchUserSettings().frequencySetting
-        speedSetting = settingsManager.GPSSpeedSettings.firstIndex(of: settingsManager.fetchUserSettings().GPSSpeedSetting) ?? 0
-        accuracySetting = settingsManager.GPSAccuracyOptions.firstIndex(of: settingsManager.fetchUserSettings().GPSAccuracySetting) ?? 0
-        pressureSetting = settingsManager.altitudePressure.firstIndex(of: settingsManager.fetchUserSettings().pressureSetting) ?? 0
-        heightSetting = settingsManager.altitudeHeight.firstIndex(of: settingsManager.fetchUserSettings().altitudeHeightSetting) ?? 0
-        // swiftlint:enable line_length
-    }
+    @State private var refreshRate: Double = 1
+    @State private var speedSetting = 0
+    @State private var accuracySetting = 0
+    @State private var pressureSetting = 0
+    @State private var heightSetting = 0
 
+    // MARK: - Body
     var body: some View {
         Form {
             Section(header:
@@ -74,34 +65,33 @@ struct SettingsView: View {
             Section(header:
                         Text("Refresh Rate", comment: "SettingsView - Refresh Rate Section (watchOS)")
             ) {
-                Text("\(NSLocalizedString("Frequency:", comment: "SettingsView - Frequency (watchOS)")) \(Int(refreshRate)) Hz", comment: "SettingsView - Frequency (watchOS)")
+                Text("Frequenz: \(Int(refreshRate)) Hz")
+
                 Slider(value: $refreshRate, in: 1...10, step: 1) { _ in
 
                 }
             }
             Section {
                 Button(action: {
-                    discardChanges(showNotification: true)
+                    discardChanges(dismiss: true)
                 }) {
-                    Text("Discard", comment: "SettingsView - Save (watchOS)")
+                    Text("Discard", comment: "SettingsView - Discard (watchOS)")
                 }
-                .alert(isPresented: $showingDiscardAlert) {
-                    Alert(title: Text("Discarded Changes", comment: "SettingsView - Discarded Changes (watchOS)"))
-                }
+
                 Button(action: {
                     saveSettings()
                 }) {
-                    Text("Save")
-                }.alert(isPresented: $showingSaveAlert) {
-                    Alert(title: Text("Saved Changes", comment: "SettingsView - Saved Changes (watchOS)"))
+                    Text("Save", comment: "SettingsView - Save (watchOS)")
                 }
             }
         }
         .navigationTitle(NSLocalizedString("Settings", comment: "SettingsView - NavigationBar Title (watchOS)"))
         .font(.footnote)
-        .onAppear(perform: onDisappear)
+        .onAppear(perform: onAppear)
+        .onDisappear(perform: onDisappear)
     }
 
+    // MARK: - Methods
     func saveSettings() {
         var userSettings = settingsManager.fetchUserSettings()
         userSettings.GPSSpeedSetting = settingsManager.GPSSpeedSettings[speedSetting]
@@ -111,13 +101,10 @@ struct SettingsView: View {
         userSettings.frequencySetting = refreshRate
         settingsManager.saveUserSettings(userSettings: userSettings)
 
-        showingSaveAlert = true
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: {
-            showingSaveAlert = false
-        })
+        dismiss()
     }
 
-    func discardChanges(showNotification: Bool) {
+    func discardChanges(dismiss: Bool) {
         // swiftlint:disable line_length
         speedSetting = settingsManager.GPSSpeedSettings.firstIndex(of: settingsManager.fetchUserSettings().GPSSpeedSetting) ?? 0
         accuracySetting = settingsManager.GPSAccuracyOptions.firstIndex(of: settingsManager.fetchUserSettings().GPSAccuracySetting) ?? 0
@@ -126,24 +113,22 @@ struct SettingsView: View {
         refreshRate = settingsManager.fetchUserSettings().frequencySetting
         // swiftlint:enable line_length
 
-        if showNotification == true {
-            showingDiscardAlert = true
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: {
-                showingDiscardAlert = false
-            })
+        if dismiss == true {
+            self.dismiss()
         }
+    }
+
+    func onAppear() {
+        discardChanges(dismiss: false)
     }
 
     func onDisappear() {
-        discardChanges(showNotification: false)
+        discardChanges(dismiss: false)
     }
 }
 
-struct SettingsView_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            SettingsView().previewDevice("Apple Watch Series 3 - 38mm")
-            SettingsView().previewDevice("Apple Watch Series 4 - 44mm")
-        }
-    }
+// MARK: - Preview
+#Preview {
+    SettingsView()
+        .previewNavigationStackWrapper()
 }

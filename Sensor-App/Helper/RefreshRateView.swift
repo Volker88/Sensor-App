@@ -9,11 +9,13 @@
 import SwiftUI
 
 struct RefreshRateView: View {
-    @Environment(SettingsManager.self) var settingsManager
-    @Environment(MotionManager.self) var motionManager
+
+    @Environment(SettingsManager.self) private var settingsManager
+    @Environment(MotionManager.self) private var motionManager
 
     let show: String
 
+    // MARK: - Body
     var body: some View {
         Group {
             if show == "header" {
@@ -43,6 +45,7 @@ struct RefreshRateView: View {
         }
     }
 
+    // MARK: - Methods
     func updateSlider() {
         var userSettings = settingsManager.fetchUserSettings()
         userSettings.frequencySetting = motionManager.sensorUpdateInterval
@@ -50,12 +53,9 @@ struct RefreshRateView: View {
     }
 }
 
-struct RefreshRateView_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            RefreshRateView(show: "header")
-            RefreshRateView(show: "slider")
-        }
-        .previewLayout(.sizeThatFits)
+#Preview(traits: .sizeThatFitsLayout) {
+    Group {
+        RefreshRateView(show: "header")
+        RefreshRateView(show: "slider")
     }
 }

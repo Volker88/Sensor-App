@@ -9,7 +9,8 @@ import SwiftUI
 import MapKit
 
 struct MapKitView: UIViewRepresentable {
-    @Environment(SettingsManager.self) var settingsManager
+
+    @Environment(SettingsManager.self) private var settingsManager
 
     let mapView = MKMapView()
 
@@ -83,9 +84,7 @@ extension MapKitView {
     }
 }
 
-struct MapKitView_Previews: PreviewProvider {
-    static var previews: some View {
-        MapKitView()
-            .previewLayout(.sizeThatFits)
-    }
+// MARK: - Preview
+#Preview(traits: .sizeThatFitsLayout) {
+    MapKitView()
 }

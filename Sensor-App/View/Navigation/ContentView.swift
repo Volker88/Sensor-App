@@ -9,28 +9,28 @@ import SwiftUI
 
 struct ContentView: View {
 
-    @Environment(MotionManager.self) var motionManager
+    @Environment(MotionManager.self) private var motionManager
+    @Environment(AppState.self) private var appState
 
-    @EnvironmentObject private var appState: AppState
     @State private var showSidebar: NavigationSplitViewVisibility = .all
 
+    // MARK: - Body
     var body: some View {
         NavigationSplitView(columnVisibility: $showSidebar) {
             Sidebar()
         } detail: {
-            NavigationStack(path: $appState.path) {
+            NavigationStack(path: Bindable(appState).path) {
                 DetailColumn()
             }
         }
         .onChange(of: appState.selectedScreen) {
             motionManager.stopMotionUpdates()
         }
-
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
+// MARK: - Preview
+#Preview {
+    ContentView()
+        .previewNavigationStackWrapper()
 }

@@ -10,10 +10,13 @@ import SwiftUI
 
 struct LocationView: View {
 
-    @Environment(LocationManager.self) var locationManager
-    @Environment(SettingsManager.self) var settingsManager
-    @Environment(CalculationManager.self) var calculationManager
+    @Environment(LocationManager.self) private var locationManager
+    @Environment(SettingsManager.self) private var settingsManager
+    @Environment(CalculationManager.self) private var calculationManager
 
+    @State private var frequency = 1.0 // Default Frequency
+
+    // MARK: - Body
     var body: some View {
         List {
             Text("Latitude: \(locationManager.location?.latitude ?? 0.0, specifier: "%.10f")° ± \(locationManager.location?.horizontalAccuracy ?? 0.0, specifier: "%.2f")m", comment: "LocationView - Latitude (watchOS)")
@@ -28,6 +31,7 @@ struct LocationView: View {
         .onDisappear(perform: onDisappear)
     }
 
+    // MARK: - Methods
     func onAppear() {
         locationManager.startLocationUpdates()
     }
@@ -38,11 +42,8 @@ struct LocationView: View {
     }
 }
 
-struct LocationView_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            LocationView().previewDevice("Apple Watch Series 3 - 38mm")
-            LocationView().previewDevice("Apple Watch Series 4 - 44mm")
-        }
-    }
+// MARK: - Preview
+#Preview {
+    LocationView()
+        .previewNavigationStackWrapper()
 }

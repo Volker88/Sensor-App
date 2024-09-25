@@ -20,10 +20,6 @@
       "comment" : "RefreshRateView - Refresh Rate",
       "shouldTranslate" : false
     },
-    "%@ %@ Hz" : {
-      "comment" : "SettingsView - Frequency (watchOS)",
-      "shouldTranslate" : false
-    },
     "0.1" : {
       "comment" : "RefreshRateView - Label 1",
       "shouldTranslate" : false
@@ -134,6 +130,7 @@
     },
     "Changes Discarded" : {
       "comment" : "NotificationMessage - Discarded",
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -177,7 +174,7 @@
       }
     },
     "Discard" : {
-      "comment" : "NagvigationBarButton - Discard Changes\nSettingsView - Save (watchOS)",
+      "comment" : "NagvigationBarButton - Discard Changes\nSettingsView - Discard (watchOS)",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -189,6 +186,7 @@
     },
     "Discarded Changes" : {
       "comment" : "SettingsView - Discarded Changes (watchOS)",
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -210,7 +208,7 @@
       }
     },
     "Frequency:" : {
-      "comment" : "RefreshRateView - Frequency\nSettingsView - Frequency (watchOS)",
+      "comment" : "RefreshRateView - Frequency",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -219,6 +217,9 @@
           }
         }
       }
+    },
+    "Frequenz: %@ Hz" : {
+
     },
     "General" : {
       "comment" : "SettingsScreen - General Section",
@@ -476,6 +477,7 @@
     },
     "Paused" : {
       "comment" : "NotificationMessage - Paused",
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -508,7 +510,7 @@
       }
     },
     "Play" : {
-      "comment" : "CustomToolbar - Play Button\nNotificationMessage - Play",
+      "comment" : "CustomToolbar - Play Button",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -589,7 +591,7 @@
       }
     },
     "Save" : {
-      "comment" : "NagvigationBarButton - Save",
+      "comment" : "NagvigationBarButton - Save\nSettingsView - Save (watchOS)",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -601,6 +603,7 @@
     },
     "Saved Changes" : {
       "comment" : "SettingsView - Saved Changes (watchOS)",
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -612,6 +615,7 @@
     },
     "Saved successfully" : {
       "comment" : "NotificationMessage - Saved",
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -711,6 +715,7 @@
     },
     "Successfully deleted" : {
       "comment" : "NotificationMessage - Deleted",
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {

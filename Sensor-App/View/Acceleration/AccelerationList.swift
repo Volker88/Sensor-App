@@ -6,12 +6,14 @@
 //
 
 import SwiftUI
-import OSLog
 
 struct AccelerationList: View {
-    @Environment(MotionManager.self) var motionManager
-    let exportManager = ExportManager()
 
+    @Environment(MotionManager.self) private var motionManager
+
+    private let exportManager = ExportManager()
+
+    // MARK: - Body
     var body: some View {
         List(motionManager.motionArray.reversed(), id: \.self) { item in
             HStack {
@@ -31,22 +33,11 @@ struct AccelerationList: View {
             ToolbarItem(placement: .navigationBarTrailing) {
                 ShareSheet(url: shareCSV())
             }
-            CustomToolbar(toolBarFunctionClosure: toolBarButtonTapped(button:))
+            CustomToolbar()
         }
     }
 
-    func toolBarButtonTapped(button: ToolBarButtonType) {
-        switch button {
-            case .play:
-                motionManager.startMotionUpdates()
-            case .pause:
-                motionManager.stopMotionUpdates()
-            case .delete:
-                motionManager.resetMotionUpdates()
-                Logger.coreLocation.debug("Deleted Motion Data")
-        }
-    }
-
+    // MARK: - Methods
     func shareCSV() -> URL {
         var csvText = NSLocalizedString("ID;Time;X-Axis;Y-Axis;Z-Axis", comment: "Export CSV Headline - Acceleration") + "\n" // swiftlint:disable:this line_length
 
@@ -57,10 +48,8 @@ struct AccelerationList: View {
     }
 }
 
-struct AccelerationList_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationStack {
-            AccelerationList()
-        }
-    }
+// MARK: - Preview
+#Preview {
+    AccelerationList()
+        .previewNavigationStackWrapper()
 }

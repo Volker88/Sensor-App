@@ -10,10 +10,9 @@ import SwiftUI
 
 struct LocationView: View {
 
-    @Environment(LocationManager.self) var locationManager
-    let exportManager = ExportManager()
-    @Environment(SettingsManager.self) var settingsManager
-    @Environment(CalculationManager.self) var calculationManager
+    @Environment(LocationManager.self) private var locationManager
+    @Environment(SettingsManager.self) private var settingsManager
+    @Environment(CalculationManager.self) private var calculationManager
 
     @State private var showLatitude = false
     @State private var showLongitude = false
@@ -21,8 +20,11 @@ struct LocationView: View {
     @State private var showDirection = false
     @State private var showSpeed = false
 
+    private let exportManager = ExportManager()
+
+    // MARK: - Body
     var body: some View {
-        GeometryReader { geo in
+        GeometryReader { geo in // TODO: - Remove GeometryReader
             List {
                 Section(
                     header: Text("Location", comment: "LocationView - Section Header"),
@@ -103,6 +105,7 @@ struct LocationView: View {
         }
     }
 
+    // MARK: - Methods
     func shareCSV() -> URL {
         var csvText = NSLocalizedString("ID;Time;Longitude;Latitude;Altitude;Speed;Course", comment: "Export CSV Headline - Location") + "\n" // swiftlint:disable:this line_length
 
@@ -122,10 +125,8 @@ struct LocationView: View {
     }
 }
 
-struct LocationView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationStack {
-            LocationView()
-        }
-    }
+// MARK: - Preview
+#Preview {
+    LocationView()
+        .previewNavigationStackWrapper()
 }

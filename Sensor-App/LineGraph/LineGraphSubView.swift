@@ -11,9 +11,9 @@ import Charts
 
 struct LineGraphSubView: View {
 
-    @Environment(LocationManager.self) var locationManager
-    @Environment(MotionManager.self) var motionManager
-    @Environment(SettingsManager.self) var settingsManager
+    @Environment(LocationManager.self) private var locationManager
+    @Environment(MotionManager.self) private var motionManager
+    @Environment(SettingsManager.self) private var settingsManager
 
     var graph: Graph
     var showGraph: GraphDetail
@@ -63,7 +63,7 @@ struct LineGraphSubView: View {
     }
 
     var body: some View {
-        GeometryReader { _ in
+        GeometryReader { _ in // TODO: - Remove GeometryReader
             VStack {
                 Group {
                     if graph == .location {
@@ -89,9 +89,8 @@ struct LineGraphSubView: View {
     }
 }
 
-struct LineGraphImplementation_Previews: PreviewProvider {
-    static var previews: some View {
-        LineGraphSubView(graph: .location, showGraph: .speed)
-            .previewLayout(.sizeThatFits)
-    }
+// MARK: - Preview
+#Preview(traits: .sizeThatFitsLayout) {
+    LineGraphSubView(graph: .location, showGraph: .speed)
+        .previewNavigationStackWrapper()
 }

@@ -9,16 +9,17 @@
 import SwiftUI
 
 struct AltitudeView: View {
-    @Environment(MotionManager.self) var motionManager
-    @Environment(SettingsManager.self) var settingsManager
-    @Environment(CalculationManager.self) var calculationManager
 
-    @EnvironmentObject private var appState: AppState
+    @Environment(MotionManager.self) private var motionManager
+    @Environment(SettingsManager.self) private var settingsManager
+    @Environment(CalculationManager.self) private var calculationManager
+
     @State private var showPressure = false
     @State private var showRelativeAltitudeChange = false
 
+    // MARK: - Body
     var body: some View {
-        GeometryReader { geo in
+        GeometryReader { geo in // TODO: - Remove GeometryReader
             List {
                 Section(header: Text("Altitude", comment: "AltitudeView - Section Header")) {
                     DisclosureGroup(
@@ -67,10 +68,8 @@ struct AltitudeView: View {
     }
 }
 
-struct AltitudeView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationStack {
-            AltitudeView()
-        }
-    }
+// MARK: - Preview
+#Preview {
+    AltitudeView()
+        .previewNavigationStackWrapper()
 }

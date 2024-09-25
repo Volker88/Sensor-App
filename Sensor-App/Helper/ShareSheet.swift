@@ -9,8 +9,10 @@
 import SwiftUI
 
 struct ShareSheet: View {
+
     let url: URL
 
+    // MARK: - Body
     var body: some View {
         ShareLink(item: url) {
             Label(NSLocalizedString("Export", comment: "AccelerationView - Export List"),
@@ -19,8 +21,7 @@ struct ShareSheet: View {
     }
 }
 
-struct ShareSheet_Previews: PreviewProvider {
-    static var previews: some View {
-        ShareSheet(url: URL(string: "https://www.apple.com")!) // swiftlint:disable:this force_unwrapping
-    }
+// MARK: - Preview
+#Preview {
+    ShareSheet(url: URL(string: "https://www.apple.com")!) // swiftlint:disable:this force_unwrapping
 }
