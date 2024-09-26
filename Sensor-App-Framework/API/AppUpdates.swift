@@ -9,6 +9,7 @@
 import SwiftUI
 import OSLog
 
+@MainActor
 @Observable
 class AppUpdates {
     var showReleaseNotes = false

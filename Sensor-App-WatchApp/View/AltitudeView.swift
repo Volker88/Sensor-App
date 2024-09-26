@@ -11,7 +11,6 @@ import SwiftUI
 struct AltitudeView: View {
 
     @Environment(SettingsManager.self) private var settingsManager
-    @Environment(CalculationManager.self) private var calculationManager
     @Environment(MotionManager.self) private var motionManager
 
     @State private var frequency = 1.0 // Default Frequency
@@ -19,8 +18,8 @@ struct AltitudeView: View {
     // MARK: - Body
     var body: some View {
         List {
-            Text("Pressure: \(calculationManager.calculatePressure(pressure: motionManager.altitude?.pressureValue ?? 0.0, to: settingsManager.fetchUserSettings().pressureSetting), specifier: "%.5f") \(settingsManager.fetchUserSettings().pressureSetting)", comment: "AltitudeView - Pressure (watchOS)")
-            Text("Altitude change: \(calculationManager.calculateHeight(height: motionManager.altitude?.relativeAltitudeValue ?? 0.0, to: settingsManager.fetchUserSettings().altitudeHeightSetting), specifier: "%.5f") \(settingsManager.fetchUserSettings().altitudeHeightSetting)", comment: "AltitudeView - Altitude Change (watchOS)")
+            Text("Pressure: \(motionManager.altitude?.calculatedPressure ?? 0.0, specifier: "%.5f") \(motionManager.altitude?.pressureUnit ?? "")")
+            Text("Altitude change: \(motionManager.altitude?.calculatedAltitude ?? 0.0, specifier: "%.5f") \(motionManager.altitude?.altitudeUnit ?? "")")
         }
         .navigationTitle(NSLocalizedString("Altitude", comment: "AltitudeView - NavigationBar Title (watchOS)"))
         .font(.footnote)

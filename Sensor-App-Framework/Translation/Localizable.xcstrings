@@ -81,7 +81,7 @@
       }
     },
     "Altitude change: %.5f %@" : {
-      "comment" : "AltitudeView - Altitude\nAltitudeView - Altitude Change (watchOS)",
+      "comment" : "AltitudeView - Altitude Change (watchOS)",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -532,7 +532,7 @@
       }
     },
     "Pressure: %.5f %@" : {
-      "comment" : "AltitudeView - Pressure\nAltitudeView - Pressure (watchOS)",
+      "comment" : "AltitudeView - Pressure (watchOS)",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -547,7 +547,7 @@
       "shouldTranslate" : false
     },
     "Refresh Rate" : {
-      "comment" : "AccelerationView - Section Header\nAltitudeView - Section Header\nGyroscopeView - Section Header\nMagnetometerView - Section Header\nRefreshRateView - Slider\nSettingsView - Refresh Rate Section (watchOS)",
+      "comment" : "AccelerationView - Section Header\nGyroscopeView - Section Header\nMagnetometerView - Section Header\nRefreshRateView - Slider\nSettingsView - Refresh Rate Section (watchOS)",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -703,12 +703,23 @@
       }
     },
     "Speed:" : {
-      "comment" : "LocationView - Speed\nLocationView - Speed (watchOS)",
+      "comment" : "LocationView - Speed (watchOS)",
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Geschwindigkeit:"
+          }
+        }
+      }
+    },
+    "Speed: %@ %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Speed: %1$@ %2$@"
           }
         }
       }

@@ -10,8 +10,6 @@ import SwiftUI
 
 struct SettingsScreen: View {
 
-    @StateObject var settingsVM = SettingsViewModel()
-
     @Environment(\.showNotification) var showNotification
     @Environment(SettingsManager.self) private var settingsManager
 
@@ -21,7 +19,7 @@ struct SettingsScreen: View {
             Section(header:
                         Text("General", comment: "SettingsScreen - General Section")
             ) {
-                Toggle(isOn: $settingsVM.userSettings.showReleaseNotes, label: {
+                Toggle(isOn: Bindable(settingsManager).userSettings.showReleaseNotes, label: {
                     Text("Show Release Notes", comment: "SettingsScreen - Show Release Notes")
                 })
             }
@@ -29,15 +27,15 @@ struct SettingsScreen: View {
                         Text("App Icon", comment: "SettingsScreen - App Icon")
             ) {
                 HStack {
-                    ForEach(0..<settingsVM.iconNames.count, id: \.self) { index in
-                        Image(uiImage: UIImage(named: "\(settingsVM.iconNames[index])") ?? UIImage())
+                    ForEach(0..<settingsManager.iconNames.count, id: \.self) { index in
+                        Image(uiImage: UIImage(named: "\(settingsManager.iconNames[index])") ?? UIImage())
                             .resizable()
                             .scaledToFit()
                             .clipShape(RoundedRectangle(cornerRadius: 10))
-                            .conditionalOverlay(visible: settingsVM.currentAppIconIndex == index)
+                            .conditionalOverlay(visible: settingsManager.currentAppIconIndex == index)
                             .onTapGesture {
-                                settingsVM.currentAppIconIndex = index
-                                settingsVM.changeIcon(value: index)
+                                settingsManager.currentAppIconIndex = index
+                                settingsManager.changeIcon(value: index)
                             }
                     }
                 }
@@ -47,7 +45,7 @@ struct SettingsScreen: View {
                         Text("Location", comment: "SettingsScreen - Location Section")
             ) {
                 Picker(
-                    selection: $settingsVM.speedSetting,
+                    selection: Bindable(settingsManager).speedSetting,
                     label: Text("Speed Setting",
                                 comment: "SettingsScreen - Speed Setting")
                 ) {
@@ -57,7 +55,7 @@ struct SettingsScreen: View {
                 }
                 .accessibility(identifier: "Speed Settings")
                 Picker(
-                    selection: $settingsVM.accuracySetting,
+                    selection: Bindable(settingsManager).accuracySetting,
                     label: Text("Accuracy", comment: "SettingsScreen - Accuracy")
                 ) {
                     ForEach(0 ..< settingsManager.GPSAccuracyOptions.count, id: \.self) {
@@ -70,7 +68,7 @@ struct SettingsScreen: View {
             Section(header:
                         Text("Map", comment: "SettingsScreen - Map Section")
             ) {
-                Picker(selection: $settingsVM.mapSettings.mapType, label:
+                Picker(selection: Bindable(settingsManager).mapSettings.mapType, label:
                         Text("Type", comment: "SettingsScreen - Type")) {
                     ForEach(MapType.allCases, id: \.self) { type in
                         Text(type.rawValue).tag(type)
@@ -78,45 +76,45 @@ struct SettingsScreen: View {
                 }
                         .accessibility(identifier: "MapType Picker")
 
-                Toggle(isOn: $settingsVM.mapSettings.showsCompass) {
+                Toggle(isOn: Bindable(settingsManager).mapSettings.showsCompass) {
                     Text("Compass", comment: "SettingsScreen - Compass")
                 }.accessibility(identifier: "Compass Toggle")
 
-                Toggle(isOn: $settingsVM.mapSettings.showsScale) {
+                Toggle(isOn: Bindable(settingsManager).mapSettings.showsScale) {
                     Text("Scale", comment: "SettingsScreen - Scale")
                 }.accessibility(identifier: "Scale Toggle")
 
-                Toggle(isOn: $settingsVM.mapSettings.showsBuildings) {
+                Toggle(isOn: Bindable(settingsManager).mapSettings.showsBuildings) {
                     Text("Buildings", comment: "SettingsScreen - Buildings")
                 }.accessibility(identifier: "Buildings Toggle")
 
-                Toggle(isOn: $settingsVM.mapSettings.showsTraffic) {
+                Toggle(isOn: Bindable(settingsManager).mapSettings.showsTraffic) {
                     Text("Traffic", comment: "SettingsScreen - Traffic")
                 }.accessibility(identifier: "Traffic Toggle")
 
-                Toggle(isOn: $settingsVM.mapSettings.isRotateEnabled) {
+                Toggle(isOn: Bindable(settingsManager).mapSettings.isRotateEnabled) {
                     Text("Rotation", comment: "SettingsScreen - Rotation")
                 }.accessibility(identifier: "Rotate Toggle")
 
-                Toggle(isOn: $settingsVM.mapSettings.isPitchEnabled) {
+                Toggle(isOn: Bindable(settingsManager).mapSettings.isPitchEnabled) {
                     Text("Pitch", comment: "SettingsScreen - Pitch")
                 }.accessibility(identifier: "Pitch Toggle")
 
-                Toggle(isOn: $settingsVM.mapSettings.isScrollEnabled) {
+                Toggle(isOn: Bindable(settingsManager).mapSettings.isScrollEnabled) {
                     Text("Scroll", comment: "SettingsScreen - Scroll")
                 }.accessibility(identifier: "Scroll Toggle")
 
-                Stepper(value: $settingsVM.mapSettings.zoom, in: 100...100000, step: 100) {
-                    Text("Zoom: \(settingsVM.mapSettings.zoom / 1000, specifier: "%.1f") km",
+                Stepper(value: Bindable(settingsManager).mapSettings.zoom, in: 100...100000, step: 100) {
+                    Text("Zoom: \(settingsManager.mapSettings.zoom / 1000, specifier: "%.1f") km",
                          comment: "SettingsScreen - Zoom")
                 }.accessibility(identifier: "Zoom Stepper")
 
                 HStack {
                     Text("0.1 km", comment: "SettingsScreen - 0.1km")
-                    Slider(value: $settingsVM.mapSettings.zoom, in: 100...100000, step: 100)
+                    Slider(value: Bindable(settingsManager).mapSettings.zoom, in: 100...100000, step: 100)
                         .accessibility(identifier: "Zoom Slider")
                         .accessibility(label: Text("Zoom:", comment: "SettingsScreen - ZoomSlider"))
-                        .accessibility(value: Text("\(settingsVM.mapSettings.zoom, specifier: "%.1f") km", comment: "SettingsScreen - ZoomSlider"))
+                        .accessibility(value: Text("\(settingsManager.mapSettings.zoom, specifier: "%.1f") km", comment: "SettingsScreen - ZoomSlider"))
                     Text("100 km", comment: "SettingsScreen - 100km")
                 }
             }
@@ -125,7 +123,7 @@ struct SettingsScreen: View {
                         Text("Altitude", comment: "SettingsScreen - Altitude Section")
             ) {
                 Picker(
-                    selection: $settingsVM.pressureSetting,
+                    selection: Bindable(settingsManager).pressureSetting,
                     label: Text("Pressure", comment: "SettingsScreen - Pressure")
                 ) {
                     ForEach(0 ..< settingsManager.altitudePressure.count, id: \.self) {
@@ -133,7 +131,7 @@ struct SettingsScreen: View {
                     }
                 }
                 .accessibility(identifier: "Pressure Settings")
-                Picker(selection: $settingsVM.heightSetting, label: Text("Height",
+                Picker(selection: Bindable(settingsManager).heightSetting, label: Text("Height",
                                                                          comment: "SettingsScreen - Height")
                 ) {
                     ForEach(0 ..< settingsManager.altitudeHeight.count, id: \.self) {
@@ -146,20 +144,20 @@ struct SettingsScreen: View {
             Section(header:
                         Text("Graph", comment: "SettingsScreen - Graph Section")
             ) {
-                Stepper(value: $settingsVM.userSettings.graphMaxPoints, in: 1...1000, step: 1) {
-                    Text("Max Points: \(settingsVM.userSettings.graphMaxPoints, specifier: "%.0f")",
+                Stepper(value: Bindable(settingsManager).userSettings.graphMaxPoints, in: 1...1000, step: 1) {
+                    Text("Max Points: \(settingsManager.userSettings.graphMaxPoints, specifier: "%.0f")",
                          comment: "SettingsScreen - Max Points")
                 }.accessibility(identifier: "Max Points Stepper")
                 HStack {
                     Text("1", comment: "SettingsScreen - 1")
                     Slider(
-                        value: $settingsVM.userSettings.graphMaxPoints,
+                        value: Bindable(settingsManager).userSettings.graphMaxPoints,
                         in: 1...1000,
                         step: 1
                     )
                     .accessibility(identifier: "Max Points Slider")
                     .accessibility(label: Text("Maximum Points:", comment: "SettingsScreen - Max Points Slider"))
-                    .accessibility(value: Text("\(settingsVM.userSettings.graphMaxPoints, specifier: "%.0f")", comment: "SettingsScreen - Max Points Slider"))
+                    .accessibility(value: Text("\(settingsManager.userSettings.graphMaxPoints, specifier: "%.0f")", comment: "SettingsScreen - Max Points Slider"))
                     Text("1000", comment: "SettingsScreen - 1000")
                 }
             }
@@ -189,13 +187,13 @@ struct SettingsScreen: View {
 
     // MARK: - Methods
     func saveSettings() {
-        settingsVM.saveSettings()
+        settingsManager.saveSettings()
 
         showNotification("Saved successfully")
     }
 
     func discardChanges(showNotification: Bool) {
-        settingsVM.discardChanges()
+        settingsManager.discardChanges()
 
         // Show Notification
         if showNotification == true {

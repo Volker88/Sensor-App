@@ -102,7 +102,6 @@
 				"Customization/Extension/Extension+URL.swift",
 				ReleaseNotes/ReleaseNotesModel.swift,
 				Support/Info.plist,
-				ViewModel/SettingsViewModel.swift,
 			);
 			target = 1527B04624C4AA620024DD78 /* Sensor-App-Watch */;
 		};

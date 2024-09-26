@@ -18,63 +18,52 @@ struct MagnetometerView: View {
 
     // MARK: - Body
     var body: some View {
-        GeometryReader { geo in // TODO: - Remove GeometryReader
-            List {
-                Section(header: Text("Acceleration", comment: "AccelerationView - Section Header")) {
-                    DisclosureGroup(
-                        isExpanded: $showXAxis,
-                        content: {
-                            LineGraphSubView(graph: .motion, showGraph: .magnetometerXAxis)
-                                .frame(height: 100, alignment: .leading)
-                        },
-                        label: {
-                            Text("X-Axis: \(motionManager.motion?.magnetometerXAxis ?? 0.0, specifier: "%.5f") µT", comment: "MagnetometerView - X-Axis")
-                        })
-                    .disclosureGroupModifier(accessibility: "Toggle X-Axis Graph")
+        List {
+            Section(header: Text("Acceleration", comment: "AccelerationView - Section Header")) {
+                DisclosureGroup(
+                    isExpanded: $showXAxis,
+                    content: {
+                        LineGraphSubView(graph: .motion, showGraph: .magnetometerXAxis)
+                            .frame(height: 100, alignment: .leading)
+                    },
+                    label: {
+                        Text("X-Axis: \(motionManager.motion?.magnetometerXAxis ?? 0.0, specifier: "%.5f") µT", comment: "MagnetometerView - X-Axis")
+                    })
+                .disclosureGroupModifier(accessibility: "Toggle X-Axis Graph")
 
-                    DisclosureGroup(
-                        isExpanded: $showYAxis,
-                        content: {
-                            LineGraphSubView(graph: .motion, showGraph: .magnetometerYAxis)
-                                .frame(height: 100, alignment: .leading)
-                        },
-                        label: {
-                            Text("Y-Axis: \(motionManager.motion?.magnetometerYAxis ?? 0.0, specifier: "%.5f") µT", comment: "MagnetometerView - Y-Axis")
-                        })
-                    .disclosureGroupModifier(accessibility: "Toggle Y-Axis Graph")
+                DisclosureGroup(
+                    isExpanded: $showYAxis,
+                    content: {
+                        LineGraphSubView(graph: .motion, showGraph: .magnetometerYAxis)
+                            .frame(height: 100, alignment: .leading)
+                    },
+                    label: {
+                        Text("Y-Axis: \(motionManager.motion?.magnetometerYAxis ?? 0.0, specifier: "%.5f") µT", comment: "MagnetometerView - Y-Axis")
+                    })
+                .disclosureGroupModifier(accessibility: "Toggle Y-Axis Graph")
 
-                    DisclosureGroup(
-                        isExpanded: $showZAxis,
-                        content: {
-                            LineGraphSubView(graph: .motion, showGraph: .magnetometerZAxis)
-                                .frame(height: 100, alignment: .leading)
-                        },
-                        label: {
-                            Text("Z-Axis: \(motionManager.motion?.magnetometerZAxis ?? 0.0, specifier: "%.5f") µT", comment: "MagnetometerView - Z-Axis")
-                        })
-                    .disclosureGroupModifier(accessibility: "Toggle Z-Axis Graph")
+                DisclosureGroup(
+                    isExpanded: $showZAxis,
+                    content: {
+                        LineGraphSubView(graph: .motion, showGraph: .magnetometerZAxis)
+                            .frame(height: 100, alignment: .leading)
+                    },
+                    label: {
+                        Text("Z-Axis: \(motionManager.motion?.magnetometerZAxis ?? 0.0, specifier: "%.5f") µT", comment: "MagnetometerView - Z-Axis")
+                    })
+                .disclosureGroupModifier(accessibility: "Toggle Z-Axis Graph")
 
-                    NavigationLink(value: Route.magnetometerList) {
-                        Text("Log", comment: "MagnetometerView - Log")
-                    }
-                }
-
-                Section(header: Text("Refresh Rate", comment: "MagnetometerView - Section Header")) {
-                    RefreshRateView(show: "header")
-                    RefreshRateView(show: "slider")
+                NavigationLink(value: Route.magnetometerList) {
+                    Text("Log", comment: "MagnetometerView - Log")
                 }
             }
-            .listStyle(.insetGrouped)
-            .frame(
-                minWidth: 0,
-                idealWidth: geo.size.width,
-                maxWidth: .infinity,
-                minHeight: 0,
-                idealHeight: geo.size.height,
-                maxHeight: geo.size.height,
-                alignment: .leading
-            )
+
+            Section(header: Text("Refresh Rate", comment: "MagnetometerView - Section Header")) {
+                RefreshRateView(show: "header")
+                RefreshRateView(show: "slider")
+            }
         }
+        .listStyle(.insetGrouped)
     }
 }
 

@@ -8,6 +8,7 @@
 
 import Foundation
 
+@MainActor
 @Observable
 class CalculationManager {
     let settings = SettingsManager()

@@ -18,7 +18,6 @@ struct GravityView: View {
 
     // MARK: - Body
     var body: some View {
-        GeometryReader { geo in // TODO: - Remove GeometryReader
             List {
                 Section(header: Text("Gravity", comment: "GravityView - Section Header")) {
                     DisclosureGroup(
@@ -65,16 +64,6 @@ struct GravityView: View {
                 }
             }
             .listStyle(.insetGrouped)
-            .frame(
-                minWidth: 0,
-                idealWidth: geo.size.width,
-                maxWidth: .infinity,
-                minHeight: 0,
-                idealHeight: geo.size.height,
-                maxHeight: geo.size.height,
-                alignment: .leading
-            )
-        }
     }
 }
 

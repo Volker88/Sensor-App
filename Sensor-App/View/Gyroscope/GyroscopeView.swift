@@ -18,63 +18,52 @@ struct GyroscopeView: View {
 
     // MARK: - Body
     var body: some View {
-        GeometryReader { geo in // TODO: - Remove GeometryReader
-            List {
-                Section(header: Text("Gyroscope", comment: "GyroscopeView - Section Header")) {
-                    DisclosureGroup(
-                        isExpanded: $showXAxis,
-                        content: {
-                            LineGraphSubView(graph: .motion, showGraph: .gyroXAxis)
-                                .frame(height: 100, alignment: .leading)
-                        },
-                        label: {
-                            Text("X-Axis: \(motionManager.motion?.gyroXAxis ?? 0.0, specifier: "%.5f") rad/s", comment: "GyroscopeView - X-Axis")
-                        })
-                    .disclosureGroupModifier(accessibility: "Toggle X-Axis Graph")
+        List {
+            Section(header: Text("Gyroscope", comment: "GyroscopeView - Section Header")) {
+                DisclosureGroup(
+                    isExpanded: $showXAxis,
+                    content: {
+                        LineGraphSubView(graph: .motion, showGraph: .gyroXAxis)
+                            .frame(height: 100, alignment: .leading)
+                    },
+                    label: {
+                        Text("X-Axis: \(motionManager.motion?.gyroXAxis ?? 0.0, specifier: "%.5f") rad/s", comment: "GyroscopeView - X-Axis")
+                    })
+                .disclosureGroupModifier(accessibility: "Toggle X-Axis Graph")
 
-                    DisclosureGroup(
-                        isExpanded: $showYAxis,
-                        content: {
-                            LineGraphSubView(graph: .motion, showGraph: .gyroYAxis)
-                                .frame(height: 100, alignment: .leading)
-                        },
-                        label: {
-                            Text("Y-Axis: \(motionManager.motion?.gyroYAxis ?? 0.0, specifier: "%.5f") rad/s", comment: "GyroscopeView - Y-Axis")
-                        })
-                    .disclosureGroupModifier(accessibility: "Toggle Y-Axis Graph")
+                DisclosureGroup(
+                    isExpanded: $showYAxis,
+                    content: {
+                        LineGraphSubView(graph: .motion, showGraph: .gyroYAxis)
+                            .frame(height: 100, alignment: .leading)
+                    },
+                    label: {
+                        Text("Y-Axis: \(motionManager.motion?.gyroYAxis ?? 0.0, specifier: "%.5f") rad/s", comment: "GyroscopeView - Y-Axis")
+                    })
+                .disclosureGroupModifier(accessibility: "Toggle Y-Axis Graph")
 
-                    DisclosureGroup(
-                        isExpanded: $showZAxis,
-                        content: {
-                            LineGraphSubView(graph: .motion, showGraph: .gyroZAxis)
-                                .frame(height: 100, alignment: .leading)
-                        },
-                        label: {
-                            Text("Z-Axis: \(motionManager.motion?.gyroZAxis ?? 0.0, specifier: "%.5f") rad/s", comment: "GyroscopeView - Z-Axis")
-                        })
-                    .disclosureGroupModifier(accessibility: "Toggle Z-Axis Graph")
+                DisclosureGroup(
+                    isExpanded: $showZAxis,
+                    content: {
+                        LineGraphSubView(graph: .motion, showGraph: .gyroZAxis)
+                            .frame(height: 100, alignment: .leading)
+                    },
+                    label: {
+                        Text("Z-Axis: \(motionManager.motion?.gyroZAxis ?? 0.0, specifier: "%.5f") rad/s", comment: "GyroscopeView - Z-Axis")
+                    })
+                .disclosureGroupModifier(accessibility: "Toggle Z-Axis Graph")
 
-                    NavigationLink(value: Route.gyroscopeList) {
-                        Text("Log", comment: "GyroscopeView - Log")
-                    }
-                }
-
-                Section(header: Text("Refresh Rate", comment: "GyroscopeView - Section Header")) {
-                    RefreshRateView(show: "header")
-                    RefreshRateView(show: "slider")
+                NavigationLink(value: Route.gyroscopeList) {
+                    Text("Log", comment: "GyroscopeView - Log")
                 }
             }
-            .listStyle(.insetGrouped)
-            .frame(
-                minWidth: 0,
-                idealWidth: geo.size.width,
-                maxWidth: .infinity,
-                minHeight: 0,
-                idealHeight: geo.size.height,
-                maxHeight: geo.size.height,
-                alignment: .leading
-            )
+
+            Section(header: Text("Refresh Rate", comment: "GyroscopeView - Section Header")) {
+                RefreshRateView(show: "header")
+                RefreshRateView(show: "slider")
+            }
         }
+        .listStyle(.insetGrouped)
     }
 }
 

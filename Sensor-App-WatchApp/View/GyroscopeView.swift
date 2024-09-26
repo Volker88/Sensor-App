@@ -11,7 +11,6 @@ import SwiftUI
 struct GyroscopeView: View {
 
     @Environment(SettingsManager.self) private var settingsManager
-    @Environment(CalculationManager.self) private var calculationManager
     @Environment(MotionManager.self) private var motionManager
 
     @State private var frequency = 1.0 // Default Frequency

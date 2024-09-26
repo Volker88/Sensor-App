@@ -18,63 +18,52 @@ struct AccelerationView: View {
 
     // MARK: - Body
     var body: some View {
-        GeometryReader { geo in // TODO: - Remove GeometryReader
-            List {
-                Section(header: Text("Acceleration", comment: "AccelerationView - Section Header")) {
-                    DisclosureGroup(
-                        isExpanded: $showXAxis,
-                        content: {
-                            LineGraphSubView(graph: .motion, showGraph: .accelerationXAxis)
-                                .frame(height: 100, alignment: .leading)
-                        },
-                        label: {
-                            Text("X-Axis: \(motionManager.motion?.accelerationXAxis ?? 0.0, specifier: "%.5f") m/s^2", comment: "AccelerationView - X-Axis")
-                        })
-                    .disclosureGroupModifier(accessibility: "Toggle X-Axis Graph")
+        List {
+            Section(header: Text("Acceleration", comment: "AccelerationView - Section Header")) {
+                DisclosureGroup(
+                    isExpanded: $showXAxis,
+                    content: {
+                        LineGraphSubView(graph: .motion, showGraph: .accelerationXAxis)
+                            .frame(height: 100, alignment: .leading)
+                    },
+                    label: {
+                        Text("X-Axis: \(motionManager.motion?.accelerationXAxis ?? 0.0, specifier: "%.5f") m/s^2", comment: "AccelerationView - X-Axis")
+                    })
+                .disclosureGroupModifier(accessibility: "Toggle X-Axis Graph")
 
-                    DisclosureGroup(
-                        isExpanded: $showYAxis,
-                        content: {
-                            LineGraphSubView(graph: .motion, showGraph: .accelerationYAxis)
-                                .frame(height: 100, alignment: .leading)
-                        },
-                        label: {
-                            Text("Y-Axis: \(motionManager.motion?.accelerationYAxis ?? 0.0, specifier: "%.5f") m/s^2", comment: "AccelerationView - Y-Axis")
-                        })
-                    .disclosureGroupModifier(accessibility: "Toggle Y-Axis Graph")
+                DisclosureGroup(
+                    isExpanded: $showYAxis,
+                    content: {
+                        LineGraphSubView(graph: .motion, showGraph: .accelerationYAxis)
+                            .frame(height: 100, alignment: .leading)
+                    },
+                    label: {
+                        Text("Y-Axis: \(motionManager.motion?.accelerationYAxis ?? 0.0, specifier: "%.5f") m/s^2", comment: "AccelerationView - Y-Axis")
+                    })
+                .disclosureGroupModifier(accessibility: "Toggle Y-Axis Graph")
 
-                    DisclosureGroup(
-                        isExpanded: $showZAxis,
-                        content: {
-                            LineGraphSubView(graph: .motion, showGraph: .accelerationZAxis)
-                                .frame(height: 100, alignment: .leading)
-                        },
-                        label: {
-                            Text("Z-Axis: \(motionManager.motion?.accelerationZAxis ?? 0.0, specifier: "%.5f") m/s^2", comment: "AccelerationView - Z-Axis")
-                        })
-                    .disclosureGroupModifier(accessibility: "Toggle Z-Axis Graph")
+                DisclosureGroup(
+                    isExpanded: $showZAxis,
+                    content: {
+                        LineGraphSubView(graph: .motion, showGraph: .accelerationZAxis)
+                            .frame(height: 100, alignment: .leading)
+                    },
+                    label: {
+                        Text("Z-Axis: \(motionManager.motion?.accelerationZAxis ?? 0.0, specifier: "%.5f") m/s^2", comment: "AccelerationView - Z-Axis")
+                    })
+                .disclosureGroupModifier(accessibility: "Toggle Z-Axis Graph")
 
-                    NavigationLink(value: Route.accelerationList) {
-                        Text("Log", comment: "AccelerationView - Log")
-                    }
-                }
-
-                Section(header: Text("Refresh Rate", comment: "AccelerationView - Section Header")) {
-                    RefreshRateView(show: "header")
-                    RefreshRateView(show: "slider")
+                NavigationLink(value: Route.accelerationList) {
+                    Text("Log", comment: "AccelerationView - Log")
                 }
             }
-            .listStyle(.insetGrouped)
-            .frame(
-                minWidth: 0,
-                idealWidth: geo.size.width,
-                maxWidth: .infinity,
-                minHeight: 0,
-                idealHeight: geo.size.height,
-                maxHeight: geo.size.height,
-                alignment: .leading
-            )
+
+            Section(header: Text("Refresh Rate", comment: "AccelerationView - Section Header")) {
+                RefreshRateView(show: "header")
+                RefreshRateView(show: "slider")
+            }
         }
+        .listStyle(.insetGrouped)
     }
 }
 

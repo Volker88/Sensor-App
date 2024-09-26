@@ -70,6 +70,7 @@ class MotionManager {
     }
 
     func startAltitudeUpdates() {
+        motionManager.deviceMotionUpdateInterval = (1.0 / sensorUpdateInterval)
         altimeterManager.startRelativeAltitudeUpdates(to: .main) { [weak self] data, _ in
             guard let self = self else { return }
 
@@ -95,6 +96,7 @@ class MotionManager {
 
     func stopMotionUpdates() {
         motionManager.stopDeviceMotionUpdates()
+        altimeterManager.stopRelativeAltitudeUpdates()
     }
 
     func resetMotionUpdates() {

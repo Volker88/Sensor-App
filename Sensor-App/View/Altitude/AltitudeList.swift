@@ -10,8 +10,6 @@ import SwiftUI
 struct AltitudeList: View {
 
     @Environment(MotionManager.self) private var motionManager
-    @Environment(CalculationManager.self) private var calculationManager
-    @Environment(SettingsManager.self) private var settingsManager
 
     private let exportManager = ExportManager()
 
@@ -21,9 +19,9 @@ struct AltitudeList: View {
             HStack {
                 Text("ID:\(item.counter)", comment: "AltitudeList - ID")
                 Spacer()
-                Text("P:\(calculationManager.calculatePressure(pressure: item.pressureValue, to: settingsManager.fetchUserSettings().pressureSetting), specifier: "%.5f")", comment: "AltitudeList - P")
+                Text("P:\(motionManager.altitude?.calculatedPressure ?? 0.0, specifier: "%.5f")", comment: "AltitudeList - P")
                 Spacer()
-                Text("A:\(calculationManager.calculateHeight(height: item.relativeAltitudeValue, to: settingsManager.fetchUserSettings().altitudeHeightSetting), specifier: "%.5f")", comment: "AltitudeList - A")
+                Text("A:\(motionManager.altitude?.calculatedAltitude ?? 0.0, specifier: "%.5f")", comment: "AltitudeList - A")
             }
             .font(.footnote)
         }
@@ -42,7 +40,7 @@ struct AltitudeList: View {
         var csvText = NSLocalizedString("ID;Time;Pressure;Altitude change", comment: "Export CSV Headline - altitude") + "\n" // swiftlint:disable:this line_length
 
         _ = motionManager.altitudeArray.map {
-            csvText += "\($0.counter);\($0.timestamp);\(calculationManager.calculatePressure(pressure: $0.pressureValue, to: settingsManager.fetchUserSettings().pressureSetting).localizedDecimal());\(calculationManager.calculateHeight(height: $0.relativeAltitudeValue, to: settingsManager.fetchUserSettings().altitudeHeightSetting).localizedDecimal())\n"
+            csvText += "\($0.counter);\($0.timestamp);\((motionManager.altitude?.calculatedPressure ?? 0.0).localizedDecimal());\((motionManager.altitude?.calculatedAltitude ?? 0.0).localizedDecimal())\n"
         }
         return exportManager.getFile(exportText: csvText, filename: "altitude")
     }

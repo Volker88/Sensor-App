@@ -63,28 +63,26 @@ struct LineGraphSubView: View {
     }
 
     var body: some View {
-        GeometryReader { _ in // TODO: - Remove GeometryReader
-            VStack {
-                Group {
-                    if graph == .location {
-                        location
-                    } else if graph == .altitude {
-                        altitude
-                    } else {
-                        motion
-                    }
+        VStack {
+            Group {
+                if graph == .location {
+                    location
+                } else if graph == .altitude {
+                    altitude
+                } else {
+                    motion
                 }
-                .chartXAxis(.hidden)
-                .frame(
-                    minWidth: 150,
-                    idealWidth: 200,
-                    maxWidth: .infinity,
-                    minHeight: 0,
-                    idealHeight: 100,
-                    maxHeight: 100,
-                    alignment: .leading
-                )
             }
+            .chartXAxis(.hidden)
+            .frame(
+                minWidth: 150,
+                idealWidth: 200,
+                maxWidth: .infinity,
+                minHeight: 0,
+                idealHeight: 100,
+                maxHeight: 100,
+                alignment: .leading
+            )
         }
     }
 }
