@@ -9,69 +9,49 @@
 import SwiftUI
 
 struct AltitudeView: View {
-    let calculationAPI = CalculationAPI()
-    let exportAPI = ExportAPI()
 
-    @EnvironmentObject var settings: SettingsAPI
-    @EnvironmentObject private var appState: AppState
-    @EnvironmentObject var motionVM: CoreMotionViewModel
+    @Environment(MotionManager.self) private var motionManager
+
     @State private var showPressure = false
     @State private var showRelativeAltitudeChange = false
 
+    // MARK: - Body
     var body: some View {
-        GeometryReader { geo in
-            List {
-                Section(header: Text("Acceleration", comment: "AccelerationView - Section Header")) {
-                    DisclosureGroup(
-                        isExpanded: $showPressure,
-                        content: {
-                            LineGraphSubView(motionVM: motionVM, graph: .altitude, showGraph: .pressureValue)
-                                .frame(height: 100, alignment: .leading)
-                        },
-                        label: {
-                            Text("Pressure: \(calculationAPI.calculatePressure(pressure: motionVM.altitudeArray.last?.pressureValue ?? 0.0, to: settings.fetchUserSettings().pressureSetting), specifier: "%.5f") \(settings.fetchUserSettings().pressureSetting)", comment: "AltitudeView - Pressure") // swiftlint:disable:this line_length
-                        })
-                    .disclosureGroupModifier(accessibility: "Toggle Pressure Graph")
+        List {
+            Section(header: Text("Altitude", comment: "AltitudeView - Section Header")) {
+                DisclosureGroup(
+                    isExpanded: $showPressure,
+                    content: {
+                        LineGraphSubView(graph: .altitude, showGraph: .pressureValue)
+                            .frame(height: 100, alignment: .leading)
+                    },
+                    label: {
+                        Text("Pressure: \(motionManager.altitude?.calculatedPressure ?? 0.0, specifier: "%.5f") \(motionManager.altitude?.pressureUnit ?? "")")
+                    })
+                .disclosureGroupModifier(accessibility: "Toggle Pressure Graph")
 
-                    DisclosureGroup(
-                        isExpanded: $showRelativeAltitudeChange,
-                        content: {
-                            LineGraphSubView(motionVM: motionVM, graph: .altitude, showGraph: .relativeAltitudeValue)
-                                .frame(height: 100, alignment: .leading)
-                        },
-                        label: {
-                            Text("Altitude change: \(calculationAPI.calculateHeight(height: motionVM.altitudeArray.last?.relativeAltitudeValue ?? 0.0, to: settings.fetchUserSettings().altitudeHeightSetting), specifier: "%.5f") \(settings.fetchUserSettings().altitudeHeightSetting)", comment: "AltitudeView - Altitude") // swiftlint:disable:this line_length
-                        })
-                    .disclosureGroupModifier(accessibility: "Toggle Altitude Graph")
+                DisclosureGroup(
+                    isExpanded: $showRelativeAltitudeChange,
+                    content: {
+                        LineGraphSubView(graph: .altitude, showGraph: .relativeAltitudeValue)
+                            .frame(height: 100, alignment: .leading)
+                    },
+                    label: {
+                        Text("Altitude change: \(motionManager.altitude?.calculatedAltitude ?? 0.0, specifier: "%.5f") \(motionManager.altitude?.altitudeUnit ?? "")")
+                    })
+                .disclosureGroupModifier(accessibility: "Toggle Altitude Graph")
 
-                    NavigationLink(value: Route.altitudeList) {
-                        Text("Log", comment: "AltitudeView - Log")
-                    }
-                }
-
-                Section(header: Text("Refresh Rate", comment: "AltitudeView - Section Header")) {
-                    RefreshRateView(motionVM: motionVM, show: "header")
-                    RefreshRateView(motionVM: motionVM, show: "slider")
+                NavigationLink(value: Route.altitudeList) {
+                    Text("Log", comment: "AltitudeView - Log")
                 }
             }
-            .listStyle(.insetGrouped)
-            .frame(
-                minWidth: 0,
-                idealWidth: geo.size.width,
-                maxWidth: .infinity,
-                minHeight: 0,
-                idealHeight: geo.size.height,
-                maxHeight: geo.size.height,
-                alignment: .leading
-            )
         }
+        .listStyle(.insetGrouped)
     }
 }
 
-struct AltitudeView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationStack {
-            AltitudeView()
-        }
-    }
+// MARK: - Preview
+#Preview {
+    AltitudeView()
+        .previewNavigationStackWrapper()
 }

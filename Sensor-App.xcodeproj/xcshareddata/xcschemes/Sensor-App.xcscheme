@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1400"
+   LastUpgradeVersion = "1600"
    version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -33,7 +33,7 @@
             default = "YES">
          </TestPlanReference>
          <TestPlanReference
-            reference = "container:TestPlans/ScreenshotTests.xctestplan">
+            reference = "container:TestPlans/ScreenshotTest.xctestplan">
          </TestPlanReference>
          <TestPlanReference
             reference = "container:TestPlans/UITests.xctestplan">

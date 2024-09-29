@@ -8,14 +8,16 @@
 import SwiftUI
 
 struct HomeScreen: View {
+
+    // MARK: - Body
     var body: some View {
         Text("Welcome to Sensor-App")
             .navigationTitle("\(NSLocalizedString("Home", comment: "NavigationBar Title - Home"))")
     }
 }
 
-struct HomeScreen_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeScreen()
-    }
+// MARK: - Preview
+#Preview {
+    HomeScreen()
+        .previewNavigationStackWrapper()
 }

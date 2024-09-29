@@ -103,5 +103,13 @@
             "Überarbeitete Navigation",
             "Zusätzliche Einstellungen für Karte"
         ]
+    },
+    {
+        "id": 12,
+        "version": "5.0.0",
+        "notes":
+        [
+            "Benötigt minimum iOS 18 und watchOS 11"
+        ]
     }
 ]

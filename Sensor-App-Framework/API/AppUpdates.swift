@@ -6,26 +6,29 @@
 //  Copyright © 2020 Volker Schmitt. All rights reserved.
 //
 
-import Foundation
+import SwiftUI
+import OSLog
 
-class AppUpdates: ObservableObject {
-    @Published var showReleaseNotes = false
+@MainActor
+@Observable
+class AppUpdates {
+    var showReleaseNotes = false
 
-    let settings = SettingsAPI()
+    let settings = SettingsManager()
 
     /// Call this function to check if the app version is up to date
     public func checkForUpdate() {
         let appVersion = UserDefaults.standard.string(forKey: "CurrentAppVersion")
 
         if appVersion == getCurrentAppVersion() {
-            Log.shared.add(.appUpdates, .default, "App is up to date! (\(getCurrentAppVersion()))")
+            Logger.appUpdate.debug("App is up to date! (\(self.getCurrentAppVersion()))")
         } else {
-            Log.shared.add(.appUpdates, .default, "App is not up to date! (\(getCurrentAppVersion()))")
+            Logger.appUpdate.debug("App is not up to date! (\(self.getCurrentAppVersion()))")
             if appVersion == nil {
-                Log.shared.add(.appUpdates, .default, "App is opened the first time")
+                Logger.appUpdate.debug("App is opened the first time")
             } else {
                 showReleaseNotes = settings.fetchUserSettings().showReleaseNotes
-                Log.shared.add(.appUpdates, .default, "Show Release Notes")
+                Logger.appUpdate.debug("Show Release Notes")
             }
             updateApp()
         }
@@ -38,7 +41,7 @@ class AppUpdates: ObservableObject {
     private func updateApp() {
         settings.clearUserDefaults()
         UserDefaults.standard.setValue(getCurrentAppVersion(), forKey: "CurrentAppVersion")
-        Log.shared.add(.appUpdates, .default, "App has been updated (\(getCurrentAppVersion()))")
+        Logger.appUpdate.debug("App has been updated (\(self.getCurrentAppVersion()))")
     }
 
     ///  Call this method to get the current app version number

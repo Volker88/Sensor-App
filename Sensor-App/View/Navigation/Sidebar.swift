@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct Sidebar: View {
+
     @Environment(\.horizontalSizeClass) var sizeClass
-    @EnvironmentObject private var appState: AppState
+    @Environment(AppState.self) private var appState
 
     var list: some View {
-        List(selection: $appState.selectedScreen) {
+        List(selection: Bindable(appState).selectedScreen) {
             if sizeClass == .regular {
                 NavigationLink(value: Screen.homeScreen) {
                     Label(NSLocalizedString("Home", comment: "Sidebbar - Location"), systemImage: "house")
@@ -61,9 +62,10 @@ struct Sidebar: View {
             }
         }
         .listStyle(.sidebar)
-        .accessibilityIdentifier("\(NSLocalizedString("debar", comment: "NavigationBar Title - Sidebar"))")
+        .accessibilityIdentifier("\(NSLocalizedString("Sidebar", comment: "NavigationBar Title - Sidebar"))")
     }
 
+    // MARK: - Body
     var body: some View {
         VStack(spacing: 0) {
             if sizeClass == .regular {
@@ -76,9 +78,9 @@ struct Sidebar: View {
     }
 }
 
-struct Sidebar_Previews: PreviewProvider {
-    static var previews: some View {
-        Sidebar()
-            .environmentObject(AppState())
-    }
+// MARK: - Preview
+#Preview {
+    Sidebar()
+        .environment(AppState())
+        .previewNavigationStackWrapper()
 }

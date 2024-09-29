@@ -9,23 +9,19 @@
 import SwiftUI
 
 struct AttitudeView: View {
-    let settings = SettingsAPI()
 
-    @ObservedObject var motionVM = CoreMotionViewModel()
+    @Environment(SettingsManager.self) private var settingsManager
+    @Environment(MotionManager.self) private var motionManager
+
     @State private var frequency = 1.0 // Default Frequency
 
-    init() {
-        frequency = settings.fetchUserSettings().frequencySetting
-    }
-
+    // MARK: - Body
     var body: some View {
         List {
-            // swiftlint:disable line_length
-            Text("Roll: \((motionVM.coreMotionArray.last?.attitudeRoll ?? 0.0) * 180 / .pi, specifier: "%.5f")°", comment: "AttitudeView - Roll (watchOS)")
-            Text("Pitch: \((motionVM.coreMotionArray.last?.attitudePitch ?? 0.0) * 180 / .pi, specifier: "%.5f")°", comment: "AttitudeView - Pitch (watchOS)")
-            Text("Yaw: \((motionVM.coreMotionArray.last?.attitudeYaw ?? 0.0) * 180 / .pi, specifier: "%.5f")°", comment: "AttitudeView - Yaw (watchOS)")
-            Text("Heading: \(motionVM.coreMotionArray.last?.attitudeHeading ?? 0.0, specifier: "%.5f")°", comment: "AttitudeView - Heading (watchOS)")
-            // swiftlint:enable line_length
+            Text("Roll: \((motionManager.motion?.attitudeRoll ?? 0.0) * 180 / .pi, specifier: "%.5f")°", comment: "AttitudeView - Roll (watchOS)")
+            Text("Pitch: \((motionManager.motion?.attitudePitch ?? 0.0) * 180 / .pi, specifier: "%.5f")°", comment: "AttitudeView - Pitch (watchOS)")
+            Text("Yaw: \((motionManager.motion?.attitudeYaw ?? 0.0) * 180 / .pi, specifier: "%.5f")°", comment: "AttitudeView - Yaw (watchOS)")
+            Text("Heading: \(motionManager.motion?.attitudeHeading ?? 0.0, specifier: "%.5f")°", comment: "AttitudeView - Heading (watchOS)")
         }
         .navigationTitle(NSLocalizedString("Attitude", comment: "AttitudeView - NavigationBar Title (watchOS)"))
         .font(.footnote)
@@ -33,23 +29,24 @@ struct AttitudeView: View {
         .onDisappear(perform: onDisappear)
     }
 
+    // MARK: - Methods
     func onAppear() {
+        frequency = settingsManager.fetchUserSettings().frequencySetting
+        motionManager.sensorUpdateInterval = frequency
+
         // Start updating motion
-        motionVM.motionUpdateStart()
-        motionVM.sensorUpdateInterval = frequency
+        motionManager.startMotionUpdates()
+        motionManager.sensorUpdateInterval = frequency
     }
 
     func onDisappear() {
-        motionVM.stopMotionUpdates()
-        motionVM.coreMotionArray.removeAll()
+        motionManager.stopMotionUpdates()
+        motionManager.resetMotionUpdates()
     }
 }
 
-struct AttitudeView_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            AttitudeView().previewDevice("Apple Watch Series 3 - 38mm")
-            AttitudeView().previewDevice("Apple Watch Series 4 - 44mm")
-        }
-    }
+// MARK: - Preview
+#Preview {
+    AttitudeView()
+        .previewNavigationStackWrapper()
 }

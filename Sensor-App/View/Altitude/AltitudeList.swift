@@ -8,20 +8,20 @@
 import SwiftUI
 
 struct AltitudeList: View {
-    @EnvironmentObject var motionVM: CoreMotionViewModel
 
-    let calculationAPI = CalculationAPI()
-    let settings = SettingsAPI()
-    let exportAPI = ExportAPI()
+    @Environment(MotionManager.self) private var motionManager
 
+    private let exportManager = ExportManager()
+
+    // MARK: - Body
     var body: some View {
-        List(motionVM.altitudeArray.reversed(), id: \.self) { item in
+        List(motionManager.altitudeArray.reversed(), id: \.self) { item in
             HStack {
                 Text("ID:\(item.counter)", comment: "AltitudeList - ID")
                 Spacer()
-                Text("P:\(calculationAPI.calculatePressure(pressure: item.pressureValue, to: settings.fetchUserSettings().pressureSetting), specifier: "%.5f")", comment: "AltitudeList - P") // swiftlint:disable:this line_length
+                Text("P:\(motionManager.altitude?.calculatedPressure ?? 0.0, specifier: "%.5f")", comment: "AltitudeList - P")
                 Spacer()
-                Text("A:\(calculationAPI.calculateHeight(height: item.relativeAltitudeValue, to: settings.fetchUserSettings().altitudeHeightSetting), specifier: "%.5f")", comment: "AltitudeList - A") // swiftlint:disable:this line_length
+                Text("A:\(motionManager.altitude?.calculatedAltitude ?? 0.0, specifier: "%.5f")", comment: "AltitudeList - A")
             }
             .font(.footnote)
         }
@@ -31,37 +31,23 @@ struct AltitudeList: View {
             ToolbarItem(placement: .navigationBarTrailing) {
                 ShareSheet(url: shareCSV())
             }
-            CustomToolbar(toolBarFunctionClosure: toolBarButtonTapped(button:))
+            CustomToolbar()
         }
     }
 
-    func toolBarButtonTapped(button: ToolBarButtonType) {
-        switch button {
-            case .play:
-                motionVM.altitudeUpdateStart()
-            case .pause:
-                motionVM.stopMotionUpdates()
-            case .delete:
-                motionVM.coreMotionArray.removeAll()
-                motionVM.altitudeArray.removeAll()
-                Log.shared.add(.coreLocation, .default, "Deleted Motion Data")
-        }
-    }
-
+    // MARK: - Methods
     func shareCSV() -> URL {
         var csvText = NSLocalizedString("ID;Time;Pressure;Altitude change", comment: "Export CSV Headline - altitude") + "\n" // swiftlint:disable:this line_length
 
-        _ = motionVM.altitudeArray.map {
-            csvText += "\($0.counter);\($0.timestamp);\(calculationAPI.calculatePressure(pressure: $0.pressureValue, to: settings.fetchUserSettings().pressureSetting).localizedDecimal());\(calculationAPI.calculateHeight(height: $0.relativeAltitudeValue, to: settings.fetchUserSettings().altitudeHeightSetting).localizedDecimal())\n" // swiftlint:disable:this line_length
+        _ = motionManager.altitudeArray.map {
+            csvText += "\($0.counter);\($0.timestamp);\((motionManager.altitude?.calculatedPressure ?? 0.0).localizedDecimal());\((motionManager.altitude?.calculatedAltitude ?? 0.0).localizedDecimal())\n"
         }
-        return exportAPI.getFile(exportText: csvText, filename: "altitude")
+        return exportManager.getFile(exportText: csvText, filename: "altitude")
     }
 }
 
-struct AltitudeList_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationStack {
-            AltitudeList()
-        }
-    }
+// MARK: - Preview
+#Preview {
+    AltitudeList()
+        .previewNavigationStackWrapper()
 }

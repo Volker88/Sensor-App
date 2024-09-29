@@ -8,14 +8,21 @@
 import SwiftUI
 
 struct CustomToolbar: ToolbarContent {
-    var toolBarFunctionClosure: (ToolBarButtonType) -> Void
+
+    @Environment(\.showNotification) private var showNotification
+    @Environment(LocationManager.self) private var locationManager
+    @Environment(MotionManager.self) private var motionManager
 
     var body: some ToolbarContent {
-
         ToolbarItem(placement: .bottomBar) { Spacer() }
 
         ToolbarItem(placement: .bottomBar) {
-            Button(action: { buttonTapped(type: .play) }) {
+            Button(action: {
+                showNotification("Play")
+                locationManager.startLocationUpdates()
+                motionManager.startMotionUpdates()
+                motionManager.startAltitudeUpdates()
+            }) {
                 Image(systemName: "play.circle")
                     .accessibility(label: Text("Play", comment: "CustomToolbar - Play Button"))
             }
@@ -24,7 +31,11 @@ struct CustomToolbar: ToolbarContent {
         ToolbarItem(placement: .bottomBar) { Spacer() }
 
         ToolbarItem(placement: .bottomBar) {
-            Button(action: { buttonTapped(type: .pause) }) {
+            Button(action: {
+                showNotification("Paused")
+                locationManager.stopLocationUpdates()
+                motionManager.stopMotionUpdates()
+            }) {
                 Image(systemName: "pause.circle")
                     .accessibility(label: Text("Pause", comment: "CustomToolbar - Pause Button"))
             }
@@ -34,16 +45,16 @@ struct CustomToolbar: ToolbarContent {
         ToolbarItem(placement: .bottomBar) { Spacer() }
 
         ToolbarItem(placement: .bottomBar) {
-            Button(action: { buttonTapped(type: .delete) }) {
+            Button(action: {
+                showNotification("Successfully deleted")
+                locationManager.resetLocationUpdates()
+                motionManager.resetMotionUpdates()
+            }) {
                 Image(systemName: "trash.circle")
                     .accessibility(label: Text("Delete", comment: "CustomToolbar - Delete Button"))
             }
         }
 
         ToolbarItem(placement: .bottomBar) { Spacer() }
-    }
-
-    func buttonTapped(type: ToolBarButtonType) {
-        toolBarFunctionClosure(type)
     }
 }

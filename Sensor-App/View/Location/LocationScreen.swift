@@ -9,77 +9,34 @@ import SwiftUI
 import StoreKit
 
 struct LocationScreen: View {
-    @Environment(\.requestReview) var requestReview
 
-    let notificationAPI = NotificationAPI()
-    let locationView: LocationView
+    @Environment(\.requestReview) private var requestReview
 
-    @StateObject private var locationVM: CoreLocationViewModel
-    @State private var showNotification = false
-    @State private var notificationMessage = ""
-    @State private var notificationDuration = 2.0
-
-    init() {
-        let locationVM = CoreLocationViewModel()
-        _locationVM = StateObject(wrappedValue: locationVM)
-        locationView = LocationView(locationVM: locationVM)
-        notificationDuration = notificationAPI.fetchNotificationAnimationSettings().duration
-    }
-
+    // MARK: - Body
     var body: some View {
-        ZStack {
-            locationView
-                .toolbar {
-                    CustomToolbar(toolBarFunctionClosure: toolBarButtonTapped(button:))
+        LocationView()
+            .toolbar {
+                CustomToolbar()
+            }
+            .navigationTitle(NSLocalizedString("Location", comment: "NavigationBar Title - Location"))
+            .navigationDestination(for: Route.self, destination: { route in
+                switch route {
+                    case .location:
+                        MapView()
+                    default:
+                        MapView()
                 }
-
-            NotificationView(notificationMessage: $notificationMessage, showNotification: $showNotification)
-        }
-        .navigationTitle(NSLocalizedString("Location", comment: "NavigationBar Title - Location"))
-        .navigationDestination(for: Route.self, destination: { route in
-            switch route {
-                case .location:
-                    MapView()
-                default:
-                    MapView()
-            }
-        })
-        .onDisappear {
+            })
+            .onDisappear {
 #if RELEASE
-            requestReview()
+                requestReview()
 #endif
-        }
-    }
-
-    func toolBarButtonTapped(button: ToolBarButtonType) {
-        var messageType: NotificationTypes?
-
-        switch button {
-            case .play:
-                locationVM.startLocationUpdates()
-                messageType = .played
-            case .pause:
-                locationVM.stopLocationUpdates()
-                messageType = .paused
-            case .delete:
-                locationVM.coreLocationArray.removeAll()
-                messageType = .deleted
-                Log.shared.add(.coreLocation, .default, "Deleted Location Data")
-        }
-
-        if messageType != nil {
-            notificationAPI.toggleNotification(type: messageType!, duration: notificationDuration) { (message, show) in
-                notificationMessage = message
-                showNotification = show
             }
-        }
     }
 }
 
-struct LocationScreen_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationStack {
-            LocationScreen()
-        }
-    }
+// MARK: - Preview
+#Preview {
+    LocationScreen()
+        .previewNavigationStackWrapper()
 }

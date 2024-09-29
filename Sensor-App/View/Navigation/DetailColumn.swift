@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct DetailColumn: View {
-    @EnvironmentObject private var appState: AppState
 
+    @Environment(AppState.self) private var appState
+
+    // MARK: - Body
     var body: some View {
         switch appState.selectedScreen ?? .homeScreen {
             case .homeScreen:
@@ -34,8 +36,8 @@ struct DetailColumn: View {
     }
 }
 
-struct DetailColumn_Previews: PreviewProvider {
-    static var previews: some View {
-        DetailColumn()
-    }
+// MARK: - Preview
+#Preview {
+    DetailColumn()
+        .previewNavigationStackWrapper()
 }

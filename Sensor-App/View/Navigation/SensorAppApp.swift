@@ -6,44 +6,45 @@
 //
 
 import SwiftUI
+import OSLog
 
 @main
 struct SensorAppApp: App {
-    @Environment(\.scenePhase) var scenePhase
 
-    @StateObject var update = AppUpdates()
-    @StateObject var appState: AppState
-    @StateObject var motionVM = CoreMotionViewModel()
-    let settingsAPI = SettingsAPI()
+    @Environment(\.scenePhase) private var scenePhase
 
-    init() {
-        let appState = AppState()
-        _appState = StateObject(wrappedValue: appState)
-    }
+    @State private var appState = AppState()
+    @State private var update = AppUpdates()
+    @State private var locationManager = LocationManager()
+    @State private var motionManager = MotionManager()
+    @State private var settingsManager = SettingsManager()
+    @State private var calculationManager = CalculationManager()
 
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environmentObject(appState)
-                .environmentObject(motionVM)
-                .environmentObject(settingsAPI)
-                .onChange(of: scenePhase) { phase in
+                .environment(appState)
+                .environment(locationManager)
+                .environment(motionManager)
+                .environment(calculationManager)
+                .environment(settingsManager)
+                .onChange(of: scenePhase) { _, phase in
                     switch phase {
                         case .active:
-                            Log.shared.add(.scenePhase, .default, "ScenePhase: Active")
+                            Logger.scenePhase.debug("ScenePhase: Active")
                         case .inactive:
-                            Log.shared.add(.scenePhase, .default, "ScenePhase: Inactive")
+                            Logger.scenePhase.debug("ScenePhase: Inactive")
                         case .background:
-                            Log.shared.add(.scenePhase, .default, "ScenePhase: Background")
+                            Logger.scenePhase.debug("ScenePhase: Background")
                         @unknown default:
-                            Log.shared.add(.scenePhase, .error, "ScenePhase: Unknown")
+                            Logger.scenePhase.debug("ScenePhase: Unknown")
                     }
                 }
                 .onAppear {
                     update.checkForUpdate()
                 }
                 .sheet(isPresented: $update.showReleaseNotes) { ReleaseNotes() }
-            // .sheet(isPresented: .constant(true)) { ReleaseNotes() }
+                .withNotificationView()
         }
     }
 }

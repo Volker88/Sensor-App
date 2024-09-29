@@ -1,0 +1,19 @@
+//
+//  Versioning.xcconfig
+//  Sensor-App
+//
+//  Created by Volker Schmitt on 12.09.2024.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+// Versioning
+MY_BUILD_VERSION = 20240926.1
+MY_VERSION = 5.0.0
+
+// Deployment Targets for Swiftlint
+deployment_target_macOS = 15.0
+deployment_target_iOS = 18.0
+deployment_target_watchOS = 11.0
+deployment_target_tvOS = 18.0

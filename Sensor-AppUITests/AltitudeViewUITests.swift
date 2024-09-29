@@ -16,10 +16,11 @@ class AltitudeViewUITests: BaseTestCase {
 
         // Test Toolbar Buttons
         let toolbar = app.toolbars["Toolbar"]
-        toolbar.buttons["play"].tap()
-        toolbar.buttons["pause"].tap()
-        toolbar.buttons["trash"].tap()
+        toolbar.buttons["Play"].tap()
+        toolbar.buttons["Pause"].tap()
+        toolbar.buttons["Delete"].tap()
 
+        // Go Back to Main Menu
         backToHomeMenu()
     }
 
@@ -35,18 +36,22 @@ class AltitudeViewUITests: BaseTestCase {
         app.buttons["Toggle Pressure Graph"].tap()
         app.buttons["Toggle Altitude Graph"].tap()
 
+        // Go Back to Main Menu
         backToHomeMenu()
     }
 
     func testAltitudeViewShareSheet() throws {
         // Go to Altitude View
         moveToView(view: "Altitude")
+        app.buttons["Log"].tap()
 
         // Open / Close Share Sheet
-        app.tables.buttons["Export"].tap()
+        app.navigationBars.buttons["Export"].tap()
         sleep(1)
         app.navigationBars["UIActivityContentView"].buttons["Close"].tap()
 
+        // Go Back to Main Menu
+        backToHomeMenu()
         backToHomeMenu()
     }
 }

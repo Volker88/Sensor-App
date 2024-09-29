@@ -16,9 +16,9 @@ class LocationViewUITests: BaseTestCase {
 
         // Test Toolbar Buttons
         let toolbar = app.toolbars["Toolbar"]
-        toolbar.buttons["play"].tap()
-        toolbar.buttons["pause"].tap()
-        toolbar.buttons["trash"].tap()
+        toolbar.buttons["Play"].tap()
+        toolbar.buttons["Pause"].tap()
+        toolbar.buttons["Delete"].tap()
 
         // Go Back to Main Menu
         backToHomeMenu()
@@ -51,7 +51,7 @@ class LocationViewUITests: BaseTestCase {
         moveToView(view: "Location")
 
         // Open / Close Share Sheet
-        app.tables.buttons["Export"].tap()
+        app.collectionViews.staticTexts["Export"].tap()
         sleep(1)
         app.navigationBars["UIActivityContentView"].buttons["Close"].tap()
 

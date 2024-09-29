@@ -20,6 +20,10 @@
 	<string>${MY_VERSION}</string>
 	<key>CFBundleVersion</key>
 	<string>${MY_BUILD_VERSION}</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>GPS Access required to show current location</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>GPS Access required to show current location</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
@@ -28,7 +32,7 @@
 	<key>WKApplication</key>
 	<true/>
 	<key>WKCompanionAppBundleIdentifier</key>
-	<string>VolkerSchmitt88-at-icloud.com.Sensor-App</string>
+	<string>$(BUNDLE_IDENTIFIER)</string>
 	<key>WKRunsIndependentlyOfCompanionApp</key>
 	<false/>
 </dict>

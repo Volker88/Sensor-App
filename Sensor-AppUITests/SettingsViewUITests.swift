@@ -20,7 +20,7 @@ class SettingsViewUITests: BaseTestCase {
         }
 
         // Select Speed Setting
-        let tablesQuery = app.tables
+        let tablesQuery = app.collectionViews
         tablesQuery.buttons["Speed Settings"].tap()
         tablesQuery.buttons["km/h"].tap()
 
@@ -40,9 +40,11 @@ class SettingsViewUITests: BaseTestCase {
 
         // tablesQuery.switches["Rotate Toggle"].tap()
         // tablesQuery.switches["Scroll Toggle"].tap()
-        tablesQuery.sliders["Zoom Slider"].adjust(toNormalizedSliderPosition: 0.1)
-        tablesQuery.sliders["Zoom Slider"].adjust(toNormalizedSliderPosition: 0.9)
-        tablesQuery.otherElements["Zoom Stepper"].tap()
+
+        tablesQuery.staticTexts["MAP"].swipeUp()
+
+        tablesQuery.steppers["Zoom Stepper"].buttons["Zoom Stepper-Increment"].tap()
+        tablesQuery.steppers["Zoom Stepper"].buttons["Zoom Stepper-Decrement"].tap()
 
         // Select Pressure Setting
         tablesQuery.buttons["Pressure Settings"].tap()
@@ -53,14 +55,14 @@ class SettingsViewUITests: BaseTestCase {
         tablesQuery.buttons["ft"].tap()
 
         // Graph Settings
-        tablesQuery.sliders["Max Points Slider"].adjust(toNormalizedSliderPosition: 0.1)
-        tablesQuery.sliders["Max Points Slider"].adjust(toNormalizedSliderPosition: 0.9)
+        tablesQuery.steppers["Max Points Stepper"].buttons["Max Points Stepper-Increment"].tap()
+        tablesQuery.steppers["Max Points Stepper"].buttons["Max Points Stepper-Decrement"].tap()
 
         // Save Settings
         tablesQuery.buttons["Save"].tap()
         tablesQuery.buttons["Discard"].tap()
 
         // Go Back to Main Menu
-        app.buttons["Close"].tap()
+        backToHomeMenu()
     }
 }

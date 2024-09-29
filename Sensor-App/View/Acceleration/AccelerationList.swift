@@ -8,11 +8,14 @@
 import SwiftUI
 
 struct AccelerationList: View {
-    @EnvironmentObject var motionVM: CoreMotionViewModel
-    let exportAPI = ExportAPI()
 
+    @Environment(MotionManager.self) private var motionManager
+
+    private let exportManager = ExportManager()
+
+    // MARK: - Body
     var body: some View {
-        List(motionVM.coreMotionArray.reversed(), id: \.self) { item in
+        List(motionManager.motionArray.reversed(), id: \.self) { item in
             HStack {
                 Text("ID:\(item.counter)", comment: "AccelerationList - ID")
                 Spacer()
@@ -30,37 +33,23 @@ struct AccelerationList: View {
             ToolbarItem(placement: .navigationBarTrailing) {
                 ShareSheet(url: shareCSV())
             }
-            CustomToolbar(toolBarFunctionClosure: toolBarButtonTapped(button:))
+            CustomToolbar()
         }
     }
 
-    func toolBarButtonTapped(button: ToolBarButtonType) {
-        switch button {
-            case .play:
-                motionVM.motionUpdateStart()
-            case .pause:
-                motionVM.stopMotionUpdates()
-            case .delete:
-                motionVM.coreMotionArray.removeAll()
-                motionVM.altitudeArray.removeAll()
-                Log.shared.add(.coreLocation, .default, "Deleted Motion Data")
-        }
-    }
-
+    // MARK: - Methods
     func shareCSV() -> URL {
         var csvText = NSLocalizedString("ID;Time;X-Axis;Y-Axis;Z-Axis", comment: "Export CSV Headline - Acceleration") + "\n" // swiftlint:disable:this line_length
 
-        _ = motionVM.coreMotionArray.map {
-            csvText += "\($0.counter);\($0.timestamp);\($0.accelerationXAxis.localizedDecimal());\($0.accelerationYAxis.localizedDecimal());\($0.accelerationZAxis.localizedDecimal())\n" // swiftlint:disable:this line_length
+        _ = motionManager.motionArray.map {
+            csvText += "\($0.counter);\($0.timestamp);\($0.accelerationXAxis.localizedDecimal());\($0.accelerationYAxis.localizedDecimal());\($0.accelerationZAxis.localizedDecimal())\n"
         }
-        return exportAPI.getFile(exportText: csvText, filename: "acceleration")
+        return exportManager.getFile(exportText: csvText, filename: "acceleration")
     }
 }
 
-struct AccelerationList_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationStack {
-            AccelerationList()
-        }
-    }
+// MARK: - Preview
+#Preview {
+    AccelerationList()
+        .previewNavigationStackWrapper()
 }

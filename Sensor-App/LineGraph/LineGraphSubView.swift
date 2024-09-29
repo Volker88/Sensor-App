@@ -10,28 +10,37 @@ import SwiftUI
 import Charts
 
 struct LineGraphSubView: View {
-    @ObservedObject var motionVM: CoreMotionViewModel
-    @ObservedObject var locationVM: CoreLocationViewModel
 
-    let settings = SettingsAPI()
+    @Environment(LocationManager.self) private var locationManager
+    @Environment(MotionManager.self) private var motionManager
+    @Environment(SettingsManager.self) private var settingsManager
+
     var graph: Graph
     var showGraph: GraphDetail
 
     init(
-        motionVM: CoreMotionViewModel? = nil,
-        locationVM: CoreLocationViewModel? = nil,
         graph: Graph,
         showGraph: GraphDetail
     ) {
-        self.motionVM = motionVM ?? CoreMotionViewModel()
-        self.locationVM = locationVM ?? CoreLocationViewModel()
         self.graph = graph
         self.showGraph = showGraph
     }
 
     var motion: some View {
         Chart(
-            motionVM.coreMotionArray.suffix(settings.fetchUserSettings().graphMaxPointsInt()),
+            motionManager.motionArray.suffix(settingsManager.fetchUserSettings().graphMaxPointsInt()),
+            id: \.self
+        ) { item in
+            LineMark(
+                x: .value("", item.timestamp),
+                y: .value("", item.graphValue(for: showGraph))
+            )
+        }
+    }
+
+    var altitude: some View {
+        Chart(
+            motionManager.altitudeArray.suffix(settingsManager.fetchUserSettings().graphMaxPointsInt()),
             id: \.self
         ) { item in
             LineMark(
@@ -43,7 +52,7 @@ struct LineGraphSubView: View {
 
     var location: some View {
         Chart(
-            locationVM.coreLocationArray.suffix(settings.fetchUserSettings().graphMaxPointsInt()),
+            locationManager.locationArray.suffix(settingsManager.fetchUserSettings().graphMaxPointsInt()),
             id: \.self
         ) { item in
             LineMark(
@@ -54,33 +63,32 @@ struct LineGraphSubView: View {
     }
 
     var body: some View {
-        GeometryReader { _ in
-            VStack {
-                Group {
-                    if graph == .location {
-                        location
-                    } else {
-                        motion
-                    }
+        VStack {
+            Group {
+                if graph == .location {
+                    location
+                } else if graph == .altitude {
+                    altitude
+                } else {
+                    motion
                 }
-                .chartXAxis(.hidden)
-                .frame(
-                    minWidth: 150,
-                    idealWidth: 200,
-                    maxWidth: .infinity,
-                    minHeight: 0,
-                    idealHeight: 100,
-                    maxHeight: 100,
-                    alignment: .leading
-                )
             }
+            .chartXAxis(.hidden)
+            .frame(
+                minWidth: 150,
+                idealWidth: 200,
+                maxWidth: .infinity,
+                minHeight: 0,
+                idealHeight: 100,
+                maxHeight: 100,
+                alignment: .leading
+            )
         }
     }
 }
 
-struct LineGraphImplementation_Previews: PreviewProvider {
-    static var previews: some View {
-        LineGraphSubView(graph: .location, showGraph: .speed)
-            .previewLayout(.sizeThatFits)
-    }
+// MARK: - Preview
+#Preview(traits: .sizeThatFitsLayout) {
+    LineGraphSubView(graph: .location, showGraph: .speed)
+        .previewNavigationStackWrapper()
 }

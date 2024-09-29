@@ -6,11 +6,12 @@
 //
 
 import SwiftUI
+import OSLog
 
 struct ReleaseNotes: View {
-    @Environment(\.dismiss) var dismiss
 
-    let settings = SettingsAPI()
+    @Environment(\.dismiss) var dismiss
+    @Environment(SettingsManager.self) private var settingsManager
 
     @State private var showReleaseNotes = true
     @State private var releaseNotes: [ReleaseNotesModel]?
@@ -24,6 +25,7 @@ struct ReleaseNotes: View {
         }
     }
 
+    // MARK: - Body
     var body: some View {
         NavigationStack {
             List {
@@ -48,25 +50,26 @@ struct ReleaseNotes: View {
                         Text("Show")
                     })
                     .toggleStyle(.switch)
-                    .onChange(of: showReleaseNotes, perform: { value in
+                    .onChange(of: showReleaseNotes) { _, value in
                         toggleSwitch(value: value)
-                    })
+                    }
                 }
             }
             .onAppear(perform: onAppear)
         }
     }
 
+    // MARK: - Methods
     func toggleSwitch(value: Bool) {
-        var userSettings = settings.fetchUserSettings()
+        var userSettings = settingsManager.fetchUserSettings()
         userSettings.showReleaseNotes = value
-        settings.saveUserSettings(userSettings: userSettings)
+        settingsManager.saveUserSettings(userSettings: userSettings)
 
-        Log.shared.add(.appUpdates, .default, "Show Release Notes: \(value)")
+        Logger.appUpdate.debug("Show Release Notes: \(value)")
     }
 
     func onAppear() {
-        showReleaseNotes = settings.fetchUserSettings().showReleaseNotes
+        showReleaseNotes = settingsManager.fetchUserSettings().showReleaseNotes
         releaseNotes = loadJson()
     }
 
@@ -76,8 +79,8 @@ struct ReleaseNotes: View {
     }
 }
 
-struct ReleaseNotes_Previews: PreviewProvider {
-    static var previews: some View {
-        ReleaseNotes()
-    }
+// MARK: - Preview
+#Preview {
+    ReleaseNotes()
+        .previewNavigationStackWrapper()
 }

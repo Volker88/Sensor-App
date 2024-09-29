@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-extension URL: Identifiable {
+extension Foundation.URL: Swift.Identifiable {
     public var id: URL {
         self
     }

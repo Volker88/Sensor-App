@@ -8,6 +8,7 @@
 
 import Foundation
 
+@MainActor
 struct LocationModel: Hashable {
     let counter: Int // Counter
     var longitude: Double // Longitude in Degrees
@@ -34,5 +35,31 @@ extension LocationModel {
             case .GPSAccuracy: return GPSAccuracy
             default: return 0
         }
+    }
+
+    var calculatedSpeed: Double {
+        let calculation = CalculationManager()
+        let speedSettings = SettingsManager().fetchUserSettings().GPSSpeedSetting
+
+        return calculation.calculateSpeed(ms: speed, to: speedSettings)
+    }
+
+    var speedUnit: String {
+        let speedSettings = SettingsManager().fetchUserSettings().GPSSpeedSetting
+
+        return speedSettings
+    }
+
+    var calculatedAltitude: Double {
+        let calculation = CalculationManager()
+        let heightSettings = SettingsManager().fetchUserSettings().altitudeHeightSetting
+
+        return calculation.calculateHeight(height: altitude, to: heightSettings)
+    }
+
+    var heightUnit: String {
+        let heightSettings = SettingsManager().fetchUserSettings().altitudeHeightSetting
+
+        return heightSettings
     }
 }

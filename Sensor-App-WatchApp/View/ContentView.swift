@@ -9,8 +9,10 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var showSettings = false
 
+    @State private var showSettings = false
+
+    // MARK: - Body
     var body: some View {
         List {
             NavigationLink(destination: LocationView()) {
@@ -43,11 +45,8 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            ContentView().previewDevice("Apple Watch Series 3 - 38mm")
-            ContentView().previewDevice("Apple Watch Series 4 - 44mm")
-        }
-    }
+// MARK: - Preview
+#Preview {
+    ContentView()
+        .previewNavigationStackWrapper()
 }

@@ -8,11 +8,14 @@
 import SwiftUI
 
 struct AttitudeList: View {
-    @EnvironmentObject var motionVM: CoreMotionViewModel
-    let exportAPI = ExportAPI()
 
+    @Environment(MotionManager.self) private var motionManager
+
+    private let exportManager = ExportManager()
+
+    // MARK: - Body
     var body: some View {
-        List(motionVM.coreMotionArray.reversed(), id: \.self) { item in
+        List(motionManager.motionArray.reversed(), id: \.self) { item in
             HStack {
                 Text("ID:\(item.counter)", comment: "AttitudeList - ID")
                 Spacer()
@@ -32,37 +35,23 @@ struct AttitudeList: View {
             ToolbarItem(placement: .navigationBarTrailing) {
                 ShareSheet(url: shareCSV())
             }
-            CustomToolbar(toolBarFunctionClosure: toolBarButtonTapped(button:))
+            CustomToolbar()
         }
     }
 
-    func toolBarButtonTapped(button: ToolBarButtonType) {
-        switch button {
-            case .play:
-                motionVM.motionUpdateStart()
-            case .pause:
-                motionVM.stopMotionUpdates()
-            case .delete:
-                motionVM.coreMotionArray.removeAll()
-                motionVM.altitudeArray.removeAll()
-                Log.shared.add(.coreLocation, .default, "Deleted Motion Data")
-        }
-    }
-
+    // MARK: - Methods
     func shareCSV() -> URL {
         var csvText = NSLocalizedString("ID;Time;Roll;Pitch;Yaw;Heading", comment: "Export CSV Headline - attitude") + "\n" // swiftlint:disable:this line_length
 
-        _ = motionVM.coreMotionArray.map {
-            csvText += "\($0.counter);\($0.timestamp);\($0.attitudeRoll.localizedDecimal());\($0.attitudePitch.localizedDecimal());\($0.attitudeYaw.localizedDecimal());\($0.attitudeHeading.localizedDecimal())\n" // swiftlint:disable:this line_length
+        _ = motionManager.motionArray.map {
+            csvText += "\($0.counter);\($0.timestamp);\($0.attitudeRoll.localizedDecimal());\($0.attitudePitch.localizedDecimal());\($0.attitudeYaw.localizedDecimal());\($0.attitudeHeading.localizedDecimal())\n"
         }
-        return exportAPI.getFile(exportText: csvText, filename: "attitude")
+        return exportManager.getFile(exportText: csvText, filename: "attitude")
     }
 }
 
-struct AttitudeList_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationStack {
-            AttitudeList()
-        }
-    }
+// MARK: - Preview
+#Preview {
+    AttitudeList()
+        .previewNavigationStackWrapper()
 }

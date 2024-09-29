@@ -35,7 +35,7 @@ for index in 0..<100 {
     testArray.insert(DataArray(id: i, xaxis: 1.0, yaxis: 2.0), at: index)
 }
 
-print(testArray.last!.id)
+print(testArray.last!.id) // swiftlint:disable:this force_unwrapping
 
 let arr = ["a", "b", "c", "a"]
 

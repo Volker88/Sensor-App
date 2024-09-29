@@ -12,7 +12,7 @@ extension Map {
     /// MapStyle
     /// - Returns: View
     func mapStyle() -> some View {
-        let settingsAPI = SettingsAPI()
+        let settingsAPI = SettingsManager()
         let mapKitSettings = settingsAPI.fetchMapKitSettings()
         let map = MKMapView.appearance()
 

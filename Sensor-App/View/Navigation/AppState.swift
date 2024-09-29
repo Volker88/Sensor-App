@@ -7,9 +7,10 @@
 
 import Foundation
 
-class AppState: ObservableObject {
-    @Published var path: [Route] = []
-    @Published var selectedScreen: Screen?
+@Observable
+class AppState {
+    var path: [Route] = []
+    var selectedScreen: Screen?
 }
 
 enum Screen: Hashable {

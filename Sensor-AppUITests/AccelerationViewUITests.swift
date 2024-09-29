@@ -16,9 +16,9 @@ class AccelerationViewUITests: BaseTestCase {
 
         // Test Toolbar Buttons
         let toolbar = app.toolbars["Toolbar"]
-        toolbar.buttons["play"].tap()
-        toolbar.buttons["pause"].tap()
-        toolbar.buttons["trash"].tap()
+        toolbar.buttons["Play"].tap()
+        toolbar.buttons["Pause"].tap()
+        toolbar.buttons["Delete"].tap()
 
         // Go Back to Main Menu
         backToHomeMenu()
@@ -55,7 +55,7 @@ class AccelerationViewUITests: BaseTestCase {
 
         let updateFrequency = app.sliders["Frequency Slider"].value as! String // swiftlint:disable:this force_cast
         let splitUpdateFrequency = updateFrequency.split(separator: " ", maxSplits: 1).map(String.init)
-        XCTAssertEqual(splitUpdateFrequency[0], "10.0", "Update frequency should be 10 but is \(splitUpdateFrequency)")
+        XCTAssertEqual(splitUpdateFrequency[0], "5.0", "Update frequency should be 10 but is \(splitUpdateFrequency)")
 
         // Go Back to Main Menu
         backToHomeMenu()
@@ -64,13 +64,15 @@ class AccelerationViewUITests: BaseTestCase {
     func testAccelerationViewShareSheet() throws {
         // Go to Acceleration View
         moveToView(view: "Acceleration")
+        app.buttons["Log"].tap()
 
         // Open / Close Share Sheet
-        app.tables.buttons["Export"].tap()
+        app.navigationBars.buttons["Export"].tap()
         sleep(1)
         app.navigationBars["UIActivityContentView"].buttons["Close"].tap()
 
         // Go Back to Main Menu
+        backToHomeMenu()
         backToHomeMenu()
     }
 }

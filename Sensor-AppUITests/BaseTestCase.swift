@@ -15,6 +15,7 @@ class BaseTestCase: XCTestCase {
         continueAfterFailure = false
 
         // Clear User Defaults
+        // swiftlint:disable:next force_unwrapping
         UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
         UserDefaults.standard.synchronize()
 
@@ -28,14 +29,15 @@ class BaseTestCase: XCTestCase {
     }
 
     func moveToView(view: String) {
-        app.navigationBars.buttons.element(boundBy: 0).tap()
-        app.tables["Sidebar"].cells[view].buttons[view].tap()
+       // app.navigationBars.buttons.element(boundBy: 0).tap()
+        app.collectionViews["debar"].buttons[view].tap()
+        // app.tables["Sidebar"].cells[view].buttons[view].tap()
     }
 
     func backToHomeMenu() {
         sleep(1)
         app.navigationBars.buttons.element(boundBy: 0).tap()
-        sleep(1)
-        app.tables["Sidebar"].buttons.element(boundBy: 0).tap()
+        // sleep(1)
+        // app.tables["Sidebar"].buttons.element(boundBy: 0).tap()
     }
 }

@@ -9,23 +9,17 @@
 import SwiftUI
 
 struct AltitudeView: View {
-    let calculationAPI = CalculationAPI()
-    let settings = SettingsAPI()
 
-    @ObservedObject var motionVM = CoreMotionViewModel()
+    @Environment(SettingsManager.self) private var settingsManager
+    @Environment(MotionManager.self) private var motionManager
+
     @State private var frequency = 1.0 // Default Frequency
 
-    init() {
-        frequency = settings.fetchUserSettings().frequencySetting
-        motionVM.sensorUpdateInterval = frequency
-    }
-
+    // MARK: - Body
     var body: some View {
         List {
-            // swiftlint:disable line_length
-            Text("Pressure: \(calculationAPI.calculatePressure(pressure: motionVM.altitudeArray.last?.pressureValue ?? 0.0, to: settings.fetchUserSettings().pressureSetting), specifier: "%.5f") \(settings.fetchUserSettings().pressureSetting)", comment: "AltitudeView - Pressure (watchOS)")
-            Text("Altitude change: \(calculationAPI.calculateHeight(height: motionVM.altitudeArray.last?.relativeAltitudeValue ?? 0.0, to: settings.fetchUserSettings().altitudeHeightSetting), specifier: "%.5f") \(settings.fetchUserSettings().altitudeHeightSetting)", comment: "AltitudeView - Altitude Change (watchOS)")
-            // swiftlint:enable line_length
+            Text("Pressure: \(motionManager.altitude?.calculatedPressure ?? 0.0, specifier: "%.5f") \(motionManager.altitude?.pressureUnit ?? "")")
+            Text("Altitude change: \(motionManager.altitude?.calculatedAltitude ?? 0.0, specifier: "%.5f") \(motionManager.altitude?.altitudeUnit ?? "")")
         }
         .navigationTitle(NSLocalizedString("Altitude", comment: "AltitudeView - NavigationBar Title (watchOS)"))
         .font(.footnote)
@@ -33,22 +27,23 @@ struct AltitudeView: View {
         .onDisappear(perform: onDisappear)
     }
 
+    // MARK: - Methods
     func onAppear() {
+        frequency = settingsManager.fetchUserSettings().frequencySetting
+        motionManager.sensorUpdateInterval = frequency
+
         // Start updating motion
-        motionVM.altitudeUpdateStart()
+        motionManager.startAltitudeUpdates()
     }
 
     func onDisappear() {
-        motionVM.stopMotionUpdates()
-        motionVM.coreMotionArray.removeAll()
+        motionManager.stopMotionUpdates()
+        motionManager.resetMotionUpdates()
     }
 }
 
-struct AltitudeView_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            AltitudeView().previewDevice("Apple Watch Series 3 - 38mm")
-            AltitudeView().previewDevice("Apple Watch Series 4 - 44mm")
-        }
-    }
+// MARK: - Preview
+#Preview {
+    AltitudeView()
+        .previewNavigationStackWrapper()
 }
