@@ -25,6 +25,7 @@ struct CustomToolbar: ToolbarContent {
             }) {
                 Image(systemName: "play.circle")
                     .accessibility(label: Text("Play", comment: "CustomToolbar - Play Button"))
+                    .accessibility(identifier: "Play")
             }
         }
 
@@ -38,6 +39,7 @@ struct CustomToolbar: ToolbarContent {
             }) {
                 Image(systemName: "pause.circle")
                     .accessibility(label: Text("Pause", comment: "CustomToolbar - Pause Button"))
+                    .accessibility(identifier: "Pause")
             }
 
         }
@@ -52,6 +54,7 @@ struct CustomToolbar: ToolbarContent {
             }) {
                 Image(systemName: "trash.circle")
                     .accessibility(label: Text("Delete", comment: "CustomToolbar - Delete Button"))
+                    .accessibility(identifier: "Delete")
             }
         }
 

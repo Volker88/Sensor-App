@@ -67,6 +67,7 @@ struct AttitudeView: View {
 
                 NavigationLink(value: Route.attitudeList) {
                     Text("Log", comment: "AttitudeView - Log")
+                        .accessibilityIdentifier("Log")
                 }
             }
 

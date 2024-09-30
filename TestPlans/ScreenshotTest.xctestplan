@@ -18,7 +18,6 @@
     }
   ],
   "defaultOptions" : {
-    "areLocalizationScreenshotsEnabled" : true,
     "locationScenario" : {
       "identifier" : "New York, NY, USA",
       "referenceType" : "built-in"

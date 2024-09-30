@@ -6,10 +6,10 @@
 //  Copyright © 2020 Volker Schmitt. All rights reserved.
 //
 
-import XCTest
-@testable import Sensor_App
+ import XCTest
+ @testable import Sensor_App
 
-class AttitudeViewUITests: BaseTestCase {
+ class AttitudeViewUITests: BaseTestCase {
     func testAttitudeViewToolbarButtons() throws {
         // Go to Attitude View
         moveToView(view: "Attitude")
@@ -57,7 +57,7 @@ class AttitudeViewUITests: BaseTestCase {
 
         let updateFrequency = app.sliders["Frequency Slider"].value as! String // swiftlint:disable:this force_cast
         let splitUpdateFrequency = updateFrequency.split(separator: " ", maxSplits: 1).map(String.init)
-        XCTAssertEqual(splitUpdateFrequency[0], "5.0", "Update frequency should be 5.0 but is \(splitUpdateFrequency)")
+        XCTAssertEqual(splitUpdateFrequency[0], "50,0", "Update frequency should be 50 but is \(splitUpdateFrequency)")
 
         // Go Back to Main Menu
         backToHomeMenu()
@@ -69,12 +69,12 @@ class AttitudeViewUITests: BaseTestCase {
         app.buttons["Log"].tap()
 
         // Open / Close Share Sheet
-        app.navigationBars.buttons["Export"].tap()
+        app.navigationBars.buttons["ExportButton"].tap()
         sleep(1)
-        app.navigationBars["UIActivityContentView"].buttons["Close"].tap()
+        dismissShareSheet()
 
         // Go Back to Main Menu
         backToHomeMenu()
         backToHomeMenu()
     }
-}
+ }

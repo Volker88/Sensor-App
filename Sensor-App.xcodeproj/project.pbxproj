@@ -116,33 +116,12 @@
 			);
 			target = 1527B07824C4ACA20024DD78 /* Sensor-App-Framework */;
 		};
-		1515A4C02C9FE60E00F89AAE /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				/Localized/Translation/InfoPlist.strings,
-			);
-			target = 1527B02724C4AA240024DD78 /* Sensor-AppTests */;
-		};
-		1515A4C12C9FE60E00F89AAE /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				/Localized/Translation/InfoPlist.strings,
-			);
-			target = 1527B03224C4AA240024DD78 /* Sensor-AppUITests */;
-		};
 		1515A4DE2C9FE61500F89AAE /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
 			);
 			target = 1527B02724C4AA240024DD78 /* Sensor-AppTests */;
-		};
-		1515A4F82C9FE61900F89AAE /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = 1527B03224C4AA240024DD78 /* Sensor-AppUITests */;
 		};
 		1515A5672C9FE62400F89AAE /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
@@ -167,14 +146,21 @@
 			);
 			target = 1527B07824C4ACA20024DD78 /* Sensor-App-Framework */;
 		};
+		155541D22CA940980005586E /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 1527B03224C4AA240024DD78 /* Sensor-AppUITests */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		1515A3382C9FE57D00F89AAE /* TestPlans */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = TestPlans; sourceTree = "<group>"; };
 		1515A4192C9FE60700F89AAE /* Sensor-App-WatchApp */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (1515A42B2C9FE60700F89AAE /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = "Sensor-App-WatchApp"; sourceTree = "<group>"; };
-		1515A45A2C9FE60E00F89AAE /* Sensor-App-Framework */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (1515A4BD2C9FE60E00F89AAE /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 1515A4BE2C9FE60E00F89AAE /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 1515A4BF2C9FE60E00F89AAE /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 1515A4C02C9FE60E00F89AAE /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 1515A4C12C9FE60E00F89AAE /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = "Sensor-App-Framework"; sourceTree = "<group>"; };
+		1515A45A2C9FE60E00F89AAE /* Sensor-App-Framework */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (1515A4BD2C9FE60E00F89AAE /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 1515A4BE2C9FE60E00F89AAE /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 1515A4BF2C9FE60E00F89AAE /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = "Sensor-App-Framework"; sourceTree = "<group>"; };
 		1515A4D12C9FE61400F89AAE /* Sensor-AppTests */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (1515A4DE2C9FE61500F89AAE /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = "Sensor-AppTests"; sourceTree = "<group>"; };
-		1515A4EB2C9FE61900F89AAE /* Sensor-AppUITests */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (1515A4F82C9FE61900F89AAE /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = "Sensor-AppUITests"; sourceTree = "<group>"; };
+		1515A4EB2C9FE61900F89AAE /* Sensor-AppUITests */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (155541D22CA940980005586E /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = "Sensor-AppUITests"; sourceTree = "<group>"; };
 		1515A5382C9FE62400F89AAE /* Sensor-App */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (1515A5672C9FE62400F89AAE /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 1515A5682C9FE62400F89AAE /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 1515A5692C9FE62400F89AAE /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = "Sensor-App"; sourceTree = "<group>"; };
 		1515A62D2C9FE70500F89AAE /* Configuration */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Configuration; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -636,6 +622,7 @@
 				PRODUCT_NAME = "Sensor-App";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 6.0;
@@ -704,6 +691,7 @@
 				PRODUCT_NAME = "Sensor-App";
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 6.0;
@@ -920,7 +908,6 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = NLF7894S7W;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -936,7 +923,7 @@
 					"@loader_path/Frameworks",
 				);
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++14";
-				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_IDENTIFIER)-Framework-Framework";
+				PRODUCT_BUNDLE_IDENTIFIER = "--BUNDLE-IDENTIFIER--Framework";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -956,7 +943,6 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = NLF7894S7W;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -972,7 +958,7 @@
 					"@loader_path/Frameworks",
 				);
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++14";
-				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_IDENTIFIER)-Framework-Framework";
+				PRODUCT_BUNDLE_IDENTIFIER = "--BUNDLE-IDENTIFIER--Framework";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

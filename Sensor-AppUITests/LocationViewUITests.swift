@@ -51,9 +51,9 @@ class LocationViewUITests: BaseTestCase {
         moveToView(view: "Location")
 
         // Open / Close Share Sheet
-        app.collectionViews.staticTexts["Export"].tap()
+        app.collectionViews.buttons["ExportButton"].tap()
         sleep(1)
-        app.navigationBars["UIActivityContentView"].buttons["Close"].tap()
+        dismissShareSheet()
 
         // Go Back to Main Menu
         backToHomeMenu()

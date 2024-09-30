@@ -9,91 +9,74 @@
 import XCTest
 @testable import Sensor_App
 
+@MainActor
 class ScreenshotUITests: BaseTestCase {
-    // FIXME: Fix UI Test
-    /*
-     func testScreenshot() throws {
-     // Take Screenshot of Home View
-     app.navigationBars.buttons.element(boundBy: 0).tap()
-     sleep(2)
-     takeScreenshotOfCurrentView(name: "Home")
 
-     // Switch to Location View
-     app.tables["Sidebar"].buttons.element(boundBy: 1).tap()
-     sleep(2)
+    func testScreenshot() throws {
+        launchApp()
 
-     // Wait for Location Authorization and allow access
-     addUIInterruptionMonitor(withDescription: "Location Dialog") { (alert) -> Bool in
-     let button = alert.buttons.element(boundBy: 0)
-     if button.exists {
-     button.tap()
-     return true
-     }
-     return false
-     }
-     app.tap()
+        // Wait for Location Authorization and allow access
+        addUIInterruptionMonitor(withDescription: "Location Dialog") { (alert) -> Bool in
+            let button = alert.buttons.element(boundBy: 0)
+            if button.exists {
+                button.tap()
+                return true
+            }
+            return false
+        }
+        app.tap()
 
-     // Show Speed Graph
-     sleep(4)
-     app.buttons["Toggle Speed Graph"].tap()
+        // Take Screenshot of Home View
+        takeScreenshotOfCurrentView(name: "0Home")
+        backToHomeMenu()
 
-     // Take Screenshot of Location and go back to Home
-     sleep(1)
-     takeScreenshotOfCurrentView(name: "Location")
-     backToHomeMenu()
+        // Switch to Location View
+        app.collectionViews["Sidebar"].buttons["Location"].tap()
 
-     // Reject App Store review request
-     //        sleep(1)
-     //        let button = app.scrollViews.otherElements.buttons["Not Now"]
-     //        if button.exists {
-     //            button.tap()
-     //        }
+        // Show Speed Graph
+        app.buttons["Toggle Speed Graph"].tap()
 
-     // Go to Acceleration View and take Screenshot
-     app.navigationBars.buttons.element(boundBy: 0).tap()
-     sleep(2)
-     app.tables["Sidebar"].buttons.element(boundBy: 2).tap()
+        // Take Screenshot of Location and go back to Home
+        takeScreenshotOfCurrentView(name: "1Location")
+        backToHomeMenu()
 
-     // Show X-Axis Graph
-     app.buttons["Toggle X-Axis Graph"].tap()
-     sleep(2)
-     takeScreenshotOfCurrentView(name: "Acceleration")
-     backToHomeMenu()
+        // Go to Acceleration View and take Screenshot
+        app.collectionViews["Sidebar"].buttons["Acceleration"].tap()
 
-     // Go to Settings View and take Screenshot
-     sleep(1)
-     app.navigationBars.buttons.element(boundBy: 0).tap()
-     sleep(1)
+        // Show X-Axis Graph
+        app.buttons["Toggle X-Axis Graph"].tap()
+        takeScreenshotOfCurrentView(name: "2Acceleration")
 
-     if UIDevice.current.userInterfaceIdiom == .phone {
-     app.tables["Sidebar"].buttons.element(boundBy: 8).tap()
-     } else {
-     app.buttons["Settings"].tap()
-     }
+        // Go to Acceleration Log and take Screenshot
+        app.buttons["Log"].tap()
+        takeScreenshotOfCurrentView(name: "3Acceleration_Log")
+        
+        backToHomeMenu()
+        backToHomeMenu()
 
-     sleep(2)
-     takeScreenshotOfCurrentView(name: "Settings")
+        // Go to Settings View and take Screenshot
+        app.collectionViews["Sidebar"].buttons["Settings"].tap()
 
-     // Go Back to Main Menu
-     // app.navigationBars.buttons.element(boundBy: 0).tap()
-     }
+        takeScreenshotOfCurrentView(name: "4Settings")
+    }
 
-     func takeScreenshotOfCurrentView(name: String) {
-     let fullScreenshot = XCUIScreen.main.screenshot()
+    func takeScreenshotOfCurrentView(name: String, delay: UInt32 = 1) {
+        sleep(delay)
 
-     let screenshot = XCTAttachment(
-     uniformTypeIdentifier: "public.png",
-     name: "\(String(getLanguageISO()))_AppStore-Screenshot-\(name)-\(UIDevice.current.name).png",
-     payload: fullScreenshot.pngRepresentation,
-     userInfo: nil
-     )
-     screenshot.lifetime = .keepAlways
-     add(screenshot)
-     }
+        let fullScreenshot = XCUIScreen.main.screenshot()
 
-     func getLanguageISO() -> String {
-     let locale = Locale.current.identifier
-     return locale
-     }
-     */
+        let screenshot = XCTAttachment(
+            uniformTypeIdentifier: "public.png",
+            name: "\(String(getLanguageISO()))_\(name)-\(UIDevice.current.model).png",
+            payload: fullScreenshot.pngRepresentation,
+            userInfo: nil
+        )
+        screenshot.lifetime = .keepAlways
+        add(screenshot)
+    }
+
+    func getLanguageISO() -> String {
+        let locale = Locale.current.identifier
+        return locale
+    }
 }

@@ -55,6 +55,7 @@ struct MagnetometerView: View {
 
                 NavigationLink(value: Route.magnetometerList) {
                     Text("Log", comment: "MagnetometerView - Log")
+                        .accessibilityIdentifier("Log")
                 }
             }
 

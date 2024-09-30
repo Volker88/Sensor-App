@@ -34,6 +34,7 @@ struct AttitudeList: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 ShareSheet(url: shareCSV())
+                    .accessibility(identifier: "ExportButton")
             }
             CustomToolbar()
         }

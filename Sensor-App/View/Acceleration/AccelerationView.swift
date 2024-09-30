@@ -55,6 +55,7 @@ struct AccelerationView: View {
 
                 NavigationLink(value: Route.accelerationList) {
                     Text("Log", comment: "AccelerationView - Log")
+                        .accessibilityIdentifier("Log")
                 }
             }
 

@@ -43,6 +43,7 @@ struct AltitudeView: View {
 
                 NavigationLink(value: Route.altitudeList) {
                     Text("Log", comment: "AltitudeView - Log")
+                        .accessibilityIdentifier("Log")
                 }
             }
         }

@@ -22,7 +22,7 @@ struct LocationView: View {
             Text("Longitude: \(locationManager.location?.longitude ?? 0.0, specifier: "%.10f")° ± \(locationManager.location?.horizontalAccuracy ?? 0.0, specifier: "%.2f")m", comment: "LocationView - Longitude (watchOS)")
             Text("Altitude: \(locationManager.location?.altitude ?? 0.0, specifier: "%.2f") ± \(locationManager.location?.verticalAccuracy ?? 0.0, specifier: "%.2f")m", comment: "LocationView - Altitude (watchOS)")
             Text("Direction: \(locationManager.location?.course ?? 0.0, specifier: "%.2f")°", comment: "LocationView - Direction (watchOS)")
-            Text("Speed: \(locationManager.location?.calculatedSpeed ?? 0.0) \(locationManager.location?.speedUnit ?? "")")
+            Text("Speed: \(locationManager.location?.calculatedSpeed ?? 0.0, specifier: "%.1f") \(locationManager.location?.speedUnit ?? "")")
         }
         .navigationTitle(NSLocalizedString("Location", comment: "LocationView - NavigationBar Title (watchOS)"))
         .font(.footnote)

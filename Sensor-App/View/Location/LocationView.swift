@@ -26,6 +26,7 @@ struct LocationView: View {
             Section(
                 header: Text("Location", comment: "LocationView - Section Header"),
                 footer: ShareSheet(url: shareCSV())
+                    .accessibility(identifier: "ExportButton")
             ) {
                 DisclosureGroup(
                     isExpanded: $showLatitude,
@@ -78,7 +79,7 @@ struct LocationView: View {
                             .frame(height: 100, alignment: .leading)
                     },
                     label: {
-                        Text("Speed: \(locationManager.location?.calculatedSpeed ?? 0.0) \(locationManager.location?.speedUnit ?? "")")
+                        Text("Speed: \(locationManager.location?.calculatedSpeed ?? 0.0, specifier: "%.1f") \(locationManager.location?.speedUnit ?? "")")
                     })
                 .disclosureGroupModifier(accessibility: "Toggle Speed Graph")
 

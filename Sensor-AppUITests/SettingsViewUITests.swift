@@ -12,12 +12,7 @@ import XCTest
 class SettingsViewUITests: BaseTestCase {
     func testSettingsSelection() throws {
         // Go to Settings View
-        if UIDevice.current.userInterfaceIdiom == .phone {
-            moveToView(view: "Settings")
-        } else {
-            app.navigationBars.buttons.element(boundBy: 0).tap()
-            app.buttons["Settings"].tap()
-        }
+        moveToView(view: "Settings")
 
         // Select Speed Setting
         let tablesQuery = app.collectionViews
@@ -41,7 +36,8 @@ class SettingsViewUITests: BaseTestCase {
         // tablesQuery.switches["Rotate Toggle"].tap()
         // tablesQuery.switches["Scroll Toggle"].tap()
 
-        tablesQuery.staticTexts["MAP"].swipeUp()
+        tablesQuery.staticTexts["Map"].swipeUp()
+        tablesQuery.staticTexts["Map"].swipeUp()
 
         tablesQuery.steppers["Zoom Stepper"].buttons["Zoom Stepper-Increment"].tap()
         tablesQuery.steppers["Zoom Stepper"].buttons["Zoom Stepper-Decrement"].tap()

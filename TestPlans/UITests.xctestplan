@@ -2,14 +2,33 @@
   "configurations" : [
     {
       "id" : "10B5B5EB-2913-4F4D-88FE-E5B37C8702CB",
-      "name" : "Configuration 1",
+      "name" : "Configuration 1 (us)",
       "options" : {
-
+        "language" : "en",
+        "locationScenario" : {
+          "identifier" : "New York, NY, USA",
+          "referenceType" : "built-in"
+        },
+        "region" : "US"
+      }
+    },
+    {
+      "id" : "867B3D4E-19EE-4042-B065-FBBB857C16D0",
+      "name" : "Configuration 1 (de)",
+      "options" : {
+        "language" : "de",
+        "locationScenario" : {
+          "identifier" : "New York, NY, USA",
+          "referenceType" : "built-in"
+        },
+        "region" : "DE"
       }
     }
   ],
   "defaultOptions" : {
-
+    "areLocalizationScreenshotsEnabled" : true,
+    "uiTestingScreenshotsLifetime" : "keepAlways",
+    "userAttachmentLifetime" : "keepAlways"
   },
   "testTargets" : [
     {

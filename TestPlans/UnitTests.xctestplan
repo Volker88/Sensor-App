@@ -2,9 +2,26 @@
   "configurations" : [
     {
       "id" : "518B1FC2-6854-4A1D-85C1-CB0AB9CCF8E6",
-      "name" : "Configuration 1",
+      "name" : "Configuration 1 (us)",
       "options" : {
-
+        "language" : "en",
+        "locationScenario" : {
+          "identifier" : "New York, NY, USA",
+          "referenceType" : "built-in"
+        },
+        "region" : "US"
+      }
+    },
+    {
+      "id" : "2734C7C5-F784-458F-899B-92DA56240499",
+      "name" : "Configuration 1 (de)",
+      "options" : {
+        "language" : "de",
+        "locationScenario" : {
+          "identifier" : "New York, NY, USA",
+          "referenceType" : "built-in"
+        },
+        "region" : "DE"
       }
     }
   ],

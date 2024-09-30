@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "" : {
+
+    },
     "%.0f" : {
       "comment" : "SettingsScreen - Max Points Slider",
       "shouldTranslate" : false
@@ -33,7 +36,7 @@
       "shouldTranslate" : false
     },
     "50" : {
-      "comment" : "RefreshRateView - Label 10"
+      "comment" : "RefreshRateView - Label 50"
     },
     "100 km" : {
       "comment" : "SettingsScreen - 100km",
@@ -128,18 +131,6 @@
         }
       }
     },
-    "Changes Discarded" : {
-      "comment" : "NotificationMessage - Discarded",
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Änderungen verworfen"
-          }
-        }
-      }
-    },
     "Compass" : {
       "comment" : "SettingsScreen - Compass",
       "localizations" : {
@@ -184,18 +175,6 @@
         }
       }
     },
-    "Discarded Changes" : {
-      "comment" : "SettingsView - Discarded Changes (watchOS)",
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Änderungen verworfen"
-          }
-        }
-      }
-    },
     "Export" : {
       "comment" : "AccelerationView - Export List",
       "localizations" : {
@@ -218,7 +197,7 @@
         }
       }
     },
-    "Frequenz: %@ Hz" : {
+    "Frequenz: %lld Hz" : {
 
     },
     "General" : {
@@ -349,9 +328,8 @@
         }
       }
     },
-    "ID:%@" : {
-      "comment" : "AccelerationList - ID\nAltitudeList - ID\nAttitudeList - ID\nGravityList - ID\nGyroscopeList - ID\nMagnetometerList - ID",
-      "shouldTranslate" : false
+    "ID:%lld" : {
+      "comment" : "AccelerationList - ID\nAltitudeList - ID\nAttitudeList - ID\nGravityList - ID\nGyroscopeList - ID\nMagnetometerList - ID"
     },
     "Latitude: %.6f° ± %.2fm" : {
       "comment" : "LocationView - Latitude",
@@ -475,18 +453,6 @@
       "comment" : "CustomToolbar - Pause Button",
       "shouldTranslate" : false
     },
-    "Paused" : {
-      "comment" : "NotificationMessage - Paused",
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pausiert"
-          }
-        }
-      }
-    },
     "Pitch" : {
       "comment" : "SettingsScreen - Pitch",
       "localizations" : {
@@ -601,30 +567,6 @@
         }
       }
     },
-    "Saved Changes" : {
-      "comment" : "SettingsView - Saved Changes (watchOS)",
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Änderungen gespeichert"
-          }
-        }
-      }
-    },
-    "Saved successfully" : {
-      "comment" : "NotificationMessage - Saved",
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Speichern erfolgreich"
-          }
-        }
-      }
-    },
     "Scale" : {
       "comment" : "SettingsScreen - Scale",
       "localizations" : {
@@ -682,6 +624,7 @@
     },
     "Sidebar" : {
       "comment" : "NavigationBar Title - Sidebar",
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -702,36 +645,12 @@
         }
       }
     },
-    "Speed:" : {
-      "comment" : "LocationView - Speed (watchOS)",
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Geschwindigkeit:"
-          }
-        }
-      }
-    },
-    "Speed: %@ %@" : {
+    "Speed: %.1f %@" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Speed: %1$@ %2$@"
-          }
-        }
-      }
-    },
-    "Successfully deleted" : {
-      "comment" : "NotificationMessage - Deleted",
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Erfolgreich gelöscht"
+            "value" : "Speed: %1$.1f %2$@"
           }
         }
       }

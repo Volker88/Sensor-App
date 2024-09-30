@@ -67,6 +67,7 @@ struct SettingsScreen: View {
 
             Section(header:
                         Text("Map", comment: "SettingsScreen - Map Section")
+                .accessibility(identifier: "Map")
             ) {
                 Picker(selection: Bindable(settingsManager).mapSettings.mapType, label:
                         Text("Type", comment: "SettingsScreen - Type")) {
@@ -132,7 +133,7 @@ struct SettingsScreen: View {
                 }
                 .accessibility(identifier: "Pressure Settings")
                 Picker(selection: Bindable(settingsManager).heightSetting, label: Text("Height",
-                                                                         comment: "SettingsScreen - Height")
+                                                                                       comment: "SettingsScreen - Height")
                 ) {
                     ForEach(0 ..< settingsManager.altitudeHeight.count, id: \.self) {
                         Text(settingsManager.altitudeHeight[$0]).tag($0)
@@ -168,6 +169,7 @@ struct SettingsScreen: View {
                 }) {
                     Text("Save", comment: "NagvigationBarButton - Save")
                         .accessibility(label: Text("Save", comment: "NagvigationBarButton - Save"))
+                        .accessibility(identifier: "Save")
                 }
 
                 Button(action: {
@@ -175,6 +177,7 @@ struct SettingsScreen: View {
                 }) {
                     Text("Discard", comment: "NagvigationBarButton - Discard Changes")
                         .accessibility(label: Text("Discard", comment: "NagvigationBarButton - Discard Changes"))
+                        .accessibility(identifier: "Discard")
                 }
             }
             .buttonStyle(BorderlessButtonStyle())

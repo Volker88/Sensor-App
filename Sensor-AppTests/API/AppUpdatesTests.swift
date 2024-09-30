@@ -6,28 +6,26 @@
 //  Copyright © 2020 Volker Schmitt. All rights reserved.
 //
 
-import XCTest
+import Foundation
+import Testing
 @testable import Sensor_App
 
-class AppUpdatesTests: XCTestCase {
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
+@MainActor
+final class AppUpdateTests {
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
+    init () async throws { }
 
-    func testAppUpdates() throws {
-        // Given
+    deinit { }
+
+    // MARK: - Testing Methods
+    @Test("Test app for first time launch")
+    func appUpdates() async throws {
         let appUpdates = AppUpdates()
         UserDefaults.standard.removeObject(forKey: "CurrentAppVersion")
         appUpdates.checkForUpdate()
 
-        // When
         let userDefaultsForSpeedSetting = UserDefaults.standard.string(forKey: "\(SettingsForUserDefaults.GPSSpeedSetting)")
 
-        // Then
-        XCTAssertNil(userDefaultsForSpeedSetting, "UserDefaults are still present")
+        #expect(userDefaultsForSpeedSetting == nil)
     }
 }

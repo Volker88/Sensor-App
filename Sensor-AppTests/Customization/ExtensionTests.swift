@@ -6,39 +6,35 @@
 //  Copyright © 2020 Volker Schmitt. All rights reserved.
 //
 
-import XCTest
+import Foundation
+import Testing
 @testable import Sensor_App
 
-class ExtensionTests: XCTestCase {
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
+@MainActor
+final class ExtensionTests {
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
+    init() async throws { }
 
-    func testDoubleExtensionRoundUp() throws {
-        // Given
+    deinit { }
+
+    // MARK: - Testing Methods
+    @Test("Test double extension to round up")
+    func doubleExtensionRoundUp() throws {
         let number = 100.000005
         let decimalDigits = 5
 
-        // When
         let rounded = number.rounded(toPlaces: decimalDigits)
 
-        // Then
-        XCTAssertEqual(rounded, 100.00001, "Rounded \(number) to \(rounded) does not equal 100.00001")
+        #expect(rounded == 100.00001)
     }
 
-    func testDoubleExtensionRoundDown() throws {
-        // Given
+    @Test("Test double extension to round down")
+    func doubleExtensionRoundDown() throws {
         let number = 100.111114
         let decimalDigits = 5
 
-        // When
         let rounded = number.rounded(toPlaces: decimalDigits)
 
-        // Then
-        XCTAssertEqual(rounded, 100.11111, "Rounded \(number) to \(rounded) does not equal 100.11111")
+        #expect(rounded == 100.11111)
     }
 }

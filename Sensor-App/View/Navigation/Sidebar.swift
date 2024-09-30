@@ -62,7 +62,7 @@ struct Sidebar: View {
             }
         }
         .listStyle(.sidebar)
-        .accessibilityIdentifier("\(NSLocalizedString("Sidebar", comment: "NavigationBar Title - Sidebar"))")
+        .accessibility(identifier: "Sidebar")
     }
 
     // MARK: - Body

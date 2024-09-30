@@ -30,13 +30,13 @@ struct RefreshRateView: View {
                 HStack {
                     Text("0.1", comment: "RefreshRateView - Label 1")
 
-                    Slider(value: Bindable(motionManager).sensorUpdateInterval, in: 0.1...50, step: 0.1) { _ in
+                    Slider(value: Bindable(motionManager).sensorUpdateInterval, in: 0.1...50.01, step: 0.1) { _ in
                         updateSlider()
                     }
                     .accessibility(label: Text("Refresh Rate", comment: "RefreshRateView - Slider"))
                     .accessibility(value: Text("\(motionManager.sensorUpdateInterval, specifier: "%.1f") per Second", comment: "RefreshRateView - Value"))
                     .accessibility(identifier: "Frequency Slider")
-                    Text("50", comment: "RefreshRateView - Label 10")
+                    Text("50", comment: "RefreshRateView - Label 50")
                 }
             }
         }

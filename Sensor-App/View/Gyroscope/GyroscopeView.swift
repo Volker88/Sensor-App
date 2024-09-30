@@ -55,6 +55,7 @@ struct GyroscopeView: View {
 
                 NavigationLink(value: Route.gyroscopeList) {
                     Text("Log", comment: "GyroscopeView - Log")
+                        .accessibilityIdentifier("Log")
                 }
             }
 

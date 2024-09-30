@@ -23,6 +23,7 @@ class LocationManager {
 
     init() {
         locationManager.requestWhenInUseAuthorization()
+        mockData()
     }
 
     func startLocationUpdates() {
@@ -30,7 +31,7 @@ class LocationManager {
 
         // MARK: - Handle authorizationStatus
         if locationManager.authorizationStatus == .notDetermined {
-print("Not Determined")
+            print("Not Determined")
         } else if locationManager.authorizationStatus == .denied {
             print("Denied")
         } else if locationManager.authorizationStatus == .restricted {
@@ -59,6 +60,7 @@ print("Not Determined")
                     location = latestLocation
                     locationArray.append(latestLocation)
 
+                    print(latestLocation.course)
                     index += 1
                 }
             }
@@ -75,4 +77,31 @@ print("Not Determined")
         locationArray.removeAll()
     }
 
+    func mockData() {
+#if DEBUG && targetEnvironment(simulator)
+        if CommandLine.arguments.contains("enable-testing") {
+            for index in 1...1000 {
+                let location = LocationModel(
+                    counter: index,
+                    longitude: getDouble(min: -122.109102, max: -122),
+                    latitude: getDouble(min: 37.234606, max: 37.434606),
+                    altitude: getDouble(min: 10, max: 20),
+                    speed: getDouble(min: 90, max: 110),
+                    course: getDouble(min: 269, max: 271),
+                    horizontalAccuracy: getDouble(min: 0, max: 10),
+                    verticalAccuracy: getDouble(min: 0, max: 10),
+                    timestamp: Date().formatted(),
+                    GPSAccuracy: -1
+                )
+
+                locationArray.append(location)
+                self.location = location
+            }
+
+            func getDouble(min: Double = -1, max: Double = 1) -> Double {
+                Double.random(in: min...max)
+            }
+        }
+#endif
+    }
 }

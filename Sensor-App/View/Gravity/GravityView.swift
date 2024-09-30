@@ -55,6 +55,7 @@ struct GravityView: View {
 
                     NavigationLink(value: Route.gravityList) {
                         Text("Log", comment: "GravityView - Log")
+                            .accessibilityIdentifier("Log")
                     }
                 }
 
