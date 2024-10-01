@@ -11,18 +11,6 @@
         },
         "region" : "US"
       }
-    },
-    {
-      "id" : "867B3D4E-19EE-4042-B065-FBBB857C16D0",
-      "name" : "Configuration 1 (de)",
-      "options" : {
-        "language" : "de",
-        "locationScenario" : {
-          "identifier" : "New York, NY, USA",
-          "referenceType" : "built-in"
-        },
-        "region" : "DE"
-      }
     }
   ],
   "defaultOptions" : {

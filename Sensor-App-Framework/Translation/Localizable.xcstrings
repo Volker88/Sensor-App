@@ -8,31 +8,33 @@
       "comment" : "SettingsScreen - Max Points Slider",
       "shouldTranslate" : false
     },
+    "%.0f per Second" : {
+      "comment" : "RefreshRateView - Value"
+    },
     "%.1f km" : {
       "comment" : "SettingsScreen - ZoomSlider",
-      "shouldTranslate" : false
-    },
-    "%.1f per Second" : {
-      "comment" : "RefreshRateView - Value",
       "shouldTranslate" : false
     },
     "%@" : {
       "shouldTranslate" : false
     },
-    "%@ %.1f Hz" : {
+    "%@ %.0f Hz" : {
       "comment" : "RefreshRateView - Refresh Rate",
-      "shouldTranslate" : false
-    },
-    "0.1" : {
-      "comment" : "RefreshRateView - Label 1",
-      "shouldTranslate" : false
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ %2$.0f Hz"
+          }
+        }
+      }
     },
     "0.1 km" : {
       "comment" : "SettingsScreen - 0.1km",
       "shouldTranslate" : false
     },
     "1" : {
-      "comment" : "SettingsScreen - 1",
+      "comment" : "RefreshRateView - Label 1\nSettingsScreen - 1",
       "shouldTranslate" : false
     },
     "50" : {

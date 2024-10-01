@@ -132,8 +132,8 @@ struct SettingsScreen: View {
                     }
                 }
                 .accessibility(identifier: "Pressure Settings")
-                Picker(selection: Bindable(settingsManager).heightSetting, label: Text("Height",
-                                                                                       comment: "SettingsScreen - Height")
+                Picker(selection: Bindable(settingsManager).heightSetting,
+                       label: Text("Height", comment: "SettingsScreen - Height")
                 ) {
                     ForEach(0 ..< settingsManager.altitudeHeight.count, id: \.self) {
                         Text(settingsManager.altitudeHeight[$0]).tag($0)

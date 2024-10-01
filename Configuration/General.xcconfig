@@ -9,7 +9,7 @@
 // https://help.apple.com/xcode/#/dev745c5c974
 
 // Versioning
-MY_BUILD_VERSION = 20240930.1
+MY_BUILD_VERSION = 20241001.1
 MY_VERSION = 5.0.0
 
 // Deployment Targets for Swiftlint

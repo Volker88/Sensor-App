@@ -55,7 +55,7 @@
 
         let updateFrequency = app.sliders["Frequency Slider"].value as! String // swiftlint:disable:this force_cast
         let splitUpdateFrequency = updateFrequency.split(separator: " ", maxSplits: 1).map(String.init)
-        XCTAssertEqual(splitUpdateFrequency[0], "50,0", "Update frequency should be 50 but is \(splitUpdateFrequency)")
+        XCTAssertEqual(splitUpdateFrequency[0], "50", "Update frequency should be 50 but is \(splitUpdateFrequency)")
 
         // Go Back to Main Menu
         backToHomeMenu()

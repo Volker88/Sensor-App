@@ -20,21 +20,21 @@ struct RefreshRateView: View {
         Group {
             if show == "header" {
                 HStack {
-                    Text("\(NSLocalizedString("Frequency:", comment: "RefreshRateView - Frequency")) \(Double(motionManager.sensorUpdateInterval), specifier: "%.1f") Hz", comment: "RefreshRateView - Refresh Rate")
-                    Stepper("", value: Bindable(motionManager).sensorUpdateInterval, in: 0.1...50, step: 0.1,
+                    Text("\(NSLocalizedString("Frequency:", comment: "RefreshRateView - Frequency")) \(Double(motionManager.sensorUpdateInterval), specifier: "%.0f") Hz", comment: "RefreshRateView - Refresh Rate")
+                    Stepper("", value: Bindable(motionManager).sensorUpdateInterval, in: 1...50, step: 1,
                             onEditingChanged: { _ in
                         updateSlider()
                     })
                 }
             } else if show == "slider" {
                 HStack {
-                    Text("0.1", comment: "RefreshRateView - Label 1")
+                    Text("1", comment: "RefreshRateView - Label 1")
 
-                    Slider(value: Bindable(motionManager).sensorUpdateInterval, in: 0.1...50.01, step: 0.1) { _ in
+                    Slider(value: Bindable(motionManager).sensorUpdateInterval, in: 1...50, step: 1) { _ in
                         updateSlider()
                     }
                     .accessibility(label: Text("Refresh Rate", comment: "RefreshRateView - Slider"))
-                    .accessibility(value: Text("\(motionManager.sensorUpdateInterval, specifier: "%.1f") per Second", comment: "RefreshRateView - Value"))
+                    .accessibility(value: Text("\(motionManager.sensorUpdateInterval, specifier: "%.0f") per Second", comment: "RefreshRateView - Value"))
                     .accessibility(identifier: "Frequency Slider")
                     Text("50", comment: "RefreshRateView - Label 50")
                 }

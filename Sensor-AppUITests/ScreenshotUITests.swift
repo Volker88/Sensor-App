@@ -50,7 +50,7 @@ class ScreenshotUITests: BaseTestCase {
         // Go to Acceleration Log and take Screenshot
         app.buttons["Log"].tap()
         takeScreenshotOfCurrentView(name: "3Acceleration_Log")
-        
+
         backToHomeMenu()
         backToHomeMenu()
 
