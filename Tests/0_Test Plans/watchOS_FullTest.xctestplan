@@ -1,0 +1,39 @@
+{
+  "configurations" : [
+    {
+      "id" : "4F494920-D2F9-4824-BDF5-2E69CF3BAA2D",
+      "name" : "Configuration 1 (us)",
+      "options" : {
+        "language" : "en",
+        "region" : "US"
+      }
+    },
+    {
+      "id" : "9791E68C-85E1-4F2B-A0C1-6A633C75B733",
+      "name" : "Configuration 2 (de)",
+      "options" : {
+        "language" : "de",
+        "region" : "DE"
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "locationScenario" : {
+      "identifier" : "New York, NY, USA",
+      "referenceType" : "built-in"
+    },
+    "testTimeoutsEnabled" : true,
+    "uiTestingScreenshotsLifetime" : "keepAlways",
+    "userAttachmentLifetime" : "keepAlways"
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:Sensor-App.xcodeproj",
+        "identifier" : "15F1BBA82CAFCF1E00C80A1F",
+        "name" : "Sensor-AppwatchOSUITests"
+      }
+    }
+  ],
+  "version" : 1
+}
