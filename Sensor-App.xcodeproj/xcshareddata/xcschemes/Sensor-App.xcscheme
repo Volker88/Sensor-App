@@ -29,17 +29,17 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <TestPlans>
          <TestPlanReference
-            reference = "container:TestPlans/FullTests.xctestplan"
+            reference = "container:Tests/0_Test Plans/iOS_FullTest.xctestplan">
+         </TestPlanReference>
+         <TestPlanReference
+            reference = "container:Tests/0_Test Plans/iOS_ScreenshotTest.xctestplan">
+         </TestPlanReference>
+         <TestPlanReference
+            reference = "container:Tests/0_Test Plans/iOS_UITest.xctestplan">
+         </TestPlanReference>
+         <TestPlanReference
+            reference = "container:Tests/0_Test Plans/iOS_UnitTest.xctestplan"
             default = "YES">
-         </TestPlanReference>
-         <TestPlanReference
-            reference = "container:TestPlans/ScreenshotTest.xctestplan">
-         </TestPlanReference>
-         <TestPlanReference
-            reference = "container:TestPlans/UITests.xctestplan">
-         </TestPlanReference>
-         <TestPlanReference
-            reference = "container:TestPlans/UnitTests.xctestplan">
          </TestPlanReference>
       </TestPlans>
       <Testables>
@@ -48,8 +48,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "1527B02724C4AA240024DD78"
-               BuildableName = "Sensor-AppTests.xctest"
-               BlueprintName = "Sensor-AppTests"
+               BuildableName = "Sensor-AppiOSUnitTests.xctest"
+               BlueprintName = "Sensor-AppiOSUnitTests"
                ReferencedContainer = "container:Sensor-App.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -58,8 +58,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "1527B03224C4AA240024DD78"
-               BuildableName = "Sensor-AppUITests.xctest"
-               BlueprintName = "Sensor-AppUITests"
+               BuildableName = "Sensor-AppiOSUITests.xctest"
+               BlueprintName = "Sensor-AppiOSUITests"
                ReferencedContainer = "container:Sensor-App.xcodeproj">
             </BuildableReference>
          </TestableReference>

@@ -1,7 +1,7 @@
 {
   "configurations" : [
     {
-      "id" : "518B1FC2-6854-4A1D-85C1-CB0AB9CCF8E6",
+      "id" : "1C074208-A32F-4692-B289-F37A228D01EA",
       "name" : "Configuration 1 (us)",
       "options" : {
         "language" : "en",
@@ -13,7 +13,7 @@
       }
     },
     {
-      "id" : "2734C7C5-F784-458F-899B-92DA56240499",
+      "id" : "1B82818E-DAD3-4B53-B808-3302B48CF9D1",
       "name" : "Configuration 1 (de)",
       "options" : {
         "language" : "de",
@@ -26,14 +26,22 @@
     }
   ],
   "defaultOptions" : {
-
+    "areLocalizationScreenshotsEnabled" : true,
+    "userAttachmentLifetime" : "keepAlways"
   },
   "testTargets" : [
     {
       "target" : {
         "containerPath" : "container:Sensor-App.xcodeproj",
         "identifier" : "1527B02724C4AA240024DD78",
-        "name" : "Sensor-AppTests"
+        "name" : "Sensor-AppiOSUnitTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Sensor-App.xcodeproj",
+        "identifier" : "1527B03224C4AA240024DD78",
+        "name" : "Sensor-AppiOSUITests"
       }
     }
   ],

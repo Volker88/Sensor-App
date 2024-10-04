@@ -70,8 +70,8 @@
 
 /* Begin PBXFileReference section */
 		1527B01724C4AA240024DD78 /* Sensor-App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sensor-App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1527B02824C4AA240024DD78 /* Sensor-AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Sensor-AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1527B03324C4AA240024DD78 /* Sensor-AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Sensor-AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1527B02824C4AA240024DD78 /* Sensor-AppiOSUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Sensor-AppiOSUnitTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1527B03324C4AA240024DD78 /* Sensor-AppiOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Sensor-AppiOSUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1527B04724C4AA620024DD78 /* Sensor-App-Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sensor-App-Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1527B07924C4ACA20024DD78 /* Sensor_App_Framework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Sensor_App_Framework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -116,13 +116,6 @@
 			);
 			target = 1527B07824C4ACA20024DD78 /* Sensor-App-Framework */;
 		};
-		1515A4DE2C9FE61500F89AAE /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = 1527B02724C4AA240024DD78 /* Sensor-AppTests */;
-		};
 		1515A5672C9FE62400F89AAE /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -146,23 +139,122 @@
 			);
 			target = 1527B07824C4ACA20024DD78 /* Sensor-App-Framework */;
 		};
-		155541D22CA940980005586E /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+		157652A52CAFBC3D001842DE /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Info.plist,
+				"0_Test Plans/iOS_FullTest.xctestplan",
+				"0_Test Plans/iOS_ScreenshotTest.xctestplan",
+				"0_Test Plans/iOS_UITest.xctestplan",
+				"0_Test Plans/iOS_UnitTest.xctestplan",
+				iOSUITests/AccelerationViewUITests.swift,
+				iOSUITests/AltitudeViewUITests.swift,
+				iOSUITests/AttitudeViewUITests.swift,
+				iOSUITests/BaseTestCase.swift,
+				iOSUITests/GravityViewUITests.swift,
+				iOSUITests/GyroscopeViewUITests.swift,
+				iOSUITests/HelperFunctions.swift,
+				iOSUITests/Info.plist,
+				iOSUITests/LocationViewUITests.swift,
+				iOSUITests/MagnetometerViewUITests.swift,
+				iOSUITests/ScreenshotUITests.swift,
+				iOSUITests/SettingsViewUITests.swift,
+				iOSUnitTests/API/AppUpdatesTests.swift,
+				iOSUnitTests/API/CalculationManagerTests.swift,
+				iOSUnitTests/API/SettingsManagerTests.swift,
+				iOSUnitTests/Customization/ExtensionTests.swift,
+				iOSUnitTests/Info.plist,
 			);
-			target = 1527B03224C4AA240024DD78 /* Sensor-AppUITests */;
+			target = 1527B01624C4AA240024DD78 /* Sensor-App */;
+		};
+		157652A62CAFBC3D001842DE /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"0_Test Plans/iOS_FullTest.xctestplan",
+				"0_Test Plans/iOS_ScreenshotTest.xctestplan",
+				"0_Test Plans/iOS_UITest.xctestplan",
+				"0_Test Plans/iOS_UnitTest.xctestplan",
+				iOSUITests/AccelerationViewUITests.swift,
+				iOSUITests/AltitudeViewUITests.swift,
+				iOSUITests/AttitudeViewUITests.swift,
+				iOSUITests/BaseTestCase.swift,
+				iOSUITests/GravityViewUITests.swift,
+				iOSUITests/GyroscopeViewUITests.swift,
+				iOSUITests/HelperFunctions.swift,
+				iOSUITests/Info.plist,
+				iOSUITests/LocationViewUITests.swift,
+				iOSUITests/MagnetometerViewUITests.swift,
+				iOSUITests/ScreenshotUITests.swift,
+				iOSUITests/SettingsViewUITests.swift,
+				iOSUnitTests/API/AppUpdatesTests.swift,
+				iOSUnitTests/API/CalculationManagerTests.swift,
+				iOSUnitTests/API/SettingsManagerTests.swift,
+				iOSUnitTests/Customization/ExtensionTests.swift,
+				iOSUnitTests/Info.plist,
+			);
+			target = 1527B04624C4AA620024DD78 /* Sensor-App-Watch */;
+		};
+		157652A72CAFBC3D001842DE /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"0_Test Plans/iOS_FullTest.xctestplan",
+				"0_Test Plans/iOS_ScreenshotTest.xctestplan",
+				"0_Test Plans/iOS_UITest.xctestplan",
+				"0_Test Plans/iOS_UnitTest.xctestplan",
+				iOSUITests/AccelerationViewUITests.swift,
+				iOSUITests/AltitudeViewUITests.swift,
+				iOSUITests/AttitudeViewUITests.swift,
+				iOSUITests/BaseTestCase.swift,
+				iOSUITests/GravityViewUITests.swift,
+				iOSUITests/GyroscopeViewUITests.swift,
+				iOSUITests/HelperFunctions.swift,
+				iOSUITests/Info.plist,
+				iOSUITests/LocationViewUITests.swift,
+				iOSUITests/MagnetometerViewUITests.swift,
+				iOSUITests/ScreenshotUITests.swift,
+				iOSUITests/SettingsViewUITests.swift,
+				iOSUnitTests/API/AppUpdatesTests.swift,
+				iOSUnitTests/API/CalculationManagerTests.swift,
+				iOSUnitTests/API/SettingsManagerTests.swift,
+				iOSUnitTests/Customization/ExtensionTests.swift,
+				iOSUnitTests/Info.plist,
+			);
+			target = 1527B07824C4ACA20024DD78 /* Sensor-App-Framework */;
+		};
+		157652A82CAFBC3D001842DE /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				iOSUnitTests/API/AppUpdatesTests.swift,
+				iOSUnitTests/API/CalculationManagerTests.swift,
+				iOSUnitTests/API/SettingsManagerTests.swift,
+				iOSUnitTests/Customization/ExtensionTests.swift,
+			);
+			target = 1527B02724C4AA240024DD78 /* Sensor-AppiOSUnitTests */;
+		};
+		157652A92CAFBC3D001842DE /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				iOSUITests/AccelerationViewUITests.swift,
+				iOSUITests/AltitudeViewUITests.swift,
+				iOSUITests/AttitudeViewUITests.swift,
+				iOSUITests/BaseTestCase.swift,
+				iOSUITests/GravityViewUITests.swift,
+				iOSUITests/GyroscopeViewUITests.swift,
+				iOSUITests/HelperFunctions.swift,
+				iOSUITests/LocationViewUITests.swift,
+				iOSUITests/MagnetometerViewUITests.swift,
+				iOSUITests/ScreenshotUITests.swift,
+				iOSUITests/SettingsViewUITests.swift,
+			);
+			target = 1527B03224C4AA240024DD78 /* Sensor-AppiOSUITests */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		1515A3382C9FE57D00F89AAE /* TestPlans */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = TestPlans; sourceTree = "<group>"; };
 		1515A4192C9FE60700F89AAE /* Sensor-App-WatchApp */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (1515A42B2C9FE60700F89AAE /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = "Sensor-App-WatchApp"; sourceTree = "<group>"; };
 		1515A45A2C9FE60E00F89AAE /* Sensor-App-Framework */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (1515A4BD2C9FE60E00F89AAE /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 1515A4BE2C9FE60E00F89AAE /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 1515A4BF2C9FE60E00F89AAE /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = "Sensor-App-Framework"; sourceTree = "<group>"; };
-		1515A4D12C9FE61400F89AAE /* Sensor-AppTests */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (1515A4DE2C9FE61500F89AAE /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = "Sensor-AppTests"; sourceTree = "<group>"; };
-		1515A4EB2C9FE61900F89AAE /* Sensor-AppUITests */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (155541D22CA940980005586E /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = "Sensor-AppUITests"; sourceTree = "<group>"; };
 		1515A5382C9FE62400F89AAE /* Sensor-App */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (1515A5672C9FE62400F89AAE /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 1515A5682C9FE62400F89AAE /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 1515A5692C9FE62400F89AAE /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = "Sensor-App"; sourceTree = "<group>"; };
 		1515A62D2C9FE70500F89AAE /* Configuration */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Configuration; sourceTree = "<group>"; };
+		157652802CAFBC3C001842DE /* Tests */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (157652A52CAFBC3D001842DE /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 157652A62CAFBC3D001842DE /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 157652A72CAFBC3D001842DE /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 157652A82CAFBC3D001842DE /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 157652A92CAFBC3D001842DE /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Tests; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,12 +301,10 @@
 			isa = PBXGroup;
 			children = (
 				1515A62D2C9FE70500F89AAE /* Configuration */,
-				1515A3382C9FE57D00F89AAE /* TestPlans */,
 				1515A5382C9FE62400F89AAE /* Sensor-App */,
 				1515A4192C9FE60700F89AAE /* Sensor-App-WatchApp */,
 				1515A45A2C9FE60E00F89AAE /* Sensor-App-Framework */,
-				1515A4D12C9FE61400F89AAE /* Sensor-AppTests */,
-				1515A4EB2C9FE61900F89AAE /* Sensor-AppUITests */,
+				157652802CAFBC3C001842DE /* Tests */,
 				1527B01824C4AA240024DD78 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -223,8 +313,8 @@
 			isa = PBXGroup;
 			children = (
 				1527B01724C4AA240024DD78 /* Sensor-App.app */,
-				1527B02824C4AA240024DD78 /* Sensor-AppTests.xctest */,
-				1527B03324C4AA240024DD78 /* Sensor-AppUITests.xctest */,
+				1527B02824C4AA240024DD78 /* Sensor-AppiOSUnitTests.xctest */,
+				1527B03324C4AA240024DD78 /* Sensor-AppiOSUITests.xctest */,
 				1527B04724C4AA620024DD78 /* Sensor-App-Watch.app */,
 				1527B07924C4ACA20024DD78 /* Sensor_App_Framework.framework */,
 			);
@@ -265,6 +355,7 @@
 				1515A45A2C9FE60E00F89AAE /* Sensor-App-Framework */,
 				1515A5382C9FE62400F89AAE /* Sensor-App */,
 				1515A62D2C9FE70500F89AAE /* Configuration */,
+				157652802CAFBC3C001842DE /* Tests */,
 			);
 			name = "Sensor-App";
 			packageProductDependencies = (
@@ -273,9 +364,9 @@
 			productReference = 1527B01724C4AA240024DD78 /* Sensor-App.app */;
 			productType = "com.apple.product-type.application";
 		};
-		1527B02724C4AA240024DD78 /* Sensor-AppTests */ = {
+		1527B02724C4AA240024DD78 /* Sensor-AppiOSUnitTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1527B03F24C4AA240024DD78 /* Build configuration list for PBXNativeTarget "Sensor-AppTests" */;
+			buildConfigurationList = 1527B03F24C4AA240024DD78 /* Build configuration list for PBXNativeTarget "Sensor-AppiOSUnitTests" */;
 			buildPhases = (
 				1527B02424C4AA240024DD78 /* Sources */,
 				1527B02524C4AA240024DD78 /* Frameworks */,
@@ -286,17 +377,14 @@
 			dependencies = (
 				1527B02A24C4AA240024DD78 /* PBXTargetDependency */,
 			);
-			fileSystemSynchronizedGroups = (
-				1515A4D12C9FE61400F89AAE /* Sensor-AppTests */,
-			);
-			name = "Sensor-AppTests";
+			name = "Sensor-AppiOSUnitTests";
 			productName = "Sensor-AppTests";
-			productReference = 1527B02824C4AA240024DD78 /* Sensor-AppTests.xctest */;
+			productReference = 1527B02824C4AA240024DD78 /* Sensor-AppiOSUnitTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		1527B03224C4AA240024DD78 /* Sensor-AppUITests */ = {
+		1527B03224C4AA240024DD78 /* Sensor-AppiOSUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1527B04224C4AA240024DD78 /* Build configuration list for PBXNativeTarget "Sensor-AppUITests" */;
+			buildConfigurationList = 1527B04224C4AA240024DD78 /* Build configuration list for PBXNativeTarget "Sensor-AppiOSUITests" */;
 			buildPhases = (
 				1527B02F24C4AA240024DD78 /* Sources */,
 				1527B03024C4AA240024DD78 /* Frameworks */,
@@ -307,12 +395,9 @@
 			dependencies = (
 				1527B03524C4AA240024DD78 /* PBXTargetDependency */,
 			);
-			fileSystemSynchronizedGroups = (
-				1515A4EB2C9FE61900F89AAE /* Sensor-AppUITests */,
-			);
-			name = "Sensor-AppUITests";
+			name = "Sensor-AppiOSUITests";
 			productName = "Sensor-AppUITests";
-			productReference = 1527B03324C4AA240024DD78 /* Sensor-AppUITests.xctest */;
+			productReference = 1527B03324C4AA240024DD78 /* Sensor-AppiOSUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 		1527B04624C4AA620024DD78 /* Sensor-App-Watch */ = {
@@ -332,6 +417,7 @@
 				1515A4192C9FE60700F89AAE /* Sensor-App-WatchApp */,
 				1515A45A2C9FE60E00F89AAE /* Sensor-App-Framework */,
 				1515A62D2C9FE70500F89AAE /* Configuration */,
+				157652802CAFBC3C001842DE /* Tests */,
 			);
 			name = "Sensor-App-Watch";
 			productName = "Sensor-App-WatchApp";
@@ -354,6 +440,7 @@
 			fileSystemSynchronizedGroups = (
 				1515A45A2C9FE60E00F89AAE /* Sensor-App-Framework */,
 				1515A62D2C9FE70500F89AAE /* Configuration */,
+				157652802CAFBC3C001842DE /* Tests */,
 			);
 			name = "Sensor-App-Framework";
 			productName = "Sensor-App-Framework";
@@ -408,8 +495,8 @@
 				1527B01624C4AA240024DD78 /* Sensor-App */,
 				1527B04624C4AA620024DD78 /* Sensor-App-Watch */,
 				1527B07824C4ACA20024DD78 /* Sensor-App-Framework */,
-				1527B02724C4AA240024DD78 /* Sensor-AppTests */,
-				1527B03224C4AA240024DD78 /* Sensor-AppUITests */,
+				1527B02724C4AA240024DD78 /* Sensor-AppiOSUnitTests */,
+				1527B03224C4AA240024DD78 /* Sensor-AppiOSUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -763,7 +850,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NLF7894S7W;
-				INFOPLIST_FILE = "$(SRCROOT)/Sensor-AppTests/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)//Tests/iOSUnitTests//Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -788,7 +875,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NLF7894S7W;
-				INFOPLIST_FILE = "$(SRCROOT)/Sensor-AppTests/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)//Tests/iOSUnitTests//Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -812,7 +899,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NLF7894S7W;
-				INFOPLIST_FILE = "$(SRCROOT)/Sensor-AppUITests/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Tests/iOSUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -835,7 +922,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NLF7894S7W;
-				INFOPLIST_FILE = "$(SRCROOT)/Sensor-AppUITests/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Tests/iOSUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -992,7 +1079,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1527B03F24C4AA240024DD78 /* Build configuration list for PBXNativeTarget "Sensor-AppTests" */ = {
+		1527B03F24C4AA240024DD78 /* Build configuration list for PBXNativeTarget "Sensor-AppiOSUnitTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1527B04024C4AA240024DD78 /* Debug */,
@@ -1001,7 +1088,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1527B04224C4AA240024DD78 /* Build configuration list for PBXNativeTarget "Sensor-AppUITests" */ = {
+		1527B04224C4AA240024DD78 /* Build configuration list for PBXNativeTarget "Sensor-AppiOSUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1527B04324C4AA240024DD78 /* Debug */,
