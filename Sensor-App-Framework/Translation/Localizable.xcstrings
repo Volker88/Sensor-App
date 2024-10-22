@@ -2,14 +2,22 @@
   "sourceLanguage" : "en",
   "strings" : {
     "" : {
-
+      "shouldTranslate" : false
     },
     "%.0f" : {
       "comment" : "SettingsScreen - Max Points Slider",
       "shouldTranslate" : false
     },
     "%.0f per Second" : {
-      "comment" : "RefreshRateView - Value"
+      "comment" : "RefreshRateView - Value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%.0f pro Sekunde"
+          }
+        }
+      }
     },
     "%.1f km" : {
       "comment" : "SettingsScreen - ZoomSlider",
@@ -21,6 +29,12 @@
     "%@ %.0f Hz" : {
       "comment" : "RefreshRateView - Refresh Rate",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ %2$.0f Hz"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "new",
@@ -38,7 +52,8 @@
       "shouldTranslate" : false
     },
     "50" : {
-      "comment" : "RefreshRateView - Label 50"
+      "comment" : "RefreshRateView - Label 50",
+      "shouldTranslate" : false
     },
     "100 km" : {
       "comment" : "SettingsScreen - 100km",
@@ -199,8 +214,15 @@
         }
       }
     },
-    "Frequenz: %lld Hz" : {
-
+    "Frequency: %lld Hz" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Frequenz: %lld Hz"
+          }
+        }
+      }
     },
     "General" : {
       "comment" : "SettingsScreen - General Section",
@@ -331,7 +353,11 @@
       }
     },
     "ID:%lld" : {
-      "comment" : "AccelerationList - ID\nAltitudeList - ID\nAttitudeList - ID\nGravityList - ID\nGyroscopeList - ID\nMagnetometerList - ID"
+      "comment" : "AccelerationList - ID\nAltitudeList - ID\nAttitudeList - ID\nGravityList - ID\nGyroscopeList - ID\nMagnetometerList - ID",
+      "shouldTranslate" : false
+    },
+    "Index" : {
+      "shouldTranslate" : false
     },
     "Latitude: %.6f° ± %.2fm" : {
       "comment" : "LocationView - Latitude",
@@ -624,18 +650,6 @@
         }
       }
     },
-    "Sidebar" : {
-      "comment" : "NavigationBar Title - Sidebar",
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Seitenleiste"
-          }
-        }
-      }
-    },
     "Speed Setting" : {
       "comment" : "SettingsScreen - Speed Setting\nSettingsView - Speed Setting (watchOS)",
       "localizations" : {
@@ -648,7 +662,14 @@
       }
     },
     "Speed: %.1f %@" : {
+      "comment" : "Geschwindigkeit: %1$.1f %2$@",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Geschwindigkeit: %1$.1f %2$@"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "new",
@@ -686,6 +707,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Typ"
+          }
+        }
+      }
+    },
+    "Value" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wert"
           }
         }
       }

@@ -27,38 +27,47 @@ struct LineGraphSubView: View {
     }
 
     var motion: some View {
-        Chart(
-            motionManager.motionArray.suffix(settingsManager.fetchUserSettings().graphMaxPointsInt()),
-            id: \.self
-        ) { item in
-            LineMark(
-                x: .value("", item.timestamp),
-                y: .value("", item.graphValue(for: showGraph))
-            )
+        Chart {
+                ForEach(motionManager.motionChart, id: \.self) { item in
+                    LineMark(
+                        x: .value("Index", item.counter),
+                        y: .value("Value", item.graphValue(for: showGraph))
+                    )
+                    .interpolationMethod(.linear)
+                }
+        }
+        .chartYAxis {
+            AxisMarks(position: .leading)
         }
     }
 
     var altitude: some View {
-        Chart(
-            motionManager.altitudeArray.suffix(settingsManager.fetchUserSettings().graphMaxPointsInt()),
-            id: \.self
-        ) { item in
-            LineMark(
-                x: .value("", item.timestamp),
-                y: .value("", item.graphValue(for: showGraph))
-            )
+        Chart {
+            ForEach(motionManager.altitudeChart, id: \.self) { item in
+                LineMark(
+                    x: .value("Index", item.counter),
+                    y: .value("Value", item.graphValue(for: showGraph))
+                )
+                .interpolationMethod(.linear)
+            }
+        }
+        .chartYAxis {
+            AxisMarks(position: .leading)
         }
     }
 
     var location: some View {
-        Chart(
-            locationManager.locationArray.suffix(settingsManager.fetchUserSettings().graphMaxPointsInt()),
-            id: \.self
-        ) { item in
-            LineMark(
-                x: .value("", item.timestamp),
-                y: .value("", item.graphValue(for: showGraph))
-            )
+        Chart {
+            ForEach(locationManager.locationChart, id: \.self) { item in
+                LineMark(
+                    x: .value("Index", item.counter),
+                    y: .value("Value", item.graphValue(for: showGraph))
+                )
+                .interpolationMethod(.linear)
+            }
+        }
+        .chartYAxis {
+            AxisMarks(position: .leading)
         }
     }
 

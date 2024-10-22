@@ -14,6 +14,7 @@ class LocationManager {
 
     var location: LocationModel?
     var locationArray: [LocationModel] = []
+    var locationChart: [LocationModel] = []
 
     var updatesStarted: Bool = false
 
@@ -59,9 +60,14 @@ class LocationManager {
                     )
                     location = latestLocation
                     locationArray.append(latestLocation)
+                    locationChart.append(latestLocation)
 
-                    print(latestLocation.course)
                     index += 1
+
+                    if self.locationChart.count > self.settings.fetchUserSettings().graphMaxPointsInt() {
+                        self.locationChart.removeFirst()
+                    }
+
                 }
             }
         }
@@ -75,6 +81,7 @@ class LocationManager {
     func resetLocationUpdates() {
         index = 1
         locationArray.removeAll()
+        locationChart.removeAll()
     }
 
     func mockData() {

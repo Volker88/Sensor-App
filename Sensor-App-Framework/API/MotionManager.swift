@@ -18,8 +18,10 @@ class MotionManager {
 
     var motion: MotionModel?
     var motionArray: [MotionModel] = []
+    var motionChart: [MotionModel] = []
     var altitude: AltitudeModel?
     var altitudeArray: [AltitudeModel] = []
+    var altitudeChart: [AltitudeModel] = []
 
     var sensorUpdateInterval: Double = 1.0 {
         didSet {
@@ -66,8 +68,13 @@ class MotionManager {
                 DispatchQueue.main.async {
                     self.motion = model
                     self.motionArray.append(model)
+                    self.motionChart.append(model)
 
                     self.motionCounter += 1
+
+                    if self.motionChart.count > self.settings.fetchUserSettings().graphMaxPointsInt() {
+                        self.motionChart.removeFirst()
+                    }
                 }
             }
         }
@@ -92,7 +99,13 @@ class MotionManager {
                 DispatchQueue.main.async {
                     self.altitude = model
                     self.altitudeArray.append(model)
+                    self.altitudeChart.append(model)
+
                     self.altitudeCounter += 1
+
+                    if self.altitudeChart.count > self.settings.fetchUserSettings().graphMaxPointsInt() {
+                        self.altitudeChart.removeFirst()
+                    }
                 }
             }
         }
@@ -105,7 +118,10 @@ class MotionManager {
 
     func resetMotionUpdates() {
         motionArray.removeAll()
+        motionChart.removeAll()
+
         altitudeArray.removeAll()
+        altitudeChart.removeAll()
 
         motionCounter = 1
         altitudeCounter = 1

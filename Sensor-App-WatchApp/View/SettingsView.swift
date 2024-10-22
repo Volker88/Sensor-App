@@ -65,7 +65,7 @@ struct SettingsView: View {
             Section(header:
                         Text("Refresh Rate", comment: "SettingsView - Refresh Rate Section (watchOS)")
             ) {
-                Text("Frequenz: \(Int(refreshRate)) Hz")
+                Text("Frequency: \(Int(refreshRate)) Hz")
 
                 Slider(value: $refreshRate, in: 1...10, step: 1) { _ in
 
