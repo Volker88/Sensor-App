@@ -434,6 +434,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1527B03F24C4AA240024DD78 /* Build configuration list for PBXNativeTarget "Sensor-AppiOSUnitTests" */;
 			buildPhases = (
+				151F1D762CEDED2100A7AC05 /* Swiftlint */,
 				1527B02424C4AA240024DD78 /* Sources */,
 				1527B02524C4AA240024DD78 /* Frameworks */,
 				1527B02624C4AA240024DD78 /* Resources */,
@@ -452,6 +453,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1527B04224C4AA240024DD78 /* Build configuration list for PBXNativeTarget "Sensor-AppiOSUITests" */;
 			buildPhases = (
+				151F1D772CEDED2E00A7AC05 /* Swiftlint */,
 				1527B02F24C4AA240024DD78 /* Sources */,
 				1527B03024C4AA240024DD78 /* Frameworks */,
 				1527B03124C4AA240024DD78 /* Resources */,
@@ -495,6 +497,7 @@
 			buildConfigurationList = 1527B08224C4ACA20024DD78 /* Build configuration list for PBXNativeTarget "Sensor-App-Framework" */;
 			buildPhases = (
 				1527B07424C4ACA20024DD78 /* Headers */,
+				151F1D742CEDED0500A7AC05 /* Swiftlint */,
 				1527B07524C4ACA20024DD78 /* Sources */,
 				1527B07624C4ACA20024DD78 /* Frameworks */,
 				1527B07724C4ACA20024DD78 /* Resources */,
@@ -520,6 +523,7 @@
 				15F1BBA52CAFCF1E00C80A1F /* Sources */,
 				15F1BBA62CAFCF1E00C80A1F /* Frameworks */,
 				15F1BBA72CAFCF1E00C80A1F /* Resources */,
+				151F1D782CEDED3F00A7AC05 /* Swiftlint */,
 			);
 			buildRules = (
 			);
@@ -638,6 +642,82 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		151F1D742CEDED0500A7AC05 /* Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Swiftlint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+		151F1D762CEDED2100A7AC05 /* Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Swiftlint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+		151F1D772CEDED2E00A7AC05 /* Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Swiftlint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+		151F1D782CEDED3F00A7AC05 /* Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Swiftlint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
 		15906B5F258CCF700021E7BE /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;

@@ -18,23 +18,16 @@ final class ExtensionTests {
     deinit { }
 
     // MARK: - Testing Methods
-    @Test("Test double extension to round up")
-    func doubleExtensionRoundUp() throws {
-        let number = 100.000005
-        let decimalDigits = 5
+    @Test("Test double extension to round",
+          arguments: [
+            (input: 100.005, result: 100.01),
+//            (input: 100.0045, result: 100.01),
+            (input: 100.0040, result: 100.00),
+            (input: 100.0044, result: 100.00)
+          ])
+    func doubleExtensionRound(input: Double, result: Double) throws {
+        let calculation = input.rounded(toPlaces: 2)
 
-        let rounded = number.rounded(toPlaces: decimalDigits)
-
-        #expect(rounded == 100.00001)
-    }
-
-    @Test("Test double extension to round down")
-    func doubleExtensionRoundDown() throws {
-        let number = 100.111114
-        let decimalDigits = 5
-
-        let rounded = number.rounded(toPlaces: decimalDigits)
-
-        #expect(rounded == 100.11111)
+        #expect(calculation == result)
     }
 }
