@@ -37,7 +37,11 @@ struct DetailColumn: View {
 }
 
 // MARK: - Preview
-#Preview {
-    DetailColumn()
-        .previewNavigationStackWrapper()
+#Preview("DetailColumn - English", traits: .navEmbedded) {
+    ContentView()
+}
+
+#Preview("DetailColumn - German", traits: .navEmbedded) {
+    ContentView()
+        .previewLocalization(.german)
 }

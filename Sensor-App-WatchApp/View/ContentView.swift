@@ -44,13 +44,17 @@ struct ContentView: View {
             }
         }
         .accessibilityIdentifier("Navigation")
-        .navigationTitle(NSLocalizedString("Home", comment: "ContentView - NavigationBar Title (watchOS)"))
+        .navigationTitle(Text("Home", comment: "NavigationBar Title - Home screen"))
         .listStyle(CarouselListStyle())
     }
 }
 
 // MARK: - Preview
-#Preview {
+#Preview("ContentView - English") {
     ContentView()
-        .previewNavigationStackWrapper()
+}
+
+#Preview("ContentView - German") {
+    ContentView()
+        .previewLocalization(.german)
 }

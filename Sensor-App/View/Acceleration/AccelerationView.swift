@@ -69,7 +69,11 @@ struct AccelerationView: View {
 }
 
 // MARK: - Preview
-#Preview {
+#Preview("AccelerationView - English", traits: .navEmbedded) {
     AccelerationView()
-        .previewNavigationStackWrapper()
+}
+
+#Preview("AccelerationView - German", traits: .navEmbedded) {
+    AccelerationView()
+        .previewLocalization(.german)
 }

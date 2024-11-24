@@ -17,18 +17,18 @@ struct GyroscopeList: View {
     var body: some View {
         List(motionManager.motionArray.reversed(), id: \.self) { item in
             HStack {
-                Text("ID:\(item.counter)", comment: "GyroscopeList - ID")
+                Text("#\(item.counter)", comment: "Incrementing counter for each item.  DO NOT TRANSLATE")
                 Spacer()
-                Text("X:\(item.gyroXAxis, specifier: "%.5f")", comment: "GyroscopeList - X")
+                Text("X:\(item.gyroXAxis, specifier: "%.5f")", comment: "First Letter as shortcut for X-Axis")
                 Spacer()
-                Text("Y:\(item.gyroYAxis, specifier: "%.5f")", comment: "GyroscopeList - Y")
+                Text("Y:\(item.gyroYAxis, specifier: "%.5f")", comment: "First Letter as shortcut for Y-Axis")
                 Spacer()
-                Text("Z:\(item.gyroZAxis, specifier: "%.5f")", comment: "GyroscopeList - Z")
+                Text("Z:\(item.gyroZAxis, specifier: "%.5f")", comment: "First Letter as shortcut for Z-Axis")
             }
             .font(.footnote)
         }
         .listStyle(.plain)
-        .navigationTitle(NSLocalizedString("Gyroscope", comment: "NavigationBar Title - GyroscopeList"))
+        .navigationTitle(Text("Gyroscope", comment: "NavigationBar Title - Gyroscope sensor list view"))
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 ShareSheet(url: shareCSV())
@@ -50,7 +50,11 @@ struct GyroscopeList: View {
 }
 
 // MARK: - Preview
-#Preview {
+#Preview("GyroscopeList - English", traits: .navEmbedded) {
     GyroscopeList()
-        .previewNavigationStackWrapper()
+}
+
+#Preview("GyroscopeList - German", traits: .navEmbedded) {
+    GyroscopeList()
+        .previewLocalization(.german)
 }

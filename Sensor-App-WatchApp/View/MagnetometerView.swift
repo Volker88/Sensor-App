@@ -22,7 +22,7 @@ struct MagnetometerView: View {
             Text("Y-Axis: \(motionManager.motion?.magnetometerYAxis ?? 0.0, specifier: "%.5f") µT", comment: "MagnetometerView - Y-Axis (watchOS)")
             Text("Z-Axis: \(motionManager.motion?.magnetometerZAxis ?? 0.0, specifier: "%.5f") µT", comment: "MagnetometerView - Z-Axis (watchOS)")
         }
-        .navigationTitle(NSLocalizedString("Magnetometer", comment: "MagnetometerView - NavigationBar Title (watchOS)"))
+        .navigationTitle(Text("Magnetometer", comment: "NavigationBar Title - Magnetometer sensor screen"))
         .font(.footnote)
         .onAppear(perform: onAppear)
         .onDisappear(perform: onDisappear)
@@ -45,7 +45,11 @@ struct MagnetometerView: View {
 }
 
 // MARK: - Preview
-#Preview {
+#Preview("MagnetometerView - English") {
     MagnetometerView()
-        .previewNavigationStackWrapper()
+}
+
+#Preview("MagnetometerView - German") {
+    MagnetometerView()
+        .previewLocalization(.german)
 }

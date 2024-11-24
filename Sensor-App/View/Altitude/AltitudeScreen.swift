@@ -17,7 +17,7 @@ struct AltitudeScreen: View {
             .toolbar {
                 CustomToolbar()
             }
-            .navigationTitle(NSLocalizedString("Altitude", comment: "NavigationBar Title - Altitude"))
+            .navigationTitle(Text("Altitude", comment: "NavigationBar Title - Altitude sensor screen"))
             .navigationDestination(for: Route.self, destination: { route in
                 switch route {
                     case .altitudeList:
@@ -33,7 +33,11 @@ struct AltitudeScreen: View {
 }
 
 // MARK: - Preview
-#Preview {
+#Preview("AltitudeScreen - English", traits: .navEmbedded) {
     AltitudeScreen()
-        .previewNavigationStackWrapper()
+}
+
+#Preview("AltitudeScreen - German", traits: .navEmbedded) {
+    AltitudeScreen()
+        .previewLocalization(.german)
 }

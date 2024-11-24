@@ -69,7 +69,11 @@ struct GravityView: View {
 }
 
 // MARK: - Preview
-#Preview {
+#Preview("GravityView - English", traits: .navEmbedded) {
     GravityView()
-        .previewNavigationStackWrapper()
+}
+
+#Preview("GravityView - German", traits: .navEmbedded) {
+    GravityView()
+        .previewLocalization(.german)
 }

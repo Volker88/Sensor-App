@@ -17,7 +17,7 @@ struct AttitudeScreen: View {
             .toolbar {
                 CustomToolbar()
             }
-            .navigationTitle(NSLocalizedString("Attitude", comment: "NavigationBar Title - Attitude"))
+            .navigationTitle(Text("Attitude", comment: "NavigationBar Title - Attitude sensor screen"))
             .navigationDestination(for: Route.self, destination: { route in
                 switch route {
                     case .attitudeList:
@@ -34,7 +34,11 @@ struct AttitudeScreen: View {
 }
 
 // MARK: - Preview
-#Preview {
+#Preview("AttitudeScreen - English", traits: .navEmbedded) {
     AttitudeScreen()
-        .previewNavigationStackWrapper()
+}
+
+#Preview("AttitudeScreen - German", traits: .navEmbedded) {
+    AttitudeScreen()
+        .previewLocalization(.german)
 }

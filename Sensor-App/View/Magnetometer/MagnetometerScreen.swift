@@ -17,7 +17,7 @@ struct MagnetometerScreen: View {
             .toolbar {
                 CustomToolbar()
             }
-            .navigationTitle(NSLocalizedString("Magnetometer", comment: "NavigationBar Title - Magnetometer"))
+            .navigationTitle(Text("Magnetometer", comment: "NavigationBar Title - Magnetometer sensor screen"))
             .navigationDestination(for: Route.self, destination: { route in
                 switch route {
                     case .magnetometerList:
@@ -33,7 +33,11 @@ struct MagnetometerScreen: View {
 }
 
 // MARK: - Preview
-#Preview {
+#Preview("MagnetometerScreen - English", traits: .navEmbedded) {
     MagnetometerScreen()
-        .previewNavigationStackWrapper()
+}
+
+#Preview("MagnetometerScreen - German", traits: .navEmbedded) {
+    MagnetometerScreen()
+        .previewLocalization(.german)
 }

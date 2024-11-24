@@ -17,7 +17,7 @@ struct GyroscopeScreen: View {
             .toolbar {
                 CustomToolbar()
             }
-            .navigationTitle(NSLocalizedString("Gyroscope", comment: "NavigationBar Title - Gyroscope"))
+            .navigationTitle(Text("Gyroscope", comment: "NavigationBar Title - Gyroscope sensor screen"))
             .navigationDestination(for: Route.self, destination: { route in
                 switch route {
                     case .gyroscopeList:
@@ -33,7 +33,11 @@ struct GyroscopeScreen: View {
 }
 
 // MARK: - Preview
-#Preview {
+#Preview("GyroscopeScreen - English", traits: .navEmbedded) {
     GyroscopeScreen()
-        .previewNavigationStackWrapper()
+}
+
+#Preview("GyroscopeScreen - German", traits: .navEmbedded) {
+    GyroscopeScreen()
+        .previewLocalization(.german)
 }

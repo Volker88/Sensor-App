@@ -17,7 +17,7 @@ struct GravityScreen: View {
             .toolbar {
                 CustomToolbar()
             }
-            .navigationTitle(NSLocalizedString("Gravity", comment: "NavigationBar Title - Gravity"))
+            .navigationTitle(Text("Gravity", comment: "NavigationBar Title - Gravity"))
             .navigationDestination(for: Route.self, destination: { route in
                 switch route {
                     case .gravityList:
@@ -33,7 +33,11 @@ struct GravityScreen: View {
 }
 
 // MARK: - Preview
-#Preview {
+#Preview("GravityScreen - English", traits: .navEmbedded) {
     GravityScreen()
-        .previewNavigationStackWrapper()
+}
+
+#Preview("GravityScreen - German", traits: .navEmbedded) {
+    GravityScreen()
+        .previewLocalization(.german)
 }

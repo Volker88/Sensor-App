@@ -16,49 +16,85 @@ struct Sidebar: View {
         List(selection: Bindable(appState).selectedScreen) {
             if sizeClass == .regular {
                 NavigationLink(value: Screen.homeScreen) {
-                    Label(NSLocalizedString("Home", comment: "Sidebbar - Location"), systemImage: "house")
-                        .accessibility(identifier: "Home")
+                    Label {
+                        Text("Home", comment: "")
+                    } icon: {
+                        Image(systemName: "house")
+                    }
+                    .accessibility(identifier: "Home")
                 }
             }
 
             NavigationLink(value: Screen.location) {
-                Label(NSLocalizedString("Location", comment: "Sidebbar - Location"), systemImage: "location")
-                    .accessibility(identifier: "Location")
+                Label {
+                    Text("Location", comment: "")
+                } icon: {
+                    Image(systemName: "location")
+                }
+                .accessibility(identifier: "Location")
             }
 
             NavigationLink(value: Screen.acceleration) {
-                Label(NSLocalizedString("Acceleration", comment: "Sidebbar - Acceleration"), systemImage: "globe")
-                    .accessibility(identifier: "Acceleration")
+                Label {
+                    Text("Acceleration", comment: "")
+                } icon: {
+                    Image(systemName: "lines.measurement.horizontal")
+                }
+                .accessibility(identifier: "Acceleration")
             }
 
             NavigationLink(value: Screen.gravity) {
-                Label(NSLocalizedString("Gravity", comment: "Sidebbar - Gravity"), systemImage: "globe")
-                    .accessibility(identifier: "Gravity")
+                Label {
+                    Text("Gravity", comment: "")
+                } icon: {
+                    Image(systemName: "lines.measurement.horizontal")
+                }
+                .accessibility(identifier: "Gravity")
             }
 
             NavigationLink(value: Screen.gyroscope) {
-                Label(NSLocalizedString("Gyroscope", comment: "Sidebbar - Gyroscope"), systemImage: "globe")
-                    .accessibility(identifier: "Gyroscope")
+                Label {
+                    Text("Gyroscope", comment: "")
+                } icon: {
+                    Image(systemName: "lines.measurement.horizontal")
+                }
+                .accessibility(identifier: "Gyroscope")
             }
 
             NavigationLink(value: Screen.magnetometer) {
-                Label(NSLocalizedString("Magnetometer", comment: "Sidebbar - Magnetometer"), systemImage: "globe")
-                    .accessibility(identifier: "Magnetometer")
+                Label {
+                    Text("Magnetometer", comment: "")
+                } icon: {
+                    Image(systemName: "lines.measurement.horizontal")
+                }
+                .accessibility(identifier: "Magnetometer")
             }
 
             NavigationLink(value: Screen.attitude) {
-                Label(NSLocalizedString("Attitude", comment: "Sidebbar - Attitude"), systemImage: "globe")
-                    .accessibility(identifier: "Attitude")
+                Label {
+                    Text("Attitude", comment: "")
+                } icon: {
+                    Image(systemName: "lines.measurement.horizontal")
+                }
+                .accessibility(identifier: "Attitude")
             }
 
             NavigationLink(value: Screen.altitude) {
-                Label(NSLocalizedString("Altitude", comment: "Sidebbar - Altitude"), systemImage: "globe")
-                    .accessibility(identifier: "Altitude")
+                Label {
+                    Text("Altitude", comment: "")
+                } icon: {
+                    Image(systemName: "lines.measurement.horizontal")
+                }
+                .accessibility(identifier: "Altitude")
             }
 
             NavigationLink(value: Screen.settings) {
-                Label(NSLocalizedString("Settings", comment: "Sidebbar - Settings"), systemImage: "gear")
-                    .accessibility(identifier: "Settings")
+                Label {
+                    Text("Settings", comment: "")
+                } icon: {
+                    Image(systemName: "gear")
+                }
+                .accessibility(identifier: "Settings")
             }
         }
         .listStyle(.sidebar)
@@ -72,15 +108,18 @@ struct Sidebar: View {
                 list
             } else {
                 list
-                    .navigationTitle("Home")
+                    .navigationTitle(Text("Home", comment: "NavigationBar Title - Home Screen"))
             }
         }
     }
 }
 
 // MARK: - Preview
-#Preview {
+#Preview("Sidebar - English", traits: .navEmbedded) {
     Sidebar()
-        .environment(AppState())
-        .previewNavigationStackWrapper()
+}
+
+#Preview("Sidebar - German", traits: .navEmbedded) {
+    Sidebar()
+        .previewLocalization(.german)
 }

@@ -22,7 +22,7 @@ struct GyroscopeView: View {
             Text("Y-Axis: \(motionManager.motion?.gyroYAxis ?? 0.0, specifier: "%.5f") rad/s", comment: "GyroscopeView - Y-Axis (watchOS)")
             Text("Z-Axis: \(motionManager.motion?.gyroZAxis ?? 0.0, specifier: "%.5f") rad/s", comment: "GyroscopeView - Z-Axis (watchOS)")
         }
-        .navigationTitle(NSLocalizedString("Gyroscope", comment: "GyroscopeView - NavigationBar Title (watchOS)"))
+        .navigationTitle(Text("Gyroscope", comment: "NavigationBar Title - Gyroscope sensor screen"))
         .font(.footnote)
         .onAppear(perform: onAppear)
         .onDisappear(perform: onDisappear)
@@ -45,7 +45,11 @@ struct GyroscopeView: View {
 }
 
 // MARK: - Preview
-#Preview {
+#Preview("GyroscopeView - English") {
     GyroscopeView()
-        .previewNavigationStackWrapper()
+}
+
+#Preview("GyroscopeView - German") {
+    GyroscopeView()
+        .previewLocalization(.german)
 }

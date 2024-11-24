@@ -15,6 +15,70 @@
         "language" : "de",
         "region" : "DE"
       }
+    },
+    {
+      "id" : "F7459E10-91BC-4764-8CE9-7B1493341185",
+      "name" : "Configuration 3 (zh)",
+      "options" : {
+        "language" : "zh-HK",
+        "region" : "CN"
+      }
+    },
+    {
+      "id" : "3E7E69A0-42EC-469D-B7E6-2A2B599DC51A",
+      "name" : "Configuration 4 (cs)",
+      "options" : {
+        "language" : "cs",
+        "region" : "CZ"
+      }
+    },
+    {
+      "id" : "3F8D734D-CF71-4168-962F-91EF8472438F",
+      "name" : "Configuration 5 (fr)",
+      "options" : {
+        "language" : "fr",
+        "region" : "FR"
+      }
+    },
+    {
+      "id" : "6B245BEB-26C9-4E38-A13A-278074ACE10F",
+      "name" : "Configuration 6 (it)",
+      "options" : {
+        "language" : "it",
+        "region" : "IT"
+      }
+    },
+    {
+      "id" : "703C143B-D6AB-45DB-8928-5DD4008CE274",
+      "name" : "Configuration 7 (ja)",
+      "options" : {
+        "language" : "ja",
+        "region" : "JP"
+      }
+    },
+    {
+      "id" : "858B5189-85C7-4E57-9230-C21706026072",
+      "name" : "Configuration 8 (ko)",
+      "options" : {
+        "language" : "ko",
+        "region" : "KR"
+      }
+    },
+    {
+      "id" : "5BD4FA6A-A868-47C5-B86F-B791980B28F6",
+      "name" : "Configuration 9 (pt)",
+      "options" : {
+        "language" : "pt-PT",
+        "region" : "PT"
+      }
+    },
+    {
+      "id" : "EEE7F9AF-5FD5-4C8B-89F1-043AAEE786EA",
+      "name" : "Configuration 10 (es)",
+      "options" : {
+        "language" : "es",
+        "region" : "ES"
+      }
     }
   ],
   "defaultOptions" : {

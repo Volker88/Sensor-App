@@ -17,7 +17,7 @@ struct AccelerationScreen: View {
             .toolbar {
                 CustomToolbar()
             }
-            .navigationTitle(NSLocalizedString("Acceleration", comment: "NavigationBar Title - Acceleration"))
+            .navigationTitle(Text("Acceleration", comment: "NavigationBar Title - Acceleration sensor screen"))
             .navigationDestination(for: Route.self, destination: { route in
                 switch route {
                     case .accelerationList:
@@ -33,7 +33,11 @@ struct AccelerationScreen: View {
 }
 
 // MARK: - Preview
-#Preview {
+#Preview("AccelerationScreen - English", traits: .navEmbedded) {
     AccelerationScreen()
-        .previewNavigationStackWrapper()
+}
+
+#Preview("AccelerationScreen - German", traits: .navEmbedded) {
+    AccelerationScreen()
+        .previewLocalization(.german)
 }

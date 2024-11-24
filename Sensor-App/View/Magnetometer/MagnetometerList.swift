@@ -17,17 +17,17 @@ struct MagnetometerList: View {
     var body: some View {
         List(motionManager.motionArray.reversed(), id: \.self) { item in
             HStack {
-                Text("ID:\(item.counter)", comment: "MagnetometerList - ID")
+                Text("#\(item.counter)", comment: "Incrementing counter for each item.  DO NOT TRANSLATE")
                 Spacer()
-                Text("X:\(item.magnetometerXAxis, specifier: "%.5f")", comment: "MagnetometerList - X")
+                Text("X:\(item.magnetometerXAxis, specifier: "%.5f")", comment: "First Letter as shortcut for X-Axis")
                 Spacer()
-                Text("Y:\(item.magnetometerYAxis, specifier: "%.5f")", comment: "MagnetometerList - Y")
+                Text("Y:\(item.magnetometerYAxis, specifier: "%.5f")", comment: "First Letter as shortcut for Y-Axis")
                 Spacer()
-                Text("Z:\(item.magnetometerZAxis, specifier: "%.5f")", comment: "MagnetometerList - Z")
+                Text("Z:\(item.magnetometerZAxis, specifier: "%.5f")", comment: "First Letter as shortcut for Z-Axis")
             }
             .font(.footnote)
         }
-        .navigationTitle(NSLocalizedString("Magnetometer", comment: "NavigationBar Title - MagnetometerList"))
+        .navigationTitle(Text("Magnetometer", comment: "NavigationBar Title - Magnetometer sensor list view"))
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 ShareSheet(url: shareCSV())
@@ -49,7 +49,11 @@ struct MagnetometerList: View {
 }
 
 // MARK: - Preview
-#Preview {
+#Preview("MagnetometerList - English", traits: .navEmbedded) {
     MagnetometerList()
-        .previewNavigationStackWrapper()
+}
+
+#Preview("MagnetometerList - German", traits: .navEmbedded) {
+    MagnetometerList()
+        .previewLocalization(.german)
 }

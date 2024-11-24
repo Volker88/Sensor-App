@@ -15,8 +15,11 @@ struct ShareSheet: View {
     // MARK: - Body
     var body: some View {
         ShareLink(item: url) {
-            Label(NSLocalizedString("Export", comment: "AccelerationView - Export List"),
-                  systemImage: "square.and.arrow.up")
+            Label {
+                Text("Export", comment: "Export button to export data as csv file")
+            } icon: {
+                Image(systemName: "square.and.arrow.up")
+            }
         }
     }
 }

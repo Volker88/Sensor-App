@@ -18,7 +18,7 @@ struct LocationScreen: View {
             .toolbar {
                 CustomToolbar()
             }
-            .navigationTitle(NSLocalizedString("Location", comment: "NavigationBar Title - Location"))
+            .navigationTitle(Text("Location", comment: "NavigationBar Title - Location view screen"))
             .navigationDestination(for: Route.self, destination: { route in
                 switch route {
                     case .location:
@@ -36,7 +36,11 @@ struct LocationScreen: View {
 }
 
 // MARK: - Preview
-#Preview {
+#Preview("LocationScreen - English", traits: .navEmbedded) {
     LocationScreen()
-        .previewNavigationStackWrapper()
+}
+
+#Preview("LocationScreen - German", traits: .navEmbedded) {
+    LocationScreen()
+        .previewLocalization(.german)
 }

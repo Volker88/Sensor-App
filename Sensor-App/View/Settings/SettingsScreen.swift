@@ -13,18 +13,20 @@ struct SettingsScreen: View {
     @Environment(\.showNotification) var showNotification
     @Environment(SettingsManager.self) private var settingsManager
 
+    @AppStorage("showReleaseNotes") private var showReleaseNotes = true
+
     // MARK: - Body
     var body: some View {
         Form {
             Section(header:
                         Text("General", comment: "SettingsScreen - General Section")
             ) {
-                Toggle(isOn: Bindable(settingsManager).userSettings.showReleaseNotes, label: {
+                Toggle(isOn: $showReleaseNotes, label: {
                     Text("Show Release Notes", comment: "SettingsScreen - Show Release Notes")
                 })
             }
             Section(header:
-                        Text("App Icon", comment: "SettingsScreen - App Icon")
+                        Text("App Icon", comment: "Section header - Icon of the App")
             ) {
                 HStack {
                     ForEach(0..<settingsManager.iconNames.count, id: \.self) { index in
@@ -111,12 +113,11 @@ struct SettingsScreen: View {
                 }.accessibility(identifier: "Zoom Stepper")
 
                 HStack {
-                    Text("0.1 km", comment: "SettingsScreen - 0.1km")
+                    Text("0.1 km")
                     Slider(value: Bindable(settingsManager).mapSettings.zoom, in: 100...100000, step: 100)
                         .accessibility(identifier: "Zoom Slider")
-                        .accessibility(label: Text("Zoom:", comment: "SettingsScreen - ZoomSlider"))
-                        .accessibility(value: Text("\(settingsManager.mapSettings.zoom, specifier: "%.1f") km", comment: "SettingsScreen - ZoomSlider"))
-                    Text("100 km", comment: "SettingsScreen - 100km")
+                        .accessibility(label: Text("Zoom:", comment: "Zoom level for map view"))
+                    Text("100 km")
                 }
             }
 
@@ -150,16 +151,21 @@ struct SettingsScreen: View {
                          comment: "SettingsScreen - Max Points")
                 }.accessibility(identifier: "Max Points Stepper")
                 HStack {
-                    Text("1", comment: "SettingsScreen - 1")
+                    Text("1")
                     Slider(
                         value: Bindable(settingsManager).userSettings.graphMaxPoints,
                         in: 1...1000,
                         step: 1
                     )
                     .accessibility(identifier: "Max Points Slider")
-                    .accessibility(label: Text("Maximum Points:", comment: "SettingsScreen - Max Points Slider"))
+                    .accessibility(
+                        label: Text(
+                            "Maximum Points:",
+                            comment: "Slider to update how many data points are shown on the graph"
+                        )
+                    )
                     .accessibility(value: Text("\(settingsManager.userSettings.graphMaxPoints, specifier: "%.0f")", comment: "SettingsScreen - Max Points Slider"))
-                    Text("1000", comment: "SettingsScreen - 1000")
+                    Text("1000")
                 }
             }
 
@@ -168,7 +174,7 @@ struct SettingsScreen: View {
                     saveSettings()
                 }) {
                     Text("Save", comment: "NagvigationBarButton - Save")
-                        .accessibility(label: Text("Save", comment: "NagvigationBarButton - Save"))
+                        .accessibility(label: Text("Save", comment: "Button to save settings"))
                         .accessibility(identifier: "Save")
                 }
 
@@ -176,13 +182,13 @@ struct SettingsScreen: View {
                     discardChanges(showNotification: true)
                 }) {
                     Text("Discard", comment: "NagvigationBarButton - Discard Changes")
-                        .accessibility(label: Text("Discard", comment: "NagvigationBarButton - Discard Changes"))
+                        .accessibility(label: Text("Discard", comment: "Button to discard changes"))
                         .accessibility(identifier: "Discard")
                 }
             }
             .buttonStyle(BorderlessButtonStyle())
         }
-        .navigationTitle(NSLocalizedString("Settings", comment: "NavigationBar Title - Settings"))
+        .navigationTitle(Text("Settings", comment: "NavigationBar Title - Settings screen"))
         .onAppear {
             discardChanges(showNotification: false)
         }
@@ -206,7 +212,11 @@ struct SettingsScreen: View {
 }
 
 // MARK: - Preview
-#Preview {
+#Preview("SettingsScreen - English", traits: .navEmbedded) {
     SettingsScreen()
-        .previewNavigationStackWrapper()
+}
+
+#Preview("SettingsScreen - German", traits: .navEmbedded) {
+    SettingsScreen()
+        .previewLocalization(.german)
 }

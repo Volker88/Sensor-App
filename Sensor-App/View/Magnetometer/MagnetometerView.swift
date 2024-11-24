@@ -69,7 +69,11 @@ struct MagnetometerView: View {
 }
 
 // MARK: - Preview
-#Preview {
+#Preview("MagnetometerView - English", traits: .navEmbedded) {
     MagnetometerView()
-        .previewNavigationStackWrapper()
+}
+
+#Preview("MagnetometerView - German", traits: .navEmbedded) {
+    MagnetometerView()
+        .previewLocalization(.german)
 }

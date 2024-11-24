@@ -22,7 +22,7 @@ struct GravityView: View {
             Text("Y-Axis: \(motionManager.motion?.gravityYAxis ?? 0.0, specifier: "%.5f") g (9,81 m/s^2)", comment: "GravityView - Y-Axis (watchOS)")
             Text("Z-Axis: \(motionManager.motion?.gravityZAxis ?? 0.0, specifier: "%.5f") g (9,81 m/s^2)", comment: "GravityView - Z-Axis (watchOS)")
         }
-        .navigationTitle(NSLocalizedString("Gravity", comment: "GravityView - NavigationBar Title (watchOS)"))
+        .navigationTitle(Text("Gravity", comment: "NavigationBar Title - Gravity sensor screen"))
         .font(.footnote)
         .onAppear(perform: onAppear)
         .onDisappear(perform: onDisappear)
@@ -44,7 +44,12 @@ struct GravityView: View {
     }
 }
 
-#Preview {
+// MARK: - Preview
+#Preview("GravityView - English") {
     GravityView()
-        .previewNavigationStackWrapper()
+}
+
+#Preview("GravityView - German") {
+    GravityView()
+        .previewLocalization(.german)
 }

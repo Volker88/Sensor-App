@@ -35,7 +35,7 @@ struct LocationView: View {
                             .frame(height: 100, alignment: .leading)
                     },
                     label: {
-                        Text("Latitude: \(locationManager.location?.latitude ?? 0.0, specifier: "%.6f")° ± \(locationManager.location?.horizontalAccuracy ?? 0.0, specifier: "%.2f")m", comment: "LocationView - Latitude")
+                        Text("Latitude: \(locationManager.location?.latitude ?? 0.0, specifier: "%.6f")° ± \(locationManager.location?.horizontalAccuracy ?? 0.0, specifier: "%.2f")m", comment: "GPS Latitude position with accuracy in meter")
                     })
                 .disclosureGroupModifier(accessibility: "Toggle Latitude Graph")
 
@@ -46,7 +46,7 @@ struct LocationView: View {
                             .frame(height: 100, alignment: .leading)
                     },
                     label: {
-                        Text("Longitude: \(locationManager.location?.longitude ?? 0.0, specifier: "%.6f")° ± \(locationManager.location?.horizontalAccuracy ?? 0.0, specifier: "%.2f")m", comment: "LocationView - Longitude")
+                        Text("Longitude: \(locationManager.location?.longitude ?? 0.0, specifier: "%.6f")° ± \(locationManager.location?.horizontalAccuracy ?? 0.0, specifier: "%.2f")m", comment: "GPS Longitude position with accuracy in meter")
                     })
                 .disclosureGroupModifier(accessibility: "Toggle Longitude Graph")
 
@@ -57,7 +57,7 @@ struct LocationView: View {
                             .frame(height: 100, alignment: .leading)
                     },
                     label: {
-                        Text("Altitude: \(locationManager.location?.altitude ?? 0.0, specifier: "%.2f") ± \(locationManager.location?.verticalAccuracy ?? 0.0, specifier: "%.2f")m", comment: "LocationView - Altitude")
+                        Text("Altitude: \(locationManager.location?.altitude ?? 0.0, specifier: "%.2f") ± \(locationManager.location?.verticalAccuracy ?? 0.0, specifier: "%.2f")m", comment: "GPS Altitude position with accuracy in meter")
                     })
                 .disclosureGroupModifier(accessibility: "Toggle Altitude Graph")
 
@@ -68,7 +68,7 @@ struct LocationView: View {
                             .frame(height: 100, alignment: .leading)
                     },
                     label: {
-                        Text("Direction: \(locationManager.location?.course ?? 0.0, specifier: "%.2f")°", comment: "LocationView - Direction")
+                        Text("Direction: \(locationManager.location?.course ?? 0.0, specifier: "%.2f")°", comment: "GPS moving direction")
                     })
                 .disclosureGroupModifier(accessibility: "Toggle Direction Graph")
 
@@ -84,7 +84,7 @@ struct LocationView: View {
                 .disclosureGroupModifier(accessibility: "Toggle Speed Graph")
 
                 NavigationLink(value: Route.location) {
-                    Text("Map", comment: "LocationView - Map")
+                    Text("Map", comment: "Map to show current GPS position")
                 }
             }
         }
@@ -114,7 +114,11 @@ struct LocationView: View {
 }
 
 // MARK: - Preview
-#Preview {
+#Preview("LocationView - English", traits: .navEmbedded) {
     LocationView()
-        .previewNavigationStackWrapper()
+}
+
+#Preview("LocationView - German", traits: .navEmbedded) {
+    LocationView()
+        .previewLocalization(.german)
 }

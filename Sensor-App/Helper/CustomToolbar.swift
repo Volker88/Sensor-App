@@ -24,7 +24,7 @@ struct CustomToolbar: ToolbarContent {
                 motionManager.startAltitudeUpdates()
             }) {
                 Image(systemName: "play.circle")
-                    .accessibility(label: Text("Play", comment: "CustomToolbar - Play Button"))
+                    .accessibility(label: Text("Play", comment: "Play Button to start sensor updates"))
                     .accessibility(identifier: "Play")
             }
         }
@@ -38,7 +38,7 @@ struct CustomToolbar: ToolbarContent {
                 motionManager.stopMotionUpdates()
             }) {
                 Image(systemName: "pause.circle")
-                    .accessibility(label: Text("Pause", comment: "CustomToolbar - Pause Button"))
+                    .accessibility(label: Text("Pause", comment: "Pause Button to stop sensor updates"))
                     .accessibility(identifier: "Pause")
             }
 
@@ -53,7 +53,7 @@ struct CustomToolbar: ToolbarContent {
                 motionManager.resetMotionUpdates()
             }) {
                 Image(systemName: "trash.circle")
-                    .accessibility(label: Text("Delete", comment: "CustomToolbar - Delete Button"))
+                    .accessibility(label: Text("Delete", comment: "Delete Button to delete all sensor updates"))
                     .accessibility(identifier: "Delete")
             }
         }

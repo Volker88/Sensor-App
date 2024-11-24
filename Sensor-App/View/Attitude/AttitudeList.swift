@@ -17,20 +17,20 @@ struct AttitudeList: View {
     var body: some View {
         List(motionManager.motionArray.reversed(), id: \.self) { item in
             HStack {
-                Text("ID:\(item.counter)", comment: "AttitudeList - ID")
+                Text("#\(item.counter)", comment: "Incrementing counter for each item.  DO NOT TRANSLATE")
                 Spacer()
-                Text("R:\(item.attitudeRoll * 180 / .pi, specifier: "%.3f")", comment: "AttitudeList - R")
+                Text("R:\(item.attitudeRoll * 180 / .pi, specifier: "%.3f")", comment: "Attitude Sensor. First Letter as shortcut for Roll")
                 Spacer()
-                Text("P:\(item.attitudePitch * 180 / .pi, specifier: "%.3f")", comment: "AttitudeList - P")
+                Text("P:\(item.attitudePitch * 180 / .pi, specifier: "%.3f")", comment: "Attitude Sensor. First Letter as shortcut for Pitch")
                 Spacer()
-                Text("Y:\(item.attitudeYaw * 180 / .pi, specifier: "%.3f")", comment: "AttitudeList - Yield")
+                Text("Y:\(item.attitudeYaw * 180 / .pi, specifier: "%.3f")", comment: "Attitude Sensor. First Letter as shortcut for Yaw")
                 Spacer()
-                Text("H:\(item.attitudeHeading, specifier: "%.3f")", comment: "AttitudeList - H")
+                Text("H:\(item.attitudeHeading, specifier: "%.3f")", comment: "Attitude Sensor. First Letter as shortcut for Heading")
             }
             .font(.footnote)
         }
         .listStyle(.plain)
-        .navigationTitle(NSLocalizedString("Attitude", comment: "NavigationBar Title - Attitude"))
+        .navigationTitle(Text("Attitude", comment: "NavigationBar Title - Attitude sensor list view"))
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 ShareSheet(url: shareCSV())
@@ -52,7 +52,11 @@ struct AttitudeList: View {
 }
 
 // MARK: - Preview
-#Preview {
+#Preview("AttitudeList - English", traits: .navEmbedded) {
     AttitudeList()
-        .previewNavigationStackWrapper()
+}
+
+#Preview("AttitudeList - German", traits: .navEmbedded) {
+    AttitudeList()
+        .previewLocalization(.german)
 }

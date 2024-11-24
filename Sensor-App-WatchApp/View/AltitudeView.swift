@@ -21,7 +21,7 @@ struct AltitudeView: View {
             Text("Pressure: \(motionManager.altitude?.calculatedPressure ?? 0.0, specifier: "%.5f") \(motionManager.altitude?.pressureUnit ?? "")")
             Text("Altitude change: \(motionManager.altitude?.calculatedAltitude ?? 0.0, specifier: "%.5f") \(motionManager.altitude?.altitudeUnit ?? "")")
         }
-        .navigationTitle(NSLocalizedString("Altitude", comment: "AltitudeView - NavigationBar Title (watchOS)"))
+        .navigationTitle(Text("Altitude", comment: "NavigationBar Title - Altitude sensor screen"))
         .font(.footnote)
         .onAppear(perform: onAppear)
         .onDisappear(perform: onDisappear)
@@ -43,7 +43,11 @@ struct AltitudeView: View {
 }
 
 // MARK: - Preview
-#Preview {
+#Preview("AltitudeView - English") {
     AltitudeView()
-        .previewNavigationStackWrapper()
+}
+
+#Preview("AltitudeView - German") {
+    AltitudeView()
+        .previewLocalization(.german)
 }

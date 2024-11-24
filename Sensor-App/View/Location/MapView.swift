@@ -12,13 +12,17 @@ struct MapView: View {
     // MARK: - Body
     var body: some View {
         MapKitView()
-            .navigationTitle(NSLocalizedString("Map", comment: "NavigationBar Title - Map"))
+            .navigationTitle(Text("Map", comment: "NavigationBar Title - Map to show current location"))
             .navigationBarTitleDisplayMode(.inline)
     }
 }
 
 // MARK: - Preview
-#Preview {
+#Preview("MapView - English", traits: .navEmbedded) {
     MapView()
-        .previewNavigationStackWrapper()
+}
+
+#Preview("MapView - German", traits: .navEmbedded) {
+    MapView()
+        .previewLocalization(.german)
 }

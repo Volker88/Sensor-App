@@ -23,7 +23,7 @@ struct AttitudeView: View {
             Text("Yaw: \((motionManager.motion?.attitudeYaw ?? 0.0) * 180 / .pi, specifier: "%.5f")°", comment: "AttitudeView - Yaw (watchOS)")
             Text("Heading: \(motionManager.motion?.attitudeHeading ?? 0.0, specifier: "%.5f")°", comment: "AttitudeView - Heading (watchOS)")
         }
-        .navigationTitle(NSLocalizedString("Attitude", comment: "AttitudeView - NavigationBar Title (watchOS)"))
+        .navigationTitle(Text("Attitude", comment: "NavigationBar Title - Attitude sensor screen"))
         .font(.footnote)
         .onAppear(perform: onAppear)
         .onDisappear(perform: onDisappear)
@@ -46,7 +46,11 @@ struct AttitudeView: View {
 }
 
 // MARK: - Preview
-#Preview {
-    AttitudeView()
-        .previewNavigationStackWrapper()
+#Preview("AttitudeView - English") {
+    AccelerationView()
+}
+
+#Preview("AttitudeView - German") {
+    AccelerationView()
+        .previewLocalization(.german)
 }

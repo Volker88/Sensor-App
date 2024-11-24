@@ -17,18 +17,18 @@ struct AccelerationList: View {
     var body: some View {
         List(motionManager.motionArray.reversed(), id: \.self) { item in
             HStack {
-                Text("ID:\(item.counter)", comment: "AccelerationList - ID")
+                Text("#\(item.counter)", comment: "Incrementing counter for each item.  DO NOT TRANSLATE")
                 Spacer()
-                Text("X:\(item.accelerationXAxis, specifier: "%.5f")", comment: "AccelerationList - X")
+                Text("X:\(item.accelerationXAxis, specifier: "%.5f")", comment: "First Letter as shortcut for X-Axis")
                 Spacer()
-                Text("Y:\(item.accelerationYAxis, specifier: "%.5f")", comment: "AccelerationList - Y")
+                Text("Y:\(item.accelerationYAxis, specifier: "%.5f")", comment: "First Letter as shortcut for Y-Axis")
                 Spacer()
-                Text("Z:\(item.accelerationZAxis, specifier: "%.5f")", comment: "AccelerationList - Z")
+                Text("Z:\(item.accelerationZAxis, specifier: "%.5f")", comment: "First Letter as shortcut for Z-Axis")
             }
             .font(.footnote)
         }
         .listStyle(.plain)
-        .navigationTitle(NSLocalizedString("Acceleration", comment: "NavigationBar Title - AccelerationList"))
+        .navigationTitle(Text("Acceleration", comment: "NavigationBar Title - Acceleration sensor list view"))
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 ShareSheet(url: shareCSV())
@@ -50,7 +50,11 @@ struct AccelerationList: View {
 }
 
 // MARK: - Preview
-#Preview {
+#Preview("AccelerationList - English", traits: .navEmbedded) {
     AccelerationList()
-        .previewNavigationStackWrapper()
+}
+
+#Preview("AccelerationList - German", traits: .navEmbedded) {
+    AccelerationList()
+        .previewLocalization(.german)
 }

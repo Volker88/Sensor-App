@@ -17,18 +17,18 @@ struct GravityList: View {
     var body: some View {
         List(motionManager.motionArray.reversed(), id: \.self) { item in
             HStack {
-                Text("ID:\(item.counter)", comment: "GravityList - ID")
+                Text("#\(item.counter)", comment: "Incrementing counter for each item.  DO NOT TRANSLATE")
                 Spacer()
-                Text("X:\(item.gravityXAxis, specifier: "%.5f")", comment: "GravityList - X")
+                Text("X:\(item.gravityXAxis, specifier: "%.5f")", comment: "First Letter as shortcut for X-Axis")
                 Spacer()
-                Text("Y:\(item.gravityYAxis, specifier: "%.5f")", comment: "GravityList - Y")
+                Text("Y:\(item.gravityYAxis, specifier: "%.5f")", comment: "First Letter as shortcut for Y-Axis")
                 Spacer()
-                Text("Z:\(item.gravityZAxis, specifier: "%.5f")", comment: "GravityList - Z")
+                Text("Z:\(item.gravityZAxis, specifier: "%.5f")", comment: "First Letter as shortcut for Z-Axis")
             }
             .font(.footnote)
         }
         .listStyle(.plain)
-        .navigationTitle(NSLocalizedString("Gravity", comment: "NavigationBar Title - GravityList"))
+        .navigationTitle(Text("Gravity", comment: "NavigationBar Title - Gravity sensor list view"))
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 ShareSheet(url: shareCSV())
@@ -50,7 +50,11 @@ struct GravityList: View {
 }
 
 // MARK: - Preview
-#Preview {
+#Preview("GravityList - English", traits: .navEmbedded) {
     GravityList()
-        .previewNavigationStackWrapper()
+}
+
+#Preview("GravityList - German", traits: .navEmbedded) {
+    GravityList()
+        .previewLocalization(.german)
 }

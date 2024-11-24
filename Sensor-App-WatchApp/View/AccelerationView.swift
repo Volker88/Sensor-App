@@ -22,7 +22,7 @@ struct AccelerationView: View {
             Text("Y-Axis: \(motionManager.motion?.accelerationYAxis ?? 0.0, specifier: "%.5f") m/s^2", comment: "AccelerationView - Y-Axis (watchOS)")
             Text("Z-Axis: \(motionManager.motion?.accelerationZAxis ?? 0.0, specifier: "%.5f") m/s^2", comment: "AccelerationView - Z-Axis (watchOS)")
         }
-        .navigationTitle(NSLocalizedString("Acceleration", comment: "AccelerationView - NavigationBar Title (watchOS)"))
+        .navigationTitle(Text("Acceleration", comment: "NavigationBar Title - Acceleration sensor screen"))
         .font(.footnote)
         .onAppear(perform: onAppear)
         .onDisappear(perform: onDisappear)
@@ -45,7 +45,11 @@ struct AccelerationView: View {
 }
 
 // MARK: - Preview
-#Preview {
+#Preview("AccelerationView - English") {
     AccelerationView()
-        .previewNavigationStackWrapper()
+}
+
+#Preview("AccelerationView - German") {
+    AccelerationView()
+        .previewLocalization(.german)
 }

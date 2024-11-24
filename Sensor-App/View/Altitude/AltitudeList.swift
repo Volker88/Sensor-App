@@ -17,16 +17,16 @@ struct AltitudeList: View {
     var body: some View {
         List(motionManager.altitudeArray.reversed(), id: \.self) { item in
             HStack {
-                Text("ID:\(item.counter)", comment: "AltitudeList - ID")
+                Text("#\(item.counter)", comment: "Incrementing counter for each item.  DO NOT TRANSLATE")
                 Spacer()
-                Text("P:\(motionManager.altitude?.calculatedPressure ?? 0.0, specifier: "%.5f")", comment: "AltitudeList - P")
+                Text("P:\(motionManager.altitude?.calculatedPressure ?? 0.0, specifier: "%.3f")", comment: "First Letter as shortcut for Pressure")
                 Spacer()
-                Text("A:\(motionManager.altitude?.calculatedAltitude ?? 0.0, specifier: "%.5f")", comment: "AltitudeList - A")
+                Text("A:\(motionManager.altitude?.calculatedAltitude ?? 0.0, specifier: "%.3f")", comment: "First Letter as shortcut for Altitude")
             }
             .font(.footnote)
         }
         .listStyle(.plain)
-        .navigationTitle(NSLocalizedString("Altitude", comment: "NavigationBar Title - Altitude"))
+        .navigationTitle(Text("Altitude", comment: "NavigationBar Title - Altitude sensor list view"))
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 ShareSheet(url: shareCSV())
@@ -48,7 +48,11 @@ struct AltitudeList: View {
 }
 
 // MARK: - Preview
-#Preview {
+#Preview("AltitudeList - English", traits: .navEmbedded) {
     AltitudeList()
-        .previewNavigationStackWrapper()
+}
+
+#Preview("AltitudeList - German", traits: .navEmbedded) {
+    AltitudeList()
+        .previewLocalization(.german)
 }

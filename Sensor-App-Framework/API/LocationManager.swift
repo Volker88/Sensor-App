@@ -102,6 +102,7 @@ class LocationManager {
                 )
 
                 locationArray.append(location)
+                locationChart.append(location)
                 self.location = location
             }
 

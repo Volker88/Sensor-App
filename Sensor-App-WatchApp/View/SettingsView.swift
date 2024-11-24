@@ -85,7 +85,7 @@ struct SettingsView: View {
                 }
             }
         }
-        .navigationTitle(NSLocalizedString("Settings", comment: "SettingsView - NavigationBar Title (watchOS)"))
+        .navigationTitle(Text("Settings", comment: "NavigationBar Title - Settings screen"))
         .font(.footnote)
         .onAppear(perform: onAppear)
         .onDisappear(perform: onDisappear)
@@ -128,7 +128,11 @@ struct SettingsView: View {
 }
 
 // MARK: - Preview
-#Preview {
+#Preview("SettingsView - English") {
     SettingsView()
-        .previewNavigationStackWrapper()
+}
+
+#Preview("SettingsView - German") {
+    SettingsView()
+        .previewLocalization(.german)
 }

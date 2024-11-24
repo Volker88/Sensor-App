@@ -97,7 +97,11 @@ struct LineGraphSubView: View {
 }
 
 // MARK: - Preview
-#Preview(traits: .sizeThatFitsLayout) {
+#Preview("LineGraphSubView - English", traits: .navEmbedded) {
     LineGraphSubView(graph: .location, showGraph: .speed)
-        .previewNavigationStackWrapper()
+}
+
+#Preview("LineGraphSubView - German", traits: .navEmbedded) {
+    LineGraphSubView(graph: .location, showGraph: .speed)
+        .previewLocalization(.german)
 }

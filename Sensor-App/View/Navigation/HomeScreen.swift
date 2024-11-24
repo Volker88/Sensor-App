@@ -12,12 +12,16 @@ struct HomeScreen: View {
     // MARK: - Body
     var body: some View {
         Text("Welcome to Sensor-App")
-            .navigationTitle("\(NSLocalizedString("Home", comment: "NavigationBar Title - Home"))")
+            .navigationTitle("\(Text("Home", comment: "NavigationBar Title - Home"))")
     }
 }
 
 // MARK: - Preview
-#Preview {
+#Preview("HomeScreen - English", traits: .navEmbedded) {
     HomeScreen()
-        .previewNavigationStackWrapper()
+}
+
+#Preview("HomeScreen - German", traits: .navEmbedded) {
+    HomeScreen()
+        .previewLocalization(.german)
 }

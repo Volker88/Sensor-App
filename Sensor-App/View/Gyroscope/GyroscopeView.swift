@@ -69,7 +69,11 @@ struct GyroscopeView: View {
 }
 
 // MARK: - Preview
-#Preview {
+#Preview("GyroscopeView - English", traits: .navEmbedded) {
     GyroscopeView()
-        .previewNavigationStackWrapper()
+}
+
+#Preview("GyroscopeView - German", traits: .navEmbedded) {
+    GyroscopeView()
+        .previewLocalization(.german)
 }

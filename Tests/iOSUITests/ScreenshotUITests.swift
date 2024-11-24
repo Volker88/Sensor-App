@@ -24,17 +24,15 @@ class ScreenshotUITests: BaseTestCase {
             }
             return false
         }
-        app.tap()
 
         // Take Screenshot of Home View
         takeScreenshotOfCurrentView(name: "0Home")
-        backToHomeMenu()
 
         // Switch to Location View
         app.collectionViews["Sidebar"].buttons["Location"].tap()
 
         // Show Speed Graph
-        app.buttons["Toggle Speed Graph"].tap()
+        app.buttons["Toggle Latitude Graph"].tap()
 
         // Take Screenshot of Location and go back to Home
         takeScreenshotOfCurrentView(name: "1Location")

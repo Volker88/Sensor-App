@@ -81,7 +81,11 @@ struct AttitudeView: View {
 }
 
 // MARK: - Preview
-#Preview {
+#Preview("AttitudeView - English", traits: .navEmbedded) {
     AttitudeView()
-        .previewNavigationStackWrapper()
+}
+
+#Preview("AttitudeView - German", traits: .navEmbedded) {
+    AttitudeView()
+        .previewLocalization(.german)
 }

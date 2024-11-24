@@ -24,7 +24,7 @@ struct LocationView: View {
             Text("Direction: \(locationManager.location?.course ?? 0.0, specifier: "%.2f")°", comment: "LocationView - Direction (watchOS)")
             Text("Speed: \(locationManager.location?.calculatedSpeed ?? 0.0, specifier: "%.1f") \(locationManager.location?.speedUnit ?? "")")
         }
-        .navigationTitle(NSLocalizedString("Location", comment: "LocationView - NavigationBar Title (watchOS)"))
+        .navigationTitle(Text("Location", comment: "NavigationBar Title - Location sensor screen"))
         .font(.footnote)
         .onAppear(perform: onAppear)
         .onDisappear(perform: onDisappear)
@@ -42,7 +42,11 @@ struct LocationView: View {
 }
 
 // MARK: - Preview
-#Preview {
+#Preview("LocationView - English") {
     LocationView()
-        .previewNavigationStackWrapper()
+}
+
+#Preview("LocationView - German") {
+    LocationView()
+        .previewLocalization(.german)
 }

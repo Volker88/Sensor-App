@@ -30,7 +30,21 @@ struct ContentView: View {
 }
 
 // MARK: - Preview
-#Preview {
+#Preview("ReleaseNotesScreen - English") {
     ContentView()
-        .previewNavigationStackWrapper()
+        .environment(AppState())
+        .environment(SettingsManager())
+        .environment(CalculationManager())
+        .environment(MotionManager())
+        .environment(LocationManager())
+}
+
+#Preview("ReleaseNotesScreen - German") {
+    ContentView()
+        .previewLocalization(.german)
+        .environment(AppState())
+        .environment(SettingsManager())
+        .environment(CalculationManager())
+        .environment(MotionManager())
+        .environment(LocationManager())
 }

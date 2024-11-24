@@ -52,7 +52,11 @@ struct AltitudeView: View {
 }
 
 // MARK: - Preview
-#Preview {
+#Preview("AltitudeView - English", traits: .navEmbedded) {
     AltitudeView()
-        .previewNavigationStackWrapper()
+}
+
+#Preview("AltitudeView - German", traits: .navEmbedded) {
+    AltitudeView()
+        .previewLocalization(.german)
 }

@@ -43,7 +43,7 @@ struct SensorAppApp: App {
                 .onAppear {
                     update.checkForUpdate()
                 }
-                .sheet(isPresented: $update.showReleaseNotes) { ReleaseNotes() }
+                .sheet(isPresented: $update.showReleaseNotes) { ReleaseNotesScreen() }
                 .withNotificationView()
         }
     }

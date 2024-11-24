@@ -13,7 +13,7 @@ struct DisclosureGroupModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
             .accessibility(identifier: accessibility)
-            .accessibility(label: Text("Toggle Graph", comment: "GraphButtonModifier - Toggle Graph"))
+            .accessibility(label: Text("Toggle Graph", comment: "Button to show or hide graph"))
     }
 }
 

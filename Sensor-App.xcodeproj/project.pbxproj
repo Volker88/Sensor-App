@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 76;
+	objectVersion = 71;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -103,12 +103,10 @@
 		1515A4BE2C9FE60E00F89AAE /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				/Localized/ReleaseNotes/ReleaseNotes.json,
 				API/ExportManager.swift,
 				"Customization/Extension/Extension+Bundle.swift",
 				"Customization/Extension/Extension+String.swift",
 				"Customization/Extension/Extension+URL.swift",
-				ReleaseNotes/ReleaseNotesModel.swift,
 				Support/Info.plist,
 			);
 			target = 1527B04624C4AA620024DD78 /* Sensor-App-Watch */;
@@ -116,7 +114,6 @@
 		1515A4BF2C9FE60E00F89AAE /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				/Localized/ReleaseNotes/ReleaseNotes.json,
 				Support/Info.plist,
 			);
 			publicHeaders = (
@@ -134,15 +131,14 @@
 		1515A5682C9FE62400F89AAE /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Helper/PreviewNavigationStackWrapper.swift,
 				LineGraph/GraphDetailModel.swift,
+				View/Navigation/AppState.swift,
 			);
 			target = 1527B04624C4AA620024DD78 /* Sensor-App-Watch */;
 		};
 		1515A5692C9FE62400F89AAE /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Helper/PreviewNavigationStackWrapper.swift,
 				LineGraph/GraphDetailModel.swift,
 			);
 			target = 1527B07824C4ACA20024DD78 /* Sensor-App-Framework */;
@@ -571,17 +567,24 @@
 				};
 			};
 			buildConfigurationList = 1527B01224C4AA240024DD78 /* Build configuration list for PBXProject "Sensor-App" */;
+			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
-				Base,
 				de,
+				"zh-HK",
+				cs,
+				fr,
+				it,
+				"pt-PT",
+				ja,
+				ko,
+				es,
 			);
 			mainGroup = 1527B00E24C4AA240024DD78;
 			packageReferences = (
 			);
-			preferredProjectObjectVersion = 54;
 			productRefGroup = 1527B01824C4AA240024DD78 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1130,7 +1133,6 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NLF7894S7W;
-				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Sensor-App-WatchApp/Support/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "$(APP_DISPLAY_NAME)-Watch";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1154,7 +1156,6 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NLF7894S7W;
-				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Sensor-App-WatchApp/Support/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "$(APP_DISPLAY_NAME)-Watch";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1243,7 +1244,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = NLF7894S7W;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
@@ -1266,7 +1266,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = NLF7894S7W;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;

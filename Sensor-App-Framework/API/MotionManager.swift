@@ -130,40 +130,42 @@ class MotionManager {
     func mockData() {
 #if DEBUG && targetEnvironment(simulator)
         for index in 1...1000 {
-                let motion = MotionModel(
-                    counter: index,
-                    timestamp: Date().formatted(),
-                    accelerationXAxis: getDouble(),
-                    accelerationYAxis: getDouble(),
-                    accelerationZAxis: getDouble(),
-                    gravityXAxis: getDouble(),
-                    gravityYAxis: getDouble(),
-                    gravityZAxis: getDouble(),
-                    gyroXAxis: getDouble(),
-                    gyroYAxis: getDouble(),
-                    gyroZAxis: getDouble(),
-                    magnetometerCalibration: Int.random(in: -2...2),
-                    magnetometerXAxis: getDouble(),
-                    magnetometerYAxis: getDouble(),
-                    magnetometerZAxis: getDouble(),
-                    attitudeRoll: getDouble(),
-                    attitudePitch: getDouble(),
-                    attitudeYaw: getDouble(),
-                    attitudeHeading: getDouble()
-                )
-                motionArray.append(motion)
-                self.motion = motion
+            let motion = MotionModel(
+                counter: index,
+                timestamp: Date().formatted(),
+                accelerationXAxis: getDouble(),
+                accelerationYAxis: getDouble(),
+                accelerationZAxis: getDouble(),
+                gravityXAxis: getDouble(),
+                gravityYAxis: getDouble(),
+                gravityZAxis: getDouble(),
+                gyroXAxis: getDouble(),
+                gyroYAxis: getDouble(),
+                gyroZAxis: getDouble(),
+                magnetometerCalibration: Int.random(in: -2...2),
+                magnetometerXAxis: getDouble(),
+                magnetometerYAxis: getDouble(),
+                magnetometerZAxis: getDouble(),
+                attitudeRoll: getDouble(),
+                attitudePitch: getDouble(),
+                attitudeYaw: getDouble(),
+                attitudeHeading: getDouble()
+            )
+            motionArray.append(motion)
+            motionChart.append(motion)
+            self.motion = motion
 
-                let altitude = AltitudeModel(
-                    counter: index,
-                    timestamp: Date().formatted(),
-                    pressureValue: Double.random(in: 990...1010),
-                    relativeAltitudeValue: Double.random(in: 0...10)
-                )
+            let altitude = AltitudeModel(
+                counter: index,
+                timestamp: Date().formatted(),
+                pressureValue: Double.random(in: 990...1010),
+                relativeAltitudeValue: Double.random(in: 0...10)
+            )
 
-                altitudeArray.append(altitude)
-                self.altitude = altitude
-            }
+            altitudeArray.append(altitude)
+            altitudeChart.append(altitude)
+            self.altitude = altitude
+        }
 
         func getDouble() -> Double {
             Double.random(in: -1...1)
