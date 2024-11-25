@@ -27,6 +27,9 @@
   ],
   "defaultOptions" : {
     "areLocalizationScreenshotsEnabled" : true,
+    "maximumTestRepetitions" : 3,
+    "testRepetitionMode" : "retryOnFailure",
+    "testTimeoutsEnabled" : true,
     "userAttachmentLifetime" : "keepAlways"
   },
   "testTargets" : [

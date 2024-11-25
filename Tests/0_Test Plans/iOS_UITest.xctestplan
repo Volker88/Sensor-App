@@ -15,6 +15,9 @@
   ],
   "defaultOptions" : {
     "areLocalizationScreenshotsEnabled" : true,
+    "maximumTestRepetitions" : 3,
+    "testRepetitionMode" : "retryOnFailure",
+    "testTimeoutsEnabled" : true,
     "uiTestingScreenshotsLifetime" : "keepAlways",
     "userAttachmentLifetime" : "keepAlways"
   },

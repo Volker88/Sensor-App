@@ -86,6 +86,9 @@
       "identifier" : "New York, NY, USA",
       "referenceType" : "built-in"
     },
+    "maximumTestRepetitions" : 3,
+    "testRepetitionMode" : "retryOnFailure",
+    "testTimeoutsEnabled" : true,
     "uiTestingScreenshotsLifetime" : "keepAlways",
     "userAttachmentLifetime" : "keepAlways"
   },
