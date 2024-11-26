@@ -17,7 +17,7 @@
         },
         "en" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : ""
           }
         },
@@ -57,7 +57,7 @@
             "value" : ""
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : ""
@@ -122,13 +122,14 @@
             "value" : "#%lld"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "#%lld"
+            "state" : "new",
+            "value" : ""
           }
         }
-      }
+      },
+      "shouldTranslate" : false
     },
     "%.0f" : {
       "comment" : "SettingsScreen - Max Points Slider",
@@ -187,7 +188,7 @@
             "value" : "%.0f"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%.0f"
@@ -252,10 +253,10 @@
             "value" : "%.0f por segundo"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "每秒%.0f"
+            "value" : "%.0f每秒"
           }
         }
       }
@@ -316,7 +317,7 @@
             "value" : "%@"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@"
@@ -380,10 +381,10 @@
             "value" : "0,1 km"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "0.1 公里"
+            "value" : "0.1公里"
           }
         }
       }
@@ -444,7 +445,7 @@
             "value" : "1"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "1"
@@ -508,7 +509,7 @@
             "value" : "50"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "50"
@@ -572,10 +573,10 @@
             "value" : "100 km"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "100 公里"
+            "value" : "100公里"
           }
         }
       }
@@ -636,7 +637,7 @@
             "value" : "1000"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "1000"
@@ -701,10 +702,10 @@
             "value" : "A:%.3f"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "高度:%.3f"
+            "value" : "A:%.3f"
           }
         }
       }
@@ -766,10 +767,10 @@
             "value" : "Aceleração"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "加速變速"
+            "value" : "加速度"
           }
         }
       }
@@ -831,10 +832,10 @@
             "value" : "Precisão"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "精確度"
+            "value" : "准确度"
           }
         }
       }
@@ -896,10 +897,10 @@
             "value" : "Altitude"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "高度"
+            "value" : "海拔高度"
           }
         }
       }
@@ -961,10 +962,10 @@
             "value" : "Alteração de altitude: %.5f %@"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "海拔變化：%.5f %@"
+            "value" : "高度变化: %.5f %@"
           }
         }
       }
@@ -1026,10 +1027,10 @@
             "value" : "Altitude: %.2f ± %.2m"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "海拔高度：%.2f ± %.2m"
+            "value" : "海拔: %.2f ± %.2fm"
           }
         }
       }
@@ -1091,10 +1092,10 @@
             "value" : "Ícone da Aplicação"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "應用程式圖標"
+            "value" : "应用图标"
           }
         }
       }
@@ -1156,10 +1157,10 @@
             "value" : "Atitude"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "態度"
+            "value" : "姿态"
           }
         }
       }
@@ -1221,10 +1222,10 @@
             "value" : "Edifícios"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "建築物"
+            "value" : "建筑物"
           }
         }
       }
@@ -1286,10 +1287,10 @@
             "value" : "Bússola"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "指南針"
+            "value" : "指南针"
           }
         }
       }
@@ -1351,7 +1352,7 @@
             "value" : "Botão Eliminar para apagar todas as atualizações dos sensores"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "删除"
@@ -1416,10 +1417,10 @@
             "value" : "Direção: %.2f°"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "方向：%.2f°"
+            "value" : "方向: %.2f°"
           }
         }
       }
@@ -1481,10 +1482,10 @@
             "value" : "Descartar"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "放棄"
+            "value" : "舍弃"
           }
         }
       }
@@ -1546,10 +1547,10 @@
             "value" : "Exportar"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "匯出"
+            "value" : "导出"
           }
         }
       }
@@ -1611,10 +1612,10 @@
             "value" : "Frequência: %.0f Hz"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "頻率: %.0f 赫茲"
+            "value" : "频率: %.0f Hz"
           }
         }
       }
@@ -1675,10 +1676,10 @@
             "value" : "Frequência: %lld Hz"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "頻率：%lld 赫茲"
+            "value" : "频率: %lld Hz"
           }
         }
       }
@@ -1740,10 +1741,10 @@
             "value" : "Geral"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "一般"
+            "value" : "通用"
           }
         }
       }
@@ -1805,10 +1806,10 @@
             "value" : "Gráfico"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "圖表"
+            "value" : "图表"
           }
         }
       }
@@ -1870,7 +1871,7 @@
             "value" : "Gravidade"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "重力"
@@ -1935,10 +1936,10 @@
             "value" : "Giroscópio"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "陀螺儀"
+            "value" : "陀螺仪"
           }
         }
       }
@@ -2000,10 +2001,10 @@
             "value" : "H:%.3f"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "方向:%.3f"
+            "value" : "H:%.3f"
           }
         }
       }
@@ -2065,10 +2066,10 @@
             "value" : "Orientação: %.5f°"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "標題：%f°"
+            "value" : "航向: %.5f°"
           }
         }
       }
@@ -2130,7 +2131,7 @@
             "value" : "Altura"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "高度"
@@ -2194,7 +2195,7 @@
             "value" : "Olá, Mundo!"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "你好，世界！"
@@ -2259,10 +2260,10 @@
             "value" : "Página Inicial"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "主頁"
+            "value" : "家庭"
           }
         }
       }
@@ -2324,10 +2325,10 @@
             "value" : "ID;Tempo;Longitude;Latitude;Altitude;Velocidade;Curso"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ID;時間;經度;緯度;海拔高度;速度;航向"
+            "value" : "ID;Time;Longitude;Latitude;Altitude;Speed;Course"
           }
         }
       }
@@ -2389,10 +2390,10 @@
             "value" : "ID;Tempo;Pressão;Alteração de altitude"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ID;時間;壓力;高度變化"
+            "value" : "ID;Time;Pressure;Altitude change"
           }
         }
       }
@@ -2454,10 +2455,10 @@
             "value" : "ID;Tempo;Rolo;Inclinação;Guinada;Rumo;"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ID;時間;橫搖;縱搖;偏航;航向"
+            "value" : "ID;Time;Roll;Pitch;Yaw;Heading"
           }
         }
       }
@@ -2519,10 +2520,10 @@
             "value" : "ID;Tempo;Eixo X;Eixo Y;Eixo Z"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ID;時間;X軸;Y軸;Z軸"
+            "value" : "ID;Time;X轴;Y轴;Z轴"
           }
         }
       }
@@ -2583,7 +2584,7 @@
             "value" : "Índice"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "索引"
@@ -2648,10 +2649,10 @@
             "value" : "Latitude: %.6f° ± %.2fm"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "緯度：%.6f° ± %.2fm"
+            "value" : "纬度: %.6f° ± %.2fm"
           }
         }
       }
@@ -2713,10 +2714,10 @@
             "value" : "Latitude: %.10f° ± %.2fm"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "緯度：%f° ± %.2f米"
+            "value" : "纬度: %.10f° ± %.2fm"
           }
         }
       }
@@ -2778,7 +2779,7 @@
             "value" : "Localização"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "位置"
@@ -2843,10 +2844,10 @@
             "value" : "Registo"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "日誌"
+            "value" : "日志"
           }
         }
       }
@@ -2908,10 +2909,10 @@
             "value" : "Longitude: %.6f° ± %.2fm"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "經度：%.6f° ± %.2fm"
+            "value" : "经度: %.6f° ± %.2fm"
           }
         }
       }
@@ -2973,10 +2974,10 @@
             "value" : "Longitude: %.10f° ± %.2fm"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "經度：%.10f度 ± %.2f米"
+            "value" : "经度: %.10f° ± %.2fm"
           }
         }
       }
@@ -3038,10 +3039,10 @@
             "value" : "Magnetómetro"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "磁力計"
+            "value" : "磁力计"
           }
         }
       }
@@ -3103,10 +3104,10 @@
             "value" : "Mapa para mostrar a localização atual"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "地圖"
+            "value" : "地图"
           }
         }
       }
@@ -3168,10 +3169,10 @@
             "value" : "Pontos Máximos: %.0f"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "最高分：%.0f"
+            "value" : "最大点数: %.0f"
           }
         }
       }
@@ -3233,10 +3234,10 @@
             "value" : "Pontos Máximos:"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "最大點數："
+            "value" : "最大点数:"
           }
         }
       }
@@ -3298,10 +3299,10 @@
             "value" : "Pressão: %.3f"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "轉動: %.3f"
+            "value" : "P:%.3f"
           }
         }
       }
@@ -3363,10 +3364,10 @@
             "value" : "Botão de Pausa para parar as atualizações do sensor"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "暫停"
+            "value" : "暂停"
           }
         }
       }
@@ -3428,10 +3429,10 @@
             "value" : "Melhorias de desempenho e correção de bugs"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "性能提升及錯誤修復"
+            "value" : "性能提升和错误修复"
           }
         }
       }
@@ -3493,10 +3494,10 @@
             "value" : "Tom."
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "音調"
+            "value" : "音高"
           }
         }
       }
@@ -3558,10 +3559,10 @@
             "value" : "Inclinação: %.5f°"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "傾角：%.5f°"
+            "value" : "俯仰: %.5f°"
           }
         }
       }
@@ -3623,10 +3624,10 @@
             "value" : "Iniciar"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "啟動播放按鈕以開始感應器更新"
+            "value" : "播放"
           }
         }
       }
@@ -3688,10 +3689,10 @@
             "value" : "Pressão"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "壓力"
+            "value" : "压力"
           }
         }
       }
@@ -3753,10 +3754,10 @@
             "value" : "Pressão: %.5f %@"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "壓力：%.5f %@"
+            "value" : "压力: %.5f %@"
           }
         }
       }
@@ -3818,10 +3819,10 @@
             "value" : "R:%.3f"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "翻: R:%.3f"
+            "value" : "R:%.3f"
           }
         }
       }
@@ -3883,10 +3884,10 @@
             "value" : "Taxa de atualização"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "刷新頻率"
+            "value" : "刷新率"
           }
         }
       }
@@ -3948,10 +3949,10 @@
             "value" : "Notas de Lançamento"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "發佈備註"
+            "value" : "发布说明"
           }
         }
       }
@@ -4013,10 +4014,10 @@
             "value" : "Requer iOS 18 mínimo e watchOS 11"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "需要 iOS 18 和 watchOS 11 以上"
+            "value" : "需要最低iOS 18和watchOS 11"
           }
         }
       }
@@ -4078,10 +4079,10 @@
             "value" : "Inclinação lateral: %.5f°"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "滾動角度: %.5f°"
+            "value" : "滚动: %.5f°"
           }
         }
       }
@@ -4143,10 +4144,10 @@
             "value" : "Rotação"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "旋轉"
+            "value" : "旋转"
           }
         }
       }
@@ -4208,10 +4209,10 @@
             "value" : "Guardar"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "保存"
+            "value" : "存储"
           }
         }
       }
@@ -4273,10 +4274,10 @@
             "value" : "Escala"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "比例"
+            "value" : "缩放"
           }
         }
       }
@@ -4338,10 +4339,10 @@
             "value" : "Deslocar-se"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "滾動"
+            "value" : "滚动"
           }
         }
       }
@@ -4403,10 +4404,10 @@
             "value" : "Definições"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "設定"
+            "value" : "设置"
           }
         }
       }
@@ -4468,10 +4469,10 @@
             "value" : "Mostrar"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "顯示"
+            "value" : "显示"
           }
         }
       }
@@ -4533,10 +4534,10 @@
             "value" : "Mostrar Notas de Lançamento"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "顯示發行說明"
+            "value" : "显示发布说明"
           }
         }
       }
@@ -4598,10 +4599,10 @@
             "value" : "Definições de Velocidade"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "速度設置"
+            "value" : "速度设置"
           }
         }
       }
@@ -4663,10 +4664,10 @@
             "value" : "Velocidade: %1$.1f %2$@"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "速度：%1$.1f %2$@"
+            "value" : "速度: %1$.1f %2$@"
           }
         }
       }
@@ -4728,10 +4729,10 @@
             "value" : "Alternar Gráfico"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "切換圖表"
+            "value" : "切换图形"
           }
         }
       }
@@ -4793,10 +4794,10 @@
             "value" : "Tráfego"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "流量"
+            "value" : "交通"
           }
         }
       }
@@ -4858,10 +4859,10 @@
             "value" : "Tipo"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "類型"
+            "value" : "类型"
           }
         }
       }
@@ -4922,7 +4923,7 @@
             "value" : "Valor"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "值"
@@ -4986,10 +4987,10 @@
             "value" : "Bem-vindo à aplicação Sensor."
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "歡迎來到 Sensor-App"
+            "value" : "欢迎使用传感器应用"
           }
         }
       }
@@ -5051,10 +5052,10 @@
             "value" : "Eixo X: %.5f g (9,81 m/s^2)"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "X 軸: %.5f g（9.81 m/s^2）"
+            "value" : "X轴: %.5f g (9,81 m/s^2)"
           }
         }
       }
@@ -5116,10 +5117,10 @@
             "value" : "Eixo dos xx: %.5f m/s^2"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "X軸：%.5f 米/秒²"
+            "value" : "X轴: %.5f m/s^2"
           }
         }
       }
@@ -5181,10 +5182,10 @@
             "value" : "Eixo X: %.5f rad/s"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "X軸: %.5f 弧度/秒"
+            "value" : "X轴: %.5f rad/s"
           }
         }
       }
@@ -5246,10 +5247,10 @@
             "value" : "Eixo X: %.5f µT"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "X軸：%.5f 微特斯拉"
+            "value" : "X轴: %.5f µT"
           }
         }
       }
@@ -5311,10 +5312,10 @@
             "value" : "E:%.5f"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "X: %.5f"
+            "value" : "X:%.5f"
           }
         }
       }
@@ -5376,10 +5377,10 @@
             "value" : "Eixo Y: %.5f g (9,81 m/s^2)"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Y-軸：%.5f g (9.81 米/秒^2)"
+            "value" : "Y轴: %.5f g (9,81 m/s^2)"
           }
         }
       }
@@ -5441,10 +5442,10 @@
             "value" : "Eixo Y: %.5f m/s^2"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Y軸: %.5f 米/秒²"
+            "value" : "Y轴: %.5f m/s^2"
           }
         }
       }
@@ -5506,10 +5507,10 @@
             "value" : "Eixo Y: %.5f rad/s"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Y軸：%.5f 弧度/秒"
+            "value" : "Y轴: %.5f rad/s"
           }
         }
       }
@@ -5571,10 +5572,10 @@
             "value" : "Eixo Y: %.5f µT"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Y-軸: %.5f µT"
+            "value" : "Y轴: %.5f µT"
           }
         }
       }
@@ -5636,7 +5637,7 @@
             "value" : "R:%.3f"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Y:%.3f"
@@ -5701,7 +5702,7 @@
             "value" : "E:%.5f"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Y:%.5f"
@@ -5766,10 +5767,10 @@
             "value" : "Rotação: %.5f°"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "偏航：%.5f°"
+            "value" : "偏航: %.5f°"
           }
         }
       }
@@ -5831,10 +5832,10 @@
             "value" : "Eixo Z: %.5f g (9,81 m/s^2)"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Z軸: %.5f g (9.81 m/s^2)"
+            "value" : "Z轴: %.5f g (9,81 m/s^2)"
           }
         }
       }
@@ -5896,10 +5897,10 @@
             "value" : "Eixo Z: %.5f m/s^2"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Z軸：%.5f 米/秒²"
+            "value" : "Z轴: %.5f m/s^2"
           }
         }
       }
@@ -5961,10 +5962,10 @@
             "value" : "Eixo Z: %.5f rad/s"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Z軸：%.5f 弧度/秒"
+            "value" : "Z轴: %.5f rad/s"
           }
         }
       }
@@ -6026,10 +6027,10 @@
             "value" : "Eixo Z: %.5f µT"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Z-軸：%.5f 微特斯拉"
+            "value" : "Z轴: %.5f µT"
           }
         }
       }
@@ -6091,10 +6092,10 @@
             "value" : "Z:%.5f"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Z軸：%.5f"
+            "value" : "Z:%.5f"
           }
         }
       }
@@ -6156,10 +6157,10 @@
             "value" : "Nível de zoom:"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "地圖視圖縮放：%lld"
+            "value" : "缩放:"
           }
         }
       }
@@ -6221,10 +6222,10 @@
             "value" : "Zoom: %.1f km"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "縮放：%f km"
+            "value" : "缩放: %.1f km"
           }
         }
       }

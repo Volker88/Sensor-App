@@ -59,7 +59,7 @@
             "value" : ""
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "new",
             "value" : ""
@@ -126,7 +126,7 @@
             "value" : ""
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "new",
             "value" : ""
@@ -193,10 +193,10 @@
             "value" : "Acesso ao GPS necessário para mostrar a localização atual"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "需要 GPS 存取以顯示目前位置"
+            "value" : "需要GPS访问来显示当前位置"
           }
         }
       }
@@ -259,10 +259,10 @@
             "value" : "Acesso ao GPS necessário para mostrar a localização atual"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "需要GPS權限以顯示當前位置"
+            "value" : "需要访问 GPS 以显示当前位置"
           }
         }
       }
@@ -325,10 +325,10 @@
             "value" : "Acesso ao sensor de movimento necessário"
           }
         },
-        "zh-HK" : {
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "需要活動感應器權限"
+            "value" : "需要运动传感器访问"
           }
         }
       }
