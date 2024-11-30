@@ -27,8 +27,11 @@ struct MagnetometerView: View {
                             .frame(height: 100, alignment: .leading)
                     },
                     label: {
-                        Text("X-Axis: \(motionManager.motion?.magnetometerXAxis ?? 0.0, specifier: "%.5f") µT", comment: "MagnetometerView - X-Axis")
-                    })
+                        Text(
+                            "X-Axis: \(motionManager.motion?.magnetometerXAxis ?? 0.0, specifier: "%.5f") µT",
+                            comment: "MagnetometerView - X-Axis")
+                    }
+                )
                 .disclosureGroupModifier(accessibility: "Toggle X-Axis Graph")
 
                 DisclosureGroup(
@@ -38,8 +41,11 @@ struct MagnetometerView: View {
                             .frame(height: 100, alignment: .leading)
                     },
                     label: {
-                        Text("Y-Axis: \(motionManager.motion?.magnetometerYAxis ?? 0.0, specifier: "%.5f") µT", comment: "MagnetometerView - Y-Axis")
-                    })
+                        Text(
+                            "Y-Axis: \(motionManager.motion?.magnetometerYAxis ?? 0.0, specifier: "%.5f") µT",
+                            comment: "MagnetometerView - Y-Axis")
+                    }
+                )
                 .disclosureGroupModifier(accessibility: "Toggle Y-Axis Graph")
 
                 DisclosureGroup(
@@ -49,8 +55,11 @@ struct MagnetometerView: View {
                             .frame(height: 100, alignment: .leading)
                     },
                     label: {
-                        Text("Z-Axis: \(motionManager.motion?.magnetometerZAxis ?? 0.0, specifier: "%.5f") µT", comment: "MagnetometerView - Z-Axis")
-                    })
+                        Text(
+                            "Z-Axis: \(motionManager.motion?.magnetometerZAxis ?? 0.0, specifier: "%.5f") µT",
+                            comment: "MagnetometerView - Z-Axis")
+                    }
+                )
                 .disclosureGroupModifier(accessibility: "Toggle Z-Axis Graph")
 
                 NavigationLink(value: Route.magnetometerList) {

@@ -13,13 +13,17 @@ struct AltitudeView: View {
     @Environment(SettingsManager.self) private var settingsManager
     @Environment(MotionManager.self) private var motionManager
 
-    @State private var frequency = 1.0 // Default Frequency
+    @State private var frequency = 1.0  // Default Frequency
 
     // MARK: - Body
     var body: some View {
         List {
-            Text("Pressure: \(motionManager.altitude?.calculatedPressure ?? 0.0, specifier: "%.5f") \(motionManager.altitude?.pressureUnit ?? "")")
-            Text("Altitude change: \(motionManager.altitude?.calculatedAltitude ?? 0.0, specifier: "%.5f") \(motionManager.altitude?.altitudeUnit ?? "")")
+            Text(
+                "Pressure: \(motionManager.altitude?.calculatedPressure ?? 0.0, specifier: "%.5f") \(motionManager.altitude?.pressureUnit ?? "")"
+            )
+            Text(
+                "Altitude change: \(motionManager.altitude?.calculatedAltitude ?? 0.0, specifier: "%.5f") \(motionManager.altitude?.altitudeUnit ?? "")"
+            )
         }
         .navigationTitle(Text("Altitude", comment: "NavigationBar Title - Altitude sensor screen"))
         .font(.footnote)

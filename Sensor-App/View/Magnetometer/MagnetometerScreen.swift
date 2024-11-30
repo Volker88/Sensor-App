@@ -18,14 +18,17 @@ struct MagnetometerScreen: View {
                 CustomToolbar()
             }
             .navigationTitle(Text("Magnetometer", comment: "NavigationBar Title - Magnetometer sensor screen"))
-            .navigationDestination(for: Route.self, destination: { route in
-                switch route {
-                    case .magnetometerList:
-                        MagnetometerList()
-                    default:
-                        EmptyView()
+            .navigationDestination(
+                for: Route.self,
+                destination: { route in
+                    switch route {
+                        case .magnetometerList:
+                            MagnetometerList()
+                        default:
+                            EmptyView()
+                    }
                 }
-            })
+            )
             .onAppear {
                 motionManager.startMotionUpdates()
             }

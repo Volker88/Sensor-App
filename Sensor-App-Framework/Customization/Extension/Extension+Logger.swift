@@ -10,7 +10,7 @@ import OSLog
 
 extension Logger {
     /// Application bundle identifier
-    private static let subsystem = Bundle.main.bundleIdentifier! // swiftlint:disable:this force_unwrapping
+    private static let subsystem = Bundle.main.bundleIdentifier!  // swiftlint:disable:this force_unwrapping
 
     /// Log ``scenePhase`` events
     static let scenePhase = Logger(subsystem: subsystem, category: "scenePhase")

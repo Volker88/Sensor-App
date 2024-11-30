@@ -35,8 +35,11 @@ struct LocationView: View {
                             .frame(height: 100, alignment: .leading)
                     },
                     label: {
-                        Text("Latitude: \(locationManager.location?.latitude ?? 0.0, specifier: "%.6f")° ± \(locationManager.location?.horizontalAccuracy ?? 0.0, specifier: "%.2f")m", comment: "GPS Latitude position with accuracy in meter")
-                    })
+                        Text(
+                            "Latitude: \(locationManager.location?.latitude ?? 0.0, specifier: "%.6f")° ± \(locationManager.location?.horizontalAccuracy ?? 0.0, specifier: "%.2f")m",
+                            comment: "GPS Latitude position with accuracy in meter")
+                    }
+                )
                 .disclosureGroupModifier(accessibility: "Toggle Latitude Graph")
 
                 DisclosureGroup(
@@ -46,8 +49,11 @@ struct LocationView: View {
                             .frame(height: 100, alignment: .leading)
                     },
                     label: {
-                        Text("Longitude: \(locationManager.location?.longitude ?? 0.0, specifier: "%.6f")° ± \(locationManager.location?.horizontalAccuracy ?? 0.0, specifier: "%.2f")m", comment: "GPS Longitude position with accuracy in meter")
-                    })
+                        Text(
+                            "Longitude: \(locationManager.location?.longitude ?? 0.0, specifier: "%.6f")° ± \(locationManager.location?.horizontalAccuracy ?? 0.0, specifier: "%.2f")m",
+                            comment: "GPS Longitude position with accuracy in meter")
+                    }
+                )
                 .disclosureGroupModifier(accessibility: "Toggle Longitude Graph")
 
                 DisclosureGroup(
@@ -57,8 +63,11 @@ struct LocationView: View {
                             .frame(height: 100, alignment: .leading)
                     },
                     label: {
-                        Text("Altitude: \(locationManager.location?.altitude ?? 0.0, specifier: "%.2f") ± \(locationManager.location?.verticalAccuracy ?? 0.0, specifier: "%.2f")m", comment: "GPS Altitude position with accuracy in meter")
-                    })
+                        Text(
+                            "Altitude: \(locationManager.location?.altitude ?? 0.0, specifier: "%.2f") ± \(locationManager.location?.verticalAccuracy ?? 0.0, specifier: "%.2f")m",
+                            comment: "GPS Altitude position with accuracy in meter")
+                    }
+                )
                 .disclosureGroupModifier(accessibility: "Toggle Altitude Graph")
 
                 DisclosureGroup(
@@ -68,8 +77,11 @@ struct LocationView: View {
                             .frame(height: 100, alignment: .leading)
                     },
                     label: {
-                        Text("Direction: \(locationManager.location?.course ?? 0.0, specifier: "%.2f")°", comment: "GPS moving direction")
-                    })
+                        Text(
+                            "Direction: \(locationManager.location?.course ?? 0.0, specifier: "%.2f")°",
+                            comment: "GPS moving direction")
+                    }
+                )
                 .disclosureGroupModifier(accessibility: "Toggle Direction Graph")
 
                 DisclosureGroup(
@@ -79,8 +91,11 @@ struct LocationView: View {
                             .frame(height: 100, alignment: .leading)
                     },
                     label: {
-                        Text("Speed: \(locationManager.location?.calculatedSpeed ?? 0.0, specifier: "%.1f") \(locationManager.location?.speedUnit ?? "")")
-                    })
+                        Text(
+                            "Speed: \(locationManager.location?.calculatedSpeed ?? 0.0, specifier: "%.1f") \(locationManager.location?.speedUnit ?? "")"
+                        )
+                    }
+                )
                 .disclosureGroupModifier(accessibility: "Toggle Speed Graph")
 
                 NavigationLink(value: Route.location) {
@@ -95,10 +110,13 @@ struct LocationView: View {
 
     // MARK: - Methods
     func shareCSV() -> URL {
-        var csvText = NSLocalizedString("ID;Time;Longitude;Latitude;Altitude;Speed;Course", comment: "Export CSV Headline - Location") + "\n" // swiftlint:disable:this line_length
+        var csvText =
+            NSLocalizedString(
+                "ID;Time;Longitude;Latitude;Altitude;Speed;Course", comment: "Export CSV Headline - Location") + "\n"  // swiftlint:disable:this line_length
 
         _ = locationManager.locationArray.map {
-            csvText += "\($0.counter);\($0.timestamp);\($0.longitude.localizedDecimal());\($0.latitude.localizedDecimal());\($0.altitude.localizedDecimal());\($0.speed.localizedDecimal());\($0.course.localizedDecimal())\n"
+            csvText +=
+                "\($0.counter);\($0.timestamp);\($0.longitude.localizedDecimal());\($0.latitude.localizedDecimal());\($0.altitude.localizedDecimal());\($0.speed.localizedDecimal());\($0.course.localizedDecimal())\n"
         }
         return exportManager.getFile(exportText: csvText, filename: "location")
     }

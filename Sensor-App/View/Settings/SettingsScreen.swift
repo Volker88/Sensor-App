@@ -18,15 +18,19 @@ struct SettingsScreen: View {
     // MARK: - Body
     var body: some View {
         Form {
-            Section(header:
-                        Text("General", comment: "SettingsScreen - General Section")
+            Section(
+                header:
+                    Text("General", comment: "SettingsScreen - General Section")
             ) {
-                Toggle(isOn: $showReleaseNotes, label: {
-                    Text("Show Release Notes", comment: "SettingsScreen - Show Release Notes")
-                })
+                Toggle(
+                    isOn: $showReleaseNotes,
+                    label: {
+                        Text("Show Release Notes", comment: "SettingsScreen - Show Release Notes")
+                    })
             }
-            Section(header:
-                        Text("App Icon", comment: "Section header - Icon of the App")
+            Section(
+                header:
+                    Text("App Icon", comment: "Section header - Icon of the App")
             ) {
                 HStack {
                     ForEach(0..<settingsManager.iconNames.count, id: \.self) { index in
@@ -43,15 +47,17 @@ struct SettingsScreen: View {
                 }
             }
 
-            Section(header:
-                        Text("Location", comment: "SettingsScreen - Location Section")
+            Section(
+                header:
+                    Text("Location", comment: "SettingsScreen - Location Section")
             ) {
                 Picker(
                     selection: Bindable(settingsManager).speedSetting,
-                    label: Text("Speed Setting",
-                                comment: "SettingsScreen - Speed Setting")
+                    label: Text(
+                        "Speed Setting",
+                        comment: "SettingsScreen - Speed Setting")
                 ) {
-                    ForEach(0 ..< settingsManager.GPSSpeedSettings.count, id: \.self) {
+                    ForEach(0..<settingsManager.GPSSpeedSettings.count, id: \.self) {
                         Text(settingsManager.GPSSpeedSettings[$0]).tag($0)
                     }
                 }
@@ -60,24 +66,28 @@ struct SettingsScreen: View {
                     selection: Bindable(settingsManager).accuracySetting,
                     label: Text("Accuracy", comment: "SettingsScreen - Accuracy")
                 ) {
-                    ForEach(0 ..< settingsManager.GPSAccuracyOptions.count, id: \.self) {
+                    ForEach(0..<settingsManager.GPSAccuracyOptions.count, id: \.self) {
                         Text(settingsManager.GPSAccuracyOptions[$0]).tag($0)
                     }
                 }
                 .accessibility(identifier: "GPS Accuracy Settings")
             }
 
-            Section(header:
-                        Text("Map", comment: "SettingsScreen - Map Section")
-                .accessibility(identifier: "Map")
+            Section(
+                header:
+                    Text("Map", comment: "SettingsScreen - Map Section")
+                    .accessibility(identifier: "Map")
             ) {
-                Picker(selection: Bindable(settingsManager).mapSettings.mapType, label:
-                        Text("Type", comment: "SettingsScreen - Type")) {
+                Picker(
+                    selection: Bindable(settingsManager).mapSettings.mapType,
+                    label:
+                        Text("Type", comment: "SettingsScreen - Type")
+                ) {
                     ForEach(MapType.allCases, id: \.self) { type in
                         Text(type.rawValue).tag(type)
                     }
                 }
-                        .accessibility(identifier: "MapType Picker")
+                .accessibility(identifier: "MapType Picker")
 
                 Toggle(isOn: Bindable(settingsManager).mapSettings.showsCompass) {
                     Text("Compass", comment: "SettingsScreen - Compass")
@@ -108,8 +118,9 @@ struct SettingsScreen: View {
                 }.accessibility(identifier: "Scroll Toggle")
 
                 Stepper(value: Bindable(settingsManager).mapSettings.zoom, in: 100...100000, step: 100) {
-                    Text("Zoom: \(settingsManager.mapSettings.zoom / 1000, specifier: "%.1f") km",
-                         comment: "SettingsScreen - Zoom")
+                    Text(
+                        "Zoom: \(settingsManager.mapSettings.zoom / 1000, specifier: "%.1f") km",
+                        comment: "SettingsScreen - Zoom")
                 }.accessibility(identifier: "Zoom Stepper")
 
                 HStack {
@@ -121,34 +132,38 @@ struct SettingsScreen: View {
                 }
             }
 
-            Section(header:
-                        Text("Altitude", comment: "SettingsScreen - Altitude Section")
+            Section(
+                header:
+                    Text("Altitude", comment: "SettingsScreen - Altitude Section")
             ) {
                 Picker(
                     selection: Bindable(settingsManager).pressureSetting,
                     label: Text("Pressure", comment: "SettingsScreen - Pressure")
                 ) {
-                    ForEach(0 ..< settingsManager.altitudePressure.count, id: \.self) {
+                    ForEach(0..<settingsManager.altitudePressure.count, id: \.self) {
                         Text(settingsManager.altitudePressure[$0]).tag($0)
                     }
                 }
                 .accessibility(identifier: "Pressure Settings")
-                Picker(selection: Bindable(settingsManager).heightSetting,
-                       label: Text("Height", comment: "SettingsScreen - Height")
+                Picker(
+                    selection: Bindable(settingsManager).heightSetting,
+                    label: Text("Height", comment: "SettingsScreen - Height")
                 ) {
-                    ForEach(0 ..< settingsManager.altitudeHeight.count, id: \.self) {
+                    ForEach(0..<settingsManager.altitudeHeight.count, id: \.self) {
                         Text(settingsManager.altitudeHeight[$0]).tag($0)
                     }
                 }
                 .accessibility(identifier: "Height Settings")
             }
 
-            Section(header:
-                        Text("Graph", comment: "SettingsScreen - Graph Section")
+            Section(
+                header:
+                    Text("Graph", comment: "SettingsScreen - Graph Section")
             ) {
                 Stepper(value: Bindable(settingsManager).userSettings.graphMaxPoints, in: 1...1000, step: 1) {
-                    Text("Max Points: \(settingsManager.userSettings.graphMaxPoints, specifier: "%.0f")",
-                         comment: "SettingsScreen - Max Points")
+                    Text(
+                        "Max Points: \(settingsManager.userSettings.graphMaxPoints, specifier: "%.0f")",
+                        comment: "SettingsScreen - Max Points")
                 }.accessibility(identifier: "Max Points Stepper")
                 HStack {
                     Text("1")
@@ -164,7 +179,10 @@ struct SettingsScreen: View {
                             comment: "Slider to update how many data points are shown on the graph"
                         )
                     )
-                    .accessibility(value: Text("\(settingsManager.userSettings.graphMaxPoints, specifier: "%.0f")", comment: "SettingsScreen - Max Points Slider"))
+                    .accessibility(
+                        value: Text(
+                            "\(settingsManager.userSettings.graphMaxPoints, specifier: "%.0f")",
+                            comment: "SettingsScreen - Max Points Slider"))
                     Text("1000")
                 }
             }

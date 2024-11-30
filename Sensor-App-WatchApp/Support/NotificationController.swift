@@ -5,9 +5,9 @@
 //  Created by Volker Schmitt on 19.07.20.
 //
 
-import WatchKit
 import SwiftUI
 import UserNotifications
+import WatchKit
 
 class NotificationController: WKUserNotificationHostingController<NotificationView> {
 

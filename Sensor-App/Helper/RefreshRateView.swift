@@ -20,11 +20,14 @@ struct RefreshRateView: View {
         Group {
             if show == "header" {
                 HStack {
-                    Text("Frequency: \(Double(motionManager.sensorUpdateInterval), specifier: "%.0f") Hz", comment: "Frequency of Sensor Updates in Herz")
-                    Stepper("", value: Bindable(motionManager).sensorUpdateInterval, in: 1...50, step: 1,
-                            onEditingChanged: { _ in
-                        updateSlider()
-                    })
+                    Text(
+                        "Frequency: \(Double(motionManager.sensorUpdateInterval), specifier: "%.0f") Hz",
+                        comment: "Frequency of Sensor Updates in Herz")
+                    Stepper(
+                        "", value: Bindable(motionManager).sensorUpdateInterval, in: 1...50, step: 1,
+                        onEditingChanged: { _ in
+                            updateSlider()
+                        })
                 }
             } else if show == "slider" {
                 HStack {
@@ -33,9 +36,16 @@ struct RefreshRateView: View {
                     Slider(value: Bindable(motionManager).sensorUpdateInterval, in: 1...50, step: 1) { _ in
                         updateSlider()
                     }
-                    .accessibility(label: Text("Refresh Rate",
-                                               comment: "Slider to adjust Frequency of Sensor Updates in Herz"))
-                    .accessibility(value: Text("\(motionManager.sensorUpdateInterval, specifier: "%.0f") per Second", comment: "RefreshRateView - Value"))
+                    .accessibility(
+                        label: Text(
+                            "Refresh Rate",
+                            comment: "Slider to adjust Frequency of Sensor Updates in Herz")
+                    )
+                    .accessibility(
+                        value: Text(
+                            "\(motionManager.sensorUpdateInterval, specifier: "%.0f") per Second",
+                            comment: "RefreshRateView - Value")
+                    )
                     .accessibility(identifier: "Frequency Slider")
                     Text("50")
                 }

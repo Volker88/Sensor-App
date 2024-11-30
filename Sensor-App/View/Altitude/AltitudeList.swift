@@ -19,9 +19,13 @@ struct AltitudeList: View {
             HStack {
                 Text("#\(item.counter)", comment: "Incrementing counter for each item.  DO NOT TRANSLATE")
                 Spacer()
-                Text("P:\(motionManager.altitude?.calculatedPressure ?? 0.0, specifier: "%.3f")", comment: "First Letter as shortcut for Pressure")
+                Text(
+                    "P:\(motionManager.altitude?.calculatedPressure ?? 0.0, specifier: "%.3f")",
+                    comment: "First Letter as shortcut for Pressure")
                 Spacer()
-                Text("A:\(motionManager.altitude?.calculatedAltitude ?? 0.0, specifier: "%.3f")", comment: "First Letter as shortcut for Altitude")
+                Text(
+                    "A:\(motionManager.altitude?.calculatedAltitude ?? 0.0, specifier: "%.3f")",
+                    comment: "First Letter as shortcut for Altitude")
             }
             .font(.footnote)
         }
@@ -38,10 +42,12 @@ struct AltitudeList: View {
 
     // MARK: - Methods
     func shareCSV() -> URL {
-        var csvText = NSLocalizedString("ID;Time;Pressure;Altitude change", comment: "Export CSV Headline - altitude") + "\n" // swiftlint:disable:this line_length
+        var csvText =
+            NSLocalizedString("ID;Time;Pressure;Altitude change", comment: "Export CSV Headline - altitude") + "\n"  // swiftlint:disable:this line_length
 
         _ = motionManager.altitudeArray.map {
-            csvText += "\($0.counter);\($0.timestamp);\((motionManager.altitude?.calculatedPressure ?? 0.0).localizedDecimal());\((motionManager.altitude?.calculatedAltitude ?? 0.0).localizedDecimal())\n"
+            csvText +=
+                "\($0.counter);\($0.timestamp);\((motionManager.altitude?.calculatedPressure ?? 0.0).localizedDecimal());\((motionManager.altitude?.calculatedAltitude ?? 0.0).localizedDecimal())\n"
         }
         return exportManager.getFile(exportText: csvText, filename: "altitude")
     }

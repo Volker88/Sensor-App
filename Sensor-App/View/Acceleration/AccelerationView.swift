@@ -27,8 +27,11 @@ struct AccelerationView: View {
                             .frame(height: 100, alignment: .leading)
                     },
                     label: {
-                        Text("X-Axis: \(motionManager.motion?.accelerationXAxis ?? 0.0, specifier: "%.5f") m/s^2", comment: "AccelerationView - X-Axis")
-                    })
+                        Text(
+                            "X-Axis: \(motionManager.motion?.accelerationXAxis ?? 0.0, specifier: "%.5f") m/s^2",
+                            comment: "AccelerationView - X-Axis")
+                    }
+                )
                 .disclosureGroupModifier(accessibility: "Toggle X-Axis Graph")
 
                 DisclosureGroup(
@@ -38,8 +41,11 @@ struct AccelerationView: View {
                             .frame(height: 100, alignment: .leading)
                     },
                     label: {
-                        Text("Y-Axis: \(motionManager.motion?.accelerationYAxis ?? 0.0, specifier: "%.5f") m/s^2", comment: "AccelerationView - Y-Axis")
-                    })
+                        Text(
+                            "Y-Axis: \(motionManager.motion?.accelerationYAxis ?? 0.0, specifier: "%.5f") m/s^2",
+                            comment: "AccelerationView - Y-Axis")
+                    }
+                )
                 .disclosureGroupModifier(accessibility: "Toggle Y-Axis Graph")
 
                 DisclosureGroup(
@@ -49,8 +55,11 @@ struct AccelerationView: View {
                             .frame(height: 100, alignment: .leading)
                     },
                     label: {
-                        Text("Z-Axis: \(motionManager.motion?.accelerationZAxis ?? 0.0, specifier: "%.5f") m/s^2", comment: "AccelerationView - Z-Axis")
-                    })
+                        Text(
+                            "Z-Axis: \(motionManager.motion?.accelerationZAxis ?? 0.0, specifier: "%.5f") m/s^2",
+                            comment: "AccelerationView - Z-Axis")
+                    }
+                )
                 .disclosureGroupModifier(accessibility: "Toggle Z-Axis Graph")
 
                 NavigationLink(value: Route.accelerationList) {

@@ -31,9 +31,10 @@ struct NotificationView: View {
 
 // MARK: - Preview
 #Preview {
-    NotificationView(notificationWrapper: .constant(
-        NotificationWrapper(message: "Start")
-    ))
+    NotificationView(
+        notificationWrapper: .constant(
+            NotificationWrapper(message: "Start")
+        ))
 }
 
 /// ``NotificationWrapper`` Model

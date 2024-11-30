@@ -31,7 +31,7 @@ struct MotionModel: Hashable {
 }
 
 extension MotionModel {
-    func graphValue(for graph: GraphDetail) -> Double { // swiftlint:disable:this cyclomatic_complexity
+    func graphValue(for graph: GraphDetail) -> Double {  // swiftlint:disable:this cyclomatic_complexity
         switch graph {
             case .accelerationXAxis: return accelerationXAxis
             case .accelerationYAxis: return accelerationYAxis

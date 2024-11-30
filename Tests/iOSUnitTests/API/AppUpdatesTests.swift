@@ -8,14 +8,15 @@
 
 import Foundation
 import Testing
+
 @testable import Sensor_App
 
 @MainActor
 final class AppUpdateTests {
 
-    init () async throws { }
+    init() async throws {}
 
-    deinit { }
+    deinit {}
 
     // MARK: - Testing Methods
     @Test("Test app for first time launch")
@@ -24,7 +25,8 @@ final class AppUpdateTests {
         UserDefaults.standard.removeObject(forKey: "CurrentAppVersion")
         appUpdates.checkForUpdate()
 
-        let userDefaultsForSpeedSetting = UserDefaults.standard.string(forKey: "\(SettingsForUserDefaults.GPSSpeedSetting)")
+        let userDefaultsForSpeedSetting = UserDefaults.standard.string(
+            forKey: "\(SettingsForUserDefaults.GPSSpeedSetting)")
 
         #expect(userDefaultsForSpeedSetting == nil)
     }

@@ -18,14 +18,17 @@ struct AltitudeScreen: View {
                 CustomToolbar()
             }
             .navigationTitle(Text("Altitude", comment: "NavigationBar Title - Altitude sensor screen"))
-            .navigationDestination(for: Route.self, destination: { route in
-                switch route {
-                    case .altitudeList:
-                        AltitudeList()
-                    default:
-                        EmptyView()
+            .navigationDestination(
+                for: Route.self,
+                destination: { route in
+                    switch route {
+                        case .altitudeList:
+                            AltitudeList()
+                        default:
+                            EmptyView()
+                    }
                 }
-            })
+            )
             .onAppear {
                 motionManager.startAltitudeUpdates()
             }

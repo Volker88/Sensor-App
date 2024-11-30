@@ -7,8 +7,8 @@
 //
 
 import Foundation
-import SwiftUI
 import OSLog
+import SwiftUI
 
 @MainActor
 @Observable
@@ -42,40 +42,40 @@ class SettingsManager {
     var pressureSetting = 0
     var heightSetting = 0
 
-    let iconNames: [String] = [ "AppIcon-V3", "AppIcon-V1", "AppIcon-V2"]
+    let iconNames: [String] = ["AppIcon-V3", "AppIcon-V1", "AppIcon-V2"]
 
     init() {
-#if os(iOS)
-        if let currentIcon = UIApplication.shared.alternateIconName {
-            self.currentAppIconIndex = iconNames.firstIndex(of: currentIcon) ?? 0
-        }
-#endif
+        #if os(iOS)
+            if let currentIcon = UIApplication.shared.alternateIconName {
+                self.currentAppIconIndex = iconNames.firstIndex(of: currentIcon) ?? 0
+            }
+        #endif
 
         userSettings = fetchUserSettings()
 
-#if os(iOS)
-        mapSettings = fetchMapKitSettings()
-#endif
+        #if os(iOS)
+            mapSettings = fetchMapKitSettings()
+        #endif
     }
 
     func changeIcon(value: Int) {
-#if os(iOS)
-        let index = iconNames.firstIndex(of: UIApplication.shared.alternateIconName ?? "Default") ?? 0
+        #if os(iOS)
+            let index = iconNames.firstIndex(of: UIApplication.shared.alternateIconName ?? "Default") ?? 0
 
-        if value == 0 {
-            UIApplication.shared.setAlternateIconName(nil)
-        }
+            if value == 0 {
+                UIApplication.shared.setAlternateIconName(nil)
+            }
 
-        if index != value {
-            UIApplication.shared.setAlternateIconName(iconNames[value]) { error in
-                if let error = error {
-                    print(error.localizedDescription)
-                } else {
-                    print("Success!")
+            if index != value {
+                UIApplication.shared.setAlternateIconName(iconNames[value]) { error in
+                    if let error = error {
+                        print(error.localizedDescription)
+                    } else {
+                        print("Success!")
+                    }
                 }
             }
-        }
-#endif
+        #endif
     }
 
     func saveSettings() {
@@ -85,9 +85,9 @@ class SettingsManager {
         userSettings.altitudeHeightSetting = altitudeHeight[heightSetting]
 
         saveUserSettings(userSettings: userSettings)
-#if os(iOS)
-        saveMapKitSettings(mapKitSettings: mapSettings)
-#endif
+        #if os(iOS)
+            saveMapKitSettings(mapKitSettings: mapSettings)
+        #endif
     }
 
     func discardChanges() {
@@ -97,9 +97,9 @@ class SettingsManager {
         heightSetting = altitudeHeight.firstIndex(of: userSettings.altitudeHeightSetting) ?? 0
 
         userSettings = fetchUserSettings()
-#if os(iOS)
-        mapSettings = fetchMapKitSettings()
-#endif
+        #if os(iOS)
+            mapSettings = fetchMapKitSettings()
+        #endif
     }
 
     public let GPSSpeedSettings = [
@@ -172,20 +172,20 @@ class SettingsManager {
         }
 
         /// Overwrite user settings in case of UI Testing
-#if DEBUG
-        if CommandLine.arguments.contains("enable-testing") {
-            userSettings = UserSettings(
-                showReleaseNotes: true,
-                GPSSpeedSetting: "m/s",
-                GPSAccuracySetting: "Best",
-                frequencySetting: 1.0,
-                pressureSetting: "kPa",
-                altitudeHeightSetting: "m",
-                graphMaxPoints: 150
-            )
-            print("Testing in progress")
-        }
-#endif
+        #if DEBUG
+            if CommandLine.arguments.contains("enable-testing") {
+                userSettings = UserSettings(
+                    showReleaseNotes: true,
+                    GPSSpeedSetting: "m/s",
+                    GPSAccuracySetting: "Best",
+                    frequencySetting: 1.0,
+                    pressureSetting: "kPa",
+                    altitudeHeightSetting: "m",
+                    graphMaxPoints: 150
+                )
+                print("Testing in progress")
+            }
+        #endif
 
         return userSettings
     }

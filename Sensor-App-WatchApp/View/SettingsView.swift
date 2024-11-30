@@ -22,14 +22,15 @@ struct SettingsView: View {
     // MARK: - Body
     var body: some View {
         Form {
-            Section(header:
-                        Text("Location", comment: "SettingsView - Location Section (watchOS)")
+            Section(
+                header:
+                    Text("Location", comment: "SettingsView - Location Section (watchOS)")
             ) {
                 Picker(
                     selection: $speedSetting,
                     label: Text("Speed Setting", comment: "SettingsView - Speed Setting (watchOS)")
                 ) {
-                    ForEach(0 ..< settingsManager.GPSSpeedSettings.count, id: \.self) {
+                    ForEach(0..<settingsManager.GPSSpeedSettings.count, id: \.self) {
                         Text(settingsManager.GPSSpeedSettings[$0]).tag($0)
                     }
                 }
@@ -37,19 +38,20 @@ struct SettingsView: View {
                     selection: $accuracySetting,
                     label: Text("Accuracy", comment: "SettingsView - Accuracy (watchOS)")
                 ) {
-                    ForEach(0 ..< settingsManager.GPSAccuracyOptions.count, id: \.self) {
+                    ForEach(0..<settingsManager.GPSAccuracyOptions.count, id: \.self) {
                         Text(settingsManager.GPSAccuracyOptions[$0]).tag($0)
                     }
                 }
             }
-            Section(header:
-                        Text("Altitude", comment: "SettingsView - Altitude Section (watchOS)")
+            Section(
+                header:
+                    Text("Altitude", comment: "SettingsView - Altitude Section (watchOS)")
             ) {
                 Picker(
                     selection: $pressureSetting,
                     label: Text("Pressure", comment: "SettingsView - Pressure (watchOS)")
                 ) {
-                    ForEach(0 ..< settingsManager.altitudePressure.count, id: \.self) {
+                    ForEach(0..<settingsManager.altitudePressure.count, id: \.self) {
                         Text(settingsManager.altitudePressure[$0]).tag($0)
                     }
                 }
@@ -57,13 +59,14 @@ struct SettingsView: View {
                     selection: $heightSetting,
                     label: Text("Height", comment: "SettingsView - Height (watchOS)")
                 ) {
-                    ForEach(0 ..< settingsManager.altitudeHeight.count, id: \.self) {
+                    ForEach(0..<settingsManager.altitudeHeight.count, id: \.self) {
                         Text(settingsManager.altitudeHeight[$0]).tag($0)
                     }
                 }
             }
-            Section(header:
-                        Text("Refresh Rate", comment: "SettingsView - Refresh Rate Section (watchOS)")
+            Section(
+                header:
+                    Text("Refresh Rate", comment: "SettingsView - Refresh Rate Section (watchOS)")
             ) {
                 Text("Frequency: \(Int(refreshRate)) Hz")
 
@@ -105,13 +108,17 @@ struct SettingsView: View {
     }
 
     func discardChanges(dismiss: Bool) {
-        // swiftlint:disable line_length
-        speedSetting = settingsManager.GPSSpeedSettings.firstIndex(of: settingsManager.fetchUserSettings().GPSSpeedSetting) ?? 0
-        accuracySetting = settingsManager.GPSAccuracyOptions.firstIndex(of: settingsManager.fetchUserSettings().GPSAccuracySetting) ?? 0
-        pressureSetting = settingsManager.altitudePressure.firstIndex(of: settingsManager.fetchUserSettings().pressureSetting) ?? 0
-        heightSetting = settingsManager.altitudeHeight.firstIndex(of: settingsManager.fetchUserSettings().altitudeHeightSetting) ?? 0
+        speedSetting =
+            settingsManager.GPSSpeedSettings.firstIndex(of: settingsManager.fetchUserSettings().GPSSpeedSetting) ?? 0
+        accuracySetting =
+            settingsManager.GPSAccuracyOptions.firstIndex(of: settingsManager.fetchUserSettings().GPSAccuracySetting)
+            ?? 0
+        pressureSetting =
+            settingsManager.altitudePressure.firstIndex(of: settingsManager.fetchUserSettings().pressureSetting) ?? 0
+        heightSetting =
+            settingsManager.altitudeHeight.firstIndex(of: settingsManager.fetchUserSettings().altitudeHeightSetting)
+            ?? 0
         refreshRate = settingsManager.fetchUserSettings().frequencySetting
-        // swiftlint:enable line_length
 
         if dismiss == true {
             self.dismiss()

@@ -28,8 +28,11 @@ struct AttitudeView: View {
                             .frame(height: 100, alignment: .leading)
                     },
                     label: {
-                        Text("Roll: \((motionManager.motion?.attitudeRoll ?? 0.0) * 180 / .pi, specifier: "%.5f")°", comment: "AttitudeView - Roll")
-                    })
+                        Text(
+                            "Roll: \((motionManager.motion?.attitudeRoll ?? 0.0) * 180 / .pi, specifier: "%.5f")°",
+                            comment: "AttitudeView - Roll")
+                    }
+                )
                 .disclosureGroupModifier(accessibility: "Toggle Roll Graph")
 
                 DisclosureGroup(
@@ -39,8 +42,11 @@ struct AttitudeView: View {
                             .frame(height: 100, alignment: .leading)
                     },
                     label: {
-                        Text("Pitch: \((motionManager.motion?.attitudePitch ?? 0.0) * 180 / .pi, specifier: "%.5f")°", comment: "AttitudeView - Pitch")
-                    })
+                        Text(
+                            "Pitch: \((motionManager.motion?.attitudePitch ?? 0.0) * 180 / .pi, specifier: "%.5f")°",
+                            comment: "AttitudeView - Pitch")
+                    }
+                )
                 .disclosureGroupModifier(accessibility: "Toggle Pitch Graph")
 
                 DisclosureGroup(
@@ -50,8 +56,11 @@ struct AttitudeView: View {
                             .frame(height: 100, alignment: .leading)
                     },
                     label: {
-                        Text("Yaw: \((motionManager.motion?.attitudeYaw ?? 0.0) * 180 / .pi, specifier: "%.5f")°", comment: "AttitudeView - Yaw")
-                    })
+                        Text(
+                            "Yaw: \((motionManager.motion?.attitudeYaw ?? 0.0) * 180 / .pi, specifier: "%.5f")°",
+                            comment: "AttitudeView - Yaw")
+                    }
+                )
                 .disclosureGroupModifier(accessibility: "Toggle Yaw Graph")
 
                 DisclosureGroup(
@@ -61,8 +70,11 @@ struct AttitudeView: View {
                             .frame(height: 100, alignment: .leading)
                     },
                     label: {
-                        Text("Heading: \(motionManager.motion?.attitudeHeading ?? 0.0, specifier: "%.5f")°", comment: "AttitudeView - Heading")
-                    })
+                        Text(
+                            "Heading: \(motionManager.motion?.attitudeHeading ?? 0.0, specifier: "%.5f")°",
+                            comment: "AttitudeView - Heading")
+                    }
+                )
                 .disclosureGroupModifier(accessibility: "Toggle Heading Graph")
 
                 NavigationLink(value: Route.attitudeList) {

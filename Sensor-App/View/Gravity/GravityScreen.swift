@@ -18,14 +18,17 @@ struct GravityScreen: View {
                 CustomToolbar()
             }
             .navigationTitle(Text("Gravity", comment: "NavigationBar Title - Gravity"))
-            .navigationDestination(for: Route.self, destination: { route in
-                switch route {
-                    case .gravityList:
-                        GravityList()
-                    default:
-                        EmptyView()
+            .navigationDestination(
+                for: Route.self,
+                destination: { route in
+                    switch route {
+                        case .gravityList:
+                            GravityList()
+                        default:
+                            EmptyView()
+                    }
                 }
-            })
+            )
             .onAppear {
                 motionManager.startMotionUpdates()
             }

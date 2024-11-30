@@ -26,8 +26,11 @@ struct AltitudeView: View {
                             .frame(height: 100, alignment: .leading)
                     },
                     label: {
-                        Text("Pressure: \(motionManager.altitude?.calculatedPressure ?? 0.0, specifier: "%.5f") \(motionManager.altitude?.pressureUnit ?? "")")
-                    })
+                        Text(
+                            "Pressure: \(motionManager.altitude?.calculatedPressure ?? 0.0, specifier: "%.5f") \(motionManager.altitude?.pressureUnit ?? "")"
+                        )
+                    }
+                )
                 .disclosureGroupModifier(accessibility: "Toggle Pressure Graph")
 
                 DisclosureGroup(
@@ -37,8 +40,11 @@ struct AltitudeView: View {
                             .frame(height: 100, alignment: .leading)
                     },
                     label: {
-                        Text("Altitude change: \(motionManager.altitude?.calculatedAltitude ?? 0.0, specifier: "%.5f") \(motionManager.altitude?.altitudeUnit ?? "")")
-                    })
+                        Text(
+                            "Altitude change: \(motionManager.altitude?.calculatedAltitude ?? 0.0, specifier: "%.5f") \(motionManager.altitude?.altitudeUnit ?? "")"
+                        )
+                    }
+                )
                 .disclosureGroupModifier(accessibility: "Toggle Altitude Graph")
 
                 NavigationLink(value: Route.altitudeList) {

@@ -11,9 +11,9 @@ struct NavEmbedded: PreviewModifier {
     func body(content: Content, context: Void) -> some View {
         NavigationStack {
             content
-            #if !os(watchOS)
-                .environment(AppState())
-            #endif
+                #if !os(watchOS)
+                    .environment(AppState())
+                #endif
                 .environment(SettingsManager())
                 .environment(CalculationManager())
                 .environment(MotionManager())

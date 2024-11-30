@@ -5,8 +5,8 @@
 //  Created by Volker Schmitt on 19.07.20.
 //
 
-import SwiftUI
 import OSLog
+import SwiftUI
 
 @main
 struct SensorAppApp: App {

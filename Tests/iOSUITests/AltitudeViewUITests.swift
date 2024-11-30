@@ -6,10 +6,11 @@
 //  Copyright © 2020 Volker Schmitt. All rights reserved.
 //
 
- import XCTest
- @testable import Sensor_App
+import XCTest
 
- class AltitudeViewUITests: BaseTestCase {
+@testable import Sensor_App
+
+class AltitudeViewUITests: BaseTestCase {
     func testAltitudeViewToolbarButtons() throws {
         // Go to Altitude View
         moveToView(view: "Altitude")
@@ -54,4 +55,4 @@
         backToHomeMenu()
         backToHomeMenu()
     }
- }
+}

@@ -5,8 +5,8 @@
 //  Created by Volker Schmitt on 08.08.20.
 //
 
-import SwiftUI
 import MapKit
+import SwiftUI
 
 extension Map {
     /// MapStyle

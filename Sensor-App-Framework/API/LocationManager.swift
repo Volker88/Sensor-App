@@ -85,31 +85,31 @@ class LocationManager {
     }
 
     func mockData() {
-#if DEBUG && targetEnvironment(simulator)
-        if CommandLine.arguments.contains("enable-testing") {
-            for index in 1...1000 {
-                let location = LocationModel(
-                    counter: index,
-                    longitude: getDouble(min: -122.109102, max: -122),
-                    latitude: getDouble(min: 37.234606, max: 37.434606),
-                    altitude: getDouble(min: 10, max: 20),
-                    speed: getDouble(min: 90, max: 110),
-                    course: getDouble(min: 269, max: 271),
-                    horizontalAccuracy: getDouble(min: 0, max: 10),
-                    verticalAccuracy: getDouble(min: 0, max: 10),
-                    timestamp: Date().formatted(),
-                    GPSAccuracy: -1
-                )
+        #if DEBUG && targetEnvironment(simulator)
+            if CommandLine.arguments.contains("enable-testing") {
+                for index in 1...1000 {
+                    let location = LocationModel(
+                        counter: index,
+                        longitude: getDouble(min: -122.109102, max: -122),
+                        latitude: getDouble(min: 37.234606, max: 37.434606),
+                        altitude: getDouble(min: 10, max: 20),
+                        speed: getDouble(min: 90, max: 110),
+                        course: getDouble(min: 269, max: 271),
+                        horizontalAccuracy: getDouble(min: 0, max: 10),
+                        verticalAccuracy: getDouble(min: 0, max: 10),
+                        timestamp: Date().formatted(),
+                        GPSAccuracy: -1
+                    )
 
-                locationArray.append(location)
-                locationChart.append(location)
-                self.location = location
-            }
+                    locationArray.append(location)
+                    locationChart.append(location)
+                    self.location = location
+                }
 
-            func getDouble(min: Double = -1, max: Double = 1) -> Double {
-                Double.random(in: min...max)
+                func getDouble(min: Double = -1, max: Double = 1) -> Double {
+                    Double.random(in: min...max)
+                }
             }
-        }
-#endif
+        #endif
     }
 }

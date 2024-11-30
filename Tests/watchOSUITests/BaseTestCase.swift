@@ -6,6 +6,7 @@
 //
 
 import XCTest
+
 @testable import Sensor_App_Watch
 
 @MainActor
@@ -37,6 +38,6 @@ class BaseTestCase: XCTestCase {
     }
 
     func backToHomeMenu() {
-            app.navigationBars.buttons.element(boundBy: 0).tap()
+        app.navigationBars.buttons.element(boundBy: 0).tap()
     }
 }

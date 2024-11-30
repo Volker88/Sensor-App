@@ -6,8 +6,8 @@
 //  Copyright © 2020 Volker Schmitt. All rights reserved.
 //
 
-import SwiftUI
 import OSLog
+import SwiftUI
 
 class ExportManager {
     /// Export File

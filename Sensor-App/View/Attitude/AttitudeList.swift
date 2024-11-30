@@ -19,13 +19,21 @@ struct AttitudeList: View {
             HStack {
                 Text("#\(item.counter)", comment: "Incrementing counter for each item.  DO NOT TRANSLATE")
                 Spacer()
-                Text("R:\(item.attitudeRoll * 180 / .pi, specifier: "%.3f")", comment: "Attitude Sensor. First Letter as shortcut for Roll")
+                Text(
+                    "R:\(item.attitudeRoll * 180 / .pi, specifier: "%.3f")",
+                    comment: "Attitude Sensor. First Letter as shortcut for Roll")
                 Spacer()
-                Text("P:\(item.attitudePitch * 180 / .pi, specifier: "%.3f")", comment: "Attitude Sensor. First Letter as shortcut for Pitch")
+                Text(
+                    "P:\(item.attitudePitch * 180 / .pi, specifier: "%.3f")",
+                    comment: "Attitude Sensor. First Letter as shortcut for Pitch")
                 Spacer()
-                Text("Y:\(item.attitudeYaw * 180 / .pi, specifier: "%.3f")", comment: "Attitude Sensor. First Letter as shortcut for Yaw")
+                Text(
+                    "Y:\(item.attitudeYaw * 180 / .pi, specifier: "%.3f")",
+                    comment: "Attitude Sensor. First Letter as shortcut for Yaw")
                 Spacer()
-                Text("H:\(item.attitudeHeading, specifier: "%.3f")", comment: "Attitude Sensor. First Letter as shortcut for Heading")
+                Text(
+                    "H:\(item.attitudeHeading, specifier: "%.3f")",
+                    comment: "Attitude Sensor. First Letter as shortcut for Heading")
             }
             .font(.footnote)
         }
@@ -42,10 +50,12 @@ struct AttitudeList: View {
 
     // MARK: - Methods
     func shareCSV() -> URL {
-        var csvText = NSLocalizedString("ID;Time;Roll;Pitch;Yaw;Heading", comment: "Export CSV Headline - attitude") + "\n" // swiftlint:disable:this line_length
+        var csvText =
+            NSLocalizedString("ID;Time;Roll;Pitch;Yaw;Heading", comment: "Export CSV Headline - attitude") + "\n"  // swiftlint:disable:this line_length
 
         _ = motionManager.motionArray.map {
-            csvText += "\($0.counter);\($0.timestamp);\($0.attitudeRoll.localizedDecimal());\($0.attitudePitch.localizedDecimal());\($0.attitudeYaw.localizedDecimal());\($0.attitudeHeading.localizedDecimal())\n"
+            csvText +=
+                "\($0.counter);\($0.timestamp);\($0.attitudeRoll.localizedDecimal());\($0.attitudePitch.localizedDecimal());\($0.attitudeYaw.localizedDecimal());\($0.attitudeHeading.localizedDecimal())\n"
         }
         return exportManager.getFile(exportText: csvText, filename: "attitude")
     }

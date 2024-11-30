@@ -5,8 +5,8 @@
 //  Created by Volker Schmitt on 24.08.20.
 //
 
-import SwiftUI
 import StoreKit
+import SwiftUI
 
 struct LocationScreen: View {
 
@@ -19,18 +19,21 @@ struct LocationScreen: View {
                 CustomToolbar()
             }
             .navigationTitle(Text("Location", comment: "NavigationBar Title - Location view screen"))
-            .navigationDestination(for: Route.self, destination: { route in
-                switch route {
-                    case .location:
-                        MapView()
-                    default:
-                        MapView()
+            .navigationDestination(
+                for: Route.self,
+                destination: { route in
+                    switch route {
+                        case .location:
+                            MapView()
+                        default:
+                            MapView()
+                    }
                 }
-            })
+            )
             .onDisappear {
-#if RELEASE
-                requestReview()
-#endif
+                #if RELEASE
+                    requestReview()
+                #endif
             }
     }
 }

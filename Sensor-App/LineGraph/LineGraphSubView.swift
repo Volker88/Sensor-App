@@ -6,8 +6,8 @@
 //  Copyright © 2020 Volker Schmitt. All rights reserved.
 //
 
-import SwiftUI
 import Charts
+import SwiftUI
 
 struct LineGraphSubView: View {
 
@@ -28,13 +28,13 @@ struct LineGraphSubView: View {
 
     var motion: some View {
         Chart {
-                ForEach(motionManager.motionChart, id: \.self) { item in
-                    LineMark(
-                        x: .value("Index", item.counter),
-                        y: .value("Value", item.graphValue(for: showGraph))
-                    )
-                    .interpolationMethod(.linear)
-                }
+            ForEach(motionManager.motionChart, id: \.self) { item in
+                LineMark(
+                    x: .value("Index", item.counter),
+                    y: .value("Value", item.graphValue(for: showGraph))
+                )
+                .interpolationMethod(.linear)
+            }
         }
         .chartYAxis {
             AxisMarks(position: .leading)

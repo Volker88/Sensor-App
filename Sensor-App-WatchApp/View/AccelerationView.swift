@@ -13,14 +13,20 @@ struct AccelerationView: View {
     @Environment(SettingsManager.self) private var settingsManager
     @Environment(MotionManager.self) private var motionManager
 
-    @State private var frequency = 1.0 // Default Frequency
+    @State private var frequency = 1.0  // Default Frequency
 
     // MARK: - Body
     var body: some View {
         List {
-            Text("X-Axis: \(motionManager.motion?.accelerationXAxis ?? 0.0, specifier: "%.5f") m/s^2", comment: "AccelerationView - X-Axis (watchOS)")
-            Text("Y-Axis: \(motionManager.motion?.accelerationYAxis ?? 0.0, specifier: "%.5f") m/s^2", comment: "AccelerationView - Y-Axis (watchOS)")
-            Text("Z-Axis: \(motionManager.motion?.accelerationZAxis ?? 0.0, specifier: "%.5f") m/s^2", comment: "AccelerationView - Z-Axis (watchOS)")
+            Text(
+                "X-Axis: \(motionManager.motion?.accelerationXAxis ?? 0.0, specifier: "%.5f") m/s^2",
+                comment: "AccelerationView - X-Axis (watchOS)")
+            Text(
+                "Y-Axis: \(motionManager.motion?.accelerationYAxis ?? 0.0, specifier: "%.5f") m/s^2",
+                comment: "AccelerationView - Y-Axis (watchOS)")
+            Text(
+                "Z-Axis: \(motionManager.motion?.accelerationZAxis ?? 0.0, specifier: "%.5f") m/s^2",
+                comment: "AccelerationView - Z-Axis (watchOS)")
         }
         .navigationTitle(Text("Acceleration", comment: "NavigationBar Title - Acceleration sensor screen"))
         .font(.footnote)

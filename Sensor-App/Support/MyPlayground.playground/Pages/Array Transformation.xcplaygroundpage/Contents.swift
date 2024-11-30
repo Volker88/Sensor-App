@@ -16,7 +16,7 @@ print(userArray)
 
 var userShort = [String]()
 
-var transform = userArray.map { user  in
+var transform = userArray.map { user in
     userShort.append(user.name)
 
 }

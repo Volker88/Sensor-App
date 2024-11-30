@@ -6,10 +6,11 @@
 //  Copyright © 2020 Volker Schmitt. All rights reserved.
 //
 
- import XCTest
- @testable import Sensor_App
+import XCTest
 
- class GravityViewUITests: BaseTestCase {
+@testable import Sensor_App
+
+class GravityViewUITests: BaseTestCase {
     func testGravityViewToolbarButtons() throws {
         // Go to Gravity View
         moveToView(view: "Gravity")
@@ -53,7 +54,7 @@
         app.sliders["Frequency Slider"].adjust(toNormalizedSliderPosition: 0.0)
         app.sliders["Frequency Slider"].adjust(toNormalizedSliderPosition: 1.0)
 
-        let updateFrequency = app.sliders["Frequency Slider"].value as! String // swiftlint:disable:this force_cast
+        let updateFrequency = app.sliders["Frequency Slider"].value as! String  // swiftlint:disable:this force_cast
         let splitUpdateFrequency = updateFrequency.split(separator: " ", maxSplits: 1).map(String.init)
         XCTAssertEqual(splitUpdateFrequency[0], "50", "Update frequency should be 50 but is \(splitUpdateFrequency)")
 
@@ -75,4 +76,4 @@
         backToHomeMenu()
         backToHomeMenu()
     }
- }
+}

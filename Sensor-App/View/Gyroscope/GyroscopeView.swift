@@ -27,8 +27,11 @@ struct GyroscopeView: View {
                             .frame(height: 100, alignment: .leading)
                     },
                     label: {
-                        Text("X-Axis: \(motionManager.motion?.gyroXAxis ?? 0.0, specifier: "%.5f") rad/s", comment: "GyroscopeView - X-Axis")
-                    })
+                        Text(
+                            "X-Axis: \(motionManager.motion?.gyroXAxis ?? 0.0, specifier: "%.5f") rad/s",
+                            comment: "GyroscopeView - X-Axis")
+                    }
+                )
                 .disclosureGroupModifier(accessibility: "Toggle X-Axis Graph")
 
                 DisclosureGroup(
@@ -38,8 +41,11 @@ struct GyroscopeView: View {
                             .frame(height: 100, alignment: .leading)
                     },
                     label: {
-                        Text("Y-Axis: \(motionManager.motion?.gyroYAxis ?? 0.0, specifier: "%.5f") rad/s", comment: "GyroscopeView - Y-Axis")
-                    })
+                        Text(
+                            "Y-Axis: \(motionManager.motion?.gyroYAxis ?? 0.0, specifier: "%.5f") rad/s",
+                            comment: "GyroscopeView - Y-Axis")
+                    }
+                )
                 .disclosureGroupModifier(accessibility: "Toggle Y-Axis Graph")
 
                 DisclosureGroup(
@@ -49,8 +55,11 @@ struct GyroscopeView: View {
                             .frame(height: 100, alignment: .leading)
                     },
                     label: {
-                        Text("Z-Axis: \(motionManager.motion?.gyroZAxis ?? 0.0, specifier: "%.5f") rad/s", comment: "GyroscopeView - Z-Axis")
-                    })
+                        Text(
+                            "Z-Axis: \(motionManager.motion?.gyroZAxis ?? 0.0, specifier: "%.5f") rad/s",
+                            comment: "GyroscopeView - Z-Axis")
+                    }
+                )
                 .disclosureGroupModifier(accessibility: "Toggle Z-Axis Graph")
 
                 NavigationLink(value: Route.gyroscopeList) {

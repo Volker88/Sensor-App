@@ -5,8 +5,8 @@
 //  Created by Volker Schmitt on 12.07.22.
 //
 
-import SwiftUI
 import MapKit
+import SwiftUI
 
 struct MapKitView: UIViewRepresentable {
 
