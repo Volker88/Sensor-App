@@ -1,9 +1,15 @@
 {
   "images" : [
     {
-      "filename" : "ios-marketing.png",
+      "filename" : "ios-marketing 1.png",
       "idiom" : "universal",
       "platform" : "ios",
+      "size" : "1024x1024"
+    },
+    {
+      "filename" : "ios-marketing.png",
+      "idiom" : "universal",
+      "platform" : "watchos",
       "size" : "1024x1024"
     }
   ],
