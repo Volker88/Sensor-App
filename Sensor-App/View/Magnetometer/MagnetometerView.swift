@@ -68,6 +68,8 @@ struct MagnetometerView: View {
                 }
             }
 
+            MotionManagerAccessView()
+
             Section(header: Text("Refresh Rate", comment: "MagnetometerView - Section Header")) {
                 RefreshRateView(show: "header")
                 RefreshRateView(show: "slider")

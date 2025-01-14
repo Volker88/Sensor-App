@@ -52,6 +52,8 @@ struct AltitudeView: View {
                         .accessibilityIdentifier("Log")
                 }
             }
+
+            MotionManagerAccessView()
         }
         .listStyle(.insetGrouped)
     }

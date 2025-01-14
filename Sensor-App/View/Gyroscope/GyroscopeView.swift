@@ -68,6 +68,8 @@ struct GyroscopeView: View {
                 }
             }
 
+            MotionManagerAccessView()
+
             Section(header: Text("Refresh Rate", comment: "GyroscopeView - Section Header")) {
                 RefreshRateView(show: "header")
                 RefreshRateView(show: "slider")

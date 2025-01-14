@@ -6,6 +6,7 @@
 //
 
 import CoreLocation
+import OSLog
 import SwiftUI
 
 @MainActor
@@ -15,6 +16,7 @@ class LocationManager {
     var location: LocationModel?
     var locationArray: [LocationModel] = []
     var locationChart: [LocationModel] = []
+    var authorizationStatus: CLAuthorizationStatus { locationManager.authorizationStatus }
 
     var updatesStarted: Bool = false
 
@@ -23,20 +25,21 @@ class LocationManager {
     private var index = 1
 
     init() {
-        locationManager.requestWhenInUseAuthorization()
+        requestWhenInUseAuthorization()
         mockData()
+    }
+
+    func requestWhenInUseAuthorization() {
+        locationManager.requestWhenInUseAuthorization()
     }
 
     func startLocationUpdates() {
         updatesStarted = true
 
         // MARK: - Handle authorizationStatus
-        if locationManager.authorizationStatus == .notDetermined {
-            print("Not Determined")
-        } else if locationManager.authorizationStatus == .denied {
-            print("Denied")
-        } else if locationManager.authorizationStatus == .restricted {
-            print("Restricted")
+        guard locationManager.authorizationStatus == .authorizedWhenInUse else {
+            Logger.coreLocation.debug("Location data authorization not granted.")
+            return
         }
 
         Task {

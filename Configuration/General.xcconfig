@@ -9,8 +9,8 @@
 // https://help.apple.com/xcode/#/dev745c5c974
 
 // Versioning
-MY_BUILD_VERSION = 20250113.1
-MY_VERSION = 5.0.0
+MY_BUILD_VERSION = 20250114.1
+MY_VERSION = 5.0.1
 
 // Deployment Targets for Swiftlint
 deployment_target_macOS = 15.0

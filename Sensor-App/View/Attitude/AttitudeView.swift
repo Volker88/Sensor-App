@@ -83,6 +83,8 @@ struct AttitudeView: View {
                 }
             }
 
+            MotionManagerAccessView()
+
             Section(header: Text("Refresh Rate", comment: "AccelerationView - Section Header")) {
                 RefreshRateView(show: "header")
                 RefreshRateView(show: "slider")

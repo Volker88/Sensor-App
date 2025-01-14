@@ -102,6 +102,8 @@ struct LocationView: View {
                     Text("Map", comment: "Map to show current GPS position")
                 }
             }
+
+            authorizationStatus()
         }
         .listStyle(InsetGroupedListStyle())
         .onAppear(perform: onAppear)
@@ -109,6 +111,33 @@ struct LocationView: View {
     }
 
     // MARK: - Methods
+    func authorizationStatus() -> some View {
+        Group {
+            if locationManager.authorizationStatus != .authorizedWhenInUse {
+                HStack {
+                    Spacer()
+
+                    VStack {
+                        Text(
+                            "Access to Location Service is required", comment: "Access to Location Service is required"
+                        )
+                        .foregroundColor(.red)
+
+                        Button {
+                            if let appSettings = URL(string: UIApplication.openSettingsURLString) {
+                                UIApplication.shared.open(appSettings)
+                            }
+                        } label: {
+                            Text("Open Settings", comment: "Open iOS Settings Menu")
+                        }
+                    }
+
+                    Spacer()
+                }
+            }
+        }
+    }
+
     func shareCSV() -> URL {
         var csvText =
             NSLocalizedString(

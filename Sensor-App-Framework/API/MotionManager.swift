@@ -6,6 +6,7 @@
 //
 
 import CoreMotion
+import OSLog
 import SwiftUI
 
 @MainActor
@@ -14,7 +15,7 @@ class MotionManager {
     private var motionManager = CMMotionManager()
     private var altimeterManager = CMAltimeter()
 
-    let settings = SettingsManager()
+    private let settings = SettingsManager()
 
     var motion: MotionModel?
     var motionArray: [MotionModel] = []
@@ -22,6 +23,9 @@ class MotionManager {
     var altitude: AltitudeModel?
     var altitudeArray: [AltitudeModel] = []
     var altitudeChart: [AltitudeModel] = []
+    var authorizationStatus: CMAuthorizationStatus {
+        CMMotionActivityManager.authorizationStatus()
+    }
 
     var sensorUpdateInterval: Double = 1.0 {
         didSet {
@@ -35,10 +39,31 @@ class MotionManager {
 
     init() {
         mockData()
+        requestMotionAccess()
     }
 
     // MARK: - Methods
+    func requestMotionAccess() {
+        if CMMotionActivityManager.authorizationStatus() == .notDetermined {
+            let activityManager = CMMotionActivityManager()
+            activityManager.queryActivityStarting(from: Date(), to: Date(), to: .main) { _, _ in
+                // This triggers the permission dialog
+            }
+        }
+    }
+
     func startMotionUpdates() {
+
+        guard motionManager.isDeviceMotionAvailable else {
+            Logger.coreMotion.info("Device motion is not available on this device.")
+            return
+        }
+
+        guard CMMotionActivityManager.authorizationStatus() == .authorized else {
+            Logger.coreMotion.info("Motion data authorization not granted.")
+            return
+        }
+
         motionManager.deviceMotionUpdateInterval = (1.0 / sensorUpdateInterval)
         motionManager.startDeviceMotionUpdates(using: .xTrueNorthZVertical, to: .main) { [weak self] data, _ in
             guard let self = self else { return }
@@ -65,22 +90,31 @@ class MotionManager {
                     attitudeYaw: data.attitude.yaw,
                     attitudeHeading: data.heading
                 )
-                DispatchQueue.main.async {
-                    self.motion = model
-                    self.motionArray.append(model)
-                    self.motionChart.append(model)
 
-                    self.motionCounter += 1
+                motion = model
+                motionArray.append(model)
+                motionChart.append(model)
 
-                    if self.motionChart.count > self.settings.fetchUserSettings().graphMaxPointsInt() {
-                        self.motionChart.removeFirst()
-                    }
+                motionCounter += 1
+
+                if motionChart.count > settings.fetchUserSettings().graphMaxPointsInt() {
+                    motionChart.removeFirst()
                 }
             }
         }
     }
 
     func startAltitudeUpdates() {
+        guard CMAltimeter.isRelativeAltitudeAvailable() else {
+            Logger.coreMotion.info("Altimeter not available on this device.")
+            return
+        }
+
+        guard CMAltimeter.authorizationStatus() == .authorized else {
+            Logger.coreMotion.info("Altimeter authorization not granted.")
+            return
+        }
+
         motionManager.deviceMotionUpdateInterval = (1.0 / sensorUpdateInterval)
         altimeterManager.startRelativeAltitudeUpdates(to: .main) { [weak self] data, _ in
             guard let self = self else { return }

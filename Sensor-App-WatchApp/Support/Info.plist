@@ -35,5 +35,7 @@
 	<string>$(BUNDLE_IDENTIFIER)</string>
 	<key>WKRunsIndependentlyOfCompanionApp</key>
 	<false/>
+	<key>NSMotionUsageDescription</key>
+	<string>Motion Sensor access required</string>
 </dict>
 </plist>
