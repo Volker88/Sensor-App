@@ -24,12 +24,10 @@
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>GPS Access required to show current location</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>GPS Access required to show current location</string>
+	<string>Location access is needed to display your current position, travel direction, and speed in real time</string>
 	<key>NSMotionUsageDescription</key>
-	<string>Motion Sensor access required</string>
+	<string>Motion sensor access is required to display real-time movement data</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

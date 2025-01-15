@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		1527B08024C4ACA20024DD78 /* Sensor_App_Framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1527B07924C4ACA20024DD78 /* Sensor_App_Framework.framework */; };
 		1527B08124C4ACA20024DD78 /* Sensor_App_Framework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1527B07924C4ACA20024DD78 /* Sensor_App_Framework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		1599F0BE28C135A2003CEF46 /* Sensor-App-Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 1527B04724C4AA620024DD78 /* Sensor-App-Watch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		1599F0BE28C135A2003CEF46 /* Sensor-App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 1527B04724C4AA620024DD78 /* Sensor-App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,7 +57,7 @@
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
-				1599F0BE28C135A2003CEF46 /* Sensor-App-Watch.app in Embed Watch Content */,
+				1599F0BE28C135A2003CEF46 /* Sensor-App.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -79,7 +79,7 @@
 		1527B01724C4AA240024DD78 /* Sensor-App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sensor-App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1527B02824C4AA240024DD78 /* Sensor-AppiOSUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Sensor-AppiOSUnitTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1527B03324C4AA240024DD78 /* Sensor-AppiOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Sensor-AppiOSUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1527B04724C4AA620024DD78 /* Sensor-App-Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sensor-App-Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1527B04724C4AA620024DD78 /* Sensor-App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sensor-App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1527B07924C4ACA20024DD78 /* Sensor_App_Framework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Sensor_App_Framework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		15F1BBA92CAFCF1E00C80A1F /* Sensor-AppwatchOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Sensor-AppwatchOSUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -377,7 +377,7 @@
 				1527B01724C4AA240024DD78 /* Sensor-App.app */,
 				1527B02824C4AA240024DD78 /* Sensor-AppiOSUnitTests.xctest */,
 				1527B03324C4AA240024DD78 /* Sensor-AppiOSUITests.xctest */,
-				1527B04724C4AA620024DD78 /* Sensor-App-Watch.app */,
+				1527B04724C4AA620024DD78 /* Sensor-App.app */,
 				1527B07924C4ACA20024DD78 /* Sensor_App_Framework.framework */,
 				15F1BBA92CAFCF1E00C80A1F /* Sensor-AppwatchOSUITests.xctest */,
 			);
@@ -486,7 +486,7 @@
 			);
 			name = "Sensor-App-Watch";
 			productName = "Sensor-App-WatchApp";
-			productReference = 1527B04724C4AA620024DD78 /* Sensor-App-Watch.app */;
+			productReference = 1527B04724C4AA620024DD78 /* Sensor-App.app */;
 			productType = "com.apple.product-type.application";
 		};
 		1527B07824C4ACA20024DD78 /* Sensor-App-Framework */ = {
@@ -1006,7 +1006,6 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_IDENTIFIER)";
-				PRODUCT_NAME = "$(inherited)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -1035,7 +1034,6 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_IDENTIFIER)";
 				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = "VolkerSchmitt88-at-icloud.com.Sensor-App";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -1150,7 +1148,6 @@
 					"@executable_path/../../Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_IDENTIFIER).watchkitapp";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1175,7 +1172,6 @@
 					"@executable_path/../../Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_IDENTIFIER).watchkitapp";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;

@@ -20,10 +20,8 @@
 	<string>${MY_VERSION}</string>
 	<key>CFBundleVersion</key>
 	<string>${MY_BUILD_VERSION}</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>GPS Access required to show current location</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>GPS Access required to show current location</string>
+	<string>Location access is needed to display your current position, travel direction, and speed in real time</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
@@ -36,6 +34,6 @@
 	<key>WKRunsIndependentlyOfCompanionApp</key>
 	<false/>
 	<key>NSMotionUsageDescription</key>
-	<string>Motion Sensor access required</string>
+	<string>Motion sensor access is required to display real-time movement data</string>
 </dict>
 </plist>

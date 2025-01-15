@@ -7,13 +7,13 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : ""
           }
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : ""
           }
         },
@@ -25,48 +25,47 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : ""
           }
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : ""
           }
         },
         "it" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : ""
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : ""
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : ""
           }
         },
         "pt-PT" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : ""
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : ""
           }
         }
-      },
-      "shouldTranslate" : false
+      }
     },
     "CFBundleName" : {
       "comment" : "Bundle name",
@@ -74,13 +73,13 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : ""
           }
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : ""
           }
         },
@@ -92,114 +91,48 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : ""
           }
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : ""
           }
         },
         "it" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : ""
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : ""
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : ""
           }
         },
         "pt-PT" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : ""
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : ""
           }
         }
       },
       "shouldTranslate" : false
-    },
-    "NSLocationAlwaysUsageDescription" : {
-      "comment" : "Privacy - Location Always Usage Description",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Přístup k GPS nutný pro zobrazení aktuální polohy"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "GPS Zugriff benötigt um den aktuellen Standort anzuzeigen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "GPS Access required to show current location"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Se requiere acceso a GPS para mostrar la ubicación actual"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Accès GPS requis pour afficher la position actuelle"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "È necessario l'accesso al GPS per mostrare la posizione attuale"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "現在地を表示するにはGPSアクセスが必要です"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "현재 위치를 표시하려면 GPS 액세스가 필요합니다"
-          }
-        },
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Acesso ao GPS necessário para mostrar a localização atual"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "需要GPS访问来显示当前位置"
-          }
-        }
-      }
     },
     "NSLocationWhenInUseUsageDescription" : {
       "comment" : "Privacy - Location When In Use Usage Description",
@@ -208,61 +141,61 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Přístup k GPS je vyžadován pro zobrazení aktuální polohy"
+            "value" : "Přístup k poloze je potřeba pro zobrazení vaší aktuální polohy, směru cesty a rychlosti v reálném čase"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "GPS Zugriff benötigt um den aktuellen Standort anzuzeigen"
+            "value" : "Zugriff auf Standortdaten ist erforderlich, um Ihre aktuelle Position, Reiserichtung und Geschwindigkeit in Echtzeit anzuzeigen."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "GPS Access required to show current location"
+            "value" : "Location access is needed to display your current position, travel direction, and speed in real time"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Se requiere acceso al GPS para mostrar la ubicación actual"
+            "value" : "Se necesita acceso a la ubicación para mostrar su posición actual, dirección de viaje y velocidad en tiempo real"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Accès GPS requis pour afficher la position actuelle"
+            "value" : "L'accès à la localisation est nécessaire pour afficher votre position actuelle, votre direction et votre vitesse en temps réel"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Accesso GPS richiesto per mostrare la posizione attuale"
+            "value" : "È necessario l'accesso alla posizione per visualizzare la tua posizione attuale, la direzione di viaggio e la velocità in tempo reale"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "現在位置を表示するにはGPSアクセスが必要です"
+            "value" : "位置情報へのアクセスが必要です。現在位置、移動方向、速度をリアルタイムで表示するためです。"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "현재 위치를 표시하기 위한 GPS 액세스 필요"
+            "value" : "위치 접근 권한은 현재 위치, 이동 방향 및 속도를 실시간으로 표시하는 데 필요합니다"
           }
         },
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Acesso ao GPS necessário para mostrar a localização atual"
+            "value" : "É necessário acesso à localização para mostrar a sua posição atual, direção de viagem e velocidade em tempo real"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "需要访问 GPS 以显示当前位置"
+            "value" : "需要访问位置以实时显示您的当前位置、行进方向和速度"
           }
         }
       }
@@ -274,61 +207,61 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Přístup k pohybovému senzoru je vyžadován"
+            "value" : "Přístup k pohybovému senzoru je nutný k zobrazení dat o pohybu v reálném čase"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zugriff auf Bewegungssensor benötigt"
+            "value" : "Der Zugriff auf den Bewegungssensor ist erforderlich, um Echtzeit-Bewegungsdaten anzuzeigen"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Motion Sensor access required"
+            "value" : "Motion sensor access is required to display real-time movement data"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Acceso al sensor de movimiento requerido"
+            "value" : "Se requiere acceso al sensor de movimiento para mostrar datos de movimiento en tiempo real"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Accès au capteur de mouvement requis"
+            "value" : "Un accès au capteur de mouvement est requis pour afficher les données de mouvement en temps réel"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Accesso al sensore di movimento richiesto"
+            "value" : "L'accesso al sensore di movimento è necessario per visualizzare i dati di movimento in tempo reale"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "モーションセンサーアクセスが必要です"
+            "value" : "モーションセンサーへのアクセスが必要です。リアルタイムの動きデータを表示するため"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "동작 감지기 액세스 필요"
+            "value" : "실시간 움직임 데이터를 표시하려면 모션 센서 접근이 필요합니다"
           }
         },
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Acesso ao sensor de movimento necessário"
+            "value" : "É necessário acesso ao sensor de movimento para exibir dados de movimento em tempo real"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "需要运动传感器访问"
+            "value" : "需要访问运动传感器以显示实时运动数据"
           }
         }
       }
