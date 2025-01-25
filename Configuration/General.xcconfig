@@ -9,8 +9,11 @@
 // https://help.apple.com/xcode/#/dev745c5c974
 
 // Versioning
-MY_BUILD_VERSION = 20250115.2
+MY_BUILD_VERSION = 20250125.1
 MY_VERSION = 5.0.1
+
+// Bundle Identifier
+BASE_BUNDLE_IDENTIFIER = Sensor-App.${DEVELOPMENT_TEAM}
 
 // Deployment Targets for Swiftlint
 deployment_target_macOS = 15.0

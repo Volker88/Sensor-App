@@ -8,8 +8,6 @@
 
 import XCTest
 
-@testable import Sensor_App
-
 class MagnetometerViewUITests: BaseTestCase {
     func testMagnetometerViewToolbarButtons() throws {
         // Go to Magnetometer View

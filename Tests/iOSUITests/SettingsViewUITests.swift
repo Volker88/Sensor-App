@@ -8,8 +8,6 @@
 
 import XCTest
 
-@testable import Sensor_App
-
 class SettingsViewUITests: BaseTestCase {
     func testSettingsSelection() throws {
         // Go to Settings View

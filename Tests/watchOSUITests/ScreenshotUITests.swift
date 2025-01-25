@@ -7,8 +7,6 @@
 
 import XCTest
 
-@testable import Sensor_App_Watch
-
 @MainActor
 class ScreenshotUITests: BaseTestCase {
 

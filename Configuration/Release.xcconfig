@@ -9,8 +9,8 @@
 // https://help.apple.com/xcode/#/dev745c5c974
 
 #include "General.xcconfig"
+#include? "Secret.xcconfig"
 
 // MARK: - RELEASE-specific settings
-BUNDLE_IDENTIFIER = VolkerSchmitt88-at-icloud.com.Sensor-App
 APP_DISPLAY_NAME = Sensor-App
 PRIMARY_APP_ICON = AppIcon-V3

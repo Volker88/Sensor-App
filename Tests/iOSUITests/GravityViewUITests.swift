@@ -8,8 +8,6 @@
 
 import XCTest
 
-@testable import Sensor_App
-
 class GravityViewUITests: BaseTestCase {
     func testGravityViewToolbarButtons() throws {
         // Go to Gravity View

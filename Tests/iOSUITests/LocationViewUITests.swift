@@ -8,8 +8,6 @@
 
 import XCTest
 
-@testable import Sensor_App
-
 class LocationViewUITests: BaseTestCase {
     func testLocationViewToolbarButtons() throws {
         // Go to Location View

@@ -8,8 +8,6 @@
 
 import XCTest
 
-@testable import Sensor_App
-
 class AttitudeViewUITests: BaseTestCase {
     func testAttitudeViewToolbarButtons() throws {
         // Go to Attitude View

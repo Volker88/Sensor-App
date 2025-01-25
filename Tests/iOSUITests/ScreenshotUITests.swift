@@ -8,8 +8,6 @@
 
 import XCTest
 
-@testable import Sensor_App
-
 @MainActor
 class ScreenshotUITests: BaseTestCase {
 

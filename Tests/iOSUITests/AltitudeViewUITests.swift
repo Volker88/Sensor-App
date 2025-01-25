@@ -8,8 +8,6 @@
 
 import XCTest
 
-@testable import Sensor_App
-
 class AltitudeViewUITests: BaseTestCase {
     func testAltitudeViewToolbarButtons() throws {
         // Go to Altitude View

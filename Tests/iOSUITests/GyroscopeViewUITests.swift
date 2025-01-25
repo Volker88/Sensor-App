@@ -8,8 +8,6 @@
 
 import XCTest
 
-@testable import Sensor_App
-
 class GyroscopeViewUITests: BaseTestCase {
     func testGyroscopeViewToolbarButtons() throws {
         // Go to Gyroscope View

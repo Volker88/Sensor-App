@@ -8,8 +8,6 @@
 
 import XCTest
 
-@testable import Sensor_App
-
 class AccelerationViewUITests: BaseTestCase {
     func testAccelerationViewToolbarButtons() throws {
         // Go to Acceleration View
