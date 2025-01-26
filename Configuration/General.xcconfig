@@ -12,11 +12,20 @@
 MY_BUILD_VERSION = 20250125.1
 MY_VERSION = 5.0.1
 
-// Bundle Identifier
+// Secrets
+//
+// To build the app with your own secrets, create "Secret.xcconfig" file and define below Variable inside your Secret.xcconfig file.
 BASE_BUNDLE_IDENTIFIER = Sensor-App.${DEVELOPMENT_TEAM}
 
+// Deployment Targets for Xcode
+IPHONEOS_DEPLOYMENT_TARGET = 18.0
+WATCHOS_DEPLOYMENT_TARGET = 11.0
+//TVOS_DEPLOYMENT_TARGET = 18.0
+//MACOSX_DEPLOYMENT_TARGET = 15.0
+//XROS_DEPLOYMENT_TARGET = 2.0
+
 // Deployment Targets for Swiftlint
-deployment_target_macOS = 15.0
 deployment_target_iOS = 18.0
 deployment_target_watchOS = 11.0
 deployment_target_tvOS = 18.0
+deployment_target_macOS = 15.0

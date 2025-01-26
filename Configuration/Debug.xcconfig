@@ -11,6 +11,6 @@
 #include "General.xcconfig"
 #include? "Secret.xcconfig"
 
-// MARK: - DEBUG-Specific settings
+// DEBUG-Specific settings
 APP_DISPLAY_NAME = Sensor-App
 PRIMARY_APP_ICON = AppIcon-V1
