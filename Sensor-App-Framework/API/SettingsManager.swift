@@ -105,7 +105,8 @@ class SettingsManager {
     public let GPSSpeedSettings = [
         UnitSpeed.metersPerSecond.symbol,
         UnitSpeed.kilometersPerHour.symbol,
-        UnitSpeed.milesPerHour.symbol
+        UnitSpeed.milesPerHour.symbol,
+        UnitSpeed.knots.symbol
     ]
 
     public let GPSAccuracyOptions = ["Best", "10 Meter", "100 Meter", "Kilometer", "3 Kilometer"]

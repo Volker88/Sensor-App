@@ -26,7 +26,8 @@ final class CalculationManagerTests {
         arguments: [
             (unit: UnitSpeed.metersPerSecond.symbol, result: 10.0),
             (unit: UnitSpeed.kilometersPerHour.symbol, result: 36.0),
-            (unit: UnitSpeed.milesPerHour.symbol, result: 22.37)
+            (unit: UnitSpeed.milesPerHour.symbol, result: 22.37),
+            (unit: UnitSpeed.knots.symbol, result: 19.44)
         ])
     func testSpeedCalculation(unit: String, result: Double) async throws {
         let input = 10.0  // m/s

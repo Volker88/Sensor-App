@@ -9,8 +9,8 @@
 // https://help.apple.com/xcode/#/dev745c5c974
 
 // Versioning
-MY_BUILD_VERSION = 20250125.1
-MY_VERSION = 5.0.1
+MY_BUILD_VERSION = 20250311.1
+MY_VERSION = 5.1.0
 
 // Secrets
 //

@@ -28,7 +28,7 @@ extension LocationModel {
             case .latitude: return latitude
             case .longitude: return longitude
             case .altitude: return altitude
-            case .speed: return speed
+            case .speed: return calculatedSpeed
             case .course: return course
             case .horizontalAccuracy: return horizontalAccuracy
             case .verticalAccuracy: return verticalAccuracy

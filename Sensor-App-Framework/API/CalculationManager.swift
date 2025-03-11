@@ -29,6 +29,7 @@ class CalculationManager {
             case settings.GPSSpeedSettings[0]: targetUnit = .metersPerSecond
             case settings.GPSSpeedSettings[1]: targetUnit = .kilometersPerHour
             case settings.GPSSpeedSettings[2]: targetUnit = .milesPerHour
+            case settings.GPSSpeedSettings[3]: targetUnit = .knots
             default: targetUnit = .metersPerSecond
         }
         let meterPerSecond = Measurement(value: ms, unit: UnitSpeed.metersPerSecond)
