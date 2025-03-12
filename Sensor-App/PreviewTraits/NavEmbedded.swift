@@ -5,6 +5,7 @@
 //  Created by Volker Schmitt on 11/24/24.
 //
 
+import Sensor_App_Framework
 import SwiftUI
 
 struct NavEmbedded: PreviewModifier {

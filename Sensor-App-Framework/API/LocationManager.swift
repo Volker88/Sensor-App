@@ -11,29 +11,29 @@ import SwiftUI
 
 @MainActor
 @Observable
-class LocationManager {
+public class LocationManager {
 
-    var location: LocationModel?
-    var locationArray: [LocationModel] = []
-    var locationChart: [LocationModel] = []
-    var authorizationStatus: CLAuthorizationStatus { locationManager.authorizationStatus }
+    public var location: LocationModel?
+    public var locationArray: [LocationModel] = []
+    public var locationChart: [LocationModel] = []
+    public var authorizationStatus: CLAuthorizationStatus { locationManager.authorizationStatus }
 
-    var updatesStarted: Bool = false
+    public var updatesStarted: Bool = false
 
     private let settings = SettingsManager()
     private var locationManager = CLLocationManager()
     private var index = 1
 
-    init() {
+    public init() {
         requestWhenInUseAuthorization()
         mockData()
     }
 
-    func requestWhenInUseAuthorization() {
+    public func requestWhenInUseAuthorization() {
         locationManager.requestWhenInUseAuthorization()
     }
 
-    func startLocationUpdates() {
+    public func startLocationUpdates() {
         updatesStarted = true
 
         // MARK: - Handle authorizationStatus
@@ -77,17 +77,17 @@ class LocationManager {
 
     }
 
-    func stopLocationUpdates() {
+    public func stopLocationUpdates() {
         updatesStarted = false
     }
 
-    func resetLocationUpdates() {
+    public func resetLocationUpdates() {
         index = 1
         locationArray.removeAll()
         locationChart.removeAll()
     }
 
-    func mockData() {
+    public func mockData() {
         #if DEBUG && targetEnvironment(simulator)
             if CommandLine.arguments.contains("enable-testing") {
                 for index in 1...1000 {

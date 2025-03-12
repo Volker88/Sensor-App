@@ -6,6 +6,7 @@
 //  Copyright © 2019 Volker Schmitt. All rights reserved.
 //
 
+import Sensor_App_Framework
 import SwiftUI
 
 struct LocationView: View {

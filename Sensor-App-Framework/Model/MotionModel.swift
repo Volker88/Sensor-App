@@ -8,30 +8,30 @@
 
 import Foundation
 
-struct MotionModel: Hashable {
-    let counter: Int
-    let timestamp: String
-    let accelerationXAxis: Double
-    let accelerationYAxis: Double
-    let accelerationZAxis: Double
-    let gravityXAxis: Double
-    let gravityYAxis: Double
-    let gravityZAxis: Double
-    let gyroXAxis: Double
-    let gyroYAxis: Double
-    let gyroZAxis: Double
-    let magnetometerCalibration: Int
-    let magnetometerXAxis: Double
-    let magnetometerYAxis: Double
-    let magnetometerZAxis: Double
-    let attitudeRoll: Double
-    let attitudePitch: Double
-    let attitudeYaw: Double
-    let attitudeHeading: Double
+public struct MotionModel: Hashable {
+    public let counter: Int
+    public let timestamp: String
+    public let accelerationXAxis: Double
+    public let accelerationYAxis: Double
+    public let accelerationZAxis: Double
+    public let gravityXAxis: Double
+    public let gravityYAxis: Double
+    public let gravityZAxis: Double
+    public let gyroXAxis: Double
+    public let gyroYAxis: Double
+    public let gyroZAxis: Double
+    public let magnetometerCalibration: Int
+    public let magnetometerXAxis: Double
+    public let magnetometerYAxis: Double
+    public let magnetometerZAxis: Double
+    public let attitudeRoll: Double
+    public let attitudePitch: Double
+    public let attitudeYaw: Double
+    public let attitudeHeading: Double
 }
 
 extension MotionModel {
-    func graphValue(for graph: GraphDetail) -> Double {  // swiftlint:disable:this cyclomatic_complexity
+    public func graphValue(for graph: GraphDetail) -> Double {  // swiftlint:disable:this cyclomatic_complexity
         switch graph {
             case .accelerationXAxis: return accelerationXAxis
             case .accelerationYAxis: return accelerationYAxis

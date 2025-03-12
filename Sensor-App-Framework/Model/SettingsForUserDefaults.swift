@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum SettingsForUserDefaults {
+public enum SettingsForUserDefaults {
     case GPSSpeedSetting
     case GPSAccuracySetting
     case frequencySetting

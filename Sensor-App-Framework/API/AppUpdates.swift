@@ -11,10 +11,13 @@ import SwiftUI
 
 @MainActor
 @Observable
-class AppUpdates {
-    var showReleaseNotes = false
+public class AppUpdates {
 
-    let settings = SettingsManager()
+    public init() {}
+
+    public var showReleaseNotes = false
+
+    public let settings = SettingsManager()
 
     /// Call this function to check if the app version is up to date
     public func checkForUpdate() {

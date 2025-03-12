@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum SupportedLanguage: String {
+public enum SupportedLanguage: String {
     case english = "en_US"
     case chinese = "zh_Hans"
     case czech = "cs_CZ"

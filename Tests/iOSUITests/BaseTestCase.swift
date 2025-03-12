@@ -52,7 +52,13 @@ class BaseTestCase: XCTestCase {
 
     func dismissShareSheet() {
         if isIPhone() {
-            app.navigationBars["UIActivityContentView"].buttons["Close"].tap()
+            let activityListView = app.otherElements.element(
+                matching: .other,
+                identifier: "ActivityListView")
+
+            XCTAssertTrue(activityListView.waitForExistence(timeout: 2.0))
+
+            activityListView.buttons.element(boundBy: 0).tap()
         } else {
             app.otherElements["PopoverDismissRegion"].tap()
         }

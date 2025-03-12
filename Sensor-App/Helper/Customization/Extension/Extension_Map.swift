@@ -6,6 +6,7 @@
 //
 
 import MapKit
+import Sensor_App_Framework
 import SwiftUI
 
 extension Map {

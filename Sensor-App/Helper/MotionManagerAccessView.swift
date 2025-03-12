@@ -5,6 +5,7 @@
 //  Created by Volker Schmitt on 1/14/25.
 //
 
+import Sensor_App_Framework
 import SwiftUI
 
 struct MotionManagerAccessView: View {

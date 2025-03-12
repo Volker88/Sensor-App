@@ -12,10 +12,10 @@ import SwiftUI
 
 @MainActor
 @Observable
-class SettingsManager {
+public class SettingsManager {
 
-    var currentAppIconIndex = 0
-    var userSettings = UserSettings(
+    public var currentAppIconIndex = 0
+    public var userSettings = UserSettings(
         showReleaseNotes: true,
         GPSSpeedSetting: "m/s",
         GPSAccuracySetting: "Best",
@@ -25,7 +25,7 @@ class SettingsManager {
         graphMaxPoints: 150
     )
 
-    var mapSettings = MapKitSettings(
+    public var mapSettings = MapKitSettings(
         showsCompass: true,
         showsScale: true,
         showsBuildings: true,
@@ -37,14 +37,14 @@ class SettingsManager {
         zoom: 500
     )
 
-    var speedSetting = 0
-    var accuracySetting = 0
-    var pressureSetting = 0
-    var heightSetting = 0
+    public var speedSetting = 0
+    public var accuracySetting = 0
+    public var pressureSetting = 0
+    public var heightSetting = 0
 
-    let iconNames: [String] = ["AppIcon-V3", "AppIcon-V1", "AppIcon-V2"]
+    public let iconNames: [String] = ["AppIcon-V3", "AppIcon-V1", "AppIcon-V2"]
 
-    init() {
+    public init() {
         #if os(iOS)
             if let currentIcon = UIApplication.shared.alternateIconName {
                 self.currentAppIconIndex = iconNames.firstIndex(of: currentIcon) ?? 0
@@ -58,7 +58,7 @@ class SettingsManager {
         #endif
     }
 
-    func changeIcon(value: Int) {
+    public func changeIcon(value: Int) {
         #if os(iOS)
             let index = iconNames.firstIndex(of: UIApplication.shared.alternateIconName ?? "Default") ?? 0
 
@@ -78,7 +78,7 @@ class SettingsManager {
         #endif
     }
 
-    func saveSettings() {
+    public func saveSettings() {
         userSettings.GPSSpeedSetting = GPSSpeedSettings[speedSetting]
         userSettings.GPSAccuracySetting = GPSAccuracyOptions[accuracySetting]
         userSettings.pressureSetting = altitudePressure[pressureSetting]
@@ -90,7 +90,7 @@ class SettingsManager {
         #endif
     }
 
-    func discardChanges() {
+    public func discardChanges() {
         speedSetting = GPSSpeedSettings.firstIndex(of: userSettings.GPSSpeedSetting) ?? 0
         accuracySetting = GPSAccuracyOptions.firstIndex(of: userSettings.GPSAccuracySetting) ?? 0
         pressureSetting = altitudePressure.firstIndex(of: userSettings.pressureSetting) ?? 0

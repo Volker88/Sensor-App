@@ -9,21 +9,21 @@
 import Foundation
 
 @MainActor
-struct LocationModel: Hashable {
-    let counter: Int  // Counter
-    var longitude: Double  // Longitude in Degrees
-    var latitude: Double  // Latitude in Degrees
-    var altitude: Double  // Altitude measures in Meters
-    var speed: Double  // Speed in meter per second
-    var course: Double  // Direction the device is travelling in degrees relative to north
-    var horizontalAccuracy: Double  // Radius of uncertainity in Meters
-    var verticalAccuracy: Double  // Accuracy in Meters
-    var timestamp: String  // Timestamp of the measurement
-    var GPSAccuracy: Double  // GPS Desired Accuracy
+public struct LocationModel: Hashable {
+    public let counter: Int  // Counter
+    public var longitude: Double  // Longitude in Degrees
+    public var latitude: Double  // Latitude in Degrees
+    public var altitude: Double  // Altitude measures in Meters
+    public var speed: Double  // Speed in meter per second
+    public var course: Double  // Direction the device is travelling in degrees relative to north
+    public var horizontalAccuracy: Double  // Radius of uncertainity in Meters
+    public var verticalAccuracy: Double  // Accuracy in Meters
+    public var timestamp: String  // Timestamp of the measurement
+    public var GPSAccuracy: Double  // GPS Desired Accuracy
 }
 
 extension LocationModel {
-    func graphValue(for graph: GraphDetail) -> Double {
+    public func graphValue(for graph: GraphDetail) -> Double {
         switch graph {
             case .latitude: return latitude
             case .longitude: return longitude
@@ -37,27 +37,27 @@ extension LocationModel {
         }
     }
 
-    var calculatedSpeed: Double {
+    public var calculatedSpeed: Double {
         let calculation = CalculationManager()
         let speedSettings = SettingsManager().fetchUserSettings().GPSSpeedSetting
 
         return calculation.calculateSpeed(ms: speed, to: speedSettings)
     }
 
-    var speedUnit: String {
+    public var speedUnit: String {
         let speedSettings = SettingsManager().fetchUserSettings().GPSSpeedSetting
 
         return speedSettings
     }
 
-    var calculatedAltitude: Double {
+    public var calculatedAltitude: Double {
         let calculation = CalculationManager()
         let heightSettings = SettingsManager().fetchUserSettings().altitudeHeightSetting
 
         return calculation.calculateHeight(height: altitude, to: heightSettings)
     }
 
-    var heightUnit: String {
+    public var heightUnit: String {
         let heightSettings = SettingsManager().fetchUserSettings().altitudeHeightSetting
 
         return heightSettings

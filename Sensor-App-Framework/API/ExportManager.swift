@@ -9,7 +9,10 @@
 import OSLog
 import SwiftUI
 
-class ExportManager {
+public class ExportManager {
+
+    public init() {}
+
     /// Export File
     ///
     /// Generate file and open Share Sheet
@@ -18,7 +21,7 @@ class ExportManager {
     ///   - filename: String
     ///   - fileExtension: String
     /// - Returns: URL?
-    func getFile(exportText: String, filename: String, fileExtension: String = ".csv") -> URL {
+    public func getFile(exportText: String, filename: String, fileExtension: String = ".csv") -> URL {
         // swiftlint:disable force_unwrapping
         let fileName = "\(filename)\(fileExtension)"
         let path = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(fileName)

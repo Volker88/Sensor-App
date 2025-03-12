@@ -10,14 +10,18 @@ import Foundation
 
 @MainActor
 @Observable
-class CalculationManager {
-    let settings = SettingsManager()
+public class CalculationManager {
+
+    public init() {}
+
+    public let settings = SettingsManager()
 
     ///  Converts speed from GPS sensor into desired unit
     ///
     ///  Possible inputs for Parameter **to**
     ///  - km/h
     ///  - mph
+    ///  - knots
     ///
     ///  - Returns: Speed in selected unit
     ///  - Parameter ms: Input in **m/s**

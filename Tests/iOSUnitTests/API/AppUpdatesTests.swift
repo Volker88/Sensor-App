@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Sensor_App_Framework
 import Testing
 
 @testable import Sensor_App

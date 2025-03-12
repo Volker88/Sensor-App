@@ -5,6 +5,7 @@
 //  Created by Volker Schmitt on 17.08.20.
 //
 
+import Sensor_App_Framework
 import SwiftUI
 
 struct CustomToolbar: ToolbarContent {

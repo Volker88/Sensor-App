@@ -8,11 +8,11 @@
 import SwiftUI
 
 /// Wraps as view into a ``PreviewLocalizationModifier``
-struct PreviewLocalizationModifier: ViewModifier {
+public struct PreviewLocalizationModifier: ViewModifier {
 
-    let locale: String
+    public let locale: String
 
-    func body(content: Content) -> some View {
+    public func body(content: Content) -> some View {
         content
             .environment(\.locale, .init(identifier: locale))
     }
@@ -22,14 +22,14 @@ extension View {
     /// Wraps as view into a ``PreviewLocalizationModifier``
     ///
     /// - Returns: ``View``
-    func previewLocalization(_ language: SupportedLanguage) -> some View {
+    public func previewLocalization(_ language: SupportedLanguage) -> some View {
         modifier(PreviewLocalizationModifier(locale: language.rawValue))
     }
 
     /// Wraps as view into a ``PreviewLocalizationModifier``
     ///
     /// - Returns: ``View``
-    func previewLocalization(locale: String) -> some View {
+    public func previewLocalization(locale: String) -> some View {
         modifier(PreviewLocalizationModifier(locale: locale))
     }
 }

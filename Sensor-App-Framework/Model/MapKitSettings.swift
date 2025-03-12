@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum MapType: String, Codable, CaseIterable {
+public enum MapType: String, Codable, CaseIterable {
     case standard = "Standard"
     case satellite = "Satellite"
     case hybrid = "Hybrid"
@@ -17,14 +17,14 @@ enum MapType: String, Codable, CaseIterable {
     case mutedStandard = "Muted Standard"
 }
 
-struct MapKitSettings: Codable {
-    var showsCompass: Bool
-    var showsScale: Bool
-    var showsBuildings: Bool
-    var showsTraffic: Bool
-    var isRotateEnabled: Bool
-    var isPitchEnabled: Bool
-    var isScrollEnabled: Bool
-    var mapType: MapType
-    var zoom: Double
+public struct MapKitSettings: Codable {
+    public var showsCompass: Bool
+    public var showsScale: Bool
+    public var showsBuildings: Bool
+    public var showsTraffic: Bool
+    public var isRotateEnabled: Bool
+    public var isPitchEnabled: Bool
+    public var isScrollEnabled: Bool
+    public var mapType: MapType
+    public var zoom: Double
 }

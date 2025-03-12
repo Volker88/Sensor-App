@@ -9,15 +9,15 @@
 import Foundation
 
 @MainActor
-struct AltitudeModel: Hashable {
-    let counter: Int
-    let timestamp: String
-    let pressureValue: Double
-    let relativeAltitudeValue: Double
+public struct AltitudeModel: Hashable {
+    public let counter: Int
+    public let timestamp: String
+    public let pressureValue: Double
+    public let relativeAltitudeValue: Double
 }
 
 extension AltitudeModel {
-    func graphValue(for graph: GraphDetail) -> Double {
+    public func graphValue(for graph: GraphDetail) -> Double {
         switch graph {
             case .pressureValue: return pressureValue
             case .relativeAltitudeValue: return relativeAltitudeValue
@@ -25,27 +25,27 @@ extension AltitudeModel {
         }
     }
 
-    var calculatedPressure: Double {
+    public var calculatedPressure: Double {
         let calculation = CalculationManager()
         let pressureSetting = SettingsManager().fetchUserSettings().pressureSetting
 
         return calculation.calculatePressure(pressure: pressureValue, to: pressureSetting)
     }
 
-    var pressureUnit: String {
+    public var pressureUnit: String {
         let pressureSettings = SettingsManager().fetchUserSettings().pressureSetting
 
         return pressureSettings
     }
 
-    var calculatedAltitude: Double {
+    public var calculatedAltitude: Double {
         let calculation = CalculationManager()
         let altitudeSetting = SettingsManager().fetchUserSettings().altitudeHeightSetting
 
         return calculation.calculateHeight(height: relativeAltitudeValue, to: altitudeSetting)
     }
 
-    var altitudeUnit: String {
+    public var altitudeUnit: String {
         let altitudeSetting = SettingsManager().fetchUserSettings().altitudeHeightSetting
 
         return altitudeSetting

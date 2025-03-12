@@ -9,16 +9,16 @@
 import Foundation
 import SwiftUI
 
-struct UserSettings: Codable {
-    var showReleaseNotes: Bool
-    var GPSSpeedSetting: String
-    var GPSAccuracySetting: String
-    var frequencySetting: Double
-    var pressureSetting: String
-    var altitudeHeightSetting: String
-    var graphMaxPoints: Double
+public struct UserSettings: Codable {
+    public var showReleaseNotes: Bool
+    public var GPSSpeedSetting: String
+    public var GPSAccuracySetting: String
+    public var frequencySetting: Double
+    public var pressureSetting: String
+    public var altitudeHeightSetting: String
+    public var graphMaxPoints: Double
 
-    func graphMaxPointsInt() -> Int {
+    public func graphMaxPointsInt() -> Int {
         Int(graphMaxPoints)
     }
 }

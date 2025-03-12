@@ -13,23 +13,23 @@ extension Logger {
     private static let subsystem = Bundle.main.bundleIdentifier!  // swiftlint:disable:this force_unwrapping
 
     /// Log ``scenePhase`` events
-    static let scenePhase = Logger(subsystem: subsystem, category: "scenePhase")
+    public static let scenePhase = Logger(subsystem: subsystem, category: "scenePhase")
 
     /// Log ``viewCycle`` events
-    static let viewCycle = Logger(subsystem: subsystem, category: "viewCycle")
+    public static let viewCycle = Logger(subsystem: subsystem, category: "viewCycle")
 
     /// Log ``AppUpdates`` events
-    static let appUpdate = Logger(subsystem: subsystem, category: "appUpdate")
+    public static let appUpdate = Logger(subsystem: subsystem, category: "appUpdate")
 
     /// Log ``coreLocation`` events
-    static let coreLocation = Logger(subsystem: subsystem, category: "coreLocation")
+    public static let coreLocation = Logger(subsystem: subsystem, category: "coreLocation")
 
     /// Log ``coreMotion`` events
-    static let coreMotion = Logger(subsystem: subsystem, category: "coreMotion")
+    public static let coreMotion = Logger(subsystem: subsystem, category: "coreMotion")
 
     /// Log ``ExportManager`` events
-    static let exportFile = Logger(subsystem: subsystem, category: "exportFile")
+    public static let exportFile = Logger(subsystem: subsystem, category: "exportFile")
 
     /// Log ``userDefaults`` events
-    static let userDefaults = Logger(subsystem: subsystem, category: "userDefaults")
+    public static let userDefaults = Logger(subsystem: subsystem, category: "userDefaults")
 }

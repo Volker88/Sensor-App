@@ -11,23 +11,23 @@ import SwiftUI
 
 @MainActor
 @Observable
-class MotionManager {
+public class MotionManager {
     private var motionManager = CMMotionManager()
     private var altimeterManager = CMAltimeter()
 
     private let settings = SettingsManager()
 
-    var motion: MotionModel?
-    var motionArray: [MotionModel] = []
-    var motionChart: [MotionModel] = []
-    var altitude: AltitudeModel?
-    var altitudeArray: [AltitudeModel] = []
-    var altitudeChart: [AltitudeModel] = []
-    var authorizationStatus: CMAuthorizationStatus {
+    public var motion: MotionModel?
+    public var motionArray: [MotionModel] = []
+    public var motionChart: [MotionModel] = []
+    public var altitude: AltitudeModel?
+    public var altitudeArray: [AltitudeModel] = []
+    public var altitudeChart: [AltitudeModel] = []
+    public var authorizationStatus: CMAuthorizationStatus {
         CMMotionActivityManager.authorizationStatus()
     }
 
-    var sensorUpdateInterval: Double = 1.0 {
+    public var sensorUpdateInterval: Double = 1.0 {
         didSet {
             startMotionUpdates()
             startAltitudeUpdates()
@@ -37,13 +37,13 @@ class MotionManager {
     private var motionCounter = 1
     private var altitudeCounter = 1
 
-    init() {
+    public init() {
         mockData()
         requestMotionAccess()
     }
 
     // MARK: - Methods
-    func requestMotionAccess() {
+    public func requestMotionAccess() {
         if CMMotionActivityManager.authorizationStatus() == .notDetermined {
             let activityManager = CMMotionActivityManager()
             activityManager.queryActivityStarting(from: Date(), to: Date(), to: .main) { _, _ in
@@ -52,7 +52,7 @@ class MotionManager {
         }
     }
 
-    func startMotionUpdates() {
+    public func startMotionUpdates() {
 
         guard motionManager.isDeviceMotionAvailable else {
             Logger.coreMotion.info("Device motion is not available on this device.")
@@ -104,7 +104,7 @@ class MotionManager {
         }
     }
 
-    func startAltitudeUpdates() {
+    public func startAltitudeUpdates() {
         guard CMAltimeter.isRelativeAltitudeAvailable() else {
             Logger.coreMotion.info("Altimeter not available on this device.")
             return
@@ -145,12 +145,12 @@ class MotionManager {
         }
     }
 
-    func stopMotionUpdates() {
+    public func stopMotionUpdates() {
         motionManager.stopDeviceMotionUpdates()
         altimeterManager.stopRelativeAltitudeUpdates()
     }
 
-    func resetMotionUpdates() {
+    public func resetMotionUpdates() {
         motionArray.removeAll()
         motionChart.removeAll()
 
@@ -161,7 +161,7 @@ class MotionManager {
         altitudeCounter = 1
     }
 
-    func mockData() {
+    public func mockData() {
         #if DEBUG && targetEnvironment(simulator)
             for index in 1...1000 {
                 let motion = MotionModel(
