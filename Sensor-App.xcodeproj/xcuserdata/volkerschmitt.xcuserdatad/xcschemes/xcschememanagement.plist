@@ -35,11 +35,6 @@
 			<key>orderHint</key>
 			<integer>2</integer>
 		</dict>
-		<key>Sensor-App (us).xcscheme_^#shared#^_</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>1</integer>
-		</dict>
 		<key>Sensor-App-Framework.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>isShown</key>
@@ -51,11 +46,6 @@
 		<dict>
 			<key>orderHint</key>
 			<integer>5</integer>
-		</dict>
-		<key>Sensor-App-WatchApp (us).xcscheme_^#shared#^_</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>4</integer>
 		</dict>
 		<key>Sensor-App-WatchApp.xcscheme_^#shared#^_</key>
 		<dict>
@@ -91,6 +81,11 @@
 			<true/>
 		</dict>
 		<key>1527B07824C4ACA20024DD78</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>15F1BBA82CAFCF1E00C80A1F</key>
 		<dict>
 			<key>primary</key>
 			<true/>

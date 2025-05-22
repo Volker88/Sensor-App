@@ -19,17 +19,6 @@ struct AccelerationScreen: View {
                 CustomToolbar()
             }
             .navigationTitle(Text("Acceleration", comment: "NavigationBar Title - Acceleration sensor screen"))
-            .navigationDestination(
-                for: Route.self,
-                destination: { route in
-                    switch route {
-                        case .accelerationList:
-                            AccelerationList()
-                        default:
-                            EmptyView()
-                    }
-                }
-            )
             .onAppear {
                 motionManager.startMotionUpdates()
             }

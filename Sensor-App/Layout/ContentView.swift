@@ -22,6 +22,7 @@ struct ContentView: View {
         } detail: {
             NavigationStack(path: Bindable(appState).path) {
                 DetailColumn()
+                    .navigationDestination(for: Route.self) { $0 }
             }
         }
         .onChange(of: appState.selectedScreen) {

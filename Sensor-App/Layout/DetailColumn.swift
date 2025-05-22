@@ -14,26 +14,7 @@ struct DetailColumn: View {
 
     // MARK: - Body
     var body: some View {
-        switch appState.selectedScreen ?? .homeScreen {
-            case .homeScreen:
-                HomeScreen()
-            case .location:
-                LocationScreen()
-            case .acceleration:
-                AccelerationScreen()
-            case .gravity:
-                GravityScreen()
-            case .gyroscope:
-                GyroscopeScreen()
-            case .magnetometer:
-                MagnetometerScreen()
-            case .attitude:
-                AttitudeScreen()
-            case .altitude:
-                AltitudeScreen()
-            case .settings:
-                SettingsScreen()
-        }
+        appState.selectedScreen ?? .homeScreen
     }
 }
 

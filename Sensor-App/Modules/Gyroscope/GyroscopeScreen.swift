@@ -19,17 +19,6 @@ struct GyroscopeScreen: View {
                 CustomToolbar()
             }
             .navigationTitle(Text("Gyroscope", comment: "NavigationBar Title - Gyroscope sensor screen"))
-            .navigationDestination(
-                for: Route.self,
-                destination: { route in
-                    switch route {
-                        case .gyroscopeList:
-                            GyroscopeList()
-                        default:
-                            EmptyView()
-                    }
-                }
-            )
             .onAppear {
                 motionManager.startMotionUpdates()
             }

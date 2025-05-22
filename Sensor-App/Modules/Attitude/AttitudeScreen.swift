@@ -19,18 +19,6 @@ struct AttitudeScreen: View {
                 CustomToolbar()
             }
             .navigationTitle(Text("Attitude", comment: "NavigationBar Title - Attitude sensor screen"))
-            .navigationDestination(
-                for: Route.self,
-                destination: { route in
-                    switch route {
-                        case .attitudeList:
-                            AttitudeList()
-                        default:
-                            EmptyView()
-
-                    }
-                }
-            )
             .onAppear {
                 motionManager.startMotionUpdates()
             }

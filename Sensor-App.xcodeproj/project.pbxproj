@@ -187,7 +187,6 @@
 		1515A5682C9FE62400F89AAE /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Layout/AppState.swift,
 				Localization/InfoPlist.xcstrings,
 				Localization/Localizable.xcstrings,
 				Miscellaneous/Assets.xcassets,

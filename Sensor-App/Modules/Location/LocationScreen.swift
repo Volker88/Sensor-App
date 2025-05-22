@@ -20,17 +20,6 @@ struct LocationScreen: View {
                 CustomToolbar()
             }
             .navigationTitle(Text("Location", comment: "NavigationBar Title - Location view screen"))
-            .navigationDestination(
-                for: Route.self,
-                destination: { route in
-                    switch route {
-                        case .location:
-                            MapView()
-                        default:
-                            MapView()
-                    }
-                }
-            )
             .onDisappear {
                 #if RELEASE
                     requestReview()
