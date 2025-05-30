@@ -62,7 +62,8 @@ struct SettingsScreen: View {
                         Text(settingsManager.GPSSpeedSettings[$0]).tag($0)
                     }
                 }
-                .accessibility(identifier: "Speed Settings")
+                .accessibilityIdentifier(UIIdentifiers.SettingScreen.speedPicker)
+
                 Picker(
                     selection: Bindable(settingsManager).accuracySetting,
                     label: Text("Accuracy", comment: "SettingsScreen - Accuracy")
@@ -71,13 +72,12 @@ struct SettingsScreen: View {
                         Text(settingsManager.GPSAccuracyOptions[$0]).tag($0)
                     }
                 }
-                .accessibility(identifier: "GPS Accuracy Settings")
+                .accessibilityIdentifier(UIIdentifiers.SettingScreen.accuracyPicker)
             }
 
             Section(
                 header:
                     Text("Map", comment: "SettingsScreen - Map Section")
-                    .accessibility(identifier: "Map")
             ) {
                 Picker(
                     selection: Bindable(settingsManager).mapSettings.mapType,
@@ -88,47 +88,54 @@ struct SettingsScreen: View {
                         Text(type.rawValue).tag(type)
                     }
                 }
-                .accessibility(identifier: "MapType Picker")
+                .accessibilityIdentifier(UIIdentifiers.SettingScreen.mapTypePicker)
 
                 Toggle(isOn: Bindable(settingsManager).mapSettings.showsCompass) {
                     Text("Compass", comment: "SettingsScreen - Compass")
-                }.accessibility(identifier: "Compass Toggle")
+                }
+                .accessibilityIdentifier(UIIdentifiers.SettingScreen.compassToggle)
 
                 Toggle(isOn: Bindable(settingsManager).mapSettings.showsScale) {
                     Text("Scale", comment: "SettingsScreen - Scale")
-                }.accessibility(identifier: "Scale Toggle")
+                }
+                .accessibilityIdentifier(UIIdentifiers.SettingScreen.scaleToggle)
 
                 Toggle(isOn: Bindable(settingsManager).mapSettings.showsBuildings) {
                     Text("Buildings", comment: "SettingsScreen - Buildings")
-                }.accessibility(identifier: "Buildings Toggle")
+                }
+                .accessibilityIdentifier(UIIdentifiers.SettingScreen.buildingsToggle)
 
                 Toggle(isOn: Bindable(settingsManager).mapSettings.showsTraffic) {
                     Text("Traffic", comment: "SettingsScreen - Traffic")
-                }.accessibility(identifier: "Traffic Toggle")
+                }
+                .accessibilityIdentifier(UIIdentifiers.SettingScreen.trafficToggle)
 
                 Toggle(isOn: Bindable(settingsManager).mapSettings.isRotateEnabled) {
                     Text("Rotation", comment: "SettingsScreen - Rotation")
-                }.accessibility(identifier: "Rotate Toggle")
+                }
+                .accessibilityIdentifier(UIIdentifiers.SettingScreen.rotateToggle)
 
                 Toggle(isOn: Bindable(settingsManager).mapSettings.isPitchEnabled) {
                     Text("Pitch", comment: "SettingsScreen - Pitch")
-                }.accessibility(identifier: "Pitch Toggle")
+                }
+                .accessibilityIdentifier(UIIdentifiers.SettingScreen.pitchToggle)
 
                 Toggle(isOn: Bindable(settingsManager).mapSettings.isScrollEnabled) {
                     Text("Scroll", comment: "SettingsScreen - Scroll")
-                }.accessibility(identifier: "Scroll Toggle")
+                }
+                .accessibilityIdentifier(UIIdentifiers.SettingScreen.scrollToggle)
 
                 Stepper(value: Bindable(settingsManager).mapSettings.zoom, in: 100...100000, step: 100) {
                     Text(
                         "Zoom: \(settingsManager.mapSettings.zoom / 1000, specifier: "%.1f") km",
                         comment: "SettingsScreen - Zoom")
-                }.accessibility(identifier: "Zoom Stepper")
+                }
+                .accessibilityIdentifier(UIIdentifiers.SettingScreen.zoomStepper)
 
                 HStack {
                     Text("0.1 km")
                     Slider(value: Bindable(settingsManager).mapSettings.zoom, in: 100...100000, step: 100)
-                        .accessibility(identifier: "Zoom Slider")
-                        .accessibility(label: Text("Zoom:", comment: "Zoom level for map view"))
+                        .accessibilityIdentifier(UIIdentifiers.SettingScreen.zoomSlider)
                     Text("100 km")
                 }
             }
@@ -145,7 +152,8 @@ struct SettingsScreen: View {
                         Text(settingsManager.altitudePressure[$0]).tag($0)
                     }
                 }
-                .accessibility(identifier: "Pressure Settings")
+                .accessibilityIdentifier(UIIdentifiers.SettingScreen.pressurePicker)
+
                 Picker(
                     selection: Bindable(settingsManager).heightSetting,
                     label: Text("Height", comment: "SettingsScreen - Height")
@@ -154,7 +162,7 @@ struct SettingsScreen: View {
                         Text(settingsManager.altitudeHeight[$0]).tag($0)
                     }
                 }
-                .accessibility(identifier: "Height Settings")
+                .accessibilityIdentifier(UIIdentifiers.SettingScreen.altitudePicker)
             }
 
             Section(
@@ -165,25 +173,19 @@ struct SettingsScreen: View {
                     Text(
                         "Max Points: \(settingsManager.userSettings.graphMaxPoints, specifier: "%.0f")",
                         comment: "SettingsScreen - Max Points")
-                }.accessibility(identifier: "Max Points Stepper")
+                }
+                .accessibilityIdentifier(UIIdentifiers.SettingScreen.maxPointsStepper)
+
                 HStack {
                     Text("1")
+
                     Slider(
                         value: Bindable(settingsManager).userSettings.graphMaxPoints,
                         in: 1...1000,
                         step: 1
                     )
-                    .accessibility(identifier: "Max Points Slider")
-                    .accessibility(
-                        label: Text(
-                            "Maximum Points:",
-                            comment: "Slider to update how many data points are shown on the graph"
-                        )
-                    )
-                    .accessibility(
-                        value: Text(
-                            "\(settingsManager.userSettings.graphMaxPoints, specifier: "%.0f")",
-                            comment: "SettingsScreen - Max Points Slider"))
+                    .accessibilityIdentifier(UIIdentifiers.SettingScreen.maxPointsSlider)
+
                     Text("1000")
                 }
             }
@@ -193,20 +195,19 @@ struct SettingsScreen: View {
                     saveSettings()
                 }) {
                     Text("Save", comment: "NagvigationBarButton - Save")
-                        .accessibility(label: Text("Save", comment: "Button to save settings"))
-                        .accessibility(identifier: "Save")
+                        .accessibilityIdentifier(UIIdentifiers.SettingScreen.saveButton)
                 }
 
                 Button(action: {
                     discardChanges(showNotification: true)
                 }) {
                     Text("Discard", comment: "NagvigationBarButton - Discard Changes")
-                        .accessibility(label: Text("Discard", comment: "Button to discard changes"))
-                        .accessibility(identifier: "Discard")
+                        .accessibilityIdentifier(UIIdentifiers.SettingScreen.discardButton)
                 }
             }
             .buttonStyle(BorderlessButtonStyle())
         }
+        .accessibilityIdentifier(UIIdentifiers.SettingScreen.collectionView)
         .navigationTitle(Text("Settings", comment: "NavigationBar Title - Settings screen"))
         .onAppear {
             discardChanges(showNotification: false)

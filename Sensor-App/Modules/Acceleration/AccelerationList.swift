@@ -33,7 +33,8 @@ struct AccelerationList: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 ShareSheet(url: shareCSV())
-                    .accessibility(identifier: "ExportButton")
+                    .accessibilityLabel("Export Acceleration Data to CSV")
+                    .accessibilityIdentifier(UIIdentifiers.AccelerationList.exportButton)
             }
             CustomToolbar()
         }

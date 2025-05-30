@@ -454,6 +454,70 @@
         }
       }
     },
+    "50" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "50"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "50"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "50"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "50"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "50"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "50"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "50"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "50"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "50"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "50"
+          }
+        }
+      }
+    },
     "100 km" : {
       "localizations" : {
         "cs" : {
@@ -582,70 +646,6 @@
         }
       }
     },
-    "50" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "50"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "50"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "50"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "50"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "50"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "50"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "50"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "50"
-          }
-        },
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "50"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "50"
-          }
-        }
-      }
-    },
     "A:%.3f" : {
       "comment" : "First Letter as shortcut for Altitude",
       "localizations" : {
@@ -712,7 +712,7 @@
       }
     },
     "Acceleration" : {
-      "comment" : "AccelerationView - Section Header\nContentView - Acceleration (watchOS)\nNavigationBar Title - Acceleration sensor list view\nNavigationBar Title - Acceleration sensor screen",
+      "comment" : "AccelerationView - Section Header\nContentView - Acceleration (watchOS)\nNavigation Button\nNavigationBar Title - Acceleration sensor list view\nNavigationBar Title - Acceleration sensor screen",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -1037,7 +1037,7 @@
       }
     },
     "Altitude" : {
-      "comment" : "AltitudeView - Section Header\nContentView - Altitude (watchOS)\nNavigationBar Title - Altitude sensor list view\nNavigationBar Title - Altitude sensor screen\nSettingsScreen - Altitude Section\nSettingsView - Altitude Section (watchOS)",
+      "comment" : "AltitudeView - Section Header\nContentView - Altitude (watchOS)\nNavigation Button\nNavigationBar Title - Altitude sensor list view\nNavigationBar Title - Altitude sensor screen\nSettingsScreen - Altitude Section\nSettingsView - Altitude Section (watchOS)",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -1297,7 +1297,7 @@
       }
     },
     "Attitude" : {
-      "comment" : "AttitudeView - Section Header\nContentView - Attitude (watchOS)\nNavigationBar Title - Attitude sensor list view\nNavigationBar Title - Attitude sensor screen",
+      "comment" : "AttitudeView - Section Header\nContentView - Attitude (watchOS)\nNavigation Button\nNavigationBar Title - Attitude sensor list view\nNavigationBar Title - Attitude sensor screen",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -1622,7 +1622,7 @@
       }
     },
     "Discard" : {
-      "comment" : "Button to discard changes\nNagvigationBarButton - Discard Changes\nSettingsView - Discard (watchOS)",
+      "comment" : "NagvigationBarButton - Discard Changes\nSettingsView - Discard (watchOS)",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -1750,6 +1750,27 @@
           }
         }
       }
+    },
+    "Export Acceleration Data to CSV" : {
+
+    },
+    "Export Altitude Data to CSV" : {
+
+    },
+    "Export Attitude Data to CSV" : {
+
+    },
+    "Export Gravity Data to CSV" : {
+
+    },
+    "Export Gyroscope Data to CSV" : {
+
+    },
+    "Export Location Data to CSV" : {
+
+    },
+    "Export Magnetometer Data to CSV" : {
+
     },
     "Fixed a bug which caused the app to crash if no permissions to sensors were granted" : {
       "comment" : "Release notes",
@@ -2076,7 +2097,7 @@
       }
     },
     "Gravity" : {
-      "comment" : "ContentView - Gravity (watchOS)\nGravityView - Section Header\nNavigationBar Title - Gravity\nNavigationBar Title - Gravity sensor list view\nNavigationBar Title - Gravity sensor screen",
+      "comment" : "ContentView - Gravity (watchOS)\nGravityView - Section Header\nNavigation Button\nNavigationBar Title - Gravity\nNavigationBar Title - Gravity sensor list view\nNavigationBar Title - Gravity sensor screen",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -2465,7 +2486,7 @@
       }
     },
     "Home" : {
-      "comment" : "NavigationBar Title - Home\nNavigationBar Title - Home Screen\nNavigationBar Title - Home screen",
+      "comment" : "Navigation Button\nNavigationBar Title - Home\nNavigationBar Title - Home Screen\nNavigationBar Title - Home screen",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -2853,71 +2874,6 @@
         }
       }
     },
-    "Latitude: %.10f° ± %.2fm" : {
-      "comment" : "LocationView - Latitude (watchOS)",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zeměpisná šířka: %.10f° ± %.2fm"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Breitengrad: %.10f° ± %.2fm"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Latitude: %.10f° ± %.2fm"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Latitud: %.10f° ± %.2fm"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Latitude : %.10f° ± %.2fm"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Latitudine: %.10f° ± %.2fm"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "緯度：%.10f° ± %.2fm"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "위도: %.10f° ± %.2fm"
-          }
-        },
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Latitude: %.10f° ± %.2fm"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "纬度: %.10f° ± %.2fm"
-          }
-        }
-      }
-    },
     "Latitude: %.6f° ± %.2fm" : {
       "comment" : "GPS Latitude position with accuracy in meter",
       "localizations" : {
@@ -2983,8 +2939,73 @@
         }
       }
     },
+    "Latitude: %.10f° ± %.2fm" : {
+      "comment" : "LocationView - Latitude (watchOS)",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zeměpisná šířka: %.10f° ± %.2fm"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Breitengrad: %.10f° ± %.2fm"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Latitude: %.10f° ± %.2fm"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Latitud: %.10f° ± %.2fm"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Latitude : %.10f° ± %.2fm"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Latitudine: %.10f° ± %.2fm"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "緯度：%.10f° ± %.2fm"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "위도: %.10f° ± %.2fm"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Latitude: %.10f° ± %.2fm"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "纬度: %.10f° ± %.2fm"
+          }
+        }
+      }
+    },
     "Location" : {
-      "comment" : "ContentView - Location (watchOS)\nLocationView - Section Header\nNavigationBar Title - Location sensor screen\nNavigationBar Title - Location view screen\nSettingsScreen - Location Section\nSettingsView - Location Section (watchOS)",
+      "comment" : "ContentView - Location (watchOS)\nLocationView - Section Header\nNavigation Button\nNavigationBar Title - Location sensor screen\nNavigationBar Title - Location view screen\nSettingsScreen - Location Section\nSettingsView - Location Section (watchOS)",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -3113,71 +3134,6 @@
         }
       }
     },
-    "Longitude: %.10f° ± %.2fm" : {
-      "comment" : "LocationView - Longitude (watchOS)",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zeměpisná délka: %.10f° ± %.2fm"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Längengrad: %.10f° ± %.2fm"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Longitude: %.10f° ± %.2fm"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Longitud: %.10f° ± %.2fm"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Longitude : %.10f° ± %.2fm"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Longitudine: %.10f° ± %.2fm"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "経度: %.10f° ± %.2fm"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "경도: %.10f° ± %.2fm"
-          }
-        },
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Longitude: %.10f° ± %.2fm"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "经度: %.10f° ± %.2fm"
-          }
-        }
-      }
-    },
     "Longitude: %.6f° ± %.2fm" : {
       "comment" : "GPS Longitude position with accuracy in meter",
       "localizations" : {
@@ -3243,8 +3199,73 @@
         }
       }
     },
+    "Longitude: %.10f° ± %.2fm" : {
+      "comment" : "LocationView - Longitude (watchOS)",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zeměpisná délka: %.10f° ± %.2fm"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Längengrad: %.10f° ± %.2fm"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Longitude: %.10f° ± %.2fm"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Longitud: %.10f° ± %.2fm"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Longitude : %.10f° ± %.2fm"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Longitudine: %.10f° ± %.2fm"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "経度: %.10f° ± %.2fm"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "경도: %.10f° ± %.2fm"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Longitude: %.10f° ± %.2fm"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "经度: %.10f° ± %.2fm"
+          }
+        }
+      }
+    },
     "Magnetometer" : {
-      "comment" : "ContentView - Magnetometer (watchOS)\nNavigationBar Title - Magnetometer sensor list view\nNavigationBar Title - Magnetometer sensor screen",
+      "comment" : "ContentView - Magnetometer (watchOS)\nNavigation Button\nNavigationBar Title - Magnetometer sensor list view\nNavigationBar Title - Magnetometer sensor screen",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -3440,6 +3461,7 @@
     },
     "Maximum Points:" : {
       "comment" : "Slider to update how many data points are shown on the graph",
+      "extractionState" : "stale",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -4479,7 +4501,7 @@
       }
     },
     "Save" : {
-      "comment" : "Button to save settings\nNagvigationBarButton - Save\nSettingsView - Save (watchOS)",
+      "comment" : "NagvigationBarButton - Save\nSettingsView - Save (watchOS)",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -4674,7 +4696,7 @@
       }
     },
     "Settings" : {
-      "comment" : "ContentView - Settings (watchOS)\nNavigationBar Title - Settings screen",
+      "comment" : "ContentView - Settings (watchOS)\nNavigation Button\nNavigationBar Title - Settings screen",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -5065,6 +5087,7 @@
     },
     "Toggle Graph" : {
       "comment" : "Button to show or hide graph",
+      "extractionState" : "stale",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -6493,6 +6516,7 @@
     },
     "Zoom:" : {
       "comment" : "Zoom level for map view",
+      "extractionState" : "stale",
       "localizations" : {
         "cs" : {
           "stringUnit" : {

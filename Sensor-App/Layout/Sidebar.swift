@@ -18,40 +18,40 @@ struct Sidebar: View {
             if sizeClass == .regular {
                 NavigationLink(value: Screen.homeScreen) {
                     Label {
-                        Text("Home", comment: "")
+                        Text("Home", comment: "Navigation Button")
                     } icon: {
                         Image(systemName: "house")
                     }
-                    .accessibility(identifier: "Home")
                 }
+                .accessibilityIdentifier(UIIdentifiers.Sidebar.homeButton)
             }
 
             NavigationLink(value: Screen.location) {
                 Label {
-                    Text("Location", comment: "")
+                    Text("Location", comment: "Navigation Button")
                 } icon: {
                     Image(systemName: "location")
                 }
-                .accessibility(identifier: "Location")
             }
+            .accessibilityIdentifier(UIIdentifiers.Sidebar.locationButton)
 
             NavigationLink(value: Screen.acceleration) {
                 Label {
-                    Text("Acceleration", comment: "")
+                    Text("Acceleration", comment: "Navigation Button")
                 } icon: {
                     Image(systemName: "lines.measurement.horizontal")
                 }
-                .accessibility(identifier: "Acceleration")
             }
+            .accessibilityIdentifier(UIIdentifiers.Sidebar.accelerationButton)
 
             NavigationLink(value: Screen.gravity) {
                 Label {
-                    Text("Gravity", comment: "")
+                    Text("Gravity", comment: "Navigation Button")
                 } icon: {
                     Image(systemName: "lines.measurement.horizontal")
                 }
-                .accessibility(identifier: "Gravity")
             }
+            .accessibilityIdentifier(UIIdentifiers.Sidebar.gravityButton)
 
             NavigationLink(value: Screen.gyroscope) {
                 Label {
@@ -59,47 +59,47 @@ struct Sidebar: View {
                 } icon: {
                     Image(systemName: "lines.measurement.horizontal")
                 }
-                .accessibility(identifier: "Gyroscope")
             }
+            .accessibilityIdentifier(UIIdentifiers.Sidebar.gyroscopeButton)
 
             NavigationLink(value: Screen.magnetometer) {
                 Label {
-                    Text("Magnetometer", comment: "")
+                    Text("Magnetometer", comment: "Navigation Button")
                 } icon: {
                     Image(systemName: "lines.measurement.horizontal")
                 }
-                .accessibility(identifier: "Magnetometer")
             }
+            .accessibilityIdentifier(UIIdentifiers.Sidebar.magnetometerButton)
 
             NavigationLink(value: Screen.attitude) {
                 Label {
-                    Text("Attitude", comment: "")
+                    Text("Attitude", comment: "Navigation Button")
                 } icon: {
                     Image(systemName: "lines.measurement.horizontal")
                 }
-                .accessibility(identifier: "Attitude")
             }
+            .accessibilityIdentifier(UIIdentifiers.Sidebar.attitudeButton)
 
             NavigationLink(value: Screen.altitude) {
                 Label {
-                    Text("Altitude", comment: "")
+                    Text("Altitude", comment: "Navigation Button")
                 } icon: {
                     Image(systemName: "lines.measurement.horizontal")
                 }
-                .accessibility(identifier: "Altitude")
             }
+            .accessibilityIdentifier(UIIdentifiers.Sidebar.altitudeButton)
 
             NavigationLink(value: Screen.settings) {
                 Label {
-                    Text("Settings", comment: "")
+                    Text("Settings", comment: "Navigation Button")
                 } icon: {
                     Image(systemName: "gear")
                 }
-                .accessibility(identifier: "Settings")
             }
+            .accessibilityIdentifier(UIIdentifiers.Sidebar.settingsButton)
         }
         .listStyle(.sidebar)
-        .accessibility(identifier: "Sidebar")
+        .accessibilityIdentifier(UIIdentifiers.Sidebar.collectionView)
     }
 
     // MARK: - Body

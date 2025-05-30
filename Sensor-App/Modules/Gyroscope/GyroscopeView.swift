@@ -33,7 +33,7 @@ struct GyroscopeView: View {
                             comment: "GyroscopeView - X-Axis")
                     }
                 )
-                .disclosureGroupModifier(accessibility: "Toggle X-Axis Graph")
+                .accessibilityIdentifier(UIIdentifiers.GyroscopeView.xAxisRow)
 
                 DisclosureGroup(
                     isExpanded: $showYAxis,
@@ -47,7 +47,7 @@ struct GyroscopeView: View {
                             comment: "GyroscopeView - Y-Axis")
                     }
                 )
-                .disclosureGroupModifier(accessibility: "Toggle Y-Axis Graph")
+                .accessibilityIdentifier(UIIdentifiers.GyroscopeView.yAxisRow)
 
                 DisclosureGroup(
                     isExpanded: $showZAxis,
@@ -61,12 +61,12 @@ struct GyroscopeView: View {
                             comment: "GyroscopeView - Z-Axis")
                     }
                 )
-                .disclosureGroupModifier(accessibility: "Toggle Z-Axis Graph")
+                .accessibilityIdentifier(UIIdentifiers.GyroscopeView.zAxisRow)
 
                 NavigationLink(value: Route.gyroscopeList) {
                     Text("Log", comment: "GyroscopeView - Log")
-                        .accessibilityIdentifier("Log")
                 }
+                .accessibilityIdentifier(UIIdentifiers.GyroscopeView.logButton)
             }
 
             MotionManagerAccessView()

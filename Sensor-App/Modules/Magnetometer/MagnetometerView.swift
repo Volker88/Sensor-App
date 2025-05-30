@@ -33,7 +33,7 @@ struct MagnetometerView: View {
                             comment: "MagnetometerView - X-Axis")
                     }
                 )
-                .disclosureGroupModifier(accessibility: "Toggle X-Axis Graph")
+                .accessibilityIdentifier(UIIdentifiers.MagnetometerView.xAxisRow)
 
                 DisclosureGroup(
                     isExpanded: $showYAxis,
@@ -47,7 +47,7 @@ struct MagnetometerView: View {
                             comment: "MagnetometerView - Y-Axis")
                     }
                 )
-                .disclosureGroupModifier(accessibility: "Toggle Y-Axis Graph")
+                .accessibilityIdentifier(UIIdentifiers.MagnetometerView.yAxisRow)
 
                 DisclosureGroup(
                     isExpanded: $showZAxis,
@@ -61,12 +61,12 @@ struct MagnetometerView: View {
                             comment: "MagnetometerView - Z-Axis")
                     }
                 )
-                .disclosureGroupModifier(accessibility: "Toggle Z-Axis Graph")
+                .accessibilityIdentifier(UIIdentifiers.MagnetometerView.zAxisRow)
 
                 NavigationLink(value: Route.magnetometerList) {
                     Text("Log", comment: "MagnetometerView - Log")
-                        .accessibilityIdentifier("Log")
                 }
+                .accessibilityIdentifier(UIIdentifiers.MagnetometerView.logButton)
             }
 
             MotionManagerAccessView()

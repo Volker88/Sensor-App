@@ -33,7 +33,7 @@ struct AccelerationView: View {
                             comment: "AccelerationView - X-Axis")
                     }
                 )
-                .disclosureGroupModifier(accessibility: "Toggle X-Axis Graph")
+                .accessibilityIdentifier(UIIdentifiers.AccelerationView.xAxisRow)
 
                 DisclosureGroup(
                     isExpanded: $showYAxis,
@@ -47,7 +47,7 @@ struct AccelerationView: View {
                             comment: "AccelerationView - Y-Axis")
                     }
                 )
-                .disclosureGroupModifier(accessibility: "Toggle Y-Axis Graph")
+                .accessibilityIdentifier(UIIdentifiers.AccelerationView.yAxisRow)
 
                 DisclosureGroup(
                     isExpanded: $showZAxis,
@@ -61,15 +61,18 @@ struct AccelerationView: View {
                             comment: "AccelerationView - Z-Axis")
                     }
                 )
-                .disclosureGroupModifier(accessibility: "Toggle Z-Axis Graph")
+                .accessibilityIdentifier(UIIdentifiers.AccelerationView.zAxisRow)
 
                 NavigationLink(value: Route.accelerationList) {
                     Text("Log", comment: "AccelerationView - Log")
                         .accessibilityIdentifier("Log")
                 }
+                .accessibilityIdentifier(UIIdentifiers.AccelerationView.logButton)
             }
 
-            MotionManagerAccessView()
+            #if !DEBUG
+                MotionManagerAccessView()
+            #endif
 
             Section(header: Text("Refresh Rate", comment: "AccelerationView - Section Header")) {
                 RefreshRateView(show: "header")

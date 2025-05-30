@@ -35,7 +35,8 @@ struct AltitudeList: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 ShareSheet(url: shareCSV())
-                    .accessibility(identifier: "ExportButton")
+                    .accessibilityLabel("Export Altitude Data to CSV")
+                    .accessibilityIdentifier(UIIdentifiers.AltitudeList.exportButton)
             }
             CustomToolbar()
         }

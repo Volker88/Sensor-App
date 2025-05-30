@@ -136,7 +136,6 @@
 				Model/MotionModel.swift,
 				Model/SettingsForUserDefaults.swift,
 				Model/UserSettings.swift,
-				Support/Info.plist,
 			);
 			target = 1527B01624C4AA240024DD78 /* Sensor-App */;
 		};
@@ -163,19 +162,8 @@
 				Model/MotionModel.swift,
 				Model/SettingsForUserDefaults.swift,
 				Model/UserSettings.swift,
-				Support/Info.plist,
 			);
 			target = 1527B04624C4AA620024DD78 /* Sensor-App-Watch */;
-		};
-		1515A4BF2C9FE60E00F89AAE /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Support/Info.plist,
-			);
-			publicHeaders = (
-				Support/Sensor_App_Framework.h,
-			);
-			target = 1527B07824C4ACA20024DD78 /* Sensor-App-Framework */;
 		};
 		1515A5672C9FE62400F89AAE /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
@@ -192,13 +180,6 @@
 				Miscellaneous/Assets.xcassets,
 			);
 			target = 1527B04624C4AA620024DD78 /* Sensor-App-Watch */;
-		};
-		153880082DE9A2F30017D8ED /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Miscellaneous/UIIdentifiers.swift,
-			);
-			target = 15F1BBA82CAFCF1E00C80A1F /* Sensor-AppwatchOSUITests */;
 		};
 		157652A52CAFBC3D001842DE /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
@@ -217,8 +198,6 @@
 				iOSUITests/GyroscopeViewUITests.swift,
 				iOSUITests/Helper/BaseTestCase.swift,
 				"iOSUITests/Helper/Extension+XCUIElement.swift",
-				iOSUITests/HelperFunctions.swift,
-				iOSUITests/Info.plist,
 				iOSUITests/LocationViewUITests.swift,
 				iOSUITests/MagnetometerViewUITests.swift,
 				iOSUITests/ScreenshotUITests.swift,
@@ -228,7 +207,6 @@
 				iOSUnitTests/API/SettingsManagerTests.swift,
 				iOSUnitTests/Customization/ExtensionTests.swift,
 				iOSUnitTests/Helper/BaseTestCase.swift,
-				iOSUnitTests/Info.plist,
 				watchOSUITests/BaseTestCase.swift,
 				watchOSUITests/ScreenshotUITests.swift,
 			);
@@ -251,8 +229,6 @@
 				iOSUITests/GyroscopeViewUITests.swift,
 				iOSUITests/Helper/BaseTestCase.swift,
 				"iOSUITests/Helper/Extension+XCUIElement.swift",
-				iOSUITests/HelperFunctions.swift,
-				iOSUITests/Info.plist,
 				iOSUITests/LocationViewUITests.swift,
 				iOSUITests/MagnetometerViewUITests.swift,
 				iOSUITests/ScreenshotUITests.swift,
@@ -262,7 +238,6 @@
 				iOSUnitTests/API/SettingsManagerTests.swift,
 				iOSUnitTests/Customization/ExtensionTests.swift,
 				iOSUnitTests/Helper/BaseTestCase.swift,
-				iOSUnitTests/Info.plist,
 				watchOSUITests/BaseTestCase.swift,
 				watchOSUITests/ScreenshotUITests.swift,
 			);
@@ -285,8 +260,6 @@
 				iOSUITests/GyroscopeViewUITests.swift,
 				iOSUITests/Helper/BaseTestCase.swift,
 				"iOSUITests/Helper/Extension+XCUIElement.swift",
-				iOSUITests/HelperFunctions.swift,
-				iOSUITests/Info.plist,
 				iOSUITests/LocationViewUITests.swift,
 				iOSUITests/MagnetometerViewUITests.swift,
 				iOSUITests/ScreenshotUITests.swift,
@@ -296,7 +269,6 @@
 				iOSUnitTests/API/SettingsManagerTests.swift,
 				iOSUnitTests/Customization/ExtensionTests.swift,
 				iOSUnitTests/Helper/BaseTestCase.swift,
-				iOSUnitTests/Info.plist,
 				watchOSUITests/BaseTestCase.swift,
 				watchOSUITests/ScreenshotUITests.swift,
 			);
@@ -323,11 +295,17 @@
 				iOSUITests/GyroscopeViewUITests.swift,
 				iOSUITests/Helper/BaseTestCase.swift,
 				"iOSUITests/Helper/Extension+XCUIElement.swift",
-				iOSUITests/HelperFunctions.swift,
 				iOSUITests/LocationViewUITests.swift,
 				iOSUITests/MagnetometerViewUITests.swift,
 				iOSUITests/ScreenshotUITests.swift,
 				iOSUITests/SettingsViewUITests.swift,
+			);
+			target = 1527B03224C4AA240024DD78 /* Sensor-AppiOSUITests */;
+		};
+		157747D22DEA169D006F621A /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Miscellaneous/UIIdentifiers.swift,
 			);
 			target = 1527B03224C4AA240024DD78 /* Sensor-AppiOSUITests */;
 		};
@@ -381,8 +359,8 @@
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		1515A4192C9FE60700F89AAE /* Sensor-App-WatchApp */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (1515A42B2C9FE60700F89AAE /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = "Sensor-App-WatchApp"; sourceTree = "<group>"; };
-		1515A45A2C9FE60E00F89AAE /* Sensor-App-Framework */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (1515A4BD2C9FE60E00F89AAE /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 1515A4BE2C9FE60E00F89AAE /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 1515A4BF2C9FE60E00F89AAE /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = "Sensor-App-Framework"; sourceTree = "<group>"; };
-		1515A5382C9FE62400F89AAE /* Sensor-App */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (1515A5672C9FE62400F89AAE /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 1515A5682C9FE62400F89AAE /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 157FB6A02D80C719006D5E90 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 153880082DE9A2F30017D8ED /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = "Sensor-App"; sourceTree = "<group>"; };
+		1515A45A2C9FE60E00F89AAE /* Sensor-App-Framework */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (1515A4BD2C9FE60E00F89AAE /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 1515A4BE2C9FE60E00F89AAE /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = "Sensor-App-Framework"; sourceTree = "<group>"; };
+		1515A5382C9FE62400F89AAE /* Sensor-App */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (1515A5672C9FE62400F89AAE /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 1515A5682C9FE62400F89AAE /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 157FB6A02D80C719006D5E90 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 157747D22DEA169D006F621A /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = "Sensor-App"; sourceTree = "<group>"; };
 		1515A62D2C9FE70500F89AAE /* Configuration */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (15C96D6D2CC81A5900F72DD5 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 15C96D6E2CC81A5900F72DD5 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 15C96D6F2CC81A5900F72DD5 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Configuration; sourceTree = "<group>"; };
 		157652802CAFBC3C001842DE /* Tests */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (157652A52CAFBC3D001842DE /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 157652A62CAFBC3D001842DE /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 157652A72CAFBC3D001842DE /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 157652A82CAFBC3D001842DE /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 157652A92CAFBC3D001842DE /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 15F1BBB92CAFCF2400C80A1F /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Tests; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -1040,6 +1018,7 @@
 				PRODUCT_NAME = "Sensor-App";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 6.0;
@@ -1113,6 +1092,7 @@
 				PRODUCT_NAME = "Sensor-App";
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 6.0;
@@ -1182,7 +1162,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEAD_CODE_STRIPPING = YES;
-				INFOPLIST_FILE = "$(SRCROOT)//Tests/iOSUnitTests//Info.plist";
+				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1207,7 +1187,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEAD_CODE_STRIPPING = YES;
-				INFOPLIST_FILE = "$(SRCROOT)//Tests/iOSUnitTests//Info.plist";
+				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1230,7 +1210,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEAD_CODE_STRIPPING = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/Tests/iOSUITests/Info.plist";
+				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1252,7 +1232,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEAD_CODE_STRIPPING = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/Tests/iOSUITests/Info.plist";
+				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1320,12 +1300,11 @@
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEAD_CODE_STRIPPING = YES;
-				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_MODULE_VERIFIER = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/Sensor-App-Framework/Support/Info.plist";
+				GENERATE_INFOPLIST_FILE = YES;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1355,12 +1334,11 @@
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEAD_CODE_STRIPPING = YES;
-				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_MODULE_VERIFIER = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/Sensor-App-Framework/Support/Info.plist";
+				GENERATE_INFOPLIST_FILE = YES;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (

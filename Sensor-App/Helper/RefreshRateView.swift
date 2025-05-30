@@ -37,17 +37,17 @@ struct RefreshRateView: View {
                     Slider(value: Bindable(motionManager).sensorUpdateInterval, in: 1...50, step: 1) { _ in
                         updateSlider()
                     }
-                    .accessibility(
-                        label: Text(
+                    .accessibilityIdentifier(UIIdentifiers.RefreshRateView.refreshRateSlider)
+                    .accessibilityLabel(
+                        Text(
                             "Refresh Rate",
                             comment: "Slider to adjust Frequency of Sensor Updates in Herz")
                     )
-                    .accessibility(
-                        value: Text(
+                    .accessibilityLabel(
+                        Text(
                             "\(motionManager.sensorUpdateInterval, specifier: "%.0f") per Second",
-                            comment: "RefreshRateView - Value")
-                    )
-                    .accessibility(identifier: "Frequency Slider")
+                            comment: "RefreshRateView - Value"))
+
                     Text("50")
                 }
             }

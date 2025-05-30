@@ -1,47 +1,62 @@
 //
 //  BaseTestCase.swift
-//  Sensor-AppUITests
+//  Sensor-AppiOSUITests
 //
 //  Created by Volker Schmitt on 21.03.21.
 //
 
 import XCTest
 
+@testable import Sensor_App
+
 @MainActor
 class BaseTestCase: XCTestCase {
     var app: XCUIApplication!
 
-    override func setUpWithError() throws {
+    override func setUp() async throws {
         continueAfterFailure = false
+
+        app = XCUIApplication()
+        app.launchArguments = ["enable-testing", "disable-animations"]
+        app.launch()
 
         // Clear User Defaults
         // swiftlint:disable:next force_unwrapping
         UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
         UserDefaults.standard.synchronize()
 
-        MainActor.assumeIsolated {
+        #if os(iOS)
             if isIPad() {
                 XCUIDevice.shared.orientation = .landscapeLeft
             } else if isIPhone() {
                 XCUIDevice.shared.orientation = .portrait
             }
+        #endif
+
+    }
+
+    override func tearDown() async throws {
+    }
+
+    // MARK: - Methods
+    func isIPad() -> Bool {
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            return true
+        } else {
+            return false
         }
-
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    func isIPhone() -> Bool {
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            return true
+        } else {
+            return false
+        }
     }
 
-    func launchApp() {
-        app = XCUIApplication()
-        app.launchArguments = ["enable-testing", "disable-animations"]
-        app.launch()
-    }
-
-    func moveToView(view: String) {
-        launchApp()
-        app.collectionViews["Sidebar"].buttons[view].tap()
+    func moveToView(_ view: String) {
+        app.collectionViews[UIIdentifiers.Sidebar.collectionView].buttons[view].tap()
     }
 
     func backToHomeMenu() {

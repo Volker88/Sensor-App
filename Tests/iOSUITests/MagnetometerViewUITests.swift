@@ -1,6 +1,6 @@
 //
 //  MagnetometerViewUITests.swift
-//  Sensor-AppUITests
+//  Sensor-AppiOSUITests
 //
 //  Created by Volker Schmitt on 26.01.20.
 //  Copyright © 2020 Volker Schmitt. All rights reserved.
@@ -11,13 +11,12 @@ import XCTest
 class MagnetometerViewUITests: BaseTestCase {
     func testMagnetometerViewToolbarButtons() throws {
         // Go to Magnetometer View
-        moveToView(view: "Magnetometer")
+        moveToView(UIIdentifiers.Sidebar.magnetometerButton)
 
         // Test Toolbar Buttons
-        let toolbar = app.toolbars["Toolbar"]
-        toolbar.buttons["Play"].tap()
-        toolbar.buttons["Pause"].tap()
-        toolbar.buttons["Delete"].tap()
+        app.buttons[UIIdentifiers.Toolbar.deleteButton].tap()
+        app.buttons[UIIdentifiers.Toolbar.pauseButton].tap()
+        app.buttons[UIIdentifiers.Toolbar.deleteButton].tap()
 
         // Go Back to Main Menu
         backToHomeMenu()
@@ -25,17 +24,17 @@ class MagnetometerViewUITests: BaseTestCase {
 
     func testMagnetometerViewGraphs() throws {
         // Go to Magnetometer View
-        moveToView(view: "Magnetometer")
+        moveToView(UIIdentifiers.Sidebar.magnetometerButton)
 
         // Show all Graphs
-        app.buttons["Toggle Z-Axis Graph"].tap()
-        app.buttons["Toggle Y-Axis Graph"].tap()
-        app.buttons["Toggle X-Axis Graph"].tap()
+        app.buttons[UIIdentifiers.MagnetometerView.zAxisRow].tap()
+        app.buttons[UIIdentifiers.MagnetometerView.yAxisRow].tap()
+        app.buttons[UIIdentifiers.MagnetometerView.xAxisRow].tap()
 
         // Hide all Graphs
-        app.buttons["Toggle X-Axis Graph"].tap()
-        app.buttons["Toggle Y-Axis Graph"].tap()
-        app.buttons["Toggle Z-Axis Graph"].tap()
+        app.buttons[UIIdentifiers.MagnetometerView.xAxisRow].tap()
+        app.buttons[UIIdentifiers.MagnetometerView.yAxisRow].tap()
+        app.buttons[UIIdentifiers.MagnetometerView.zAxisRow].tap()
 
         // Go Back to Main Menu
         backToHomeMenu()
@@ -43,18 +42,19 @@ class MagnetometerViewUITests: BaseTestCase {
 
     func testMagnetometerViewSlider() throws {
         // Go to Magnetometer View
-        moveToView(view: "Magnetometer")
+        moveToView(UIIdentifiers.Sidebar.magnetometerButton)
 
         // Swipe Up
-        app.buttons["Toggle X-Axis Graph"].swipeUp()
+        app.buttons[UIIdentifiers.MagnetometerView.xAxisRow].swipeUp()
 
         // Adjust Slider to 0% and then 100%
-        app.sliders["Frequency Slider"].adjust(toNormalizedSliderPosition: 0.0)
-        app.sliders["Frequency Slider"].adjust(toNormalizedSliderPosition: 1.0)
+        app.sliders[UIIdentifiers.RefreshRateView.refreshRateSlider].adjust(toNormalizedSliderPosition: 0.0)
+        app.sliders[UIIdentifiers.RefreshRateView.refreshRateSlider].adjust(toNormalizedSliderPosition: 1.0)
 
-        let updateFrequency = app.sliders["Frequency Slider"].value as! String  // swiftlint:disable:this force_cast
+        let slider = UIIdentifiers.RefreshRateView.refreshRateSlider
+        let updateFrequency = app.sliders[slider].value as! String  // swiftlint:disable:this force_cast
         let splitUpdateFrequency = updateFrequency.split(separator: " ", maxSplits: 1).map(String.init)
-        XCTAssertEqual(splitUpdateFrequency[0], "50", "Update frequency should be 5.0 but is \(splitUpdateFrequency)")
+        XCTAssertEqual(splitUpdateFrequency[0], "50", "Update frequency should be 50 but is \(splitUpdateFrequency)")
 
         // Go Back to Main Menu
         backToHomeMenu()
@@ -62,11 +62,11 @@ class MagnetometerViewUITests: BaseTestCase {
 
     func testMagnetometerViewShareSheet() throws {
         // Go to Magnetometer View
-        moveToView(view: "Magnetometer")
-        app.buttons["Log"].tap()
+        moveToView(UIIdentifiers.Sidebar.magnetometerButton)
+        app.buttons[UIIdentifiers.MagnetometerView.logButton].tap()
 
         // Open / Close Share Sheet
-        app.navigationBars.buttons["ExportButton"].tap()
+        app.navigationBars.buttons[UIIdentifiers.MagnetometerList.exportButton].tap()
         sleep(1)
         dismissShareSheet()
 

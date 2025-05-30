@@ -34,7 +34,7 @@ struct AttitudeView: View {
                             comment: "AttitudeView - Roll")
                     }
                 )
-                .disclosureGroupModifier(accessibility: "Toggle Roll Graph")
+                .accessibilityIdentifier(UIIdentifiers.AttitudeView.rollRow)
 
                 DisclosureGroup(
                     isExpanded: $showPitch,
@@ -48,7 +48,7 @@ struct AttitudeView: View {
                             comment: "AttitudeView - Pitch")
                     }
                 )
-                .disclosureGroupModifier(accessibility: "Toggle Pitch Graph")
+                .accessibilityIdentifier(UIIdentifiers.AttitudeView.pitchRow)
 
                 DisclosureGroup(
                     isExpanded: $showYaw,
@@ -62,7 +62,7 @@ struct AttitudeView: View {
                             comment: "AttitudeView - Yaw")
                     }
                 )
-                .disclosureGroupModifier(accessibility: "Toggle Yaw Graph")
+                .accessibilityIdentifier(UIIdentifiers.AttitudeView.yawRow)
 
                 DisclosureGroup(
                     isExpanded: $showHeading,
@@ -76,12 +76,12 @@ struct AttitudeView: View {
                             comment: "AttitudeView - Heading")
                     }
                 )
-                .disclosureGroupModifier(accessibility: "Toggle Heading Graph")
+                .accessibilityIdentifier(UIIdentifiers.AttitudeView.headingRow)
 
                 NavigationLink(value: Route.attitudeList) {
                     Text("Log", comment: "AttitudeView - Log")
-                        .accessibilityIdentifier("Log")
                 }
+                .accessibilityIdentifier(UIIdentifiers.AttitudeView.logButton)
             }
 
             MotionManagerAccessView()

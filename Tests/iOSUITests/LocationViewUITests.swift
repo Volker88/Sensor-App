@@ -1,6 +1,6 @@
 //
 //  LocationViewUITests.swift
-//  Sensor-AppUITests
+//  Sensor-AppiOSUITests
 //
 //  Created by Volker Schmitt on 26.10.19.
 //  Copyright © 2019 Volker Schmitt. All rights reserved.
@@ -8,16 +8,17 @@
 
 import XCTest
 
-class LocationViewUITests: BaseTestCase {
+@MainActor
+final class LocationViewUITests: BaseTestCase {
+
     func testLocationViewToolbarButtons() throws {
         // Go to Location View
-        moveToView(view: "Location")
+        moveToView(UIIdentifiers.Sidebar.locationButton)
 
         // Test Toolbar Buttons
-        let toolbar = app.toolbars["Toolbar"]
-        toolbar.buttons["Play"].tap()
-        toolbar.buttons["Pause"].tap()
-        toolbar.buttons["Delete"].tap()
+        app.buttons[UIIdentifiers.Toolbar.deleteButton].tap()
+        app.buttons[UIIdentifiers.Toolbar.pauseButton].tap()
+        app.buttons[UIIdentifiers.Toolbar.deleteButton].tap()
 
         // Go Back to Main Menu
         backToHomeMenu()
@@ -25,21 +26,21 @@ class LocationViewUITests: BaseTestCase {
 
     func testLocationViewGraphs() throws {
         // Go to Location View
-        moveToView(view: "Location")
+        moveToView(UIIdentifiers.Sidebar.locationButton)
 
         // Show all Graphs
-        app.buttons["Toggle Speed Graph"].tap()
-        app.buttons["Toggle Direction Graph"].tap()
-        app.buttons["Toggle Altitude Graph"].tap()
-        app.buttons["Toggle Longitude Graph"].tap()
-        app.buttons["Toggle Latitude Graph"].tap()
+        app.buttons[UIIdentifiers.LocationView.speedRow].tap()
+        app.buttons[UIIdentifiers.LocationView.courseRow].tap()
+        app.buttons[UIIdentifiers.LocationView.altitudeRow].tap()
+        app.buttons[UIIdentifiers.LocationView.longitudeRow].tap()
+        app.buttons[UIIdentifiers.LocationView.latitudeRow].tap()
 
         // Hide all Graphs
-        app.buttons["Toggle Latitude Graph"].tap()
-        app.buttons["Toggle Longitude Graph"].tap()
-        app.buttons["Toggle Altitude Graph"].tap()
-        app.buttons["Toggle Direction Graph"].tap()
-        app.buttons["Toggle Speed Graph"].tap()
+        app.buttons[UIIdentifiers.LocationView.latitudeRow].tap()
+        app.buttons[UIIdentifiers.LocationView.longitudeRow].tap()
+        app.buttons[UIIdentifiers.LocationView.altitudeRow].tap()
+        app.buttons[UIIdentifiers.LocationView.courseRow].tap()
+        app.buttons[UIIdentifiers.LocationView.speedRow].tap()
 
         // Go Back to Main Menu
         backToHomeMenu()
@@ -47,10 +48,10 @@ class LocationViewUITests: BaseTestCase {
 
     func testLocationViewShareSheet() throws {
         // Go to Location View
-        moveToView(view: "Location")
+        moveToView(UIIdentifiers.Sidebar.locationButton)
 
         // Open / Close Share Sheet
-        app.collectionViews.buttons["ExportButton"].tap()
+        app.collectionViews.buttons[UIIdentifiers.LocationView.exportButton].tap()
         sleep(1)
         dismissShareSheet()
 

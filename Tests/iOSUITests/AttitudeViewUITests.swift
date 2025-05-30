@@ -1,6 +1,6 @@
 //
 //  AttitudeViewUITests.swift
-//  Sensor-AppUITests
+//  Sensor-AppiOSUITests
 //
 //  Created by Volker Schmitt on 26.01.20.
 //  Copyright © 2020 Volker Schmitt. All rights reserved.
@@ -11,13 +11,12 @@ import XCTest
 class AttitudeViewUITests: BaseTestCase {
     func testAttitudeViewToolbarButtons() throws {
         // Go to Attitude View
-        moveToView(view: "Attitude")
+        moveToView(UIIdentifiers.Sidebar.attitudeButton)
 
         // Test Toolbar Buttons
-        let toolbar = app.toolbars["Toolbar"]
-        toolbar.buttons["Play"].tap()
-        toolbar.buttons["Pause"].tap()
-        toolbar.buttons["Delete"].tap()
+        app.buttons[UIIdentifiers.Toolbar.deleteButton].tap()
+        app.buttons[UIIdentifiers.Toolbar.pauseButton].tap()
+        app.buttons[UIIdentifiers.Toolbar.deleteButton].tap()
 
         // Go Back to Main Menu
         backToHomeMenu()
@@ -25,19 +24,19 @@ class AttitudeViewUITests: BaseTestCase {
 
     func testAttitudeViewGraphs() throws {
         // Go to Attitude View
-        moveToView(view: "Attitude")
+        moveToView(UIIdentifiers.Sidebar.attitudeButton)
 
         // Show all Graphs
-        app.buttons["Toggle Heading Graph"].tap()
-        app.buttons["Toggle Yaw Graph"].tap()
-        app.buttons["Toggle Pitch Graph"].tap()
-        app.buttons["Toggle Roll Graph"].tap()
+        app.buttons[UIIdentifiers.AttitudeView.headingRow].tap()
+        app.buttons[UIIdentifiers.AttitudeView.yawRow].tap()
+        app.buttons[UIIdentifiers.AttitudeView.pitchRow].tap()
+        app.buttons[UIIdentifiers.AttitudeView.rollRow].tap()
 
         // Hide all Graphs
-        app.buttons["Toggle Roll Graph"].tap()
-        app.buttons["Toggle Pitch Graph"].tap()
-        app.buttons["Toggle Yaw Graph"].tap()
-        app.buttons["Toggle Heading Graph"].tap()
+        app.buttons[UIIdentifiers.AttitudeView.rollRow].tap()
+        app.buttons[UIIdentifiers.AttitudeView.pitchRow].tap()
+        app.buttons[UIIdentifiers.AttitudeView.yawRow].tap()
+        app.buttons[UIIdentifiers.AttitudeView.headingRow].tap()
 
         // Go Back to Main Menu
         backToHomeMenu()
@@ -45,16 +44,17 @@ class AttitudeViewUITests: BaseTestCase {
 
     func testAttitudeViewSlider() throws {
         // Go to Attitude View
-        moveToView(view: "Attitude")
+        moveToView(UIIdentifiers.Sidebar.attitudeButton)
 
         // Swipe Up
-        app.buttons["Toggle Roll Graph"].swipeUp()
+        app.buttons[UIIdentifiers.AttitudeView.rollRow].swipeUp()
 
         // Adjust Slider to 0% and then 100%
-        app.sliders["Frequency Slider"].adjust(toNormalizedSliderPosition: 0.0)
-        app.sliders["Frequency Slider"].adjust(toNormalizedSliderPosition: 1.0)
+        app.sliders[UIIdentifiers.RefreshRateView.refreshRateSlider].adjust(toNormalizedSliderPosition: 0.0)
+        app.sliders[UIIdentifiers.RefreshRateView.refreshRateSlider].adjust(toNormalizedSliderPosition: 1.0)
 
-        let updateFrequency = app.sliders["Frequency Slider"].value as! String  // swiftlint:disable:this force_cast
+        let slider = UIIdentifiers.RefreshRateView.refreshRateSlider
+        let updateFrequency = app.sliders[slider].value as! String  // swiftlint:disable:this force_cast
         let splitUpdateFrequency = updateFrequency.split(separator: " ", maxSplits: 1).map(String.init)
         XCTAssertEqual(splitUpdateFrequency[0], "50", "Update frequency should be 50 but is \(splitUpdateFrequency)")
 
@@ -64,11 +64,11 @@ class AttitudeViewUITests: BaseTestCase {
 
     func testAttitudeViewShareSheet() throws {
         // Go to Attitude View
-        moveToView(view: "Attitude")
-        app.buttons["Log"].tap()
+        moveToView(UIIdentifiers.Sidebar.attitudeButton)
+        app.buttons[UIIdentifiers.AttitudeView.logButton].tap()
 
         // Open / Close Share Sheet
-        app.navigationBars.buttons["ExportButton"].tap()
+        app.navigationBars.buttons[UIIdentifiers.AttitudeList.exportButton].tap()
         sleep(1)
         dismissShareSheet()
 

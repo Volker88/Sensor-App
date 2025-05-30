@@ -8,159 +8,170 @@
 import Foundation
 
 enum UIIdentifiers {
+    enum Sidebar {
+        // Collection View
+        static let collectionView = "Sidebar.list"
 
-    enum ContentView {
-        static let printerButton = "ContentView.button.printer"
-        static let filamentButton = "ContentView.button.filament"
-        static let filamentInsightsButton = "ContentView.button.filamentInsights"
-        static let settingsButton = "ContentView.button.settings"
+        // Navigation Buttons
+        static let homeButton = "Sidebar.button.home"
+        static let locationButton = "Sidebar.button.location"
+        static let accelerationButton = "Sidebar.button.acceleration"
+        static let gravityButton = "Sidebar.button.gravity"
+        static let gyroscopeButton = "Sidebar.button.gyroscope"
+        static let magnetometerButton = "Sidebar.button.magnetometer"
+        static let attitudeButton = "Sidebar.button.attitude"
+        static let altitudeButton = "Sidebar.button.altitude"
+        static let settingsButton = "Sidebar.button.settings"
     }
 
-    // MARK: - Printer
-    enum PrinterInventoryScreen {
-        static let collectionView = "PrinterInventoryScreen.list"
-        static let collectionViewRow = "PrinterInventoryScreen.list.rows"
-        static let printerNameLabel = "PrinterInventoryScreen.label.printerName"
-
-        static let addButton = "PrinterInventoryScreen.button.add"
-        static let editButton = "PrinterInventoryScreen.button.edit"
-        static let deleteButton = "PrinterInventoryScreen.button.delete"
-
+    enum Toolbar {
+        // Action Buttons
+        static let playButton = "Toolbar.button.play"
+        static let pauseButton = "Toolbar.button.pause"
+        static let deleteButton = "Toolbar.button.delete"
     }
 
-    enum AddEditPrinterScreen {
-        static let form = "AddEditPrinterScreen.form"
-
-        static let nameTextField = "AddEditPrinterScreen.textfield.name"
-        static let brandTextField = "AddEditPrinterScreen.textfield.brand"
-        static let modelTextField = "AddEditPrinterScreen.textfield.model"
-        static let costTextField = "AddEditPrinterScreen.textfield.cost"
-        static let favoriteToggle = "AddEditPrinterScreen.toggle.favorite"
-
-        static let saveButton = "AddEditPrinterScreen.button.save"
-        static let cancelButton = "AddEditPrinterScreen.button.cancel"
+    enum RefreshRateView {
+        // Slider
+        static let refreshRateSlider = "RefreshRateView.slider"
     }
 
-    // MARK: - Settings
-    enum SettingsScreen {
-        static let collectionView = "SettingsScreen.list"
-        static let materialCollection = "SettingsScreen.list.materials"
+    // MARK: - Modules
+    enum LocationView {
+        // Navigation Button
+        static let mapButton = "LocationView.button.map"
 
-        static let addButton = "SettingsScreen.button.add"
-        static let editButton = "SettingsScreen.button.edit"
-        static let deleteButton = "SettingsScreen.button.delete"
+        // Action Button
+        static let exportButton = "LocationView.button.export"
+
+        // Disclosure Group
+        static let latitudeRow = "LocationView.disclosureGroup.latitude"
+        static let longitudeRow = "LocationView.disclosureGroup.longitude"
+        static let altitudeRow = "LocationView.disclosureGroup.altitude"
+        static let courseRow = "LocationView.disclosureGroup.course"
+        static let speedRow = "LocationView.disclosureGroup.speed"
     }
 
-    enum AddEditFilamentMaterialScreen {
-        static let form = "AddEditFilamentMaterialScreen.form"
+    enum AccelerationView {
+        // Navigation Button
+        static let logButton = "AccelerationView.button.log"
 
-        static let nameTextField = "AddEditFilamentMaterialScreen.textfield.name"
-
-        static let saveButton = "AddEditFilamentMaterialScreen.button.save"
-        static let cancelButton = "AddEditFilamentMaterialScreen.button.cancel"
+        // Disclosure Group
+        static let xAxisRow = "AccelerationView.disclosureGroup.xAxis"
+        static let yAxisRow = "AccelerationView.disclosureGroup.yAxis"
+        static let zAxisRow = "AccelerationView.disclosureGroup.zAxis"
     }
 
-    // MARK: - Filament
-    enum FilamentScreen {
-        static let inventoryButton = "FilamentScreen.button.inventory"
-        static let insightsButton = "FilamentScreen.button.insights"
+    enum AccelerationList {
+        // Action Button
+        static let exportButton = "AccelerationList.button.export"
     }
 
-    enum FilamentInventoryScreen {
-        static let addButton = "FilamentInventoryScreen.button.add"
+    enum GravityView {
+        // Navigation Button
+        static let logButton = "GravityView.button.log"
+
+        // Disclosure Group
+        static let xAxisRow = "GravityView.disclosureGroup.xAxis"
+        static let yAxisRow = "GravityView.disclosureGroup.yAxis"
+        static let zAxisRow = "GravityView.disclosureGroup.zAxis"
     }
 
-    enum FilamentInventoryTableView {
-        static let collectionView = "FilamentInventoryTableView.list"
+    enum GravityList {
+        // Action Button
+        static let exportButton = "GravityList.button.export"
     }
 
-    enum FilamentDetailsScreen {
-        static let addUsageButton = "FilamentDetailsScreen.button.addUsage"
-        static let addCalibrationButton = "FilamentDetailsScreen.button.addCalibration"
-        static let addDryingButton = "FilamentDetailsScreen.button.addDrying"
+    enum GyroscopeView {
+        // Navigation Button
+        static let logButton = "GyroscopeView.button.log"
 
-        static let menuButton = "FilamentDetailsScreen.button.menu"
+        // Disclosure Group
+        static let xAxisRow = "GyroscopeView.disclosureGroup.xAxis"
+        static let yAxisRow = "GyroscopeView.disclosureGroup.yAxis"
+        static let zAxisRow = "GyroscopeView.disclosureGroup.zAxis"
     }
 
-    enum AddEditFilamentScreen {
-        static let form = "AddEditFilamentScreen.form"
-
-        static let uniqueIdTextField = "AddEditFilamentScreen.textfield.uniqueId"
-        static let brandTextField = "AddEditFilamentScreen.textfield.brand"
-        static let materialPicker = "AddEditFilamentScreen.picker.material"
-        static let otherMaterialTextField = "AddEditFilamentScreen.textfield.otherMaterial"
-        static let diameterTextField = "AddEditFilamentScreen.textfield.diameter"
-        static let grossWeightTextField = "AddEditFilamentScreen.textfield.grossWeight"
-        static let netWeightTextField = "AddEditFilamentScreen.textfield.netWeight"
-        static let costTextField = "AddEditFilamentScreen.textfield.cost"
-        static let filamentOpenedToggle = "AddEditFilamentScreen.toggle.filamentOpened"
-        static let favoriteToggle = "AddEditFilamentScreen.toggle.favorite"
-
-        static let saveButton = "AddEditFilamentScreen.button.save"
-        static let cancelButton = "AddEditFilamentScreen.button.cancel"
-    }
-    enum FilamentDetailsOverviewScreen {
-        static let collection = "FilamentDetailsOverviewScreen.collection"
-
-        static let remainingWeightLabel = "FilamentDetailsOverviewScreen.label.remainingWeight"
+    enum GyroscopeList {
+        // Action Button
+        static let exportButton = "GyroscopeList.button.export"
     }
 
-    enum FilamentDetailsOverviewView {
-        static let overviewButton = "FilamentDetailsOverviewView.button.overview"
+    enum AltitudeView {
+        // Navigation Button
+        static let logButton = "AltitudeView.button.log"
+
+        // Disclosure Group
+        static let pressureRow = "AltitudeView.disclosureGroup.pressure"
+        static let altitudeRow = "AltitudeView.disclosureGroup.altitude"
     }
 
-    enum AddEditFilamentCalibrationScreen {
-        static let form = "AddEditFilamentCalibrationScreen.form"
-
-        static let maxVolumSpeedTextField = "AddEditFilamentCalibrationScreen.textfield.maxVolumSpeed"
-        static let paTextField = "AddEditFilamentCalibrationScreen.textfield.pa"
-        static let flowRatioTextField = "AddEditFilamentCalibrationScreen.textfield.flowRatio"
-
-        static let saveButton = "AddEditFilamentCalibrationScreen.button.save"
-        static let cancelButton = "AddEditFilamentCalibrationScreen.button.cancel"
+    enum AltitudeList {
+        // Action Button
+        static let exportButton = "AltitudeList.button.export"
     }
 
-    enum FilamentCalibrationScrollView {
-        static let filamentCalibrationButton = "FilamentCalibrationScrollView.button.filamentCalibration"
+    enum AttitudeView {
+        // Navigation Button
+        static let logButton = "AttitudeView.button.log"
+
+        // Disclosure Group
+        static let rollRow = "AttitudeView.disclosureGroup.roll"
+        static let pitchRow = "AttitudeView.disclosureGroup.pitch"
+        static let yawRow = "AttitudeView.disclosureGroup.yaw"
+        static let headingRow = "AttitudeView.disclosureGroup.heading"
     }
 
-    enum FilamentCalibrationScreen {
-        static let parameterList = "FilamentCalibrationScreen.parameterList"
+    enum AttitudeList {
+        // Action Button
+        static let exportButton = "AttitudeList.button.export"
     }
 
-    enum AddEditFilamentMeasureScreen {
-        static let form = "AddEditFilamentMeasureScreen.form"
+    enum MagnetometerView {
+        // Navigation Button
+        static let logButton = "MagnetometerView.button.log"
 
-        static let grossWeightTextField = "AddEditFilamentMeasureScreen.textfield.grossWeight"
-
-        static let saveButton = "AddEditFilamentMeasureScreen.button.save"
-        static let cancelButton = "AddEditFilamentMeasureScreen.button.cancel"
+        // Disclosure Group
+        static let xAxisRow = "MagnetometerView.disclosureGroup.xAxis"
+        static let yAxisRow = "MagnetometerView.disclosureGroup.yAxis"
+        static let zAxisRow = "MagnetometerView.disclosureGroup.zAxis"
     }
 
-    enum FilamentMeasureScreen {
-        static let measureList = "FilamentMeasureScreen.measureList"
+    enum MagnetometerList {
+        // Action Button
+        static let exportButton = "MagnetometerList.button.export"
     }
 
-    enum FilamentMeasureScrollView {
-        static let filamentMeasureButton = "FilamentMeasureScrollView.button.filamentMeasure"
-    }
+    enum SettingScreen {
+        // Collection View
+        static let collectionView = "SettingScreen.list"
 
-    enum AddEditFilamentDryingScreen {
-        static let form = "AddEditFilamentDryingScreen.form"
+        // Picker
+        static let speedPicker = "SettingScreen.picker.speed"
+        static let accuracyPicker = "SettingScreen.picker.accuracy"
+        static let mapTypePicker = "SettingScreen.picker.mapType"
+        static let pressurePicker = "SettingScreen.picker.pressure"
+        static let altitudePicker = "SettingScreen.picker.altitude"
 
-        static let temperatureTextField = "AddEditFilamentDryingScreen.textfield.temperature"
-        static let humidityTextField = "AddEditFilamentDryingScreen.textfield.humidity"
-        static let durationTextField = "AddEditFilamentDryingScreen.textfield.duration"
+        // Toggle
+        static let compassToggle = "SettingScreen.toggle.compass"
+        static let scaleToggle = "SettingScreen.toggle.scale"
+        static let buildingsToggle = "SettingScreen.toggle.buildings"
+        static let trafficToggle = "SettingScreen.toggle.traffic"
+        static let rotateToggle = "SettingScreen.toggle.rotate"
+        static let pitchToggle = "SettingScreen.toggle.pitch"
+        static let scrollToggle = "SettingScreen.toggle.scroll"
 
-        static let saveButton = "AddEditFilamentDryingScreen.button.save"
-        static let cancelButton = "AddEditFilamentDryingScreen.button.cancel"
-    }
+        // Stepper
+        static let zoomStepper = "SettingScreen.stepper.zoom"
+        static let maxPointsStepper = "SettingScreen.stepper.maxPoints"
 
-    enum FilamentDryingScreen {
-        static let dryingList = "FilamentDryingScreen.dryingList"
-    }
+        // Slider
+        static let zoomSlider = "SettingScreen.slider.zoom"
+        static let maxPointsSlider = "SettingScreen.slider.maxPoints"
 
-    enum FilamentDryingScrollView {
-        static let filamentDryingButton = "FilamentDryingScrollView.button.filamentDrying"
+        // Action Button
+        static let saveButton = "SettingScreen.button.save"
+        static let discardButton = "SettingScreen.button.discard"
     }
 }

@@ -33,7 +33,8 @@ struct GravityList: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 ShareSheet(url: shareCSV())
-                    .accessibility(identifier: "ExportButton")
+                    .accessibilityLabel("Export Gravity Data to CSV")
+                    .accessibilityIdentifier(UIIdentifiers.GravityList.exportButton)
             }
             CustomToolbar()
         }

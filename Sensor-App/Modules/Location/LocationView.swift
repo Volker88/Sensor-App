@@ -27,7 +27,8 @@ struct LocationView: View {
             Section(
                 header: Text("Location", comment: "LocationView - Section Header"),
                 footer: ShareSheet(url: shareCSV())
-                    .accessibility(identifier: "ExportButton")
+                    .accessibilityLabel("Export Location Data to CSV")
+                    .accessibilityIdentifier(UIIdentifiers.LocationView.exportButton)
             ) {
                 DisclosureGroup(
                     isExpanded: $showLatitude,
@@ -41,7 +42,7 @@ struct LocationView: View {
                             comment: "GPS Latitude position with accuracy in meter")
                     }
                 )
-                .disclosureGroupModifier(accessibility: "Toggle Latitude Graph")
+                .accessibilityIdentifier(UIIdentifiers.LocationView.latitudeRow)
 
                 DisclosureGroup(
                     isExpanded: $showLongitude,
@@ -55,7 +56,7 @@ struct LocationView: View {
                             comment: "GPS Longitude position with accuracy in meter")
                     }
                 )
-                .disclosureGroupModifier(accessibility: "Toggle Longitude Graph")
+                .accessibilityIdentifier(UIIdentifiers.LocationView.longitudeRow)
 
                 DisclosureGroup(
                     isExpanded: $showAltitude,
@@ -69,7 +70,7 @@ struct LocationView: View {
                             comment: "GPS Altitude position with accuracy in meter")
                     }
                 )
-                .disclosureGroupModifier(accessibility: "Toggle Altitude Graph")
+                .accessibilityIdentifier(UIIdentifiers.LocationView.altitudeRow)
 
                 DisclosureGroup(
                     isExpanded: $showDirection,
@@ -83,7 +84,7 @@ struct LocationView: View {
                             comment: "GPS moving direction")
                     }
                 )
-                .disclosureGroupModifier(accessibility: "Toggle Direction Graph")
+                .accessibilityIdentifier(UIIdentifiers.LocationView.courseRow)
 
                 DisclosureGroup(
                     isExpanded: $showSpeed,
@@ -97,11 +98,12 @@ struct LocationView: View {
                         )
                     }
                 )
-                .disclosureGroupModifier(accessibility: "Toggle Speed Graph")
+                .accessibilityIdentifier(UIIdentifiers.LocationView.speedRow)
 
                 NavigationLink(value: Route.location) {
                     Text("Map", comment: "Map to show current GPS position")
                 }
+                .accessibilityIdentifier(UIIdentifiers.LocationView.mapButton)
             }
 
             authorizationStatus()

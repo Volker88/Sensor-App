@@ -1,6 +1,6 @@
 //
 //  AltitudeViewUITests.swift
-//  Sensor-AppUITests
+//  Sensor-AppiOSUITests
 //
 //  Created by Volker Schmitt on 26.01.20.
 //  Copyright © 2020 Volker Schmitt. All rights reserved.
@@ -11,13 +11,12 @@ import XCTest
 class AltitudeViewUITests: BaseTestCase {
     func testAltitudeViewToolbarButtons() throws {
         // Go to Altitude View
-        moveToView(view: "Altitude")
+        moveToView(UIIdentifiers.Sidebar.altitudeButton)
 
         // Test Toolbar Buttons
-        let toolbar = app.toolbars["Toolbar"]
-        toolbar.buttons["Play"].tap()
-        toolbar.buttons["Pause"].tap()
-        toolbar.buttons["Delete"].tap()
+        app.buttons[UIIdentifiers.Toolbar.deleteButton].tap()
+        app.buttons[UIIdentifiers.Toolbar.pauseButton].tap()
+        app.buttons[UIIdentifiers.Toolbar.deleteButton].tap()
 
         // Go Back to Main Menu
         backToHomeMenu()
@@ -25,15 +24,15 @@ class AltitudeViewUITests: BaseTestCase {
 
     func testAltitudeViewGraphs() throws {
         // Go to Altitude View
-        moveToView(view: "Altitude")
+        moveToView(UIIdentifiers.Sidebar.altitudeButton)
 
         // Show all Graphs
-        app.buttons["Toggle Altitude Graph"].tap()
-        app.buttons["Toggle Pressure Graph"].tap()
+        app.buttons[UIIdentifiers.AltitudeView.altitudeRow].tap()
+        app.buttons[UIIdentifiers.AltitudeView.pressureRow].tap()
 
         // Hide all Graphs
-        app.buttons["Toggle Pressure Graph"].tap()
-        app.buttons["Toggle Altitude Graph"].tap()
+        app.buttons[UIIdentifiers.AltitudeView.pressureRow].tap()
+        app.buttons[UIIdentifiers.AltitudeView.altitudeRow].tap()
 
         // Go Back to Main Menu
         backToHomeMenu()
@@ -41,11 +40,11 @@ class AltitudeViewUITests: BaseTestCase {
 
     func testAltitudeViewShareSheet() throws {
         // Go to Altitude View
-        moveToView(view: "Altitude")
-        app.buttons["Log"].tap()
+        moveToView(UIIdentifiers.Sidebar.altitudeButton)
+        app.buttons[UIIdentifiers.AltitudeView.logButton].tap()
 
         // Open / Close Share Sheet
-        app.navigationBars.buttons["ExportButton"].tap()
+        app.navigationBars.buttons[UIIdentifiers.AltitudeList.exportButton].tap()
         sleep(1)
         dismissShareSheet()
 

@@ -1,6 +1,6 @@
 //
 //  AccelerationViewUITests.swift
-//  Sensor-AppUITests
+//  Sensor-AppiOSUITests
 //
 //  Created by Volker Schmitt on 26.01.20.
 //  Copyright © 2020 Volker Schmitt. All rights reserved.
@@ -11,13 +11,12 @@ import XCTest
 class AccelerationViewUITests: BaseTestCase {
     func testAccelerationViewToolbarButtons() throws {
         // Go to Acceleration View
-        moveToView(view: "Acceleration")
+        moveToView(UIIdentifiers.Sidebar.accelerationButton)
 
         // Test Toolbar Buttons
-        let toolbar = app.toolbars["Toolbar"]
-        toolbar.buttons["Play"].tap()
-        toolbar.buttons["Pause"].tap()
-        toolbar.buttons["Delete"].tap()
+        app.buttons[UIIdentifiers.Toolbar.deleteButton].tap()
+        app.buttons[UIIdentifiers.Toolbar.pauseButton].tap()
+        app.buttons[UIIdentifiers.Toolbar.deleteButton].tap()
 
         // Go Back to Main Menu
         backToHomeMenu()
@@ -25,17 +24,17 @@ class AccelerationViewUITests: BaseTestCase {
 
     func testAccelerationViewGraphs() throws {
         // Go to Acceleration View
-        moveToView(view: "Acceleration")
+        moveToView(UIIdentifiers.Sidebar.accelerationButton)
 
         // Show all Graphs
-        app.buttons["Toggle Z-Axis Graph"].tap()
-        app.buttons["Toggle Y-Axis Graph"].tap()
-        app.buttons["Toggle X-Axis Graph"].tap()
+        app.buttons[UIIdentifiers.AccelerationView.zAxisRow].tap()
+        app.buttons[UIIdentifiers.AccelerationView.yAxisRow].tap()
+        app.buttons[UIIdentifiers.AccelerationView.xAxisRow].tap()
 
         // Hide all Graphs
-        app.buttons["Toggle X-Axis Graph"].tap()
-        app.buttons["Toggle Y-Axis Graph"].tap()
-        app.buttons["Toggle Z-Axis Graph"].tap()
+        app.buttons[UIIdentifiers.AccelerationView.xAxisRow].tap()
+        app.buttons[UIIdentifiers.AccelerationView.yAxisRow].tap()
+        app.buttons[UIIdentifiers.AccelerationView.zAxisRow].tap()
 
         // Go Back to Main Menu
         backToHomeMenu()
@@ -43,16 +42,17 @@ class AccelerationViewUITests: BaseTestCase {
 
     func testAccelerationViewSlider() throws {
         // Go to Acceleration View
-        moveToView(view: "Acceleration")
+        moveToView(UIIdentifiers.Sidebar.accelerationButton)
 
         // Swipe Up
-        app.buttons["Toggle X-Axis Graph"].swipeUp()
+        app.buttons[UIIdentifiers.AccelerationView.xAxisRow].swipeUp()
 
         // Adjust Slider to 0% and then 100%
-        app.sliders["Frequency Slider"].adjust(toNormalizedSliderPosition: 0.0)
-        app.sliders["Frequency Slider"].adjust(toNormalizedSliderPosition: 1.0)
+        app.sliders[UIIdentifiers.RefreshRateView.refreshRateSlider].adjust(toNormalizedSliderPosition: 0.0)
+        app.sliders[UIIdentifiers.RefreshRateView.refreshRateSlider].adjust(toNormalizedSliderPosition: 1.0)
 
-        let updateFrequency = app.sliders["Frequency Slider"].value as! String  // swiftlint:disable:this force_cast
+        let slider = UIIdentifiers.RefreshRateView.refreshRateSlider
+        let updateFrequency = app.sliders[slider].value as! String  // swiftlint:disable:this force_cast
         let splitUpdateFrequency = updateFrequency.split(separator: " ", maxSplits: 1).map(String.init)
         XCTAssertEqual(splitUpdateFrequency[0], "50", "Update frequency should be 50 but is \(splitUpdateFrequency)")
 
@@ -62,11 +62,11 @@ class AccelerationViewUITests: BaseTestCase {
 
     func testAccelerationViewShareSheet() throws {
         // Go to Acceleration View
-        moveToView(view: "Acceleration")
-        app.buttons["Log"].tap()
+        moveToView(UIIdentifiers.Sidebar.accelerationButton)
+        app.buttons[UIIdentifiers.AccelerationView.logButton].tap()
 
         // Open / Close Share Sheet
-        app.navigationBars.buttons["ExportButton"].tap()
+        app.navigationBars.buttons[UIIdentifiers.AccelerationList.exportButton].tap()
         sleep(1)
         dismissShareSheet()
 

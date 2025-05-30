@@ -1,6 +1,6 @@
 //
 //  GyroscopeViewUITests.swift
-//  Sensor-AppUITests
+//  Sensor-AppiOSUITests
 //
 //  Created by Volker Schmitt on 26.01.20.
 //  Copyright © 2020 Volker Schmitt. All rights reserved.
@@ -11,13 +11,12 @@ import XCTest
 class GyroscopeViewUITests: BaseTestCase {
     func testGyroscopeViewToolbarButtons() throws {
         // Go to Gyroscope View
-        moveToView(view: "Gyroscope")
+        moveToView(UIIdentifiers.Sidebar.gyroscopeButton)
 
         // Test Toolbar Buttons
-        let toolbar = app.toolbars["Toolbar"]
-        toolbar.buttons["Play"].tap()
-        toolbar.buttons["Pause"].tap()
-        toolbar.buttons["Delete"].tap()
+        app.buttons[UIIdentifiers.Toolbar.deleteButton].tap()
+        app.buttons[UIIdentifiers.Toolbar.pauseButton].tap()
+        app.buttons[UIIdentifiers.Toolbar.deleteButton].tap()
 
         // Go Back to Main Menu
         backToHomeMenu()
@@ -25,17 +24,17 @@ class GyroscopeViewUITests: BaseTestCase {
 
     func testGyroscopeViewGraphs() throws {
         // Go to Gyroscope View
-        moveToView(view: "Gyroscope")
+        moveToView(UIIdentifiers.Sidebar.gyroscopeButton)
 
         // Show all Graphs
-        app.buttons["Toggle Z-Axis Graph"].tap()
-        app.buttons["Toggle Y-Axis Graph"].tap()
-        app.buttons["Toggle X-Axis Graph"].tap()
+        app.buttons[UIIdentifiers.GyroscopeView.zAxisRow].tap()
+        app.buttons[UIIdentifiers.GyroscopeView.yAxisRow].tap()
+        app.buttons[UIIdentifiers.GyroscopeView.xAxisRow].tap()
 
         // Hide all Graphs
-        app.buttons["Toggle X-Axis Graph"].tap()
-        app.buttons["Toggle Y-Axis Graph"].tap()
-        app.buttons["Toggle Z-Axis Graph"].tap()
+        app.buttons[UIIdentifiers.GyroscopeView.xAxisRow].tap()
+        app.buttons[UIIdentifiers.GyroscopeView.yAxisRow].tap()
+        app.buttons[UIIdentifiers.GyroscopeView.zAxisRow].tap()
 
         // Go Back to Main Menu
         backToHomeMenu()
@@ -43,16 +42,17 @@ class GyroscopeViewUITests: BaseTestCase {
 
     func testGyroscopeViewSlider() throws {
         // Go to Gyroscope View
-        moveToView(view: "Gyroscope")
+        moveToView(UIIdentifiers.Sidebar.gyroscopeButton)
 
         // Swipe Up
-        app.buttons["Toggle X-Axis Graph"].swipeUp()
+        app.buttons[UIIdentifiers.GyroscopeView.xAxisRow].swipeUp()
 
         // Adjust Slider to 0% and then 100%
-        app.sliders["Frequency Slider"].adjust(toNormalizedSliderPosition: 0.0)
-        app.sliders["Frequency Slider"].adjust(toNormalizedSliderPosition: 1.0)
+        app.sliders[UIIdentifiers.RefreshRateView.refreshRateSlider].adjust(toNormalizedSliderPosition: 0.0)
+        app.sliders[UIIdentifiers.RefreshRateView.refreshRateSlider].adjust(toNormalizedSliderPosition: 1.0)
 
-        let updateFrequency = app.sliders["Frequency Slider"].value as! String  // swiftlint:disable:this force_cast
+        let slider = UIIdentifiers.RefreshRateView.refreshRateSlider
+        let updateFrequency = app.sliders[slider].value as! String  // swiftlint:disable:this force_cast
         let splitUpdateFrequency = updateFrequency.split(separator: " ", maxSplits: 1).map(String.init)
         XCTAssertEqual(splitUpdateFrequency[0], "50", "Update frequency should be 50 but is \(splitUpdateFrequency)")
 
@@ -62,11 +62,11 @@ class GyroscopeViewUITests: BaseTestCase {
 
     func testGyroscopeViewShareSheet() throws {
         // Go to Gyroscope View
-        moveToView(view: "Gyroscope")
-        app.buttons["Log"].tap()
+        moveToView(UIIdentifiers.Sidebar.gyroscopeButton)
+        app.buttons[UIIdentifiers.GyroscopeView.logButton].tap()
 
         // Open / Close Share Sheet
-        app.navigationBars.buttons["ExportButton"].tap()
+        app.navigationBars.buttons[UIIdentifiers.GyroscopeList.exportButton].tap()
         sleep(1)
         dismissShareSheet()
 

@@ -32,7 +32,7 @@ struct AltitudeView: View {
                         )
                     }
                 )
-                .disclosureGroupModifier(accessibility: "Toggle Pressure Graph")
+                .accessibilityIdentifier(UIIdentifiers.AltitudeView.pressureRow)
 
                 DisclosureGroup(
                     isExpanded: $showRelativeAltitudeChange,
@@ -46,12 +46,12 @@ struct AltitudeView: View {
                         )
                     }
                 )
-                .disclosureGroupModifier(accessibility: "Toggle Altitude Graph")
+                .accessibilityIdentifier(UIIdentifiers.AltitudeView.altitudeRow)
 
                 NavigationLink(value: Route.altitudeList) {
                     Text("Log", comment: "AltitudeView - Log")
-                        .accessibilityIdentifier("Log")
                 }
+                .accessibilityIdentifier(UIIdentifiers.AltitudeView.logButton)
             }
 
             MotionManagerAccessView()

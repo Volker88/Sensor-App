@@ -32,7 +32,8 @@ struct MagnetometerList: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 ShareSheet(url: shareCSV())
-                    .accessibility(identifier: "ExportButton")
+                    .accessibilityLabel("Export Magnetometer Data to CSV")
+                    .accessibilityIdentifier(UIIdentifiers.MagnetometerList.exportButton)
             }
             CustomToolbar()
         }

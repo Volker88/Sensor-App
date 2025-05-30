@@ -33,7 +33,7 @@ struct GravityView: View {
                             comment: "GravityView - X-Axis")
                     }
                 )
-                .disclosureGroupModifier(accessibility: "Toggle X-Axis Graph")
+                .accessibilityIdentifier(UIIdentifiers.GravityView.xAxisRow)
 
                 DisclosureGroup(
                     isExpanded: $showYAxis,
@@ -47,7 +47,7 @@ struct GravityView: View {
                             comment: "GravityView - Y-Axis")
                     }
                 )
-                .disclosureGroupModifier(accessibility: "Toggle Y-Axis Graph")
+                .accessibilityIdentifier(UIIdentifiers.GravityView.yAxisRow)
 
                 DisclosureGroup(
                     isExpanded: $showZAxis,
@@ -61,12 +61,12 @@ struct GravityView: View {
                             comment: "GravityView - Z-Axis")
                     }
                 )
-                .disclosureGroupModifier(accessibility: "Toggle Z-Axis Graph")
+                .accessibilityIdentifier(UIIdentifiers.GravityView.zAxisRow)
 
                 NavigationLink(value: Route.gravityList) {
                     Text("Log", comment: "GravityView - Log")
-                        .accessibilityIdentifier("Log")
                 }
+                .accessibilityIdentifier(UIIdentifiers.GravityView.logButton)
             }
 
             MotionManagerAccessView()
