@@ -35,7 +35,7 @@ class BaseTestCase: XCTestCase {
 
     func launchApp() {
         app = XCUIApplication()
-        app.launchArguments = ["enable-testing"]
+        app.launchArguments = ["enable-testing", "disable-animations"]
         app.launch()
     }
 

@@ -4,8 +4,7 @@
       "id" : "5B0D0B13-8B9F-4AAD-8A21-8DD73C6C37C1",
       "name" : "Configuration 1 (us)",
       "options" : {
-        "language" : "en",
-        "region" : "US"
+
       }
     },
     {
@@ -13,19 +12,26 @@
       "name" : "Configuration 2 (de)",
       "options" : {
         "language" : "de",
+        "locationScenario" : {
+          "identifier" : "Berlin, Germany",
+          "referenceType" : "built-in"
+        },
         "region" : "DE"
       }
     }
   ],
   "defaultOptions" : {
+    "language" : "en",
     "locationScenario" : {
       "identifier" : "New York, NY, USA",
       "referenceType" : "built-in"
     },
-    "maximumTestRepetitions" : 3,
+    "maximumTestRepetitions" : 5,
+    "region" : "US",
+    "repeatInNewRunnerProcess" : true,
+    "testExecutionOrdering" : "random",
     "testRepetitionMode" : "retryOnFailure",
     "testTimeoutsEnabled" : true,
-    "uiTestingScreenshotsLifetime" : "keepAlways",
     "userAttachmentLifetime" : "keepAlways"
   },
   "testTargets" : [

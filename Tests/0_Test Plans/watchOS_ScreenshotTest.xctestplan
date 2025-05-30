@@ -4,8 +4,7 @@
       "id" : "51C2777B-5279-40E3-A187-40628847E4A0",
       "name" : "Configuration 1 (us)",
       "options" : {
-        "language" : "en",
-        "region" : "US"
+
       }
     },
     {
@@ -13,6 +12,10 @@
       "name" : "Configuration 2 (de)",
       "options" : {
         "language" : "de",
+        "locationScenario" : {
+          "identifier" : "Berlin, Germany",
+          "referenceType" : "built-in"
+        },
         "region" : "DE"
       }
     },
@@ -21,6 +24,10 @@
       "name" : "Configuration 3 (zh)",
       "options" : {
         "language" : "zh-Hans",
+        "locationScenario" : {
+          "identifier" : "Hong Kong, China",
+          "referenceType" : "built-in"
+        },
         "region" : "CN"
       }
     },
@@ -37,6 +44,10 @@
       "name" : "Configuration 5 (fr)",
       "options" : {
         "language" : "fr",
+        "locationScenario" : {
+          "identifier" : "Paris, France",
+          "referenceType" : "built-in"
+        },
         "region" : "FR"
       }
     },
@@ -53,6 +64,10 @@
       "name" : "Configuration 7 (ja)",
       "options" : {
         "language" : "ja",
+        "locationScenario" : {
+          "identifier" : "Tokyo, Japan",
+          "referenceType" : "built-in"
+        },
         "region" : "JP"
       }
     },
@@ -82,14 +97,18 @@
     }
   ],
   "defaultOptions" : {
+    "areLocalizationScreenshotsEnabled" : true,
+    "language" : "en",
     "locationScenario" : {
       "identifier" : "New York, NY, USA",
       "referenceType" : "built-in"
     },
-    "maximumTestRepetitions" : 3,
+    "maximumTestRepetitions" : 5,
+    "region" : "US",
+    "repeatInNewRunnerProcess" : true,
+    "testExecutionOrdering" : "random",
     "testRepetitionMode" : "retryOnFailure",
     "testTimeoutsEnabled" : true,
-    "uiTestingScreenshotsLifetime" : "keepAlways",
     "userAttachmentLifetime" : "keepAlways"
   },
   "testTargets" : [

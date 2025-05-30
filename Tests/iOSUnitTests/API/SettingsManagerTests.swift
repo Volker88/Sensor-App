@@ -13,13 +13,7 @@ import Testing
 @testable import Sensor_App
 
 @MainActor
-final class SettingsManagerTests {
-
-    let settingsManager = SettingsManager()
-
-    init() async throws {}
-
-    deinit {}
+final class SettingsManagerTests: BaseTestCase {
 
     // MARK: - Testing Methods
     @Test("Save and read frequency")

@@ -12,11 +12,7 @@ import Testing
 @testable import Sensor_App
 
 @MainActor
-final class ExtensionTests {
-
-    init() async throws {}
-
-    deinit {}
+final class ExtensionTests: BaseTestCase {
 
     // MARK: - Testing Methods
     @Test(

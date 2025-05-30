@@ -21,6 +21,14 @@ struct SensorAppApp: App {
     @State private var settingsManager = SettingsManager()
     @State private var calculationManager = CalculationManager()
 
+    init() {
+        #if DEBUG
+            if CommandLine.arguments.contains("disable-animations") {
+                UIView.setAnimationsEnabled(false)
+            }
+        #endif
+    }
+
     var body: some Scene {
         WindowGroup {
             ContentView()

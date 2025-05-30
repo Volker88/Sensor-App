@@ -4,12 +4,7 @@
       "id" : "1C074208-A32F-4692-B289-F37A228D01EA",
       "name" : "Configuration 1 (us)",
       "options" : {
-        "language" : "en",
-        "locationScenario" : {
-          "identifier" : "New York, NY, USA",
-          "referenceType" : "built-in"
-        },
-        "region" : "US"
+
       }
     },
     {
@@ -18,7 +13,7 @@
       "options" : {
         "language" : "de",
         "locationScenario" : {
-          "identifier" : "New York, NY, USA",
+          "identifier" : "Berlin, Germany",
           "referenceType" : "built-in"
         },
         "region" : "DE"
@@ -27,7 +22,15 @@
   ],
   "defaultOptions" : {
     "areLocalizationScreenshotsEnabled" : true,
-    "maximumTestRepetitions" : 3,
+    "language" : "en",
+    "locationScenario" : {
+      "identifier" : "New York, NY, USA",
+      "referenceType" : "built-in"
+    },
+    "maximumTestRepetitions" : 5,
+    "region" : "US",
+    "repeatInNewRunnerProcess" : true,
+    "testExecutionOrdering" : "random",
     "testRepetitionMode" : "retryOnFailure",
     "testTimeoutsEnabled" : true,
     "userAttachmentLifetime" : "keepAlways"

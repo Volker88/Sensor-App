@@ -13,11 +13,7 @@ import Testing
 @testable import Sensor_App
 
 @MainActor
-final class AppUpdateTests {
-
-    init() async throws {}
-
-    deinit {}
+final class AppUpdateTests: BaseTestCase {
 
     // MARK: - Testing Methods
     @Test("Test app for first time launch")
