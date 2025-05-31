@@ -18,7 +18,7 @@ struct AttitudeList: View {
     var body: some View {
         List(motionManager.motionArray.reversed(), id: \.self) { item in
             HStack {
-                Text("#\(item.counter)", comment: "Incrementing counter for each item.  DO NOT TRANSLATE")
+                Text(verbatim: "#\(item.counter)")
                 Spacer()
                 Text(
                     "R:\(item.attitudeRoll * 180 / .pi, specifier: "%.3f")",

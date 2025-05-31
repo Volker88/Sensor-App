@@ -18,7 +18,7 @@ struct MagnetometerList: View {
     var body: some View {
         List(motionManager.motionArray.reversed(), id: \.self) { item in
             HStack {
-                Text("#\(item.counter)", comment: "Incrementing counter for each item.  DO NOT TRANSLATE")
+                Text(verbatim: "#\(item.counter)")
                 Spacer()
                 Text("X:\(item.magnetometerXAxis, specifier: "%.5f")", comment: "First Letter as shortcut for X-Axis")
                 Spacer()

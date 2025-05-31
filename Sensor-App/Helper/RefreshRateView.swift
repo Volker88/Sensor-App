@@ -21,14 +21,12 @@ struct RefreshRateView: View {
         Group {
             if show == "header" {
                 HStack {
-                    Text(
-                        "Frequency: \(Double(motionManager.sensorUpdateInterval), specifier: "%.0f") Hz",
-                        comment: "Frequency of Sensor Updates in Herz")
-                    Stepper(
-                        "", value: Bindable(motionManager).sensorUpdateInterval, in: 1...50, step: 1,
-                        onEditingChanged: { _ in
-                            updateSlider()
-                        })
+                    Stepper(value: Bindable(motionManager).sensorUpdateInterval) { _ in
+                        updateSlider()
+                    } label: {
+                        Text("Frequency: \(Double(motionManager.sensorUpdateInterval), specifier: "%.0f") Hz",
+                                                    comment: "Frequency of Sensor Updates in Herz")
+                    }
                 }
             } else if show == "slider" {
                 HStack {

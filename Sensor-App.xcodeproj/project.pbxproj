@@ -214,7 +214,7 @@
 				iOSUnitTests/API/SettingsManagerTests.swift,
 				iOSUnitTests/Customization/ExtensionTests.swift,
 				iOSUnitTests/Helper/BaseTestCase.swift,
-				watchOSUITests/BaseTestCase.swift,
+				watchOSUITests/Helper/BaseTestCase.swift,
 				watchOSUITests/ScreenshotUITests.swift,
 			);
 			target = 1527B01624C4AA240024DD78 /* Sensor-App */;
@@ -245,7 +245,7 @@
 				iOSUnitTests/API/SettingsManagerTests.swift,
 				iOSUnitTests/Customization/ExtensionTests.swift,
 				iOSUnitTests/Helper/BaseTestCase.swift,
-				watchOSUITests/BaseTestCase.swift,
+				watchOSUITests/Helper/BaseTestCase.swift,
 				watchOSUITests/ScreenshotUITests.swift,
 			);
 			target = 1527B04624C4AA620024DD78 /* Sensor-App-Watch */;
@@ -276,7 +276,7 @@
 				iOSUnitTests/API/SettingsManagerTests.swift,
 				iOSUnitTests/Customization/ExtensionTests.swift,
 				iOSUnitTests/Helper/BaseTestCase.swift,
-				watchOSUITests/BaseTestCase.swift,
+				watchOSUITests/Helper/BaseTestCase.swift,
 				watchOSUITests/ScreenshotUITests.swift,
 			);
 			target = 1527B07824C4ACA20024DD78 /* Sensor-App-Framework */;
@@ -357,7 +357,7 @@
 		15F1BBB92CAFCF2400C80A1F /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				watchOSUITests/BaseTestCase.swift,
+				watchOSUITests/Helper/BaseTestCase.swift,
 				watchOSUITests/ScreenshotUITests.swift,
 			);
 			target = 15F1BBA82CAFCF1E00C80A1F /* Sensor-AppwatchOSUITests */;

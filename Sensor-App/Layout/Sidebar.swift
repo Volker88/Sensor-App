@@ -55,7 +55,7 @@ struct Sidebar: View {
 
             NavigationLink(value: Screen.gyroscope) {
                 Label {
-                    Text("Gyroscope", comment: "")
+                    Text("Gyroscope", comment: "Navigation Button")
                 } icon: {
                     Image(systemName: "lines.measurement.horizontal")
                 }

@@ -18,6 +18,78 @@
         },
         "region" : "DE"
       }
+    },
+    {
+      "id" : "F921BBBE-5E39-400F-9C42-9614E0BF4C3E",
+      "name" : "Configuration 3 (zh)",
+      "options" : {
+        "language" : "zh-Hans",
+        "region" : "CN"
+      }
+    },
+    {
+      "id" : "BEBCBCC9-89CE-44D7-90E9-90D3585B418F",
+      "name" : "Configuration 4 (cs)",
+      "options" : {
+        "language" : "cs",
+        "region" : "CZ"
+      }
+    },
+    {
+      "id" : "29F34409-B308-4805-8930-17232D057945",
+      "name" : "Configuration 5 (fr)",
+      "options" : {
+        "language" : "fr",
+        "locationScenario" : {
+          "identifier" : "Paris, France",
+          "referenceType" : "built-in"
+        },
+        "region" : "FR"
+      }
+    },
+    {
+      "id" : "599CA2D4-7D7C-4EDE-B5FA-F74327BC0E27",
+      "name" : "Configuration 6 (it)",
+      "options" : {
+        "language" : "it",
+        "region" : "IT"
+      }
+    },
+    {
+      "id" : "A2680645-236C-4CC8-ADAD-2FF0A89A80DB",
+      "name" : "Configuration 7 (ja)",
+      "options" : {
+        "language" : "ja",
+        "locationScenario" : {
+          "identifier" : "Tokyo, Japan",
+          "referenceType" : "built-in"
+        },
+        "region" : "JP"
+      }
+    },
+    {
+      "id" : "4DC136CA-DFEC-4EBC-A23D-C6E1DAE2022B",
+      "name" : "Configuration 8 (ko)",
+      "options" : {
+        "language" : "ko",
+        "region" : "KR"
+      }
+    },
+    {
+      "id" : "BFEEB076-D354-41BA-93C9-7930E3BC32DA",
+      "name" : "Configuration 9 (pt)",
+      "options" : {
+        "language" : "pt-PT",
+        "region" : "PT"
+      }
+    },
+    {
+      "id" : "982F6F45-F154-4EEA-A9DC-CFFF357A33D2",
+      "name" : "Configuration 10 (es)",
+      "options" : {
+        "language" : "es",
+        "region" : "ES"
+      }
     }
   ],
   "defaultOptions" : {
@@ -37,6 +109,7 @@
   },
   "testTargets" : [
     {
+      "parallelizable" : true,
       "target" : {
         "containerPath" : "container:Sensor-App.xcodeproj",
         "identifier" : "15F1BBA82CAFCF1E00C80A1F",

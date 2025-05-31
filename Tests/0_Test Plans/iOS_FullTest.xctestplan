@@ -9,7 +9,7 @@
     },
     {
       "id" : "1B82818E-DAD3-4B53-B808-3302B48CF9D1",
-      "name" : "Configuration 1 (de)",
+      "name" : "Configuration 2 (de)",
       "options" : {
         "language" : "de",
         "locationScenario" : {
@@ -17,6 +17,82 @@
           "referenceType" : "built-in"
         },
         "region" : "DE"
+      }
+    },
+    {
+      "id" : "4DC4EA5D-9B9C-4DBE-9B76-75F03F45659E",
+      "name" : "Configuration 3 (zh)",
+      "options" : {
+        "language" : "zh-Hans",
+        "locationScenario" : {
+          "identifier" : "Hong Kong, China",
+          "referenceType" : "built-in"
+        },
+        "region" : "CN"
+      }
+    },
+    {
+      "id" : "A280C7DF-345C-435F-A0BB-C4BCD92BC4C1",
+      "name" : "Configuration 4 (cs)",
+      "options" : {
+        "language" : "cs",
+        "region" : "CZ"
+      }
+    },
+    {
+      "id" : "847AEEB7-0BAB-4251-AB2A-ECC511ADCBC2",
+      "name" : "Configuration 5 (fr)",
+      "options" : {
+        "language" : "fr",
+        "locationScenario" : {
+          "identifier" : "Paris, France",
+          "referenceType" : "built-in"
+        },
+        "region" : "FR"
+      }
+    },
+    {
+      "id" : "977B8033-A9E2-44E3-9C1C-93C603DFB6BE",
+      "name" : "Configuration 6 (it)",
+      "options" : {
+        "language" : "it",
+        "region" : "IT"
+      }
+    },
+    {
+      "id" : "3A575030-51C8-4D96-928B-0343BECAE7C9",
+      "name" : "Configuration 7 (ja)",
+      "options" : {
+        "language" : "ja",
+        "locationScenario" : {
+          "identifier" : "Tokyo, Japan",
+          "referenceType" : "built-in"
+        },
+        "region" : "JP"
+      }
+    },
+    {
+      "id" : "93ED158D-14CD-4719-B419-6CAEAB065F00",
+      "name" : "Configuration 8 (ko)",
+      "options" : {
+        "language" : "ko",
+        "region" : "KR"
+      }
+    },
+    {
+      "id" : "2752E373-53C7-48F7-A550-74564B65CB1C",
+      "name" : "Configuration 9 (pt)",
+      "options" : {
+        "language" : "pt-PT",
+        "region" : "PT"
+      }
+    },
+    {
+      "id" : "100CC430-36A1-4CB8-B2CB-E6B0EFBC42A2",
+      "name" : "Configuration 10 (es)",
+      "options" : {
+        "language" : "es",
+        "region" : "ES"
       }
     }
   ],
@@ -44,6 +120,7 @@
       }
     },
     {
+      "parallelizable" : true,
       "target" : {
         "containerPath" : "container:Sensor-App.xcodeproj",
         "identifier" : "1527B03224C4AA240024DD78",
