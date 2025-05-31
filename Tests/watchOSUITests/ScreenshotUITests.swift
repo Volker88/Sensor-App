@@ -11,7 +11,6 @@ import XCTest
 class ScreenshotUITests: BaseTestCase {
 
     func testScreenshot() throws {
-        launchApp()
 
         // Wait for Location Authorization and allow access
         addUIInterruptionMonitor(withDescription: "Location Dialog") { (alert) -> Bool in
@@ -23,29 +22,30 @@ class ScreenshotUITests: BaseTestCase {
             return false
         }
 
-        app.collectionViews["Navigation"].buttons["Location"].swipeDown()
+        let collection = app.collectionViews[UIIdentifiers.ContentView.collectionView]
+        collection.buttons[UIIdentifiers.ContentView.locationButton].swipeDown()
 
         // Take Screenshot of Home View
         takeScreenshotOfCurrentView(name: "0Home")
 
         // Switch to Location View
-        app.collectionViews["Navigation"].buttons["Location"].tap()
+        collection.buttons[UIIdentifiers.ContentView.locationButton].tap()
 
         // Take Screenshot of Location and go back to Home
         takeScreenshotOfCurrentView(name: "1Location")
         backToHomeMenu()
 
         // Go to Acceleration View and take Screenshot
-        app.collectionViews["Navigation"].buttons["Acceleration"].tap()
+        collection.buttons[UIIdentifiers.ContentView.accelerationButton].tap()
         takeScreenshotOfCurrentView(name: "2Acceleration")
 
         backToHomeMenu()
 
         // Swipe up to Settings
-        app.collectionViews["Navigation"].buttons.firstMatch.swipeUp()
+        collection.swipeUp()
 
         // Go to Settings View and take Screenshot
-        app.collectionViews["Navigation"].buttons["Settings"].tap()
+        collection.buttons[UIIdentifiers.ContentView.settingsButton].tap()
 
         takeScreenshotOfCurrentView(name: "4Settings")
     }

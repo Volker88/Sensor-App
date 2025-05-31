@@ -11,8 +11,12 @@ import XCTest
 class BaseTestCase: XCTestCase {
     var app: XCUIApplication!
 
-    override func setUpWithError() throws {
+    override func setUp() async throws {
         continueAfterFailure = false
+
+        app = XCUIApplication()
+        app.launchArguments = ["enable-testing"]
+        app.launch()
 
         // Clear User Defaults
         // swiftlint:disable:next force_unwrapping
@@ -20,19 +24,7 @@ class BaseTestCase: XCTestCase {
         UserDefaults.standard.synchronize()
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func launchApp() {
-        app = XCUIApplication()
-        app.launchArguments = ["enable-testing"]
-        app.launch()
-    }
-
-    func moveToView(view: String) {
-        launchApp()
-        app.collectionViews["Sidebar"].buttons[view].tap()
+    override func tearDown() async throws {
     }
 
     func backToHomeMenu() {

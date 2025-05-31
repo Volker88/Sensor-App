@@ -18,12 +18,14 @@ struct ContentView: View {
         List {
             NavigationLink(destination: LocationView()) {
                 Text("Location", comment: "ContentView - Location (watchOS)")
-                    .accessibilityIdentifier("Location")
             }
+            .accessibilityIdentifier(UIIdentifiers.ContentView.locationButton)
+
             NavigationLink(destination: AccelerationView()) {
                 Text("Acceleration", comment: "ContentView - Acceleration (watchOS)")
-                    .accessibilityIdentifier("Acceleration")
             }
+            .accessibilityIdentifier(UIIdentifiers.ContentView.accelerationButton)
+
             NavigationLink(destination: GravityView()) {
                 Text("Gravity", comment: "ContentView - Gravity (watchOS)")
             }
@@ -41,10 +43,10 @@ struct ContentView: View {
             }
             NavigationLink(destination: SettingsView()) {
                 Text("Settings", comment: "ContentView - Settings (watchOS)")
-                    .accessibilityIdentifier("Settings")
             }
+            .accessibilityIdentifier(UIIdentifiers.ContentView.settingsButton)
         }
-        .accessibilityIdentifier("Navigation")
+        .accessibilityIdentifier(UIIdentifiers.ContentView.collectionView)
         .navigationTitle(Text("Home", comment: "NavigationBar Title - Home screen"))
         .listStyle(CarouselListStyle())
     }

@@ -181,6 +181,13 @@
 			);
 			target = 1527B04624C4AA620024DD78 /* Sensor-App-Watch */;
 		};
+		1524378B2DEAE17900193F3A /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Miscellaneous/UIIdentifiers.swift,
+			);
+			target = 15F1BBA82CAFCF1E00C80A1F /* Sensor-AppwatchOSUITests */;
+		};
 		157652A52CAFBC3D001842DE /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -358,7 +365,7 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		1515A4192C9FE60700F89AAE /* Sensor-App-WatchApp */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (1515A42B2C9FE60700F89AAE /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = "Sensor-App-WatchApp"; sourceTree = "<group>"; };
+		1515A4192C9FE60700F89AAE /* Sensor-App-WatchApp */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (1515A42B2C9FE60700F89AAE /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 1524378B2DEAE17900193F3A /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = "Sensor-App-WatchApp"; sourceTree = "<group>"; };
 		1515A45A2C9FE60E00F89AAE /* Sensor-App-Framework */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (1515A4BD2C9FE60E00F89AAE /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 1515A4BE2C9FE60E00F89AAE /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = "Sensor-App-Framework"; sourceTree = "<group>"; };
 		1515A5382C9FE62400F89AAE /* Sensor-App */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (1515A5672C9FE62400F89AAE /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 1515A5682C9FE62400F89AAE /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 157FB6A02D80C719006D5E90 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 157747D22DEA169D006F621A /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = "Sensor-App"; sourceTree = "<group>"; };
 		1515A62D2C9FE70500F89AAE /* Configuration */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (15C96D6D2CC81A5900F72DD5 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 15C96D6E2CC81A5900F72DD5 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 15C96D6F2CC81A5900F72DD5 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Configuration; sourceTree = "<group>"; };
@@ -1106,7 +1113,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "$(SRCROOT)/Sensor-App/Miscellaneous/Sensor-App.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEAD_CODE_STRIPPING = YES;
@@ -1134,7 +1140,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "$(SRCROOT)/Sensor-App/Miscellaneous/Sensor-App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"$(SRCROOT)/Sensor-App/Miscellaneous/Preview Content\"";
@@ -1254,7 +1259,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "$(SRCROOT)/Sensor-App-WatchApp/Miscellaneous/Sensor-App-Watch.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "$(SRCROOT)/Sensor-App-WatchApp/Miscellaneous/Info.plist";
@@ -1277,7 +1281,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "$(SRCROOT)/Sensor-App-WatchApp/Miscellaneous/Sensor-App-Watch.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "$(SRCROOT)/Sensor-App-WatchApp/Miscellaneous/Info.plist";
