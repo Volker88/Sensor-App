@@ -14,6 +14,12 @@ struct ReleaseNotesView: View {
     var body: some View {
         List {
             Section {
+                Text("Small bug fixes", comment: "Release notes")
+            } header: {
+                Text(verbatim: "5.2.0")
+            }
+
+            Section {
                 Text("Added Knots as additional speed setting", comment: "Release notes")
                 Text("Small bug fixes", comment: "Release notes")
             } header: {
