@@ -16,7 +16,7 @@ struct ShowNotificationAction {
 }
 
 struct ShowNotificationEnvironmentKey: EnvironmentKey {
-    nonisolated(unsafe) static let defaultValue = ShowNotificationAction { _ in }
+    static let defaultValue = ShowNotificationAction { _ in }
 }
 
 extension EnvironmentValues {
