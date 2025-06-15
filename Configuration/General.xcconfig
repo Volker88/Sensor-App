@@ -9,8 +9,8 @@
 // https://help.apple.com/xcode/#/dev745c5c974
 
 // Versioning
-MY_BUILD_VERSION = 20250616.1
-MY_VERSION = 5.2.1
+MY_BUILD_VERSION = 20250615.1
+MY_VERSION = 6.0.0
 
 // Secrets
 //
@@ -18,14 +18,14 @@ MY_VERSION = 5.2.1
 BASE_BUNDLE_IDENTIFIER = Sensor-App.${DEVELOPMENT_TEAM}
 
 // Deployment Targets for Xcode
-IPHONEOS_DEPLOYMENT_TARGET = 18.0
-WATCHOS_DEPLOYMENT_TARGET = 11.0
-//TVOS_DEPLOYMENT_TARGET = 18.0
-//MACOSX_DEPLOYMENT_TARGET = 15.0
-//XROS_DEPLOYMENT_TARGET = 2.0
+IPHONEOS_DEPLOYMENT_TARGET = 26.0
+WATCHOS_DEPLOYMENT_TARGET = 26.0
+TVOS_DEPLOYMENT_TARGET = 26.0
+MACOSX_DEPLOYMENT_TARGET = 26.0
+XROS_DEPLOYMENT_TARGET = 26.0
 
 // Deployment Targets for Swiftlint
-deployment_target_iOS = 18.0
-deployment_target_watchOS = 11.0
-deployment_target_tvOS = 18.0
-deployment_target_macOS = 15.0
+deployment_target_iOS = 26.0
+deployment_target_watchOS = 26.0
+deployment_target_tvOS = 26.0
+deployment_target_macOS = 26.0
