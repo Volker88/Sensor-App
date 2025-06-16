@@ -24,8 +24,9 @@ struct RefreshRateView: View {
                     Stepper(value: Bindable(motionManager).sensorUpdateInterval) { _ in
                         updateSlider()
                     } label: {
-                        Text("Frequency: \(Double(motionManager.sensorUpdateInterval), specifier: "%.0f") Hz",
-                                                    comment: "Frequency of Sensor Updates in Herz")
+                        Text(
+                            "Frequency: \(Double(motionManager.sensorUpdateInterval), specifier: "%.0f") Hz",
+                            comment: "Frequency of Sensor Updates in Herz")
                     }
                 }
             } else if show == "slider" {

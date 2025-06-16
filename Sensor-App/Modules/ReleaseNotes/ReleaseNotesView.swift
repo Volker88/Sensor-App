@@ -16,6 +16,12 @@ struct ReleaseNotesView: View {
             Section {
                 Text("Small bug fixes", comment: "Release notes")
             } header: {
+                Text(verbatim: "5.2.1")
+            }
+
+            Section {
+                Text("Small bug fixes", comment: "Release notes")
+            } header: {
                 Text(verbatim: "5.2.0")
             }
 
