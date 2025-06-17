@@ -46,7 +46,9 @@ struct AttitudeList: View {
                     .accessibilityLabel("Export Attitude Data to CSV")
                     .accessibilityIdentifier(UIIdentifiers.AttitudeList.exportButton)
             }
-            CustomToolbar()
+        }
+        .safeAreaInset(edge: .bottom) {
+            CustomControlsView()
         }
     }
 

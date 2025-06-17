@@ -8,7 +8,6 @@
 
 import Foundation
 
-@MainActor
 @Observable
 public class CalculationManager {
 

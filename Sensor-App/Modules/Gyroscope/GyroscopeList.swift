@@ -36,7 +36,9 @@ struct GyroscopeList: View {
                     .accessibilityLabel("Export Gyroscope Data to CSV")
                     .accessibilityIdentifier(UIIdentifiers.GyroscopeList.exportButton)
             }
-            CustomToolbar()
+        }
+        .safeAreaInset(edge: .bottom) {
+            CustomControlsView()
         }
     }
 

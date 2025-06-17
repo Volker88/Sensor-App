@@ -36,7 +36,9 @@ struct AccelerationList: View {
                     .accessibilityLabel("Export Acceleration Data to CSV")
                     .accessibilityIdentifier(UIIdentifiers.AccelerationList.exportButton)
             }
-            CustomToolbar()
+        }
+        .safeAreaInset(edge: .bottom) {
+            CustomControlsView()
         }
     }
 

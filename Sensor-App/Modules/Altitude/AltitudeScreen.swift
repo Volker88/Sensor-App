@@ -15,8 +15,8 @@ struct AltitudeScreen: View {
     // MARK: - Body
     var body: some View {
         AltitudeView()
-            .toolbar {
-                CustomToolbar()
+            .safeAreaInset(edge: .bottom) {
+                CustomControlsView()
             }
             .navigationTitle(Text("Altitude", comment: "NavigationBar Title - Altitude sensor screen"))
             .onAppear {

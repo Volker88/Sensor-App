@@ -63,7 +63,7 @@ struct GyroscopeView: View {
                 )
                 .accessibilityIdentifier(UIIdentifiers.GyroscopeView.zAxisRow)
 
-                NavigationLink(value: Route.gyroscopeList) {
+                NavigationLink(value: MotionStack.gyroscopeLog) {
                     Text("Log", comment: "GyroscopeView - Log")
                 }
                 .accessibilityIdentifier(UIIdentifiers.GyroscopeView.logButton)

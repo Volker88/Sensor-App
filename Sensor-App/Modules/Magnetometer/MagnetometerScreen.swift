@@ -15,8 +15,8 @@ struct MagnetometerScreen: View {
     // MARK: - Body
     var body: some View {
         MagnetometerView()
-            .toolbar {
-                CustomToolbar()
+            .safeAreaInset(edge: .bottom) {
+                CustomControlsView()
             }
             .navigationTitle(Text("Magnetometer", comment: "NavigationBar Title - Magnetometer sensor screen"))
             .onAppear {

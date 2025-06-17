@@ -63,7 +63,7 @@ struct GravityView: View {
                 )
                 .accessibilityIdentifier(UIIdentifiers.GravityView.zAxisRow)
 
-                NavigationLink(value: Route.gravityList) {
+                NavigationLink(value: MotionStack.gravityLog) {
                     Text("Log", comment: "GravityView - Log")
                 }
                 .accessibilityIdentifier(UIIdentifiers.GravityView.logButton)

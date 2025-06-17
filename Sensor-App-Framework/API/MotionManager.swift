@@ -9,13 +9,14 @@ import CoreMotion
 import OSLog
 import SwiftUI
 
-@MainActor
 @Observable
 public class MotionManager {
     private var motionManager = CMMotionManager()
     private var altimeterManager = CMAltimeter()
 
     private let settings = SettingsManager()
+
+    public var updatesStarted: Bool = false
 
     public var motion: MotionModel?
     public var motionArray: [MotionModel] = []
@@ -53,6 +54,7 @@ public class MotionManager {
     }
 
     public func startMotionUpdates() {
+        updatesStarted = true
 
         guard motionManager.isDeviceMotionAvailable else {
             Logger.coreMotion.info("Device motion is not available on this device.")
@@ -105,6 +107,8 @@ public class MotionManager {
     }
 
     public func startAltitudeUpdates() {
+        updatesStarted = true
+
         guard CMAltimeter.isRelativeAltitudeAvailable() else {
             Logger.coreMotion.info("Altimeter not available on this device.")
             return
@@ -146,6 +150,8 @@ public class MotionManager {
     }
 
     public func stopMotionUpdates() {
+        updatesStarted = false
+
         motionManager.stopDeviceMotionUpdates()
         altimeterManager.stopRelativeAltitudeUpdates()
     }

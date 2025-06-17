@@ -48,7 +48,7 @@ struct AltitudeView: View {
                 )
                 .accessibilityIdentifier(UIIdentifiers.AltitudeView.altitudeRow)
 
-                NavigationLink(value: Route.altitudeList) {
+                NavigationLink(value: PositionStack.altitudeLog) {
                     Text("Log", comment: "AltitudeView - Log")
                 }
                 .accessibilityIdentifier(UIIdentifiers.AltitudeView.logButton)

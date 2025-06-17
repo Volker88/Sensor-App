@@ -8,7 +8,6 @@
 
 import Foundation
 
-@MainActor
 public struct AltitudeModel: Hashable {
     public let counter: Int
     public let timestamp: String

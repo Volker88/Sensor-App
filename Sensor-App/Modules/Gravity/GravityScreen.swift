@@ -15,8 +15,8 @@ struct GravityScreen: View {
     // MARK: - Body
     var body: some View {
         GravityView()
-            .toolbar {
-                CustomToolbar()
+            .safeAreaInset(edge: .bottom) {
+                CustomControlsView()
             }
             .navigationTitle(Text("Gravity", comment: "NavigationBar Title - Gravity"))
             .onAppear {

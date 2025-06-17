@@ -35,7 +35,9 @@ struct MagnetometerList: View {
                     .accessibilityLabel("Export Magnetometer Data to CSV")
                     .accessibilityIdentifier(UIIdentifiers.MagnetometerList.exportButton)
             }
-            CustomToolbar()
+        }
+        .safeAreaInset(edge: .bottom) {
+            CustomControlsView()
         }
     }
 

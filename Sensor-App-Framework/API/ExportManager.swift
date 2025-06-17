@@ -30,8 +30,6 @@ public class ExportManager {
 
         do {
             try exportText.write(to: path!, atomically: true, encoding: String.Encoding.utf8)
-            Logger.exportFile.debug("\(path!)")
-            Logger.exportFile.debug("\(exportText)")
         } catch {
             Logger.exportFile.error("\(error)")
         }

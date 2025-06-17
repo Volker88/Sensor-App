@@ -100,7 +100,7 @@ struct LocationView: View {
                 )
                 .accessibilityIdentifier(UIIdentifiers.LocationView.speedRow)
 
-                NavigationLink(value: Route.location) {
+                NavigationLink(value: PositionStack.locationMap) {
                     Text("Map", comment: "Map to show current GPS position")
                 }
                 .accessibilityIdentifier(UIIdentifiers.LocationView.mapButton)

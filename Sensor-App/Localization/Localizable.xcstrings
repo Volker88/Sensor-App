@@ -131,70 +131,6 @@
         }
       }
     },
-    "%@" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "@"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "@"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@"
-          }
-        },
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@"
-          }
-        }
-      }
-    },
     "0.1 km" : {
       "localizations" : {
         "cs" : {
@@ -581,7 +517,7 @@
       }
     },
     "Acceleration" : {
-      "comment" : "AccelerationView - Section Header\nContentView - Acceleration (watchOS)\nNavigation Button\nNavigationBar Title - Acceleration sensor list view\nNavigationBar Title - Acceleration sensor screen",
+      "comment" : "AccelerationView - Section Header\nContentView - Acceleration (watchOS)\nNavigationBar Title - Acceleration sensor list view\nNavigationBar Title - Acceleration sensor screen",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -906,7 +842,7 @@
       }
     },
     "Altitude" : {
-      "comment" : "AltitudeView - Section Header\nContentView - Altitude (watchOS)\nNavigation Button\nNavigationBar Title - Altitude sensor list view\nNavigationBar Title - Altitude sensor screen\nSettingsScreen - Altitude Section\nSettingsView - Altitude Section (watchOS)",
+      "comment" : "AltitudeView - Section Header\nContentView - Altitude (watchOS)\nNavigationBar Title - Altitude sensor list view\nNavigationBar Title - Altitude sensor screen\nSettingsScreen - Altitude Section\nSettingsView - Altitude Section (watchOS)",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -1166,7 +1102,7 @@
       }
     },
     "Attitude" : {
-      "comment" : "AttitudeView - Section Header\nContentView - Attitude (watchOS)\nNavigation Button\nNavigationBar Title - Attitude sensor list view\nNavigationBar Title - Attitude sensor screen",
+      "comment" : "AttitudeView - Section Header\nContentView - Attitude (watchOS)\nNavigationBar Title - Attitude sensor list view\nNavigationBar Title - Attitude sensor screen",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -2393,7 +2329,7 @@
       }
     },
     "Gravity" : {
-      "comment" : "ContentView - Gravity (watchOS)\nGravityView - Section Header\nNavigation Button\nNavigationBar Title - Gravity\nNavigationBar Title - Gravity sensor list view\nNavigationBar Title - Gravity sensor screen",
+      "comment" : "ContentView - Gravity (watchOS)\nGravityView - Section Header\nNavigationBar Title - Gravity\nNavigationBar Title - Gravity sensor list view\nNavigationBar Title - Gravity sensor screen",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -2458,7 +2394,7 @@
       }
     },
     "Gyroscope" : {
-      "comment" : "ContentView - Gyroscope (watchOS)\nGyroscopeView - Section Header\nNavigation Button\nNavigationBar Title - Gyroscope sensor list view\nNavigationBar Title - Gyroscope sensor screen",
+      "comment" : "ContentView - Gyroscope (watchOS)\nGyroscopeView - Section Header\nNavigationBar Title - Gyroscope sensor list view\nNavigationBar Title - Gyroscope sensor screen",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -2782,7 +2718,7 @@
       }
     },
     "Home" : {
-      "comment" : "Navigation Button\nNavigationBar Title - Home\nNavigationBar Title - Home Screen\nNavigationBar Title - Home screen",
+      "comment" : "NavigationBar Title - Home screen",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -3301,7 +3237,7 @@
       }
     },
     "Location" : {
-      "comment" : "ContentView - Location (watchOS)\nLocationView - Section Header\nNavigation Button\nNavigationBar Title - Location sensor screen\nNavigationBar Title - Location view screen\nSettingsScreen - Location Section\nSettingsView - Location Section (watchOS)",
+      "comment" : "ContentView - Location (watchOS)\nLocationView - Section Header\nNavigationBar Title - Location sensor screen\nNavigationBar Title - Location view screen\nSettingsScreen - Location Section\nSettingsView - Location Section (watchOS)",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -3561,7 +3497,7 @@
       }
     },
     "Magnetometer" : {
-      "comment" : "ContentView - Magnetometer (watchOS)\nNavigation Button\nNavigationBar Title - Magnetometer sensor list view\nNavigationBar Title - Magnetometer sensor screen",
+      "comment" : "ContentView - Magnetometer (watchOS)\nNavigationBar Title - Magnetometer sensor list view\nNavigationBar Title - Magnetometer sensor screen",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -3751,6 +3687,71 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "最大点数: %.0f"
+          }
+        }
+      }
+    },
+    "Motion" : {
+      "comment" : "A section of the app that displays information about the device's motion.",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pohyb"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bewegung"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Motion"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Movimiento"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mouvement"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Movimento"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "動作"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이동"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Movimento"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "运动"
           }
         }
       }
@@ -4206,6 +4207,71 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "播放"
+          }
+        }
+      }
+    },
+    "Position" : {
+      "comment" : "A tab bar that allows navigation to different sections of the app.",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pozice"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Position"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Position"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Posición"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Position"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Posizione"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "位置"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "위치"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Posição"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "位置"
           }
         }
       }
@@ -4925,8 +4991,138 @@
         }
       }
     },
+    "Select a motion type" : {
+      "comment" : "A subtitle displayed below the navigation title.",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vyberte typ pohybu"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wählen Sie einen Bewegungstyp aus"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select a motion type"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seleccionar un tipo de movimiento"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sélectionner un type de mouvement"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seleziona un tipo di movimento"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "動作タイプを選択"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이동 유형 선택"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selecione um tipo de movimento"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "选择运动类型"
+          }
+        }
+      }
+    },
+    "Select a position type" : {
+      "comment" : "A subtitle that explains the purpose of the screen.",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vyberte typ pozice"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wählen Sie einen Positionstyp aus"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select a position type"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seleccionar un tipo de posición"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sélectionner un type de position"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seleziona un tipo di posizione"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "位置タイプを選択"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "위치 유형 선택"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selecione um tipo de posição"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "选择位置类型"
+          }
+        }
+      }
+    },
     "Settings" : {
-      "comment" : "ContentView - Settings (watchOS)\nNavigation Button\nNavigationBar Title - Settings screen",
+      "comment" : "ContentView - Settings (watchOS)\nNavigationBar Title - Settings screen",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -5505,70 +5701,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "值"
-          }
-        }
-      }
-    },
-    "Welcome to Sensor-App" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vítejte v Sensor-App."
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Willkommen zu Sensor-App"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Welcome to Sensor-App"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bienvenido a la aplicación Sensor."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bienvenue dans l'application de capteurs"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Benvenuti su Sensor-App"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "センサーアプリへようこそ"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "센서 앱에 오신 것을 환영합니다."
-          }
-        },
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bem-vindo à aplicação Sensor."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "欢迎使用传感器应用"
           }
         }
       }

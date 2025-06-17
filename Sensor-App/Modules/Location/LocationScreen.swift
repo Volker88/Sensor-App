@@ -12,12 +12,15 @@ import SwiftUI
 struct LocationScreen: View {
 
     @Environment(\.requestReview) private var requestReview
+    @Environment(\.showNotification) private var showNotification
+    @Environment(LocationManager.self) private var locationManager
+    @Environment(MotionManager.self) private var motionManager
 
     // MARK: - Body
     var body: some View {
         LocationView()
-            .toolbar {
-                CustomToolbar()
+            .safeAreaInset(edge: .bottom) {
+                CustomControlsView()
             }
             .navigationTitle(Text("Location", comment: "NavigationBar Title - Location view screen"))
             .onDisappear {

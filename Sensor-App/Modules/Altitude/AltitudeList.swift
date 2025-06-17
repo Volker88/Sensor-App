@@ -38,7 +38,9 @@ struct AltitudeList: View {
                     .accessibilityLabel("Export Altitude Data to CSV")
                     .accessibilityIdentifier(UIIdentifiers.AltitudeList.exportButton)
             }
-            CustomToolbar()
+        }
+        .safeAreaInset(edge: .bottom) {
+            CustomControlsView()
         }
     }
 

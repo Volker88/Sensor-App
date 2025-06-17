@@ -15,8 +15,8 @@ struct AttitudeScreen: View {
     // MARK: - Body
     var body: some View {
         AttitudeView()
-            .toolbar {
-                CustomToolbar()
+            .safeAreaInset(edge: .bottom) {
+                CustomControlsView()
             }
             .navigationTitle(Text("Attitude", comment: "NavigationBar Title - Attitude sensor screen"))
             .onAppear {

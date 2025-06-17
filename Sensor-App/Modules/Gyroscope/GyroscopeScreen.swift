@@ -15,8 +15,8 @@ struct GyroscopeScreen: View {
     // MARK: - Body
     var body: some View {
         GyroscopeView()
-            .toolbar {
-                CustomToolbar()
+            .safeAreaInset(edge: .bottom) {
+                CustomControlsView()
             }
             .navigationTitle(Text("Gyroscope", comment: "NavigationBar Title - Gyroscope sensor screen"))
             .onAppear {

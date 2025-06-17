@@ -36,7 +36,9 @@ struct GravityList: View {
                     .accessibilityLabel("Export Gravity Data to CSV")
                     .accessibilityIdentifier(UIIdentifiers.GravityList.exportButton)
             }
-            CustomToolbar()
+        }
+        .safeAreaInset(edge: .bottom) {
+            CustomControlsView()
         }
     }
 

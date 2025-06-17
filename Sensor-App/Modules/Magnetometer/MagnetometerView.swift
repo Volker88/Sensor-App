@@ -63,7 +63,7 @@ struct MagnetometerView: View {
                 )
                 .accessibilityIdentifier(UIIdentifiers.MagnetometerView.zAxisRow)
 
-                NavigationLink(value: Route.magnetometerList) {
+                NavigationLink(value: MagnetometerStack.magnetometerLog) {
                     Text("Log", comment: "MagnetometerView - Log")
                 }
                 .accessibilityIdentifier(UIIdentifiers.MagnetometerView.logButton)

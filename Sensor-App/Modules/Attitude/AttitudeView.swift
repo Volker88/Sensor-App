@@ -78,7 +78,7 @@ struct AttitudeView: View {
                 )
                 .accessibilityIdentifier(UIIdentifiers.AttitudeView.headingRow)
 
-                NavigationLink(value: Route.attitudeList) {
+                NavigationLink(value: MotionStack.attitudeLog) {
                     Text("Log", comment: "AttitudeView - Log")
                 }
                 .accessibilityIdentifier(UIIdentifiers.AttitudeView.logButton)

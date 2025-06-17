@@ -63,7 +63,7 @@ struct AccelerationView: View {
                 )
                 .accessibilityIdentifier(UIIdentifiers.AccelerationView.zAxisRow)
 
-                NavigationLink(value: Route.accelerationList) {
+                NavigationLink(value: MotionStack.accelerationLog) {
                     Text("Log", comment: "AccelerationView - Log")
                         .accessibilityIdentifier("Log")
                 }

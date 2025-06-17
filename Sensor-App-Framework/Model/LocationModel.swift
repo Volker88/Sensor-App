@@ -8,7 +8,6 @@
 
 import Foundation
 
-@MainActor
 public struct LocationModel: Hashable {
     public let counter: Int  // Counter
     public var longitude: Double  // Longitude in Degrees

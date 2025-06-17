@@ -15,8 +15,8 @@ struct AccelerationScreen: View {
     // MARK: - Body
     var body: some View {
         AccelerationView()
-            .toolbar {
-                CustomToolbar()
+            .safeAreaInset(edge: .bottom) {
+                CustomControlsView()
             }
             .navigationTitle(Text("Acceleration", comment: "NavigationBar Title - Acceleration sensor screen"))
             .onAppear {
