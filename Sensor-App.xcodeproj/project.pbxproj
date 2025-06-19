@@ -122,11 +122,12 @@
 				API/LocationManager.swift,
 				API/MotionManager.swift,
 				API/SettingsManager.swift,
-				"Customization/Extension/Extension+Bundle.swift",
-				"Customization/Extension/Extension+Double.swift",
-				"Customization/Extension/Extension+Logger.swift",
-				Localization/Helper/PreviewLocalizationModifier.swift,
-				Localization/Helper/SupportedLanguage.swift,
+				"Extension/Extension+Bundle.swift",
+				"Extension/Extension+Double.swift",
+				"Extension/Extension+Logger.swift",
+				"Extension/Extension+Map.swift",
+				Localization/PreviewLocalizationModifier.swift,
+				Localization/SupportedLanguage.swift,
 				Model/AltitudeModel.swift,
 				Model/GraphDetailModel.swift,
 				Model/LocationModel.swift,
@@ -146,11 +147,12 @@
 				API/LocationManager.swift,
 				API/MotionManager.swift,
 				API/SettingsManager.swift,
-				"Customization/Extension/Extension+Bundle.swift",
-				"Customization/Extension/Extension+Double.swift",
-				"Customization/Extension/Extension+Logger.swift",
-				Localization/Helper/PreviewLocalizationModifier.swift,
-				Localization/Helper/SupportedLanguage.swift,
+				"Extension/Extension+Bundle.swift",
+				"Extension/Extension+Double.swift",
+				"Extension/Extension+Logger.swift",
+				"Extension/Extension+Map.swift",
+				Localization/PreviewLocalizationModifier.swift,
+				Localization/SupportedLanguage.swift,
 				Model/AltitudeModel.swift,
 				Model/GraphDetailModel.swift,
 				Model/LocationModel.swift,
@@ -171,10 +173,13 @@
 		1515A5682C9FE62400F89AAE /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Localization/InfoPlist.xcstrings,
-				Localization/Localizable.xcstrings,
-				Localization/ReleaseNotes.xcstrings,
-				Miscellaneous/Assets.xcassets,
+				"Resources/AppIcon-V1.icon",
+				"Resources/AppIcon-V2.icon",
+				"Resources/AppIcon-V3.icon",
+				Resources/Assets.xcassets,
+				Resources/InfoPlist.xcstrings,
+				Resources/Localizable.xcstrings,
+				Resources/ReleaseNotes.xcstrings,
 			);
 			target = 1527B04624C4AA620024DD78 /* Sensor-App-Watch */;
 		};
@@ -316,9 +321,9 @@
 		157FB6A02D80C719006D5E90 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Localization/InfoPlist.xcstrings,
-				Localization/Localizable.xcstrings,
-				Localization/ReleaseNotes.xcstrings,
+				Resources/InfoPlist.xcstrings,
+				Resources/Localizable.xcstrings,
+				Resources/ReleaseNotes.xcstrings,
 			);
 			target = 1527B07824C4ACA20024DD78 /* Sensor-App-Framework */;
 		};
@@ -1114,7 +1119,6 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_ASSET_PATHS = "\"$(SRCROOT)/Sensor-App/Miscellaneous/Preview Content\"";
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/Sensor-App/Miscellaneous/Info.plist";
@@ -1138,7 +1142,6 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_ASSET_PATHS = "\"$(SRCROOT)/Sensor-App/Miscellaneous/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/Sensor-App/Miscellaneous/Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";

@@ -41,7 +41,7 @@ public class SettingsManager {
     public var pressureSetting = 0
     public var heightSetting = 0
 
-    public let iconNames: [String] = ["AppIcon-V3", "AppIcon-V1", "AppIcon-V2"]
+    public let iconNames: [String] = ["AppIcon-V1", "AppIcon-V2", "AppIcon-V3"]
 
     public init() {
         #if os(iOS)
