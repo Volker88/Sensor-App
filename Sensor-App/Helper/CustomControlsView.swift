@@ -34,7 +34,7 @@ struct CustomControlsView: View {
                             Image(systemName: "play.circle")
                                 .foregroundStyle(.green)
                         }
-                        .accessibilityLabel(Text("Play", comment: "Play Button to start sensor updates"))
+                        .accessibilityLabel(Text("Play"))
                         .accessibilityIdentifier(UIIdentifiers.Toolbar.playButton)
                     } else {
                         Button(action: {
@@ -45,7 +45,7 @@ struct CustomControlsView: View {
                             Image(systemName: "pause.circle")
                                 .foregroundStyle(.yellow)
                         }
-                        .accessibilityLabel(Text("Pause", comment: "Pause Button to stop sensor updates"))
+                        .accessibilityLabel(Text("Pause"))
                         .accessibilityIdentifier(UIIdentifiers.Toolbar.pauseButton)
                     }
 
@@ -57,7 +57,7 @@ struct CustomControlsView: View {
                         Image(systemName: "trash.circle")
                             .tint(.red)
                     }
-                    .accessibilityLabel(Text("Delete", comment: "Delete Button to delete all sensor updates"))
+                    .accessibilityLabel(Text("Delete"))
                     .accessibilityIdentifier(UIIdentifiers.Toolbar.deleteButton)
 
                 }

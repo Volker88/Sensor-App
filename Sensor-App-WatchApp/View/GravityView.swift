@@ -19,17 +19,11 @@ struct GravityView: View {
     // MARK: - Body
     var body: some View {
         List {
-            Text(
-                "X-Axis: \(motionManager.motion?.gravityXAxis ?? 0.0, specifier: "%.5f") g (9,81 m/s^2)",
-                comment: "GravityView - X-Axis (watchOS)")
-            Text(
-                "Y-Axis: \(motionManager.motion?.gravityYAxis ?? 0.0, specifier: "%.5f") g (9,81 m/s^2)",
-                comment: "GravityView - Y-Axis (watchOS)")
-            Text(
-                "Z-Axis: \(motionManager.motion?.gravityZAxis ?? 0.0, specifier: "%.5f") g (9,81 m/s^2)",
-                comment: "GravityView - Z-Axis (watchOS)")
+            Text("X-Axis: \(motionManager.motion?.gravityXAxis ?? 0.0, specifier: "%.5f") g (9,81 m/s^2)")
+            Text("Y-Axis: \(motionManager.motion?.gravityYAxis ?? 0.0, specifier: "%.5f") g (9,81 m/s^2)")
+            Text("Z-Axis: \(motionManager.motion?.gravityZAxis ?? 0.0, specifier: "%.5f") g (9,81 m/s^2)")
         }
-        .navigationTitle(Text("Gravity", comment: "NavigationBar Title - Gravity sensor screen"))
+        .navigationTitle("Gravity")
         .font(.footnote)
         .onAppear(perform: onAppear)
         .onDisappear(perform: onDisappear)

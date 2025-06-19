@@ -21,17 +21,17 @@ struct SettingsScreen: View {
         Form {
             Section(
                 header:
-                    Text("General", comment: "SettingsScreen - General Section")
+                    Text("General")
             ) {
                 Toggle(
                     isOn: $showReleaseNotes,
                     label: {
-                        Text("Show Release Notes", comment: "SettingsScreen - Show Release Notes")
+                        Text("Show Release Notes")
                     })
             }
             Section(
                 header:
-                    Text("App Icon", comment: "Section header - Icon of the App")
+                    Text("App Icon")
             ) {
                 HStack {
                     ForEach(0..<settingsManager.iconNames.count, id: \.self) { index in
@@ -50,24 +50,16 @@ struct SettingsScreen: View {
 
             Section(
                 header:
-                    Text("Location", comment: "SettingsScreen - Location Section")
+                    Text("Location")
             ) {
-                Picker(
-                    selection: Bindable(settingsManager).speedSetting,
-                    label: Text(
-                        "Speed Setting",
-                        comment: "SettingsScreen - Speed Setting")
-                ) {
+                Picker("Speed Setting", selection: Bindable(settingsManager).speedSetting) {
                     ForEach(0..<settingsManager.GPSSpeedSettings.count, id: \.self) {
                         Text(settingsManager.GPSSpeedSettings[$0]).tag($0)
                     }
                 }
                 .accessibilityIdentifier(UIIdentifiers.SettingScreen.speedPicker)
 
-                Picker(
-                    selection: Bindable(settingsManager).accuracySetting,
-                    label: Text("Accuracy", comment: "SettingsScreen - Accuracy")
-                ) {
+                Picker("Accuracy", selection: Bindable(settingsManager).accuracySetting) {
                     ForEach(0..<settingsManager.GPSAccuracyOptions.count, id: \.self) {
                         Text(settingsManager.GPSAccuracyOptions[$0]).tag($0)
                     }
@@ -77,13 +69,9 @@ struct SettingsScreen: View {
 
             Section(
                 header:
-                    Text("Map", comment: "SettingsScreen - Map Section")
+                    Text("Map")
             ) {
-                Picker(
-                    selection: Bindable(settingsManager).mapSettings.mapType,
-                    label:
-                        Text("Type", comment: "SettingsScreen - Type")
-                ) {
+                Picker("Type", selection: Bindable(settingsManager).mapSettings.mapType) {
                     ForEach(MapType.allCases, id: \.self) { type in
                         Text(type.rawValue).tag(type)
                     }
@@ -91,44 +79,42 @@ struct SettingsScreen: View {
                 .accessibilityIdentifier(UIIdentifiers.SettingScreen.mapTypePicker)
 
                 Toggle(isOn: Bindable(settingsManager).mapSettings.showsCompass) {
-                    Text("Compass", comment: "SettingsScreen - Compass")
+                    Text("Compass")
                 }
                 .accessibilityIdentifier(UIIdentifiers.SettingScreen.compassToggle)
 
                 Toggle(isOn: Bindable(settingsManager).mapSettings.showsScale) {
-                    Text("Scale", comment: "SettingsScreen - Scale")
+                    Text("Scale")
                 }
                 .accessibilityIdentifier(UIIdentifiers.SettingScreen.scaleToggle)
 
                 Toggle(isOn: Bindable(settingsManager).mapSettings.showsBuildings) {
-                    Text("Buildings", comment: "SettingsScreen - Buildings")
+                    Text("Buildings")
                 }
                 .accessibilityIdentifier(UIIdentifiers.SettingScreen.buildingsToggle)
 
                 Toggle(isOn: Bindable(settingsManager).mapSettings.showsTraffic) {
-                    Text("Traffic", comment: "SettingsScreen - Traffic")
+                    Text("Traffic")
                 }
                 .accessibilityIdentifier(UIIdentifiers.SettingScreen.trafficToggle)
 
                 Toggle(isOn: Bindable(settingsManager).mapSettings.isRotateEnabled) {
-                    Text("Rotation", comment: "SettingsScreen - Rotation")
+                    Text("Rotation")
                 }
                 .accessibilityIdentifier(UIIdentifiers.SettingScreen.rotateToggle)
 
                 Toggle(isOn: Bindable(settingsManager).mapSettings.isPitchEnabled) {
-                    Text("Pitch", comment: "SettingsScreen - Pitch")
+                    Text("Pitch")
                 }
                 .accessibilityIdentifier(UIIdentifiers.SettingScreen.pitchToggle)
 
                 Toggle(isOn: Bindable(settingsManager).mapSettings.isScrollEnabled) {
-                    Text("Scroll", comment: "SettingsScreen - Scroll")
+                    Text("Scroll")
                 }
                 .accessibilityIdentifier(UIIdentifiers.SettingScreen.scrollToggle)
 
                 Stepper(value: Bindable(settingsManager).mapSettings.zoom, in: 100...100000, step: 100) {
-                    Text(
-                        "Zoom: \(settingsManager.mapSettings.zoom / 1000, specifier: "%.1f") km",
-                        comment: "SettingsScreen - Zoom")
+                    Text("Zoom: \(settingsManager.mapSettings.zoom / 1000, specifier: "%.1f") km")
                 }
                 .accessibilityIdentifier(UIIdentifiers.SettingScreen.zoomStepper)
 
@@ -142,22 +128,16 @@ struct SettingsScreen: View {
 
             Section(
                 header:
-                    Text("Altitude", comment: "SettingsScreen - Altitude Section")
+                    Text("Altitude")
             ) {
-                Picker(
-                    selection: Bindable(settingsManager).pressureSetting,
-                    label: Text("Pressure", comment: "SettingsScreen - Pressure")
-                ) {
+                Picker("Pressure", selection: Bindable(settingsManager).pressureSetting) {
                     ForEach(0..<settingsManager.altitudePressure.count, id: \.self) {
                         Text(settingsManager.altitudePressure[$0]).tag($0)
                     }
                 }
                 .accessibilityIdentifier(UIIdentifiers.SettingScreen.pressurePicker)
 
-                Picker(
-                    selection: Bindable(settingsManager).heightSetting,
-                    label: Text("Height", comment: "SettingsScreen - Height")
-                ) {
+                Picker("Height", selection: Bindable(settingsManager).heightSetting) {
                     ForEach(0..<settingsManager.altitudeHeight.count, id: \.self) {
                         Text(settingsManager.altitudeHeight[$0]).tag($0)
                     }
@@ -167,12 +147,10 @@ struct SettingsScreen: View {
 
             Section(
                 header:
-                    Text("Graph", comment: "SettingsScreen - Graph Section")
+                    Text("Graph")
             ) {
                 Stepper(value: Bindable(settingsManager).userSettings.graphMaxPoints, in: 1...1000, step: 1) {
-                    Text(
-                        "Max Points: \(settingsManager.userSettings.graphMaxPoints, specifier: "%.0f")",
-                        comment: "SettingsScreen - Max Points")
+                    Text("Max Points: \(settingsManager.userSettings.graphMaxPoints, specifier: "%.0f")")
                 }
                 .accessibilityIdentifier(UIIdentifiers.SettingScreen.maxPointsStepper)
 
@@ -194,21 +172,21 @@ struct SettingsScreen: View {
                 Button(action: {
                     saveSettings()
                 }) {
-                    Text("Save", comment: "NagvigationBarButton - Save")
+                    Text("Save")
                         .accessibilityIdentifier(UIIdentifiers.SettingScreen.saveButton)
                 }
 
                 Button(action: {
                     discardChanges(showNotification: true)
                 }) {
-                    Text("Discard", comment: "NagvigationBarButton - Discard Changes")
+                    Text("Discard")
                         .accessibilityIdentifier(UIIdentifiers.SettingScreen.discardButton)
                 }
             }
             .buttonStyle(BorderlessButtonStyle())
         }
         .accessibilityIdentifier(UIIdentifiers.SettingScreen.collectionView)
-        .navigationTitle(Text("Settings", comment: "NavigationBar Title - Settings screen"))
+        .navigationTitle("Settings")
         .onAppear {
             discardChanges(showNotification: false)
         }

@@ -27,14 +27,14 @@ struct ReleaseNotesScreen: View {
     // MARK: - Body
     var body: some View {
         ReleaseNotesView()
-            .navigationTitle(Text("Release Notes", comment: "Navigation Bar Title"))
+            .navigationTitle("Release Notes")
             .navigationBarItems(leading: closeButton)
             .toolbar {
                 ToolbarItem(placement: .automatic) {
                     Toggle(
                         isOn: $showReleaseNotes,
                         label: {
-                            Text("Show", comment: "Toggle to enable / disable showing release notes")
+                            Text("Show")
                         }
                     )
                     .toggleStyle(.switch)

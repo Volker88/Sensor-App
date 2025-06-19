@@ -19,23 +19,13 @@ struct LocationView: View {
     // MARK: - Body
     var body: some View {
         List {
-            Text(
-                "Latitude: \(locationManager.location?.latitude ?? 0.0, specifier: "%.10f")° ± \(locationManager.location?.horizontalAccuracy ?? 0.0, specifier: "%.2f")m",
-                comment: "LocationView - Latitude (watchOS)")
-            Text(
-                "Longitude: \(locationManager.location?.longitude ?? 0.0, specifier: "%.10f")° ± \(locationManager.location?.horizontalAccuracy ?? 0.0, specifier: "%.2f")m",
-                comment: "LocationView - Longitude (watchOS)")
-            Text(
-                "Altitude: \(locationManager.location?.altitude ?? 0.0, specifier: "%.2f") ± \(locationManager.location?.verticalAccuracy ?? 0.0, specifier: "%.2f")m",
-                comment: "LocationView - Altitude (watchOS)")
-            Text(
-                "Direction: \(locationManager.location?.course ?? 0.0, specifier: "%.2f")°",
-                comment: "LocationView - Direction (watchOS)")
-            Text(
-                "Speed: \(locationManager.location?.calculatedSpeed ?? 0.0, specifier: "%.1f") \(locationManager.location?.speedUnit ?? "")"
-            )
+            Text("Latitude: \(locationManager.location?.latitude ?? 0.0, specifier: "%.10f")° ± \(locationManager.location?.horizontalAccuracy ?? 0.0, specifier: "%.2f")m")
+            Text("Longitude: \(locationManager.location?.longitude ?? 0.0, specifier: "%.10f")° ± \(locationManager.location?.horizontalAccuracy ?? 0.0, specifier: "%.2f")m")
+            Text("Altitude: \(locationManager.location?.altitude ?? 0.0, specifier: "%.2f") ± \(locationManager.location?.verticalAccuracy ?? 0.0, specifier: "%.2f")m")
+            Text("Direction: \(locationManager.location?.course ?? 0.0, specifier: "%.2f")°")
+            Text("Speed: \(locationManager.location?.calculatedSpeed ?? 0.0, specifier: "%.1f") \(locationManager.location?.speedUnit ?? "")")
         }
-        .navigationTitle(Text("Location", comment: "NavigationBar Title - Location sensor screen"))
+        .navigationTitle("Location")
         .font(.footnote)
         .onAppear(perform: onAppear)
         .onDisappear(perform: onDisappear)

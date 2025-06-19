@@ -19,17 +19,11 @@ struct MagnetometerView: View {
     // MARK: - Body
     var body: some View {
         List {
-            Text(
-                "X-Axis: \(motionManager.motion?.magnetometerXAxis ?? 0.0, specifier: "%.5f") µT",
-                comment: "MagnetometerView - X-Axis (watchOS)")
-            Text(
-                "Y-Axis: \(motionManager.motion?.magnetometerYAxis ?? 0.0, specifier: "%.5f") µT",
-                comment: "MagnetometerView - Y-Axis (watchOS)")
-            Text(
-                "Z-Axis: \(motionManager.motion?.magnetometerZAxis ?? 0.0, specifier: "%.5f") µT",
-                comment: "MagnetometerView - Z-Axis (watchOS)")
+            Text("X-Axis: \(motionManager.motion?.magnetometerXAxis ?? 0.0, specifier: "%.5f") µT")
+            Text("Y-Axis: \(motionManager.motion?.magnetometerYAxis ?? 0.0, specifier: "%.5f") µT")
+            Text("Z-Axis: \(motionManager.motion?.magnetometerZAxis ?? 0.0, specifier: "%.5f") µT")
         }
-        .navigationTitle(Text("Magnetometer", comment: "NavigationBar Title - Magnetometer sensor screen"))
+        .navigationTitle("Magnetometer")
         .font(.footnote)
         .onAppear(perform: onAppear)
         .onDisappear(perform: onDisappear)

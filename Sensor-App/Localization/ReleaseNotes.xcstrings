@@ -1,0 +1,201 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "Adapt the new iOS 26 Liquid Glass Design" : {
+      "comment" : "A list of changes introduced in version 6.0.0 of the app.",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Přizpůsobte nový design Liquid Glass pro iOS 26"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anpassungen an das neue iOS 26 Liquid Glass Design"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adapt the new iOS 26 Liquid Glass Design"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adaptar el nuevo diseño de Cristal Líquido de iOS 26"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adaptez le nouveau design Liquid Glass d'iOS 26"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adatta il nuovo design Liquid Glass su iOS 26"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "新しいiOS26のリキッドグラスデザインに適応"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "새로운 iOS 26 액체 유리 디자인을 적용하십시오"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adaptar o novo Design de Vidro Líquido do iOS 26"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "适应新的iOS 26液态玻璃设计"
+          }
+        }
+      }
+    },
+    "Performance improvements an bug fixes" : {
+      "comment" : "A list of improvements and bug fixes in version 6.0.0 of the app.",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zlepšení výkonu a opravy chyb"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Leistungsverbesserungen und Fehlerbehebungen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Performance improvements an bug fixes"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mejoras de rendimiento y corrección de errores"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Améliorations des performances et corrections de bugs"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Miglioramenti delle prestazioni e correzioni di bug"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "パフォーマンスの向上とバグ修正"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "성능 개선 및 버그 수정"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Melhorias de desempenho e correções de bugs"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "性能提升和修复漏洞"
+          }
+        }
+      }
+    },
+    "Requires minimum iOS 26 and watchOS 26" : {
+      "comment" : "A list of notes about the latest release of the app.",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vyžaduje minimálně iOS 26 a watchOS 26"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erfordert mindestens iOS 26 und watchOS 26"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Requires minimum iOS 26 and watchOS 26"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Requiere iOS 26 y watchOS 26 como mínimo"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nécessite iOS 26 minimum et watchOS 26"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Richiede almeno iOS 26 e watchOS 26"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iOS 26およびwatchOS 26が必要です"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "최소 iOS 26 및 watchOS 26 필요"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Requer iOS 26 e watchOS 26 no mínimo"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "最低要求 iOS 26 和 watchOS 26"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.1"
+}

@@ -19,17 +19,11 @@ struct GyroscopeView: View {
     // MARK: - Body
     var body: some View {
         List {
-            Text(
-                "X-Axis: \(motionManager.motion?.gyroXAxis ?? 0.0, specifier: "%.5f") rad/s",
-                comment: "GyroscopeView - X-Axis (watchOS)")
-            Text(
-                "Y-Axis: \(motionManager.motion?.gyroYAxis ?? 0.0, specifier: "%.5f") rad/s",
-                comment: "GyroscopeView - Y-Axis (watchOS)")
-            Text(
-                "Z-Axis: \(motionManager.motion?.gyroZAxis ?? 0.0, specifier: "%.5f") rad/s",
-                comment: "GyroscopeView - Z-Axis (watchOS)")
+            Text("X-Axis: \(motionManager.motion?.gyroXAxis ?? 0.0, specifier: "%.5f") rad/s")
+            Text("Y-Axis: \(motionManager.motion?.gyroYAxis ?? 0.0, specifier: "%.5f") rad/s")
+            Text("Z-Axis: \(motionManager.motion?.gyroZAxis ?? 0.0, specifier: "%.5f") rad/s")
         }
-        .navigationTitle(Text("Gyroscope", comment: "NavigationBar Title - Gyroscope sensor screen"))
+        .navigationTitle("Gyroscope")
         .font(.footnote)
         .onAppear(perform: onAppear)
         .onDisappear(perform: onDisappear)

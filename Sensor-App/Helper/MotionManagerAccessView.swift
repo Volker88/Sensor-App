@@ -19,9 +19,7 @@ struct MotionManagerAccessView: View {
                     Spacer()
 
                     VStack {
-                        Text(
-                            "Access to Motion Sensor is required", comment: "Access to Motion Sensor is required"
-                        )
+                        Text("Access to Motion Sensor is required")
                         .foregroundColor(.red)
 
                         Button {
@@ -29,7 +27,7 @@ struct MotionManagerAccessView: View {
                                 UIApplication.shared.open(appSettings)
                             }
                         } label: {
-                            Text("Open Settings", comment: "Open iOS Settings Menu")
+                            Text("Open Settings")
                         }
                     }
 

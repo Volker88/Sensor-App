@@ -173,6 +173,7 @@
 			membershipExceptions = (
 				Localization/InfoPlist.xcstrings,
 				Localization/Localizable.xcstrings,
+				Localization/ReleaseNotes.xcstrings,
 				Miscellaneous/Assets.xcassets,
 			);
 			target = 1527B04624C4AA620024DD78 /* Sensor-App-Watch */;
@@ -317,6 +318,7 @@
 			membershipExceptions = (
 				Localization/InfoPlist.xcstrings,
 				Localization/Localizable.xcstrings,
+				Localization/ReleaseNotes.xcstrings,
 			);
 			target = 1527B07824C4ACA20024DD78 /* Sensor-App-Framework */;
 		};

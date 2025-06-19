@@ -19,17 +19,11 @@ struct AccelerationView: View {
     // MARK: - Body
     var body: some View {
         List {
-            Text(
-                "X-Axis: \(motionManager.motion?.accelerationXAxis ?? 0.0, specifier: "%.5f") m/s^2",
-                comment: "AccelerationView - X-Axis (watchOS)")
-            Text(
-                "Y-Axis: \(motionManager.motion?.accelerationYAxis ?? 0.0, specifier: "%.5f") m/s^2",
-                comment: "AccelerationView - Y-Axis (watchOS)")
-            Text(
-                "Z-Axis: \(motionManager.motion?.accelerationZAxis ?? 0.0, specifier: "%.5f") m/s^2",
-                comment: "AccelerationView - Z-Axis (watchOS)")
+            Text("X-Axis: \(motionManager.motion?.accelerationXAxis ?? 0.0, specifier: "%.5f") m/s^2")
+            Text("Y-Axis: \(motionManager.motion?.accelerationYAxis ?? 0.0, specifier: "%.5f") m/s^2")
+            Text("Z-Axis: \(motionManager.motion?.accelerationZAxis ?? 0.0, specifier: "%.5f") m/s^2")
         }
-        .navigationTitle(Text("Acceleration", comment: "NavigationBar Title - Acceleration sensor screen"))
+        .navigationTitle("Acceleration")
         .font(.footnote)
         .onAppear(perform: onAppear)
         .onDisappear(perform: onDisappear)

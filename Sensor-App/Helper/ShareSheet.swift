@@ -16,7 +16,7 @@ struct ShareSheet: View {
     var body: some View {
         ShareLink(item: url) {
             Label {
-                Text("Export", comment: "Export button to export data as csv file")
+                Text("Export")
             } icon: {
                 Image(systemName: "square.and.arrow.up")
             }

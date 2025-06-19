@@ -17,37 +17,37 @@ struct ContentView: View {
     var body: some View {
         List {
             NavigationLink(destination: LocationView()) {
-                Text("Location", comment: "ContentView - Location (watchOS)")
+                Text("Location")
             }
             .accessibilityIdentifier(UIIdentifiers.ContentView.locationButton)
 
             NavigationLink(destination: AccelerationView()) {
-                Text("Acceleration", comment: "ContentView - Acceleration (watchOS)")
+                Text("Acceleration")
             }
             .accessibilityIdentifier(UIIdentifiers.ContentView.accelerationButton)
 
             NavigationLink(destination: GravityView()) {
-                Text("Gravity", comment: "ContentView - Gravity (watchOS)")
+                Text("Gravity")
             }
             NavigationLink(destination: GyroscopeView()) {
-                Text("Gyroscope", comment: "ContentView - Gyroscope (watchOS)")
+                Text("Gyroscope")
             }
             NavigationLink(destination: MagnetometerView()) {
-                Text("Magnetometer", comment: "ContentView - Magnetometer (watchOS)")
+                Text("Magnetometer")
             }
             NavigationLink(destination: AttitudeView()) {
-                Text("Attitude", comment: "ContentView - Attitude (watchOS)")
+                Text("Attitude")
             }
             NavigationLink(destination: AltitudeView()) {
-                Text("Altitude", comment: "ContentView - Altitude (watchOS)")
+                Text("Altitude")
             }
             NavigationLink(destination: SettingsView()) {
-                Text("Settings", comment: "ContentView - Settings (watchOS)")
+                Text("Settings")
             }
             .accessibilityIdentifier(UIIdentifiers.ContentView.settingsButton)
         }
         .accessibilityIdentifier(UIIdentifiers.ContentView.collectionView)
-        .navigationTitle(Text("Home", comment: "NavigationBar Title - Home screen"))
+        .navigationTitle("Home")
         .listStyle(CarouselListStyle())
     }
 }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct NotificationView: View {
     var body: some View {
-        Text("Hello, World!")
+        Text(verbatim: "Hello, World!")
     }
 }
 

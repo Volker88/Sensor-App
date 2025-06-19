@@ -25,20 +25,14 @@ struct SettingsView: View {
         Form {
             Section(
                 header:
-                    Text("Location", comment: "SettingsView - Location Section (watchOS)")
+                    Text("Location")
             ) {
-                Picker(
-                    selection: $speedSetting,
-                    label: Text("Speed Setting", comment: "SettingsView - Speed Setting (watchOS)")
-                ) {
+                Picker("Speed Setting", selection: $speedSetting) {
                     ForEach(0..<settingsManager.GPSSpeedSettings.count, id: \.self) {
                         Text(settingsManager.GPSSpeedSettings[$0]).tag($0)
                     }
                 }
-                Picker(
-                    selection: $accuracySetting,
-                    label: Text("Accuracy", comment: "SettingsView - Accuracy (watchOS)")
-                ) {
+                Picker("Accuracy", selection: $accuracySetting) {
                     ForEach(0..<settingsManager.GPSAccuracyOptions.count, id: \.self) {
                         Text(settingsManager.GPSAccuracyOptions[$0]).tag($0)
                     }
@@ -46,20 +40,14 @@ struct SettingsView: View {
             }
             Section(
                 header:
-                    Text("Altitude", comment: "SettingsView - Altitude Section (watchOS)")
+                    Text("Altitude")
             ) {
-                Picker(
-                    selection: $pressureSetting,
-                    label: Text("Pressure", comment: "SettingsView - Pressure (watchOS)")
-                ) {
+                Picker("Pressure", selection: $pressureSetting) {
                     ForEach(0..<settingsManager.altitudePressure.count, id: \.self) {
                         Text(settingsManager.altitudePressure[$0]).tag($0)
                     }
                 }
-                Picker(
-                    selection: $heightSetting,
-                    label: Text("Height", comment: "SettingsView - Height (watchOS)")
-                ) {
+                Picker("Height", selection: $heightSetting) {
                     ForEach(0..<settingsManager.altitudeHeight.count, id: \.self) {
                         Text(settingsManager.altitudeHeight[$0]).tag($0)
                     }
@@ -67,7 +55,7 @@ struct SettingsView: View {
             }
             Section(
                 header:
-                    Text("Refresh Rate", comment: "SettingsView - Refresh Rate Section (watchOS)")
+                    Text("Refresh Rate")
             ) {
                 Text("Frequency: \(Int(refreshRate)) Hz")
 
@@ -79,17 +67,17 @@ struct SettingsView: View {
                 Button(action: {
                     discardChanges(dismiss: true)
                 }) {
-                    Text("Discard", comment: "SettingsView - Discard (watchOS)")
+                    Text("Discard")
                 }
 
                 Button(action: {
                     saveSettings()
                 }) {
-                    Text("Save", comment: "SettingsView - Save (watchOS)")
+                    Text("Save")
                 }
             }
         }
-        .navigationTitle(Text("Settings", comment: "NavigationBar Title - Settings screen"))
+        .navigationTitle("Settings")
         .font(.footnote)
         .onAppear(perform: onAppear)
         .onDisappear(perform: onDisappear)
