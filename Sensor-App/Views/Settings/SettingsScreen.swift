@@ -28,9 +28,12 @@ struct SettingsScreen: View {
                     Text("App Icon")  // FIXME: - iOS 26 Beta 1, changing app icon is not supported
             ) {
                 HStack {
+                    Spacer()
+
                     ForEach(0..<settingsManager.iconNames.count, id: \.self) { index in
                         Image(uiImage: UIImage(named: "\(settingsManager.iconNames[index])") ?? UIImage())
                             .resizable()
+                            .frame(width: 100, height: 100)
                             .scaledToFit()
                             .clipShape(RoundedRectangle(cornerRadius: 10))
                             .conditionalOverlay(visible: settingsManager.currentAppIconIndex == index)
@@ -39,10 +42,15 @@ struct SettingsScreen: View {
                                 settingsManager.changeIcon(value: index)
                             }
                     }
+
+                    Spacer()
                 }
             }
-
-            Section("Location") {
+            Section(
+                header:
+                    Text("Location")
+                    .accessibilityIdentifier(UIIdentifiers.SettingScreen.locationHeader)
+            ) {
                 Picker("Speed Setting", selection: Bindable(settingsManager).speedSetting) {
                     ForEach(0..<settingsManager.GPSSpeedSettings.count, id: \.self) {
                         Text(settingsManager.GPSSpeedSettings[$0]).tag($0)
@@ -58,7 +66,10 @@ struct SettingsScreen: View {
                 .accessibilityIdentifier(UIIdentifiers.SettingScreen.accuracyPicker)
             }
 
-            Section("Map") {
+            Section(
+                header: Text("Map")
+                    .accessibilityLabel(UIIdentifiers.SettingScreen.mapHeader)
+            ) {
                 Picker("Type", selection: Bindable(settingsManager).mapSettings.mapType) {
                     ForEach(MapType.allCases, id: \.self) { type in
                         Text(type.rawValue).tag(type)
@@ -100,7 +111,11 @@ struct SettingsScreen: View {
                 }
             }
 
-            Section("Altitude") {
+            Section(
+                header:
+                    Text("Altitude")
+                    .accessibilityIdentifier(UIIdentifiers.SettingScreen.altitudeHeader)
+            ) {
                 Picker("Pressure", selection: Bindable(settingsManager).pressureSetting) {
                     ForEach(0..<settingsManager.altitudePressure.count, id: \.self) {
                         Text(settingsManager.altitudePressure[$0]).tag($0)
@@ -116,7 +131,11 @@ struct SettingsScreen: View {
                 .accessibilityIdentifier(UIIdentifiers.SettingScreen.altitudePicker)
             }
 
-            Section("Graph") {
+            Section(
+                header:
+                    Text("Graph")
+                    .accessibilityIdentifier(UIIdentifiers.SettingScreen.graphHeader)
+            ) {
                 Stepper(value: Bindable(settingsManager).userSettings.graphMaxPoints, in: 1...1000, step: 1) {
                     Text("Max Points: \(settingsManager.userSettings.graphMaxPoints, specifier: "%.0f")")
                 }
@@ -164,7 +183,7 @@ struct SettingsScreen: View {
     func saveSettings() {
         settingsManager.saveSettings()
 
-        showNotification("Saved successfully")
+        showNotification(String(localized: "Successfully Saved"))
     }
 
     func discardChanges(showNotification: Bool) {
@@ -172,7 +191,7 @@ struct SettingsScreen: View {
 
         // Show Notification
         if showNotification == true {
-            self.showNotification("Changes Discarded")
+            self.showNotification(String(localized: "Changes Discarded"))
         }
     }
 }

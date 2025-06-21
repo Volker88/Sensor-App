@@ -11,12 +11,13 @@ import XCTest
 class AccelerationViewUITests: BaseTestCase {
     func testAccelerationViewToolbarButtons() throws {
         // Go to Acceleration View
-        moveToView(UIIdentifiers.Sidebar.accelerationButton)
+        goToAccelerationScreen()
 
-        // Test Toolbar Buttons
-        app.buttons[UIIdentifiers.Toolbar.deleteButton].tap()
-        app.buttons[UIIdentifiers.Toolbar.pauseButton].tap()
-        app.buttons[UIIdentifiers.Toolbar.deleteButton].tap()
+        // Test CustomControlsView Buttons
+        app.buttons[UIIdentifiers.CustomControlsView.expandButton].tap()
+        app.buttons[UIIdentifiers.CustomControlsView.deleteButton].tap()
+        app.buttons[UIIdentifiers.CustomControlsView.pauseButton].tap()
+        app.buttons[UIIdentifiers.CustomControlsView.deleteButton].tap()
 
         // Go Back to Main Menu
         backToHomeMenu()
@@ -24,7 +25,7 @@ class AccelerationViewUITests: BaseTestCase {
 
     func testAccelerationViewGraphs() throws {
         // Go to Acceleration View
-        moveToView(UIIdentifiers.Sidebar.accelerationButton)
+        goToAccelerationScreen()
 
         // Show all Graphs
         app.buttons[UIIdentifiers.AccelerationView.zAxisRow].tap()
@@ -42,7 +43,7 @@ class AccelerationViewUITests: BaseTestCase {
 
     func testAccelerationViewSlider() throws {
         // Go to Acceleration View
-        moveToView(UIIdentifiers.Sidebar.accelerationButton)
+        goToAccelerationScreen()
 
         // Swipe Up
         app.buttons[UIIdentifiers.AccelerationView.xAxisRow].swipeUp()
@@ -62,7 +63,7 @@ class AccelerationViewUITests: BaseTestCase {
 
     func testAccelerationViewShareSheet() throws {
         // Go to Acceleration View
-        moveToView(UIIdentifiers.Sidebar.accelerationButton)
+        goToAccelerationScreen()
         app.buttons[UIIdentifiers.AccelerationView.logButton].tap()
 
         // Open / Close Share Sheet
@@ -73,5 +74,15 @@ class AccelerationViewUITests: BaseTestCase {
         // Go Back to Main Menu
         backToHomeMenu()
         backToHomeMenu()
+    }
+
+    // MARK: - Methods
+    func goToAccelerationScreen() {
+        if isIPhone() {
+            app.descendants(matching: .any)[UIIdentifiers.ContentView.motionTab].tapWhenReady()
+            app.buttons[UIIdentifiers.MotionScreen.accelerationButton].tapWhenReady()
+        } else {
+            app.descendants(matching: .any)[UIIdentifiers.ContentView.accelerationTab].tapWhenReady()
+        }
     }
 }

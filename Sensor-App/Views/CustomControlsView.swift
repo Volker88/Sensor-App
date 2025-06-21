@@ -35,7 +35,7 @@ struct CustomControlsView: View {
                                 .foregroundStyle(.green)
                         }
                         .accessibilityLabel(Text("Play"))
-                        .accessibilityIdentifier(UIIdentifiers.Toolbar.playButton)
+                        .accessibilityIdentifier(UIIdentifiers.CustomControlsView.playButton)
                     } else {
                         Button(action: {
                             showNotification("Paused")
@@ -46,7 +46,7 @@ struct CustomControlsView: View {
                                 .foregroundStyle(.yellow)
                         }
                         .accessibilityLabel(Text("Pause"))
-                        .accessibilityIdentifier(UIIdentifiers.Toolbar.pauseButton)
+                        .accessibilityIdentifier(UIIdentifiers.CustomControlsView.pauseButton)
                     }
 
                     Button(action: {
@@ -58,7 +58,7 @@ struct CustomControlsView: View {
                             .tint(.red)
                     }
                     .accessibilityLabel(Text("Delete"))
-                    .accessibilityIdentifier(UIIdentifiers.Toolbar.deleteButton)
+                    .accessibilityIdentifier(UIIdentifiers.CustomControlsView.deleteButton)
 
                 }
 
@@ -67,6 +67,7 @@ struct CustomControlsView: View {
                 } label: {
                     Image(systemName: expandControl ? "multiply" : "plus")
                 }
+                .accessibilityIdentifier(UIIdentifiers.CustomControlsView.expandButton)
                 .transaction { transaction in
                     transaction.disablesAnimations = true
                 }

@@ -11,12 +11,13 @@ import XCTest
 class AttitudeViewUITests: BaseTestCase {
     func testAttitudeViewToolbarButtons() throws {
         // Go to Attitude View
-        moveToView(UIIdentifiers.Sidebar.attitudeButton)
+        goToAttitudeScreen()
 
-        // Test Toolbar Buttons
-        app.buttons[UIIdentifiers.Toolbar.deleteButton].tap()
-        app.buttons[UIIdentifiers.Toolbar.pauseButton].tap()
-        app.buttons[UIIdentifiers.Toolbar.deleteButton].tap()
+        // Test CustomControlsView Buttons
+        app.buttons[UIIdentifiers.CustomControlsView.expandButton].tap()
+        app.buttons[UIIdentifiers.CustomControlsView.deleteButton].tap()
+        app.buttons[UIIdentifiers.CustomControlsView.pauseButton].tap()
+        app.buttons[UIIdentifiers.CustomControlsView.deleteButton].tap()
 
         // Go Back to Main Menu
         backToHomeMenu()
@@ -24,7 +25,7 @@ class AttitudeViewUITests: BaseTestCase {
 
     func testAttitudeViewGraphs() throws {
         // Go to Attitude View
-        moveToView(UIIdentifiers.Sidebar.attitudeButton)
+        goToAttitudeScreen()
 
         // Show all Graphs
         app.buttons[UIIdentifiers.AttitudeView.headingRow].tap()
@@ -44,7 +45,7 @@ class AttitudeViewUITests: BaseTestCase {
 
     func testAttitudeViewSlider() throws {
         // Go to Attitude View
-        moveToView(UIIdentifiers.Sidebar.attitudeButton)
+        goToAttitudeScreen()
 
         // Swipe Up
         app.buttons[UIIdentifiers.AttitudeView.rollRow].swipeUp()
@@ -64,7 +65,7 @@ class AttitudeViewUITests: BaseTestCase {
 
     func testAttitudeViewShareSheet() throws {
         // Go to Attitude View
-        moveToView(UIIdentifiers.Sidebar.attitudeButton)
+        goToAttitudeScreen()
         app.buttons[UIIdentifiers.AttitudeView.logButton].tap()
 
         // Open / Close Share Sheet
@@ -75,5 +76,15 @@ class AttitudeViewUITests: BaseTestCase {
         // Go Back to Main Menu
         backToHomeMenu()
         backToHomeMenu()
+    }
+
+    // MARK: - Methods
+    func goToAttitudeScreen() {
+        if isIPhone() {
+            app.descendants(matching: .any)[UIIdentifiers.ContentView.motionTab].tapWhenReady()
+            app.buttons[UIIdentifiers.MotionScreen.attitudeButton].tapWhenReady()
+        } else {
+            app.descendants(matching: .any)[UIIdentifiers.ContentView.attitudeTab].tapWhenReady()
+        }
     }
 }

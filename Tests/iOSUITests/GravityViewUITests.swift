@@ -11,12 +11,13 @@ import XCTest
 class GravityViewUITests: BaseTestCase {
     func testGravityViewToolbarButtons() throws {
         // Go to Gravity View
-        moveToView(UIIdentifiers.Sidebar.gravityButton)
+        goToGravityScreen()
 
-        // Test Toolbar Buttons
-        app.buttons[UIIdentifiers.Toolbar.deleteButton].tap()
-        app.buttons[UIIdentifiers.Toolbar.pauseButton].tap()
-        app.buttons[UIIdentifiers.Toolbar.deleteButton].tap()
+        // Test CustomControlsView Buttons
+        app.buttons[UIIdentifiers.CustomControlsView.expandButton].tap()
+        app.buttons[UIIdentifiers.CustomControlsView.deleteButton].tap()
+        app.buttons[UIIdentifiers.CustomControlsView.pauseButton].tap()
+        app.buttons[UIIdentifiers.CustomControlsView.deleteButton].tap()
 
         // Go Back to Main Menu
         backToHomeMenu()
@@ -24,7 +25,7 @@ class GravityViewUITests: BaseTestCase {
 
     func testGravityViewGraphs() throws {
         // Go to Gravity View
-        moveToView(UIIdentifiers.Sidebar.gravityButton)
+        goToGravityScreen()
 
         // Show all Graphs
         app.buttons[UIIdentifiers.GravityView.zAxisRow].tap()
@@ -42,7 +43,7 @@ class GravityViewUITests: BaseTestCase {
 
     func testGravityViewSlider() throws {
         // Go to Gravity View
-        moveToView(UIIdentifiers.Sidebar.gravityButton)
+        goToGravityScreen()
 
         // Swipe Up
         app.buttons[UIIdentifiers.GravityView.xAxisRow].swipeUp()
@@ -62,7 +63,7 @@ class GravityViewUITests: BaseTestCase {
 
     func testGravityViewShareSheet() throws {
         // Go to Gravity View
-        moveToView(UIIdentifiers.Sidebar.gravityButton)
+        goToGravityScreen()
         app.buttons[UIIdentifiers.GravityView.logButton].tap()
 
         // Open / Close Share Sheet
@@ -73,5 +74,15 @@ class GravityViewUITests: BaseTestCase {
         // Go Back to Main Menu
         backToHomeMenu()
         backToHomeMenu()
+    }
+
+    // MARK: - Methods
+    func goToGravityScreen() {
+        if isIPhone() {
+            app.descendants(matching: .any)[UIIdentifiers.ContentView.motionTab].tapWhenReady()
+            app.buttons[UIIdentifiers.MotionScreen.gravityButton].tapWhenReady()
+        } else {
+            app.descendants(matching: .any)[UIIdentifiers.ContentView.gravityTab].tapWhenReady()
+        }
     }
 }

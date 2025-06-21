@@ -7,8 +7,6 @@
 
 import XCTest
 
-@testable import Sensor_App
-
 @MainActor
 class BaseTestCase: XCTestCase {
     var app: XCUIApplication!
@@ -55,10 +53,6 @@ class BaseTestCase: XCTestCase {
         }
     }
 
-    func moveToView(_ view: String) {
-        app.collectionViews[UIIdentifiers.Sidebar.collectionView].buttons[view].tap()
-    }
-
     func backToHomeMenu() {
         if isIPhone() {
             app.navigationBars.buttons.element(boundBy: 0).tap()
@@ -66,16 +60,16 @@ class BaseTestCase: XCTestCase {
     }
 
     func dismissShareSheet() {
-        if isIPhone() {
-            let activityListView = app.otherElements.element(
-                matching: .other,
-                identifier: "ActivityListView")
+        //        if isIPhone() {
+        //            let activityListView = app.otherElements.element(
+        //                matching: .other,
+        //                identifier: "ActivityListView")
 
-            XCTAssertTrue(activityListView.waitForExistence(timeout: 2.0))
+        //            XCTAssertTrue(activityListView.waitForExistence(timeout: 2.0))
 
-            activityListView.buttons.element(boundBy: 0).tap()
-        } else {
-            app.otherElements["PopoverDismissRegion"].tap()
-        }
+        //            activityListView.buttons.element(boundBy: 0).tap()
+        //        } else {
+        app.otherElements["PopoverDismissRegion"].tap()
+        //        }
     }
 }

@@ -11,12 +11,13 @@ import XCTest
 class GyroscopeViewUITests: BaseTestCase {
     func testGyroscopeViewToolbarButtons() throws {
         // Go to Gyroscope View
-        moveToView(UIIdentifiers.Sidebar.gyroscopeButton)
+        goToGyroscopeScreen()
 
-        // Test Toolbar Buttons
-        app.buttons[UIIdentifiers.Toolbar.deleteButton].tap()
-        app.buttons[UIIdentifiers.Toolbar.pauseButton].tap()
-        app.buttons[UIIdentifiers.Toolbar.deleteButton].tap()
+        // Test CustomControlsView Buttons
+        app.buttons[UIIdentifiers.CustomControlsView.expandButton].tap()
+        app.buttons[UIIdentifiers.CustomControlsView.deleteButton].tap()
+        app.buttons[UIIdentifiers.CustomControlsView.pauseButton].tap()
+        app.buttons[UIIdentifiers.CustomControlsView.deleteButton].tap()
 
         // Go Back to Main Menu
         backToHomeMenu()
@@ -24,7 +25,7 @@ class GyroscopeViewUITests: BaseTestCase {
 
     func testGyroscopeViewGraphs() throws {
         // Go to Gyroscope View
-        moveToView(UIIdentifiers.Sidebar.gyroscopeButton)
+        goToGyroscopeScreen()
 
         // Show all Graphs
         app.buttons[UIIdentifiers.GyroscopeView.zAxisRow].tap()
@@ -42,7 +43,7 @@ class GyroscopeViewUITests: BaseTestCase {
 
     func testGyroscopeViewSlider() throws {
         // Go to Gyroscope View
-        moveToView(UIIdentifiers.Sidebar.gyroscopeButton)
+        goToGyroscopeScreen()
 
         // Swipe Up
         app.buttons[UIIdentifiers.GyroscopeView.xAxisRow].swipeUp()
@@ -62,7 +63,7 @@ class GyroscopeViewUITests: BaseTestCase {
 
     func testGyroscopeViewShareSheet() throws {
         // Go to Gyroscope View
-        moveToView(UIIdentifiers.Sidebar.gyroscopeButton)
+        goToGyroscopeScreen()
         app.buttons[UIIdentifiers.GyroscopeView.logButton].tap()
 
         // Open / Close Share Sheet
@@ -73,5 +74,15 @@ class GyroscopeViewUITests: BaseTestCase {
         // Go Back to Main Menu
         backToHomeMenu()
         backToHomeMenu()
+    }
+
+    // MARK: - Methods
+    func goToGyroscopeScreen() {
+        if isIPhone() {
+            app.descendants(matching: .any)[UIIdentifiers.ContentView.motionTab].tapWhenReady()
+            app.buttons[UIIdentifiers.MotionScreen.gyroscopeButton].tapWhenReady()
+        } else {
+            app.descendants(matching: .any)[UIIdentifiers.ContentView.gyroscopeTab].tapWhenReady()
+        }
     }
 }

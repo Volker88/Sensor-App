@@ -25,24 +25,28 @@ struct MotionScreen: View {
                             Text("Acceleration")
                         }
                     }
+                    .accessibilityIdentifier(UIIdentifiers.MotionScreen.accelerationButton)
 
                     NavigationLink(value: MotionStack.gravity) {
                         CardView {
                             Text("Gravity")
                         }
                     }
+                    .accessibilityIdentifier(UIIdentifiers.MotionScreen.gravityButton)
 
                     NavigationLink(value: MotionStack.gyroscope) {
                         CardView {
                             Text("Gyroscope")
                         }
                     }
+                    .accessibilityIdentifier(UIIdentifiers.MotionScreen.gyroscopeButton)
 
                     NavigationLink(value: MotionStack.attitude) {
                         CardView {
                             Text("Attitude")
                         }
                     }
+                    .accessibilityIdentifier(UIIdentifiers.MotionScreen.attitudeButton)
                 }
                 .frame(maxWidth: 360)
                 .frame(maxWidth: .infinity, alignment: .center)

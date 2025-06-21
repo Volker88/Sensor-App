@@ -25,12 +25,14 @@ struct PositionScreen: View {
                             Text("Location")
                         }
                     }
+                    .accessibilityIdentifier(UIIdentifiers.PositionScreen.locationButton)
 
                     NavigationLink(value: PositionStack.altitude) {
                         CardView {
                             Text("Altitude")
                         }
                     }
+                    .accessibilityIdentifier(UIIdentifiers.PositionScreen.altitudeButton)
                 }
                 .frame(maxWidth: 360)
                 .frame(maxWidth: .infinity, alignment: .center)

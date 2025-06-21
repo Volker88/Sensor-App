@@ -34,6 +34,7 @@ struct ContentView: View {
                     PositionScreen()
                 }
                 .customizationID(RootTab.position.stringValue)
+                .accessibilityIdentifier(UIIdentifiers.ContentView.positionTab)
             } else {
                 TabSection(RootTab.position.localizedString) {
                     Tab("Location", systemImage: "location", value: RootTab.location) {
@@ -43,6 +44,7 @@ struct ContentView: View {
                         }
                     }
                     .customizationID(RootTab.location.stringValue)
+                    .accessibilityIdentifier(UIIdentifiers.ContentView.locationTab)
 
                     Tab("Altitude", systemImage: "arrow.up.right.circle", value: RootTab.altitude) {
                         NavigationStack(path: Bindable(appState).positionStack) {
@@ -51,6 +53,7 @@ struct ContentView: View {
                         }
                     }
                     .customizationID(RootTab.altitude.stringValue)
+                    .accessibilityIdentifier(UIIdentifiers.ContentView.altitudeTab)
                 }
                 .customizationID(RootTab.position.stringValue + ".section")
             }
@@ -64,6 +67,7 @@ struct ContentView: View {
                     MotionScreen()
                 }
                 .customizationID(RootTab.motion.stringValue)
+                .accessibilityIdentifier(UIIdentifiers.ContentView.motionTab)
             } else {
                 TabSection(RootTab.motion.localizedString) {
                     Tab(
@@ -77,6 +81,7 @@ struct ContentView: View {
                         }
                     }
                     .customizationID(RootTab.acceleration.stringValue)
+                    .accessibilityIdentifier(UIIdentifiers.ContentView.accelerationTab)
 
                     Tab(
                         RootTab.gravity.localizedString,
@@ -89,6 +94,7 @@ struct ContentView: View {
                         }
                     }
                     .customizationID(RootTab.gravity.stringValue)
+                    .accessibilityIdentifier(UIIdentifiers.ContentView.gravityTab)
 
                     Tab(
                         RootTab.gyroscope.localizedString,
@@ -101,6 +107,7 @@ struct ContentView: View {
                         }
                     }
                     .customizationID(RootTab.gyroscope.stringValue)
+                    .accessibilityIdentifier(UIIdentifiers.ContentView.gyroscopeTab)
 
                     Tab(
                         RootTab.attitude.localizedString,
@@ -113,9 +120,11 @@ struct ContentView: View {
                         }
                     }
                     .customizationID(RootTab.attitude.stringValue)
+                    .accessibilityIdentifier(UIIdentifiers.ContentView.attitudeTab)
                 }
                 .customizationID(RootTab.motion.stringValue + ".section")
             }
+
             Tab(
                 RootTab.magnetometer.localizedString,
                 systemImage: RootTab.magnetometer.symbolImage,
@@ -127,6 +136,7 @@ struct ContentView: View {
                 }
             }
             .customizationID(RootTab.magnetometer.stringValue)
+            .accessibilityIdentifier(UIIdentifiers.ContentView.magnetometerTab)
 
             Tab(
                 RootTab.settings.localizedString,
@@ -138,6 +148,7 @@ struct ContentView: View {
                 }
             }
             .customizationID(RootTab.settings.stringValue)
+            .accessibilityIdentifier(UIIdentifiers.ContentView.settingsTab)
         }
         .tabViewStyle(.sidebarAdaptable)
         .tabViewCustomization($customization)

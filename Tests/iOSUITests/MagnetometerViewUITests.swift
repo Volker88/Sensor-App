@@ -11,20 +11,18 @@ import XCTest
 class MagnetometerViewUITests: BaseTestCase {
     func testMagnetometerViewToolbarButtons() throws {
         // Go to Magnetometer View
-        moveToView(UIIdentifiers.Sidebar.magnetometerButton)
+        goToMagnetometerScreen()
 
-        // Test Toolbar Buttons
-        app.buttons[UIIdentifiers.Toolbar.deleteButton].tap()
-        app.buttons[UIIdentifiers.Toolbar.pauseButton].tap()
-        app.buttons[UIIdentifiers.Toolbar.deleteButton].tap()
-
-        // Go Back to Main Menu
-        backToHomeMenu()
+        // Test CustomControlsView Buttons
+        app.buttons[UIIdentifiers.CustomControlsView.expandButton].tap()
+        app.buttons[UIIdentifiers.CustomControlsView.deleteButton].tap()
+        app.buttons[UIIdentifiers.CustomControlsView.pauseButton].tap()
+        app.buttons[UIIdentifiers.CustomControlsView.deleteButton].tap()
     }
 
     func testMagnetometerViewGraphs() throws {
         // Go to Magnetometer View
-        moveToView(UIIdentifiers.Sidebar.magnetometerButton)
+        goToMagnetometerScreen()
 
         // Show all Graphs
         app.buttons[UIIdentifiers.MagnetometerView.zAxisRow].tap()
@@ -35,14 +33,11 @@ class MagnetometerViewUITests: BaseTestCase {
         app.buttons[UIIdentifiers.MagnetometerView.xAxisRow].tap()
         app.buttons[UIIdentifiers.MagnetometerView.yAxisRow].tap()
         app.buttons[UIIdentifiers.MagnetometerView.zAxisRow].tap()
-
-        // Go Back to Main Menu
-        backToHomeMenu()
     }
 
     func testMagnetometerViewSlider() throws {
         // Go to Magnetometer View
-        moveToView(UIIdentifiers.Sidebar.magnetometerButton)
+        goToMagnetometerScreen()
 
         // Swipe Up
         app.buttons[UIIdentifiers.MagnetometerView.xAxisRow].swipeUp()
@@ -55,14 +50,11 @@ class MagnetometerViewUITests: BaseTestCase {
         let updateFrequency = app.sliders[slider].value as! String  // swiftlint:disable:this force_cast
         let splitUpdateFrequency = updateFrequency.split(separator: " ", maxSplits: 1).map(String.init)
         XCTAssertEqual(splitUpdateFrequency[0], "50", "Update frequency should be 50 but is \(splitUpdateFrequency)")
-
-        // Go Back to Main Menu
-        backToHomeMenu()
     }
 
     func testMagnetometerViewShareSheet() throws {
         // Go to Magnetometer View
-        moveToView(UIIdentifiers.Sidebar.magnetometerButton)
+        goToMagnetometerScreen()
         app.buttons[UIIdentifiers.MagnetometerView.logButton].tap()
 
         // Open / Close Share Sheet
@@ -72,6 +64,14 @@ class MagnetometerViewUITests: BaseTestCase {
 
         // Go Back to Main Menu
         backToHomeMenu()
-        backToHomeMenu()
+    }
+
+    // MARK: - Methods
+    func goToMagnetometerScreen() {
+        if isIPhone() {
+            app.descendants(matching: .any)[UIIdentifiers.ContentView.magnetometerTab].tapWhenReady()
+        } else {
+            app.descendants(matching: .any)[UIIdentifiers.ContentView.magnetometerTab].tapWhenReady()
+        }
     }
 }

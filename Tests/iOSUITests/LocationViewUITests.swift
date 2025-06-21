@@ -8,17 +8,17 @@
 
 import XCTest
 
-@MainActor
-final class LocationViewUITests: BaseTestCase {
-
+class LocationViewUITests: BaseTestCase {
     func testLocationViewToolbarButtons() throws {
         // Go to Location View
-        moveToView(UIIdentifiers.Sidebar.locationButton)
+        goToLocationScreen()
 
-        // Test Toolbar Buttons
-        app.buttons[UIIdentifiers.Toolbar.deleteButton].tap()
-        app.buttons[UIIdentifiers.Toolbar.pauseButton].tap()
-        app.buttons[UIIdentifiers.Toolbar.deleteButton].tap()
+        // Test CustomControlsView Buttons
+
+        app.buttons[UIIdentifiers.CustomControlsView.expandButton].tap()
+        app.buttons[UIIdentifiers.CustomControlsView.deleteButton].tap()
+        app.buttons[UIIdentifiers.CustomControlsView.pauseButton].tap()
+        app.buttons[UIIdentifiers.CustomControlsView.deleteButton].tap()
 
         // Go Back to Main Menu
         backToHomeMenu()
@@ -26,7 +26,7 @@ final class LocationViewUITests: BaseTestCase {
 
     func testLocationViewGraphs() throws {
         // Go to Location View
-        moveToView(UIIdentifiers.Sidebar.locationButton)
+        goToLocationScreen()
 
         // Show all Graphs
         app.buttons[UIIdentifiers.LocationView.speedRow].tap()
@@ -48,7 +48,7 @@ final class LocationViewUITests: BaseTestCase {
 
     func testLocationViewShareSheet() throws {
         // Go to Location View
-        moveToView(UIIdentifiers.Sidebar.locationButton)
+        goToLocationScreen()
 
         // Open / Close Share Sheet
         app.collectionViews.buttons[UIIdentifiers.LocationView.exportButton].tap()
@@ -57,5 +57,15 @@ final class LocationViewUITests: BaseTestCase {
 
         // Go Back to Main Menu
         backToHomeMenu()
+    }
+
+    // MARK: - Methods
+    func goToLocationScreen() {
+        if isIPhone() {
+            app.descendants(matching: .any)[UIIdentifiers.ContentView.positionTab].tapWhenReady()
+            app.buttons[UIIdentifiers.PositionScreen.locationButton].tapWhenReady()
+        } else {
+            app.descendants(matching: .any)[UIIdentifiers.ContentView.locationTab].tapWhenReady()
+        }
     }
 }

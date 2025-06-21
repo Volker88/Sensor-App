@@ -11,7 +11,6 @@ import Testing
 
 @testable import Sensor_App
 
-@MainActor
 final class ExtensionTests: BaseTestCase {
 
     // MARK: - Testing Methods

@@ -11,12 +11,13 @@ import XCTest
 class AltitudeViewUITests: BaseTestCase {
     func testAltitudeViewToolbarButtons() throws {
         // Go to Altitude View
-        moveToView(UIIdentifiers.Sidebar.altitudeButton)
+        goToAltitudeScreen()
 
-        // Test Toolbar Buttons
-        app.buttons[UIIdentifiers.Toolbar.deleteButton].tap()
-        app.buttons[UIIdentifiers.Toolbar.pauseButton].tap()
-        app.buttons[UIIdentifiers.Toolbar.deleteButton].tap()
+        // Test CustomControlsView Buttons
+        app.buttons[UIIdentifiers.CustomControlsView.expandButton].tap()
+        app.buttons[UIIdentifiers.CustomControlsView.deleteButton].tap()
+        app.buttons[UIIdentifiers.CustomControlsView.pauseButton].tap()
+        app.buttons[UIIdentifiers.CustomControlsView.deleteButton].tap()
 
         // Go Back to Main Menu
         backToHomeMenu()
@@ -24,7 +25,7 @@ class AltitudeViewUITests: BaseTestCase {
 
     func testAltitudeViewGraphs() throws {
         // Go to Altitude View
-        moveToView(UIIdentifiers.Sidebar.altitudeButton)
+        goToAltitudeScreen()
 
         // Show all Graphs
         app.buttons[UIIdentifiers.AltitudeView.altitudeRow].tap()
@@ -40,7 +41,7 @@ class AltitudeViewUITests: BaseTestCase {
 
     func testAltitudeViewShareSheet() throws {
         // Go to Altitude View
-        moveToView(UIIdentifiers.Sidebar.altitudeButton)
+        goToAltitudeScreen()
         app.buttons[UIIdentifiers.AltitudeView.logButton].tap()
 
         // Open / Close Share Sheet
@@ -51,5 +52,15 @@ class AltitudeViewUITests: BaseTestCase {
         // Go Back to Main Menu
         backToHomeMenu()
         backToHomeMenu()
+    }
+
+    // MARK: - Methods
+    func goToAltitudeScreen() {
+        if isIPhone() {
+            app.descendants(matching: .any)[UIIdentifiers.ContentView.positionTab].tapWhenReady()
+            app.buttons[UIIdentifiers.PositionScreen.altitudeButton].tapWhenReady()
+        } else {
+            app.descendants(matching: .any)[UIIdentifiers.ContentView.altitudeTab].tapWhenReady()
+        }
     }
 }

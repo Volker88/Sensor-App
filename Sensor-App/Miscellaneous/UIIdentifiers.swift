@@ -8,170 +8,189 @@
 import Foundation
 
 enum UIIdentifiers {
-    enum Sidebar {
-        // Collection View
-        static let collectionView = "Sidebar.list"
 
-        // Navigation Buttons
-        static let homeButton = "Sidebar.button.home"
-        static let locationButton = "Sidebar.button.location"
-        static let accelerationButton = "Sidebar.button.acceleration"
-        static let gravityButton = "Sidebar.button.gravity"
-        static let gyroscopeButton = "Sidebar.button.gyroscope"
-        static let magnetometerButton = "Sidebar.button.magnetometer"
-        static let attitudeButton = "Sidebar.button.attitude"
-        static let altitudeButton = "Sidebar.button.altitude"
-        static let settingsButton = "Sidebar.button.settings"
+    enum ContentView {
+        // Tabs
+        static let positionTab = "ContentView.Tab.Button.Position"
+        static let locationTab = "ContentView.Tab.Button.location"
+        static let altitudeTab = "ContentView.Tab.Button.Altitude"
+
+        static let motionTab = "ContentView.Tab.Button.Motion"
+        static let accelerationTab = "ContentView.Tab.Button.Acceleration"
+        static let gravityTab = "ContentView.Tab.Button.Gravity"
+        static let gyroscopeTab = "ContentView.Tab.Button.Gyroscope"
+        static let attitudeTab = "ContentView.Tab.Button.Attitude"
+
+        static let magnetometerTab = "ContentView.Tab.Button.Magnetometer"
+        static let settingsTab = "ContentView.Tab.Button.Settings"
     }
 
-    enum Toolbar {
-        // Action Buttons
-        static let playButton = "Toolbar.button.play"
-        static let pauseButton = "Toolbar.button.pause"
-        static let deleteButton = "Toolbar.button.delete"
+    enum PositionScreen {
+        static let locationButton = "PositionScreen.Grid.Button.Location"
+        static let altitudeButton = "PositionScreen.Grid.Button.Altitude"
+    }
+
+    enum MotionScreen {
+        static let accelerationButton = "MotionScreen.Grid.Button.Acceleration"
+        static let gravityButton = "MotionScreen.Grid.Button.Gravity"
+        static let gyroscopeButton = "MotionScreen.Grid.Button.Gyroscope"
+        static let attitudeButton = "MotionScreen.Grid.Button.Attitude"
+    }
+
+    enum CustomControlsView {
+        static let expandButton = "CustomControlsView.Button.Expand"
+        static let playButton = "CustomControlsView.Button.Play"
+        static let pauseButton = "CustomControlsView.Button.Pause"
+        static let deleteButton = "CustomControlsView.Button.Delete"
     }
 
     enum RefreshRateView {
         // Slider
-        static let refreshRateSlider = "RefreshRateView.slider"
+        static let refreshRateSlider = "RefreshRateView.Slider"
     }
 
     // MARK: - Modules
     enum LocationView {
         // Navigation Button
-        static let mapButton = "LocationView.button.map"
+        static let mapButton = "LocationView.Button.Map"
 
         // Action Button
-        static let exportButton = "LocationView.button.export"
+        static let exportButton = "LocationView.Button.Export"
 
         // Disclosure Group
-        static let latitudeRow = "LocationView.disclosureGroup.latitude"
-        static let longitudeRow = "LocationView.disclosureGroup.longitude"
-        static let altitudeRow = "LocationView.disclosureGroup.altitude"
-        static let courseRow = "LocationView.disclosureGroup.course"
-        static let speedRow = "LocationView.disclosureGroup.speed"
+        static let latitudeRow = "LocationView.DisclosureGroup.Latitude"
+        static let longitudeRow = "LocationView.DisclosureGroup.Longitude"
+        static let altitudeRow = "LocationView.DisclosureGroup.Altitude"
+        static let courseRow = "LocationView.DisclosureGroup.Course"
+        static let speedRow = "LocationView.DisclosureGroup.Speed"
     }
 
     enum AccelerationView {
         // Navigation Button
-        static let logButton = "AccelerationView.button.log"
+        static let logButton = "AccelerationView.Button.Log"
 
         // Disclosure Group
-        static let xAxisRow = "AccelerationView.disclosureGroup.xAxis"
-        static let yAxisRow = "AccelerationView.disclosureGroup.yAxis"
-        static let zAxisRow = "AccelerationView.disclosureGroup.zAxis"
+        static let xAxisRow = "AccelerationView.DisclosureGroup.xAxis"
+        static let yAxisRow = "AccelerationView.DisclosureGroup.yAxis"
+        static let zAxisRow = "AccelerationView.DisclosureGroup.zAxis"
     }
 
     enum AccelerationList {
         // Action Button
-        static let exportButton = "AccelerationList.button.export"
+        static let exportButton = "AccelerationList.Button.Export"
     }
 
     enum GravityView {
         // Navigation Button
-        static let logButton = "GravityView.button.log"
+        static let logButton = "GravityView.Button.Log"
 
         // Disclosure Group
-        static let xAxisRow = "GravityView.disclosureGroup.xAxis"
-        static let yAxisRow = "GravityView.disclosureGroup.yAxis"
-        static let zAxisRow = "GravityView.disclosureGroup.zAxis"
+        static let xAxisRow = "GravityView.DisclosureGroup.xAxis"
+        static let yAxisRow = "GravityView.DisclosureGroup.yAxis"
+        static let zAxisRow = "GravityView.DisclosureGroup.zAxis"
     }
 
     enum GravityList {
         // Action Button
-        static let exportButton = "GravityList.button.export"
+        static let exportButton = "GravityList.Button.Export"
     }
 
     enum GyroscopeView {
         // Navigation Button
-        static let logButton = "GyroscopeView.button.log"
+        static let logButton = "GyroscopeView.Button.Log"
 
         // Disclosure Group
-        static let xAxisRow = "GyroscopeView.disclosureGroup.xAxis"
-        static let yAxisRow = "GyroscopeView.disclosureGroup.yAxis"
-        static let zAxisRow = "GyroscopeView.disclosureGroup.zAxis"
+        static let xAxisRow = "GyroscopeView.DisclosureGroup.xAxis"
+        static let yAxisRow = "GyroscopeView.DisclosureGroup.yAxis"
+        static let zAxisRow = "GyroscopeView.DisclosureGroup.zAxis"
     }
 
     enum GyroscopeList {
         // Action Button
-        static let exportButton = "GyroscopeList.button.export"
+        static let exportButton = "GyroscopeList.Button.Export"
     }
 
     enum AltitudeView {
         // Navigation Button
-        static let logButton = "AltitudeView.button.log"
+        static let logButton = "AltitudeView.Button.Log"
 
         // Disclosure Group
-        static let pressureRow = "AltitudeView.disclosureGroup.pressure"
-        static let altitudeRow = "AltitudeView.disclosureGroup.altitude"
+        static let pressureRow = "AltitudeView.DisclosureGroup.Pressure"
+        static let altitudeRow = "AltitudeView.DisclosureGroup.Altitude"
     }
 
     enum AltitudeList {
         // Action Button
-        static let exportButton = "AltitudeList.button.export"
+        static let exportButton = "AltitudeList.Button.Export"
     }
 
     enum AttitudeView {
         // Navigation Button
-        static let logButton = "AttitudeView.button.log"
+        static let logButton = "AttitudeView.Button.Log"
 
         // Disclosure Group
-        static let rollRow = "AttitudeView.disclosureGroup.roll"
-        static let pitchRow = "AttitudeView.disclosureGroup.pitch"
-        static let yawRow = "AttitudeView.disclosureGroup.yaw"
-        static let headingRow = "AttitudeView.disclosureGroup.heading"
+        static let rollRow = "AttitudeView.DisclosureGroup.Roll"
+        static let pitchRow = "AttitudeView.DisclosureGroup.Pitch"
+        static let yawRow = "AttitudeView.DisclosureGroup.Yaw"
+        static let headingRow = "AttitudeView.DisclosureGroup.Heading"
     }
 
     enum AttitudeList {
         // Action Button
-        static let exportButton = "AttitudeList.button.export"
+        static let exportButton = "AttitudeList.Button.Export"
     }
 
     enum MagnetometerView {
         // Navigation Button
-        static let logButton = "MagnetometerView.button.log"
+        static let logButton = "MagnetometerView.Button.Log"
 
         // Disclosure Group
-        static let xAxisRow = "MagnetometerView.disclosureGroup.xAxis"
-        static let yAxisRow = "MagnetometerView.disclosureGroup.yAxis"
-        static let zAxisRow = "MagnetometerView.disclosureGroup.zAxis"
+        static let xAxisRow = "MagnetometerView.DisclosureGroup.xAxis"
+        static let yAxisRow = "MagnetometerView.DisclosureGroup.yAxis"
+        static let zAxisRow = "MagnetometerView.DisclosureGroup.zAxis"
     }
 
     enum MagnetometerList {
         // Action Button
-        static let exportButton = "MagnetometerList.button.export"
+        static let exportButton = "MagnetometerList.Button.Export"
     }
 
     enum SettingScreen {
         // Collection View
-        static let collectionView = "SettingScreen.list"
+        static let collectionView = "SettingScreen.List"
+
+        // Section
+        static let locationHeader = "SettingScreen.Header.Location"
+        static let mapHeader = "SettingScreen.Header.Map"
+        static let altitudeHeader = "SettingScreen.Header.Altitude"
+        static let graphHeader = "SettingScreen.Header.Graph"
 
         // Picker
-        static let speedPicker = "SettingScreen.picker.speed"
-        static let accuracyPicker = "SettingScreen.picker.accuracy"
-        static let mapTypePicker = "SettingScreen.picker.mapType"
-        static let pressurePicker = "SettingScreen.picker.pressure"
-        static let altitudePicker = "SettingScreen.picker.altitude"
+        static let speedPicker = "SettingScreen.Picker.Speed"
+        static let accuracyPicker = "SettingScreen.Picker.Accuracy"
+        static let mapTypePicker = "SettingScreen.Picker.MapType"
+        static let pressurePicker = "SettingScreen.Picker.Pressure"
+        static let altitudePicker = "SettingScreen.Picker.Altitude"
 
         // Toggle
-        static let compassToggle = "SettingScreen.toggle.compass"
-        static let scaleToggle = "SettingScreen.toggle.scale"
-        static let buildingsToggle = "SettingScreen.toggle.buildings"
-        static let trafficToggle = "SettingScreen.toggle.traffic"
-        static let rotateToggle = "SettingScreen.toggle.rotate"
-        static let pitchToggle = "SettingScreen.toggle.pitch"
-        static let scrollToggle = "SettingScreen.toggle.scroll"
+        static let compassToggle = "SettingScreen.Toggle.Compass"
+        static let scaleToggle = "SettingScreen.Toggle.Scale"
+        static let buildingsToggle = "SettingScreen.Toggle.Buildings"
+        static let trafficToggle = "SettingScreen.Toggle.Traffic"
+        static let rotateToggle = "SettingScreen.Toggle.Rotate"
+        static let pitchToggle = "SettingScreen.Toggle.Pitch"
+        static let scrollToggle = "SettingScreen.Toggle.Scroll"
 
         // Stepper
-        static let zoomStepper = "SettingScreen.stepper.zoom"
-        static let maxPointsStepper = "SettingScreen.stepper.maxPoints"
+        static let zoomStepper = "SettingScreen.Stepper.Zoom"
+        static let maxPointsStepper = "SettingScreen.Stepper.MaxPoints"
 
         // Slider
-        static let zoomSlider = "SettingScreen.slider.zoom"
-        static let maxPointsSlider = "SettingScreen.slider.maxPoints"
+        static let zoomSlider = "SettingScreen.Slider.Zoom"
+        static let maxPointsSlider = "SettingScreen.Slider.MaxPoints"
 
         // Action Button
-        static let saveButton = "SettingScreen.button.save"
-        static let discardButton = "SettingScreen.button.discard"
+        static let saveButton = "SettingScreen.Button.Save"
+        static let discardButton = "SettingScreen.Button.Discard"
     }
 }

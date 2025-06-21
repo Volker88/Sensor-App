@@ -12,7 +12,6 @@ import Testing
 
 @testable import Sensor_App
 
-@MainActor
 final class AppUpdateTests: BaseTestCase {
 
     // MARK: - Testing Methods

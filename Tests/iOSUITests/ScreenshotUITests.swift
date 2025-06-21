@@ -8,7 +8,6 @@
 
 import XCTest
 
-@MainActor
 class ScreenshotUITests: BaseTestCase {
 
     override func setUp() async throws {
@@ -59,18 +58,16 @@ class ScreenshotUITests: BaseTestCase {
         takeScreenshotOfCurrentView(name: "0Home")
 
         // Switch to Location View
-        let collection = app.collectionViews[UIIdentifiers.Sidebar.collectionView]
-        collection.buttons[UIIdentifiers.Sidebar.locationButton].tap()
+        goToLocationScreen()
 
         // Show Speed Graph
         app.buttons[UIIdentifiers.LocationView.speedRow].tap()
 
         // Take Screenshot of Location and go back to Home
         takeScreenshotOfCurrentView(name: "1Location")
-        backToHomeMenu()
 
         // Go to Acceleration View and take Screenshot
-        collection.buttons[UIIdentifiers.Sidebar.accelerationButton].tap()
+        goToAccelerationScreen()
 
         // Show X-Axis Graph
         app.buttons[UIIdentifiers.AccelerationView.xAxisRow].tap()
@@ -80,13 +77,39 @@ class ScreenshotUITests: BaseTestCase {
         app.buttons[UIIdentifiers.AccelerationView.logButton].tap()
         takeScreenshotOfCurrentView(name: "3Acceleration_Log")
 
-        backToHomeMenu()
-        backToHomeMenu()
-
         // Go to Settings View and take Screenshot
-        collection.buttons[UIIdentifiers.Sidebar.settingsButton].tap()
+        goToSettingsScreen()
 
         takeScreenshotOfCurrentView(name: "4Settings")
+    }
+
+    // MARK: - Methods
+    func goToLocationScreen() {
+        if isIPhone() {
+            app.descendants(matching: .any)[UIIdentifiers.ContentView.positionTab].tapWhenReady()
+            app.buttons[UIIdentifiers.PositionScreen.locationButton].tapWhenReady()
+        } else {
+            app.descendants(matching: .any)[UIIdentifiers.ContentView.locationTab].tapWhenReady()
+        }
+    }
+
+    // MARK: - Methods
+    func goToAccelerationScreen() {
+        if isIPhone() {
+            app.descendants(matching: .any)[UIIdentifiers.ContentView.motionTab].tapWhenReady()
+            app.buttons[UIIdentifiers.MotionScreen.accelerationButton].tapWhenReady()
+        } else {
+            app.descendants(matching: .any)[UIIdentifiers.ContentView.accelerationTab].tapWhenReady()
+        }
+    }
+
+    // MARK: - Methods
+    func goToSettingsScreen() {
+        if isIPhone() {
+            app.descendants(matching: .any)[UIIdentifiers.ContentView.settingsTab].tapWhenReady()
+        } else {
+            app.descendants(matching: .any)[UIIdentifiers.ContentView.settingsTab].tapWhenReady()
+        }
     }
 
     func takeScreenshotOfCurrentView(name: String, delay: UInt32 = 1) {
