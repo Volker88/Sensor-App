@@ -5,10 +5,12 @@
 //  Created by Volker Schmitt on 08.07.22.
 //
 
+import AppIntents
 import SwiftUI
 
+@MainActor
 @Observable
-class AppState {
+final class AppState {
 
     #if os(iOS)
         var isIphone: Bool {
@@ -30,5 +32,10 @@ class AppState {
         positionStack.removeAll()
         motionStack.removeAll()
         magnetometerStack.removeAll()
+    }
+
+    // MARK: - Shortcut
+    func updateShortcutParameter() {
+        SensorAppShortchuts.updateAppShortcutParameters()
     }
 }

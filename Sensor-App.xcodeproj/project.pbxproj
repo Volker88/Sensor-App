@@ -174,6 +174,8 @@
 				"Resources/AppIcon-V1.icon",
 				"Resources/AppIcon-V2.icon",
 				"Resources/AppIcon-V3.icon",
+				Resources/AppIntents.xcstrings,
+				Resources/AppShortcuts.xcstrings,
 				Resources/Assets.xcassets,
 				Resources/InfoPlist.xcstrings,
 				Resources/Localizable.xcstrings,
@@ -1030,6 +1032,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_UPCOMING_FEATURE_NONISOLATED_NONSENDING_BY_DEFAULT = YES;
 				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2,4";
 			};
@@ -1104,6 +1107,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_UPCOMING_FEATURE_NONISOLATED_NONSENDING_BY_DEFAULT = YES;
 				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2,4";
 				VALIDATE_PRODUCT = YES;

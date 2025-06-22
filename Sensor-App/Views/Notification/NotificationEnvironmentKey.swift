@@ -10,7 +10,7 @@ import SwiftUI
 struct ShowNotificationAction {
     typealias Action = (String) -> Void
     let action: Action
-    func callAsFunction(_ message: String) {  // TODO: - Translation
+    func callAsFunction(_ message: String) {
         action(message)
     }
 }

@@ -16,6 +16,7 @@ struct ReleaseNotesView: View {
             Section {
                 Text("Requires minimum iOS 26 and watchOS 26", tableName: "ReleaseNotes")
                 Text("Adapt the new iOS 26 Liquid Glass Design", tableName: "ReleaseNotes")
+                Text("Integration into Siri & Shortcuts", tableName: "ReleaseNotes")
                 Text("Performance improvements an bug fixes", tableName: "ReleaseNotes")
             } header: {
                 Text(verbatim: "6.0.0")

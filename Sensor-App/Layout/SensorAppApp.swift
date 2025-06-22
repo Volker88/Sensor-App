@@ -5,6 +5,7 @@
 //  Created by Volker Schmitt on 19.07.20.
 //
 
+import AppIntents
 import OSLog
 import Sensor_App_Framework
 import SwiftUI
@@ -14,7 +15,7 @@ struct SensorAppApp: App {
 
     @Environment(\.scenePhase) private var scenePhase
 
-    @State private var appState = AppState()
+    @State private var appState: AppState
     @State private var update = AppUpdates()
     @State private var locationManager = LocationManager()
     @State private var motionManager = MotionManager()
@@ -22,11 +23,18 @@ struct SensorAppApp: App {
     @State private var calculationManager = CalculationManager()
 
     init() {
+        let appStateManager = AppState()
+        appState = appStateManager
         #if DEBUG
             if CommandLine.arguments.contains("disable-animations") {
                 UIView.setAnimationsEnabled(false)
             }
         #endif
+
+        // MARK: - Register App Dependency
+        // AppDependencyManager.shared.add(dependency: appStateManager) // Original function call
+        AppDependencyManager.shared.add(key: "AppState", dependency: appStateManager)
+        CustomAppDependencyManager.shared.add(key: "AppState", dependency: appStateManager)
     }
 
     var body: some Scene {
@@ -49,9 +57,8 @@ struct SensorAppApp: App {
                             Logger.scenePhase.debug("ScenePhase: Unknown")
                     }
                 }
-                .onAppear {
-                    update.checkForUpdate()
-                }
+                .onAppear(perform: update.checkForUpdate)
+                .onAppear(perform: appState.updateShortcutParameter)
                 .sheet(isPresented: $update.showReleaseNotes) { ReleaseNotesScreen() }
                 .withNotificationView()
         }
