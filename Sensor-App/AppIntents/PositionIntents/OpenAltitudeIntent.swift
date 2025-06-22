@@ -35,17 +35,7 @@ nonisolated struct OpenAltitudeIntent: AppIntent {
 
     @MainActor
     func perform() async throws -> some IntentResult {
-        if let appState {
-            if appState.isIphone {
-                appState.selectedTab = .position
-
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                    appState.positionStack = [.altitude]
-                }
-            } else {
-                appState.selectedTab = .altitude
-            }
-        }
+        appState?.appIntentTab = .altitude
 
         return .result()
     }

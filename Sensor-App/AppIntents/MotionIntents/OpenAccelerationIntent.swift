@@ -34,17 +34,7 @@ nonisolated struct OpenAccelerationIntent: AppIntent {
 
     @MainActor
     func perform() async throws -> some IntentResult {
-        if let appState {
-            if appState.isIphone {
-                appState.selectedTab = .motion
-
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                    appState.motionStack = [.acceleration]
-                }
-            } else {
-                appState.selectedTab = .acceleration
-            }
-        }
+        appState?.appIntentTab = .acceleration
 
         return .result()
     }

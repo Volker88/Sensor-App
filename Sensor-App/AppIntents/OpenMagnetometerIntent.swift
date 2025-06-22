@@ -32,9 +32,7 @@ nonisolated struct OpenMagnetometerIntent: AppIntent {
 
     @MainActor
     func perform() async throws -> some IntentResult {
-        if let appState {
-            appState.selectedTab = .magnetometer
-        }
+        appState?.appIntentTab = .magnetometer
 
         return .result()
     }

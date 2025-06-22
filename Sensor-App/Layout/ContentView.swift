@@ -152,22 +152,26 @@ struct ContentView: View {
         }
         .tabViewStyle(.sidebarAdaptable)
         .tabViewCustomization($customization)
-        .onAppear {
-            if isCompact {
-                appState.selectedTab = .position
-            } else {
-                appState.selectedTab = .location
-            }
-        }
-        .onChange(of: appState.selectedTab) {
-            motionManager.stopMotionUpdates()
-            locationManager.stopLocationUpdates()
-            appState.resetStack()
-        }
-        .onChange(of: horizontalSizeClass) {
+        .onAppear(perform: onAppear)
+        .onChange(of: horizontalSizeClass) { appState.onSizeClassChange() }
+        .onChange(of: appState.appIntentTab) { appState.appIntentDrivenNavigation(horizontalSizeClass) }
+        .onChange(of: appState.selectedTab) { onChangeOfSelectedTab() }
+    }
+
+    // MARK: - Methods
+    private func onAppear() {
+        if isCompact {
+            appState.selectedTab = .position
+        } else {
             appState.selectedTab = .location
-            appState.resetStack()
         }
+    }
+
+    private func onChangeOfSelectedTab() {
+        motionManager.stopMotionUpdates()
+        locationManager.stopLocationUpdates()
+        appState.resetStack()
+        appState.appIntentTab = nil
     }
 }
 

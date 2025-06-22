@@ -35,17 +35,7 @@ nonisolated struct OpenLocationIntent: AppIntent {
 
     @MainActor
     func perform() async throws -> some IntentResult {
-        if let appState {
-            if appState.isIphone {
-                appState.selectedTab = .position
-
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                    appState.positionStack = [.location]
-                }
-            } else {
-                appState.selectedTab = .location
-            }
-        }
+        appState?.appIntentTab = .location
 
         return .result()
     }

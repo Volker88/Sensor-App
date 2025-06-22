@@ -34,17 +34,7 @@ nonisolated struct OpenGyroscopeIntent: AppIntent {
 
     @MainActor
     func perform() async throws -> some IntentResult {
-        if let appState {
-            if appState.isIphone {
-                appState.selectedTab = .motion
-
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                    appState.motionStack = [.gyroscope]
-                }
-            } else {
-                appState.selectedTab = .gyroscope
-            }
-        }
+        appState?.appIntentTab = .gyroscope
 
         return .result()
     }
