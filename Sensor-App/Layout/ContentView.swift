@@ -37,7 +37,11 @@ struct ContentView: View {
                 .accessibilityIdentifier(UIIdentifiers.ContentView.positionTab)
             } else {
                 TabSection(RootTab.position.localizedString) {
-                    Tab("Location", systemImage: "location", value: RootTab.location) {
+                    Tab(
+                        RootTab.location.localizedString,
+                        systemImage: RootTab.location.symbolImage,
+                        value: RootTab.location
+                    ) {
                         NavigationStack(path: Bindable(appState).positionStack) {
                             LocationScreen()
                                 .navigationDestination(for: PositionStack.self) { $0 }
@@ -46,7 +50,11 @@ struct ContentView: View {
                     .customizationID(RootTab.location.stringValue)
                     .accessibilityIdentifier(UIIdentifiers.ContentView.locationTab)
 
-                    Tab("Altitude", systemImage: "arrow.up.right.circle", value: RootTab.altitude) {
+                    Tab(
+                        RootTab.altitude.localizedString,
+                        image: RootTab.altitude.symbolImage,
+                        value: RootTab.altitude
+                    ) {
                         NavigationStack(path: Bindable(appState).positionStack) {
                             AltitudeScreen()
                                 .navigationDestination(for: PositionStack.self) { $0 }
@@ -72,7 +80,7 @@ struct ContentView: View {
                 TabSection(RootTab.motion.localizedString) {
                     Tab(
                         RootTab.acceleration.localizedString,
-                        systemImage: RootTab.acceleration.symbolImage,
+                        image: RootTab.acceleration.symbolImage,
                         value: RootTab.acceleration
                     ) {
                         NavigationStack(path: Bindable(appState).motionStack) {
@@ -85,7 +93,7 @@ struct ContentView: View {
 
                     Tab(
                         RootTab.gravity.localizedString,
-                        systemImage: RootTab.gravity.symbolImage,
+                        image: RootTab.gravity.symbolImage,
                         value: RootTab.gravity
                     ) {
                         NavigationStack(path: Bindable(appState).motionStack) {
@@ -111,7 +119,7 @@ struct ContentView: View {
 
                     Tab(
                         RootTab.attitude.localizedString,
-                        systemImage: RootTab.attitude.symbolImage,
+                        image: RootTab.attitude.symbolImage,
                         value: RootTab.attitude
                     ) {
                         NavigationStack(path: Bindable(appState).motionStack) {

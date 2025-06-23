@@ -22,14 +22,16 @@ struct PositionScreen: View {
                 LazyVGrid(columns: columns, spacing: 20) {
                     NavigationLink(value: PositionStack.location) {
                         CardView {
-                            Text("Location")
+                            Image(systemName: RootTab.location.symbolImage)
+                            Text(RootTab.location.stringValue)
                         }
                     }
                     .accessibilityIdentifier(UIIdentifiers.PositionScreen.locationButton)
 
                     NavigationLink(value: PositionStack.altitude) {
                         CardView {
-                            Text("Altitude")
+                            Image(RootTab.altitude.symbolImage)
+                            Text(RootTab.altitude.stringValue)
                         }
                     }
                     .accessibilityIdentifier(UIIdentifiers.PositionScreen.altitudeButton)
@@ -37,7 +39,7 @@ struct PositionScreen: View {
                 .frame(maxWidth: 360)
                 .frame(maxWidth: .infinity, alignment: .center)
             }
-            .navigationTitle("Position")
+            .navigationTitle(RootTab.position.stringValue)
             .navigationSubtitle("Select a position type")
             .navigationDestination(for: PositionStack.self) { $0 }
         }

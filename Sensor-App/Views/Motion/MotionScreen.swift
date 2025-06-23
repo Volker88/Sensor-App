@@ -22,28 +22,32 @@ struct MotionScreen: View {
                 LazyVGrid(columns: columns, spacing: 20) {
                     NavigationLink(value: MotionStack.acceleration) {
                         CardView {
-                            Text("Acceleration")
+                            Image(RootTab.acceleration.symbolImage)
+                            Text(RootTab.acceleration.stringValue)
                         }
                     }
                     .accessibilityIdentifier(UIIdentifiers.MotionScreen.accelerationButton)
 
                     NavigationLink(value: MotionStack.gravity) {
                         CardView {
-                            Text("Gravity")
+                            Image(RootTab.gravity.symbolImage)
+                            Text(RootTab.gravity.stringValue)
                         }
                     }
                     .accessibilityIdentifier(UIIdentifiers.MotionScreen.gravityButton)
 
                     NavigationLink(value: MotionStack.gyroscope) {
                         CardView {
-                            Text("Gyroscope")
+                            Image(systemName: RootTab.gyroscope.symbolImage)
+                            Text(RootTab.gyroscope.stringValue)
                         }
                     }
                     .accessibilityIdentifier(UIIdentifiers.MotionScreen.gyroscopeButton)
 
                     NavigationLink(value: MotionStack.attitude) {
                         CardView {
-                            Text("Attitude")
+                            Image(RootTab.attitude.symbolImage)
+                            Text(RootTab.attitude.stringValue)
                         }
                     }
                     .accessibilityIdentifier(UIIdentifiers.MotionScreen.attitudeButton)
@@ -51,7 +55,7 @@ struct MotionScreen: View {
                 .frame(maxWidth: 360)
                 .frame(maxWidth: .infinity, alignment: .center)
             }
-            .navigationTitle("Motion")
+            .navigationTitle(RootTab.motion.stringValue)
             .navigationSubtitle("Select a motion type")
             .navigationDestination(for: MotionStack.self) { $0 }
         }
