@@ -17,7 +17,7 @@ public enum MapType: String, Codable, CaseIterable {
     case mutedStandard = "Muted Standard"
 }
 
-public struct MapKitSettings: @preconcurrency Codable {
+public struct MapKitSettings: Codable {
     public var showsCompass: Bool
     public var showsScale: Bool
     public var showsBuildings: Bool

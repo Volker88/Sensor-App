@@ -9,6 +9,7 @@
 import OSLog
 import SwiftUI
 
+@MainActor
 @Observable
 public class AppUpdates {
 

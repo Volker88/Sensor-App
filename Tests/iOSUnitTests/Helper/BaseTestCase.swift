@@ -11,6 +11,7 @@ import Testing
 
 @testable import Sensor_App
 
+@MainActor
 class BaseTestCase {
 
     let calculationManager = CalculationManager()

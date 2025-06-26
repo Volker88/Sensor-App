@@ -10,6 +10,7 @@ import Foundation
 import OSLog
 import SwiftUI
 
+@MainActor
 @Observable
 public class SettingsManager {
 

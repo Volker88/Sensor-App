@@ -12,6 +12,7 @@ import Testing
 
 @testable import Sensor_App
 
+@MainActor
 final class SettingsManagerTests: BaseTestCase {
 
     // MARK: - Testing Methods

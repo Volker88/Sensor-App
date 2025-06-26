@@ -9,7 +9,7 @@
 import Foundation
 import SwiftUI
 
-public struct UserSettings: @preconcurrency Codable {
+public struct UserSettings: Codable {
     public var showReleaseNotes: Bool
     public var GPSSpeedSetting: String
     public var GPSAccuracySetting: String
