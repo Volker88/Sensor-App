@@ -32,9 +32,7 @@ struct SensorAppApp: App {
         #endif
 
         // MARK: - Register App Dependency
-        // AppDependencyManager.shared.add(dependency: appStateManager) // Original function call
-        AppDependencyManager.shared.add(key: "AppState", dependency: appStateManager)
-        CustomAppDependencyManager.shared.add(key: "AppState", dependency: appStateManager)
+        AppDependencyManager.shared.add(dependency: appStateManager)  // Original function call
     }
 
     var body: some Scene {

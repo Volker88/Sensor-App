@@ -30,7 +30,7 @@ struct PositionScreen: View {
 
                     NavigationLink(value: PositionStack.altitude) {
                         CardView {
-                            Image(RootTab.altitude.symbolImage)
+                            Image(systemName: RootTab.altitude.symbolImage)
                             Text(RootTab.altitude.stringValue)
                         }
                     }

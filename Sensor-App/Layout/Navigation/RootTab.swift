@@ -78,17 +78,17 @@ enum RootTab: Hashable {
             case .location:
                 return "location"
             case .altitude:
-                return "Altitude"
+                return "mountain.2"
             case .motion:
-                return "speedometer"
+                return "bolt.fill"
             case .acceleration:
-                return "Acceleration"
+                return "bolt.fill"
             case .gravity:
-                return "Gravity"
+                return "arrow.down"
             case .gyroscope:
                 return "gyroscope"
             case .attitude:
-                return "Attitude"
+                return "dial.medium"
             case .magnetometer:
                 return "wave.3.right"
             case .settings:

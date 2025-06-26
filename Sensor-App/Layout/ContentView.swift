@@ -52,7 +52,7 @@ struct ContentView: View {
 
                     Tab(
                         RootTab.altitude.localizedString,
-                        image: RootTab.altitude.symbolImage,
+                        systemImage: RootTab.altitude.symbolImage,
                         value: RootTab.altitude
                     ) {
                         NavigationStack(path: Bindable(appState).positionStack) {
@@ -80,7 +80,7 @@ struct ContentView: View {
                 TabSection(RootTab.motion.localizedString) {
                     Tab(
                         RootTab.acceleration.localizedString,
-                        image: RootTab.acceleration.symbolImage,
+                        systemImage: RootTab.acceleration.symbolImage,
                         value: RootTab.acceleration
                     ) {
                         NavigationStack(path: Bindable(appState).motionStack) {
@@ -93,7 +93,7 @@ struct ContentView: View {
 
                     Tab(
                         RootTab.gravity.localizedString,
-                        image: RootTab.gravity.symbolImage,
+                        systemImage: RootTab.gravity.symbolImage,
                         value: RootTab.gravity
                     ) {
                         NavigationStack(path: Bindable(appState).motionStack) {
@@ -119,7 +119,7 @@ struct ContentView: View {
 
                     Tab(
                         RootTab.attitude.localizedString,
-                        image: RootTab.attitude.symbolImage,
+                        systemImage: RootTab.attitude.symbolImage,
                         value: RootTab.attitude
                     ) {
                         NavigationStack(path: Bindable(appState).motionStack) {

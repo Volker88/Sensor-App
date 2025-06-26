@@ -22,7 +22,7 @@ struct MotionScreen: View {
                 LazyVGrid(columns: columns, spacing: 20) {
                     NavigationLink(value: MotionStack.acceleration) {
                         CardView {
-                            Image(RootTab.acceleration.symbolImage)
+                            Image(systemName: RootTab.acceleration.symbolImage)
                             Text(RootTab.acceleration.stringValue)
                         }
                     }
@@ -30,7 +30,7 @@ struct MotionScreen: View {
 
                     NavigationLink(value: MotionStack.gravity) {
                         CardView {
-                            Image(RootTab.gravity.symbolImage)
+                            Image(systemName: RootTab.gravity.symbolImage)
                             Text(RootTab.gravity.stringValue)
                         }
                     }
@@ -46,7 +46,7 @@ struct MotionScreen: View {
 
                     NavigationLink(value: MotionStack.attitude) {
                         CardView {
-                            Image(RootTab.attitude.symbolImage)
+                            Image(systemName: RootTab.attitude.symbolImage)
                             Text(RootTab.attitude.stringValue)
                         }
                     }

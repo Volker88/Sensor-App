@@ -1,15 +1,15 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "Open ${applicationName} Acceleration" : {
+    "Navigate in ${applicationName}" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
           "stringSet" : {
             "state" : "translated",
             "values" : [
-              "Otevřít ${applicationName} Zrychlení",
-              "Otevřít Zrychlení pomocí ${applicationName}"
+              "Navigovat v ${applicationName}",
+              "Navigovat na ${navigationOption} v ${applicationName}"
             ]
           }
         },
@@ -17,8 +17,8 @@
           "stringSet" : {
             "state" : "translated",
             "values" : [
-              "Öffne ${applicationName} Beschleunigung",
-              "Beschleunigung mit ${applicationName} öffnen"
+              "Navigiere in ${applicationName}",
+              "Navigiere zu ${navigationOption} in ${applicationName}"
             ]
           }
         },
@@ -26,8 +26,8 @@
           "stringSet" : {
             "state" : "new",
             "values" : [
-              "Open ${applicationName} Acceleration",
-              "Open Acceleration with ${applicationName}"
+              "Navigate in ${applicationName}",
+              "Navigate to ${navigationOption} in ${applicationName}"
             ]
           }
         },
@@ -35,8 +35,8 @@
           "stringSet" : {
             "state" : "translated",
             "values" : [
-              "Abrir ${applicationName} Aceleración",
-              "Abrir Aceleración con ${applicationName}"
+              "Navegar en ${applicationName}",
+              "Navegar a ${navigationOption} en ${applicationName}"
             ]
           }
         },
@@ -44,8 +44,8 @@
           "stringSet" : {
             "state" : "translated",
             "values" : [
-              "Ouvrir ${applicationName} Accélération",
-              "Ouvrir l'Accélération avec ${applicationName}"
+              "Naviguer dans ${applicationName}",
+              "Naviguer vers ${navigationOption} dans ${applicationName}"
             ]
           }
         },
@@ -53,8 +53,8 @@
           "stringSet" : {
             "state" : "translated",
             "values" : [
-              "Apri ${applicationName} Accelerazione",
-              "Apri Accelerazione con ${applicationName}"
+              "Naviga in ${applicationName}",
+              "Naviga verso ${navigationOption} in ${applicationName}"
             ]
           }
         },
@@ -62,8 +62,8 @@
           "stringSet" : {
             "state" : "translated",
             "values" : [
-              "${applicationName} の加速度を開く",
-              "${applicationName} で加速度を開く"
+              "${applicationName} を操作する",
+              "${applicationName} で ${navigationOption} に移動"
             ]
           }
         },
@@ -71,8 +71,8 @@
           "stringSet" : {
             "state" : "translated",
             "values" : [
-              "${applicationName} 가속도 열기",
-              "${applicationName} 로 가속도 열기"
+              "${applicationName}에서 탐색하기",
+              "${applicationName}에서 ${navigationOption}으로 이동"
             ]
           }
         },
@@ -80,8 +80,8 @@
           "stringSet" : {
             "state" : "translated",
             "values" : [
-              "Abrir ${applicationName} Aceleração",
-              "Abrir Aceleração com ${applicationName}"
+              "Navegar em ${applicationName}",
+              "Navegar para ${navigationOption} em ${applicationName}"
             ]
           }
         },
@@ -89,578 +89,8 @@
           "stringSet" : {
             "state" : "translated",
             "values" : [
-              "打开 ${applicationName} 加速度",
-              "使用 ${applicationName} 打开加速度"
-            ]
-          }
-        }
-      }
-    },
-    "Open ${applicationName} Altitude" : {
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "cs" : {
-          "stringSet" : {
-            "state" : "translated",
-            "values" : [
-              "Otevřít ${applicationName} Nadmořskou výšku",
-              "Otevřít Nadmořskou výšku pomocí ${applicationName}"
-            ]
-          }
-        },
-        "de" : {
-          "stringSet" : {
-            "state" : "translated",
-            "values" : [
-              "Öffne ${applicationName} Höhe",
-              "Höhe mit ${applicationName} öffnen"
-            ]
-          }
-        },
-        "en" : {
-          "stringSet" : {
-            "state" : "new",
-            "values" : [
-              "Open ${applicationName} Altitude",
-              "Open Altitude with ${applicationName}"
-            ]
-          }
-        },
-        "es" : {
-          "stringSet" : {
-            "state" : "translated",
-            "values" : [
-              "Abrir ${applicationName} Altitud",
-              "Abrir Altitud con ${applicationName}"
-            ]
-          }
-        },
-        "fr" : {
-          "stringSet" : {
-            "state" : "translated",
-            "values" : [
-              "Ouvrir ${applicationName} Altitude",
-              "Ouvrir l'Altitude avec ${applicationName}"
-            ]
-          }
-        },
-        "it" : {
-          "stringSet" : {
-            "state" : "translated",
-            "values" : [
-              "Apri ${applicationName} Altitudine",
-              "Apri Altitudine con ${applicationName}"
-            ]
-          }
-        },
-        "ja" : {
-          "stringSet" : {
-            "state" : "translated",
-            "values" : [
-              "${applicationName} の高度を開く",
-              "${applicationName} で高度を開く"
-            ]
-          }
-        },
-        "ko" : {
-          "stringSet" : {
-            "state" : "translated",
-            "values" : [
-              "${applicationName} 고도 열기",
-              "${applicationName} 로 고도 열기"
-            ]
-          }
-        },
-        "pt-PT" : {
-          "stringSet" : {
-            "state" : "translated",
-            "values" : [
-              "Abrir ${applicationName} Altitude",
-              "Abrir Altitude com ${applicationName}"
-            ]
-          }
-        },
-        "zh-Hans" : {
-          "stringSet" : {
-            "state" : "translated",
-            "values" : [
-              "打开 ${applicationName} 海拔",
-              "使用 ${applicationName} 打开海拔"
-            ]
-          }
-        }
-      }
-    },
-    "Open ${applicationName} Attitude" : {
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "cs" : {
-          "stringSet" : {
-            "state" : "translated",
-            "values" : [
-              "Otevřít ${applicationName} Postoj",
-              "Otevřít Postoj pomocí ${applicationName}"
-            ]
-          }
-        },
-        "de" : {
-          "stringSet" : {
-            "state" : "translated",
-            "values" : [
-              "Öffne ${applicationName} Lage",
-              "Lage mit ${applicationName} öffnen"
-            ]
-          }
-        },
-        "en" : {
-          "stringSet" : {
-            "state" : "new",
-            "values" : [
-              "Open ${applicationName} Attitude",
-              "Open Attitude with ${applicationName}"
-            ]
-          }
-        },
-        "es" : {
-          "stringSet" : {
-            "state" : "translated",
-            "values" : [
-              "Abrir ${applicationName} Actitud",
-              "Abrir Actitud con ${applicationName}"
-            ]
-          }
-        },
-        "fr" : {
-          "stringSet" : {
-            "state" : "translated",
-            "values" : [
-              "Ouvrir ${applicationName} Attitude",
-              "Ouvrir l'Attitude avec ${applicationName}"
-            ]
-          }
-        },
-        "it" : {
-          "stringSet" : {
-            "state" : "translated",
-            "values" : [
-              "Apri ${applicationName} Atteggiamento",
-              "Apri Atteggiamento con ${applicationName}"
-            ]
-          }
-        },
-        "ja" : {
-          "stringSet" : {
-            "state" : "translated",
-            "values" : [
-              "${applicationName} の姿勢を開く",
-              "${applicationName} で姿勢を開く"
-            ]
-          }
-        },
-        "ko" : {
-          "stringSet" : {
-            "state" : "translated",
-            "values" : [
-              "${applicationName} 자세 열기",
-              "${applicationName} 로 자세 열기"
-            ]
-          }
-        },
-        "pt-PT" : {
-          "stringSet" : {
-            "state" : "translated",
-            "values" : [
-              "Abrir ${applicationName} Atitude",
-              "Abrir Atitude com ${applicationName}"
-            ]
-          }
-        },
-        "zh-Hans" : {
-          "stringSet" : {
-            "state" : "translated",
-            "values" : [
-              "打开 ${applicationName} 姿态",
-              "使用 ${applicationName} 打开姿态"
-            ]
-          }
-        }
-      }
-    },
-    "Open ${applicationName} Gravity" : {
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "cs" : {
-          "stringSet" : {
-            "state" : "translated",
-            "values" : [
-              "Otevřít ${applicationName} Tíhové zrychlení",
-              "Otevřít Tíhové zrychlení pomocí ${applicationName}"
-            ]
-          }
-        },
-        "de" : {
-          "stringSet" : {
-            "state" : "translated",
-            "values" : [
-              "Öffne ${applicationName} Schwerkraft",
-              "Schwerkraft mit ${applicationName} öffnen"
-            ]
-          }
-        },
-        "en" : {
-          "stringSet" : {
-            "state" : "new",
-            "values" : [
-              "Open ${applicationName} Gravity",
-              "Open Gravity with ${applicationName}"
-            ]
-          }
-        },
-        "es" : {
-          "stringSet" : {
-            "state" : "translated",
-            "values" : [
-              "Abrir ${applicationName} Gravedad",
-              "Abrir Gravedad con ${applicationName}"
-            ]
-          }
-        },
-        "fr" : {
-          "stringSet" : {
-            "state" : "translated",
-            "values" : [
-              "Ouvrir ${applicationName} Gravité",
-              "Ouvrir la Gravité avec ${applicationName}"
-            ]
-          }
-        },
-        "it" : {
-          "stringSet" : {
-            "state" : "translated",
-            "values" : [
-              "Apri ${applicationName} Gravità",
-              "Apri Gravità con ${applicationName}"
-            ]
-          }
-        },
-        "ja" : {
-          "stringSet" : {
-            "state" : "translated",
-            "values" : [
-              "${applicationName} の重力を開く",
-              "${applicationName} で重力を開く"
-            ]
-          }
-        },
-        "ko" : {
-          "stringSet" : {
-            "state" : "translated",
-            "values" : [
-              "${applicationName} 중력 열기",
-              "${applicationName} 로 중력 열기"
-            ]
-          }
-        },
-        "pt-PT" : {
-          "stringSet" : {
-            "state" : "translated",
-            "values" : [
-              "Abrir ${applicationName} Gravidade",
-              "Abrir Gravidade com ${applicationName}"
-            ]
-          }
-        },
-        "zh-Hans" : {
-          "stringSet" : {
-            "state" : "translated",
-            "values" : [
-              "打开 ${applicationName} 重力",
-              "使用 ${applicationName} 打开重力"
-            ]
-          }
-        }
-      }
-    },
-    "Open ${applicationName} Gyroscope" : {
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "cs" : {
-          "stringSet" : {
-            "state" : "translated",
-            "values" : [
-              "Otevřít ${applicationName} Gyroskop",
-              "Otevřít Gyroskop pomocí ${applicationName}"
-            ]
-          }
-        },
-        "de" : {
-          "stringSet" : {
-            "state" : "translated",
-            "values" : [
-              "Öffne ${applicationName} Gyroskop",
-              "Gyroskop mit ${applicationName} öffnen"
-            ]
-          }
-        },
-        "en" : {
-          "stringSet" : {
-            "state" : "new",
-            "values" : [
-              "Open ${applicationName} Gyroscope",
-              "Open Gyroscope with ${applicationName}"
-            ]
-          }
-        },
-        "es" : {
-          "stringSet" : {
-            "state" : "translated",
-            "values" : [
-              "Abrir ${applicationName} Giroscopio",
-              "Abrir Giroscopio con ${applicationName}"
-            ]
-          }
-        },
-        "fr" : {
-          "stringSet" : {
-            "state" : "translated",
-            "values" : [
-              "Ouvrir ${applicationName} Gyroscope",
-              "Ouvrir le Gyroscope avec ${applicationName}"
-            ]
-          }
-        },
-        "it" : {
-          "stringSet" : {
-            "state" : "translated",
-            "values" : [
-              "Apri ${applicationName} Giroscopio",
-              "Apri Giroscopio con ${applicationName}"
-            ]
-          }
-        },
-        "ja" : {
-          "stringSet" : {
-            "state" : "translated",
-            "values" : [
-              "${applicationName} のジャイロスコープを開く",
-              "${applicationName} でジャイロスコープを開く"
-            ]
-          }
-        },
-        "ko" : {
-          "stringSet" : {
-            "state" : "translated",
-            "values" : [
-              "${applicationName} 자이로스코프 열기",
-              "${applicationName} 로 자이로스코프 열기"
-            ]
-          }
-        },
-        "pt-PT" : {
-          "stringSet" : {
-            "state" : "translated",
-            "values" : [
-              "Abrir ${applicationName} Giroscópio",
-              "Abrir Giroscópio com ${applicationName}"
-            ]
-          }
-        },
-        "zh-Hans" : {
-          "stringSet" : {
-            "state" : "translated",
-            "values" : [
-              "打开 ${applicationName} 陀螺仪",
-              "使用 ${applicationName} 打开陀螺仪"
-            ]
-          }
-        }
-      }
-    },
-    "Open ${applicationName} Location" : {
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "cs" : {
-          "stringSet" : {
-            "state" : "translated",
-            "values" : [
-              "Otevřít ${applicationName} Polohu",
-              "Otevřít Polohu pomocí ${applicationName}"
-            ]
-          }
-        },
-        "de" : {
-          "stringSet" : {
-            "state" : "translated",
-            "values" : [
-              "Öffne ${applicationName} Standort",
-              "Standort mit ${applicationName} öffnen"
-            ]
-          }
-        },
-        "en" : {
-          "stringSet" : {
-            "state" : "new",
-            "values" : [
-              "Open ${applicationName} Location",
-              "Open Location with ${applicationName}"
-            ]
-          }
-        },
-        "es" : {
-          "stringSet" : {
-            "state" : "translated",
-            "values" : [
-              "Abrir ${applicationName} Ubicación",
-              "Abrir Ubicación con ${applicationName}"
-            ]
-          }
-        },
-        "fr" : {
-          "stringSet" : {
-            "state" : "translated",
-            "values" : [
-              "Ouvrir ${applicationName} Position",
-              "Ouvrir la Position avec ${applicationName}"
-            ]
-          }
-        },
-        "it" : {
-          "stringSet" : {
-            "state" : "translated",
-            "values" : [
-              "Apri ${applicationName} Posizione",
-              "Apri Posizione con ${applicationName}"
-            ]
-          }
-        },
-        "ja" : {
-          "stringSet" : {
-            "state" : "translated",
-            "values" : [
-              "${applicationName} の位置情報を開く",
-              "${applicationName} で位置情報を開く"
-            ]
-          }
-        },
-        "ko" : {
-          "stringSet" : {
-            "state" : "translated",
-            "values" : [
-              "${applicationName} 위치 열기",
-              "${applicationName} 로 위치 열기"
-            ]
-          }
-        },
-        "pt-PT" : {
-          "stringSet" : {
-            "state" : "translated",
-            "values" : [
-              "Abrir ${applicationName} Localização",
-              "Abrir Localização com ${applicationName}"
-            ]
-          }
-        },
-        "zh-Hans" : {
-          "stringSet" : {
-            "state" : "translated",
-            "values" : [
-              "打开 ${applicationName} 位置",
-              "使用 ${applicationName} 打开位置"
-            ]
-          }
-        }
-      }
-    },
-    "Open ${applicationName} Magnetometer" : {
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "cs" : {
-          "stringSet" : {
-            "state" : "translated",
-            "values" : [
-              "Otevřít ${applicationName} Magnetometr",
-              "Otevřít Magnetometr pomocí ${applicationName}"
-            ]
-          }
-        },
-        "de" : {
-          "stringSet" : {
-            "state" : "translated",
-            "values" : [
-              "Öffne ${applicationName} Magnetometer",
-              "Magnetometer mit ${applicationName} öffnen"
-            ]
-          }
-        },
-        "en" : {
-          "stringSet" : {
-            "state" : "new",
-            "values" : [
-              "Open ${applicationName} Magnetometer",
-              "Open Magnetometer with ${applicationName}"
-            ]
-          }
-        },
-        "es" : {
-          "stringSet" : {
-            "state" : "translated",
-            "values" : [
-              "Abrir ${applicationName} Magnetómetro",
-              "Abrir Magnetómetro con ${applicationName}"
-            ]
-          }
-        },
-        "fr" : {
-          "stringSet" : {
-            "state" : "translated",
-            "values" : [
-              "Ouvrir ${applicationName} Magnétomètre",
-              "Ouvrir le Magnétomètre avec ${applicationName}"
-            ]
-          }
-        },
-        "it" : {
-          "stringSet" : {
-            "state" : "translated",
-            "values" : [
-              "Apri ${applicationName} Magnetometro",
-              "Apri Magnetometro con ${applicationName}"
-            ]
-          }
-        },
-        "ja" : {
-          "stringSet" : {
-            "state" : "translated",
-            "values" : [
-              "${applicationName} の磁力計を開く",
-              "${applicationName} で磁力計を開く"
-            ]
-          }
-        },
-        "ko" : {
-          "stringSet" : {
-            "state" : "translated",
-            "values" : [
-              "${applicationName} 자기장계 열기",
-              "${applicationName} 로 자기장계 열기"
-            ]
-          }
-        },
-        "pt-PT" : {
-          "stringSet" : {
-            "state" : "translated",
-            "values" : [
-              "Abrir ${applicationName} Magnetómetro",
-              "Abrir Magnetómetro com ${applicationName}"
-            ]
-          }
-        },
-        "zh-Hans" : {
-          "stringSet" : {
-            "state" : "translated",
-            "values" : [
-              "打开 ${applicationName} 磁力计",
-              "使用 ${applicationName} 打开磁力计"
+              "在 ${applicationName} 中导航",
+              "在 ${applicationName} 中导航到 ${navigationOption}"
             ]
           }
         }

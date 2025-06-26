@@ -196,71 +196,6 @@
         }
       }
     },
-    "GPS" : {
-      "comment" : "Keyword used to search for an intent that opens the device's location settings.",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "GPS"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "GPS"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "GPS"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "GPS"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "GPS"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "GPS"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "GPS"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "GPS"
-          }
-        },
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "GPS"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "GPS"
-          }
-        }
-      }
-    },
     "Gravity" : {
       "comment" : "Keyword used to search for an intent that opens the \"Gravity\" view.",
       "localizations" : {
@@ -521,652 +456,911 @@
         }
       }
     },
-    "Motion" : {
-      "comment" : "Keyword for “Motion” Intents in the Siri Search",
+    "Navigate" : {
+      "comment" : "Short title displayed in the app switcher.",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pohyb"
+            "value" : "Navigovat"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bewegung"
+            "value" : "Navigieren"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Motion"
+            "value" : "Navigate"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Movimiento"
+            "value" : "Navegar"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mouvement"
+            "value" : "Naviguer"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Movimento"
+            "value" : "Naviga"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "運動"
+            "value" : "ナビゲート"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "모션"
+            "value" : "탐색하기"
           }
         },
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Movimento"
+            "value" : "Navegar"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "运动"
+            "value" : "导航"
           }
         }
       }
     },
-    "Open Acceleration" : {
-      "comment" : "Title of the \"Open Acceleration\" AppIntent.",
+    "Navigate to ${navigationOption}" : {
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Otevřít zrychlení"
+            "value" : "Přejít na ${navigationOption}"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Beschleunigung öffnen"
+            "value" : "Zu ${navigationOption} navigieren"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Open Acceleration"
+            "value" : "Navigate to ${navigationOption}"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abrir Aceleración"
+            "value" : "Navegar a ${navigationOption}"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ouvrir Accélération"
+            "value" : "Naviguer vers ${navigationOption}"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Apri Accelerazione"
+            "value" : "Vai a ${navigationOption}"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "開く加速度"
+            "value" : "${navigationOption}にナビゲート"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "가속도 열기"
+            "value" : "${navigationOption}로 이동"
           }
         },
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abrir Aceleração"
+            "value" : "Navegar para ${navigationOption}"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "打开加速度"
+            "value" : "导航到${navigationOption}"
           }
         }
       }
     },
-    "Open Altitude" : {
-      "comment" : "Title of the intent to open the altitude view.",
+    "Navigate to Section" : {
+      "comment" : "Title of the intent when shown in the Siri UI.",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Otevřít nadmořskou výšku"
+            "value" : "Přejít na sekci"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Höhe öffnen"
+            "value" : "Zum Abschnitt navigieren"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Open Altitude"
+            "value" : "Navigate to Section"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abrir Altitud"
+            "value" : "Navegar a la Sección"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ouvrir Altitude"
+            "value" : "Naviguer vers la section"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Apri Altitudine"
+            "value" : "Vai alla sezione"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "開く高度"
+            "value" : "セクションに移動"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "고도 열기"
+            "value" : "섹션으로 이동"
           }
         },
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abrir Altitude"
+            "value" : "Navegar para Secção"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "打开海拔视图"
+            "value" : "导航到部分"
           }
         }
       }
     },
-    "Open Attitude" : {
-      "comment" : "Title of the \"Open Attitude\" AppIntent.",
+    "Navigation" : {
+      "comment" : "Short description of the intent.",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Otevřít orientaci"
+            "value" : "Navigace"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Einstellung öffnen"
+            "value" : "Navigation"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Open Attitude"
+            "value" : "Navigation"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abrir Actitud"
+            "value" : "Navegación"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ouvrir Attitude"
+            "value" : "Navigation"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Apri Assetto"
+            "value" : "Navigazione"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "開く姿勢"
+            "value" : "ナビゲーション"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "자세 열기"
+            "value" : "탐색"
           }
         },
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abrir Atitude"
+            "value" : "Navegação"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "打开姿态"
+            "value" : "导航"
           }
         }
       }
     },
-    "Open Gravity" : {
-      "comment" : "Title of the intent to open the Gravity view.",
+    "Navigation Option" : {
+      "comment" : "Name of the intent type displayed in the app switcher.",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Otevřít gravitaci"
+            "value" : "Možnost navigace"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Schwerkraft öffnen"
+            "value" : "Navigationsoption"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Open Gravity"
+            "value" : "Navigation Option"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abrir Gravedad"
+            "value" : "Opción de Navegación"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ouvrir Gravité"
+            "value" : "Option de navigation"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Apri Gravità"
+            "value" : "Opzione di navigazione"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "開く重力"
+            "value" : "ナビゲーションオプション"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "중력 열기"
+            "value" : "탐색 옵션"
           }
         },
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abrir Gravidade"
+            "value" : "Opção de Navegação"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "打开重力"
+            "value" : "导航选项"
           }
         }
       }
     },
-    "Open Gyroscope" : {
-      "comment" : "Title of the \"Open Gyroscope\" app intent.",
+    "Open settings" : {
+      "comment" : "Subtitle for the \"Settings\" navigation option.",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Otevřít gyroskop"
+            "value" : "Otevřít nastavení"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kreisel öffnen"
+            "value" : "Einstellungen öffnen"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Open Gyroscope"
+            "value" : "Open settings"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abrir Giroscopio"
+            "value" : "Abrir configuración"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ouvrir Gyroscope"
+            "value" : "Ouvrir les paramètres"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Apri Giroscopio"
+            "value" : "Apri impostazioni"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "開くジャイロスコープ"
+            "value" : "設定を開く"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "자이로스코프 열기"
+            "value" : "설정 열기"
           }
         },
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abrir Giroscópio"
+            "value" : "Abrir definições"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "打开陀螺仪"
+            "value" : "打开设置"
           }
         }
       }
     },
-    "Open Location" : {
-      "comment" : "Title of the \"Open Location\" AppIntent.",
+    "Settings" : {
+      "comment" : "Text displayed in the list of available actions when the user wants to open the app settings.",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Otevřít umístění"
+            "value" : "Nastavení"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ort öffnen"
+            "value" : "Einstellungen"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Open Location"
+            "value" : "Settings"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abrir Ubicación"
+            "value" : "Ajustes"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ouvrir Localisation"
+            "value" : "Réglages"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Apri Posizione"
+            "value" : "Impostazioni"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "開く位置"
+            "value" : "設定"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "위치 열기"
+            "value" : "설정"
           }
         },
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abrir Localização"
+            "value" : "Definições"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "打开位置"
+            "value" : "设置"
           }
         }
       }
     },
-    "Open Magnetometer" : {
-      "comment" : "Title of the intent to open the magnetometer screen.",
+    "View acceleration data" : {
+      "comment" : "Subtitle for the \"Acceleration\" navigation option.",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Otevřít magnetometr"
+            "value" : "Zobrazit údaje o zrychlení"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Magnetometer öffnen"
+            "value" : "Beschleunigungsdaten anzeigen"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Open Magnetometer"
+            "value" : "View acceleration data"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abrir Magnetómetro"
+            "value" : "Ver datos de aceleración"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ouvrir Magnétomètre"
+            "value" : "Voir les données d'accélération"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Apri Magnetometro"
+            "value" : "Visualizza dati accelerazione"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "開く磁力計"
+            "value" : "加速度データを表示"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "자력계 열기"
+            "value" : "가속도 데이터 보기"
           }
         },
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abrir Magnetómetro"
+            "value" : "Ver dados de aceleração"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "打开磁力计"
+            "value" : "查看加速度数据"
           }
         }
       }
     },
-    "Position" : {
-      "comment" : "Keyword for “Position” Intents in the Siri Search",
+    "View altitude data" : {
+      "comment" : "Subtitle displayed when the user taps on the \"Altitude\" option in the navigation menu.",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pozice"
+            "value" : "Zobrazit údaje o nadmořské výšce"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Position"
+            "value" : "Höhendaten anzeigen"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Position"
+            "value" : "View altitude data"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Posición"
+            "value" : "Ver datos de altitud"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Position"
+            "value" : "Voir les données d'altitude"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Posizione"
+            "value" : "Visualizza dati altitudine"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "位置"
+            "value" : "高度データを表示"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "위치"
+            "value" : "고도 데이터 보기"
           }
         },
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Posição"
+            "value" : "Ver dados de altitude"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "位置"
+            "value" : "查看海拔数据"
           }
         }
       }
     },
-    "Pressure" : {
-      "comment" : "Keyword used in the Siri search index for the pressure sensor.",
+    "View attitude data" : {
+      "comment" : "Subtitle displayed in the list when the user taps on the \"Attitude\" option.",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tlak"
+            "value" : "Zobrazit údaje o náklonu"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Druck"
+            "value" : "Haltdaten anzeigen"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pressure"
+            "value" : "View attitude data"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Presión"
+            "value" : "Ver datos de actitud"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pression"
+            "value" : "Voir les données d'attitude"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pressione"
+            "value" : "Visualizza dati assetto"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "気圧"
+            "value" : "姿勢データを表示"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "압력"
+            "value" : "자세 데이터 보기"
           }
         },
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pressão"
+            "value" : "Ver dados de atitude"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "压力"
+            "value" : "查看姿态数据"
+          }
+        }
+      }
+    },
+    "View gravity data" : {
+      "comment" : "Subtitle for the \"Gravity\" navigation option.",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zobrazit údaje o gravitaci"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gravitationsdaten anzeigen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "View gravity data"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ver datos de gravedad"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voir les données de gravité"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Visualizza dati gravità"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "重力データを表示"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "중력 데이터 보기"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ver dados de gravidade"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "查看重力数据"
+          }
+        }
+      }
+    },
+    "View gyroscope data" : {
+      "comment" : "Subtitle for the \"Gyroscope\" navigation option.",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zobrazit údaje o gyroskopu"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kreisel-Daten anzeigen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "View gyroscope data"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ver datos del giroscopio"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voir les données du gyroscope"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Visualizza dati giroscopio"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ジャイロスコープデータを表示"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "자이로스코프 데이터 보기"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ver dados do giroscópio"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "查看陀螺仪数据"
+          }
+        }
+      }
+    },
+    "View location data" : {
+      "comment" : "Subtitle displayed under the title in the list of navigation options.",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zobrazit údaje o poloze"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Standortdaten anzeigen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "View location data"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ver datos de ubicación"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voir les données de localisation"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Visualizza dati posizione"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "位置データを表示"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "위치 데이터 보기"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ver dados de localização"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "查看位置数据"
+          }
+        }
+      }
+    },
+    "View magnetometer data" : {
+      "comment" : "Subtitle for the \"Magnetometer\" navigation option.",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zobrazit údaje z magnetometru"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Magnetometerdaten anzeigen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "View magnetometer data"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ver datos del magnetómetro"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voir les données du magnétomètre"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Visualizza dati magnetometro"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "磁力計データを表示"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "자기계 데이터 보기"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ver dados do magnetómetro"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "查看磁力计数据"
           }
         }
       }
