@@ -25,7 +25,7 @@ struct SettingsScreen: View {
 
             Section(
                 header:
-                    Text("App Icon")  // FIXME: - iOS 26 Beta 1, changing app icon is not supported
+                    Text("App Icon")
             ) {
                 HStack {
                     Spacer()
@@ -38,7 +38,6 @@ struct SettingsScreen: View {
                             .clipShape(RoundedRectangle(cornerRadius: 10))
                             .conditionalOverlay(visible: settingsManager.currentAppIconIndex == index)
                             .onTapGesture {
-                                settingsManager.currentAppIconIndex = index
                                 settingsManager.changeIcon(value: index)
                             }
                     }
@@ -176,6 +175,7 @@ struct SettingsScreen: View {
         .navigationTitle("Settings")
         .onAppear {
             discardChanges(showNotification: false)
+            settingsManager.fetchCurrentAppIcon()
         }
     }
 

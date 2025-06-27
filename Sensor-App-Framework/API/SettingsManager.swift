@@ -45,12 +45,6 @@ public class SettingsManager {
     public let iconNames: [String] = ["AppIcon-V1", "AppIcon-V2", "AppIcon-V3"]
 
     public init() {
-        #if os(iOS)
-            if let currentIcon = UIApplication.shared.alternateIconName {
-                self.currentAppIconIndex = iconNames.firstIndex(of: currentIcon) ?? 0
-            }
-        #endif
-
         userSettings = fetchUserSettings()
 
         #if os(iOS)
@@ -58,21 +52,24 @@ public class SettingsManager {
         #endif
     }
 
+    public func fetchCurrentAppIcon() {
+        #if os(iOS)
+            if let currentIcon = UIApplication.shared.alternateIconName {
+                self.currentAppIconIndex = iconNames.firstIndex(of: currentIcon) ?? 0
+                print("Current App Icon: \(currentIcon)")
+                print("Current App Icon Index: \(self.currentAppIconIndex)")
+            }
+        #endif
+    }
+
     public func changeIcon(value: Int) {
         #if os(iOS)
-            let index = iconNames.firstIndex(of: UIApplication.shared.alternateIconName ?? "Default") ?? 0
-
-            if value == 0 {
-                UIApplication.shared.setAlternateIconName(nil)
-            }
-
-            if index != value {
-                UIApplication.shared.setAlternateIconName(iconNames[value]) { error in
-                    if let error = error {
-                        print(error.localizedDescription)
-                    } else {
-                        print("Success!")
-                    }
+            Task {
+                do {
+                    try await UIApplication.shared.setAlternateIconName(iconNames[value])
+                    fetchCurrentAppIcon()
+                } catch {
+                    print("Error setting alternate icon: \(error.localizedDescription)")
                 }
             }
         #endif
