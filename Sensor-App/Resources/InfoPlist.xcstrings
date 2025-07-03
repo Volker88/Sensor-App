@@ -27,6 +27,19 @@
       },
       "shouldTranslate" : false
     },
+    "NSHumanReadableCopyright" : {
+      "comment" : "Copyright (human-readable)",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "© 2025, Volker Schmitt"
+          }
+        }
+      },
+      "shouldTranslate" : false
+    },
     "NSLocationWhenInUseUsageDescription" : {
       "comment" : "Privacy - Location When In Use Usage Description",
       "extractionState" : "extracted_with_value",
