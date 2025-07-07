@@ -17,7 +17,7 @@ struct SensorAppShortchuts: AppShortcutsProvider {
                 "Navigate in \(.applicationName)",
                 "Navigate to \(\.$navigationOption) in \(.applicationName)"
             ],
-            shortTitle: LocalizedStringResource("Navigate", table: "AppIntents"),
+            shortTitle: LocalizedStringResource("Navigate"),
             systemImageName: "arrowshape.forward"
         )
     }

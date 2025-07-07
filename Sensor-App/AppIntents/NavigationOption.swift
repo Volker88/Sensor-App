@@ -19,48 +19,48 @@ enum NavigationOption: String, AppEnum {
     case settings
 
     static let typeDisplayRepresentation = TypeDisplayRepresentation(
-        name: LocalizedStringResource("Navigation Option", table: "AppIntents")
+        name: LocalizedStringResource("Navigation Option")
     )
 
     static let caseDisplayRepresentations = [
         NavigationOption.location: DisplayRepresentation(
-            title: LocalizedStringResource("Location", table: "AppIntents"),
-            subtitle: LocalizedStringResource("View location data", table: "AppIntents"),
+            title: LocalizedStringResource("Location"),
+            subtitle: LocalizedStringResource("View location data"),
             image: .init(systemName: "location")
         ),
         NavigationOption.altitude: DisplayRepresentation(
-            title: LocalizedStringResource("Altitude", table: "AppIntents"),
-            subtitle: LocalizedStringResource("View altitude data", table: "AppIntents"),
+            title: LocalizedStringResource("Altitude"),
+            subtitle: LocalizedStringResource("View altitude data"),
             image: .init(systemName: "mountain.2")
         ),
         NavigationOption.acceleration: DisplayRepresentation(
-            title: LocalizedStringResource("Acceleration", table: "AppIntents"),
-            subtitle: LocalizedStringResource("View acceleration data", table: "AppIntents"),
+            title: LocalizedStringResource("Acceleration"),
+            subtitle: LocalizedStringResource("View acceleration data"),
             image: .init(systemName: "bolt.fill")
         ),
         NavigationOption.gravity: DisplayRepresentation(
-            title: LocalizedStringResource("Gravity", table: "AppIntents"),
-            subtitle: LocalizedStringResource("View gravity data", table: "AppIntents"),
+            title: LocalizedStringResource("Gravity"),
+            subtitle: LocalizedStringResource("View gravity data"),
             image: .init(systemName: "arrow.down")
         ),
         NavigationOption.gyroscope: DisplayRepresentation(
-            title: LocalizedStringResource("Gyroscope", table: "AppIntents"),
-            subtitle: LocalizedStringResource("View gyroscope data", table: "AppIntents"),
+            title: LocalizedStringResource("Gyroscope"),
+            subtitle: LocalizedStringResource("View gyroscope data"),
             image: .init(systemName: "gyroscope")
         ),
         NavigationOption.attitude: DisplayRepresentation(
-            title: LocalizedStringResource("Attitude", table: "AppIntents"),
-            subtitle: LocalizedStringResource("View attitude data", table: "AppIntents"),
+            title: LocalizedStringResource("Attitude"),
+            subtitle: LocalizedStringResource("View attitude data"),
             image: .init(systemName: "dial.medium")
         ),
         NavigationOption.magnetometer: DisplayRepresentation(
-            title: LocalizedStringResource("Magnetometer", table: "AppIntents"),
-            subtitle: LocalizedStringResource("View magnetometer data", table: "AppIntents"),
+            title: LocalizedStringResource("Magnetometer"),
+            subtitle: LocalizedStringResource("View magnetometer data"),
             image: .init(systemName: "wave.3.right")
         ),
         NavigationOption.settings: DisplayRepresentation(
-            title: LocalizedStringResource("Settings", table: "AppIntents"),
-            subtitle: LocalizedStringResource("Open settings", table: "AppIntents"),
+            title: LocalizedStringResource("Settings"),
+            subtitle: LocalizedStringResource("Open settings"),
             image: .init(systemName: "gear")
         )
     ]

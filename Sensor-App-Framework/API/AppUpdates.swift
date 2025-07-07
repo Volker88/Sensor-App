@@ -52,7 +52,7 @@ public class AppUpdates {
     ///  - Returns: App Version
     private func getCurrentAppVersion() -> String {
         let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"]
-        let version = (appVersion as! String)  // swiftlint:disable:this force_cast
+        guard let version = (appVersion as? String) else { return "1.0.0" }
 
         return version
     }

@@ -16,27 +16,27 @@ struct NavigateIntent: AppIntent {
     @Parameter
     var navigationOption: NavigationOption
 
-    static let title = LocalizedStringResource("Navigate to Section", table: "AppIntents")
+    static let title = LocalizedStringResource("Navigate to Section")
 
     static var description: IntentDescription? {
         IntentDescription(
-            LocalizedStringResource("Navigate to Section", table: "AppIntents"),
-            categoryName: LocalizedStringResource("Navigation", table: "AppIntents"),
+            LocalizedStringResource("Navigate to Section"),
+            categoryName: LocalizedStringResource("Navigation"),
             searchKeywords: [
-                LocalizedStringResource("Location", table: "AppIntents"),
-                LocalizedStringResource("Altitude", table: "AppIntents"),
-                LocalizedStringResource("Acceleration", table: "AppIntents"),
-                LocalizedStringResource("Altitude", table: "AppIntents"),
-                LocalizedStringResource("Gravity", table: "AppIntents"),
-                LocalizedStringResource("Gyroscope", table: "AppIntents"),
-                LocalizedStringResource("Magnetometer", table: "AppIntents")
+                LocalizedStringResource("Location"),
+                LocalizedStringResource("Altitude"),
+                LocalizedStringResource("Acceleration"),
+                LocalizedStringResource("Altitude"),
+                LocalizedStringResource("Gravity"),
+                LocalizedStringResource("Gyroscope"),
+                LocalizedStringResource("Magnetometer")
             ],
             resultValueName: nil
         )
     }
 
     static var parameterSummary: some ParameterSummary {
-        Summary("Navigate to \(\.$navigationOption)", table: "AppIntents")
+        Summary("Navigate to \(\.$navigationOption)")
     }
 
     static let supportedModes: IntentModes = .foreground

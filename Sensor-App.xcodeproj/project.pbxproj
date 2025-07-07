@@ -174,7 +174,6 @@
 				"Resources/AppIcon-V1.icon",
 				"Resources/AppIcon-V2.icon",
 				"Resources/AppIcon-V3.icon",
-				Resources/AppIntents.xcstrings,
 				Resources/AppShortcuts.xcstrings,
 				Resources/Assets.xcassets,
 				Resources/InfoPlist.xcstrings,
