@@ -28,8 +28,16 @@ struct LineGraphSubView: View {
     }
 
     var motion: some View {
-        Chart {
-            ForEach(motionManager.motionChart, id: \.self) { item in
+        let data = motionManager.motionChart
+        let xRange: ClosedRange<Int>
+        if let first = data.first?.counter, let last = data.last?.counter {
+            xRange = first...last
+        } else {
+            xRange = 0...settingsManager.userSettings.graphMaxPointsInt()
+        }
+
+        return Chart {
+            ForEach(data, id: \.self) { item in
                 LineMark(
                     x: .value("Index", item.counter),
                     y: .value("Value", item.graphValue(for: showGraph))
@@ -40,11 +48,20 @@ struct LineGraphSubView: View {
         .chartYAxis {
             AxisMarks(position: .leading)
         }
+        .chartXScale(domain: xRange)
     }
 
     var altitude: some View {
-        Chart {
-            ForEach(motionManager.altitudeChart, id: \.self) { item in
+        let data = motionManager.altitudeChart
+        let xRange: ClosedRange<Int>
+        if let first = data.first?.counter, let last = data.last?.counter {
+            xRange = first...last
+        } else {
+            xRange = 0...settingsManager.userSettings.graphMaxPointsInt()
+        }
+
+        return Chart {
+            ForEach(data, id: \.self) { item in
                 LineMark(
                     x: .value("Index", item.counter),
                     y: .value("Value", item.graphValue(for: showGraph))
@@ -55,11 +72,20 @@ struct LineGraphSubView: View {
         .chartYAxis {
             AxisMarks(position: .leading)
         }
+        .chartXScale(domain: xRange)
     }
 
     var location: some View {
-        Chart {
-            ForEach(locationManager.locationChart, id: \.self) { item in
+        let data = locationManager.locationChart
+        let xRange: ClosedRange<Int>
+        if let first = data.first?.counter, let last = data.last?.counter {
+            xRange = first...last
+        } else {
+            xRange = 0...settingsManager.userSettings.graphMaxPointsInt()
+        }
+
+        return Chart {
+            ForEach(data, id: \.self) { item in
                 LineMark(
                     x: .value("Index", item.counter),
                     y: .value("Value", item.graphValue(for: showGraph))
@@ -70,6 +96,7 @@ struct LineGraphSubView: View {
         .chartYAxis {
             AxisMarks(position: .leading)
         }
+        .chartXScale(domain: xRange)
     }
 
     var body: some View {
