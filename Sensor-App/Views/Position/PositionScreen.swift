@@ -23,7 +23,7 @@ struct PositionScreen: View {
                     NavigationLink(value: PositionStack.location) {
                         CardView {
                             Image(systemName: RootTab.location.symbolImage)
-                            Text(RootTab.location.stringValue)
+                            Text(RootTab.location.localizedString)
                         }
                     }
                     .accessibilityIdentifier(UIIdentifiers.PositionScreen.locationButton)
@@ -31,7 +31,7 @@ struct PositionScreen: View {
                     NavigationLink(value: PositionStack.altitude) {
                         CardView {
                             Image(systemName: RootTab.altitude.symbolImage)
-                            Text(RootTab.altitude.stringValue)
+                            Text(RootTab.altitude.localizedString)
                         }
                     }
                     .accessibilityIdentifier(UIIdentifiers.PositionScreen.altitudeButton)

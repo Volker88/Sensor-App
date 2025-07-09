@@ -15,7 +15,7 @@ class AttitudeViewUITests: BaseTestCase {
 
         // Test CustomControlsView Buttons
         app.buttons[UIIdentifiers.CustomControlsView.expandButton].tap()
-        app.buttons[UIIdentifiers.CustomControlsView.deleteButton].tap()
+        app.buttons[UIIdentifiers.CustomControlsView.playButton].tap()
         app.buttons[UIIdentifiers.CustomControlsView.pauseButton].tap()
         app.buttons[UIIdentifiers.CustomControlsView.deleteButton].tap()
 

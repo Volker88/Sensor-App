@@ -31,7 +31,7 @@ struct LineGraphSubView: View {
         let data = motionManager.motionChart
         let xRange: ClosedRange<Int>
         if let first = data.first?.counter, let last = data.last?.counter {
-            xRange = first...last
+            xRange = first...(last + 1)
         } else {
             xRange = 0...settingsManager.userSettings.graphMaxPointsInt()
         }
@@ -55,7 +55,7 @@ struct LineGraphSubView: View {
         let data = motionManager.altitudeChart
         let xRange: ClosedRange<Int>
         if let first = data.first?.counter, let last = data.last?.counter {
-            xRange = first...last
+            xRange = first...(last + 1)
         } else {
             xRange = 0...settingsManager.userSettings.graphMaxPointsInt()
         }
@@ -79,7 +79,7 @@ struct LineGraphSubView: View {
         let data = locationManager.locationChart
         let xRange: ClosedRange<Int>
         if let first = data.first?.counter, let last = data.last?.counter {
-            xRange = first...last
+            xRange = first...(last + 1)
         } else {
             xRange = 0...settingsManager.userSettings.graphMaxPointsInt()
         }

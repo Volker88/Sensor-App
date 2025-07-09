@@ -17,11 +17,13 @@
 	<key>CFBundlePackageType</key>
 	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
 	<key>CFBundleShortVersionString</key>
-	<string>${MY_VERSION}</string>
+	<string>${MARKETING_VERSION}</string>
 	<key>CFBundleVersion</key>
-	<string>${MY_BUILD_VERSION}</string>
+	<string>${CURRENT_PROJECT_VERSION}</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Location access is needed to display your current position, travel direction, and speed in real time</string>
+	<key>NSMotionUsageDescription</key>
+	<string>Motion sensor access is required to display real-time movement data</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
@@ -33,7 +35,5 @@
 	<string>$(BUNDLE_IDENTIFIER)</string>
 	<key>WKRunsIndependentlyOfCompanionApp</key>
 	<false/>
-	<key>NSMotionUsageDescription</key>
-	<string>Motion sensor access is required to display real-time movement data</string>
 </dict>
 </plist>

@@ -23,7 +23,7 @@ struct MotionScreen: View {
                     NavigationLink(value: MotionStack.acceleration) {
                         CardView {
                             Image(systemName: RootTab.acceleration.symbolImage)
-                            Text(RootTab.acceleration.stringValue)
+                            Text(RootTab.acceleration.localizedString)
                         }
                     }
                     .accessibilityIdentifier(UIIdentifiers.MotionScreen.accelerationButton)
@@ -31,7 +31,7 @@ struct MotionScreen: View {
                     NavigationLink(value: MotionStack.gravity) {
                         CardView {
                             Image(systemName: RootTab.gravity.symbolImage)
-                            Text(RootTab.gravity.stringValue)
+                            Text(RootTab.gravity.localizedString)
                         }
                     }
                     .accessibilityIdentifier(UIIdentifiers.MotionScreen.gravityButton)
@@ -39,7 +39,7 @@ struct MotionScreen: View {
                     NavigationLink(value: MotionStack.gyroscope) {
                         CardView {
                             Image(systemName: RootTab.gyroscope.symbolImage)
-                            Text(RootTab.gyroscope.stringValue)
+                            Text(RootTab.gyroscope.localizedString)
                         }
                     }
                     .accessibilityIdentifier(UIIdentifiers.MotionScreen.gyroscopeButton)
@@ -47,7 +47,7 @@ struct MotionScreen: View {
                     NavigationLink(value: MotionStack.attitude) {
                         CardView {
                             Image(systemName: RootTab.attitude.symbolImage)
-                            Text(RootTab.attitude.stringValue)
+                            Text(RootTab.attitude.localizedString)
                         }
                     }
                     .accessibilityIdentifier(UIIdentifiers.MotionScreen.attitudeButton)
