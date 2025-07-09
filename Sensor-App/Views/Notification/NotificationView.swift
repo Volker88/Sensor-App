@@ -14,7 +14,9 @@ struct NotificationView: View {
     // MARK: - Body
     var body: some View {
         VStack {
-            Text(notificationWrapper?.message ?? "")
+            if let message = notificationWrapper?.message {
+                Text(message)
+            }
         }.task(id: notificationWrapper?.id) {
             // delay
             try? await Task.sleep(for: .seconds(1))
@@ -44,5 +46,5 @@ struct NotificationWrapper: Identifiable {
     let id = UUID()
 
     /// message
-    let message: String
+    let message: LocalizedStringResource
 }

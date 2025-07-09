@@ -183,7 +183,7 @@ struct SettingsScreen: View {
     func saveSettings() {
         settingsManager.saveSettings()
 
-        showNotification(String(localized: "Successfully Saved"))
+        showNotification("Successfully Saved")
     }
 
     func discardChanges(showNotification: Bool) {
@@ -191,7 +191,7 @@ struct SettingsScreen: View {
 
         // Show Notification
         if showNotification == true {
-            self.showNotification(String(localized: "Changes Discarded"))
+            self.showNotification("Changes Discarded")
         }
     }
 }

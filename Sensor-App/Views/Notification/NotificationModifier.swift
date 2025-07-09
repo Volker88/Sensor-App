@@ -23,7 +23,7 @@ struct NotificationModifier: ViewModifier {
             }.environment(\.showNotification, ShowNotificationAction(action: showNotification))
     }
 
-    private func showNotification(message: String) {
+    private func showNotification(message: LocalizedStringResource) {
         notificationWrapper = NotificationWrapper(message: message)
     }
 }

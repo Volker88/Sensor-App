@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct ShowNotificationAction {
-    typealias Action = (String) -> Void
+    typealias Action = (LocalizedStringResource) -> Void
     let action: Action
-    func callAsFunction(_ message: String) {
+    func callAsFunction(_ message: LocalizedStringResource) {
         action(message)
     }
 }
