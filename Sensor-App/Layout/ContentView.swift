@@ -161,7 +161,7 @@ struct ContentView: View {
         .tabViewStyle(.sidebarAdaptable)
         .tabViewCustomization($customization)
         .onAppear(perform: onAppear)
-        .onChange(of: horizontalSizeClass) { appState.onSizeClassChange() }
+        .onChange(of: horizontalSizeClass) { _, newSize in appState.onSizeClassChange(newSize) }
         .onChange(of: appState.appIntentTab) { appState.appIntentDrivenNavigation(horizontalSizeClass) }
         .onChange(of: appState.selectedTab) { onChangeOfSelectedTab() }
     }
@@ -179,7 +179,6 @@ struct ContentView: View {
         motionManager.stopMotionUpdates()
         locationManager.stopLocationUpdates()
         appState.resetStack()
-        appState.appIntentTab = nil
     }
 }
 

@@ -45,9 +45,100 @@ final class AppState {
 
     // MARK: - Update Navigation
     /// Update Navigation when Size Class changes
-    func onSizeClassChange() {
-        selectedTab = .location
+    func onSizeClassChange(_ newSize: UserInterfaceSizeClass?) { // wiftlint:disable:this cyclomatic_complexity
+        // If the device is an iPhone, we do not need to update the navigation
+        guard !isIphone, let newSize else { return }
+
+        // If the selectedTab is Magnetometer or Settings, we do not need to update the navigation
+        guard selectedTab != .magnetometer && selectedTab != .settings else { return }
+
+//        let prevMotionStack = self.motionStack
+//        let prevPositionStack = self.positionStack
+
         resetStack()
+        selectedTab = .position
+
+//        if newSize == .regular {
+//            // Position Stack
+//            if prevPositionStack.contains(.location) {
+//                selectedTab = .location
+//            } else if prevPositionStack.contains(.altitude) {
+//                selectedTab = .altitude
+//            }
+//
+//            if prevPositionStack.contains(.locationMap) {
+//                positionStack = [.locationMap]
+//            } else if prevPositionStack.contains(.altitudeLog) {
+//                positionStack = [.altitudeLog]
+//            }
+//
+//            // Motion Stack
+//            if prevMotionStack.contains(.acceleration) {
+//                selectedTab = .acceleration
+//            } else if prevMotionStack.contains(.gravity) {
+//                selectedTab = .gravity
+//            } else if prevMotionStack.contains(.gyroscope) {
+//                selectedTab = .gyroscope
+//            } else if prevMotionStack.contains(.attitude) {
+//                selectedTab = .attitude
+//            }
+//
+//            if prevMotionStack.contains(.accelerationLog) {
+//                motionStack = [.accelerationLog]
+//            } else if prevMotionStack.contains(.gravityLog) {
+//                motionStack = [.gravityLog]
+//            } else if prevMotionStack.contains(.gyroscopeLog) {
+//                motionStack = [.gyroscopeLog]
+//            } else if prevMotionStack.contains(.attitudeLog) {
+//                motionStack = [.attitudeLog]
+//            }
+//        } else if newSize == .compact {
+//            switch selectedTab {
+//                case .location:
+//                    selectedTab = .position
+//                    positionStack = [.location]
+//                    if prevPositionStack.contains(.locationMap) {
+//                        positionStack.append(.locationMap)
+//                    }
+//                case .altitude:
+//                    selectedTab = .position
+//                    positionStack = [.altitude]
+//                    if prevPositionStack.contains(.altitudeLog) {
+//                        positionStack.append(.altitudeLog)
+//                    }
+//                case .acceleration:
+//                    selectedTab = .motion
+//                    motionStack = [.acceleration]
+//                    if prevMotionStack.contains(.accelerationLog) {
+//                        motionStack.append(.accelerationLog)
+//                    }
+//                case .gravity:
+//                    selectedTab = .motion
+//                    motionStack = [.gravity]
+//                    if prevMotionStack.contains(.gravityLog) {
+//                        motionStack.append(.gravityLog)
+//                    }
+//                case .gyroscope:
+//                    selectedTab = .motion
+//                    motionStack = [.gyroscope]
+//                    if prevMotionStack.contains(.gyroscopeLog) {
+//                        motionStack.append(.gyroscopeLog)
+//                    }
+//                case .attitude:
+//                    selectedTab = .motion
+//                    motionStack = [.attitude]
+//                    if prevMotionStack.contains(.attitudeLog) {
+//                        motionStack.append(.attitudeLog)
+//                    }
+//                default: break
+//            }
+//        }
+//
+//        print("Previous MotionStack: \(prevMotionStack)")
+//        print("Previous PositionStack: \(prevPositionStack)")
+//
+//        print("MotionStck: \(motionStack)")
+//        print("PositionStack: \(positionStack)")
     }
 
     /// Perform Navigation triggered by App Intent
