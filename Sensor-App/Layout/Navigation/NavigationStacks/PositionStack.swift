@@ -22,7 +22,7 @@ extension PositionStack: View {
             case .location:
                 LocationScreen()
             case .locationMap:
-                MapView()
+                MapScreen()
             case .altitude:
                 AltitudeScreen()
             case .altitudeLog:

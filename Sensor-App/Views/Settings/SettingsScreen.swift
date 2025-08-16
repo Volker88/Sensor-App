@@ -66,51 +66,6 @@ struct SettingsScreen: View {
             }
 
             Section(
-                header: Text("Map")
-                    .accessibilityLabel(UIIdentifiers.SettingScreen.mapHeader)
-            ) {
-                Picker("Type", selection: Bindable(settingsManager).mapSettings.mapType) {
-                    ForEach(MapType.allCases, id: \.self) { type in
-                        Text(type.rawValue).tag(type)
-                    }
-                }
-                .accessibilityIdentifier(UIIdentifiers.SettingScreen.mapTypePicker)
-
-                Toggle("Compass", isOn: Bindable(settingsManager).mapSettings.showsCompass)
-                    .accessibilityIdentifier(UIIdentifiers.SettingScreen.compassToggle)
-
-                Toggle("Scale", isOn: Bindable(settingsManager).mapSettings.showsScale)
-                    .accessibilityIdentifier(UIIdentifiers.SettingScreen.scaleToggle)
-
-                Toggle("Buildings", isOn: Bindable(settingsManager).mapSettings.showsBuildings)
-                    .accessibilityIdentifier(UIIdentifiers.SettingScreen.buildingsToggle)
-
-                Toggle("Traffic", isOn: Bindable(settingsManager).mapSettings.showsTraffic)
-                    .accessibilityIdentifier(UIIdentifiers.SettingScreen.trafficToggle)
-
-                Toggle("Rotation", isOn: Bindable(settingsManager).mapSettings.isRotateEnabled)
-                    .accessibilityIdentifier(UIIdentifiers.SettingScreen.rotateToggle)
-
-                Toggle("Pitch", isOn: Bindable(settingsManager).mapSettings.isPitchEnabled)
-                    .accessibilityIdentifier(UIIdentifiers.SettingScreen.pitchToggle)
-
-                Toggle("Scroll", isOn: Bindable(settingsManager).mapSettings.isScrollEnabled)
-                    .accessibilityIdentifier(UIIdentifiers.SettingScreen.scrollToggle)
-
-                Stepper(value: Bindable(settingsManager).mapSettings.zoom, in: 100...100000, step: 100) {
-                    Text("Zoom: \(settingsManager.mapSettings.zoom / 1000, specifier: "%.1f") km")
-                }
-                .accessibilityIdentifier(UIIdentifiers.SettingScreen.zoomStepper)
-
-                HStack {
-                    Text("0.1 km")
-                    Slider(value: Bindable(settingsManager).mapSettings.zoom, in: 100...100000, step: 100)
-                        .accessibilityIdentifier(UIIdentifiers.SettingScreen.zoomSlider)
-                    Text("100 km")
-                }
-            }
-
-            Section(
                 header:
                     Text("Altitude")
                     .accessibilityIdentifier(UIIdentifiers.SettingScreen.altitudeHeader)

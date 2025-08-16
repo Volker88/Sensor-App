@@ -25,9 +25,6 @@ class SettingsViewUITests: BaseTestCase {
         collection.staticTexts[UIIdentifiers.SettingScreen.locationHeader].swipeUp()
         collection.staticTexts[UIIdentifiers.SettingScreen.altitudeHeader].swipeUp()
 
-        collection.steppers[UIIdentifiers.SettingScreen.zoomStepper].buttons.element(boundBy: 0).tap()
-        collection.steppers[UIIdentifiers.SettingScreen.zoomStepper].buttons.element(boundBy: 1).tap()
-
         // Select Pressure Setting
         collection.buttons[UIIdentifiers.SettingScreen.pressurePicker].tap()
         app.buttons["bar"].tap()

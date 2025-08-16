@@ -54,8 +54,10 @@ class GravityViewUITests: BaseTestCase {
 
         let slider = UIIdentifiers.RefreshRateView.refreshRateSlider
         let updateFrequency = app.sliders[slider].value as! String  // swiftlint:disable:this force_cast
+
         let splitUpdateFrequency = updateFrequency.split(separator: " ", maxSplits: 1).map(String.init)
-        XCTAssertEqual(splitUpdateFrequency[0], "50", "Update frequency should be 50 but is \(splitUpdateFrequency)")
+        let actual = splitUpdateFrequency[0].convertToDouble()
+        XCTAssertEqual(actual, 50.0, accuracy: 0.5, "Update frequency should be 50 but is \(actual)")
 
         // Go Back to Main Menu
         backToHomeMenu()
@@ -83,6 +85,31 @@ class GravityViewUITests: BaseTestCase {
             app.buttons[UIIdentifiers.MotionScreen.gravityButton].tapWhenReady()
         } else {
             app.descendants(matching: .any)[UIIdentifiers.ContentView.gravityTab].tapWhenReady()
+        }
+    }
+}
+
+extension String {
+
+    /// Convert String into Double
+    ///
+    /// Converts a ``String`` into ``Double``, considering currency symbol and decimal spearator depending on users locale
+    ///
+    /// - Returns: ``Double``
+    public func convertToDouble() -> Double {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.locale = Locale.current
+        formatter.usesGroupingSeparator = true
+
+        // Remove currency symbols and unnecessary whitespace
+        let cleanedString = self.trimmingCharacters(in: .whitespacesAndNewlines)
+            .replacingOccurrences(of: formatter.currencySymbol ?? "", with: "")
+
+        if let number = formatter.number(from: cleanedString) {
+            return number.doubleValue
+        } else {
+            return 0.0
         }
     }
 }

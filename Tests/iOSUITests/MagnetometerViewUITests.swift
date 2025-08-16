@@ -48,8 +48,10 @@ class MagnetometerViewUITests: BaseTestCase {
 
         let slider = UIIdentifiers.RefreshRateView.refreshRateSlider
         let updateFrequency = app.sliders[slider].value as! String  // swiftlint:disable:this force_cast
+
         let splitUpdateFrequency = updateFrequency.split(separator: " ", maxSplits: 1).map(String.init)
-        XCTAssertEqual(splitUpdateFrequency[0], "50", "Update frequency should be 50 but is \(splitUpdateFrequency)")
+        let actual = splitUpdateFrequency[0].convertToDouble()
+        XCTAssertEqual(actual, 50.0, accuracy: 0.5, "Update frequency should be 50 but is \(actual)")
     }
 
     func testMagnetometerViewShareSheet() throws {
