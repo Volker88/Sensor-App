@@ -1,14 +1,14 @@
 {
   "configurations" : [
     {
-      "id" : "C56CC015-D669-48A7-9DD9-3B79A697EF0E",
+      "id" : "1C074208-A32F-4692-B289-F37A228D01EA",
       "name" : "Configuration 1 (us)",
       "options" : {
 
       }
     },
     {
-      "id" : "6780A5D9-DB44-4B86-9640-9795AE65EC0B",
+      "id" : "1B82818E-DAD3-4B53-B808-3302B48CF9D1",
       "name" : "Configuration 2 (de)",
       "options" : {
         "language" : "de",
@@ -20,7 +20,7 @@
       }
     },
     {
-      "id" : "2631D52B-1150-4718-BCAB-2389F412887F",
+      "id" : "4DC4EA5D-9B9C-4DBE-9B76-75F03F45659E",
       "name" : "Configuration 3 (zh)",
       "options" : {
         "language" : "zh-Hans",
@@ -32,7 +32,7 @@
       }
     },
     {
-      "id" : "6BF1C4D6-99A5-4BCA-A893-F2F8BD6B42CE",
+      "id" : "A280C7DF-345C-435F-A0BB-C4BCD92BC4C1",
       "name" : "Configuration 4 (cs)",
       "options" : {
         "language" : "cs",
@@ -40,7 +40,7 @@
       }
     },
     {
-      "id" : "77EA6745-CDAB-4F6D-B590-A66900B026D2",
+      "id" : "847AEEB7-0BAB-4251-AB2A-ECC511ADCBC2",
       "name" : "Configuration 5 (fr)",
       "options" : {
         "language" : "fr",
@@ -52,7 +52,7 @@
       }
     },
     {
-      "id" : "AD41FEA7-03E5-43AB-B6FC-9999DF99A47B",
+      "id" : "977B8033-A9E2-44E3-9C1C-93C603DFB6BE",
       "name" : "Configuration 6 (it)",
       "options" : {
         "language" : "it",
@@ -60,7 +60,7 @@
       }
     },
     {
-      "id" : "E75A01A6-250A-4BAA-995B-C79188CC9D02",
+      "id" : "3A575030-51C8-4D96-928B-0343BECAE7C9",
       "name" : "Configuration 7 (ja)",
       "options" : {
         "language" : "ja",
@@ -72,7 +72,7 @@
       }
     },
     {
-      "id" : "DB421B3D-FE3F-4A91-8DB4-49FDBD01A374",
+      "id" : "93ED158D-14CD-4719-B419-6CAEAB065F00",
       "name" : "Configuration 8 (ko)",
       "options" : {
         "language" : "ko",
@@ -80,7 +80,7 @@
       }
     },
     {
-      "id" : "31EB3100-9D52-49E0-8CC8-246872AD5C0B",
+      "id" : "2752E373-53C7-48F7-A550-74564B65CB1C",
       "name" : "Configuration 9 (pt)",
       "options" : {
         "language" : "pt-PT",
@@ -88,7 +88,7 @@
       }
     },
     {
-      "id" : "DF18F05A-AF16-4425-9FF5-0415E6E33E8B",
+      "id" : "100CC430-36A1-4CB8-B2CB-E6B0EFBC42A2",
       "name" : "Configuration 10 (es)",
       "options" : {
         "language" : "es",
@@ -97,6 +97,7 @@
     }
   ],
   "defaultOptions" : {
+    "areLocalizationScreenshotsEnabled" : true,
     "language" : "en",
     "locationScenario" : {
       "identifier" : "New York, NY, USA",
@@ -108,7 +109,6 @@
     "testExecutionOrdering" : "random",
     "testRepetitionMode" : "retryOnFailure",
     "testTimeoutsEnabled" : true,
-    "uiTestingScreenshotsLifetime" : "keepAlways",
     "userAttachmentLifetime" : "keepAlways"
   },
   "testTargets" : [

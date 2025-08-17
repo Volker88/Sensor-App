@@ -18,6 +18,7 @@ struct MapScreen: View {
     @State private var showMapStylePicker = false
 
     @Namespace private var mapScope
+    @Namespace private var animation
 
     // MARK: - Body
     var body: some View {
@@ -43,6 +44,7 @@ struct MapScreen: View {
                     .padding(10)
                     .background(.ultraThickMaterial)
                     .clipShape(.circle)
+                    .matchedTransitionSource(id: "Configuration", in: animation)
 
                     MapUserLocationButton(scope: mapScope)
                 }
@@ -56,6 +58,7 @@ struct MapScreen: View {
         .sheet(isPresented: $showMapStylePicker) {
             MapStyleView(mapStyleConfig: $mapStyleConfig)
                 .presentationDetents([.height(350), .medium, .large])
+                .navigationTransition(.zoom(sourceID: "Configuration", in: animation))
         }
     }
 }

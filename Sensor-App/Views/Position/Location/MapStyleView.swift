@@ -40,42 +40,9 @@ struct MapStyleView: View {
                 }
                 .buttonStyle(.glassProminent)
             }
-
-            //            VStack(alignment: .leading) {
-            //                LabeledContent("Base Style") {
-            //                    Picker("Base Style", selection: $mapStyleConfig.baseStyle) {
-            //                        ForEach(MapStyleConfig.BaseMapStyle.allCases, id: \.self) { type in
-            //                            Text(type.label)
-            //                        }
-            //                    }
-            //                }
-            //
-            //                LabeledContent("Elevation") {
-            //                    Picker("Elevation", selection: $mapStyleConfig.elevation) {
-            //                        Text("Flat").tag(MapStyleConfig.MapElevation.flat)
-            //                        Text("Realistic").tag(MapStyleConfig.MapElevation.realistic)
-            //                    }
-            //                }
-            //
-            //                if mapStyleConfig.baseStyle != .imagery {
-            //                    Toggle("Show Traffic", isOn: $mapStyleConfig.showTraffic)
-            //                }
-            //
-            //                Button {
-            //                    dismiss()
-            //                } label: {
-            //                    Text("OK")
-            //                        .frame(maxWidth: .infinity)
-            //                }
-            //                .buttonStyle(.glassProminent)
-            //                .padding()
-            //            }
-            //            .padding()
             .navigationTitle("Map Style")
             .navigationSubtitle("Customize the map appearance")
             .navigationBarTitleDisplayMode(.inline)
-
-            //            Spacer()
         }
     }
 }

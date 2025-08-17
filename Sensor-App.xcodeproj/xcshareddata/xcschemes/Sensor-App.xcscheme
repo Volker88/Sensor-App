@@ -32,14 +32,14 @@
             reference = "container:Tests/0_Test Plans/iOS_FullTest.xctestplan">
          </TestPlanReference>
          <TestPlanReference
-            reference = "container:Tests/0_Test Plans/iOS_ScreenshotTest.xctestplan">
-         </TestPlanReference>
-         <TestPlanReference
             reference = "container:Tests/0_Test Plans/iOS_UITest.xctestplan">
          </TestPlanReference>
          <TestPlanReference
             reference = "container:Tests/0_Test Plans/iOS_UnitTest.xctestplan"
             default = "YES">
+         </TestPlanReference>
+         <TestPlanReference
+            reference = "container:Tests/0_Test Plans/iOS_ScreenshotTest.xctestplan">
          </TestPlanReference>
       </TestPlans>
       <Testables>
