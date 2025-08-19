@@ -29,8 +29,13 @@ struct MagnetometerView: View {
                     },
                     label: {
                         Text("X-Axis: \(motionManager.motion?.magnetometerXAxis ?? 0.0, specifier: "%.5f") µT")
+                            .accessibilityHint("Tap to collapse graph", isEnabled: showXAxis)
+                            .accessibilityHint("Tap to expand  graph", isEnabled: !showXAxis)
+                            .accessibilityInputLabels(["X-Axis"])
                     }
                 )
+                .accessibilityAddTraits(.updatesFrequently)
+                .accessibilityRemoveTraits(.isHeader)
                 .accessibilityIdentifier(UIIdentifiers.MagnetometerView.xAxisRow)
 
                 DisclosureGroup(
@@ -41,8 +46,13 @@ struct MagnetometerView: View {
                     },
                     label: {
                         Text("Y-Axis: \(motionManager.motion?.magnetometerYAxis ?? 0.0, specifier: "%.5f") µT")
+                            .accessibilityHint("Tap to collapse graph", isEnabled: showYAxis)
+                            .accessibilityHint("Tap to expand  graph", isEnabled: !showYAxis)
+                            .accessibilityInputLabels(["Y-Axis"])
                     }
                 )
+                .accessibilityAddTraits(.updatesFrequently)
+                .accessibilityRemoveTraits(.isHeader)
                 .accessibilityIdentifier(UIIdentifiers.MagnetometerView.yAxisRow)
 
                 DisclosureGroup(
@@ -53,12 +63,18 @@ struct MagnetometerView: View {
                     },
                     label: {
                         Text("Z-Axis: \(motionManager.motion?.magnetometerZAxis ?? 0.0, specifier: "%.5f") µT")
+                            .accessibilityHint("Tap to collapse graph", isEnabled: showZAxis)
+                            .accessibilityHint("Tap to expand  graph", isEnabled: !showZAxis)
+                            .accessibilityInputLabels(["Z-Axis"])
                     }
                 )
+                .accessibilityAddTraits(.updatesFrequently)
+                .accessibilityRemoveTraits(.isHeader)
                 .accessibilityIdentifier(UIIdentifiers.MagnetometerView.zAxisRow)
 
                 NavigationLink(value: MagnetometerStack.magnetometerLog) {
                     Text("Log")
+                        .accessibilityHint("View Magnetometer Log")
                 }
                 .accessibilityIdentifier(UIIdentifiers.MagnetometerView.logButton)
             }

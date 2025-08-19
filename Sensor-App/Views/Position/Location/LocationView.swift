@@ -27,7 +27,7 @@ struct LocationView: View {
             Section(
                 header: Text("Location"),
                 footer: ShareSheet(url: shareCSV())
-                    .accessibilityLabel("Export Location Data to CSV")
+                    .accessibilityHint("Export Location Data to CSV")
                     .accessibilityIdentifier(UIIdentifiers.LocationView.exportButton)
             ) {
                 DisclosureGroup(
@@ -40,8 +40,13 @@ struct LocationView: View {
                         Text(
                             "Latitude: \(locationManager.location?.latitude ?? 0.0, specifier: "%.6f")° ± \(locationManager.location?.horizontalAccuracy ?? 0.0, specifier: "%.2f")m"
                         )
+                        .accessibilityHint("Tap to collapse graph", isEnabled: showLatitude)
+                        .accessibilityHint("Tap to expand  graph", isEnabled: !showLatitude)
+                        .accessibilityInputLabels(["Latitude"])
                     }
                 )
+                .accessibilityAddTraits(.updatesFrequently)
+                .accessibilityRemoveTraits(.isHeader)
                 .accessibilityIdentifier(UIIdentifiers.LocationView.latitudeRow)
 
                 DisclosureGroup(
@@ -54,8 +59,13 @@ struct LocationView: View {
                         Text(
                             "Longitude: \(locationManager.location?.longitude ?? 0.0, specifier: "%.6f")° ± \(locationManager.location?.horizontalAccuracy ?? 0.0, specifier: "%.2f")m"
                         )
+                        .accessibilityHint("Tap to collapse graph", isEnabled: showLongitude)
+                        .accessibilityHint("Tap to expand  graph", isEnabled: !showLongitude)
+                        .accessibilityInputLabels(["Longitude"])
                     }
                 )
+                .accessibilityAddTraits(.updatesFrequently)
+                .accessibilityRemoveTraits(.isHeader)
                 .accessibilityIdentifier(UIIdentifiers.LocationView.longitudeRow)
 
                 DisclosureGroup(
@@ -68,8 +78,13 @@ struct LocationView: View {
                         Text(
                             "Altitude: \(locationManager.location?.altitude ?? 0.0, specifier: "%.2f") ± \(locationManager.location?.verticalAccuracy ?? 0.0, specifier: "%.2f")m"
                         )
+                        .accessibilityHint("Tap to collapse graph", isEnabled: showDirection)
+                        .accessibilityHint("Tap to expand  graph", isEnabled: !showDirection)
+                        .accessibilityInputLabels(["Altitude"])
                     }
                 )
+                .accessibilityAddTraits(.updatesFrequently)
+                .accessibilityRemoveTraits(.isHeader)
                 .accessibilityIdentifier(UIIdentifiers.LocationView.altitudeRow)
 
                 DisclosureGroup(
@@ -80,6 +95,9 @@ struct LocationView: View {
                     },
                     label: {
                         Text("Direction: \(locationManager.location?.course ?? 0.0, specifier: "%.2f")°")
+                            .accessibilityHint("Tap to collapse graph", isEnabled: showLatitude)
+                            .accessibilityHint("Tap to expand  graph", isEnabled: !showLatitude)
+                            .accessibilityInputLabels(["Direction"])
                     }
                 )
                 .accessibilityIdentifier(UIIdentifiers.LocationView.courseRow)
@@ -94,8 +112,13 @@ struct LocationView: View {
                         Text(
                             "Speed: \(locationManager.location?.calculatedSpeed ?? 0.0, specifier: "%.1f") \(locationManager.location?.speedUnit ?? "")"
                         )
+                        .accessibilityHint("Tap to collapse graph", isEnabled: showSpeed)
+                        .accessibilityHint("Tap to expand  graph", isEnabled: !showSpeed)
+                        .accessibilityInputLabels(["Speed"])
                     }
                 )
+                .accessibilityAddTraits(.updatesFrequently)
+                .accessibilityRemoveTraits(.isHeader)
                 .accessibilityIdentifier(UIIdentifiers.LocationView.speedRow)
 
                 NavigationLink(value: PositionStack.locationMap) {

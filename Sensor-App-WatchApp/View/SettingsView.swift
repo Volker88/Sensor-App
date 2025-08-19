@@ -59,9 +59,9 @@ struct SettingsView: View {
             ) {
                 Text("Frequency: \(Int(refreshRate)) Hz")
 
-                Slider(value: $refreshRate, in: 1...10, step: 1) { _ in
-
-                }
+                Slider(value: $refreshRate, in: 1...10, step: 1) { _ in }
+                    .accessibilityLabel("Refresh Rate")
+                    .accessibilityValue("\(Int(refreshRate)) Hz")
             }
             Section {
                 Button(action: {

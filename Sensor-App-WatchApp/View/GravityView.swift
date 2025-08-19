@@ -19,9 +19,13 @@ struct GravityView: View {
     // MARK: - Body
     var body: some View {
         List {
-            Text("X-Axis: \(motionManager.motion?.gravityXAxis ?? 0.0, specifier: "%.5f") g (9,81 m/s^2)")
-            Text("Y-Axis: \(motionManager.motion?.gravityYAxis ?? 0.0, specifier: "%.5f") g (9,81 m/s^2)")
-            Text("Z-Axis: \(motionManager.motion?.gravityZAxis ?? 0.0, specifier: "%.5f") g (9,81 m/s^2)")
+            Group {
+                Text("X-Axis: \(motionManager.motion?.gravityXAxis ?? 0.0, specifier: "%.5f") g (9,81 m/s^2)")
+                Text("Y-Axis: \(motionManager.motion?.gravityYAxis ?? 0.0, specifier: "%.5f") g (9,81 m/s^2)")
+                Text("Z-Axis: \(motionManager.motion?.gravityZAxis ?? 0.0, specifier: "%.5f") g (9,81 m/s^2)")
+            }
+            .accessibilityAddTraits(.updatesFrequently)
+            .accessibilityRemoveTraits(.isStaticText)
         }
         .navigationTitle("Gravity")
         .font(.footnote)

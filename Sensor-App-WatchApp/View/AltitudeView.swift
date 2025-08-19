@@ -19,12 +19,16 @@ struct AltitudeView: View {
     // MARK: - Body
     var body: some View {
         List {
-            Text(
-                "Pressure: \(motionManager.altitude?.calculatedPressure ?? 0.0, specifier: "%.5f") \(motionManager.altitude?.pressureUnit ?? "")"
-            )
-            Text(
-                "Altitude change: \(motionManager.altitude?.calculatedAltitude ?? 0.0, specifier: "%.5f") \(motionManager.altitude?.altitudeUnit ?? "")"
-            )
+            Group {
+                Text(
+                    "Pressure: \(motionManager.altitude?.calculatedPressure ?? 0.0, specifier: "%.5f") \(motionManager.altitude?.pressureUnit ?? "")"
+                )
+                Text(
+                    "Altitude change: \(motionManager.altitude?.calculatedAltitude ?? 0.0, specifier: "%.5f") \(motionManager.altitude?.altitudeUnit ?? "")"
+                )
+            }
+            .accessibilityAddTraits(.updatesFrequently)
+            .accessibilityRemoveTraits(.isStaticText)
         }
         .navigationTitle("Altitude")
         .font(.footnote)

@@ -19,9 +19,13 @@ struct AccelerationView: View {
     // MARK: - Body
     var body: some View {
         List {
-            Text("X-Axis: \(motionManager.motion?.accelerationXAxis ?? 0.0, specifier: "%.5f") m/s^2")
-            Text("Y-Axis: \(motionManager.motion?.accelerationYAxis ?? 0.0, specifier: "%.5f") m/s^2")
-            Text("Z-Axis: \(motionManager.motion?.accelerationZAxis ?? 0.0, specifier: "%.5f") m/s^2")
+            Group {
+                Text("X-Axis: \(motionManager.motion?.accelerationXAxis ?? 0.0, specifier: "%.5f") m/s^2")
+                Text("Y-Axis: \(motionManager.motion?.accelerationYAxis ?? 0.0, specifier: "%.5f") m/s^2")
+                Text("Z-Axis: \(motionManager.motion?.accelerationZAxis ?? 0.0, specifier: "%.5f") m/s^2")
+            }
+            .accessibilityAddTraits(.updatesFrequently)
+            .accessibilityRemoveTraits(.isStaticText)
         }
         .navigationTitle("Acceleration")
         .font(.footnote)

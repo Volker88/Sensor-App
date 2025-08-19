@@ -111,6 +111,7 @@ struct LineGraphSubView: View {
                 }
             }
             .chartXAxis(.hidden)
+            .accessibilityHidden(true)
             .frame(
                 minWidth: 150,
                 idealWidth: 200,

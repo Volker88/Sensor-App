@@ -16,6 +16,10 @@ struct MagnetometerScreen: View {
     var body: some View {
         MagnetometerView()
             .safeAreaInset(edge: .bottom) {
+                Color.clear
+                    .frame(height: 175)
+            }
+            .overlay(alignment: .bottom) {
                 CustomControlsView()
             }
             .navigationTitle("Magnetometer")

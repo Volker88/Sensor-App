@@ -30,8 +30,13 @@ struct AltitudeView: View {
                         Text(
                             "Pressure: \(motionManager.altitude?.calculatedPressure ?? 0.0, specifier: "%.5f") \(motionManager.altitude?.pressureUnit ?? "")"
                         )
+                        .accessibilityHint("Tap to collapse graph", isEnabled: showPressure)
+                        .accessibilityHint("Tap to expand  graph", isEnabled: !showPressure)
+                        .accessibilityInputLabels(["Pressure"])
                     }
                 )
+                .accessibilityAddTraits(.updatesFrequently)
+                .accessibilityRemoveTraits(.isHeader)
                 .accessibilityIdentifier(UIIdentifiers.AltitudeView.pressureRow)
 
                 DisclosureGroup(
@@ -44,12 +49,18 @@ struct AltitudeView: View {
                         Text(
                             "Altitude change: \(motionManager.altitude?.calculatedAltitude ?? 0.0, specifier: "%.5f") \(motionManager.altitude?.altitudeUnit ?? "")"
                         )
+                        .accessibilityHint("Tap to collapse graph", isEnabled: showRelativeAltitudeChange)
+                        .accessibilityHint("Tap to expand  graph", isEnabled: !showRelativeAltitudeChange)
+                        .accessibilityInputLabels(["Altitude change"])
                     }
                 )
+                .accessibilityAddTraits(.updatesFrequently)
+                .accessibilityRemoveTraits(.isHeader)
                 .accessibilityIdentifier(UIIdentifiers.AltitudeView.altitudeRow)
 
                 NavigationLink(value: PositionStack.altitudeLog) {
                     Text("Log")
+                        .accessibilityHint("View Altitude Log")
                 }
                 .accessibilityIdentifier(UIIdentifiers.AltitudeView.logButton)
             }

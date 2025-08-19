@@ -16,6 +16,10 @@ struct GyroscopeScreen: View {
     var body: some View {
         GyroscopeView()
             .safeAreaInset(edge: .bottom) {
+                Color.clear
+                    .frame(height: 175)
+            }
+            .overlay(alignment: .bottom) {
                 CustomControlsView()
             }
             .navigationTitle("Gyroscope")

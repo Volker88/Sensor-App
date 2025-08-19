@@ -25,49 +25,61 @@ public class SettingsManager {
         graphMaxPoints: 150
     )
 
-    public var mapSettings = MapKitSettings(
-        showsCompass: true,
-        showsScale: true,
-        showsBuildings: true,
-        showsTraffic: true,
-        isRotateEnabled: true,
-        isPitchEnabled: true,
-        isScrollEnabled: true,
-        mapType: .standard,
-        zoom: 500
-    )
-
     public var speedSetting = 0
     public var accuracySetting = 0
     public var pressureSetting = 0
     public var heightSetting = 0
 
-    public let iconNames: [String] = ["AppIcon-V1", "AppIcon-V2", "AppIcon-V3"]
+    public let appIcons: [AppIcons] = [
+        AppIcons(iconName: "AppIcon-V1", accessibilityName: "Sensor Wave"),
+        AppIcons(iconName: "AppIcon-V2", accessibilityName: "Satellite"),
+        AppIcons(iconName: "AppIcon-V3", accessibilityName: "Piezoelectric Sensor")
+    ]
+
+    //    public let iconNames: [String] = ["AppIcon-V1", "AppIcon-V2", "AppIcon-V3"]
 
     public init() {
         userSettings = fetchUserSettings()
-
-        #if os(iOS)
-            mapSettings = fetchMapKitSettings()
-        #endif
     }
 
     public func fetchCurrentAppIcon() {
         #if os(iOS)
             if let currentIcon = UIApplication.shared.alternateIconName {
-                self.currentAppIconIndex = iconNames.firstIndex(of: currentIcon) ?? 0
-                print("Current App Icon: \(currentIcon)")
-                print("Current App Icon Index: \(self.currentAppIconIndex)")
+                // Find the index in your AppIcons array
+                if let index = appIcons.firstIndex(where: { $0.iconName == currentIcon }) {
+                    self.currentAppIconIndex = index
+                    print("Current App Icon: \(appIcons[index].iconName)")
+                    print("Current App Icon Index: \(self.currentAppIconIndex)")
+                } else {
+                    // Fallback to default if not found
+                    self.currentAppIconIndex = 0
+                }
+            } else {
+                // Default app icon (nil means the primary icon)
+                self.currentAppIconIndex = 0
             }
         #endif
     }
 
     public func changeIcon(value: Int) {
         #if os(iOS)
-            Task {
+            guard value >= 0 && value < appIcons.count else {
+                print("changeIcon: index out of bounds: \(value)")
+                return
+            }
+
+            let targetName = appIcons[value].iconName
+
+            // If it's already the current icon, just update the index and bail.
+            if UIApplication.shared.alternateIconName == targetName {
+                self.currentAppIconIndex = value
+                return
+            }
+
+            Task { @MainActor in
                 do {
-                    try await UIApplication.shared.setAlternateIconName(iconNames[value])
-                    fetchCurrentAppIcon()
+                    try await UIApplication.shared.setAlternateIconName(targetName)
+                    self.currentAppIconIndex = value
                 } catch {
                     print("Error setting alternate icon: \(error.localizedDescription)")
                 }
@@ -82,9 +94,6 @@ public class SettingsManager {
         userSettings.altitudeHeightSetting = altitudeHeight[heightSetting]
 
         saveUserSettings(userSettings: userSettings)
-        #if os(iOS)
-            saveMapKitSettings(mapKitSettings: mapSettings)
-        #endif
     }
 
     public func discardChanges() {
@@ -94,9 +103,6 @@ public class SettingsManager {
         heightSetting = altitudeHeight.firstIndex(of: userSettings.altitudeHeightSetting) ?? 0
 
         userSettings = fetchUserSettings()
-        #if os(iOS)
-            mapSettings = fetchMapKitSettings()
-        #endif
     }
 
     public let GPSSpeedSettings = [
@@ -205,56 +211,6 @@ public class SettingsManager {
         }
     }
 
-    /// Read MapKitSettings
-    ///
-    /// This function returns MapKitSettings from UserDefaults and returns back standard settings if MapKitSettings can't be fetched
-    /// - Precondition:iOS
-    /// - Returns: UserSettings
-    @available(watchOS, unavailable)
-    public func fetchMapKitSettings() -> MapKitSettings {
-        var mapKitSettings = MapKitSettings(
-            showsCompass: true,
-            showsScale: true,
-            showsBuildings: true,
-            showsTraffic: true,
-            isRotateEnabled: true,
-            isPitchEnabled: true,
-            isScrollEnabled: true,
-            mapType: .standard,
-            zoom: 500
-        )
-
-        if let settings = UserDefaults.standard.data(forKey: "MapKitSettings") {
-            let decoder = JSONDecoder()
-            if let decoded = try? decoder.decode(MapKitSettings.self, from: settings) {
-                mapKitSettings = decoded
-            } else {
-                Logger.userDefaults.error("MapKitSettings could not be fetched")
-            }
-        }
-
-        return mapKitSettings
-    }
-
-    /// Save MapKitSettings
-    ///
-    /// Save MapKitSettings to UserDefaults
-    /// - Precondition:iOS
-    /// - Parameter mapKitSettings: Settings to save to UserDefaults
-    @available(watchOS, unavailable)
-    public func saveMapKitSettings(mapKitSettings: MapKitSettings) {
-        self.mapSettings = mapKitSettings
-
-        let encoder = JSONEncoder()
-        let settings = mapKitSettings
-
-        if let data = try? encoder.encode(settings) {
-            UserDefaults.standard.set(data, forKey: "MapKitSettings")
-        } else {
-            Logger.userDefaults.error("MapKitSettings could not be fsaved")
-        }
-    }
-
     ///  Get  current timestamp
     ///
     ///  Get the current timestamp in dd-MM-yyyyy HH:mm:ss.SSS format
@@ -266,4 +222,9 @@ public class SettingsManager {
 
         return dateString
     }
+}
+
+public struct AppIcons {
+    public let iconName: String
+    public let accessibilityName: LocalizedStringResource
 }

@@ -19,10 +19,14 @@ struct AttitudeView: View {
     // MARK: - Body
     var body: some View {
         List {
-            Text("Roll: \((motionManager.motion?.attitudeRoll ?? 0.0) * 180 / .pi, specifier: "%.5f")°")
-            Text("Pitch: \((motionManager.motion?.attitudePitch ?? 0.0) * 180 / .pi, specifier: "%.5f")°")
-            Text("Yaw: \((motionManager.motion?.attitudeYaw ?? 0.0) * 180 / .pi, specifier: "%.5f")°")
-            Text("Heading: \(motionManager.motion?.attitudeHeading ?? 0.0, specifier: "%.5f")°")
+            Group {
+                Text("Roll: \((motionManager.motion?.attitudeRoll ?? 0.0) * 180 / .pi, specifier: "%.5f")°")
+                Text("Pitch: \((motionManager.motion?.attitudePitch ?? 0.0) * 180 / .pi, specifier: "%.5f")°")
+                Text("Yaw: \((motionManager.motion?.attitudeYaw ?? 0.0) * 180 / .pi, specifier: "%.5f")°")
+                Text("Heading: \(motionManager.motion?.attitudeHeading ?? 0.0, specifier: "%.5f")°")
+            }
+            .accessibilityAddTraits(.updatesFrequently)
+            .accessibilityRemoveTraits(.isStaticText)
         }
         .navigationTitle("Attitude")
         .font(.footnote)

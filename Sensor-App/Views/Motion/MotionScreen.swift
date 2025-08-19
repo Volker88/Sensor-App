@@ -25,6 +25,7 @@ struct MotionScreen: View {
                             Image(systemName: RootTab.acceleration.symbolImage)
                             Text(RootTab.acceleration.localizedString)
                         }
+                        .customTruncation()
                     }
                     .accessibilityIdentifier(UIIdentifiers.MotionScreen.accelerationButton)
 
@@ -33,6 +34,7 @@ struct MotionScreen: View {
                             Image(systemName: RootTab.gravity.symbolImage)
                             Text(RootTab.gravity.localizedString)
                         }
+                        .customTruncation()
                     }
                     .accessibilityIdentifier(UIIdentifiers.MotionScreen.gravityButton)
 
@@ -41,6 +43,7 @@ struct MotionScreen: View {
                             Image(systemName: RootTab.gyroscope.symbolImage)
                             Text(RootTab.gyroscope.localizedString)
                         }
+                        .customTruncation()
                     }
                     .accessibilityIdentifier(UIIdentifiers.MotionScreen.gyroscopeButton)
 
@@ -49,6 +52,7 @@ struct MotionScreen: View {
                             Image(systemName: RootTab.attitude.symbolImage)
                             Text(RootTab.attitude.localizedString)
                         }
+                        .customTruncation()
                     }
                     .accessibilityIdentifier(UIIdentifiers.MotionScreen.attitudeButton)
                 }

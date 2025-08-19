@@ -1,6 +1,71 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "Accessibility improvements" : {
+      "comment" : "A description of an accessibility improvement.",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vylepšení přístupnosti"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Barrierefreiheitsverbesserungen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Accessibility improvements"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mejoras de accesibilidad"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Améliorations de l'accessibilité"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Miglioramenti dell'accessibilità"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "アクセシビリティの向上"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "접근성 개선"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Melhorias de acessibilidade"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "辅助功能改进"
+          }
+        }
+      }
+    },
     "Adapt the new iOS 26 Liquid Glass Design" : {
       "comment" : "A list of changes introduced in version 6.0.0 of the app.",
       "localizations" : {
@@ -131,8 +196,8 @@
         }
       }
     },
-    "Performance improvements an bug fixes" : {
-      "comment" : "A list of improvements and bug fixes in version 6.0.0 of the app.",
+    "Performance improvements and bug fixes" : {
+      "comment" : "A bullet point in the release notes section, describing performance and bug fixes.",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -148,8 +213,8 @@
         },
         "en" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Performance improvements an bug fixes"
+            "state" : "needs_review",
+            "value" : "Performance improvements and bug fixes"
           }
         },
         "es" : {
@@ -161,7 +226,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Améliorations des performances et corrections de bugs"
+            "value" : "Améliorations des performances et corrections de bogues"
           }
         },
         "it" : {
@@ -185,13 +250,13 @@
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Melhorias de desempenho e correções de bugs"
+            "value" : "Melhorias de desempenho e correções de erros"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "性能提升和修复漏洞"
+            "value" : "性能提升和错误修复"
           }
         }
       }

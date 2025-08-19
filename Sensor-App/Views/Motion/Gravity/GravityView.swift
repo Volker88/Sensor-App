@@ -29,8 +29,13 @@ struct GravityView: View {
                     },
                     label: {
                         Text("X-Axis: \(motionManager.motion?.gravityXAxis ?? 0.0, specifier: "%.5f") g (9,81 m/s^2)")
+                            .accessibilityHint("Tap to collapse graph", isEnabled: showXAxis)
+                            .accessibilityHint("Tap to expand  graph", isEnabled: !showXAxis)
+                            .accessibilityInputLabels(["X-Axis"])
                     }
                 )
+                .accessibilityAddTraits(.updatesFrequently)
+                .accessibilityRemoveTraits(.isHeader)
                 .accessibilityIdentifier(UIIdentifiers.GravityView.xAxisRow)
 
                 DisclosureGroup(
@@ -41,8 +46,13 @@ struct GravityView: View {
                     },
                     label: {
                         Text("Y-Axis: \(motionManager.motion?.gravityYAxis ?? 0.0, specifier: "%.5f") g (9,81 m/s^2)")
+                            .accessibilityHint("Tap to collapse graph", isEnabled: showYAxis)
+                            .accessibilityHint("Tap to expand  graph", isEnabled: !showYAxis)
+                            .accessibilityInputLabels(["Y-Axis"])
                     }
                 )
+                .accessibilityAddTraits(.updatesFrequently)
+                .accessibilityRemoveTraits(.isHeader)
                 .accessibilityIdentifier(UIIdentifiers.GravityView.yAxisRow)
 
                 DisclosureGroup(
@@ -53,12 +63,18 @@ struct GravityView: View {
                     },
                     label: {
                         Text("Z-Axis: \(motionManager.motion?.gravityZAxis ?? 0.0, specifier: "%.5f") g (9,81 m/s^2)")
+                            .accessibilityHint("Tap to collapse graph", isEnabled: showZAxis)
+                            .accessibilityHint("Tap to expand  graph", isEnabled: !showZAxis)
+                            .accessibilityInputLabels(["Z-Axis"])
                     }
                 )
+                .accessibilityAddTraits(.updatesFrequently)
+                .accessibilityRemoveTraits(.isHeader)
                 .accessibilityIdentifier(UIIdentifiers.GravityView.zAxisRow)
 
                 NavigationLink(value: MotionStack.gravityLog) {
                     Text("Log")
+                        .accessibilityHint("View Gravity Log")
                 }
                 .accessibilityIdentifier(UIIdentifiers.GravityView.logButton)
             }

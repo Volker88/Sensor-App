@@ -30,8 +30,13 @@ struct AttitudeView: View {
                     },
                     label: {
                         Text("Roll: \((motionManager.motion?.attitudeRoll ?? 0.0) * 180 / .pi, specifier: "%.5f")°")
+                            .accessibilityHint("Tap to collapse graph", isEnabled: showRoll)
+                            .accessibilityHint("Tap to expand  graph", isEnabled: !showRoll)
+                            .accessibilityInputLabels(["Roll"])
                     }
                 )
+                .accessibilityAddTraits(.updatesFrequently)
+                .accessibilityRemoveTraits(.isHeader)
                 .accessibilityIdentifier(UIIdentifiers.AttitudeView.rollRow)
 
                 DisclosureGroup(
@@ -42,8 +47,13 @@ struct AttitudeView: View {
                     },
                     label: {
                         Text("Pitch: \((motionManager.motion?.attitudePitch ?? 0.0) * 180 / .pi, specifier: "%.5f")°")
+                            .accessibilityHint("Tap to collapse graph", isEnabled: showPitch)
+                            .accessibilityHint("Tap to expand  graph", isEnabled: !showPitch)
+                            .accessibilityInputLabels(["Pitch"])
                     }
                 )
+                .accessibilityAddTraits(.updatesFrequently)
+                .accessibilityRemoveTraits(.isHeader)
                 .accessibilityIdentifier(UIIdentifiers.AttitudeView.pitchRow)
 
                 DisclosureGroup(
@@ -54,8 +64,13 @@ struct AttitudeView: View {
                     },
                     label: {
                         Text("Yaw: \((motionManager.motion?.attitudeYaw ?? 0.0) * 180 / .pi, specifier: "%.5f")°")
+                            .accessibilityHint("Tap to collapse graph", isEnabled: showYaw)
+                            .accessibilityHint("Tap to expand  graph", isEnabled: !showYaw)
+                            .accessibilityInputLabels(["Yaw"])
                     }
                 )
+                .accessibilityAddTraits(.updatesFrequently)
+                .accessibilityRemoveTraits(.isHeader)
                 .accessibilityIdentifier(UIIdentifiers.AttitudeView.yawRow)
 
                 DisclosureGroup(
@@ -66,12 +81,18 @@ struct AttitudeView: View {
                     },
                     label: {
                         Text("Heading: \(motionManager.motion?.attitudeHeading ?? 0.0, specifier: "%.5f")°")
+                            .accessibilityHint("Tap to collapse graph", isEnabled: showHeading)
+                            .accessibilityHint("Tap to expand  graph", isEnabled: !showHeading)
+                            .accessibilityInputLabels(["Heading"])
                     }
                 )
+                .accessibilityAddTraits(.updatesFrequently)
+                .accessibilityRemoveTraits(.isHeader)
                 .accessibilityIdentifier(UIIdentifiers.AttitudeView.headingRow)
 
                 NavigationLink(value: MotionStack.attitudeLog) {
                     Text("Log")
+                        .accessibilityHint("View Attitude Log")
                 }
                 .accessibilityIdentifier(UIIdentifiers.AttitudeView.logButton)
             }

@@ -19,9 +19,13 @@ struct MagnetometerView: View {
     // MARK: - Body
     var body: some View {
         List {
-            Text("X-Axis: \(motionManager.motion?.magnetometerXAxis ?? 0.0, specifier: "%.5f") µT")
-            Text("Y-Axis: \(motionManager.motion?.magnetometerYAxis ?? 0.0, specifier: "%.5f") µT")
-            Text("Z-Axis: \(motionManager.motion?.magnetometerZAxis ?? 0.0, specifier: "%.5f") µT")
+            Group {
+                Text("X-Axis: \(motionManager.motion?.magnetometerXAxis ?? 0.0, specifier: "%.5f") µT")
+                Text("Y-Axis: \(motionManager.motion?.magnetometerYAxis ?? 0.0, specifier: "%.5f") µT")
+                Text("Z-Axis: \(motionManager.motion?.magnetometerZAxis ?? 0.0, specifier: "%.5f") µT")
+            }
+            .accessibilityAddTraits(.updatesFrequently)
+            .accessibilityRemoveTraits(.isStaticText)
         }
         .navigationTitle("Magnetometer")
         .font(.footnote)

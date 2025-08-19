@@ -26,19 +26,23 @@ struct RefreshRateView: View {
                     } label: {
                         Text("Frequency: \(Double(motionManager.sensorUpdateInterval), specifier: "%.0f") Hz")
                     }
+                    .accessibilityValue(Text(verbatim: ""))
                 }
             } else if show == "slider" {
                 HStack {
                     Text("1")
+                        .accessibilityLabel("Minimum refresh rate")
+                        .accessibilityValue("1 Hz")
 
                     Slider(value: Bindable(motionManager).sensorUpdateInterval, in: 1...50, step: 1) { _ in
                         updateSlider()
                     }
                     .accessibilityIdentifier(UIIdentifiers.RefreshRateView.refreshRateSlider)
                     .accessibilityLabel("Refresh Rate")
-                    .accessibilityLabel(Text("\(motionManager.sensorUpdateInterval, specifier: "%.0f") per Second"))
 
                     Text("50")
+                        .accessibilityLabel("Maximum refresh rate")
+                        .accessibilityValue("50 Hz")
                 }
             }
         }

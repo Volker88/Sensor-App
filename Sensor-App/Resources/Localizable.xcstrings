@@ -1,67 +1,67 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "%.0f per Second" : {
-      "comment" : "A label that indicates the current refresh rate",
+    "%lld Hz" : {
+      "comment" : "A label displaying the current refresh rate value.",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%.0f za sekundu"
+            "value" : "%lld Hz"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%.0f pro Sekunde"
+            "value" : "%lld Hz"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%.0f per Second"
+            "value" : "%lld Hz"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%.0f por segundo"
+            "value" : "%lld Hz"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%.0f par seconde"
+            "value" : "%lld Hz"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%.0f al secondo"
+            "value" : "%lld Hz"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%.0f秒ごと"
+            "value" : "%lld Hz"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "초당 %.0f"
+            "value" : "%lld Hz"
           }
         },
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%.0f por Segundo"
+            "value" : "%lld Hz"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "每秒 %.0f"
+            "value" : "%lld Hz"
           }
         }
       }
@@ -131,67 +131,67 @@
         }
       }
     },
-    "50" : {
-      "comment" : "The highest refresh rate of the app.",
+    "1 Hz" : {
+      "comment" : "A description of the minimum refresh rate.",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "50"
+            "value" : "1 Hz"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "50"
+            "value" : "1 Hz"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "50"
+            "value" : "1 Hz"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "50"
+            "value" : "1 Hz"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "50"
+            "value" : "1 Hz"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "50"
+            "value" : "1 Hz"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "50"
+            "value" : "1 Hz"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "50"
+            "value" : "1 Hz"
           }
         },
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "50"
+            "value" : "1 Hz"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "50"
+            "value" : "1 Hz"
           }
         }
       }
@@ -257,6 +257,136 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "1000"
+          }
+        }
+      }
+    },
+    "50" : {
+      "comment" : "The highest refresh rate of the app.",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "50"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "50"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "50"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "50"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "50"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "50"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "50"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "50"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "50"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "50"
+          }
+        }
+      }
+    },
+    "50 Hz" : {
+      "comment" : "A label displaying the maximum refresh rate of 50 Hz.",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "50 Hz"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "50 Hz"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "50 Hz"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "50 Hz"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "50 Hz"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "50 Hz"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "50 Hz"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "50 Hz"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "50 Hz"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "50 Hz"
           }
         }
       }
@@ -651,6 +781,71 @@
         }
       }
     },
+    "Altitude change" : {
+      "comment" : "Label for the relative altitude change in the AltitudeView.",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Změna nadmořské výšky"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Höhenänderung"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Altitude change"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cambio de altitud"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Changement d'altitude"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Variazione di altitudine"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "高度の変化"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "고도 변화"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mudança de altitude"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "海拔变化"
+          }
+        }
+      }
+    },
     "Altitude change: %.5f %@" : {
       "comment" : "A label displaying the change in altitude over time.",
       "localizations" : {
@@ -842,6 +1037,71 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "应用图标"
+          }
+        }
+      }
+    },
+    "App icon %@" : {
+      "comment" : "A button that allows the user to select an app icon. The button's label is the name of the icon, and it also indicates whether the icon is currently selected.",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ikona aplikace %@"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "App-Symbol %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "App icon %@"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ícono de la aplicación %@"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Icône de l'application %@"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Icona dell'app %@"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "アプリアイコン %@"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "앱 아이콘 %@"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ícone da app %@"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "应用图标 %@"
           }
         }
       }
@@ -1362,6 +1622,71 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "已删除"
+          }
+        }
+      }
+    },
+    "Direction" : {
+      "comment" : "Label for the \"Direction\" section of the Location view.",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Směr"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Richtung"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Direction"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dirección"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Direction"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Direzione"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "方向"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "방향"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Direção"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "方向"
           }
         }
       }
@@ -2666,6 +2991,71 @@
         }
       }
     },
+    "Heading" : {
+      "comment" : "Label for the heading value in the Attitude view.",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nadpis"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Überschrift"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Heading"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Encabezamiento"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Titre"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Intestazione"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "見出し"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "머리말"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cabeçalho"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "小标题"
+          }
+        }
+      }
+    },
     "Heading: %.5f°" : {
       "comment" : "A label displaying the direction the user is facing.",
       "localizations" : {
@@ -3186,67 +3576,67 @@
         }
       }
     },
-    "Latitude: %.6f° ± %.2fm" : {
-      "comment" : "A label displaying the current latitude and its accuracy.",
+    "Latitude" : {
+      "comment" : "Accessibility input label for the latitude data in the Location view.",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zeměpisná šířka: %1$.6f° ± %2$.2fm"
+            "value" : "Zeměpisná šířka"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Breitengrad: %1$.6f° ± %2$.2fm"
+            "value" : "Breitengrad"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Latitude: %1$.6f° ± %2$.2fm"
+            "value" : "Latitude"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Latitud: %1$.6f° ± %2$.2fm"
+            "value" : "Latitud"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Latitude : %1$.6f° ± %2$.2fm"
+            "value" : "Latitude"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Latitudine: %1$.6f° ± %2$.2fm"
+            "value" : "Latitudine"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "緯度: %1$.6f° ± %2$.2fm"
+            "value" : "緯度"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "위도: %1$.6f° ± %2$.2fm"
+            "value" : "위도"
           }
         },
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Latitude: %1$.6f° ± %2$.2fm"
+            "value" : "Latitude"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "纬度: %1$.6f° ± %2$.2f米"
+            "value" : "纬度"
           }
         }
       }
@@ -3312,6 +3702,136 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "纬度: %1$.10f° ± %2$.2f米"
+          }
+        }
+      }
+    },
+    "Latitude: %.5f° ± %.2fm" : {
+      "comment" : "A label displaying the latitude, longitude, altitude, course, and speed of the user's current location. Each value is followed by its unit, and is presented with a precision of two decimal places.",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zeměpisná šířka: %1$.5f° ± %2$.2m"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Breitengrad: %1$.5f° ± %2$.2fm"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Latitude: %1$.5f° ± %2$.2fm"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Latitud: %1$.5f° ± %2$.2fm"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Latitude : %1$.5f° ± %2$.2fm"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Latitudine: %1$.5f° ± %2$.2fm"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "緯度: %1$.5f° ± %2$.2fm"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "위도: %1$.5f° ± %2$.2fm"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Latitude: %1$.5f° ± %2$.2fm"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "纬度: %1$.5f° ± %2$.2fm"
+          }
+        }
+      }
+    },
+    "Latitude: %.6f° ± %.2fm" : {
+      "comment" : "A label displaying the current latitude and its accuracy.",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zeměpisná šířka: %1$.6f° ± %2$.2fm"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Breitengrad: %1$.6f° ± %2$.2fm"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Latitude: %1$.6f° ± %2$.2fm"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Latitud: %1$.6f° ± %2$.2fm"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Latitude : %1$.6f° ± %2$.2fm"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Latitudine: %1$.6f° ± %2$.2fm"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "緯度: %1$.6f° ± %2$.2fm"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "위도: %1$.6f° ± %2$.2fm"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Latitude: %1$.6f° ± %2$.2fm"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "纬度: %1$.6f° ± %2$.2f米"
           }
         }
       }
@@ -3446,67 +3966,67 @@
         }
       }
     },
-    "Longitude: %.6f° ± %.2fm" : {
-      "comment" : "A label displaying the longitude of a location, followed by the horizontal accuracy of the location measurement.",
+    "Longitude" : {
+      "comment" : "Label for the longitude data in the location view.",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zeměpisná délka: %1$.6f° ± %2$.2fm"
+            "value" : "Zeměpisná délka"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Längengrad: %1$.6f° ± %2$.2fm"
+            "value" : "Längengrad"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Longitude: %1$.6f° ± %2$.2fm"
+            "value" : "Longitude"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Longitud: %1$.6f° ± %2$.2fm"
+            "value" : "Longitud"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Longitude : %1$.6f° ± %2$.2fm"
+            "value" : "Longitude"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Longitudine: %1$.6f° ± %2$.2fm"
+            "value" : "Longitudine"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "経度: %1$.6f° ± %2$.2fm"
+            "value" : "経度"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "경도: %1$.6f° ± %2$.2fm"
+            "value" : "경도"
           }
         },
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Longitude: %1$.6f° ± %2$.2fm"
+            "value" : "Longitude"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "经度: %1$.6f° ± %2$.2f米"
+            "value" : "经度"
           }
         }
       }
@@ -3572,6 +4092,135 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "经度: %1$.10f° ± %2$.2f米"
+          }
+        }
+      }
+    },
+    "Longitude: %.5f° ± %.2fm" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zeměpisná délka: %1$.5f° ± %2$.2m"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Längengrad: %1$.5f° ± %2$.2fm"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Longitude: %1$.5f° ± %2$.2fm"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Longitud: %1$.5f° ± %2$.2fm"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Longitude : %1$.5f° ± %2$.2fm"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Longitudine: %1$.5f° ± %2$.2fm"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "経度: %1$.5f° ± %2$.2fm"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "경도: %1$.5f° ± %2$.2fm"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Longitude: %1$.5f° ± %2$.2fm"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "经度: %1$.5f° ± %2$.2fm"
+          }
+        }
+      }
+    },
+    "Longitude: %.6f° ± %.2fm" : {
+      "comment" : "A label displaying the longitude of a location, followed by the horizontal accuracy of the location measurement.",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zeměpisná délka: %1$.6f° ± %2$.2fm"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Längengrad: %1$.6f° ± %2$.2fm"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Longitude: %1$.6f° ± %2$.2fm"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Longitud: %1$.6f° ± %2$.2fm"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Longitude : %1$.6f° ± %2$.2fm"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Longitudine: %1$.6f° ± %2$.2fm"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "経度: %1$.6f° ± %2$.2fm"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "경도: %1$.6f° ± %2$.2fm"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Longitude: %1$.6f° ± %2$.2fm"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "经度: %1$.6f° ± %2$.2f米"
           }
         }
       }
@@ -3832,6 +4481,266 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "最大点数: %.0f"
+          }
+        }
+      }
+    },
+    "Maximum points of data to show in graphs" : {
+      "comment" : "A label describing the maximum number of data points to display in a graph.",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Maximální počet bodů dat k zobrazení v grafech"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Maximale Datenpunkte in Grafiken anzeigen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Maximum points of data to show in graphs"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Puntos máximos de datos para mostrar en gráficos"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Points de données maximum à afficher dans les graphiques"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Punti massimi di dati da mostrare nei grafici"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "グラフに表示するデータの最大ポイント数"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "그래프에 표시할 데이터의 최대 포인트 수"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pontos máximos de dados a mostrar nos gráficos"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "图表中显示的最大数据点"
+          }
+        }
+      }
+    },
+    "Maximum refresh rate" : {
+      "comment" : "A label for the maximum refresh rate in the refresh rate slider.",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Maximální obnovovací frekvence"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Maximale Bildwiederholfrequenz"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Maximum refresh rate"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Frecuencia de actualización máxima"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Taux de rafraîchissement maximal"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Frequenza di aggiornamento massima"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "最大リフレッシュレート"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "최대 새로 고침 속도"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Taxa de atualização máxima"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "最大刷新率"
+          }
+        }
+      }
+    },
+    "Minimum points of data to show in graphs" : {
+      "comment" : "A label for the minimum number of points in a data series displayed in a graph.",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Minimální počet bodů dat k zobrazení v grafech"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Minimale Datenpunkte in Grafiken anzeigen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Minimum points of data to show in graphs"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Puntos mínimos de datos para mostrar en gráficos"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Points de données minimum à afficher dans les graphiques"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Punti minimi di dati da mostrare nei grafici"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "グラフに表示するデータの最小ポイント数"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "그래프에 표시할 데이터의 최소 포인트 수"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pontos mínimos de dados a mostrar nos gráficos"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "图表中显示的最小数据点"
+          }
+        }
+      }
+    },
+    "Minimum refresh rate" : {
+      "comment" : "A text label indicating the minimum refresh rate.",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Minimální obnovovací frekvence"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Minimale Aktualisierungsrate"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Minimum refresh rate"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Frecuencia de actualización mínima"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Taux de rafraîchissement minimum"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Frequenza di aggiornamento minima"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "最小リフレッシュレート"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "최소 새로 고침 속도"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Taxa mínima de atualização"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "最低刷新率"
           }
         }
       }
@@ -4291,71 +5200,6 @@
         }
       }
     },
-    "Open settings" : {
-      "comment" : "Subtitle for the \"Settings\" navigation option.",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Otevřít nastavení"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Einstellungen öffnen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Open settings"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Abrir configuración"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ouvrir les réglages"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apri impostazioni"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "設定を開く"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "설정 열기"
-          }
-        },
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Abrir definições"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "打开设置"
-          }
-        }
-      }
-    },
     "Open Settings" : {
       "comment" : "A button label to open the iOS settings app.",
       "localizations" : {
@@ -4393,6 +5237,136 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Apri Impostazioni"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "設定を開く"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "설정 열기"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abrir definições"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "打开设置"
+          }
+        }
+      }
+    },
+    "Open map style configuration" : {
+      "comment" : "A button label that opens the map style configuration sheet.",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otevřít konfiguraci stylu mapy"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kartenstilkonfiguration öffnen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open map style configuration"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abrir configuración de estilo de mapa"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ouvrir la configuration du style de carte"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apri configurazione stile mappa"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "地図スタイル設定を開く"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "지도 스타일 설정 열기"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abrir configuração de estilo do mapa"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "打开地图样式配置"
+          }
+        }
+      }
+    },
+    "Open settings" : {
+      "comment" : "Subtitle for the \"Settings\" navigation option.",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otevřít nastavení"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Einstellungen öffnen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open settings"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abrir configuración"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ouvrir les réglages"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apri impostazioni"
           }
         },
         "ja" : {
@@ -4612,6 +5586,136 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "已暂停"
+          }
+        }
+      }
+    },
+    "Piezoelectric Sensor" : {
+      "comment" : "Name of an app icon.",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Piezoelektrický senzor"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Piezoelektrischer Sensor"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Piezoelectric Sensor"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensor Piezoeléctrico"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Capteur piézoélectrique"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensore piezoelettrico"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "圧電センサー"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "압전 센서"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensor Piezoelétrico"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "压电传感器"
+          }
+        }
+      }
+    },
+    "Pitch" : {
+      "comment" : "Label for the pitch value displayed in the Attitude view.",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Výška"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tonhöhe"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pitch"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tono"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tonalité"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tono"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ピッチ"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "음높이"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tom"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "音高"
           }
         }
       }
@@ -5136,6 +6240,71 @@
         }
       }
     },
+    "Roll" : {
+      "comment" : "Accessibility input label for the roll value in the AttitudeView.",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pohyb"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rollen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Roll"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impulsos"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rouler"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pause attive"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ロール"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "휠체어 주행"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deslocação"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "转动"
+          }
+        }
+      }
+    },
     "Roll: %.5f°" : {
       "comment" : "A label displaying the current roll of the user's device.",
       "localizations" : {
@@ -5197,6 +6366,71 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "横滚: %.5f°"
+          }
+        }
+      }
+    },
+    "Satellite" : {
+      "comment" : "Name of an app icon.",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Satelitní"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Satellit"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Satellite"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Satélite"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Satellite"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Satellite"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "航空写真"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "위성"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Satélite"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "卫星"
           }
         }
       }
@@ -5526,6 +6760,71 @@
         }
       }
     },
+    "Sensor Wave" : {
+      "comment" : "Name of the app icon in the SettingsManager.",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorová vlna"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorwelle"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensor Wave"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Onda del Sensor"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vague de capteur"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Onda sensore"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "センサーウェーブ"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "센서 웨이브"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Onda Sensorial"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "传感器波"
+          }
+        }
+      }
+    },
     "Settings" : {
       "comment" : "A button label that navigates to the app settings.",
       "localizations" : {
@@ -5717,6 +7016,71 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "显示交通流量"
+          }
+        }
+      }
+    },
+    "Speed" : {
+      "comment" : "Name of a data point related to speed in the Location view.",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rychlost"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Geschwindigkeit"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Speed"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Velocidad"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vitesse"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Velocità"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "速度"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "속도"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Velocidade"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "速度"
           }
         }
       }
@@ -6111,6 +7475,71 @@
         }
       }
     },
+    "Tap to collapse graph" : {
+      "comment" : "A hint that appears when the latitude disclosure group is expanded, instructing the user to collapse the graph by tapping it.",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Klepněte pro sbalení grafu"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zum Zusammenklappen des Diagramms tippen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tap to collapse graph"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toca para colapsar el gráfico"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Appuyez pour réduire le graphique"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Premi per ridurre il grafico"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "グラフをタップして折りたたむ"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "그래프를 축소하려면 탭하세요"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toque para colapsar o gráfico"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "点击折叠图表"
+          }
+        }
+      }
+    },
     "Tap to delete all values" : {
       "comment" : "Accessibility hint for the delete button",
       "localizations" : {
@@ -6172,6 +7601,71 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "点击删除所有值"
+          }
+        }
+      }
+    },
+    "Tap to expand  graph" : {
+      "comment" : "A hint that appears when the user expands a graph in the Location view.",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Klepněte pro rozbalení grafu"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zum Vergrößern des Diagramms tippen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tap to expand  graph"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toca para expandir el gráfico"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Appuyez pour agrandir le graphique"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Premi per espandere il grafico"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "グラフを拡大するにはタップしてください"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "그래프를 확장하려면 탭하세요"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toque para expandir o gráfico"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "点击展开图表"
           }
         }
       }
@@ -6306,6 +7800,71 @@
         }
       }
     },
+    "Tap to set as App Icon" : {
+      "comment" : "A hint that appears when a user taps on an app icon in the settings screen, explaining that it can be set as the app icon.",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Klepněte pro nastavení ikony aplikace"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tippen, um als App-Symbol festzulegen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tap to set as App Icon"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toca para establecer como icono de la app"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Appuyez pour définir comme icône de l'application"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Premi per impostare come icona dell'app"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "アイコンとして設定するにはタップしてください"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "앱 아이콘으로 설정하려면 탭하세요"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toque para definir como Ícone da App"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "点击设置为应用图标"
+          }
+        }
+      }
+    },
     "Tap to start updates" : {
       "comment" : "Accessible hint for the play button",
       "localizations" : {
@@ -6432,6 +7991,396 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "值"
+          }
+        }
+      }
+    },
+    "View Acceleration Log" : {
+      "comment" : "A button label that translates to \"View Acceleration Log\" in the German localization.",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zobrazit protokol zrychlení"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beschleunigungsprotokoll anzeigen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "View Acceleration Log"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ver registro de aceleración"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voir le journal d'accélération"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Visualizza registro accelerazione"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "加速度ログを表示"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "가속도 로그 보기"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Visualizar registo de Aceleração"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "查看加速度日志"
+          }
+        }
+      }
+    },
+    "View Altitude Log" : {
+      "comment" : "A label for a navigation link that takes the user to the altitude log.",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zobrazit protokol nadmořské výšky"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Höhenprotokoll anzeigen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "View Altitude Log"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ver registro de altitud"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voir le journal d'altitude"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Visualizza registro altitudine"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "高度ログを表示"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "고도 로그 보기"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Visualizar registo de Altitude"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "查看海拔日志"
+          }
+        }
+      }
+    },
+    "View Attitude Log" : {
+      "comment" : "A button label that translates to \"View Attitude Log\" in the German localization.",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zobrazit protokol polohy"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Haltungsprotokoll anzeigen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "View Attitude Log"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ver registro de actitud"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voir le journal de l'attitude"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Visualizza registro assetto"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "姿勢ログを表示"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "태도 로그 보기"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Visualizar registo de Atitude"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "查看姿态日志"
+          }
+        }
+      }
+    },
+    "View Gravity Log" : {
+      "comment" : "A button label that translates to \"View Gravity Log\" in the German localization.",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zobrazit protokol gravitace"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schwerkraft-Protokoll anzeigen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "View Gravity Log"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ver registro de la gravedad"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voir le journal de gravité"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Visualizza registro gravità"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "重力ログを表示"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "중력 로그 보기"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Visualizar registo de Gravidade"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "查看重力日志"
+          }
+        }
+      }
+    },
+    "View Gyroscope Log" : {
+      "comment" : "A button label that translates to \"View Gyroscope Log\" in the German localization.",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zobrazit protokol gyroskopu"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gyroskop-Protokoll anzeigen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "View Gyroscope Log"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ver registro del giroscopio"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voir le journal du gyroscope"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Visualizza registro giroscopio"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ジャイロスコープログを表示"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "자이로스코프 로그 보기"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Visualizar registo do Giroscópio"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "查看陀螺仪日志"
+          }
+        }
+      }
+    },
+    "View Magnetometer Log" : {
+      "comment" : "A button label that translates to \"View Magnetometer Log\" in the German localization.",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zobrazit protokol magnetometru"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Magnetometer-Protokoll anzeigen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "View Magnetometer Log"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ver registro del magnetómetro"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voir le journal du magnétomètre"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Visualizza registro magnetometro"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "磁力計ログを表示"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "자력계 로그 보기"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Visualizar registo do Magnetómetro"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "查看磁力计日志"
           }
         }
       }
@@ -6891,6 +8840,71 @@
         }
       }
     },
+    "X-Axis" : {
+      "comment" : "Accessibility input label for the X-Axis in the MagnetometerView.",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "X-osa"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "X-Achse"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "X-Axis"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eje X"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Axe X"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Asse X"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "X軸"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "X축"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eixo X"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "X轴"
+          }
+        }
+      }
+    },
     "X-Axis: %.5f g (9,81 m/s^2)" : {
       "comment" : "Label for the X-Axis for the gravity sensor",
       "localizations" : {
@@ -7212,6 +9226,71 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "X:%.5f"
+          }
+        }
+      }
+    },
+    "Y-Axis" : {
+      "comment" : "Label for the Y-Axis in the MagnetometerView.",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Y-osa"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Y-Achse"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Y-Axis"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eje Y"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Axe Y"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Asse Y"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Y軸"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Y축"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eixo Y"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Y轴"
           }
         }
       }
@@ -7606,6 +9685,71 @@
         }
       }
     },
+    "Yaw" : {
+      "comment" : "Label for the Yaw axis in the Attitude view.",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bočení"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gieren"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yaw"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Guiñada"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lacet"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yaw"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ヨー"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "요"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Guinada"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "偏航"
+          }
+        }
+      }
+    },
     "Yaw: %.5f°" : {
       "comment" : "A label displaying the rotation of the device around the Z-axis.",
       "localizations" : {
@@ -7667,6 +9811,71 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "航偏角: %.5f°"
+          }
+        }
+      }
+    },
+    "Z-Axis" : {
+      "comment" : "Label for the Z-Axis in the MagnetometerView.",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Z-osa"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Z-Achse"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Z-Axis"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eje Z"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Axe Z"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Asse Z"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Z軸"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Z축"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eixo Z"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Z轴"
           }
         }
       }

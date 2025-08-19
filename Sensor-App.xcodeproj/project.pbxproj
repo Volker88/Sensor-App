@@ -124,7 +124,6 @@
 				API/SettingsManager.swift,
 				"Extension/Extension+Double.swift",
 				"Extension/Extension+Logger.swift",
-				"Extension/Extension+Map.swift",
 				Localization/PreviewLocalizationModifier.swift,
 				Localization/SupportedLanguage.swift,
 				Model/AltitudeModel.swift,
@@ -148,7 +147,6 @@
 				API/SettingsManager.swift,
 				"Extension/Extension+Double.swift",
 				"Extension/Extension+Logger.swift",
-				"Extension/Extension+Map.swift",
 				Localization/PreviewLocalizationModifier.swift,
 				Localization/SupportedLanguage.swift,
 				Model/AltitudeModel.swift,
@@ -212,6 +210,7 @@
 				iOSUITests/GravityViewUITests.swift,
 				iOSUITests/GyroscopeViewUITests.swift,
 				iOSUITests/Helper/BaseTestCase.swift,
+				"iOSUITests/Helper/Extension+String.swift",
 				"iOSUITests/Helper/Extension+XCUIElement.swift",
 				iOSUITests/LocationViewUITests.swift,
 				iOSUITests/MagnetometerViewUITests.swift,
@@ -243,6 +242,7 @@
 				iOSUITests/GravityViewUITests.swift,
 				iOSUITests/GyroscopeViewUITests.swift,
 				iOSUITests/Helper/BaseTestCase.swift,
+				"iOSUITests/Helper/Extension+String.swift",
 				"iOSUITests/Helper/Extension+XCUIElement.swift",
 				iOSUITests/LocationViewUITests.swift,
 				iOSUITests/MagnetometerViewUITests.swift,
@@ -274,6 +274,7 @@
 				iOSUITests/GravityViewUITests.swift,
 				iOSUITests/GyroscopeViewUITests.swift,
 				iOSUITests/Helper/BaseTestCase.swift,
+				"iOSUITests/Helper/Extension+String.swift",
 				"iOSUITests/Helper/Extension+XCUIElement.swift",
 				iOSUITests/LocationViewUITests.swift,
 				iOSUITests/MagnetometerViewUITests.swift,
@@ -309,6 +310,7 @@
 				iOSUITests/GravityViewUITests.swift,
 				iOSUITests/GyroscopeViewUITests.swift,
 				iOSUITests/Helper/BaseTestCase.swift,
+				"iOSUITests/Helper/Extension+String.swift",
 				"iOSUITests/Helper/Extension+XCUIElement.swift",
 				iOSUITests/LocationViewUITests.swift,
 				iOSUITests/MagnetometerViewUITests.swift,
@@ -961,9 +963,9 @@
 			baseConfigurationReferenceRelativePath = Debug.xcconfig;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIcon-V1 AppIcon-V2 AppIcon-V3";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "${PRIMARY_APP_ICON}";
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				BUNDLE_IDENTIFIER = "${BASE_BUNDLE_IDENTIFIER}.dev";
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -1040,9 +1042,9 @@
 			baseConfigurationReferenceRelativePath = Release.xcconfig;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIcon-V1 AppIcon-V2 AppIcon-V3";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "${PRIMARY_APP_ICON}";
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				BUNDLE_IDENTIFIER = "${BASE_BUNDLE_IDENTIFIER}";
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -1110,7 +1112,6 @@
 		1527B03D24C4AA240024DD78 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEAD_CODE_STRIPPING = YES;
@@ -1134,7 +1135,6 @@
 		1527B03E24C4AA240024DD78 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEAD_CODE_STRIPPING = YES;
 				ENABLE_PREVIEWS = YES;
@@ -1247,8 +1247,6 @@
 		1527B06E24C4AA640024DD78 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "";
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "$(SRCROOT)/Sensor-App-WatchApp/Miscellaneous/Info.plist";
@@ -1268,8 +1266,6 @@
 		1527B06F24C4AA640024DD78 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "";
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "$(SRCROOT)/Sensor-App-WatchApp/Miscellaneous/Info.plist";

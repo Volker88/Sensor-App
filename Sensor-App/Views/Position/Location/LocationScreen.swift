@@ -20,6 +20,10 @@ struct LocationScreen: View {
     var body: some View {
         LocationView()
             .safeAreaInset(edge: .bottom) {
+                Color.clear
+                    .frame(height: 175)
+            }
+            .overlay(alignment: .bottom) {
                 CustomControlsView()
             }
             .navigationTitle("Location")

@@ -35,11 +35,15 @@ struct AttitudeList: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 ShareSheet(url: shareCSV())
-                    .accessibilityLabel("Export Attitude Data to CSV")
+                    .accessibilityHint("Export Attitude Data to CSV")
                     .accessibilityIdentifier(UIIdentifiers.AttitudeList.exportButton)
             }
         }
         .safeAreaInset(edge: .bottom) {
+            Color.clear
+                .frame(height: 175)
+        }
+        .overlay(alignment: .bottom) {
             CustomControlsView()
         }
     }

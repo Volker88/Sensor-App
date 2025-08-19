@@ -30,6 +30,7 @@ struct MapStyleView: View {
 
                 if mapStyleConfig.baseStyle != .imagery {
                     Toggle("Show Traffic", isOn: $mapStyleConfig.showTraffic)
+                        .accessibilityRemoveTraits(.isButton)
                 }
 
                 Button {

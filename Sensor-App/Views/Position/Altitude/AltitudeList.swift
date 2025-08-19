@@ -31,11 +31,15 @@ struct AltitudeList: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 ShareSheet(url: shareCSV())
-                    .accessibilityLabel("Export Altitude Data to CSV")
+                    .accessibilityHint("Export Altitude Data to CSV")
                     .accessibilityIdentifier(UIIdentifiers.AltitudeList.exportButton)
             }
         }
         .safeAreaInset(edge: .bottom) {
+            Color.clear
+                .frame(height: 175)
+        }
+        .overlay(alignment: .bottom) {
             CustomControlsView()
         }
     }

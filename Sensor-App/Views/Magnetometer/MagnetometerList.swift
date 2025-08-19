@@ -32,11 +32,15 @@ struct MagnetometerList: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 ShareSheet(url: shareCSV())
-                    .accessibilityLabel("Export Magnetometer Data to CSV")
+                    .accessibilityHint("Export Magnetometer Data to CSV")
                     .accessibilityIdentifier(UIIdentifiers.MagnetometerList.exportButton)
             }
         }
         .safeAreaInset(edge: .bottom) {
+            Color.clear
+                .frame(height: 175)
+        }
+        .overlay(alignment: .bottom) {
             CustomControlsView()
         }
     }

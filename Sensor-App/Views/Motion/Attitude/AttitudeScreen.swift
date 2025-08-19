@@ -16,6 +16,10 @@ struct AttitudeScreen: View {
     var body: some View {
         AttitudeView()
             .safeAreaInset(edge: .bottom) {
+                Color.clear
+                    .frame(height: 175)
+            }
+            .overlay(alignment: .bottom) {
                 CustomControlsView()
             }
             .navigationTitle("Attitude")

@@ -29,8 +29,13 @@ struct GyroscopeView: View {
                     },
                     label: {
                         Text("X-Axis: \(motionManager.motion?.gyroXAxis ?? 0.0, specifier: "%.5f") rad/s")
+                            .accessibilityHint("Tap to collapse graph", isEnabled: showXAxis)
+                            .accessibilityHint("Tap to expand  graph", isEnabled: !showXAxis)
+                            .accessibilityInputLabels(["X-Axis"])
                     }
                 )
+                .accessibilityAddTraits(.updatesFrequently)
+                .accessibilityRemoveTraits(.isHeader)
                 .accessibilityIdentifier(UIIdentifiers.GyroscopeView.xAxisRow)
 
                 DisclosureGroup(
@@ -41,8 +46,13 @@ struct GyroscopeView: View {
                     },
                     label: {
                         Text("Y-Axis: \(motionManager.motion?.gyroYAxis ?? 0.0, specifier: "%.5f") rad/s")
+                            .accessibilityHint("Tap to collapse graph", isEnabled: showYAxis)
+                            .accessibilityHint("Tap to expand  graph", isEnabled: !showYAxis)
+                            .accessibilityInputLabels(["Y-Axis"])
                     }
                 )
+                .accessibilityAddTraits(.updatesFrequently)
+                .accessibilityRemoveTraits(.isHeader)
                 .accessibilityIdentifier(UIIdentifiers.GyroscopeView.yAxisRow)
 
                 DisclosureGroup(
@@ -53,12 +63,18 @@ struct GyroscopeView: View {
                     },
                     label: {
                         Text("Z-Axis: \(motionManager.motion?.gyroZAxis ?? 0.0, specifier: "%.5f") rad/s")
+                            .accessibilityHint("Tap to collapse graph", isEnabled: showZAxis)
+                            .accessibilityHint("Tap to expand  graph", isEnabled: !showZAxis)
+                            .accessibilityInputLabels(["Z-Axis"])
                     }
                 )
+                .accessibilityAddTraits(.updatesFrequently)
+                .accessibilityRemoveTraits(.isHeader)
                 .accessibilityIdentifier(UIIdentifiers.GyroscopeView.zAxisRow)
 
                 NavigationLink(value: MotionStack.gyroscopeLog) {
                     Text("Log")
+                        .accessibilityHint("View Gyroscope Log")
                 }
                 .accessibilityIdentifier(UIIdentifiers.GyroscopeView.logButton)
             }

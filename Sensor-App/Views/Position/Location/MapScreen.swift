@@ -41,9 +41,11 @@ struct MapScreen: View {
                             .imageScale(.large)
                             .dynamicTypeSize(.medium)
                     }
+                    .accessibilityLabel("Open map style configuration")
                     .padding(10)
                     .background(.ultraThickMaterial)
                     .clipShape(.circle)
+                    .contentShape(.circle)
                     .matchedTransitionSource(id: "Configuration", in: animation)
 
                     MapUserLocationButton(scope: mapScope)

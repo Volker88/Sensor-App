@@ -21,6 +21,7 @@ struct SettingsScreen: View {
         Form {
             Section("General") {
                 Toggle("Show Release Notes", isOn: $showReleaseNotes)
+                    .accessibilityRemoveTraits(.isButton)
             }
 
             Section(
@@ -30,16 +31,43 @@ struct SettingsScreen: View {
                 HStack {
                     Spacer()
 
-                    ForEach(0..<settingsManager.iconNames.count, id: \.self) { index in
-                        Image(uiImage: UIImage(named: "\(settingsManager.iconNames[index])") ?? UIImage())
-                            .resizable()
-                            .frame(width: 100, height: 100)
-                            .scaledToFit()
-                            .clipShape(RoundedRectangle(cornerRadius: 10))
-                            .conditionalOverlay(visible: settingsManager.currentAppIconIndex == index)
-                            .onTapGesture {
-                                settingsManager.changeIcon(value: index)
-                            }
+                    ForEach(0..<settingsManager.appIcons.count, id: \.self) { index in
+                        let iconName = settingsManager.appIcons[index].iconName
+                        let accessibilityName = settingsManager.appIcons[index].accessibilityName
+
+                        Button {
+                            settingsManager.changeIcon(value: index)
+                        } label: {
+                            Image(uiImage: UIImage(named: iconName) ?? UIImage())
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 100, height: 100)
+                                .clipShape(RoundedRectangle(cornerRadius: 10))
+                                // Visual selection ring
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .stroke(lineWidth: settingsManager.currentAppIconIndex == index ? 4 : 0)
+                                )
+                                // Checkmark overlay (hidden from VoiceOver)
+                                .overlay(alignment: .topTrailing) {
+                                    if settingsManager.currentAppIconIndex == index {
+                                        Image(systemName: "checkmark.circle.fill")
+                                            .font(.title)
+                                            .padding(6)
+                                            .background(.ultraThinMaterial, in: Circle())
+                                            .accessibilityHidden(true)
+                                    }
+                                }
+                        }
+                        .buttonStyle(.plain)
+                        // Combine image + overlays into a single accessible control
+                        .accessibilityLabel(Text("App icon \(accessibilityName)"))
+                        .accessibilityAddTraits(settingsManager.currentAppIconIndex == index ? .isSelected : [])
+                        .accessibilityRemoveTraits(.isButton)
+                        .accessibilityHint(
+                            "Tap to set as App Icon",
+                            isEnabled: settingsManager.currentAppIconIndex != index
+                        )
                     }
 
                     Spacer()
@@ -92,11 +120,13 @@ struct SettingsScreen: View {
             ) {
                 Stepper(value: Bindable(settingsManager).userSettings.graphMaxPoints, in: 1...1000, step: 1) {
                     Text("Max Points: \(settingsManager.userSettings.graphMaxPoints, specifier: "%.0f")")
+                        .accessibilityLabel("Maximum points of data to show in graphs")
                 }
                 .accessibilityIdentifier(UIIdentifiers.SettingScreen.maxPointsStepper)
 
                 HStack {
                     Text("1")
+                        .accessibilityHint("Minimum points of data to show in graphs")
 
                     Slider(
                         value: Bindable(settingsManager).userSettings.graphMaxPoints,
@@ -106,6 +136,7 @@ struct SettingsScreen: View {
                     .accessibilityIdentifier(UIIdentifiers.SettingScreen.maxPointsSlider)
 
                     Text("1000")
+                        .accessibilityHint("Maximum points of data to show in graphs")
                 }
             }
 

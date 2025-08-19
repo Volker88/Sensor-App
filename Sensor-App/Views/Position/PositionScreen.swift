@@ -25,6 +25,7 @@ struct PositionScreen: View {
                             Image(systemName: RootTab.location.symbolImage)
                             Text(RootTab.location.localizedString)
                         }
+                        .customTruncation()
                     }
                     .accessibilityIdentifier(UIIdentifiers.PositionScreen.locationButton)
 
@@ -33,6 +34,7 @@ struct PositionScreen: View {
                             Image(systemName: RootTab.altitude.symbolImage)
                             Text(RootTab.altitude.localizedString)
                         }
+                        .customTruncation()
                     }
                     .accessibilityIdentifier(UIIdentifiers.PositionScreen.altitudeButton)
                 }

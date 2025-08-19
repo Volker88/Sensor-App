@@ -33,11 +33,15 @@ struct GyroscopeList: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 ShareSheet(url: shareCSV())
-                    .accessibilityLabel("Export Gyroscope Data to CSV")
+                    .accessibilityHint("Export Gyroscope Data to CSV")
                     .accessibilityIdentifier(UIIdentifiers.GyroscopeList.exportButton)
             }
         }
         .safeAreaInset(edge: .bottom) {
+            Color.clear
+                .frame(height: 175)
+        }
+        .overlay(alignment: .bottom) {
             CustomControlsView()
         }
     }
