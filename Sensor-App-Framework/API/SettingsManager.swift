@@ -36,35 +36,41 @@ public class SettingsManager {
         AppIcons(iconName: "AppIcon-V3", accessibilityName: "Piezoelectric Sensor")
     ]
 
-    //    public let iconNames: [String] = ["AppIcon-V1", "AppIcon-V2", "AppIcon-V3"]
-
     public init() {
         userSettings = fetchUserSettings()
     }
 
     public func fetchCurrentAppIcon() {
         #if os(iOS)
+            guard let defaultIcon = Bundle.main.object(forInfoDictionaryKey: "PRIMARY_APP_ICON") as? String else {
+                return
+            }
+
             if let currentIcon = UIApplication.shared.alternateIconName {
                 // Find the index in your AppIcons array
                 if let index = appIcons.firstIndex(where: { $0.iconName == currentIcon }) {
                     self.currentAppIconIndex = index
-                    print("Current App Icon: \(appIcons[index].iconName)")
-                    print("Current App Icon Index: \(self.currentAppIconIndex)")
                 } else {
                     // Fallback to default if not found
                     self.currentAppIconIndex = 0
                 }
             } else {
                 // Default app icon (nil means the primary icon)
-                self.currentAppIconIndex = 0
+                if let index = appIcons.firstIndex(where: { $0.iconName == defaultIcon }) {
+                    self.currentAppIconIndex = index
+                } else {
+                    self.currentAppIconIndex = 0
+                }
             }
         #endif
     }
 
     public func changeIcon(value: Int) {
         #if os(iOS)
+            guard let defaultIcon = Bundle.main.object(forInfoDictionaryKey: "PRIMARY_APP_ICON") as? String else {
+                return
+            }
             guard value >= 0 && value < appIcons.count else {
-                print("changeIcon: index out of bounds: \(value)")
                 return
             }
 
@@ -78,10 +84,18 @@ public class SettingsManager {
 
             Task { @MainActor in
                 do {
-                    try await UIApplication.shared.setAlternateIconName(targetName)
+                    if targetName == defaultIcon {
+                        // Reset to primary icon
+                        try await UIApplication.shared.setAlternateIconName(nil)
+                        Logger.appIcon.info("Reset to primary icon")
+                    } else {
+                        try await UIApplication.shared.setAlternateIconName(targetName)
+                        Logger.appIcon.info("Set alternate icon to: \(targetName)")
+                    }
+
                     self.currentAppIconIndex = value
                 } catch {
-                    print("Error setting alternate icon: \(error.localizedDescription)")
+                    Logger.appIcon.error("Error setting alternate icon: \(error.localizedDescription)")
                 }
             }
         #endif

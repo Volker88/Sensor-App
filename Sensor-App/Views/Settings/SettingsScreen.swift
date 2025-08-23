@@ -73,6 +73,7 @@ struct SettingsScreen: View {
                     Spacer()
                 }
             }
+
             Section(
                 header:
                     Text("Location")

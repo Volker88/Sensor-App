@@ -12,6 +12,9 @@ extension Logger {
     /// Application bundle identifier
     private static let subsystem = Bundle.main.bundleIdentifier!  // swiftlint:disable:this force_unwrapping
 
+    /// Log App Icon Events
+    public static let appIcon = Logger(subsystem: subsystem, category: "appIcon")
+
     /// Log ``scenePhase`` events
     public static let scenePhase = Logger(subsystem: subsystem, category: "scenePhase")
 
