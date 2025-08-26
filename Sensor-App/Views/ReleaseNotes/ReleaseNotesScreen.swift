@@ -20,10 +20,18 @@ struct ReleaseNotesScreen: View {
             ReleaseNotesView()
                 .navigationTitle("Release Notes")
                 .toolbar {
-                    ToolbarItem(placement: .cancellationAction) {
-                        Button("Close", systemImage: "xmark.circle", role: .close) {
-                            dismiss()
-                        }
+                    ToolbarItem(placement: .confirmationAction) {
+                        Button("Close", action: dismiss.callAsFunction)
+                            .buttonStyle(.glassProminent)
+                    }
+                    
+                    ToolbarItem(placement: .automatic) {
+                        Toggle("Show", isOn: $showReleaseNotes)
+                            .accessibilityLabel("Show Release Notes")
+                            .accessibilityValue("enabled", isEnabled: showReleaseNotes)
+                            .accessibilityValue("disabled", isEnabled: !showReleaseNotes)
+                            .accessibilityRemoveTraits(.isButton)
+                            .accessibilityAddTraits(.isToggle)
                     }
                 }
         }

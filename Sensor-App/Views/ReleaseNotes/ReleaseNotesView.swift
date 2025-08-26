@@ -21,6 +21,7 @@ struct ReleaseNotesView: View {
                 Text("Performance improvements and bug fixes", tableName: "ReleaseNotes")
             } header: {
                 Text(verbatim: "6.0.0")
+                    .accessibilityLabel(Text("Version 2.0.0", tableName: "ReleaseNotes"))
             }
         }
     }
