@@ -24,7 +24,7 @@ struct ReleaseNotesScreen: View {
                         Button("Close", action: dismiss.callAsFunction)
                             .buttonStyle(.glassProminent)
                     }
-                    
+
                     ToolbarItem(placement: .automatic) {
                         Toggle("Show", isOn: $showReleaseNotes)
                             .accessibilityLabel("Show Release Notes")

@@ -3,11 +3,11 @@
 #xcrun simctl list devices
 
 # Define Simulator UUIDs
-iPhone="2A48624C-7026-42E8-8C4E-18E120D93492"
-iPad="3775D7AE-4C08-4B16-B320-0115FC021B24"
+iPhone="DE2C1867-6249-49CF-87F3-CB82BE474A0C"
+iPad="2FFCF351-B301-47D6-BA11-416AE749E52C"
 
 # Define the OS version in a variable
-OS_VERSION="18.1"
+OS_VERSION="26.0"
 
 # Define Appearance light / dark
 APPEARANCE="light"
@@ -29,9 +29,9 @@ xcodebuild test -testPlan iOS_ScreenshotTest -project 'Sensor-App.xcodeproj' -sc
 -destination "platform=iOS Simulator,name=iPhone 16 Pro Max,OS=$OS_VERSION" \
 -destination "platform=iOS Simulator,name=iPad Pro 13-inch (M4),OS=$OS_VERSION" \
 -parallel-testing-enabled YES \
--derivedDataPath '/tmp/PrintCommanderDerivedData/'
+-derivedDataPath '/tmp/SensorappDerivedData/'
 
-cd /tmp/PrintCommanderDerivedData
+cd /tmp/SensorappDerivedData
 open .
 
 
