@@ -22,7 +22,7 @@ struct MagnetometerScreen: View {
             .overlay(alignment: .bottom) {
                 CustomControlsView()
             }
-            .navigationTitle("Magnetometer")
+            .navigationTitle(RootTab.magnetometer.localizedString)
             .onAppear {
                 motionManager.startMotionUpdates()
             }

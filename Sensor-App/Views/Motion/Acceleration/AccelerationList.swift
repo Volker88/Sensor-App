@@ -29,7 +29,7 @@ struct AccelerationList: View {
             .font(.footnote)
         }
         .listStyle(.plain)
-        .navigationTitle("Acceleration")
+        .navigationTitle(RootTab.acceleration.localizedString)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 ShareSheet(url: shareCSV())

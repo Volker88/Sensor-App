@@ -28,7 +28,7 @@ struct MagnetometerList: View {
             }
             .font(.footnote)
         }
-        .navigationTitle("Magnetometer")
+        .navigationTitle(RootTab.magnetometer.localizedString)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 ShareSheet(url: shareCSV())

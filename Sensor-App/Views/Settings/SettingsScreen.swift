@@ -159,7 +159,7 @@ struct SettingsScreen: View {
             .buttonStyle(BorderlessButtonStyle())
         }
         .accessibilityIdentifier(UIIdentifiers.SettingScreen.collectionView)
-        .navigationTitle("Settings")
+        .navigationTitle(RootTab.settings.localizedString)
         .onAppear {
             discardChanges(showNotification: false)
             settingsManager.fetchCurrentAppIcon()

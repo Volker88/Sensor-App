@@ -22,7 +22,7 @@ struct GyroscopeScreen: View {
             .overlay(alignment: .bottom) {
                 CustomControlsView()
             }
-            .navigationTitle("Gyroscope")
+            .navigationTitle(RootTab.gyroscope.localizedString)
             .onAppear {
                 motionManager.startMotionUpdates()
             }

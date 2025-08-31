@@ -59,7 +59,7 @@ struct MotionScreen: View {
                 .frame(maxWidth: 360)
                 .frame(maxWidth: .infinity, alignment: .center)
             }
-            .navigationTitle(RootTab.motion.stringValue)
+            .navigationTitle(RootTab.motion.localizedString)
             .navigationSubtitle("Select a motion type")
             .navigationDestination(for: MotionStack.self) { $0 }
         }

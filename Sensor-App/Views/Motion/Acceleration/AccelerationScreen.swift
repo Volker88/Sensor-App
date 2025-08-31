@@ -22,7 +22,7 @@ struct AccelerationScreen: View {
             .overlay(alignment: .bottom) {
                 CustomControlsView()
             }
-            .navigationTitle("Acceleration")
+            .navigationTitle(RootTab.acceleration.localizedString)
             .onAppear {
                 motionManager.startMotionUpdates()
             }

@@ -26,7 +26,7 @@ struct LocationScreen: View {
             .overlay(alignment: .bottom) {
                 CustomControlsView()
             }
-            .navigationTitle("Location")
+            .navigationTitle(RootTab.location.localizedString)
             .onDisappear {
                 #if RELEASE
                     requestReview()

@@ -31,7 +31,7 @@ struct AttitudeList: View {
             .font(.footnote)
         }
         .listStyle(.plain)
-        .navigationTitle("Attitude")
+        .navigationTitle(RootTab.attitude.localizedString)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 ShareSheet(url: shareCSV())

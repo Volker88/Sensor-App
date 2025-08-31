@@ -22,7 +22,7 @@ struct AltitudeScreen: View {
             .overlay(alignment: .bottom) {
                 CustomControlsView()
             }
-            .navigationTitle("Altitude")
+            .navigationTitle(RootTab.altitude.localizedString)
             .onAppear {
                 motionManager.startAltitudeUpdates()
             }

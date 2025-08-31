@@ -29,7 +29,7 @@ struct GyroscopeList: View {
             .font(.footnote)
         }
         .listStyle(.plain)
-        .navigationTitle("Gyroscope")
+        .navigationTitle(RootTab.gyroscope.localizedString)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 ShareSheet(url: shareCSV())

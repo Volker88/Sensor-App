@@ -41,7 +41,7 @@ struct PositionScreen: View {
                 .frame(maxWidth: 360)
                 .frame(maxWidth: .infinity, alignment: .center)
             }
-            .navigationTitle(RootTab.position.stringValue)
+            .navigationTitle(RootTab.position.localizedString)
             .navigationSubtitle("Select a position type")
             .navigationDestination(for: PositionStack.self) { $0 }
         }

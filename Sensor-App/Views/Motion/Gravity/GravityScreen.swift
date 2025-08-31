@@ -22,7 +22,7 @@ struct GravityScreen: View {
             .overlay(alignment: .bottom) {
                 CustomControlsView()
             }
-            .navigationTitle("Gravity")
+            .navigationTitle(RootTab.gravity.localizedString)
             .onAppear {
                 motionManager.startMotionUpdates()
             }

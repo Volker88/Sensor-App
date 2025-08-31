@@ -29,7 +29,7 @@ struct GravityList: View {
             .font(.footnote)
         }
         .listStyle(.plain)
-        .navigationTitle("Gravity")
+        .navigationTitle(RootTab.gravity.localizedString)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 ShareSheet(url: shareCSV())

@@ -27,7 +27,7 @@ struct AltitudeList: View {
             .font(.footnote)
         }
         .listStyle(.plain)
-        .navigationTitle("Altitude")
+        .navigationTitle(RootTab.altitude.localizedString)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 ShareSheet(url: shareCSV())

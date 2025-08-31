@@ -22,7 +22,7 @@ struct AttitudeScreen: View {
             .overlay(alignment: .bottom) {
                 CustomControlsView()
             }
-            .navigationTitle("Attitude")
+            .navigationTitle(RootTab.attitude.localizedString)
             .onAppear {
                 motionManager.startMotionUpdates()
             }
