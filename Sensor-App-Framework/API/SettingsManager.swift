@@ -31,8 +31,8 @@ public class SettingsManager {
     public var heightSetting = 0
 
     public let appIcons: [AppIcons] = [
-        AppIcons(iconName: "AppIcon-V1", accessibilityName: "Sensor Wave"),
-        AppIcons(iconName: "AppIcon-V2", accessibilityName: "Satellite"),
+        AppIcons(iconName: "AppIcon-V1", accessibilityName: "Satellite"),
+        AppIcons(iconName: "AppIcon-V2", accessibilityName: "Sensor Wave"),
         AppIcons(iconName: "AppIcon-V3", accessibilityName: "Piezoelectric Sensor")
     ]
 
