@@ -101,6 +101,8 @@
 		1527B03324C4AA240024DD78 /* Sensor-AppiOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Sensor-AppiOSUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1527B04724C4AA620024DD78 /* Sensor-App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sensor-App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1527B07924C4ACA20024DD78 /* Sensor_App_Framework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Sensor_App_Framework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		154AB56B2FDA7E4D00B125A5 /* CLAUDE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CLAUDE.md; sourceTree = "<group>"; };
+		154AB56C2FDA7E4D00B125A5 /* Journal.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Journal.md; sourceTree = "<group>"; };
 		15F1BBA92CAFCF1E00C80A1F /* Sensor-AppwatchOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Sensor-AppwatchOSUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -434,6 +436,8 @@
 				157652802CAFBC3C001842DE /* Tests */,
 				152B179E2D806118004DE75F /* Frameworks */,
 				1527B01824C4AA240024DD78 /* Products */,
+				154AB56B2FDA7E4D00B125A5 /* CLAUDE.md */,
+				154AB56C2FDA7E4D00B125A5 /* Journal.md */,
 			);
 			sourceTree = "<group>";
 		};

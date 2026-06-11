@@ -1,0 +1,9 @@
+{
+  "id" : "4e0d0a75-2e8f-493f-9820-aeee3d74a4a7",
+  "targets" : [
+    {
+      "id" : "22719BAC-C5A6-41F8-94A6-691F4755788F",
+      "name" : "Sensor-App"
+    }
+  ]
+}

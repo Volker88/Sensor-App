@@ -3773,6 +3773,7 @@
     },
     "Latitude: %.5f° ± %.2fm" : {
       "comment" : "A label displaying the latitude, longitude, altitude, course, and speed of the user's current location. Each value is followed by its unit, and is presented with a precision of two decimal places.",
+      "extractionState" : "stale",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -4162,6 +4163,7 @@
       }
     },
     "Longitude: %.5f° ± %.2fm" : {
+      "extractionState" : "stale",
       "localizations" : {
         "cs" : {
           "stringUnit" : {

@@ -8,7 +8,7 @@
 import AppIntents
 import SwiftUI
 
-struct SensorAppShortchuts: AppShortcutsProvider {
+struct SensorAppShortcuts: AppShortcutsProvider {
     static var appShortcuts: [AppShortcut] {
 
         AppShortcut(

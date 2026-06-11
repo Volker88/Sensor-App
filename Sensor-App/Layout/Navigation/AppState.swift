@@ -45,7 +45,7 @@ final class AppState {
 
     // MARK: - Update Navigation
     /// Update Navigation when Size Class changes
-    func onSizeClassChange(_ newSize: UserInterfaceSizeClass?) {  // wiftlint:disable:this cyclomatic_complexity
+    func onSizeClassChange(_ newSize: UserInterfaceSizeClass?) {
         // If the device is an iPhone, we do not need to update the navigation
         guard !isIphone else { return }
 
@@ -192,6 +192,6 @@ final class AppState {
 
     // MARK: - Shortcut
     func updateShortcutParameter() {
-        SensorAppShortchuts.updateAppShortcutParameters()
+        SensorAppShortcuts.updateAppShortcutParameters()
     }
 }

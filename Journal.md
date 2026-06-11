@@ -1,0 +1,174 @@
+# Journal.md — Sensor-App
+
+A living, slightly opinionated logbook of how this app is built, why, and what
+bit us along the way. Read it like a story, not a spec sheet.
+
+## The Big Picture
+
+Imagine handing someone an iPhone and saying, "Everything this slab of glass
+can *feel* about the world — show it to me." That's Sensor-App. Your phone is
+secretly bristling with sensors: it knows which way is down (gravity), how it's
+tumbling through space (gyroscope + attitude), where on Earth it is (GPS), how
+high the air pressure says you are (barometer/altimeter), and which way north
+is (magnetometer). Sensor-App pulls all of that out of the black box and puts
+it on screen — as live numbers, as scrolling line charts, and as exportable CSV
+logs you can hand to a spreadsheet. It runs on iPhone, iPad, *and* Apple Watch.
+
+Think of it as a stethoscope for your device's inner ear.
+
+## Architecture Deep Dive
+
+The app is three buildings on one campus:
+
+1. **The Framework** (`Sensor-App-Framework`) is the engine room. It doesn't
+   know or care what the UI looks like. It talks to Apple's Core Motion and
+   Core Location, converts units, persists settings, and exports files. Pure
+   logic, fully testable.
+2. **The iOS app** (`Sensor-App`) is the showroom — TabView, navigation,
+   charts, the Liquid Glass controls.
+3. **The Watch app** (`Sensor-App-WatchApp`) is the compact pop-up shop:
+   same engine, a much simpler storefront (a `List` and one view per sensor).
+
+The glue is the **`@Observable` + `@Environment` pattern**. Each manager is a
+`@MainActor @Observable` class — think of it as a translator that sits between
+raw hardware and SwiftUI. The app creates each manager *once* (`@State`),
+drops them into the environment, and every view that needs sensor data simply
+reaches into the environment and reads a published property. When the sensor
+ticks, the property changes, and SwiftUI redraws. No Combine, no `@Published`,
+no `ObservableObject` — the modern observation model does it all.
+
+**Navigation** is the clever bit. Instead of stringly-typed segues, every
+destination is an *enum that knows how to be a view*. `RootTab`, `MotionStack`,
+`PositionStack`, and `MagnetometerStack` are plain `Hashable` enums that drive
+`navigationDestination(for:)`. `AppState` holds the current tab and a
+navigation-path array per tab. The payoff: the same enum cases let **Siri**
+deep-link into any screen (an App Intent just sets `appState.appIntentTab` and
+the UI follows).
+
+One subtle shape worth knowing: the UI **adapts to size class**. On an iPhone,
+sensors live *inside* a tab's `NavigationStack` (drill down: Motion →
+Acceleration → Log). On an iPad, those same screens fan out flat into sidebar
+`TabSection`s. `ContentView` reads the horizontal size class and arranges
+accordingly; `AppState` translates App-Intent navigation into the right shape
+for whichever layout is active.
+
+## The Codebase Map
+
+```
+Sensor-App-Framework/        ← the engine room (no UI)
+  API/                       ← managers (the "translators")
+    MotionManager            CMMotionManager + CMAltimeter  (callbacks)
+    LocationManager          CLLocationManager              (async/await)
+    SettingsManager          UserDefaults <-> UserSettings JSON, app icons
+    CalculationManager       unit conversions (Measurement)
+    ExportManager            writes CSV to temp dir, returns URL
+    AppUpdates               version check → release-notes sheet
+  Model/                     value types: MotionModel, LocationModel,
+                             AltitudeModel, UserSettings, MapKitSettings, …
+  Extension/                 Logger categories, Double helpers
+  Localization/              SupportedLanguage enum, preview modifier
+
+Sensor-App/                  ← the iOS showroom
+  Layout/                    SensorAppApp (entry), ContentView (TabView),
+                             Navigation/ (AppState, RootTab, *Stack enums)
+  Views/                     per sensor: *Screen / *View / *List
+                             + CardView, LineGraph, Notification, Settings,
+                               CustomControls (Liquid Glass), ReleaseNotes
+  AppIntents/                NavigateIntent, NavigationOption, Shortcuts
+  Resources/                 *.xcstrings, Assets.xcassets, *.icon
+
+Sensor-App-WatchApp/         ← the watch storefront (one *View per sensor)
+Tests/                       iOSUnitTests (Swift Testing), *UITests (XCTest)
+Configuration/               *.xcconfig (targets, version, signing secrets)
+```
+
+## Tech Stack & Why
+
+| Choice | Why |
+|---|---|
+| **SwiftUI + `@Observable`** | One UI codebase across iPhone/iPad/Watch; modern observation removes Combine boilerplate and re-renders precisely. |
+| **Swift Concurrency** | `async/await` reads top-to-bottom; `LocationManager` consumes `CLLocationUpdate.liveUpdates()` as a clean async sequence. |
+| **Swift Charts** | First-party, declarative line graphs — `LineMark` over a `ForEach`, no third-party charting dependency. |
+| **App Intents** | Siri + Shortcuts deep-linking for free, sharing the same route enums as the UI. |
+| **String Catalogs (`.xcstrings`)** | 10 languages managed in one place, type-safe via `LocalizedStringResource`. |
+| **Swift Testing** | Expressive `@Test`/`#expect`, parameterized `arguments:` for the unit suite (UI tests stay on XCTest where the tooling lives). |
+| **File-system-synchronized groups** | The folder *is* the project — less `.pbxproj` merge pain. (Trade-off: stray files get built. See war story below.) |
+| **`.xcconfig` files** | Build settings live in text, diff cleanly, and keep signing secrets out of git (`Secret.xcconfig`). |
+| **Liquid Glass (iOS 26)** | `.glassEffect`, `GlassEffectContainer`, `.glassProminent` buttons for a native, modern control surface. |
+
+## The Journey
+
+### 🐛 The `actool` nil-object crash (the duplicate-assets ghost)
+
+**Symptom:** the build died with
+`Exception while running actool: *** -[__NSPlaceholderArray initWithObjects:count:]: attempt to insert nil object from objects[0]`.
+
+**The hunt:** `actool` is the asset compiler, so suspicion fell on the asset
+catalogs and the new `.icon` (Icon Composer) bundles. Listing
+`Sensor-App/Resources` revealed the culprits hiding in plain sight: nine
+directories with the tell-tale Finder/iCloud " 2" and " 3" suffixes —
+`Assets 2.xcassets`, `AppIcon-V1 2.icon`, and friends — all created a week after
+the originals, all with locked-down `drwx------` permissions and **0 bytes of
+real content**. They were half-finished duplicate copies, missing the
+`Contents.json` / `icon.json` manifests that make a catalog valid.
+
+**The "aha":** normally a stray folder is harmless — but this project uses
+**file-system-synchronized groups**, where the folder on disk *is* the build
+input. So `actool` dutifully tried to compile the broken duplicates, found a
+catalog with no manifest, and handed `nil` to an array that refused it. Crash.
+
+**The fix:** delete the nine duplicates. They were untracked by git and absent
+from `project.pbxproj`, so nothing else needed to change. Build green in ~9s.
+
+**Lesson burned in:** with synced groups, *keep the resource folders pristine* —
+a stray duplicate isn't cosmetic clutter, it's a build input.
+
+### 🧭 Navigation that bends to the device
+
+Getting one set of route enums to serve both an iPhone's nested stacks and an
+iPad's flat sidebar — *and* Siri deep-links — took real thought. The resolution
+was to make `AppState.appIntentDrivenNavigation` size-class aware: on iPad it
+just sets the tab; on iPhone it sets the parent tab and then pushes the child
+onto the stack. (It currently leans on a `DispatchQueue.main.asyncAfter` delay
+to let the tab switch settle before pushing — flagged below as debt.)
+
+## Engineer's Wisdom
+
+- **Separate the engine from the showroom.** All sensor/IO logic lives in a
+  framework with zero UI imports, so it's unit-testable and shared verbatim by
+  the watch app.
+- **Make illegal navigation unrepresentable.** Enum routes that conform to
+  `View` beat stringly-typed destinations and double as the App Intents
+  vocabulary.
+- **One observation model, everywhere.** `@MainActor @Observable` managers +
+  `@Environment` + `@Bindable` — no mixing in legacy `ObservableObject`.
+- **Mock at the seams.** Managers self-populate sample data under
+  `DEBUG && simulator` / `enable-testing`, so previews, the simulator, and UI
+  tests all have live-looking data without hardware.
+- **Localize from day one.** String Catalogs + `LocalizedStringResource` mean a
+  new label is one entry away from ten languages.
+
+## If I Were Starting Over…
+
+- **Wrap Core Motion in an `AsyncStream`.** `LocationManager` already speaks
+  fluent `async/await`; `MotionManager` is still closure-based and even nests a
+  redundant `DispatchQueue.main.async` inside an already-`.main` callback.
+  Unifying both behind async sequences would delete the GCD and read better.
+- **Inject services into models, don't brew them.** `LocationModel` and
+  `AltitudeModel` `new` up a `CalculationManager()` *and* a `SettingsManager()`
+  on every computed-property access — a fresh `UserDefaults` decode per chart
+  point. Pass the formatting in, or precompute display values.
+- **Kill the force-unwraps.** `ExportManager.getFile` force-unwraps the temp-URL;
+  `URL.temporaryDirectory.appending(path:)` plus a `guard let`/throw would be
+  honest about failure.
+- **Replace the navigation `asyncAfter` delay** with structured
+  `Task { try await Task.sleep(for:) }` (or, better, a navigation approach that
+  doesn't need a timing hack at all).
+- **Finish the parked iPad-restoration feature.** `AppState.onSizeClassChange`
+  carries a big block of intentionally-disabled logic that would preserve the
+  navigation stack across iPhone↔iPad size-class changes. It's a deliberate
+  TODO, not dead code — pick it up when the feature's worth shipping.
+
+---
+*Keep this file alive: every non-trivial bug, architectural fork, or "huh,
+TIL" moment earns a paragraph here.*
