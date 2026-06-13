@@ -86,6 +86,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1527B04624C4AA620024DD78"
             BuildableName = "Sensor-App.app"
+            BlueprintName = "Sensor-App-Watch"
             ReferencedContainer = "container:Sensor-App.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -102,6 +103,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1527B04624C4AA620024DD78"
             BuildableName = "Sensor-App.app"
+            BlueprintName = "Sensor-App-Watch"
             ReferencedContainer = "container:Sensor-App.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

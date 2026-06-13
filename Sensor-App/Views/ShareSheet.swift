@@ -22,5 +22,5 @@ struct ShareSheet: View {
 
 // MARK: - Preview
 #Preview {
-    ShareSheet(url: URL(string: "https://www.apple.com")!)  // swiftlint:disable:this force_unwrapping
+    ShareSheet(url: URL(string: "https://www.apple.com")!)
 }
