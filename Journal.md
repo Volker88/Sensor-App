@@ -94,7 +94,7 @@ Configuration/               *.xcconfig (targets, version, signing secrets)
 | **Swift Testing** | Expressive `@Test`/`#expect`, parameterized `arguments:` for the unit suite (UI tests stay on XCTest where the tooling lives). |
 | **File-system-synchronized groups** | The folder *is* the project — less `.pbxproj` merge pain. (Trade-off: stray files get built. See war story below.) |
 | **`.xcconfig` files** | Build settings live in text, diff cleanly, and keep signing secrets out of git (`Secret.xcconfig`). |
-| **Liquid Glass (iOS 26)** | `.glassEffect`, `GlassEffectContainer`, `.glassProminent` buttons for a native, modern control surface. |
+| **Liquid Glass (iOS 27)** | `.glassEffect`, `GlassEffectContainer`, `.glassProminent` buttons for a native, modern control surface. |
 
 ## The Journey
 
@@ -131,6 +131,58 @@ was to make `AppState.appIntentDrivenNavigation` size-class aware: on iPad it
 just sets the tab; on iPhone it sets the parent tab and then pushes the child
 onto the stack. (It currently leans on a `DispatchQueue.main.asyncAfter` delay
 to let the tab switch settle before pushing — flagged below as debt.)
+
+### 🚀 Version 7.0 — iOS 27 and the Siri Shortcuts chapter (2026-06-28)
+
+**The bump:** This release crosses a milestone — marketing version 7.0.0, build
+`20260628.1`, and a deployment target lift to iOS/watchOS/tvOS/macOS/visionOS
+**27.0**. The version jump reflects the new OS baseline and a meaningful feature
+addition: Siri and Shortcuts deep-linking.
+
+**What shipped — App Intents:**
+Three new files land in `Sensor-App/AppIntents/`:
+
+- `NavigationIntent.swift` — defines `NavigateIntent: AppIntent`. It receives an
+  injected `AppState` via `@Dependency`, accepts a `NavigationOption` parameter,
+  and on `perform()` sets `appState.appIntentTab` to the matching destination.
+  The intent is foreground-only (`supportedModes: .foreground`) so the app comes
+  to front when Siri fires it.
+- `NavigationOption.swift` — an `AppEnum` covering all eight destinations
+  (location, altitude, acceleration, gravity, gyroscope, attitude, magnetometer,
+  settings), each with a title, subtitle, and SF Symbol icon. This is the same
+  vocabulary the UI already uses, so the Siri surface and the nav stack share
+  one truth.
+- `SensorAppShortcuts.swift` — the `AppShortcutsProvider` that registers the
+  intent with two phrases: *"Navigate in {appName}"* and *"Navigate to {option}
+  in {appName}"*.
+
+The design is clean: Siri knows about sensors because the sensors are already
+enums. No duplicate routing logic.
+
+**What shipped — LocationManager error handling:**
+`LocationManager.startLocationUpdates()` previously ran its `for try await`
+loop inside a bare `Task { }` — if `CLLocationUpdate.liveUpdates()` threw, the
+error would silently vanish. Wrapped the loop in a proper `do/catch` that logs
+to `Logger.coreLocation.error(...)`. Small fix, but important for diagnosing
+location failures in the field.
+
+**⚠️ Known issue — Shortcuts not appearing:**
+The App Shortcuts infrastructure compiles cleanly and Siri voice phrases work,
+but the shortcuts **do not appear automatically** under Sensor-App in the
+Shortcuts app. The expected behaviour is that `AppShortcutsProvider` conformers
+surface their shortcuts without any explicit registration call — but so far
+they're invisible to the Shortcuts UI.
+
+Candidates under investigation:
+1. A missing `AppShortcutsProvider.updateAppShortcutParameters()` call at app
+   launch (required in some configurations to trigger registration).
+2. iOS 27 beta timing / caching quirk — the Shortcuts daemon may need a device
+   reboot or re-install cycle to index a new provider.
+3. The `AppShortcuts.xcstrings` catalog may require manual phrase localisation
+   before the system accepts the shortcut entries.
+
+The issue does not block the intent from working via Siri voice — it only
+affects the Shortcuts.app browsable list.
 
 ## Engineer's Wisdom
 

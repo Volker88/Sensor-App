@@ -43,35 +43,38 @@ public class LocationManager {
         }
 
         Task {
-            let updates = CLLocationUpdate.liveUpdates()
+            do {
+                let updates = CLLocationUpdate.liveUpdates()
 
-            for try await update in updates {
-                if !self.updatesStarted { break }
+                for try await update in updates {
+                    if !self.updatesStarted { break }
 
-                if let loc = update.location {
-                    let latestLocation = LocationModel(
-                        counter: index,
-                        longitude: loc.coordinate.longitude,
-                        latitude: loc.coordinate.latitude,
-                        altitude: loc.altitude,
-                        speed: loc.speed,
-                        course: loc.course,
-                        horizontalAccuracy: loc.horizontalAccuracy,
-                        verticalAccuracy: loc.verticalAccuracy,
-                        timestamp: Date().formatted(),
-                        GPSAccuracy: locationManager.desiredAccuracy
-                    )
-                    location = latestLocation
-                    locationArray.append(latestLocation)
-                    locationChart.append(latestLocation)
+                    if let loc = update.location {
+                        let latestLocation = LocationModel(
+                            counter: index,
+                            longitude: loc.coordinate.longitude,
+                            latitude: loc.coordinate.latitude,
+                            altitude: loc.altitude,
+                            speed: loc.speed,
+                            course: loc.course,
+                            horizontalAccuracy: loc.horizontalAccuracy,
+                            verticalAccuracy: loc.verticalAccuracy,
+                            timestamp: Date().formatted(),
+                            GPSAccuracy: locationManager.desiredAccuracy
+                        )
+                        location = latestLocation
+                        locationArray.append(latestLocation)
+                        locationChart.append(latestLocation)
 
-                    index += 1
+                        index += 1
 
-                    if self.locationChart.count > self.settings.fetchUserSettings().graphMaxPointsInt() {
-                        self.locationChart.removeFirst()
+                        if self.locationChart.count > self.settings.fetchUserSettings().graphMaxPointsInt() {
+                            self.locationChart.removeFirst()
+                        }
                     }
-
                 }
+            } catch {
+                Logger.coreLocation.error("Location updates failed: \(error)")
             }
         }
 

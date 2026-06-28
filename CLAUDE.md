@@ -10,8 +10,8 @@ altitude/barometric pressure. Live values are shown as readouts and Swift
 Charts line graphs, can be logged into a reversed history list, and exported
 as CSV via the share sheet. Shipping on the App Store; source is public.
 
-- **Marketing version:** 6.1.0 · **Build:** date-based (`YYYYMMDD.N`)
-- **Deployment target:** iOS / watchOS / tvOS / macOS / visionOS **26.0**
+- **Marketing version:** 7.0.0 · **Build:** date-based (`YYYYMMDD.N`)
+- **Deployment target:** iOS / watchOS / tvOS / macOS / visionOS **27.0**
 - **Language:** Swift 6.2, strict concurrency, modern Swift Concurrency
 - **License:** see `LICENSE.md`
 
@@ -83,12 +83,15 @@ watchOS uses a single `*View` per sensor (no Screen/List split).
 
 - **Settings** persist as JSON in `UserDefaults` via `SettingsManager`
   (`UserSettings: Codable`). Alternate app icons via `setAlternateIconName`.
-- **App Intents / Siri:** `NavigateIntent` + `NavigationOption` +
-  `SensorAppShortcuts`; the intent sets `appState.appIntentTab` and
-  `ContentView` reacts.
+- **App Intents / Siri:** `NavigateIntent` (`NavigationIntent.swift`) +
+  `NavigationOption` (AppEnum with 8 destinations) + `SensorAppShortcuts`
+  (AppShortcutsProvider); the intent sets `appState.appIntentTab` and
+  `ContentView` reacts. **Known issue:** default App Shortcuts do not appear
+  automatically in the Shortcuts app — root cause under investigation (see
+  Journal.md).
 - **Notifications (toasts):** custom environment key (`showNotification`) +
   `NotificationModifier` applied globally with `.withNotificationView()`.
-- **iOS 26 Liquid Glass:** `.glassEffect`, `GlassEffectContainer`,
+- **iOS 27 Liquid Glass:** `.glassEffect`, `GlassEffectContainer`,
   `.buttonStyle(.glassProminent)` in controls, cards, and release notes.
 - **Localization:** String Catalogs (`.xcstrings`) in `Sensor-App/Resources`.
   Languages: en, zh-Hans, cs, fr, de, it, ja, ko, pt, es (see
@@ -124,3 +127,13 @@ watchOS uses a single `*View` per sensor (no Screen/List split).
 - `ExportManager.getFile` force-unwraps the temp-file URL.
 - `AppState.onSizeClassChange` keeps a large commented-out block on purpose —
   it's the parked iPad navigation-restoration feature, not dead code.
+
+## Known issues
+
+- **App Shortcuts not visible in Shortcuts.app:** The `SensorAppShortcuts`
+  provider compiles and Siri phrases work, but the default shortcuts do not
+  appear automatically under the app's entry in the Shortcuts app. Root cause
+  is not yet determined — candidates include a missing `updateAppShortcutParameters()`
+  call in the app lifecycle, an iOS 27 beta registration timing issue, or a
+  requirement that the app be run on a physical device at least once post-install.
+  See Journal.md for the full investigation log.
