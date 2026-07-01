@@ -12,7 +12,7 @@ as CSV via the share sheet. Shipping on the App Store; source is public.
 
 - **Marketing version:** 7.0.0 · **Build:** date-based (`YYYYMMDD.N`)
 - **Deployment target:** iOS / watchOS / tvOS / macOS / visionOS **27.0**
-- **Language:** Swift 6.2, strict concurrency, modern Swift Concurrency
+- **Language:** Swift 6.2, strict concurrency, `@MainActor` default isolation, approachable concurrency
 - **License:** see `LICENSE.md`
 
 ## Targets & layout
@@ -114,13 +114,16 @@ watchOS uses a single `*View` per sensor (no Screen/List split).
   `Tab` API, no GCD, no force unwraps, one type per file, etc.).
 - New shared logic → `Sensor-App-Framework`. Keep view logic testable.
 - Unit tests use **Swift Testing** (`@Test`, `#expect`); UI tests use XCTest.
+- **Concurrency flags** in `Configuration/General.xcconfig`:
+  `SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor` — all unannotated code is
+  implicitly `@MainActor`; and `SWIFT_APPROACHABLE_CONCURRENCY = YES` —
+  bundles `NonisolatedNonsendingByDefault`, `InferIsolatedConformances`, and
+  three related features. Explicitly annotate code that genuinely runs off the
+  main actor with `nonisolated` or `@concurrent`; never use `nonisolated(unsafe)`
+  as a workaround.
 
 ## Known tech debt (see Journal.md “The Journey”)
 
-- `MotionManager.startAltitudeUpdates` wraps its already-on-`.main` callback in
-  a redundant `DispatchQueue.main.async` (legacy).
-- `AppState.appIntentDrivenNavigation` uses `DispatchQueue.main.asyncAfter`
-  instead of `Task { try await Task.sleep(for:) }`.
 - `LocationModel` / `AltitudeModel` computed properties instantiate fresh
   `CalculationManager()` / `SettingsManager()` on every access (should be
   injected).

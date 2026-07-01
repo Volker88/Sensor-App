@@ -129,8 +129,63 @@ Getting one set of route enums to serve both an iPhone's nested stacks and an
 iPad's flat sidebar — *and* Siri deep-links — took real thought. The resolution
 was to make `AppState.appIntentDrivenNavigation` size-class aware: on iPad it
 just sets the tab; on iPhone it sets the parent tab and then pushes the child
-onto the stack. (It currently leans on a `DispatchQueue.main.asyncAfter` delay
-to let the tab switch settle before pushing — flagged below as debt.)
+onto the stack. The 0.5 s delay that lets the tab switch settle before pushing
+is now expressed as `Task { [appIntentTab] in try await Task.sleep(for: .seconds(0.5)); … }`,
+inheriting `@MainActor` from the class rather than reaching for GCD.
+
+### ⚡ Default `@MainActor` isolation + Approachable Concurrency (2026-07-01)
+
+Two lines in `Configuration/General.xcconfig` changed the shape of the whole
+codebase:
+
+```xcconfig
+SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor
+SWIFT_APPROACHABLE_CONCURRENCY = YES
+```
+
+**What they do.** The first makes `@MainActor` the implicit isolation for every
+unannotated type and function — no more risk of forgetting to annotate a new
+manager or view helper and accidentally leaving it unprotected. The second
+enables a curated bundle of five upcoming features, the most impactful being
+`NonisolatedNonsendingByDefault` (unstructured `async` functions now run on the
+caller's actor by default instead of jumping to the cooperative thread pool) and
+`InferIsolatedConformances` (a `@MainActor` type's protocol conformances are
+inferred as `@MainActor`-isolated, so you don't get surprising nonisolated
+witness mismatches).
+
+**How the codebase held up.** Almost perfectly. Because every manager and view
+was already explicitly `@MainActor @Observable`, the compiler had no new
+ambiguity to resolve in the hot paths. The only error the flags surfaced was a
+single line in `NotificationEnvironmentKey.swift`:
+
+```swift
+// before — conflicted: @MainActor-inferred initializer assigned to nonisolated(unsafe)
+nonisolated(unsafe) static let defaultValue = ShowNotificationAction { _ in }
+
+// after — type and property share the same @MainActor isolation; SwiftUI handles it
+static let defaultValue = ShowNotificationAction { _ in }
+```
+
+The `nonisolated(unsafe)` annotation was a pre-6.2 workaround so that an
+`EnvironmentKey.defaultValue` could be declared without actor annotation. With
+default `@MainActor` isolation, the type and the property align, `EnvironmentKey`
+conformance is inferred as `@MainActor`-isolated (via `InferIsolatedConformances`),
+and SwiftUI on iOS 27+ is perfectly happy — `EnvironmentValues` is accessed
+exclusively from view bodies, which are already on the main actor.
+
+**Alongside, two legacy GCD calls were retired:**
+- `MotionManager.startAltitudeUpdates` had a redundant `DispatchQueue.main.async {}`
+  wrapping code that was already running inside a `.main`-delivered CoreMotion
+  callback. Gone.
+- `AppState.appIntentDrivenNavigation` used `DispatchQueue.main.asyncAfter` for
+  the tab-switch delay. Replaced with `Task { [appIntentTab] in try await
+  Task.sleep(for: .seconds(0.5)); … }`. The task inherits `@MainActor` from its
+  enclosing class, `appIntentTab` is captured by value before the `defer` resets it,
+  and the navigation properties are accessed safely without any GCD involvement.
+
+Zero errors after the change. The engine is cleaner.
+
+---
 
 ### 🚀 Version 7.0 — iOS 27 and the Siri Shortcuts chapter (2026-06-28)
 
@@ -203,9 +258,10 @@ affects the Shortcuts.app browsable list.
 ## If I Were Starting Over…
 
 - **Wrap Core Motion in an `AsyncStream`.** `LocationManager` already speaks
-  fluent `async/await`; `MotionManager` is still closure-based and even nests a
-  redundant `DispatchQueue.main.async` inside an already-`.main` callback.
-  Unifying both behind async sequences would delete the GCD and read better.
+  fluent `async/await`; `MotionManager` is still closure-based (the redundant
+  `DispatchQueue.main.async` wrapper is gone, but the underlying callback model
+  remains). Unifying both behind async sequences would read better and make
+  backpressure and cancellation first-class.
 - **Inject services into models, don't brew them.** `LocationModel` and
   `AltitudeModel` `new` up a `CalculationManager()` *and* a `SettingsManager()`
   on every computed-property access — a fresh `UserDefaults` decode per chart
@@ -213,9 +269,6 @@ affects the Shortcuts.app browsable list.
 - **Kill the force-unwraps.** `ExportManager.getFile` force-unwraps the temp-URL;
   `URL.temporaryDirectory.appending(path:)` plus a `guard let`/throw would be
   honest about failure.
-- **Replace the navigation `asyncAfter` delay** with structured
-  `Task { try await Task.sleep(for:) }` (or, better, a navigation approach that
-  doesn't need a timing hack at all).
 - **Finish the parked iPad-restoration feature.** `AppState.onSizeClassChange`
   carries a big block of intentionally-disabled logic that would preserve the
   navigation stack across iPhone↔iPad size-class changes. It's a deliberate

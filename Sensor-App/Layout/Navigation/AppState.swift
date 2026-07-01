@@ -168,7 +168,8 @@ final class AppState {
                     break
             }
 
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [self] in
+            Task { [appIntentTab] in
+                try? await Task.sleep(for: .seconds(0.5))
                 switch appIntentTab {
                     case .location:
                         positionStack = [.location]

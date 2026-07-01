@@ -135,16 +135,14 @@ public class MotionManager {
                     relativeAltitudeValue: relativeAltitudeValue
                 )
 
-                DispatchQueue.main.async {
-                    self.altitude = model
-                    self.altitudeArray.append(model)
-                    self.altitudeChart.append(model)
+                self.altitude = model
+                self.altitudeArray.append(model)
+                self.altitudeChart.append(model)
 
-                    self.altitudeCounter += 1
+                self.altitudeCounter += 1
 
-                    if self.altitudeChart.count > self.settings.fetchUserSettings().graphMaxPointsInt() {
-                        self.altitudeChart.removeFirst()
-                    }
+                if self.altitudeChart.count > self.settings.fetchUserSettings().graphMaxPointsInt() {
+                    self.altitudeChart.removeFirst()
                 }
             }
         }
