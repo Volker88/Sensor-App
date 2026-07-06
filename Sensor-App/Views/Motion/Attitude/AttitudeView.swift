@@ -17,6 +17,7 @@ struct AttitudeView: View {
     @State private var showPitch = false
     @State private var showYaw = false
     @State private var showHeading = false
+    @State private var selectedChart: ChartSelection?
 
     // MARK: - Body
     var body: some View {
@@ -25,8 +26,8 @@ struct AttitudeView: View {
                 DisclosureGroup(
                     isExpanded: $showRoll,
                     content: {
-                        LineGraphSubView(graph: .motion, showGraph: .attitudeRoll)
-                            .frame(height: 100, alignment: .leading)
+                        ExpandableChartView(
+                            graph: .motion, showGraph: .attitudeRoll, title: "Roll", selectedChart: $selectedChart)
                     },
                     label: {
                         Text("Roll: \((motionManager.motion?.attitudeRoll ?? 0.0) * 180 / .pi, specifier: "%.5f")°")
@@ -42,8 +43,8 @@ struct AttitudeView: View {
                 DisclosureGroup(
                     isExpanded: $showPitch,
                     content: {
-                        LineGraphSubView(graph: .motion, showGraph: .attitudePitch)
-                            .frame(height: 100, alignment: .leading)
+                        ExpandableChartView(
+                            graph: .motion, showGraph: .attitudePitch, title: "Pitch", selectedChart: $selectedChart)
                     },
                     label: {
                         Text("Pitch: \((motionManager.motion?.attitudePitch ?? 0.0) * 180 / .pi, specifier: "%.5f")°")
@@ -59,8 +60,8 @@ struct AttitudeView: View {
                 DisclosureGroup(
                     isExpanded: $showYaw,
                     content: {
-                        LineGraphSubView(graph: .motion, showGraph: .attitudeYaw)
-                            .frame(height: 100, alignment: .leading)
+                        ExpandableChartView(
+                            graph: .motion, showGraph: .attitudeYaw, title: "Yaw", selectedChart: $selectedChart)
                     },
                     label: {
                         Text("Yaw: \((motionManager.motion?.attitudeYaw ?? 0.0) * 180 / .pi, specifier: "%.5f")°")
@@ -76,8 +77,9 @@ struct AttitudeView: View {
                 DisclosureGroup(
                     isExpanded: $showHeading,
                     content: {
-                        LineGraphSubView(graph: .motion, showGraph: .attitudeHeading)
-                            .frame(height: 100, alignment: .leading)
+                        ExpandableChartView(
+                            graph: .motion, showGraph: .attitudeHeading, title: "Heading", selectedChart: $selectedChart
+                        )
                     },
                     label: {
                         Text("Heading: \(motionManager.motion?.attitudeHeading ?? 0.0, specifier: "%.5f")°")
@@ -105,6 +107,9 @@ struct AttitudeView: View {
             }
         }
         .listStyle(.insetGrouped)
+        .fullScreenCover(item: $selectedChart) { selection in
+            FullScreenChartView(selection: selection)
+        }
     }
 }
 

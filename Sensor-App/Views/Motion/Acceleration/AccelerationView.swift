@@ -16,6 +16,7 @@ struct AccelerationView: View {
     @State private var showXAxis = false
     @State private var showYAxis = false
     @State private var showZAxis = false
+    @State private var selectedChart: ChartSelection?
 
     // MARK: - Body
     var body: some View {
@@ -24,8 +25,9 @@ struct AccelerationView: View {
                 DisclosureGroup(
                     isExpanded: $showXAxis,
                     content: {
-                        LineGraphSubView(graph: .motion, showGraph: .accelerationXAxis)
-                            .frame(height: 100, alignment: .leading)
+                        ExpandableChartView(
+                            graph: .motion, showGraph: .accelerationXAxis, title: "X-Axis",
+                            selectedChart: $selectedChart)
                     },
                     label: {
                         Text("X-Axis: \(motionManager.motion?.accelerationXAxis ?? 0.0, specifier: "%.5f") m/s^2")
@@ -41,8 +43,9 @@ struct AccelerationView: View {
                 DisclosureGroup(
                     isExpanded: $showYAxis,
                     content: {
-                        LineGraphSubView(graph: .motion, showGraph: .accelerationYAxis)
-                            .frame(height: 100, alignment: .leading)
+                        ExpandableChartView(
+                            graph: .motion, showGraph: .accelerationYAxis, title: "Y-Axis",
+                            selectedChart: $selectedChart)
                     },
                     label: {
                         Text("Y-Axis: \(motionManager.motion?.accelerationYAxis ?? 0.0, specifier: "%.5f") m/s^2")
@@ -58,8 +61,9 @@ struct AccelerationView: View {
                 DisclosureGroup(
                     isExpanded: $showZAxis,
                     content: {
-                        LineGraphSubView(graph: .motion, showGraph: .accelerationZAxis)
-                            .frame(height: 100, alignment: .leading)
+                        ExpandableChartView(
+                            graph: .motion, showGraph: .accelerationZAxis, title: "Z-Axis",
+                            selectedChart: $selectedChart)
                     },
                     label: {
                         Text("Z-Axis: \(motionManager.motion?.accelerationZAxis ?? 0.0, specifier: "%.5f") m/s^2")
@@ -89,6 +93,9 @@ struct AccelerationView: View {
             }
         }
         .listStyle(.insetGrouped)
+        .fullScreenCover(item: $selectedChart) { selection in
+            FullScreenChartView(selection: selection)
+        }
     }
 }
 

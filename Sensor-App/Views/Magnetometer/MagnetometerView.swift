@@ -16,6 +16,7 @@ struct MagnetometerView: View {
     @State private var showXAxis = false
     @State private var showYAxis = false
     @State private var showZAxis = false
+    @State private var selectedChart: ChartSelection?
 
     // MARK: - Body
     var body: some View {
@@ -24,8 +25,9 @@ struct MagnetometerView: View {
                 DisclosureGroup(
                     isExpanded: $showXAxis,
                     content: {
-                        LineGraphSubView(graph: .motion, showGraph: .magnetometerXAxis)
-                            .frame(height: 100, alignment: .leading)
+                        ExpandableChartView(
+                            graph: .motion, showGraph: .magnetometerXAxis, title: "X-Axis",
+                            selectedChart: $selectedChart)
                     },
                     label: {
                         Text("X-Axis: \(motionManager.motion?.magnetometerXAxis ?? 0.0, specifier: "%.5f") µT")
@@ -41,8 +43,9 @@ struct MagnetometerView: View {
                 DisclosureGroup(
                     isExpanded: $showYAxis,
                     content: {
-                        LineGraphSubView(graph: .motion, showGraph: .magnetometerYAxis)
-                            .frame(height: 100, alignment: .leading)
+                        ExpandableChartView(
+                            graph: .motion, showGraph: .magnetometerYAxis, title: "Y-Axis",
+                            selectedChart: $selectedChart)
                     },
                     label: {
                         Text("Y-Axis: \(motionManager.motion?.magnetometerYAxis ?? 0.0, specifier: "%.5f") µT")
@@ -58,8 +61,9 @@ struct MagnetometerView: View {
                 DisclosureGroup(
                     isExpanded: $showZAxis,
                     content: {
-                        LineGraphSubView(graph: .motion, showGraph: .magnetometerZAxis)
-                            .frame(height: 100, alignment: .leading)
+                        ExpandableChartView(
+                            graph: .motion, showGraph: .magnetometerZAxis, title: "Z-Axis",
+                            selectedChart: $selectedChart)
                     },
                     label: {
                         Text("Z-Axis: \(motionManager.motion?.magnetometerZAxis ?? 0.0, specifier: "%.5f") µT")
@@ -87,6 +91,9 @@ struct MagnetometerView: View {
             }
         }
         .listStyle(.insetGrouped)
+        .fullScreenCover(item: $selectedChart) { selection in
+            FullScreenChartView(selection: selection)
+        }
     }
 }
 

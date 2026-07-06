@@ -15,6 +15,7 @@ struct AltitudeView: View {
 
     @State private var showPressure = false
     @State private var showRelativeAltitudeChange = false
+    @State private var selectedChart: ChartSelection?
 
     // MARK: - Body
     var body: some View {
@@ -23,8 +24,9 @@ struct AltitudeView: View {
                 DisclosureGroup(
                     isExpanded: $showPressure,
                     content: {
-                        LineGraphSubView(graph: .altitude, showGraph: .pressureValue)
-                            .frame(height: 100, alignment: .leading)
+                        ExpandableChartView(
+                            graph: .altitude, showGraph: .pressureValue, title: "Pressure",
+                            selectedChart: $selectedChart)
                     },
                     label: {
                         Text(
@@ -42,16 +44,17 @@ struct AltitudeView: View {
                 DisclosureGroup(
                     isExpanded: $showRelativeAltitudeChange,
                     content: {
-                        LineGraphSubView(graph: .altitude, showGraph: .relativeAltitudeValue)
-                            .frame(height: 100, alignment: .leading)
+                        ExpandableChartView(
+                            graph: .altitude, showGraph: .relativeAltitudeValue, title: "Altitude Change",
+                            selectedChart: $selectedChart)
                     },
                     label: {
                         Text(
-                            "Altitude change: \(motionManager.altitude?.calculatedAltitude ?? 0.0, specifier: "%.5f") \(motionManager.altitude?.altitudeUnit ?? "")"
+                            "Altitude Change: \(motionManager.altitude?.calculatedAltitude ?? 0.0, specifier: "%.5f") \(motionManager.altitude?.altitudeUnit ?? "")"
                         )
                         .accessibilityHint("Tap to collapse graph", isEnabled: showRelativeAltitudeChange)
                         .accessibilityHint("Tap to expand  graph", isEnabled: !showRelativeAltitudeChange)
-                        .accessibilityInputLabels(["Altitude change"])
+                        .accessibilityInputLabels(["Altitude Change"])
                     }
                 )
                 .accessibilityAddTraits(.updatesFrequently)
@@ -68,6 +71,9 @@ struct AltitudeView: View {
             MotionManagerAccessView()
         }
         .listStyle(.insetGrouped)
+        .fullScreenCover(item: $selectedChart) { selection in
+            FullScreenChartView(selection: selection)
+        }
     }
 }
 

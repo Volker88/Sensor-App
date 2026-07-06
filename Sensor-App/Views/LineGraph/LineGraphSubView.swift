@@ -18,13 +18,16 @@ struct LineGraphSubView: View {
 
     var graph: Graph
     var showGraph: GraphDetail
+    var showXAxis: Bool = false
 
     init(
         graph: Graph,
-        showGraph: GraphDetail
+        showGraph: GraphDetail,
+        showXAxis: Bool = false
     ) {
         self.graph = graph
         self.showGraph = showGraph
+        self.showXAxis = showXAxis
     }
 
     var motion: some View {
@@ -133,7 +136,7 @@ struct LineGraphSubView: View {
                     motion
                 }
             }
-            .chartXAxis(.hidden)
+            .chartXAxis(showXAxis ? .automatic : .hidden)
             .accessibilityHidden(true)
             .frame(
                 minWidth: 150,
@@ -141,7 +144,7 @@ struct LineGraphSubView: View {
                 maxWidth: .infinity,
                 minHeight: 0,
                 idealHeight: 100,
-                maxHeight: 100,
+                maxHeight: .infinity,
                 alignment: .leading
             )
         }

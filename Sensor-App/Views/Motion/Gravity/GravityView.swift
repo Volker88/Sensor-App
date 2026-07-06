@@ -16,6 +16,7 @@ struct GravityView: View {
     @State private var showXAxis = false
     @State private var showYAxis = false
     @State private var showZAxis = false
+    @State private var selectedChart: ChartSelection?
 
     // MARK: - Body
     var body: some View {
@@ -24,8 +25,8 @@ struct GravityView: View {
                 DisclosureGroup(
                     isExpanded: $showXAxis,
                     content: {
-                        LineGraphSubView(graph: .motion, showGraph: .gravityXAxis)
-                            .frame(height: 100, alignment: .leading)
+                        ExpandableChartView(
+                            graph: .motion, showGraph: .gravityXAxis, title: "X-Axis", selectedChart: $selectedChart)
                     },
                     label: {
                         Text("X-Axis: \(motionManager.motion?.gravityXAxis ?? 0.0, specifier: "%.5f") g (9,81 m/s^2)")
@@ -41,8 +42,8 @@ struct GravityView: View {
                 DisclosureGroup(
                     isExpanded: $showYAxis,
                     content: {
-                        LineGraphSubView(graph: .motion, showGraph: .gravityYAxis)
-                            .frame(height: 100, alignment: .leading)
+                        ExpandableChartView(
+                            graph: .motion, showGraph: .gravityYAxis, title: "Y-Axis", selectedChart: $selectedChart)
                     },
                     label: {
                         Text("Y-Axis: \(motionManager.motion?.gravityYAxis ?? 0.0, specifier: "%.5f") g (9,81 m/s^2)")
@@ -58,8 +59,8 @@ struct GravityView: View {
                 DisclosureGroup(
                     isExpanded: $showZAxis,
                     content: {
-                        LineGraphSubView(graph: .motion, showGraph: .gravityZAxis)
-                            .frame(height: 100, alignment: .leading)
+                        ExpandableChartView(
+                            graph: .motion, showGraph: .gravityZAxis, title: "Z-Axis", selectedChart: $selectedChart)
                     },
                     label: {
                         Text("Z-Axis: \(motionManager.motion?.gravityZAxis ?? 0.0, specifier: "%.5f") g (9,81 m/s^2)")
@@ -87,6 +88,9 @@ struct GravityView: View {
             }
         }
         .listStyle(.insetGrouped)
+        .fullScreenCover(item: $selectedChart) { selection in
+            FullScreenChartView(selection: selection)
+        }
     }
 }
 

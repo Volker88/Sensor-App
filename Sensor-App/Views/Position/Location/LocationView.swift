@@ -18,6 +18,7 @@ struct LocationView: View {
     @State private var showAltitude = false
     @State private var showDirection = false
     @State private var showSpeed = false
+    @State private var selectedChart: ChartSelection?
 
     private let exportManager = ExportManager()
 
@@ -33,8 +34,8 @@ struct LocationView: View {
                 DisclosureGroup(
                     isExpanded: $showLatitude,
                     content: {
-                        LineGraphSubView(graph: .location, showGraph: .latitude)
-                            .frame(height: 100, alignment: .leading)
+                        ExpandableChartView(
+                            graph: .location, showGraph: .latitude, title: "Latitude", selectedChart: $selectedChart)
                     },
                     label: {
                         Text(
@@ -52,8 +53,8 @@ struct LocationView: View {
                 DisclosureGroup(
                     isExpanded: $showLongitude,
                     content: {
-                        LineGraphSubView(graph: .location, showGraph: .longitude)
-                            .frame(height: 100, alignment: .leading)
+                        ExpandableChartView(
+                            graph: .location, showGraph: .longitude, title: "Longitude", selectedChart: $selectedChart)
                     },
                     label: {
                         Text(
@@ -71,8 +72,8 @@ struct LocationView: View {
                 DisclosureGroup(
                     isExpanded: $showAltitude,
                     content: {
-                        LineGraphSubView(graph: .location, showGraph: .altitude)
-                            .frame(height: 100, alignment: .leading)
+                        ExpandableChartView(
+                            graph: .location, showGraph: .altitude, title: "Altitude", selectedChart: $selectedChart)
                     },
                     label: {
                         Text(
@@ -90,8 +91,8 @@ struct LocationView: View {
                 DisclosureGroup(
                     isExpanded: $showDirection,
                     content: {
-                        LineGraphSubView(graph: .location, showGraph: .course)
-                            .frame(height: 100, alignment: .leading)
+                        ExpandableChartView(
+                            graph: .location, showGraph: .course, title: "Direction", selectedChart: $selectedChart)
                     },
                     label: {
                         Text("Direction: \(locationManager.location?.course ?? 0.0, specifier: "%.2f")°")
@@ -105,8 +106,8 @@ struct LocationView: View {
                 DisclosureGroup(
                     isExpanded: $showSpeed,
                     content: {
-                        LineGraphSubView(graph: .location, showGraph: .speed)
-                            .frame(height: 100, alignment: .leading)
+                        ExpandableChartView(
+                            graph: .location, showGraph: .speed, title: "Speed", selectedChart: $selectedChart)
                     },
                     label: {
                         Text(
@@ -132,6 +133,9 @@ struct LocationView: View {
         .listStyle(InsetGroupedListStyle())
         .onAppear(perform: onAppear)
         .onDisappear(perform: onDisappear)
+        .fullScreenCover(item: $selectedChart) { selection in
+            FullScreenChartView(selection: selection)
+        }
     }
 
     // MARK: - Methods

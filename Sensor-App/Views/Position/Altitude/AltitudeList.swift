@@ -46,7 +46,7 @@ struct AltitudeList: View {
 
     // MARK: - Methods
     func shareCSV() -> URL {
-        var csvText = String(localized: "ID;Time;Pressure;Altitude change") + "\n"
+        var csvText = String(localized: "ID;Time;Pressure;Altitude Change") + "\n"
 
         _ = motionManager.altitudeArray.map {
             csvText +=

@@ -16,6 +16,7 @@ struct GyroscopeView: View {
     @State private var showXAxis = false
     @State private var showYAxis = false
     @State private var showZAxis = false
+    @State private var selectedChart: ChartSelection?
 
     // MARK: - Body
     var body: some View {
@@ -24,8 +25,8 @@ struct GyroscopeView: View {
                 DisclosureGroup(
                     isExpanded: $showXAxis,
                     content: {
-                        LineGraphSubView(graph: .motion, showGraph: .gyroXAxis)
-                            .frame(height: 100, alignment: .leading)
+                        ExpandableChartView(
+                            graph: .motion, showGraph: .gyroXAxis, title: "X-Axis", selectedChart: $selectedChart)
                     },
                     label: {
                         Text("X-Axis: \(motionManager.motion?.gyroXAxis ?? 0.0, specifier: "%.5f") rad/s")
@@ -41,8 +42,8 @@ struct GyroscopeView: View {
                 DisclosureGroup(
                     isExpanded: $showYAxis,
                     content: {
-                        LineGraphSubView(graph: .motion, showGraph: .gyroYAxis)
-                            .frame(height: 100, alignment: .leading)
+                        ExpandableChartView(
+                            graph: .motion, showGraph: .gyroYAxis, title: "Y-Axis", selectedChart: $selectedChart)
                     },
                     label: {
                         Text("Y-Axis: \(motionManager.motion?.gyroYAxis ?? 0.0, specifier: "%.5f") rad/s")
@@ -58,8 +59,8 @@ struct GyroscopeView: View {
                 DisclosureGroup(
                     isExpanded: $showZAxis,
                     content: {
-                        LineGraphSubView(graph: .motion, showGraph: .gyroZAxis)
-                            .frame(height: 100, alignment: .leading)
+                        ExpandableChartView(
+                            graph: .motion, showGraph: .gyroZAxis, title: "Z-Axis", selectedChart: $selectedChart)
                     },
                     label: {
                         Text("Z-Axis: \(motionManager.motion?.gyroZAxis ?? 0.0, specifier: "%.5f") rad/s")
@@ -87,6 +88,9 @@ struct GyroscopeView: View {
             }
         }
         .listStyle(.insetGrouped)
+        .fullScreenCover(item: $selectedChart) { selection in
+            FullScreenChartView(selection: selection)
+        }
     }
 }
 
