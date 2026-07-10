@@ -16,17 +16,25 @@ struct AccelerationList: View {
 
     // MARK: - Body
     var body: some View {
-        List(motionManager.motionArray.reversed(), id: \.self) { item in
-            HStack {
-                Text(verbatim: "#\(item.counter)")
-                Spacer()
-                Text("X:\(item.accelerationXAxis, specifier: "%.5f")")
-                Spacer()
-                Text("Y:\(item.accelerationYAxis, specifier: "%.5f")")
-                Spacer()
-                Text("Z:\(item.accelerationZAxis, specifier: "%.5f")")
+        List {
+            SensorStatisticsSection(axes: [
+                AxisEntry(label: "X", stats: motionManager.statistics(for: .accelerationXAxis)),
+                AxisEntry(label: "Y", stats: motionManager.statistics(for: .accelerationYAxis)),
+                AxisEntry(label: "Z", stats: motionManager.statistics(for: .accelerationZAxis))
+            ])
+
+            ForEach(motionManager.motionArray.reversed(), id: \.self) { item in
+                HStack {
+                    Text(verbatim: "#\(item.counter)")
+                    Spacer()
+                    Text("X:\(item.accelerationXAxis, specifier: "%.5f")")
+                    Spacer()
+                    Text("Y:\(item.accelerationYAxis, specifier: "%.5f")")
+                    Spacer()
+                    Text("Z:\(item.accelerationZAxis, specifier: "%.5f")")
+                }
+                .font(.footnote)
             }
-            .font(.footnote)
         }
         .listStyle(.plain)
         .navigationTitle(RootTab.acceleration.localizedString)

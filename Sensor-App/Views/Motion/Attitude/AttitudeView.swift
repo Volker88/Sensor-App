@@ -34,11 +34,11 @@ struct AttitudeView: View {
                             .accessibilityHint("Tap to collapse graph", isEnabled: showRoll)
                             .accessibilityHint("Tap to expand  graph", isEnabled: !showRoll)
                             .accessibilityInputLabels(["Roll"])
+                            .accessibilityIdentifier(UIIdentifiers.AttitudeView.rollRow)
                     }
                 )
                 .accessibilityAddTraits(.updatesFrequently)
                 .accessibilityRemoveTraits(.isHeader)
-                .accessibilityIdentifier(UIIdentifiers.AttitudeView.rollRow)
 
                 DisclosureGroup(
                     isExpanded: $showPitch,
@@ -51,11 +51,11 @@ struct AttitudeView: View {
                             .accessibilityHint("Tap to collapse graph", isEnabled: showPitch)
                             .accessibilityHint("Tap to expand  graph", isEnabled: !showPitch)
                             .accessibilityInputLabels(["Pitch"])
+                            .accessibilityIdentifier(UIIdentifiers.AttitudeView.pitchRow)
                     }
                 )
                 .accessibilityAddTraits(.updatesFrequently)
                 .accessibilityRemoveTraits(.isHeader)
-                .accessibilityIdentifier(UIIdentifiers.AttitudeView.pitchRow)
 
                 DisclosureGroup(
                     isExpanded: $showYaw,
@@ -68,11 +68,11 @@ struct AttitudeView: View {
                             .accessibilityHint("Tap to collapse graph", isEnabled: showYaw)
                             .accessibilityHint("Tap to expand  graph", isEnabled: !showYaw)
                             .accessibilityInputLabels(["Yaw"])
+                            .accessibilityIdentifier(UIIdentifiers.AttitudeView.yawRow)
                     }
                 )
                 .accessibilityAddTraits(.updatesFrequently)
                 .accessibilityRemoveTraits(.isHeader)
-                .accessibilityIdentifier(UIIdentifiers.AttitudeView.yawRow)
 
                 DisclosureGroup(
                     isExpanded: $showHeading,
@@ -86,20 +86,27 @@ struct AttitudeView: View {
                             .accessibilityHint("Tap to collapse graph", isEnabled: showHeading)
                             .accessibilityHint("Tap to expand  graph", isEnabled: !showHeading)
                             .accessibilityInputLabels(["Heading"])
+                            .accessibilityIdentifier(UIIdentifiers.AttitudeView.headingRow)
                     }
                 )
                 .accessibilityAddTraits(.updatesFrequently)
                 .accessibilityRemoveTraits(.isHeader)
-                .accessibilityIdentifier(UIIdentifiers.AttitudeView.headingRow)
 
                 NavigationLink(value: MotionStack.attitudeLog) {
                     Text("Log")
                         .accessibilityHint("View Attitude Log")
+                        .accessibilityIdentifier(UIIdentifiers.AttitudeView.logButton)
                 }
-                .accessibilityIdentifier(UIIdentifiers.AttitudeView.logButton)
             }
 
             MotionManagerAccessView()
+
+            SensorStatisticsSection(axes: [
+                AxisEntry(label: "Roll", stats: motionManager.statistics(for: .attitudeRoll)),
+                AxisEntry(label: "Pitch", stats: motionManager.statistics(for: .attitudePitch)),
+                AxisEntry(label: "Yaw", stats: motionManager.statistics(for: .attitudeYaw)),
+                AxisEntry(label: "Heading", stats: motionManager.statistics(for: .attitudeHeading))
+            ])
 
             Section("Refresh Rate") {
                 RefreshRateView(show: "header")

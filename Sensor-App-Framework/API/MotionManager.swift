@@ -166,6 +166,16 @@ public class MotionManager {
         altitudeCounter = 1
     }
 
+    // MARK: - Statistics
+    public func statistics(for detail: GraphDetail) -> AxisStatistics? {
+        switch detail {
+        case .pressureValue, .relativeAltitudeValue:
+            return altitudeArray.map { $0.graphValue(for: detail) }.statistics
+        default:
+            return motionArray.map { $0.graphValue(for: detail) }.statistics
+        }
+    }
+
     public func mockData() {
         #if DEBUG && targetEnvironment(simulator)
             for index in 1...1000 {

@@ -16,19 +16,28 @@ struct AttitudeList: View {
 
     // MARK: - Body
     var body: some View {
-        List(motionManager.motionArray.reversed(), id: \.self) { item in
-            HStack {
-                Text(verbatim: "#\(item.counter)")
-                Spacer()
-                Text("R:\(item.attitudeRoll * 180 / .pi, specifier: "%.3f")")
-                Spacer()
-                Text("P:\(item.attitudePitch * 180 / .pi, specifier: "%.3f")")
-                Spacer()
-                Text("Y:\(item.attitudeYaw * 180 / .pi, specifier: "%.3f")")
-                Spacer()
-                Text("H:\(item.attitudeHeading, specifier: "%.3f")")
+        List {
+            SensorStatisticsSection(axes: [
+                AxisEntry(label: "Roll", stats: motionManager.statistics(for: .attitudeRoll)),
+                AxisEntry(label: "Pitch", stats: motionManager.statistics(for: .attitudePitch)),
+                AxisEntry(label: "Yaw", stats: motionManager.statistics(for: .attitudeYaw)),
+                AxisEntry(label: "Heading", stats: motionManager.statistics(for: .attitudeHeading))
+            ])
+
+            ForEach(motionManager.motionArray.reversed(), id: \.self) { item in
+                HStack {
+                    Text(verbatim: "#\(item.counter)")
+                    Spacer()
+                    Text("R:\(item.attitudeRoll * 180 / .pi, specifier: "%.3f")")
+                    Spacer()
+                    Text("P:\(item.attitudePitch * 180 / .pi, specifier: "%.3f")")
+                    Spacer()
+                    Text("Y:\(item.attitudeYaw * 180 / .pi, specifier: "%.3f")")
+                    Spacer()
+                    Text("H:\(item.attitudeHeading, specifier: "%.3f")")
+                }
+                .font(.footnote)
             }
-            .font(.footnote)
         }
         .listStyle(.plain)
         .navigationTitle(RootTab.attitude.localizedString)

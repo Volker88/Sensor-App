@@ -90,6 +90,11 @@ public class LocationManager {
         locationChart.removeAll()
     }
 
+    // MARK: - Statistics
+    public func statistics(for detail: GraphDetail) -> AxisStatistics? {
+        locationArray.map { $0.graphValue(for: detail) }.statistics
+    }
+
     public func mockData() {
         #if DEBUG && targetEnvironment(simulator)
             if CommandLine.arguments.contains("enable-testing") {

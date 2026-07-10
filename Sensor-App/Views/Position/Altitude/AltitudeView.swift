@@ -35,11 +35,11 @@ struct AltitudeView: View {
                         .accessibilityHint("Tap to collapse graph", isEnabled: showPressure)
                         .accessibilityHint("Tap to expand  graph", isEnabled: !showPressure)
                         .accessibilityInputLabels(["Pressure"])
+                        .accessibilityIdentifier(UIIdentifiers.AltitudeView.pressureRow)
                     }
                 )
                 .accessibilityAddTraits(.updatesFrequently)
                 .accessibilityRemoveTraits(.isHeader)
-                .accessibilityIdentifier(UIIdentifiers.AltitudeView.pressureRow)
 
                 DisclosureGroup(
                     isExpanded: $showRelativeAltitudeChange,
@@ -55,20 +55,25 @@ struct AltitudeView: View {
                         .accessibilityHint("Tap to collapse graph", isEnabled: showRelativeAltitudeChange)
                         .accessibilityHint("Tap to expand  graph", isEnabled: !showRelativeAltitudeChange)
                         .accessibilityInputLabels(["Altitude Change"])
+                        .accessibilityIdentifier(UIIdentifiers.AltitudeView.altitudeRow)
                     }
                 )
                 .accessibilityAddTraits(.updatesFrequently)
                 .accessibilityRemoveTraits(.isHeader)
-                .accessibilityIdentifier(UIIdentifiers.AltitudeView.altitudeRow)
 
                 NavigationLink(value: PositionStack.altitudeLog) {
                     Text("Log")
                         .accessibilityHint("View Altitude Log")
+                        .accessibilityIdentifier(UIIdentifiers.AltitudeView.logButton)
                 }
-                .accessibilityIdentifier(UIIdentifiers.AltitudeView.logButton)
             }
 
             MotionManagerAccessView()
+
+            SensorStatisticsSection(axes: [
+                AxisEntry(label: "Pressure", stats: motionManager.statistics(for: .pressureValue)),
+                AxisEntry(label: "Altitude", stats: motionManager.statistics(for: .relativeAltitudeValue))
+            ])
         }
         .listStyle(.insetGrouped)
         .fullScreenCover(item: $selectedChart) { selection in

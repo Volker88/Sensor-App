@@ -34,11 +34,11 @@ struct AccelerationView: View {
                             .accessibilityHint("Tap to collapse graph", isEnabled: showXAxis)
                             .accessibilityHint("Tap to expand  graph", isEnabled: !showXAxis)
                             .accessibilityInputLabels(["Latitude"])
+                            .accessibilityIdentifier(UIIdentifiers.AccelerationView.xAxisRow)
                     }
                 )
                 .accessibilityAddTraits(.updatesFrequently)
                 .accessibilityRemoveTraits(.isHeader)
-                .accessibilityIdentifier(UIIdentifiers.AccelerationView.xAxisRow)
 
                 DisclosureGroup(
                     isExpanded: $showYAxis,
@@ -52,11 +52,11 @@ struct AccelerationView: View {
                             .accessibilityHint("Tap to collapse graph", isEnabled: showYAxis)
                             .accessibilityHint("Tap to expand  graph", isEnabled: !showYAxis)
                             .accessibilityInputLabels(["Latitude"])
+                            .accessibilityIdentifier(UIIdentifiers.AccelerationView.yAxisRow)
                     }
                 )
                 .accessibilityAddTraits(.updatesFrequently)
                 .accessibilityRemoveTraits(.isHeader)
-                .accessibilityIdentifier(UIIdentifiers.AccelerationView.yAxisRow)
 
                 DisclosureGroup(
                     isExpanded: $showZAxis,
@@ -70,22 +70,28 @@ struct AccelerationView: View {
                             .accessibilityHint("Tap to collapse graph", isEnabled: showZAxis)
                             .accessibilityHint("Tap to expand  graph", isEnabled: !showZAxis)
                             .accessibilityInputLabels(["Latitude"])
+                            .accessibilityIdentifier(UIIdentifiers.AccelerationView.zAxisRow)
                     }
                 )
                 .accessibilityAddTraits(.updatesFrequently)
                 .accessibilityRemoveTraits(.isHeader)
-                .accessibilityIdentifier(UIIdentifiers.AccelerationView.zAxisRow)
 
                 NavigationLink(value: MotionStack.accelerationLog) {
                     Text("Log")
                         .accessibilityHint("View Acceleration Log")
+                        .accessibilityIdentifier(UIIdentifiers.AccelerationView.logButton)
                 }
-                .accessibilityIdentifier(UIIdentifiers.AccelerationView.logButton)
             }
 
             #if !DEBUG
                 MotionManagerAccessView()
             #endif
+
+            SensorStatisticsSection(axes: [
+                AxisEntry(label: "X", stats: motionManager.statistics(for: .accelerationXAxis)),
+                AxisEntry(label: "Y", stats: motionManager.statistics(for: .accelerationYAxis)),
+                AxisEntry(label: "Z", stats: motionManager.statistics(for: .accelerationZAxis))
+            ])
 
             Section("Refresh Rate") {
                 RefreshRateView(show: "header")

@@ -64,7 +64,8 @@ Sensor-App-Framework/        ← the engine room (no UI)
     ExportManager            writes CSV to temp dir, returns URL
     AppUpdates               version check → release-notes sheet
   Model/                     value types: MotionModel, LocationModel,
-                             AltitudeModel, UserSettings, MapKitSettings, …
+                             AltitudeModel, AxisStatistics, UserSettings,
+                             MapKitSettings, …
   Extension/                 Logger categories, Double helpers
   Localization/              SupportedLanguage enum, preview modifier
 
@@ -73,7 +74,8 @@ Sensor-App/                  ← the iOS showroom
                              Navigation/ (AppState, RootTab, *Stack enums)
   Views/                     per sensor: *Screen / *View / *List
                              + CardView, LineGraph, Notification, Settings,
-                               CustomControls (Liquid Glass), ReleaseNotes
+                               CustomControls (Liquid Glass), ReleaseNotes,
+                               Statistics/SensorStatisticsSection
   AppIntents/                NavigateIntent, NavigationOption, Shortcuts
   Resources/                 *.xcstrings, Assets.xcassets, *.icon
 
@@ -238,6 +240,62 @@ Candidates under investigation:
 
 The issue does not block the intent from working via Siri voice — it only
 affects the Shortcuts.app browsable list.
+
+### 📊 Sensor Statistics — Min, Max, Average (2026-07-09)
+
+**The ask:** show aggregate statistics (minimum, maximum, average) for every
+sensor axis across three surfaces: the main `*View` screen, the `*List` history
+log, and the `FullScreenChartView`.
+
+**The shape of the solution.** The key insight was that the backing history
+arrays (`motionArray`, `altitudeArray`, `locationArray`) already hold every
+recorded data point. Statistics are therefore *derived values* — computed
+properties — and reset for free the moment the trash button clears those arrays.
+No separate reset path, no extra state.
+
+**Three new pieces in the framework:**
+
+```
+AxisStatistics          simple value type: min, max, average
+Collection<Double>.statistics    single-pass extension (one loop: min, max, sum)
+MotionManager.statistics(for: GraphDetail) -> AxisStatistics?
+LocationManager.statistics(for: GraphDetail) -> AxisStatistics?
+```
+
+The `statistics(for:)` method on each manager reuses the existing
+`graphValue(for:)` dispatch that the chart already calls — so attitude values
+arrive pre-converted to degrees, location speed is already unit-converted, and
+there's no duplicated mapping logic.
+
+**The reusable UI component.** `SensorStatisticsSection` is a SwiftUI `Section`
+containing a `Grid` with four columns (axis label, Min, Max, Avg). It accepts an
+`[AxisEntry]` array, which callers construct inline by calling
+`manager.statistics(for: .someAxis)`. When no data has been recorded yet, the
+section shows a single localized "No data recorded yet" placeholder row. The grid
+is wrapped in `HStack { Spacer … Grid … Spacer }` so it centres itself within
+the list row rather than hugging the leading edge.
+
+**Three insertion points:**
+- `*View` — added as a section between the sensor readouts and the Refresh Rate
+  section (7 views updated).
+- `*List` — lists restructured from `List(array.reversed(), id: \.self)` to
+  `List { SensorStatisticsSection; ForEach(array.reversed()) }`, stats pinned at
+  the top (6 lists updated).
+- `FullScreenChartView` — added a `.safeAreaInset(edge: .bottom)` bar showing
+  Min/Max/Avg for the *single axis* the chart is displaying. The view now
+  inherits both manager environments and calls `statistics(for: selection.detail)`
+  keyed by `selection.graph` to route to the right manager.
+
+**Localization.** Five new string keys ("Statistics", "Min", "Max", "Avg",
+"No data recorded yet") translated into all ten supported languages and added to
+`Localizable.xcstrings` in one JSON edit.
+
+**What surprised us.** The `graphValue(for:)` reuse was the real win — it meant
+zero duplicated axis-to-property mapping. The statistics method is four lines
+per manager; the heavy lifting was already done years ago when the chart layer
+was designed.
+
+---
 
 ## Engineer's Wisdom
 

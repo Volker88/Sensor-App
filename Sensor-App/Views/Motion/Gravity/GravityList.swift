@@ -16,17 +16,25 @@ struct GravityList: View {
 
     // MARK: - Body
     var body: some View {
-        List(motionManager.motionArray.reversed(), id: \.self) { item in
-            HStack {
-                Text(verbatim: "#\(item.counter)")
-                Spacer()
-                Text("X:\(item.gravityXAxis, specifier: "%.5f")")
-                Spacer()
-                Text("Y:\(item.gravityYAxis, specifier: "%.5f")")
-                Spacer()
-                Text("Z:\(item.gravityZAxis, specifier: "%.5f")")
+        List {
+            SensorStatisticsSection(axes: [
+                AxisEntry(label: "X", stats: motionManager.statistics(for: .gravityXAxis)),
+                AxisEntry(label: "Y", stats: motionManager.statistics(for: .gravityYAxis)),
+                AxisEntry(label: "Z", stats: motionManager.statistics(for: .gravityZAxis))
+            ])
+
+            ForEach(motionManager.motionArray.reversed(), id: \.self) { item in
+                HStack {
+                    Text(verbatim: "#\(item.counter)")
+                    Spacer()
+                    Text("X:\(item.gravityXAxis, specifier: "%.5f")")
+                    Spacer()
+                    Text("Y:\(item.gravityYAxis, specifier: "%.5f")")
+                    Spacer()
+                    Text("Z:\(item.gravityZAxis, specifier: "%.5f")")
+                }
+                .font(.footnote)
             }
-            .font(.footnote)
         }
         .listStyle(.plain)
         .navigationTitle(RootTab.gravity.localizedString)

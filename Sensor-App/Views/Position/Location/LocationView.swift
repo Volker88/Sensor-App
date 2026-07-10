@@ -44,11 +44,11 @@ struct LocationView: View {
                         .accessibilityHint("Tap to collapse graph", isEnabled: showLatitude)
                         .accessibilityHint("Tap to expand  graph", isEnabled: !showLatitude)
                         .accessibilityInputLabels(["Latitude"])
+                        .accessibilityIdentifier(UIIdentifiers.LocationView.latitudeRow)
                     }
                 )
                 .accessibilityAddTraits(.updatesFrequently)
                 .accessibilityRemoveTraits(.isHeader)
-                .accessibilityIdentifier(UIIdentifiers.LocationView.latitudeRow)
 
                 DisclosureGroup(
                     isExpanded: $showLongitude,
@@ -63,11 +63,11 @@ struct LocationView: View {
                         .accessibilityHint("Tap to collapse graph", isEnabled: showLongitude)
                         .accessibilityHint("Tap to expand  graph", isEnabled: !showLongitude)
                         .accessibilityInputLabels(["Longitude"])
+                        .accessibilityIdentifier(UIIdentifiers.LocationView.longitudeRow)
                     }
                 )
                 .accessibilityAddTraits(.updatesFrequently)
                 .accessibilityRemoveTraits(.isHeader)
-                .accessibilityIdentifier(UIIdentifiers.LocationView.longitudeRow)
 
                 DisclosureGroup(
                     isExpanded: $showAltitude,
@@ -82,11 +82,11 @@ struct LocationView: View {
                         .accessibilityHint("Tap to collapse graph", isEnabled: showDirection)
                         .accessibilityHint("Tap to expand  graph", isEnabled: !showDirection)
                         .accessibilityInputLabels(["Altitude"])
+                        .accessibilityIdentifier(UIIdentifiers.LocationView.altitudeRow)
                     }
                 )
                 .accessibilityAddTraits(.updatesFrequently)
                 .accessibilityRemoveTraits(.isHeader)
-                .accessibilityIdentifier(UIIdentifiers.LocationView.altitudeRow)
 
                 DisclosureGroup(
                     isExpanded: $showDirection,
@@ -99,9 +99,9 @@ struct LocationView: View {
                             .accessibilityHint("Tap to collapse graph", isEnabled: showLatitude)
                             .accessibilityHint("Tap to expand  graph", isEnabled: !showLatitude)
                             .accessibilityInputLabels(["Direction"])
+                            .accessibilityIdentifier(UIIdentifiers.LocationView.courseRow)
                     }
                 )
-                .accessibilityIdentifier(UIIdentifiers.LocationView.courseRow)
 
                 DisclosureGroup(
                     isExpanded: $showSpeed,
@@ -116,19 +116,28 @@ struct LocationView: View {
                         .accessibilityHint("Tap to collapse graph", isEnabled: showSpeed)
                         .accessibilityHint("Tap to expand  graph", isEnabled: !showSpeed)
                         .accessibilityInputLabels(["Speed"])
+                        .accessibilityIdentifier(UIIdentifiers.LocationView.speedRow)
                     }
                 )
                 .accessibilityAddTraits(.updatesFrequently)
                 .accessibilityRemoveTraits(.isHeader)
-                .accessibilityIdentifier(UIIdentifiers.LocationView.speedRow)
 
                 NavigationLink(value: PositionStack.locationMap) {
                     Text("Map")
+                        .accessibilityIdentifier(UIIdentifiers.LocationView.mapButton)
                 }
-                .accessibilityIdentifier(UIIdentifiers.LocationView.mapButton)
+
             }
 
             authorizationStatus()
+
+            SensorStatisticsSection(axes: [
+                AxisEntry(label: "Lat", stats: locationManager.statistics(for: .latitude)),
+                AxisEntry(label: "Long", stats: locationManager.statistics(for: .longitude)),
+                AxisEntry(label: "Alt", stats: locationManager.statistics(for: .altitude)),
+                AxisEntry(label: "Speed", stats: locationManager.statistics(for: .speed)),
+                AxisEntry(label: "Dir", stats: locationManager.statistics(for: .course))
+            ])
         }
         .listStyle(InsetGroupedListStyle())
         .onAppear(perform: onAppear)

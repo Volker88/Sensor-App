@@ -63,8 +63,8 @@ Three first-party modules plus tests:
 Per sensor, three layers:
 - `*Screen` — container; starts/stops the sensor in `onAppear`, hosts the
   floating controls via `safeAreaInset`.
-- `*View` — live readouts + inline `LineGraphSubView` + links.
-- `*List` — full reversed history with CSV export.
+- `*View` — live readouts + inline `LineGraphSubView` + statistics section + links.
+- `*List` — statistics section at top, then full reversed history with CSV export.
 
 watchOS uses a single `*View` per sensor (no Screen/List split).
 
@@ -93,6 +93,14 @@ watchOS uses a single `*View` per sensor (no Screen/List split).
   `NotificationModifier` applied globally with `.withNotificationView()`.
 - **iOS 27 Liquid Glass:** `.glassEffect`, `GlassEffectContainer`,
   `.buttonStyle(.glassProminent)` in controls, cards, and release notes.
+- **Sensor Statistics:** `AxisStatistics` (Framework model) + `Collection<Double>.statistics`
+  extension compute min/max/average from the full history arrays. `MotionManager` and
+  `LocationManager` each expose a `statistics(for: GraphDetail) -> AxisStatistics?`
+  method (reuses `graphValue(for:)`, so attitude values are already in degrees). The
+  reusable `SensorStatisticsSection` view renders a centered `Grid` with Min/Max/Avg
+  columns; it appears in every `*View`, every `*List` (pinned at top), and as a compact
+  bar in `FullScreenChartView`. Stats reset automatically when the history arrays are
+  cleared — no separate reset path needed.
 - **Localization:** String Catalogs (`.xcstrings`) in `Sensor-App/Resources`.
   Languages: en, zh-Hans, cs, fr, de, it, ja, ko, pt, es (see
   `SupportedLanguage`). Access via `LocalizedStringResource`. Offer to

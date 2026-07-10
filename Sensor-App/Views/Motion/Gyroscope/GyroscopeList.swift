@@ -16,17 +16,25 @@ struct GyroscopeList: View {
 
     // MARK: - Body
     var body: some View {
-        List(motionManager.motionArray.reversed(), id: \.self) { item in
-            HStack {
-                Text(verbatim: "#\(item.counter)")
-                Spacer()
-                Text("X:\(item.gyroXAxis, specifier: "%.5f")")
-                Spacer()
-                Text("Y:\(item.gyroYAxis, specifier: "%.5f")")
-                Spacer()
-                Text("Z:\(item.gyroZAxis, specifier: "%.5f")")
+        List {
+            SensorStatisticsSection(axes: [
+                AxisEntry(label: "X", stats: motionManager.statistics(for: .gyroXAxis)),
+                AxisEntry(label: "Y", stats: motionManager.statistics(for: .gyroYAxis)),
+                AxisEntry(label: "Z", stats: motionManager.statistics(for: .gyroZAxis))
+            ])
+
+            ForEach(motionManager.motionArray.reversed(), id: \.self) { item in
+                HStack {
+                    Text(verbatim: "#\(item.counter)")
+                    Spacer()
+                    Text("X:\(item.gyroXAxis, specifier: "%.5f")")
+                    Spacer()
+                    Text("Y:\(item.gyroYAxis, specifier: "%.5f")")
+                    Spacer()
+                    Text("Z:\(item.gyroZAxis, specifier: "%.5f")")
+                }
+                .font(.footnote)
             }
-            .font(.footnote)
         }
         .listStyle(.plain)
         .navigationTitle(RootTab.gyroscope.localizedString)

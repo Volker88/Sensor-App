@@ -16,15 +16,22 @@ struct AltitudeList: View {
 
     // MARK: - Body
     var body: some View {
-        List(motionManager.altitudeArray.reversed(), id: \.self) { item in
-            HStack {
-                Text(verbatim: "#\(item.counter)")
-                Spacer()
-                Text("P:\(motionManager.altitude?.calculatedPressure ?? 0.0, specifier: "%.3f")")
-                Spacer()
-                Text("A:\(motionManager.altitude?.calculatedAltitude ?? 0.0, specifier: "%.3f")")
+        List {
+            SensorStatisticsSection(axes: [
+                AxisEntry(label: "Pressure", stats: motionManager.statistics(for: .pressureValue)),
+                AxisEntry(label: "Altitude", stats: motionManager.statistics(for: .relativeAltitudeValue))
+            ])
+
+            ForEach(motionManager.altitudeArray.reversed(), id: \.self) { item in
+                HStack {
+                    Text(verbatim: "#\(item.counter)")
+                    Spacer()
+                    Text("P:\(motionManager.altitude?.calculatedPressure ?? 0.0, specifier: "%.3f")")
+                    Spacer()
+                    Text("A:\(motionManager.altitude?.calculatedAltitude ?? 0.0, specifier: "%.3f")")
+                }
+                .font(.footnote)
             }
-            .font(.footnote)
         }
         .listStyle(.plain)
         .navigationTitle(RootTab.altitude.localizedString)
