@@ -22,6 +22,7 @@ enum UIIdentifiers {
         static let attitudeTab = "ContentView.Tab.Button.Attitude"
 
         static let magnetometerTab = "ContentView.Tab.Button.Magnetometer"
+        static let recordingsTab = "ContentView.Tab.Button.Recordings"
         static let settingsTab = "ContentView.Tab.Button.Settings"
     }
 
@@ -42,6 +43,12 @@ enum UIIdentifiers {
         static let playButton = "CustomControlsView.Button.Play"
         static let pauseButton = "CustomControlsView.Button.Pause"
         static let deleteButton = "CustomControlsView.Button.Delete"
+        static let recordButton = "CustomControlsView.Button.Record"
+    }
+
+    enum RecordingsScreen {
+        static let list = "RecordingsScreen.List"
+        static let exportButton = "RecordingsScreen.Button.Export"
     }
 
     enum RefreshRateView {

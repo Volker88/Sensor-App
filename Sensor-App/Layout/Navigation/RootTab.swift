@@ -18,6 +18,7 @@ enum RootTab: Hashable {
     case gyroscope
     case attitude
     case magnetometer
+    case recordings
     case settings
 
     // Computed property for the string representation (similar to rawValue)
@@ -41,6 +42,8 @@ enum RootTab: Hashable {
                 return "Attitude"
             case .magnetometer:
                 return "Magnetometer"
+            case .recordings:
+                return "Recordings"
             case .settings:
                 return "Settings"
         }
@@ -66,6 +69,8 @@ enum RootTab: Hashable {
                 return LocalizedStringResource("Attitude")
             case .magnetometer:
                 return LocalizedStringResource("Magnetometer")
+            case .recordings:
+                return LocalizedStringResource("Recordings")
             case .settings:
                 return LocalizedStringResource("Settings")
         }
@@ -91,6 +96,8 @@ enum RootTab: Hashable {
                 return "dial.medium"
             case .magnetometer:
                 return "wave.3.right"
+            case .recordings:
+                return "record.circle"
             case .settings:
                 return "gear"
         }
@@ -119,6 +126,8 @@ extension RootTab: View {
                 AttitudeScreen()
             case .magnetometer:
                 MagnetometerScreen()
+            case .recordings:
+                RecordingsScreen()
             case .settings:
                 SettingsScreen()
         }

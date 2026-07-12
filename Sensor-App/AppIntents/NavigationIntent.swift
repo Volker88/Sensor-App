@@ -60,6 +60,8 @@ struct NavigateIntent: AppIntent {
                 appState.appIntentTab = .magnetometer
             case .settings:
                 appState.appIntentTab = .settings
+            case .recordings:
+                appState.appIntentTab = .recordings
         }
 
         return .result()

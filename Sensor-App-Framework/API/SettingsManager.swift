@@ -225,16 +225,8 @@ public class SettingsManager {
         }
     }
 
-    ///  Get  current timestamp
-    ///
-    ///  Get the current timestamp in dd-MM-yyyyy HH:mm:ss.SSS format
-    ///  - Returns: Current timestamp
     public func getTimestamp() -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.setLocalizedDateFormatFromTemplate("ddMMyyyyHHmmssSSS")
-        let dateString = dateFormatter.string(from: NSDate() as Date)
-
-        return dateString
+        Date().sensorTimestamp
     }
 }
 

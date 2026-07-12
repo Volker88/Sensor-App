@@ -74,7 +74,7 @@ public class MotionManager {
             if let data {
                 let model = MotionModel(
                     counter: self.motionCounter,
-                    timestamp: Date().formatted(),
+                    timestamp: Date().sensorTimestamp,
                     accelerationXAxis: data.userAcceleration.x,
                     accelerationYAxis: data.userAcceleration.y,
                     accelerationZAxis: data.userAcceleration.z,
@@ -130,7 +130,7 @@ public class MotionManager {
 
                 let model = AltitudeModel(
                     counter: altitudeCounter,
-                    timestamp: Date().formatted(),
+                    timestamp: Date().sensorTimestamp,
                     pressureValue: pressureValue,
                     relativeAltitudeValue: relativeAltitudeValue
                 )
@@ -169,10 +169,10 @@ public class MotionManager {
     // MARK: - Statistics
     public func statistics(for detail: GraphDetail) -> AxisStatistics? {
         switch detail {
-        case .pressureValue, .relativeAltitudeValue:
-            return altitudeArray.map { $0.graphValue(for: detail) }.statistics
-        default:
-            return motionArray.map { $0.graphValue(for: detail) }.statistics
+            case .pressureValue, .relativeAltitudeValue:
+                return altitudeArray.map { $0.graphValue(for: detail) }.statistics
+            default:
+                return motionArray.map { $0.graphValue(for: detail) }.statistics
         }
     }
 
@@ -181,7 +181,7 @@ public class MotionManager {
             for index in 1...1000 {
                 let motion = MotionModel(
                     counter: index,
-                    timestamp: Date().formatted(),
+                    timestamp: Date().sensorTimestamp,
                     accelerationXAxis: getDouble(),
                     accelerationYAxis: getDouble(),
                     accelerationZAxis: getDouble(),
@@ -206,7 +206,7 @@ public class MotionManager {
 
                 let altitude = AltitudeModel(
                     counter: index,
-                    timestamp: Date().formatted(),
+                    timestamp: Date().sensorTimestamp,
                     pressureValue: Double.random(in: 990...1010),
                     relativeAltitudeValue: Double.random(in: 0...10)
                 )

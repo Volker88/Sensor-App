@@ -47,8 +47,8 @@ into the environment and accessed in views with `@Environment(AppState.self)`.
   Navigation restoration is stubbed out in the commented block (parked feature).
 - `appIntentDrivenNavigation(_:)` — converts a `RootTab` app-intent value into
   concrete tab + stack-push navigation. On compact layout it uses
-  `DispatchQueue.main.asyncAfter` to defer the stack push until after the tab
-  switch animation (known tech debt; should use `Task { try await Task.sleep(for:) }`).
+  `Task { try await Task.sleep(for: .seconds(0.5)) }` to defer the stack push
+  until after the tab switch animation.
 - `resetStack()` — called by `ContentView` on every tab change, stopping stale
   sensor sessions from persisting across tabs.
 
@@ -99,6 +99,16 @@ Top-level tabs. Also carries `symbolImage` (SF Symbol name) and
 .magnetometerLog → MagnetometerList
 ```
 
+### `RecordingsStack`
+**File:** `Layout/Navigation/NavigationStacks/RecordingsStack.swift`
+
+```
+.detail(SensorSession)               → RecordingDetailScreen
+.motionMeasurements(SensorSession)   → RecordingMotionMeasurementsView
+.altitudeMeasurements(SensorSession) → RecordingAltitudeMeasurementsView
+.locationMeasurements(SensorSession) → RecordingLocationMeasurementsView
+```
+
 ---
 
 ## `ContentView` — Adaptive Tab Layout
@@ -127,6 +137,7 @@ ContentView
             Tab: Gyroscope    → NavigationStack(motionStack) { GyroscopeScreen }
             Tab: Attitude     → NavigationStack(motionStack) { AttitudeScreen }
           Tab: Magnetometer → NavigationStack(magnetometerStack) { MagnetometerScreen }
+          Tab: Recordings   → NavigationStack { RecordingsScreen }
           Tab: Settings     → NavigationStack { SettingsScreen }
 ```
 
@@ -244,6 +255,24 @@ showNotification("Started")
 
 ---
 
+### `ExpandableChartView` / `FullScreenChartView` / `ChartSelection`
+**Files:** `Views/LineGraph/ExpandableChartView.swift`, `Views/LineGraph/FullScreenChartView.swift`, `Views/LineGraph/ChartSelection.swift`
+
+`ExpandableChartView` wraps `LineGraphSubView` with an expand-button overlay. Tapping the button sets a `@Binding<ChartSelection?>` which the parent presents as a `FullScreenChartView` sheet.
+
+`ChartSelection` is a simple value type holding `graph: Graph`, `detail: GraphDetail`, and `title: LocalizedStringResource` — enough to reconstruct the full-screen chart from any call site.
+
+`FullScreenChartView` presents a `NavigationStack` containing a full-frame `LineGraphSubView`. A `.safeAreaInset(edge: .bottom)` bar shows Min/Max/Avg statistics for the displayed axis (pulled from the appropriate manager via `resolvedStats`).
+
+---
+
+### `SensorStatisticsSection`
+**File:** `Views/Statistics/SensorStatisticsSection.swift`
+
+A reusable SwiftUI `Section` containing a centred `Grid` with four columns: axis label, Min, Max, Avg. Accepts `[AxisEntry]` constructed inline from `manager.statistics(for:)` calls. Shows a "No data recorded yet" placeholder when the array is empty. Appears in every `*View` (between readouts and Refresh Rate), pinned at the top of every `*List`, and as the compact stats bar inside `FullScreenChartView`.
+
+---
+
 ### `CardView`
 **File:** `Views/CardView.swift`
 
@@ -299,8 +328,9 @@ supported languages.
 
 | Object | Injected by | Consumed by |
 |---|---|---|
-| `MotionManager` | `SensorAppApp` | All motion/altitude screens, `CustomControlsView`, `LineGraphSubView` |
-| `LocationManager` | `SensorAppApp` | Location screens, `CustomControlsView`, `LineGraphSubView` |
+| `MotionManager` | `SensorAppApp` | All motion/altitude screens, `CustomControlsView`, `LineGraphSubView`, `FullScreenChartView` |
+| `LocationManager` | `SensorAppApp` | Location screens, `CustomControlsView`, `LineGraphSubView`, `FullScreenChartView` |
 | `SettingsManager` | `SensorAppApp` | `SettingsScreen`, `LineGraphSubView` |
+| `RecordingManager` | `SensorAppApp` | `RecordingsScreen`, `CustomControlsView` |
 | `AppState` | `SensorAppApp` | `ContentView`, picker screens, `RootTab`, route enums |
 | `\.showNotification` | `NotificationModifier` (via `SensorAppApp`) | `CustomControlsView` |

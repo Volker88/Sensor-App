@@ -18,10 +18,10 @@ struct FullScreenChartView: View {
 
     private var resolvedStats: AxisStatistics? {
         switch selection.graph {
-        case .motion, .altitude:
-            return motionManager.statistics(for: selection.detail)
-        case .location:
-            return locationManager.statistics(for: selection.detail)
+            case .motion, .altitude:
+                return motionManager.statistics(for: selection.detail)
+            case .location:
+                return locationManager.statistics(for: selection.detail)
         }
     }
 

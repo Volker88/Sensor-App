@@ -23,7 +23,7 @@ Three first-party modules plus tests:
 |---|---|
 | `Sensor-App/` | iOS/iPadOS app — TabView UI, navigation, views, App Intents |
 | `Sensor-App-WatchApp/` | watchOS app — simpler `List`/`NavigationStack`, one `*View` per sensor |
-| `Sensor-App-Framework/` | Shared logic: sensor managers, models, extensions, localization enum |
+| `Sensor-App-Framework/` | Shared logic: sensor managers, models, SwiftData schema, RecordingManager, extensions, localization enum |
 | `Tests/` | `iOSUnitTests` (Swift Testing), `iOSUITests` & `watchOSUITests` (XCTest), `0_Test Plans/`, screenshot tests |
 | `Configuration/` | `.xcconfig` build settings (`General`, `Debug`, `Release`, `Secret`) |
 | `fastlane/`, `screenshots/` | Screenshot automation |
@@ -89,6 +89,18 @@ watchOS uses a single `*View` per sensor (no Screen/List split).
   `ContentView` reacts. **Known issue:** default App Shortcuts do not appear
   automatically in the Shortcuts app — root cause under investigation (see
   Journal.md).
+- **Recordings (SwiftData + CloudKit):** `RecordingManager` is the sole write
+  path. Tapping Stop in `CustomControlsView` calls `stopRecording(motionArray:altitudeArray:locationArray:source:)`,
+  which converts in-memory models to `MotionMeasurement` / `AltitudeMeasurement` /
+  `LocationMeasurement` rows inside a `SensorSession` and saves in one batch.
+  The schema is versioned (`ModelsSchemaV1` → `DatabaseMigrationPlan`) and
+  synced via CloudKit private database. A `RecordingsStack` enum drives the
+  recordings navigation (`RecordingsScreen` → `RecordingDetailScreen` →
+  individual measurement views). See `Sensor-App-Framework/SwiftData/DataArchitecture.md`.
+- **Full Screen Charts:** `ExpandableChartView` wraps each `LineGraphSubView`
+  with an expand-button overlay; tapping it presents `FullScreenChartView` as a
+  sheet. The full-screen view shows the same chart maximised with a statistics bar
+  (Min/Max/Avg) in a `.safeAreaInset(edge: .bottom)`.
 - **Notifications (toasts):** custom environment key (`showNotification`) +
   `NotificationModifier` applied globally with `.withNotificationView()`.
 - **iOS 27 Liquid Glass:** `.glassEffect`, `GlassEffectContainer`,
@@ -136,6 +148,8 @@ watchOS uses a single `*View` per sensor (no Screen/List split).
   `CalculationManager()` / `SettingsManager()` on every access (should be
   injected).
 - `ExportManager.getFile` force-unwraps the temp-file URL.
+- `MotionManager` closure callbacks should eventually be wrapped in an `AsyncStream`
+  to match `LocationManager`'s async/await model.
 - `AppState.onSizeClassChange` keeps a large commented-out block on purpose —
   it's the parked iPad navigation-restoration feature, not dead code.
 

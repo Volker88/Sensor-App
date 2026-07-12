@@ -66,20 +66,26 @@ Sensor-App-Framework/        ← the engine room (no UI)
   Model/                     value types: MotionModel, LocationModel,
                              AltitudeModel, AxisStatistics, UserSettings,
                              MapKitSettings, …
-  Extension/                 Logger categories, Double helpers
+  Recording/                 RecordingManager (SwiftData write path)
+  SwiftData/                 schema (ModelsSchemaV1), versioning, container,
+                             CloudKit init helper, type aliases
+  Extension/                 Logger categories, Double/Date helpers
   Localization/              SupportedLanguage enum, preview modifier
 
 Sensor-App/                  ← the iOS showroom
   Layout/                    SensorAppApp (entry), ContentView (TabView),
-                             Navigation/ (AppState, RootTab, *Stack enums)
+                             Navigation/ (AppState, RootTab, *Stack enums,
+                               RecordingsStack)
   Views/                     per sensor: *Screen / *View / *List
-                             + CardView, LineGraph, Notification, Settings,
+                             + CardView, LineGraph (incl. FullScreenChartView,
+                               ExpandableChartView), Notification, Settings,
                                CustomControls (Liquid Glass), ReleaseNotes,
-                               Statistics/SensorStatisticsSection
+                               Recordings, Statistics/SensorStatisticsSection
   AppIntents/                NavigateIntent, NavigationOption, Shortcuts
   Resources/                 *.xcstrings, Assets.xcassets, *.icon
 
-Sensor-App-WatchApp/         ← the watch storefront (one *View per sensor)
+Sensor-App-WatchApp/         ← the watch storefront (one *View per sensor,
+                             WatchRecordingView)
 Tests/                       iOSUnitTests (Swift Testing), *UITests (XCTest)
 Configuration/               *.xcconfig (targets, version, signing secrets)
 ```
@@ -134,6 +140,35 @@ just sets the tab; on iPhone it sets the parent tab and then pushes the child
 onto the stack. The 0.5 s delay that lets the tab switch settle before pushing
 is now expressed as `Task { [appIntentTab] in try await Task.sleep(for: .seconds(0.5)); … }`,
 inheriting `@MainActor` from the class rather than reaching for GCD.
+
+### 🔍 Full Screen Charts — Portrait & Landscape (2026-07-06)
+
+**The ask:** let users expand any sensor chart to fill the screen, useful in
+both portrait and landscape orientations where the inline chart is too narrow
+to read fine-grained fluctuations.
+
+**The pattern.** Rather than threading sheet state into every `*View`, the
+solution uses a single nullable `@State<ChartSelection?>` at the screen level.
+`ExpandableChartView` wraps an existing `LineGraphSubView` with a transparent
+expand-button overlay (a filled circle SF Symbol in `.topTrailing`); tapping
+sets that binding. The parent presents `FullScreenChartView` as a `.sheet`.
+
+`ChartSelection` is a three-property struct (`graph`, `detail`, `title`) — just
+enough information to reconstruct the chart in the sheet without passing the
+entire manager down. It's `Sendable` and trivially constructable.
+
+`FullScreenChartView` is a `NavigationStack` with a `LineGraphSubView` sized to
+`maxWidth: .infinity, maxHeight: .infinity`. The statistics bar (introduced in
+#130) reuses `resolvedStats` — a computed property that routes to the right
+manager based on `selection.graph` — so Min/Max/Avg appear for free in the full
+screen view with no extra wiring.
+
+**Landscape bonus.** Because the view fills the available frame rather than a
+fixed height, rotating the device to landscape gives a wider time window with
+more visible detail. No extra orientation handling required — SwiftUI layout
+does it for free.
+
+---
 
 ### ⚡ Default `@MainActor` isolation + Approachable Concurrency (2026-07-01)
 
@@ -241,6 +276,51 @@ Candidates under investigation:
 The issue does not block the intent from working via Siri voice — it only
 affects the Shortcuts.app browsable list.
 
+### 🗄️ SwiftData Recording Layer — Persistent Sessions (2026-07-12)
+
+**The ask:** persist sensor recordings so users can review, browse, and
+eventually export past sessions — even across app restarts and on multiple
+devices.
+
+**The architecture.** Live sensor data already lives in the managers' in-memory
+arrays (`motionArray`, `altitudeArray`, `locationArray`). Rather than writing to
+the database on every sensor tick (which would thrash the store at up to 100 Hz),
+the decision was to persist *at the end of a session only*. `RecordingManager.stopRecording()`
+converts each in-memory value type to a SwiftData `@Model` instance and inserts
+everything into a single `ModelContext`, then calls `context.save()` once. One
+write, one transaction, zero mid-session I/O.
+
+**Schema design.** Four models inside `ModelsSchemaV1`:
+
+```
+SensorSession              ← the root aggregate (name, start/end timestamps, source device)
+├── MotionMeasurement      ← all motion axes in one row (avoids four separate tables)
+├── AltitudeMeasurement    ← pressure + relative altitude
+└── LocationMeasurement    ← GPS fix + accuracy
+```
+
+Relationships are `@Relationship(deleteRule: .cascade)` — deleting a session
+nukes all its measurements automatically. Every property has a default value
+and every relationship is Optional, both required by CloudKit. (The `@Attribute(.unique)` 
+annotation is explicitly off-limits for the same reason.)
+
+**CloudKit sync.** `SwiftDataContainer` opens the store with
+`.private(containerID)` (pulled from `Info.plist` at runtime, injected by
+`.xcconfig`). A DEBUG-only `InitializeCloudKitSchema` helper pushes the schema
+to CloudKit once; set its flag back to `false` after the first run.
+
+**Navigation.** A new `RecordingsStack` enum drives the recordings flow:
+`RecordingsScreen` (session list, `@Query` sorted by `startedAt`) →
+`RecordingDetailScreen` → per-measurement-type detail views. The recordings tab
+is a fourth top-level destination alongside Position, Motion, and Magnetometer.
+
+**What stayed simple.** Because the live arrays already existed, the conversion
+in `stopRecording` is mechanical: one `for` loop per measurement type, one
+`context.insert` per item. No custom mapping logic. `RecordingManager` itself is
+under 90 lines.
+
+---
+
 ### 📊 Sensor Statistics — Min, Max, Average (2026-07-09)
 
 **The ask:** show aggregate statistics (minimum, maximum, average) for every
@@ -316,10 +396,9 @@ was designed.
 ## If I Were Starting Over…
 
 - **Wrap Core Motion in an `AsyncStream`.** `LocationManager` already speaks
-  fluent `async/await`; `MotionManager` is still closure-based (the redundant
-  `DispatchQueue.main.async` wrapper is gone, but the underlying callback model
-  remains). Unifying both behind async sequences would read better and make
-  backpressure and cancellation first-class.
+  fluent `async/await`; `MotionManager` is still closure-based (closure callbacks
+  delivered to `.main`). Unifying both behind async sequences would read better
+  and make backpressure and cancellation first-class.
 - **Inject services into models, don't brew them.** `LocationModel` and
   `AltitudeModel` `new` up a `CalculationManager()` *and* a `SettingsManager()`
   on every computed-property access — a fresh `UserDefaults` decode per chart

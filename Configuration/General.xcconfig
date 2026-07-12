@@ -9,13 +9,15 @@
 // https://help.apple.com/xcode/#/dev745c5c974
 
 // Versioning
-CURRENT_PROJECT_VERSION = 20260710.1
+CURRENT_PROJECT_VERSION = 20260712.1
 MARKETING_VERSION = 7.0.0
 
 // Secrets
 //
 // To build the app with your own secrets, create "Secret.xcconfig" file and define below Variable inside your Secret.xcconfig file.
 BASE_BUNDLE_IDENTIFIER = Sensor-App.${DEVELOPMENT_TEAM}
+APP_GROUP_ID = Sensor-App.${DEVELOPMENT_TEAM}
+CLOUDKIT_CONTAINER_ID = Sensor-App.${DEVELOPMENT_TEAM}
 
 // Deployment Targets for Xcode
 IPHONEOS_DEPLOYMENT_TARGET = 27.0

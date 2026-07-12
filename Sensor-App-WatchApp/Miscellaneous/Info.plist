@@ -29,6 +29,10 @@
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
+	<key>APP_GROUP_ID</key>
+	<string>group.$(APP_GROUP_ID)$(APP_GROUP_ID_SUFFIX)</string>
+	<key>CLOUDKIT_CONTAINER_ID</key>
+	<string>$(CLOUDKIT_CONTAINER_ID)</string>
 	<key>WKApplication</key>
 	<true/>
 	<key>WKCompanionAppBundleIdentifier</key>

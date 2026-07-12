@@ -129,6 +129,23 @@ Map display preferences stored independently from `UserSettings`.
 
 ---
 
+### `AxisStatistics`  —  `struct`
+**File:** `Model/AxisStatistics.swift`
+
+Aggregate statistics for one sensor axis computed from its full history array.
+
+| Property | Description |
+|---|---|
+| `min: Double` | Smallest recorded value |
+| `max: Double` | Largest recorded value |
+| `average: Double` | Mean across all samples |
+
+Produced by the `Collection<Double>.statistics` extension (see Extensions).
+Each manager exposes `statistics(for: GraphDetail) -> AxisStatistics?` which
+returns `nil` when the backing array is empty.
+
+---
+
 ### `GraphDetail`  +  `Graph`  —  enums
 **File:** `Model/GraphDetailModel.swift`
 
@@ -176,10 +193,14 @@ altitude) in a single object.
   `startDeviceMotionUpdates(using: .xTrueNorthZVertical, to: .main)`. Uses
   closure callbacks on `.main`.
 - `startAltitudeUpdates()` — starts `startRelativeAltitudeUpdates(to: .main)`.
-  Contains a redundant inner `DispatchQueue.main.async` wrap (known tech debt).
+  The callback is already delivered on `.main`; the manager updates its state directly.
 - `stopMotionUpdates()` — stops both CMMotionManager and CMAltimeter.
 - `resetMotionUpdates()` — clears all arrays and resets counters to 1.
 - `sensorUpdateInterval` — `didSet` restarts both update loops.
+
+`statistics(for: GraphDetail) -> AxisStatistics?` — returns min/max/average across
+the full `altitudeArray` (pressure/relative altitude cases) or `motionArray`
+(all other axes). Reuses `graphValue(for:)` so attitude values arrive already in degrees.
 
 **Simulator mock data:** in `DEBUG && targetEnvironment(simulator)`, `init()`
 calls `mockData()` which seeds 1 000 synthetic readings so the UI renders
@@ -211,6 +232,10 @@ Wraps `CLLocationManager` with a modern `async`/`await` update loop.
   the next iteration.
 - `resetLocationUpdates()` — clears arrays and resets the counter.
 
+`statistics(for: GraphDetail) -> AxisStatistics?` — returns min/max/average across
+the full `locationArray`. Reuses `graphValue(for:)` so speed and altitude are
+already unit-converted.
+
 **Simulator mock data:** only injected when the `enable-testing` launch
 argument is present, keeping the UI test environment deterministic.
 
@@ -241,6 +266,26 @@ temp file and returns the URL. The URL is force-unwrapped (known tech debt).
 
 ---
 
+### `RecordingManager`
+**File:** `Recording/RecordingManager.swift`
+
+`@Observable` class and the sole write path for the SwiftData store. Requires
+an injected `ModelContext?` (provided by `SensorAppApp` after the container is
+opened). Holds minimal recording state: `isRecording`, `startedAt`, `sessionName`.
+
+| Method | Description |
+|---|---|
+| `startRecording(name:)` | Sets `isRecording = true`; captures start time and optional name |
+| `stopRecording(motionArray:altitudeArray:locationArray:source:)` | Converts live-data models to persistent `@Model` instances, inserts them plus the parent `SensorSession`, calls `context.save()` |
+| `delete(_:)` | Deletes a `SensorSession` (cascade removes all measurements) and saves |
+
+Live sensor data is **not** written to the store during recording — it remains
+in the managers' in-memory arrays. Persistence happens only when `stopRecording`
+is called, converting `MotionModel` / `AltitudeModel` / `LocationModel` values
+to `MotionMeasurement` / `AltitudeMeasurement` / `LocationMeasurement` at once.
+
+---
+
 ## Extensions
 
 ### `Extension+Double`
@@ -249,7 +294,17 @@ decimal separator. Used in every `*List.shareCSV()` method.
 
 ### `Extension+Logger`
 Provides typed `Logger` subsystem constants (`Logger.coreMotion`,
-`Logger.coreLocation`) for consistent OSLog output.
+`Logger.coreLocation`, `Logger.recording`) for consistent OSLog output.
+
+### `Extension+Date`
+Convenience formatting helpers used when constructing `sessionName` defaults
+and measurement timestamps.
+
+### `Collection<Double>.statistics`
+Single-pass extension that iterates the collection once to compute min, max,
+and sum simultaneously, then returns an `AxisStatistics` value. Returns `nil`
+for empty collections. Used by both `MotionManager.statistics(for:)` and
+`LocationManager.statistics(for:)`.
 
 ---
 
@@ -266,7 +321,6 @@ via `.previewLocalization(.german)`.
 
 | Location | Issue |
 |---|---|
-| `MotionManager.startAltitudeUpdates` | Redundant `DispatchQueue.main.async` wrapping an already-main callback |
 | `LocationModel` computed properties | Instantiate `CalculationManager()` + `SettingsManager()` on every access |
 | `AltitudeModel` computed properties | Same as above |
 | `ExportManager.getFile` | Force-unwraps the temp-file URL |

@@ -16,6 +16,7 @@ enum NavigationOption: String, AppEnum {
     case gyroscope
     case attitude
     case magnetometer
+    case recordings
     case settings
 
     static let typeDisplayRepresentation = TypeDisplayRepresentation(
@@ -57,6 +58,11 @@ enum NavigationOption: String, AppEnum {
             title: LocalizedStringResource("Magnetometer"),
             subtitle: LocalizedStringResource("View magnetometer data"),
             image: .init(systemName: "wave.3.right")
+        ),
+        NavigationOption.recordings: DisplayRepresentation(
+            title: LocalizedStringResource("Recordings"),
+            subtitle: LocalizedStringResource("View Sensor recordings"),
+            image: .init(systemName: "record.circle")
         ),
         NavigationOption.settings: DisplayRepresentation(
             title: LocalizedStringResource("Settings"),

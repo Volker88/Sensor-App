@@ -59,7 +59,7 @@ public class LocationManager {
                             course: loc.course,
                             horizontalAccuracy: loc.horizontalAccuracy,
                             verticalAccuracy: loc.verticalAccuracy,
-                            timestamp: Date().formatted(),
+                            timestamp: Date().sensorTimestamp,
                             GPSAccuracy: locationManager.desiredAccuracy
                         )
                         location = latestLocation
@@ -95,9 +95,9 @@ public class LocationManager {
         locationArray.map { $0.graphValue(for: detail) }.statistics
     }
 
-    public func mockData() {
+    public func mockData(preview: Bool = false) {
         #if DEBUG && targetEnvironment(simulator)
-            if CommandLine.arguments.contains("enable-testing") {
+            if CommandLine.arguments.contains("enable-testing") || preview {
                 for index in 1...1000 {
                     let location = LocationModel(
                         counter: index,
@@ -108,7 +108,7 @@ public class LocationManager {
                         course: getDouble(min: 269, max: 271),
                         horizontalAccuracy: getDouble(min: 0, max: 10),
                         verticalAccuracy: getDouble(min: 0, max: 10),
-                        timestamp: Date().formatted(),
+                        timestamp: Date().sensorTimestamp,
                         GPSAccuracy: -1
                     )
 

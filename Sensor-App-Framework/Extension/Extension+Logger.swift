@@ -8,7 +8,7 @@
 import Foundation
 import OSLog
 
-extension Logger {
+nonisolated extension Logger {
     /// Application bundle identifier
     private static let subsystem = Bundle.main.bundleIdentifier!  // swiftlint:disable:this force_unwrapping
 
@@ -35,4 +35,13 @@ extension Logger {
 
     /// Log ``userDefaults`` events
     public static let userDefaults = Logger(subsystem: subsystem, category: "userDefaults")
+
+    /// Log ``RecordingManager`` events
+    public static let recording = Logger(subsystem: subsystem, category: "recording")
+
+    /// Log ``SwiftData`` events
+    public static let swiftData = Logger(subsystem: subsystem, category: "swiftData")
+
+    /// Log ``CloudKit`` events
+    public static let cloudKit = Logger(subsystem: subsystem, category: "cloudKit")
 }

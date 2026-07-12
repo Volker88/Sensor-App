@@ -16,33 +16,37 @@ struct ContentView: View {
     // MARK: - Body
     var body: some View {
         List {
+            NavigationLink(destination: WatchRecordingView()) {
+                Label("Record Session", systemImage: "record.circle")
+            }
+
             NavigationLink(destination: LocationView()) {
-                Text("Location")
+                Label("Location", systemImage: "location")
             }
             .accessibilityIdentifier(UIIdentifiers.ContentView.locationButton)
 
             NavigationLink(destination: AccelerationView()) {
-                Text("Acceleration")
+                Label("Acceleration", systemImage: "bolt.fill")
             }
             .accessibilityIdentifier(UIIdentifiers.ContentView.accelerationButton)
 
             NavigationLink(destination: GravityView()) {
-                Text("Gravity")
+                Label("Gravity", systemImage: "arrow.down")
             }
             NavigationLink(destination: GyroscopeView()) {
-                Text("Gyroscope")
+                Label("Gyroscope", systemImage: "gyroscope")
             }
             NavigationLink(destination: MagnetometerView()) {
-                Text("Magnetometer")
+                Label("Magnetometer", systemImage: "wave.3.right")
             }
             NavigationLink(destination: AttitudeView()) {
-                Text("Attitude")
+                Label("Attitude", systemImage: "dial.medium")
             }
             NavigationLink(destination: AltitudeView()) {
-                Text("Altitude")
+                Label("Altitude", systemImage: "mountain.2")
             }
             NavigationLink(destination: SettingsView()) {
-                Text("Settings")
+                Label("Settings", systemImage: "gear")
             }
             .accessibilityIdentifier(UIIdentifiers.ContentView.settingsButton)
         }

@@ -7,12 +7,14 @@
 
 import Sensor_App_Framework
 import SwiftUI
+import UIKit
 
 struct CustomControlsView: View {
 
     @Environment(\.showNotification) private var showNotification
     @Environment(LocationManager.self) private var locationManager
     @Environment(MotionManager.self) private var motionManager
+    @Environment(RecordingManager.self) private var recordingManager
 
     @State private var isExpanded = false
     @Namespace var glassEffect
@@ -28,6 +30,7 @@ struct CustomControlsView: View {
                         button(type: .start)
                         button(type: .pause)
                         button(type: .delete)
+                        button(type: .record)
                     }
                     .accessibilityElement(children: .contain)
 
@@ -51,6 +54,7 @@ struct CustomControlsView: View {
 
     // MARK: - Methods
     private func button(type: ButtonType) -> some View {
+        let isRecordActive = type == .record && recordingManager.isRecording
         return Button {
             switch type {
                 case .start:
@@ -66,13 +70,25 @@ struct CustomControlsView: View {
                     showNotification("Deleted")
                     locationManager.resetLocationUpdates()
                     motionManager.resetMotionUpdates()
+                case .record:
+                    if recordingManager.isRecording {
+                        recordingManager.stopRecording(
+                            motionArray: motionManager.motionArray,
+                            altitudeArray: motionManager.altitudeArray,
+                            locationArray: locationManager.locationArray,
+                            source: UIDevice.current.userInterfaceIdiom == .pad ? "iPad" : "iPhone"
+                        )
+                        showNotification("Recording Saved")
+                    } else {
+                        recordingManager.startRecording()
+                        showNotification("Recording Started")
+                    }
             }
         } label: {
-            Label(type.localizedString, systemImage: type.systemImage)
+            Label(type.localizedString, systemImage: isRecordActive ? "stop.circle.fill" : type.systemImage)
                 .labelStyle(.iconOnly)
                 .frame(width: 50, height: 50)
-                .foregroundColor(type == .delete ? .red : .primary)
-
+                .foregroundStyle(type == .delete || isRecordActive ? Color.red : Color.primary)
         }
         .opacity(isExpanded ? 1 : 0)
         .glassEffect(.regular.tint(.white.opacity(0.8)).interactive())
@@ -81,7 +97,7 @@ struct CustomControlsView: View {
         .animation(.spring(duration: 0.3, bounce: 0.3), value: isExpanded)
         .accessibilityHidden(!isExpanded)
         .accessibilityLabel(Text(type.localizedString))
-        .accessibilityHint(Text(type.accessibilityHint))
+        .accessibilityHint(Text(isRecordActive ? LocalizedStringKey("Tap to stop recording") : type.accessibilityHint))
         .accessibilityIdentifier(type.accessibilityIdentifier)
     }
 
@@ -100,6 +116,7 @@ struct CustomControlsView: View {
     }
     .environment(LocationManager())
     .environment(MotionManager())
+    .environment(RecordingManager())
 }
 
 #Preview("CustomControlsView - German", traits: .navEmbedded) {
@@ -110,4 +127,5 @@ struct CustomControlsView: View {
     .previewLocalization(.german)
     .environment(LocationManager())
     .environment(MotionManager())
+    .environment(RecordingManager())
 }

@@ -147,6 +147,19 @@ struct ContentView: View {
             .accessibilityIdentifier(UIIdentifiers.ContentView.magnetometerTab)
 
             Tab(
+                RootTab.recordings.localizedString,
+                systemImage: RootTab.recordings.symbolImage,
+                value: RootTab.recordings
+            ) {
+                NavigationStack(path: Bindable(appState).recordingsStack) {
+                    RecordingsScreen()
+                        .navigationDestination(for: RecordingsStack.self) { $0 }
+                }
+            }
+            .customizationID(RootTab.recordings.stringValue)
+            .accessibilityIdentifier(UIIdentifiers.ContentView.recordingsTab)
+
+            Tab(
                 RootTab.settings.localizedString,
                 systemImage: RootTab.settings.symbolImage,
                 value: RootTab.settings

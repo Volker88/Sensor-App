@@ -12,6 +12,7 @@ extension CustomControlsView {
         case start
         case pause
         case delete
+        case record
 
         var systemImage: String {
             switch self {
@@ -21,6 +22,8 @@ extension CustomControlsView {
                     return "pause"
                 case .delete:
                     return "trash"
+                case .record:
+                    return "record.circle"
             }
         }
 
@@ -32,6 +35,8 @@ extension CustomControlsView {
                     return LocalizedStringKey("Pause")
                 case .delete:
                     return LocalizedStringKey("Delete")
+                case .record:
+                    return LocalizedStringKey("Record")
             }
         }
 
@@ -43,6 +48,8 @@ extension CustomControlsView {
                     return LocalizedStringKey("Tap to pause updates")
                 case .delete:
                     return LocalizedStringKey("Tap to delete all values")
+                case .record:
+                    return LocalizedStringKey("Tap to start recording")
             }
         }
 
@@ -54,6 +61,8 @@ extension CustomControlsView {
                     return UIIdentifiers.CustomControlsView.pauseButton
                 case .delete:
                     return UIIdentifiers.CustomControlsView.deleteButton
+                case .record:
+                    return UIIdentifiers.CustomControlsView.recordButton
             }
         }
 
@@ -69,6 +78,8 @@ extension CustomControlsView {
                     return offset(atIndex: 1, expanded: expanded)
                 case .delete:
                     return offset(atIndex: 2, expanded: expanded)
+                case .record:
+                    return offset(atIndex: 3, expanded: expanded)
             }
         }
 

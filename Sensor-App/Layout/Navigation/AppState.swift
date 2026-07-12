@@ -36,11 +36,15 @@ final class AppState {
     /// Stack for Magnetometer Screens
     var magnetometerStack: [MagnetometerStack] = []
 
+    /// Stack for Recordings Screens
+    var recordingsStack: [RecordingsStack] = []
+
     /// Reset all Stacks
     func resetStack() {
         positionStack.removeAll()
         motionStack.removeAll()
         magnetometerStack.removeAll()
+        recordingsStack.removeAll()
     }
 
     // MARK: - Update Navigation
@@ -50,7 +54,7 @@ final class AppState {
         guard !isIphone else { return }
 
         // If the selectedTab is Magnetometer or Settings, we do not need to update the navigation
-        guard selectedTab != .magnetometer && selectedTab != .settings else { return }
+        guard selectedTab != .magnetometer && selectedTab != .settings && selectedTab != .recordings else { return }
 
         //        let prevMotionStack = self.motionStack
         //        let prevPositionStack = self.positionStack
@@ -164,6 +168,8 @@ final class AppState {
                     selectedTab = .motion
                 case .magnetometer:
                     selectedTab = .magnetometer
+                case .recordings:
+                    selectedTab = .recordings
                 default:
                     break
             }
