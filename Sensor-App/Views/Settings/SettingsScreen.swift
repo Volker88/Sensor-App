@@ -141,25 +141,23 @@ struct SettingsScreen: View {
                 }
             }
 
-            Section {
-                Button(action: {
-                    saveSettings()
-                }) {
-                    Text("Save")
-                        .accessibilityIdentifier(UIIdentifiers.SettingScreen.saveButton)
-                }
-
-                Button(action: {
-                    discardChanges(showNotification: true)
-                }) {
-                    Text("Discard")
-                        .accessibilityIdentifier(UIIdentifiers.SettingScreen.discardButton)
-                }
-            }
-            .buttonStyle(BorderlessButtonStyle())
         }
         .accessibilityIdentifier(UIIdentifiers.SettingScreen.collectionView)
         .navigationTitle(RootTab.settings.localizedString)
+        .toolbar {
+            ToolbarItem(placement: .confirmationAction) {
+                Button("Save", systemImage: "checkmark") {
+                    saveSettings()
+                }
+                .accessibilityIdentifier(UIIdentifiers.SettingScreen.saveButton)
+            }
+            ToolbarItem(placement: .cancellationAction) {
+                Button("Discard", systemImage: "xmark") {
+                    discardChanges(showNotification: true)
+                }
+                .accessibilityIdentifier(UIIdentifiers.SettingScreen.discardButton)
+            }
+        }
         .onAppear {
             discardChanges(showNotification: false)
             settingsManager.fetchCurrentAppIcon()

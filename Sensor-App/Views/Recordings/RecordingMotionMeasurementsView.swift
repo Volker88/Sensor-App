@@ -67,16 +67,20 @@ struct RecordingMotionMeasurementsView: View {
                 }
                 Group {
                     LabeledContent(
-                        "Roll", value: measurement.attitudeRoll.formatted(.number.precision(.fractionLength(5))))
+                        "Roll (°)",
+                        value: measurement.attitudeRollDegrees.formatted(.number.precision(.fractionLength(5))))
 
                     LabeledContent(
-                        "Pitch", value: measurement.attitudePitch.formatted(.number.precision(.fractionLength(5))))
+                        "Pitch (°)",
+                        value: measurement.attitudePitchDegrees.formatted(.number.precision(.fractionLength(5))))
 
                     LabeledContent(
-                        "Yaw", value: measurement.attitudeYaw.formatted(.number.precision(.fractionLength(5))))
+                        "Yaw (°)",
+                        value: measurement.attitudeYawDegrees.formatted(.number.precision(.fractionLength(5))))
 
                     LabeledContent(
-                        "Heading", value: measurement.attitudeHeading.formatted(.number.precision(.fractionLength(5))))
+                        "Heading (°)",
+                        value: measurement.attitudeHeading.formatted(.number.precision(.fractionLength(5))))
                 }
             } label: {
                 HStack {

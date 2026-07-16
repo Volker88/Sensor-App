@@ -36,6 +36,7 @@
   },
   "testTargets" : [
     {
+      "parallelizable" : true,
       "skippedTests" : [
         "ScreenshotUITests",
         "ScreenshotUITests\/testScreenshot()"

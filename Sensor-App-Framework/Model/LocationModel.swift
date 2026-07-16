@@ -8,21 +8,54 @@
 
 import Foundation
 
+/// A single GPS/location measurement snapshot captured by `LocationManager`.
+///
+/// Each instance represents one reading from `CLLocationUpdate`, tagged with
+/// a sequential `counter` and a `timestamp`. Raw sensor values are stored in
+/// SI units; use the computed properties (`calculatedSpeed`, `calculatedAltitude`)
+/// to obtain user-preferred units at display time.
 @MainActor
 public struct LocationModel: Hashable {
-    public let counter: Int  // Counter
-    public var longitude: Double  // Longitude in Degrees
-    public var latitude: Double  // Latitude in Degrees
-    public var altitude: Double  // Altitude measures in Meters
-    public var speed: Double  // Speed in meter per second
-    public var course: Double  // Direction the device is travelling in degrees relative to north
-    public var horizontalAccuracy: Double  // Radius of uncertainity in Meters
-    public var verticalAccuracy: Double  // Accuracy in Meters
-    public var timestamp: String  // Timestamp of the measurement
-    public var GPSAccuracy: Double  // GPS Desired Accuracy
+
+    /// Sequential index of this measurement within the current session.
+    public let counter: Int
+
+    /// Longitude in degrees (WGS-84).
+    public var longitude: Double
+
+    /// Latitude in degrees (WGS-84).
+    public var latitude: Double
+
+    /// Altitude above mean sea level in meters.
+    public var altitude: Double
+
+    /// Instantaneous speed in meters per second as reported by Core Location.
+    public var speed: Double
+
+    /// Direction of travel in degrees relative to true north (0–360).
+    public var course: Double
+
+    /// Horizontal radius of uncertainty in meters.
+    public var horizontalAccuracy: Double
+
+    /// Vertical accuracy of the altitude value in meters.
+    public var verticalAccuracy: Double
+
+    /// Timestamp of the measurement.
+    public var timestamp: String
+
+    /// Desired GPS accuracy setting in effect when this measurement was taken.
+    public var GPSAccuracy: Double
 }
 
 extension LocationModel {
+
+    /// Returns the raw Double value for the given `GraphDetail` axis.
+    ///
+    /// Speed is returned as `calculatedSpeed` (user-preferred unit) so the chart
+    /// reflects the same value the user sees in the readout. All other values are
+    /// returned as-is from the stored properties. Returns `0` for axes that don't
+    /// apply to location data.
     public func graphValue(for graph: GraphDetail) -> Double {
         switch graph {
             case .latitude: return latitude
@@ -37,6 +70,10 @@ extension LocationModel {
         }
     }
 
+    /// Speed converted to the unit selected in user settings (km/h, mph, knots, or m/s).
+    ///
+    /// - Note: Instantiates `CalculationManager` and `SettingsManager` on every access
+    ///   (known tech debt — these should be injected).
     public var calculatedSpeed: Double {
         let calculation = CalculationManager()
         let speedSettings = SettingsManager().fetchUserSettings().GPSSpeedSetting
@@ -44,12 +81,17 @@ extension LocationModel {
         return calculation.calculateSpeed(ms: speed, to: speedSettings)
     }
 
+    /// The localized abbreviation of the speed unit currently selected in settings (e.g. `"km/h"`).
     public var speedUnit: String {
         let speedSettings = SettingsManager().fetchUserSettings().GPSSpeedSetting
 
         return speedSettings
     }
 
+    /// Altitude converted to the height unit selected in user settings (meters or feet).
+    ///
+    /// - Note: Instantiates `CalculationManager` and `SettingsManager` on every access
+    ///   (known tech debt — these should be injected).
     public var calculatedAltitude: Double {
         let calculation = CalculationManager()
         let heightSettings = SettingsManager().fetchUserSettings().altitudeHeightSetting
@@ -57,6 +99,7 @@ extension LocationModel {
         return calculation.calculateHeight(height: altitude, to: heightSettings)
     }
 
+    /// The localized abbreviation of the altitude unit currently selected in settings (e.g. `"m"` or `"ft"`).
     public var heightUnit: String {
         let heightSettings = SettingsManager().fetchUserSettings().altitudeHeightSetting
 

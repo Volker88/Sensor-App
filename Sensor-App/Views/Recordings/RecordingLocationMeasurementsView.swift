@@ -25,9 +25,12 @@ struct RecordingLocationMeasurementsView: View {
                 LabeledContent("Latitude", value: measurement.latitude.formatted(.number.precision(.fractionLength(6))))
 
                 LabeledContent(
-                    "Altitude (m)", value: measurement.altitude.formatted(.number.precision(.fractionLength(2))))
+                    "Altitude (\(measurement.heightUnit))",
+                    value: measurement.calculatedAltitude.formatted(.number.precision(.fractionLength(2))))
 
-                LabeledContent("Speed (m/s)", value: measurement.speed.formatted(.number.precision(.fractionLength(2))))
+                LabeledContent(
+                    "Speed (\(measurement.speedUnit))",
+                    value: measurement.calculatedSpeed.formatted(.number.precision(.fractionLength(2))))
 
                 LabeledContent("Course (°)", value: measurement.course.formatted(.number.precision(.fractionLength(2))))
 

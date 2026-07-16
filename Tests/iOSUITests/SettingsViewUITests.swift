@@ -38,8 +38,8 @@ class SettingsViewUITests: BaseTestCase {
         collection.steppers[UIIdentifiers.SettingScreen.maxPointsStepper].buttons.element(boundBy: 1).tap()
 
         // Save Settings
-        collection.buttons[UIIdentifiers.SettingScreen.saveButton].tap()
-        collection.buttons[UIIdentifiers.SettingScreen.discardButton].tap()
+        app.buttons[UIIdentifiers.SettingScreen.saveButton].tap()
+        app.buttons[UIIdentifiers.SettingScreen.discardButton].tap()
     }
 
     // MARK: - Methods

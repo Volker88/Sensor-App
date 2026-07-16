@@ -20,11 +20,12 @@ struct RecordingAltitudeMeasurementsView: View {
         List(sorted) { measurement in
             DisclosureGroup {
                 LabeledContent(
-                    "Pressure (kPa)", value: measurement.pressureValue.formatted(.number.precision(.fractionLength(5))))
+                    "Pressure (\(measurement.pressureUnit))",
+                    value: measurement.calculatedPressure.formatted(.number.precision(.fractionLength(5))))
 
                 LabeledContent(
-                    "Rel. Altitude (m)",
-                    value: measurement.relativeAltitudeValue.formatted(.number.precision(.fractionLength(5))))
+                    "Rel. Altitude (\(measurement.altitudeUnit))",
+                    value: measurement.calculatedAltitude.formatted(.number.precision(.fractionLength(5))))
             } label: {
                 HStack {
                     Text(verbatim: "#\(measurement.counter)")

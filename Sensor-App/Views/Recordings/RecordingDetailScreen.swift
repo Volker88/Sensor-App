@@ -12,6 +12,7 @@ struct RecordingDetailScreen: View {
     let session: SensorSession
 
     @Environment(RecordingManager.self) private var recordingManager
+    @Environment(SettingsManager.self) private var settingsManager
     @Environment(\.dismiss) private var dismiss
     @State private var showDeleteConfirmation = false
 
@@ -45,26 +46,31 @@ struct RecordingDetailScreen: View {
 
     // MARK: - Methods
     private func buildCSV() -> String {
+        let settings = settingsManager.fetchUserSettings()
+        let speedUnit = settings.GPSSpeedSetting
+        let heightUnit = settings.altitudeHeightSetting
+        let pressureUnit = settings.pressureSetting
+
         var lines: [String] = []
 
         if let measurements = session.motionMeasurements, !measurements.isEmpty {
             lines.append("# Motion")
             lines.append(
-                "Counter,Timestamp,Acc X,Acc Y,Acc Z,Gravity X,Gravity Y,Gravity Z,Gyro X,Gyro Y,Gyro Z,Mag Cal,Mag X,Mag Y,Mag Z,Roll,Pitch,Yaw,Heading"  // swiftlint:disable:this line_length
+                "Counter,Timestamp,Acc X,Acc Y,Acc Z,Gravity X,Gravity Y,Gravity Z,Gyro X,Gyro Y,Gyro Z,Mag Cal,Mag X,Mag Y,Mag Z,Roll (°),Pitch (°),Yaw (°),Heading (°)"  // swiftlint:disable:this line_length
             )
             for measurement in measurements.sorted(by: { $0.counter < $1.counter }) {
                 lines.append(
-                    "\(measurement.counter),\(measurement.timestamp),\(measurement.accelerationXAxis),\(measurement.accelerationYAxis),\(measurement.accelerationZAxis),\(measurement.gravityXAxis),\(measurement.gravityYAxis),\(measurement.gravityZAxis),\(measurement.gyroXAxis),\(measurement.gyroYAxis),\(measurement.gyroZAxis),\(measurement.magnetometerCalibration),\(measurement.magnetometerXAxis),\(measurement.magnetometerYAxis),\(measurement.magnetometerZAxis),\(measurement.attitudeRoll),\(measurement.attitudePitch),\(measurement.attitudeYaw),\(measurement.attitudeHeading)"
+                    "\(measurement.counter),\(measurement.timestamp),\(measurement.accelerationXAxis),\(measurement.accelerationYAxis),\(measurement.accelerationZAxis),\(measurement.gravityXAxis),\(measurement.gravityYAxis),\(measurement.gravityZAxis),\(measurement.gyroXAxis),\(measurement.gyroYAxis),\(measurement.gyroZAxis),\(measurement.magnetometerCalibration),\(measurement.magnetometerXAxis),\(measurement.magnetometerYAxis),\(measurement.magnetometerZAxis),\(measurement.attitudeRollDegrees),\(measurement.attitudePitchDegrees),\(measurement.attitudeYawDegrees),\(measurement.attitudeHeading)"
                 )
             }
         }
 
         if let measurements = session.altitudeMeasurements, !measurements.isEmpty {
             lines.append("# Altitude")
-            lines.append("Counter,Timestamp,Pressure,Relative Altitude")
+            lines.append("Counter,Timestamp,Pressure (\(pressureUnit)),Rel. Altitude (\(heightUnit))")
             for measurement in measurements.sorted(by: { $0.counter < $1.counter }) {
                 lines.append(
-                    "\(measurement.counter),\(measurement.timestamp),\(measurement.pressureValue),\(measurement.relativeAltitudeValue)"
+                    "\(measurement.counter),\(measurement.timestamp),\(measurement.calculatedPressure),\(measurement.calculatedAltitude)"
                 )
             }
         }
@@ -72,10 +78,11 @@ struct RecordingDetailScreen: View {
         if let measurements = session.locationMeasurements, !measurements.isEmpty {
             lines.append("# Location")
             lines.append(
-                "Counter,Timestamp,Longitude,Latitude,Altitude,Speed,Course,H.Accuracy,V.Accuracy,GPS Accuracy")
+                "Counter,Timestamp,Longitude,Latitude,Altitude (\(heightUnit)),Speed (\(speedUnit)),Course (°),H.Accuracy (m),V.Accuracy (m),GPS Accuracy"
+            )
             for measurement in measurements.sorted(by: { $0.counter < $1.counter }) {
                 lines.append(
-                    "\(measurement.counter),\(measurement.timestamp),\(measurement.longitude),\(measurement.latitude),\(measurement.altitude),\(measurement.speed),\(measurement.course),\(measurement.horizontalAccuracy),\(measurement.verticalAccuracy),\(measurement.GPSAccuracy)"
+                    "\(measurement.counter),\(measurement.timestamp),\(measurement.longitude),\(measurement.latitude),\(measurement.calculatedAltitude),\(measurement.calculatedSpeed),\(measurement.course),\(measurement.horizontalAccuracy),\(measurement.verticalAccuracy),\(measurement.GPSAccuracy)"
                 )
             }
         }
