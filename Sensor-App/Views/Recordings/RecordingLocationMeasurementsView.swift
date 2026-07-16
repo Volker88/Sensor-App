@@ -35,12 +35,12 @@ struct RecordingLocationMeasurementsView: View {
                 LabeledContent("Course (°)", value: measurement.course.formatted(.number.precision(.fractionLength(2))))
 
                 LabeledContent(
-                    "H. Accuracy (m)",
-                    value: measurement.horizontalAccuracy.formatted(.number.precision(.fractionLength(2))))
+                    "H. Accuracy (\(measurement.horizontalAccuracyUnit))",
+                    value: measurement.calculatedHorizontalAccuracy.formatted(.number.precision(.fractionLength(2))))
 
                 LabeledContent(
-                    "V. Accuracy (m)",
-                    value: measurement.verticalAccuracy.formatted(.number.precision(.fractionLength(2))))
+                    "V. Accuracy (\(measurement.heightUnit))",
+                    value: measurement.calculatedVerticalAccuracy.formatted(.number.precision(.fractionLength(2))))
 
                 LabeledContent(
                     "GPS Accuracy", value: measurement.GPSAccuracy.formatted(.number.precision(.fractionLength(2))))

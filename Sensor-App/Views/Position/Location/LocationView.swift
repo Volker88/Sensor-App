@@ -39,7 +39,7 @@ struct LocationView: View {
                     },
                     label: {
                         Text(
-                            "Latitude: \(locationManager.location?.latitude ?? 0.0, specifier: "%.6f")° ± \(locationManager.location?.horizontalAccuracy ?? 0.0, specifier: "%.2f")m"
+                            "Latitude: \(locationManager.location?.latitude ?? 0.0, specifier: "%.6f")° ± \(locationManager.location?.calculatedHorizontalAccuracy ?? 0.0, specifier: "%.2f") \(locationManager.location?.horizontalAccuracyUnit ?? "m")"
                         )
                         .accessibilityHint("Tap to collapse graph", isEnabled: showLatitude)
                         .accessibilityHint("Tap to expand  graph", isEnabled: !showLatitude)
@@ -58,7 +58,7 @@ struct LocationView: View {
                     },
                     label: {
                         Text(
-                            "Longitude: \(locationManager.location?.longitude ?? 0.0, specifier: "%.6f")° ± \(locationManager.location?.horizontalAccuracy ?? 0.0, specifier: "%.2f")m"
+                            "Longitude: \(locationManager.location?.longitude ?? 0.0, specifier: "%.6f")° ± \(locationManager.location?.calculatedHorizontalAccuracy ?? 0.0, specifier: "%.2f") \(locationManager.location?.horizontalAccuracyUnit ?? "m")"
                         )
                         .accessibilityHint("Tap to collapse graph", isEnabled: showLongitude)
                         .accessibilityHint("Tap to expand  graph", isEnabled: !showLongitude)
@@ -77,7 +77,7 @@ struct LocationView: View {
                     },
                     label: {
                         Text(
-                            "Altitude: \(locationManager.location?.altitude ?? 0.0, specifier: "%.2f") ± \(locationManager.location?.verticalAccuracy ?? 0.0, specifier: "%.2f")m"
+                            "Altitude: \(locationManager.location?.calculatedAltitude ?? 0.0, specifier: "%.2f") \(locationManager.location?.heightUnit ?? "m") ± \(locationManager.location?.calculatedVerticalAccuracy ?? 0.0, specifier: "%.2f") \(locationManager.location?.heightUnit ?? "m")"
                         )
                         .accessibilityHint("Tap to collapse graph", isEnabled: showDirection)
                         .accessibilityHint("Tap to expand  graph", isEnabled: !showDirection)
@@ -174,11 +174,13 @@ struct LocationView: View {
     }
 
     func shareCSV() -> URL {
-        var csvText = String(localized: "ID;Time;Longitude;Latitude;Altitude;Speed;Course") + "\n"
+        let heightUnit = locationManager.locationArray.first?.heightUnit ?? "m"
+        let accuracyUnit = locationManager.locationArray.first?.horizontalAccuracyUnit ?? "m"
+        var csvText = "ID;Time;Longitude;Latitude;Altitude (\(heightUnit));Speed;Course;H. Accuracy (\(accuracyUnit))\n"
 
         _ = locationManager.locationArray.map {
             csvText +=
-                "\($0.counter);\($0.timestamp);\($0.longitude.localizedDecimal());\($0.latitude.localizedDecimal());\($0.altitude.localizedDecimal());\($0.speed.localizedDecimal());\($0.course.localizedDecimal())\n"
+                "\($0.counter);\($0.timestamp);\($0.longitude.localizedDecimal());\($0.latitude.localizedDecimal());\($0.calculatedAltitude.localizedDecimal());\($0.speed.localizedDecimal());\($0.course.localizedDecimal());\($0.calculatedHorizontalAccuracy.localizedDecimal())\n"
         }
         return exportManager.getFile(exportText: csvText, filename: "location")
     }

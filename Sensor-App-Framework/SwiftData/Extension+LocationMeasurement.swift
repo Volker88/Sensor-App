@@ -30,4 +30,23 @@ extension LocationMeasurement {
     public var heightUnit: String {
         SettingsManager().fetchUserSettings().altitudeHeightSetting
     }
+
+    /// Horizontal accuracy converted to the accuracy unit selected in user settings.
+    public var calculatedHorizontalAccuracy: Double {
+        CalculationManager().calculateHeight(
+            height: horizontalAccuracy,
+            to: SettingsManager().fetchUserSettings().locationAccuracySetting)
+    }
+
+    /// Active horizontal accuracy unit string (e.g. "m", "ft").
+    public var horizontalAccuracyUnit: String {
+        SettingsManager().fetchUserSettings().locationAccuracySetting
+    }
+
+    /// Vertical accuracy converted using the same altitude height unit as `calculatedAltitude`.
+    public var calculatedVerticalAccuracy: Double {
+        CalculationManager().calculateHeight(
+            height: verticalAccuracy,
+            to: SettingsManager().fetchUserSettings().altitudeHeightSetting)
+    }
 }

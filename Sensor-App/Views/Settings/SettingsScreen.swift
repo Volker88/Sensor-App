@@ -92,6 +92,13 @@ struct SettingsScreen: View {
                     }
                 }
                 .accessibilityIdentifier(UIIdentifiers.SettingScreen.accuracyPicker)
+
+                Picker("Accuracy Unit", selection: Bindable(settingsManager).locationAccuracySetting) {
+                    ForEach(0..<settingsManager.altitudeHeight.count, id: \.self) {
+                        Text(settingsManager.altitudeHeight[$0]).tag($0)
+                    }
+                }
+                .accessibilityIdentifier(UIIdentifiers.SettingScreen.locationAccuracyPicker)
             }
 
             Section(

@@ -22,13 +22,15 @@ public class SettingsManager {
         frequencySetting: 1.0,
         pressureSetting: "kPa",
         altitudeHeightSetting: "m",
-        graphMaxPoints: 150
+        graphMaxPoints: 150,
+        locationAccuracySetting: UnitLength.meters.symbol
     )
 
     public var speedSetting = 0
     public var accuracySetting = 0
     public var pressureSetting = 0
     public var heightSetting = 0
+    public var locationAccuracySetting = 0
 
     public let appIcons: [AppIcons] = [
         AppIcons(iconName: "AppIcon-V1", accessibilityName: "Satellite"),
@@ -106,6 +108,7 @@ public class SettingsManager {
         userSettings.GPSAccuracySetting = GPSAccuracyOptions[accuracySetting]
         userSettings.pressureSetting = altitudePressure[pressureSetting]
         userSettings.altitudeHeightSetting = altitudeHeight[heightSetting]
+        userSettings.locationAccuracySetting = altitudeHeight[locationAccuracySetting]
 
         saveUserSettings(userSettings: userSettings)
     }
@@ -115,6 +118,7 @@ public class SettingsManager {
         accuracySetting = GPSAccuracyOptions.firstIndex(of: userSettings.GPSAccuracySetting) ?? 0
         pressureSetting = altitudePressure.firstIndex(of: userSettings.pressureSetting) ?? 0
         heightSetting = altitudeHeight.firstIndex(of: userSettings.altitudeHeightSetting) ?? 0
+        locationAccuracySetting = altitudeHeight.firstIndex(of: userSettings.locationAccuracySetting) ?? 0
 
         userSettings = fetchUserSettings()
     }
@@ -177,7 +181,8 @@ public class SettingsManager {
             frequencySetting: 1.0,
             pressureSetting: "kPa",
             altitudeHeightSetting: "m",
-            graphMaxPoints: 150
+            graphMaxPoints: 150,
+            locationAccuracySetting: UnitLength.meters.symbol
         )
 
         if let settings = UserDefaults.standard.data(forKey: "UserSettings") {
@@ -199,7 +204,8 @@ public class SettingsManager {
                     frequencySetting: 1.0,
                     pressureSetting: "kPa",
                     altitudeHeightSetting: "m",
-                    graphMaxPoints: 150
+                    graphMaxPoints: 150,
+                    locationAccuracySetting: UnitLength.meters.symbol
                 )
                 print("Testing in progress")
             }

@@ -21,15 +21,15 @@ struct LocationView: View {
         List {
             Group {
                 Text(
-                    "Latitude: \(locationManager.location?.latitude ?? 0.0, specifier: "%.10f")° ± \(locationManager.location?.horizontalAccuracy ?? 0.0, specifier: "%.2f")m"
+                    "Latitude: \(locationManager.location?.latitude ?? 0.0, specifier: "%.10f")° ± \(locationManager.location?.calculatedHorizontalAccuracy ?? 0.0, specifier: "%.2f") \(locationManager.location?.horizontalAccuracyUnit ?? "m")"
                 )
 
                 Text(
-                    "Longitude: \(locationManager.location?.longitude ?? 0.0, specifier: "%.10f")° ± \(locationManager.location?.horizontalAccuracy ?? 0.0, specifier: "%.2f")m"
+                    "Longitude: \(locationManager.location?.longitude ?? 0.0, specifier: "%.10f")° ± \(locationManager.location?.calculatedHorizontalAccuracy ?? 0.0, specifier: "%.2f") \(locationManager.location?.horizontalAccuracyUnit ?? "m")"
                 )
 
                 Text(
-                    "Altitude: \(locationManager.location?.altitude ?? 0.0, specifier: "%.2f") ± \(locationManager.location?.verticalAccuracy ?? 0.0, specifier: "%.2f")m"
+                    "Altitude: \(locationManager.location?.calculatedAltitude ?? 0.0, specifier: "%.2f") \(locationManager.location?.heightUnit ?? "m") ± \(locationManager.location?.calculatedVerticalAccuracy ?? 0.0, specifier: "%.2f") \(locationManager.location?.heightUnit ?? "m")"
                 )
 
                 Text("Direction: \(locationManager.location?.course ?? 0.0, specifier: "%.2f")°")

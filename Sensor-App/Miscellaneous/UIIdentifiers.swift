@@ -175,6 +175,7 @@ enum UIIdentifiers {
         // Picker
         static let speedPicker = "SettingScreen.Picker.Speed"
         static let accuracyPicker = "SettingScreen.Picker.Accuracy"
+        static let locationAccuracyPicker = "SettingScreen.Picker.LocationAccuracy"
         static let mapTypePicker = "SettingScreen.Picker.MapType"
         static let pressurePicker = "SettingScreen.Picker.Pressure"
         static let altitudePicker = "SettingScreen.Picker.Altitude"

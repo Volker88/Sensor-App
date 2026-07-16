@@ -12,8 +12,9 @@ import Foundation
 ///
 /// Each instance represents one reading from `CLLocationUpdate`, tagged with
 /// a sequential `counter` and a `timestamp`. Raw sensor values are stored in
-/// SI units; use the computed properties (`calculatedSpeed`, `calculatedAltitude`)
-/// to obtain user-preferred units at display time.
+/// SI units; use the computed properties (`calculatedSpeed`, `calculatedAltitude`,
+/// `calculatedHorizontalAccuracy`, `calculatedVerticalAccuracy`) to obtain
+/// user-preferred units at display time.
 @MainActor
 public struct LocationModel: Hashable {
 
@@ -88,7 +89,7 @@ extension LocationModel {
         return speedSettings
     }
 
-    /// Altitude converted to the height unit selected in user settings (meters or feet).
+    /// Altitude converted to the height unit selected in user settings (meters, feet, etc.).
     ///
     /// - Note: Instantiates `CalculationManager` and `SettingsManager` on every access
     ///   (known tech debt — these should be injected).
@@ -104,5 +105,24 @@ extension LocationModel {
         let heightSettings = SettingsManager().fetchUserSettings().altitudeHeightSetting
 
         return heightSettings
+    }
+
+    /// Horizontal accuracy converted to the accuracy unit selected in user settings.
+    public var calculatedHorizontalAccuracy: Double {
+        CalculationManager().calculateHeight(
+            height: horizontalAccuracy,
+            to: SettingsManager().fetchUserSettings().locationAccuracySetting)
+    }
+
+    /// The localized abbreviation of the accuracy unit selected in settings (e.g. `"m"`, `"ft"`).
+    public var horizontalAccuracyUnit: String {
+        SettingsManager().fetchUserSettings().locationAccuracySetting
+    }
+
+    /// Vertical accuracy converted using the same altitude height unit as `calculatedAltitude`.
+    public var calculatedVerticalAccuracy: Double {
+        CalculationManager().calculateHeight(
+            height: verticalAccuracy,
+            to: SettingsManager().fetchUserSettings().altitudeHeightSetting)
     }
 }

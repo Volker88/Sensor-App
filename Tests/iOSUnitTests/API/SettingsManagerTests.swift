@@ -70,4 +70,15 @@ final class SettingsManagerTests: BaseTestCase {
 
         #expect(height == "cm")
     }
+
+    @Test("Save and read location accuracy unit setting")
+    func locationAccuracySetting() throws {
+        var settings = settingsManager.fetchUserSettings()
+        settings.locationAccuracySetting = UnitLength.feet.symbol
+        settingsManager.saveUserSettings(userSettings: settings)
+
+        let unit = settingsManager.fetchUserSettings().locationAccuracySetting
+
+        #expect(unit == UnitLength.feet.symbol)
+    }
 }
