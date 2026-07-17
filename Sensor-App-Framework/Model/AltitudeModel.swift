@@ -9,7 +9,6 @@
 import Foundation
 
 /// A snapshot of barometric altitude data captured at a single point in time.
-@MainActor
 public struct AltitudeModel: Hashable {
 
     /// Sequential index of this measurement sample within the current session.

@@ -44,4 +44,7 @@ nonisolated extension Logger {
 
     /// Log ``CloudKit`` events
     public static let cloudKit = Logger(subsystem: subsystem, category: "cloudKit")
+
+    /// Log ``MetricKitManager`` events
+    public static let metricKit = Logger(subsystem: subsystem, category: "metricKit")
 }

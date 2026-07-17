@@ -23,6 +23,7 @@ struct SensorAppApp: App {
     @State private var settingsManager = SettingsManager()
     @State private var calculationManager = CalculationManager()
     @State private var recordingManager = RecordingManager()
+    @State private var metricKitManager = MetricKitManager()
 
     let modelContainer: ModelContainer
 
@@ -71,6 +72,7 @@ struct SensorAppApp: App {
                 .environment(calculationManager)
                 .environment(settingsManager)
                 .environment(recordingManager)
+                .environment(metricKitManager)
                 .modelContainer(modelContainer)
                 .task { recordingManager.modelContext = modelContainer.mainContext }
                 .onChange(of: scenePhase) { _, phase in

@@ -15,7 +15,6 @@ import Foundation
 /// SI units; use the computed properties (`calculatedSpeed`, `calculatedAltitude`,
 /// `calculatedHorizontalAccuracy`, `calculatedVerticalAccuracy`) to obtain
 /// user-preferred units at display time.
-@MainActor
 public struct LocationModel: Hashable {
 
     /// Sequential index of this measurement within the current session.

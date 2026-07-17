@@ -9,7 +9,6 @@ import CoreMotion
 import OSLog
 import SwiftUI
 
-@MainActor
 @Observable
 public class MotionManager {
     private var motionManager = CMMotionManager()

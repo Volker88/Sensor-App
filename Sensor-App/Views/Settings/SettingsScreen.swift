@@ -148,6 +148,14 @@ struct SettingsScreen: View {
                 }
             }
 
+            #if DEBUG
+            Section("Developer") {
+                NavigationLink("Diagnostics") {
+                    DiagnosticsScreen()
+                }
+            }
+            #endif
+
         }
         .accessibilityIdentifier(UIIdentifiers.SettingScreen.collectionView)
         .navigationTitle(RootTab.settings.localizedString)
