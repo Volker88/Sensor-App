@@ -99,21 +99,21 @@ private struct DiagnosticEventRow: View {
 
     private var iconName: String {
         switch event.type {
-        case .crash:             "xmark.octagon"
-        case .hang:              "hourglass"
-        case .cpuException:      "cpu"
-        case .diskWriteException: "externaldrive"
-        case .appLaunch:         "bolt"
-        case .memoryException:   "memorychip"
+            case .crash: "xmark.octagon"
+            case .hang: "hourglass"
+            case .cpuException: "cpu"
+            case .diskWriteException: "externaldrive"
+            case .appLaunch: "bolt"
+            case .memoryException: "memorychip"
         }
     }
 }
 
 // MARK: - DiagnosticsScreen body helpers
-private extension DiagnosticsScreen {
+extension DiagnosticsScreen {
 
     @ViewBuilder
-    var performanceSection: some View {
+    fileprivate var performanceSection: some View {
         if let report = metricKit.latestReport {
             PerformanceSection(report: report)
         } else {
@@ -128,7 +128,7 @@ private extension DiagnosticsScreen {
     }
 
     @ViewBuilder
-    var diagnosticsSection: some View {
+    fileprivate var diagnosticsSection: some View {
         if metricKit.diagnostics.isEmpty {
             Section("Diagnostics") {
                 ContentUnavailableView(

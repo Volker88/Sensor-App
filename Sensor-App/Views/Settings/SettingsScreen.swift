@@ -149,11 +149,11 @@ struct SettingsScreen: View {
             }
 
             #if DEBUG
-            Section("Developer") {
-                NavigationLink("Diagnostics") {
-                    DiagnosticsScreen()
+                Section("Developer") {
+                    NavigationLink("Diagnostics") {
+                        DiagnosticsScreen()
+                    }
                 }
-            }
             #endif
 
         }

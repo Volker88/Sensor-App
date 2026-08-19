@@ -1,0 +1,15 @@
+{
+  "originHash" : "f0f6400c4d932459da20f1a7e53c60f9b766bd0df1d902bdc71f1eb28cdc270f",
+  "pins" : [
+    {
+      "identity" : "kickstartsdk",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/twostraws/KickstartSDK",
+      "state" : {
+        "revision" : "36f475be3e28e335d5c8733e08cef15e7cf774b9",
+        "version" : "0.5.0"
+      }
+    }
+  ],
+  "version" : 3
+}

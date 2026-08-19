@@ -2,85 +2,17 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CFBundleDevelopmentRegion</key>
-	<string>$(DEVELOPMENT_LANGUAGE)</string>
-	<key>CFBundleDisplayName</key>
-	<string>${APP_DISPLAY_NAME}</string>
-	<key>CFBundleExecutable</key>
-	<string>$(EXECUTABLE_NAME)</string>
-	<key>CFBundleIcons</key>
-	<dict>
-		<key>CFBundleAlternateIcons</key>
-		<dict>
-			<key>AppIcon-V1</key>
-			<dict>
-				<key>CFBundleIconName</key>
-				<string>AppIcon-V1</string>
-			</dict>
-			<key>AppIcon-V2</key>
-			<dict>
-				<key>CFBundleIconName</key>
-				<string>AppIcon-V2</string>
-			</dict>
-			<key>AppIcon-V3</key>
-			<dict>
-				<key>CFBundleIconName</key>
-				<string>AppIcon-V3</string>
-			</dict>
-		</dict>
-	</dict>
-	<key>CFBundleIdentifier</key>
-	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
-	<key>CFBundleInfoDictionaryVersion</key>
-	<string>6.0</string>
-	<key>CFBundleName</key>
-	<string>$(PRODUCT_NAME)</string>
-	<key>CFBundlePackageType</key>
-	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
-	<key>CFBundleShortVersionString</key>
-	<string>${MARKETING_VERSION}</string>
-	<key>CFBundleVersion</key>
-	<string>${CURRENT_PROJECT_VERSION}</string>
-	<key>ITSAppUsesNonExemptEncryption</key>
-	<false/>
-	<key>LSRequiresIPhoneOS</key>
-	<true/>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Location access is needed to display your current position, travel direction, and speed in real time</string>
-	<key>NSMotionUsageDescription</key>
-	<string>Motion sensor access is required to display real-time movement data</string>
 	<key>APP_GROUP_ID</key>
 	<string>group.$(APP_GROUP_ID)$(APP_GROUP_ID_SUFFIX)</string>
 	<key>CLOUDKIT_CONTAINER_ID</key>
 	<string>$(CLOUDKIT_CONTAINER_ID)</string>
+	<key>KICKSTART_EXCHANGE_API_KEY</key>
+	<string>$(KICKSTART_EXCHANGE_API_KEY)</string>
 	<key>PRIMARY_APP_ICON</key>
 	<string>$(PRIMARY_APP_ICON)</string>
-	<key>UIApplicationSceneManifest</key>
-	<dict>
-		<key>UIApplicationSupportsMultipleScenes</key>
-		<true/>
-	</dict>
-	<key>UIApplicationSupportsIndirectInputEvents</key>
-	<true/>
-	<key>UILaunchScreen</key>
-	<dict/>
-	<key>UIRequiredDeviceCapabilities</key>
+	<key>UIBackgroundModes</key>
 	<array>
-		<string>armv7</string>
-	</array>
-	<key>UISupportedInterfaceOrientations</key>
-	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
-		<string>UIInterfaceOrientationPortraitUpsideDown</string>
-	</array>
-	<key>UISupportedInterfaceOrientations~ipad</key>
-	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationPortraitUpsideDown</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
+		<string>remote-notification</string>
 	</array>
 </dict>
 </plist>

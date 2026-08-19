@@ -37,9 +37,13 @@ struct PositionScreen: View {
                         .customTruncation()
                     }
                     .accessibilityIdentifier(UIIdentifiers.PositionScreen.altitudeButton)
+
                 }
                 .frame(maxWidth: 360)
                 .frame(maxWidth: .infinity, alignment: .center)
+            }
+            .safeAreaInset(edge: .bottom) {
+                AdBannerView()
             }
             .navigationTitle(RootTab.position.localizedString)
             .navigationSubtitle("Select a position type")

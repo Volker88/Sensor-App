@@ -13,6 +13,7 @@ struct LocationScreen: View {
 
     @Environment(\.requestReview) private var requestReview
     @Environment(\.showNotification) private var showNotification
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     @Environment(LocationManager.self) private var locationManager
     @Environment(MotionManager.self) private var motionManager
 
@@ -25,6 +26,11 @@ struct LocationScreen: View {
             }
             .overlay(alignment: .bottom) {
                 CustomControlsView()
+            }
+            .safeAreaInset(edge: .bottom) {
+                if horizontalSizeClass != .compact {
+                    AdBannerView()
+                }
             }
             .navigationTitle(RootTab.location.localizedString)
             .onDisappear {
