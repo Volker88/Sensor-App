@@ -117,6 +117,35 @@ watchOS uses a single `*View` per sensor (no Screen/List split).
   Languages: en, zh-Hans, cs, fr, de, it, ja, ko, pt, es (see
   `SupportedLanguage`). Access via `LocalizedStringResource`. Offer to
   translate new keys into all supported languages.
+- **MetricKit diagnostics:** `MetricKitManager` (iOS-only, `Sensor-App-Framework/API/MetricKitManager.swift`)
+  wraps `MXMetricManager`, consuming `metricReports`/`diagnosticReports` as
+  `for await` sequences. Exposes `latestReport` (CPU/GPU time, peak memory,
+  suspended-memory average, weighted hang/launch time) and `diagnostics`
+  (crash/hang/CPU/disk-write/launch/memory events, capped at 50). DEBUG builds
+  also dump raw JSON payloads to the documents directory. Injected the same
+  way as the other managers (`@State` in `SensorAppApp`, `.environment(...)`);
+  surfaced in `DiagnosticsScreen` off `SettingsScreen`.
+- **Kickstart Exchange ad banner:** `AdBannerView` wraps `ExchangeBannerAdView`
+  from the `KickstartSDK` package (product `KickstartExchange`). Uses the
+  `"preview"` API key in DEBUG, otherwise reads `KICKSTART_EXCHANGE_API_KEY`
+  from Info.plist (sourced from the gitignored `Secret.xcconfig`). It's a
+  plain SwiftUI view, not a manager — no app-lifecycle SDK initialization.
+  Shown via `.safeAreaInset(edge: .bottom)` in `PositionScreen` and
+  `LocationScreen` (compact-width only on the latter).
+- **Unit conversion:** sensor values are stored internally in SI/default
+  units (meters, m/s, kPa, radians) and converted only at the edges via
+  `CalculationManager` (`calculateSpeed`/`calculatePressure`/`calculateHeight`,
+  driven by `UserSettings`' unit fields). This applies both to the live
+  in-memory models (`LocationModel`/`AltitudeModel`, via `calculatedX`/`xUnit`
+  computed properties) and to persisted recordings, via
+  `Extension+LocationMeasurement.swift` / `Extension+AltitudeMeasurement.swift`
+  in `Sensor-App-Framework/SwiftData/`, which mirror the same computed-property
+  pattern onto the SwiftData models so exported/reviewed sessions also honor
+  current unit settings. `Extension+MotionMeasurement.swift` follows the same
+  file-naming pattern but only converts stored radians to degrees for
+  attitude — no `UserSettings` involved (and its stored `attitudeRoll`/
+  `Pitch`/`Yaw` fields are actually radians despite their doc-comment saying
+  degrees — see `SwiftData/DataArchitecture.md`).
 
 ## Build, run, test
 
@@ -146,7 +175,10 @@ watchOS uses a single `*View` per sensor (no Screen/List split).
 
 - `LocationModel` / `AltitudeModel` computed properties instantiate fresh
   `CalculationManager()` / `SettingsManager()` on every access (should be
-  injected).
+  injected). The same pattern was carried into the newer
+  `Extension+LocationMeasurement.swift` / `Extension+AltitudeMeasurement.swift`
+  (SwiftData persisted-model conversions) rather than fixed — the blast radius
+  is now wider, not smaller.
 - `ExportManager.getFile` force-unwraps the temp-file URL.
 - `MotionManager` closure callbacks should eventually be wrapped in an `AsyncStream`
   to match `LocationManager`'s async/await model.

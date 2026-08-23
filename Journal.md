@@ -106,6 +106,137 @@ Configuration/               *.xcconfig (targets, version, signing secrets)
 
 ## The Journey
 
+### 📢 Kickstart Exchange — a banner ad that's just a `View` (2026-08-19)
+
+**The ask:** add a monetization surface without dragging a heavyweight SDK
+lifecycle into the app.
+
+**The shape of the solution.** `AdBannerView` is nothing more than a SwiftUI
+wrapper around `ExchangeBannerAdView` from the new `KickstartSDK` package
+(product `KickstartExchange`). No delegate, no `AppDelegate` hook, no
+singleton `.configure()` call at launch — the SDK is parameterized entirely
+by the `apiKey` passed into the view's initializer. That's the whole
+integration surface:
+
+```swift
+struct AdBannerView: View {
+    var body: some View {
+        ExchangeBannerAdView(apiKey: apiKey).padding()
+    }
+    private var apiKey: String {
+        #if DEBUG
+            "preview"
+        #else
+            Bundle.main.object(forInfoDictionaryKey: "KICKSTART_EXCHANGE_API_KEY") as? String ?? "preview"
+        #endif
+    }
+}
+```
+
+**Debug/release split.** DEBUG builds hardcode the SDK's `"preview"` key so
+Previews and Simulator runs never hit a real ad network. Release builds pull
+`KICKSTART_EXCHANGE_API_KEY` out of Info.plist, which is itself populated by
+`$(KICKSTART_EXCHANGE_API_KEY)` from the gitignored `Secret.xcconfig` — the
+same pattern already used for `APP_GROUP_ID` and `CLOUDKIT_CONTAINER_ID`. No
+new secret-handling machinery needed.
+
+**Placement.** The banner drops into `PositionScreen` and `LocationScreen`
+via the same `.safeAreaInset(edge: .bottom)` slot used elsewhere for floating
+controls. On `LocationScreen` it's gated to `horizontalSizeClass != .compact`
+— a full-width ad banner competing with the map and the floating controls on
+an iPhone-sized screen was more clutter than value, so it only shows on
+iPad's roomier layout.
+
+**What surprised us.** How little there was to it. Because the SDK exposes
+itself as a plain `View`, "integrating an ad network" and "adding any other
+subview" were the same amount of work.
+
+---
+
+### 📈 MetricKit — on-device diagnostics (2026-07-17)
+
+**The ask:** see crashes, hangs, and performance regressions from real user
+devices without shipping a third-party crash reporter.
+
+**The pattern.** `MetricKitManager` is `#if os(iOS)`-gated and wraps
+`MXMetricManager` with two independent `Task { for await report in ... }`
+loops — one over `manager.metricReports` (Apple's once-daily aggregated
+performance digest), one over `manager.diagnosticReports` (near-real-time
+crash/hang/exception events). Async sequences instead of the traditional
+`MXMetricManagerSubscriber` delegate meant the manager could stay a plain
+`@Observable` class with no delegate-protocol boilerplate — just two `for
+await` loops kicked off from `init()`.
+
+**What it surfaces.** `latestReport` is a `MetricReportSummary`: CPU time,
+GPU time, peak memory, average suspended-memory, and a weighted average of
+hang/launch time computed by walking the returned `Histogram` buckets by hand
+(MetricKit gives you distributions, not scalars — the midpoint-times-count
+weighted sum was the least lossy way to boil that down to a single number for
+the UI). `diagnostics` is a capped ring buffer (50 entries, newest first) of
+crash / hang / CPU exception / disk-write exception / app-launch / memory
+exception events, each with a short human-readable detail string built per
+diagnostic type.
+
+**DEBUG breadcrumb.** In DEBUG builds, every raw report is also JSON-encoded
+and written to the documents directory (`metric-report-<timestamp>.json`,
+`diagnostic-<type>-<timestamp>.json`) — a zero-effort way to inspect the full
+payload MetricKit actually sent, without needing a device that's crashed in
+the wild.
+
+**Wiring.** Injected exactly like every other manager: `@State` in
+`SensorAppApp`, `.environment(metricKitManager)`. `DiagnosticsScreen` (linked
+from `SettingsScreen`) reads it via `@Environment` and renders a Performance
+section and a Diagnostics section, each falling back to a
+`ContentUnavailableView` when empty — no special-casing needed for the
+"nothing collected yet" state, SwiftUI's built-in empty-state view handles it.
+
+---
+
+### 📐 Default-unit storage & configurable units (2026-07-16)
+
+**The ask (two PRs, one architecture):** store every sensor value internally
+in one canonical unit, and let users pick their preferred *display* unit
+independently — including, now, the unit for GPS horizontal/vertical
+accuracy, not just speed/pressure/height.
+
+**The existing shape held up.** `CalculationManager` already converted
+`Measurement` values between units (`calculateSpeed`/`calculatePressure`/
+`calculateHeight`, unchanged since 2019); `LocationModel`/`AltitudeModel`
+already exposed `calculatedX`/`xUnit` computed properties that called into it
+using the symbol strings stored in `UserSettings`. No new unit enum was
+needed — Foundation's `Measurement`/`UnitSpeed`/`UnitPressure`/`UnitLength`
+plus a plain `String` symbol in settings was already expressive enough.
+`740ec63` just extended the vocabulary: a new `locationAccuracySetting:
+String` field (default `UnitLength.meters.symbol`) and matching
+`calculatedHorizontalAccuracy`/`horizontalAccuracyUnit`/
+`calculatedVerticalAccuracy` properties on `LocationModel`.
+
+**The real addition: converting persisted data too.** Until this point, unit
+conversion only applied to the *live* in-memory models — a `SensorSession`
+pulled up in `RecordingsScreen` days later would show raw stored values with
+no unit conversion. `801a184` closed that gap with two new files —
+`Extension+LocationMeasurement.swift` and `Extension+AltitudeMeasurement.swift`
+— that mirror the exact same `calculatedX`/`xUnit` computed-property pattern
+onto the *persisted* SwiftData models. The underlying `@Model` types still
+store raw SI values (so old recordings remain valid even if a user changes
+their unit preference tomorrow); the conversion happens at read time, same
+as the live models. A third file, `Extension+MotionMeasurement.swift`, adds
+`attitudeRollDegrees`/`attitudePitchDegrees`/`attitudeYawDegrees` for the same
+reason — but there we found the stored `attitudeRoll`/`Pitch`/`Yaw` fields are
+actually radians despite their doc-comment claiming degrees, copied verbatim
+from `MotionModel` with no conversion at write time. Worth a follow-up: either
+fix the comment or convert at write time and drop the extra properties.
+
+**What didn't get fixed.** The two settings-driven extension files call
+`CalculationManager()` and `SettingsManager()` fresh, per property access —
+exactly the tech debt already flagged for `LocationModel`/`AltitudeModel`.
+Copying the pattern was the fast way to ship consistent behavior across live
+and persisted data, but it means the "inject services instead of brewing
+them" fix (see *If I Were Starting Over*) now has four call sites instead of
+two.
+
+---
+
 ### 🐛 The `actool` nil-object crash (the duplicate-assets ghost)
 
 **Symptom:** the build died with
@@ -402,7 +533,10 @@ was designed.
 - **Inject services into models, don't brew them.** `LocationModel` and
   `AltitudeModel` `new` up a `CalculationManager()` *and* a `SettingsManager()`
   on every computed-property access — a fresh `UserDefaults` decode per chart
-  point. Pass the formatting in, or precompute display values.
+  point. `Extension+LocationMeasurement.swift` and
+  `Extension+AltitudeMeasurement.swift` copied the same pattern onto the
+  persisted models in 2026-07, so the fix now needs to land in four places
+  instead of two. Pass the formatting in, or precompute display values.
 - **Kill the force-unwraps.** `ExportManager.getFile` force-unwraps the temp-URL;
   `URL.temporaryDirectory.appending(path:)` plus a `guard let`/throw would be
   honest about failure.

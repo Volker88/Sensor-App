@@ -12,10 +12,11 @@ managers and the navigation state object with `@State`, then injects them into
 the environment before presenting `ContentView`.
 
 ```swift
-@State private var motionManager   = MotionManager()
-@State private var locationManager = LocationManager()
-@State private var settingsManager = SettingsManager()
-@State private var appState        = AppState()
+@State private var motionManager    = MotionManager()
+@State private var locationManager  = LocationManager()
+@State private var settingsManager  = SettingsManager()
+@State private var appState         = AppState()
+@State private var metricKitManager = MetricKitManager()
 ```
 
 The `withNotificationView()` modifier is applied at this level, making the
@@ -273,6 +274,17 @@ A reusable SwiftUI `Section` containing a centred `Grid` with four columns: axis
 
 ---
 
+### `AdBannerView`
+**File:** `Views/AdBannerView.swift`
+
+A thin wrapper around `ExchangeBannerAdView` (KickstartSDK). Not a manager —
+purely a `View` parameterized by an `apiKey` computed property (`"preview"`
+in DEBUG, else read from Info.plist). Inserted via
+`.safeAreaInset(edge: .bottom)` in `PositionScreen` and `LocationScreen`
+(compact-width only on the latter).
+
+---
+
 ### `CardView`
 **File:** `Views/CardView.swift`
 
@@ -322,6 +334,14 @@ Displayed as a sheet on first launch after an update (controlled by
 Content is sourced from `ReleaseNotes.xcstrings`, localised into all ten
 supported languages.
 
+### `DiagnosticsScreen`
+**File:** `Views/Settings/DiagnosticsScreen.swift`
+
+Linked from `SettingsScreen`. Reads `@Environment(MetricKitManager.self)` and
+renders two sections: a Performance summary (from `latestReport`) and a
+Diagnostics list (from `diagnostics`), each falling back to a
+`ContentUnavailableView` when no data has arrived yet.
+
 ---
 
 ## Environment Objects Summary
@@ -333,4 +353,5 @@ supported languages.
 | `SettingsManager` | `SensorAppApp` | `SettingsScreen`, `LineGraphSubView` |
 | `RecordingManager` | `SensorAppApp` | `RecordingsScreen`, `CustomControlsView` |
 | `AppState` | `SensorAppApp` | `ContentView`, picker screens, `RootTab`, route enums |
+| `MetricKitManager` | `SensorAppApp` | `DiagnosticsScreen` |
 | `\.showNotification` | `NotificationModifier` (via `SensorAppApp`) | `CustomControlsView` |

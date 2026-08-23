@@ -88,7 +88,7 @@ One snapshot from `CMMotionManager`. Consolidates all motion sensor axes into a 
 | `gyroXAxis/YAxis/ZAxis` | `Double` | Rotation rate (rad/s) |
 | `magnetometerCalibration` | `Int` | Calibration accuracy level |
 | `magnetometerXAxis/YAxis/ZAxis` | `Double` | Magnetic field (µT) |
-| `attitudeRoll/Pitch/Yaw` | `Double` | Euler angles (degrees) |
+| `attitudeRoll/Pitch/Yaw` | `Double` | Euler angles, stored in **radians** (copied verbatim from `MotionModel`; the field doc-comment says "degrees" but no conversion happens in `MotionMeasurement.init(from:)` — see `Extension+MotionMeasurement.swift` below) |
 | `attitudeHeading` | `Double` | True heading (degrees) |
 | `session` | `SensorSession?` | Back-reference to owning session |
 
@@ -181,6 +181,34 @@ Extensions must never drive migration (file I/O fails inside the extension sandb
 | `delete(_:)` | Deletes a `SensorSession` (cascade removes all measurements) and saves |
 
 The live in-memory sensor data (`MotionModel`, `AltitudeModel`, `LocationModel`) is converted to persistent `@Model` instances only when `stopRecording` is called — nothing is written to the store during a live recording.
+
+---
+
+## Unit Conversion on Persisted Data
+
+`@Model` types store raw values exactly as captured (SI units for
+motion/altitude, native `CLLocation` values for location) — a user changing
+their preferred unit later never rewrites old rows. Instead, three extension
+files add computed properties that convert at *read* time, mirroring the
+`calculatedX`/`xUnit` pattern already used by the in-memory `LocationModel`/
+`AltitudeModel`:
+
+| File | Adds to | Computed properties |
+|---|---|---|
+| `Extension+LocationMeasurement.swift` | `LocationMeasurement` | `calculatedSpeed`/`speedUnit`, `calculatedAltitude`/`heightUnit`, `calculatedHorizontalAccuracy`/`horizontalAccuracyUnit`, `calculatedVerticalAccuracy` |
+| `Extension+AltitudeMeasurement.swift` | `AltitudeMeasurement` | `calculatedPressure`/`pressureUnit`, `calculatedAltitude`/`altitudeUnit` |
+| `Extension+MotionMeasurement.swift` | `MotionMeasurement` | `attitudeRollDegrees`/`attitudePitchDegrees`/`attitudeYawDegrees` (radians → degrees; no `UserSettings` involved) |
+
+The `LocationMeasurement`/`AltitudeMeasurement` extensions call
+`CalculationManager()` and `SettingsManager().fetchUserSettings()` fresh on
+every access — the same instantiate-per-call pattern already flagged as tech
+debt on `LocationModel`/`AltitudeModel` (see `DataLayer-Architecture.md`).
+`Extension+MotionMeasurement.swift` is the exception: it's a pure arithmetic
+conversion with no settings dependency, so it doesn't carry the same cost.
+
+Net effect: a `SensorSession` recorded months ago, viewed today after the
+user changed their preferred speed/pressure/height/accuracy unit, displays
+correctly in the new unit without any migration or backfill.
 
 ---
 

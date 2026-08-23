@@ -72,13 +72,18 @@ CoreLocation; unit conversion is done on demand through computed properties.
 | `horizontalAccuracy, verticalAccuracy` | Metres |
 | `GPSAccuracy` | `CLLocationAccuracy` constant |
 
-Computed properties `calculatedSpeed / speedUnit` and
-`calculatedAltitude / heightUnit` delegate to `CalculationManager` and
-`SettingsManager` for the active unit preference.
+Computed properties `calculatedSpeed / speedUnit`,
+`calculatedAltitude / heightUnit`, and
+`calculatedHorizontalAccuracy / horizontalAccuracyUnit / calculatedVerticalAccuracy`
+delegate to `CalculationManager` and `SettingsManager` for the active unit
+preference (accuracy conversion uses `UserSettings.locationAccuracySetting`).
 
 > **Known tech debt:** each computed property instantiates a fresh
 > `CalculationManager()` and `SettingsManager()` on every access. Both should
-> be injected once rather than allocated per call.
+> be injected once rather than allocated per call. The same pattern was later
+> copied onto the persisted SwiftData models — see
+> `Extension+LocationMeasurement.swift` etc. under Observable Managers/Tech
+> Debt Summary below.
 
 ---
 
@@ -112,6 +117,7 @@ All user-configurable preferences. Persisted as JSON in `UserDefaults` via
 | `frequencySetting` | Sensor update interval in Hz |
 | `pressureSetting` | Pressure unit: hPa, bar, inHg |
 | `altitudeHeightSetting` | Height unit: m, ft |
+| `locationAccuracySetting` | Unit for GPS horizontal/vertical accuracy (default: meters) |
 | `graphMaxPoints` | Rolling chart window size (capped per manager) |
 
 `graphMaxPointsInt()` is a convenience accessor that casts the `Double` to
@@ -266,6 +272,29 @@ temp file and returns the URL. The URL is force-unwrapped (known tech debt).
 
 ---
 
+### `MetricKitManager`
+**File:** `API/MetricKitManager.swift`  ·  `#if os(iOS)` only
+
+`@Observable` class wrapping `MXMetricManager`. Two `Task { for await report
+in ... }` loops in `init()` consume `manager.metricReports` (daily
+aggregated performance digest) and `manager.diagnosticReports` (crash/hang/
+exception events) as async sequences — no `MXMetricManagerSubscriber`
+delegate.
+
+**Published state:**
+
+| Property | Contents |
+|---|---|
+| `latestReport: MetricReportSummary?` | CPU time, GPU time, peak memory, average suspended memory, weighted hang/launch time (computed from `Histogram` buckets) |
+| `diagnostics: [DiagnosticEvent]` | Ring buffer, capped at 50, newest first — crash / hang / CPU exception / disk-write exception / app-launch / memory exception |
+
+In `DEBUG`, every raw report is also JSON-encoded and written to
+`URL.documentsDirectory` for local inspection. Injected the same way as the
+other managers (`@State` in `SensorAppApp`, `.environment(...)`); consumed by
+`DiagnosticsScreen` (iOS, linked from `SettingsScreen`).
+
+---
+
 ### `RecordingManager`
 **File:** `Recording/RecordingManager.swift`
 
@@ -323,4 +352,6 @@ via `.previewLocalization(.german)`.
 |---|---|
 | `LocationModel` computed properties | Instantiate `CalculationManager()` + `SettingsManager()` on every access |
 | `AltitudeModel` computed properties | Same as above |
+| `Extension+LocationMeasurement.swift` | Same as above — copied onto the persisted `LocationMeasurement` model |
+| `Extension+AltitudeMeasurement.swift` | Same as above — copied onto the persisted `AltitudeMeasurement` model |
 | `ExportManager.getFile` | Force-unwraps the temp-file URL |
