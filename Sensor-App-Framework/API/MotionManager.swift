@@ -38,6 +38,12 @@ public class MotionManager {
     private var motionCounter = 1
     private var altitudeCounter = 1
 
+    // Bridges CMMotionManager/CMAltimeter's closure callbacks into async/await,
+    // matching LocationManager's style. CoreMotion delivers both to `.main`, so this
+    // never crosses actors — it's structural parity, not a race fix.
+    private var motionContinuation: AsyncStream<MotionModel>.Continuation?
+    private var altitudeContinuation: AsyncStream<AltitudeModel>.Continuation?
+
     public init() {
         mockData()
         requestMotionAccess()
@@ -66,38 +72,49 @@ public class MotionManager {
             return
         }
 
+        // Tear down any previous stream first — sensorUpdateInterval's didSet calls this
+        // again while updates may already be running, and CMMotionManager just replaces
+        // the handler in place, so the old continuation would otherwise never finish.
+        motionManager.stopDeviceMotionUpdates()
+        motionContinuation?.finish()
+
         motionManager.deviceMotionUpdateInterval = (1.0 / sensorUpdateInterval)
+        let (stream, continuation) = AsyncStream.makeStream(of: MotionModel.self)
+        motionContinuation = continuation
+
         motionManager.startDeviceMotionUpdates(using: .xTrueNorthZVertical, to: .main) { [weak self] data, _ in
-            guard let self = self else { return }
+            guard let self, let data else { return }
 
-            if let data {
-                let model = MotionModel(
-                    counter: self.motionCounter,
-                    timestamp: Date().sensorTimestamp,
-                    accelerationXAxis: data.userAcceleration.x,
-                    accelerationYAxis: data.userAcceleration.y,
-                    accelerationZAxis: data.userAcceleration.z,
-                    gravityXAxis: data.gravity.x,
-                    gravityYAxis: data.gravity.y,
-                    gravityZAxis: data.gravity.z,
-                    gyroXAxis: data.rotationRate.x,
-                    gyroYAxis: data.rotationRate.y,
-                    gyroZAxis: data.rotationRate.z,
-                    magnetometerCalibration: Int(data.magneticField.accuracy.rawValue),
-                    magnetometerXAxis: data.magneticField.field.x,
-                    magnetometerYAxis: data.magneticField.field.y,
-                    magnetometerZAxis: data.magneticField.field.z,
-                    attitudeRoll: data.attitude.roll,
-                    attitudePitch: data.attitude.pitch,
-                    attitudeYaw: data.attitude.yaw,
-                    attitudeHeading: data.heading
-                )
+            let model = MotionModel(
+                counter: self.motionCounter,
+                timestamp: Date().sensorTimestamp,
+                accelerationXAxis: data.userAcceleration.x,
+                accelerationYAxis: data.userAcceleration.y,
+                accelerationZAxis: data.userAcceleration.z,
+                gravityXAxis: data.gravity.x,
+                gravityYAxis: data.gravity.y,
+                gravityZAxis: data.gravity.z,
+                gyroXAxis: data.rotationRate.x,
+                gyroYAxis: data.rotationRate.y,
+                gyroZAxis: data.rotationRate.z,
+                magnetometerCalibration: Int(data.magneticField.accuracy.rawValue),
+                magnetometerXAxis: data.magneticField.field.x,
+                magnetometerYAxis: data.magneticField.field.y,
+                magnetometerZAxis: data.magneticField.field.z,
+                attitudeRoll: data.attitude.roll,
+                attitudePitch: data.attitude.pitch,
+                attitudeYaw: data.attitude.yaw,
+                attitudeHeading: data.heading
+            )
+            self.motionCounter += 1
+            continuation.yield(model)
+        }
 
+        Task {
+            for await model in stream {
                 motion = model
                 motionArray.append(model)
                 motionChart.append(model)
-
-                motionCounter += 1
 
                 if motionChart.count > settings.fetchUserSettings().graphMaxPointsInt() {
                     motionChart.removeFirst()
@@ -119,29 +136,38 @@ public class MotionManager {
             return
         }
 
+        // Tear down any previous stream first — see the matching comment in startMotionUpdates().
+        altimeterManager.stopRelativeAltitudeUpdates()
+        altitudeContinuation?.finish()
+
         motionManager.deviceMotionUpdateInterval = (1.0 / sensorUpdateInterval)
+        let (stream, continuation) = AsyncStream.makeStream(of: AltitudeModel.self)
+        altitudeContinuation = continuation
+
         altimeterManager.startRelativeAltitudeUpdates(to: .main) { [weak self] data, _ in
-            guard let self = self else { return }
+            guard let self, let data else { return }
 
-            if let data {
-                let pressureValue = Double(truncating: data.pressure)  // pressure in kPa
-                let relativeAltitudeValue = Double(truncating: data.relativeAltitude)  // change in m
+            let pressureValue = Double(truncating: data.pressure)  // pressure in kPa
+            let relativeAltitudeValue = Double(truncating: data.relativeAltitude)  // change in m
 
-                let model = AltitudeModel(
-                    counter: altitudeCounter,
-                    timestamp: Date().sensorTimestamp,
-                    pressureValue: pressureValue,
-                    relativeAltitudeValue: relativeAltitudeValue
-                )
+            let model = AltitudeModel(
+                counter: self.altitudeCounter,
+                timestamp: Date().sensorTimestamp,
+                pressureValue: pressureValue,
+                relativeAltitudeValue: relativeAltitudeValue
+            )
+            self.altitudeCounter += 1
+            continuation.yield(model)
+        }
 
-                self.altitude = model
-                self.altitudeArray.append(model)
-                self.altitudeChart.append(model)
+        Task {
+            for await model in stream {
+                altitude = model
+                altitudeArray.append(model)
+                altitudeChart.append(model)
 
-                self.altitudeCounter += 1
-
-                if self.altitudeChart.count > self.settings.fetchUserSettings().graphMaxPointsInt() {
-                    self.altitudeChart.removeFirst()
+                if altitudeChart.count > settings.fetchUserSettings().graphMaxPointsInt() {
+                    altitudeChart.removeFirst()
                 }
             }
         }
@@ -152,6 +178,11 @@ public class MotionManager {
 
         motionManager.stopDeviceMotionUpdates()
         altimeterManager.stopRelativeAltitudeUpdates()
+
+        motionContinuation?.finish()
+        motionContinuation = nil
+        altitudeContinuation?.finish()
+        altitudeContinuation = nil
     }
 
     public func resetMotionUpdates() {

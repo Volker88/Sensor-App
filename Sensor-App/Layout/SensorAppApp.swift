@@ -21,7 +21,6 @@ struct SensorAppApp: App {
     @State private var locationManager = LocationManager()
     @State private var motionManager = MotionManager()
     @State private var settingsManager = SettingsManager()
-    @State private var calculationManager = CalculationManager()
     @State private var recordingManager = RecordingManager()
     @State private var metricKitManager = MetricKitManager()
 
@@ -69,7 +68,6 @@ struct SensorAppApp: App {
                 .environment(appState)
                 .environment(locationManager)
                 .environment(motionManager)
-                .environment(calculationManager)
                 .environment(settingsManager)
                 .environment(recordingManager)
                 .environment(metricKitManager)

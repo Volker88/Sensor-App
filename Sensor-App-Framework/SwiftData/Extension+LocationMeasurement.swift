@@ -12,41 +12,42 @@ extension LocationMeasurement {
 
     /// Speed converted to the unit selected in user settings.
     public var calculatedSpeed: Double {
-        CalculationManager().calculateSpeed(ms: speed, to: SettingsManager().fetchUserSettings().GPSSpeedSetting)
+        CalculationManager.shared.calculateSpeed(
+            ms: speed, to: SettingsManager.shared.fetchUserSettings().GPSSpeedSetting)
     }
 
     /// Active speed unit string (e.g. "m/s", "km/h", "mph").
     public var speedUnit: String {
-        SettingsManager().fetchUserSettings().GPSSpeedSetting
+        SettingsManager.shared.fetchUserSettings().GPSSpeedSetting
     }
 
     /// Altitude converted to the height unit selected in user settings.
     public var calculatedAltitude: Double {
-        CalculationManager().calculateHeight(
-            height: altitude, to: SettingsManager().fetchUserSettings().altitudeHeightSetting)
+        CalculationManager.shared.calculateHeight(
+            height: altitude, to: SettingsManager.shared.fetchUserSettings().altitudeHeightSetting)
     }
 
     /// Active altitude unit string (e.g. "m", "ft").
     public var heightUnit: String {
-        SettingsManager().fetchUserSettings().altitudeHeightSetting
+        SettingsManager.shared.fetchUserSettings().altitudeHeightSetting
     }
 
     /// Horizontal accuracy converted to the accuracy unit selected in user settings.
     public var calculatedHorizontalAccuracy: Double {
-        CalculationManager().calculateHeight(
+        CalculationManager.shared.calculateHeight(
             height: horizontalAccuracy,
-            to: SettingsManager().fetchUserSettings().locationAccuracySetting)
+            to: SettingsManager.shared.fetchUserSettings().locationAccuracySetting)
     }
 
     /// Active horizontal accuracy unit string (e.g. "m", "ft").
     public var horizontalAccuracyUnit: String {
-        SettingsManager().fetchUserSettings().locationAccuracySetting
+        SettingsManager.shared.fetchUserSettings().locationAccuracySetting
     }
 
     /// Vertical accuracy converted using the same altitude height unit as `calculatedAltitude`.
     public var calculatedVerticalAccuracy: Double {
-        CalculationManager().calculateHeight(
+        CalculationManager.shared.calculateHeight(
             height: verticalAccuracy,
-            to: SettingsManager().fetchUserSettings().altitudeHeightSetting)
+            to: SettingsManager.shared.fetchUserSettings().altitudeHeightSetting)
     }
 }

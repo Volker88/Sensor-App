@@ -22,19 +22,17 @@ public class ExportManager {
     ///   - fileExtension: String
     /// - Returns: URL?
     public func getFile(exportText: String, filename: String, fileExtension: String = ".csv") -> URL {
-        // swiftlint:disable force_unwrapping
         let fileName = "\(filename)\(fileExtension)"
-        let path = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(fileName)
+        let path = URL.temporaryDirectory.appending(path: fileName)
 
         let exportText: String = exportText
 
         do {
-            try exportText.write(to: path!, atomically: true, encoding: String.Encoding.utf8)
+            try exportText.write(to: path, atomically: true, encoding: String.Encoding.utf8)
         } catch {
             Logger.exportFile.error("\(error)")
         }
 
-        return path!
-        // swiftlint:enable force_unwrapping
+        return path
     }
 }

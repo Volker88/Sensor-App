@@ -81,15 +81,15 @@ extension ModelsSchemaV1 {
         /// Calibrated magnetic field along the Z axis, in microteslas.
         public var magnetometerZAxis: Double = 0.0
 
-        // MARK: - Attitude (degrees)
+        // MARK: - Attitude (radians)
 
-        /// Roll angle of the device, in degrees.
+        /// Roll angle of the device, in radians.
         public var attitudeRoll: Double = 0.0
 
-        /// Pitch angle of the device, in degrees.
+        /// Pitch angle of the device, in radians.
         public var attitudePitch: Double = 0.0
 
-        /// Yaw angle of the device, in degrees.
+        /// Yaw angle of the device, in radians.
         public var attitudeYaw: Double = 0.0
 
         /// True heading of the device, in degrees (0–360).

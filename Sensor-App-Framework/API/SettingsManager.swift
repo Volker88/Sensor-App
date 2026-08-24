@@ -13,6 +13,11 @@ import SwiftUI
 @Observable
 public class SettingsManager {
 
+    /// Shared instance for call sites that only need `fetchUserSettings()`
+    /// (a stateless read from `UserDefaults`) and would otherwise allocate a
+    /// fresh instance on every access.
+    public static let shared = SettingsManager()
+
     public var currentAppIconIndex = 0
     public var userSettings = UserSettings(
         showReleaseNotes: true,
@@ -156,8 +161,11 @@ public class SettingsManager {
         var userSettings = fetchUserSettings()
         let releaseNotes = userSettings.showReleaseNotes
 
-        // swiftlint:disable:next force_unwrapping
-        UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
+        guard let bundleID = Bundle.main.bundleIdentifier else {
+            Logger.userDefaults.error("Missing bundle identifier; skipped clearing UserDefaults")
+            return
+        }
+        UserDefaults.standard.removePersistentDomain(forName: bundleID)
         UserDefaults.standard.synchronize()
 
         userSettings.showReleaseNotes = releaseNotes

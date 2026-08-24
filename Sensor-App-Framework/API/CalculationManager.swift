@@ -11,6 +11,11 @@ import Foundation
 @Observable
 public class CalculationManager {
 
+    /// Shared instance for call sites that only need stateless unit conversions
+    /// (e.g. `LocationModel`/`AltitudeModel` computed properties) and would
+    /// otherwise allocate a fresh instance on every access.
+    public static let shared = CalculationManager()
+
     public init() {}
 
     public let settings = SettingsManager()

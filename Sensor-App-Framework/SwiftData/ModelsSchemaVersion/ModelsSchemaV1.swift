@@ -19,7 +19,7 @@ import SwiftData
 /// corresponding `MigrationStage` in `DatabaseMigrationPlan`.
 public enum ModelsSchemaV1: VersionedSchema {
 
-    public nonisolated(unsafe) static var versionIdentifier = Schema.Version(1, 0, 0)
+    public static let versionIdentifier = Schema.Version(1, 0, 0)
 
     public static var models: [any PersistentModel.Type] {
         [

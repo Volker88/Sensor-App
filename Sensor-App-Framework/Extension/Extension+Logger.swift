@@ -10,7 +10,7 @@ import OSLog
 
 nonisolated extension Logger {
     /// Application bundle identifier
-    private static let subsystem = Bundle.main.bundleIdentifier!  // swiftlint:disable:this force_unwrapping
+    private static let subsystem = Bundle.main.bundleIdentifier ?? "Sensor-App"
 
     /// Log App Icon Events
     public static let appIcon = Logger(subsystem: subsystem, category: "appIcon")

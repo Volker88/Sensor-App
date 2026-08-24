@@ -57,7 +57,7 @@ for whichever layout is active.
 ```
 Sensor-App-Framework/        ← the engine room (no UI)
   API/                       ← managers (the "translators")
-    MotionManager            CMMotionManager + CMAltimeter  (callbacks)
+    MotionManager            CMMotionManager + CMAltimeter  (AsyncStream-bridged)
     LocationManager          CLLocationManager              (async/await)
     SettingsManager          UserDefaults <-> UserSettings JSON, app icons
     CalculationManager       unit conversions (Measurement)
@@ -105,6 +105,76 @@ Configuration/               *.xcconfig (targets, version, signing secrets)
 | **Liquid Glass (iOS 27)** | `.glassEffect`, `GlassEffectContainer`, `.glassProminent` buttons for a native, modern control surface. |
 
 ## The Journey
+
+### 🧹 Pre-ship housekeeping — force-unwraps, singletons, and MotionManager catches up (2026-08-24)
+
+**The ask:** before cutting the 7.0.0 update, a pass through the known-tech-debt
+list with one rule: no user-facing behavior changes, code quality only.
+
+**What got fixed, cheaply:**
+- `ExportManager.getFile`'s two force-unwraps disappeared for free by switching
+  from `NSURL(...).appendingPathComponent(_:)` (optional-returning) to
+  `URL.temporaryDirectory.appending(path:)` (non-optional). No signature
+  change, no swiftlint-disable pragma needed anymore.
+- The two `Bundle.main.bundleIdentifier!` sites (`Extension+Logger.swift`,
+  `SettingsManager.clearUserDefaults()`) got a nil-coalesce and a `guard let`
+  respectively — the `guard` specifically, since `removePersistentDomain(forName:)`
+  targeting a made-up fallback string would be worse than just skipping the clear.
+- `ModelsSchemaV1.versionIdentifier` dropped its `nonisolated(unsafe) static var`
+  for a plain `static let` — it was never mutated, so `VersionedSchema`'s
+  `{ get }` requirement was happy with an immutable value all along.
+- `MotionMeasurementV1`'s attitude fields finally say what they are: radians,
+  not degrees. The doc-comment bug flagged in the units-conversion entry below
+  (2026-07-16) is closed — the fields were always radians, only the comment lied.
+
+**The `.shared` singleton mitigation.** `LocationModel` / `AltitudeModel` /
+`Extension+LocationMeasurement.swift` / `Extension+AltitudeMeasurement.swift`
+no longer `CalculationManager()` / `SettingsManager()` a fresh instance on
+every chart point — `CalculationManager.shared` / `SettingsManager.shared` now
+cover all ~20 call sites. This is deliberately *not* the full DI fix from
+*If I Were Starting Over* below: these are value types with no environment
+access, so real DI would mean turning every `calculatedX` var into a method
+and threading managers through every `*View`/`*List` call site. Since both
+classes are effectively stateless for this purpose (`fetchUserSettings()`
+always re-reads `UserDefaults` live, regardless of instance), the singleton
+buys back the actual cost — repeated allocation — without the blast radius.
+Full DI stays on the wishlist. One loose end this surfaced: `SensorAppApp` was
+also injecting a `CalculationManager` into the SwiftUI environment via
+`@State`/`.environment(...)`, but nothing ever read it back via
+`@Environment(CalculationManager.self)` — confirmed by grep, zero matches.
+Removed that dead injection (and its mirror in `NavEmbedded.swift`'s preview
+trait); `.shared` is genuinely the only path to `CalculationManager` now.
+
+**MotionManager grew an AsyncStream.** Wrapped both `CMMotionManager`/
+`CMAltimeter` closure callbacks in `AsyncStream<MotionModel>` /
+`AsyncStream<AltitudeModel>`, consumed by a `Task { for await model in stream
+{ ... } }` — the same shape `LocationManager` already had. Model construction
+stays inside the CoreMotion closure unchanged; only the resulting model gets
+yielded instead of directly mutating state. The subtlety that made this
+non-trivial: `sensorUpdateInterval`'s `didSet` calls `start...Updates()` again
+while updates may already be running, and CMMotionManager just replaces the
+handler in place — so the *old* stream's continuation has to be explicitly
+`finish()`ed before starting a new one, or its consuming `Task` would leak
+forever, suspended on a stream that will never yield or finish again. That
+leak risk didn't exist in the old closure-only version — CMMotionManager just
+dropped the old closure reference, no consequences. Worth remembering next
+time someone asks "didn't this used to be simpler?" — yes, it did. This
+refactor traded a bit of added lifecycle bookkeeping for structural parity
+with `LocationManager`, not for a concurrency-safety fix: both producer and
+consumer already ran on MainActor before and after (CoreMotion delivers
+`to: .main`), so no race was fixed here.
+
+**Known-issue update.** The Shortcuts-visibility investigation (see 2026-06-28
+below) loses one candidate: `updateAppShortcutParameters()` turned out to
+already be wired up (`AppState.updateShortcutParameter()`, called from
+`SensorAppApp`'s `.onAppear`) — CLAUDE.md's known-issues note was stale on
+this point and has been corrected.
+
+**What's still open:** the full DI refactor (see *If I Were Starting Over*),
+the parked iPad-restoration feature in `AppState.onSizeClassChange`, and the
+narrowed Shortcuts-visibility investigation.
+
+---
 
 ### 📢 Kickstart Exchange — a banner ad that's just a `View` (2026-08-19)
 
@@ -226,14 +296,18 @@ reason — but there we found the stored `attitudeRoll`/`Pitch`/`Yaw` fields are
 actually radians despite their doc-comment claiming degrees, copied verbatim
 from `MotionModel` with no conversion at write time. Worth a follow-up: either
 fix the comment or convert at write time and drop the extra properties.
+*(Update 2026-08-24: fixed the comment — see the pre-ship housekeeping entry
+above.)*
 
-**What didn't get fixed.** The two settings-driven extension files call
-`CalculationManager()` and `SettingsManager()` fresh, per property access —
-exactly the tech debt already flagged for `LocationModel`/`AltitudeModel`.
-Copying the pattern was the fast way to ship consistent behavior across live
-and persisted data, but it means the "inject services instead of brewing
-them" fix (see *If I Were Starting Over*) now has four call sites instead of
-two.
+**What didn't get fixed at the time.** The two settings-driven extension files
+called `CalculationManager()` and `SettingsManager()` fresh, per property
+access — exactly the tech debt already flagged for `LocationModel`/
+`AltitudeModel`. Copying the pattern was the fast way to ship consistent
+behavior across live and persisted data, but it meant the "inject services
+instead of brewing them" fix now had four call sites instead of two.
+*(Update 2026-08-24: all four now go through `.shared` singletons — see the
+pre-ship housekeeping entry above. Full DI is still open, see *If I Were
+Starting Over*.)*
 
 ---
 
@@ -397,8 +471,9 @@ surface their shortcuts without any explicit registration call — but so far
 they're invisible to the Shortcuts UI.
 
 Candidates under investigation:
-1. A missing `AppShortcutsProvider.updateAppShortcutParameters()` call at app
-   launch (required in some configurations to trigger registration).
+1. ~~A missing `AppShortcutsProvider.updateAppShortcutParameters()` call at app
+   launch.~~ Ruled out (2026-08-24): `AppState.updateShortcutParameter()` already
+   calls it, wired from `SensorAppApp`'s `.onAppear`.
 2. iOS 27 beta timing / caching quirk — the Shortcuts daemon may need a device
    reboot or re-install cycle to index a new provider.
 3. The `AppShortcuts.xcstrings` catalog may require manual phrase localisation
@@ -526,20 +601,26 @@ was designed.
 
 ## If I Were Starting Over…
 
-- **Wrap Core Motion in an `AsyncStream`.** `LocationManager` already speaks
-  fluent `async/await`; `MotionManager` is still closure-based (closure callbacks
-  delivered to `.main`). Unifying both behind async sequences would read better
-  and make backpressure and cancellation first-class.
-- **Inject services into models, don't brew them.** `LocationModel` and
-  `AltitudeModel` `new` up a `CalculationManager()` *and* a `SettingsManager()`
-  on every computed-property access — a fresh `UserDefaults` decode per chart
-  point. `Extension+LocationMeasurement.swift` and
-  `Extension+AltitudeMeasurement.swift` copied the same pattern onto the
-  persisted models in 2026-07, so the fix now needs to land in four places
-  instead of two. Pass the formatting in, or precompute display values.
-- **Kill the force-unwraps.** `ExportManager.getFile` force-unwraps the temp-URL;
-  `URL.temporaryDirectory.appending(path:)` plus a `guard let`/throw would be
-  honest about failure.
+- ~~**Wrap Core Motion in an `AsyncStream`.**~~ Done 2026-08-24 — see the
+  pre-ship housekeeping entry above. Worth the honesty check though: it's
+  structural parity with `LocationManager`, not a concurrency-safety fix,
+  since both producer and consumer already ran on MainActor either way.
+- **Full DI for `LocationModel`/`AltitudeModel`, not just the singleton
+  mitigation.** As of 2026-08-24 these (and `Extension+LocationMeasurement.swift`
+  / `Extension+AltitudeMeasurement.swift`) go through `CalculationManager.shared`
+  / `SettingsManager.shared` instead of `new`-ing a fresh instance per access —
+  that killed the repeated-allocation cost. What's still missing is *real* DI:
+  these are value types with no `@Environment` access, so doing this properly
+  means turning every `calculatedX` var into a method and threading the already
+  environment-injected managers through every `*View`/`*List` call site. Only
+  worth doing if these classes ever grow real state that must stay in sync
+  with the interactively-edited environment instance — today they're
+  effectively stateless (`fetchUserSettings()` always re-reads `UserDefaults`
+  live), so the singleton carries no known correctness risk.
+- ~~**Kill the force-unwraps.**~~ Done 2026-08-24 — `ExportManager.getFile` now
+  uses `URL.temporaryDirectory.appending(path:)` (non-optional, no unwrap
+  needed), and the two `Bundle.main.bundleIdentifier!` sites got a
+  nil-coalesce / `guard let`.
 - **Finish the parked iPad-restoration feature.** `AppState.onSizeClassChange`
   carries a big block of intentionally-disabled logic that would preserve the
   navigation stack across iPhone↔iPad size-class changes. It's a deliberate

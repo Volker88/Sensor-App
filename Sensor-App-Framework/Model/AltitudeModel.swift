@@ -36,30 +36,28 @@ extension AltitudeModel {
 
     /// Pressure converted to the unit selected in user settings.
     public var calculatedPressure: Double {
-        let calculation = CalculationManager()
-        let pressureSetting = SettingsManager().fetchUserSettings().pressureSetting
+        let pressureSetting = SettingsManager.shared.fetchUserSettings().pressureSetting
 
-        return calculation.calculatePressure(pressure: pressureValue, to: pressureSetting)
+        return CalculationManager.shared.calculatePressure(pressure: pressureValue, to: pressureSetting)
     }
 
     /// Localized pressure unit string derived from user settings (e.g. "kPa", "hPa", "mbar").
     public var pressureUnit: String {
-        let pressureSettings = SettingsManager().fetchUserSettings().pressureSetting
+        let pressureSettings = SettingsManager.shared.fetchUserSettings().pressureSetting
 
         return pressureSettings
     }
 
     /// Relative altitude converted to the height unit selected in user settings.
     public var calculatedAltitude: Double {
-        let calculation = CalculationManager()
-        let altitudeSetting = SettingsManager().fetchUserSettings().altitudeHeightSetting
+        let altitudeSetting = SettingsManager.shared.fetchUserSettings().altitudeHeightSetting
 
-        return calculation.calculateHeight(height: relativeAltitudeValue, to: altitudeSetting)
+        return CalculationManager.shared.calculateHeight(height: relativeAltitudeValue, to: altitudeSetting)
     }
 
     /// Localized altitude unit string derived from user settings (e.g. "m", "ft").
     public var altitudeUnit: String {
-        let altitudeSetting = SettingsManager().fetchUserSettings().altitudeHeightSetting
+        let altitudeSetting = SettingsManager.shared.fetchUserSettings().altitudeHeightSetting
 
         return altitudeSetting
     }

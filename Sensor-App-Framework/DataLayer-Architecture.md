@@ -78,11 +78,16 @@ Computed properties `calculatedSpeed / speedUnit`,
 delegate to `CalculationManager` and `SettingsManager` for the active unit
 preference (accuracy conversion uses `UserSettings.locationAccuracySetting`).
 
-> **Known tech debt:** each computed property instantiates a fresh
-> `CalculationManager()` and `SettingsManager()` on every access. Both should
-> be injected once rather than allocated per call. The same pattern was later
-> copied onto the persisted SwiftData models — see
-> `Extension+LocationMeasurement.swift` etc. under Observable Managers/Tech
+> **Known tech debt (mitigated):** each computed property used to instantiate
+> a fresh `CalculationManager()` and `SettingsManager()` on every access. Both
+> now go through `CalculationManager.shared` / `SettingsManager.shared`
+> instead, avoiding the repeated allocation. Proper DI (injecting the managers
+> rather than reaching for a shared instance) still isn't possible here since
+> these are value types with no environment access — that would require
+> turning the computed properties into methods and threading the managers
+> through every `*View`/`*List` call site, deferred as a larger follow-up. The
+> same singleton mitigation was applied to the persisted SwiftData models —
+> see `Extension+LocationMeasurement.swift` etc. under Observable Managers/Tech
 > Debt Summary below.
 
 ---
@@ -195,14 +200,25 @@ altitude) in a single object.
 
 **Lifecycle:**
 
-- `startMotionUpdates()` — sets `deviceMotionUpdateInterval`, starts
-  `startDeviceMotionUpdates(using: .xTrueNorthZVertical, to: .main)`. Uses
-  closure callbacks on `.main`.
-- `startAltitudeUpdates()` — starts `startRelativeAltitudeUpdates(to: .main)`.
-  The callback is already delivered on `.main`; the manager updates its state directly.
-- `stopMotionUpdates()` — stops both CMMotionManager and CMAltimeter.
+- `startMotionUpdates()` — finishes any previous `motionContinuation` and stops
+  the prior `CMMotionManager` updates (guards against a leaked stream on
+  restart), sets `deviceMotionUpdateInterval`, then bridges
+  `startDeviceMotionUpdates(using: .xTrueNorthZVertical, to: .main)` into an
+  `AsyncStream<MotionModel>`: the closure builds the model and yields it, and a
+  `Task { for await model in stream { ... } }` applies it to
+  `motion`/`motionArray`/`motionChart` (trimming at `graphMaxPoints`).
+- `startAltitudeUpdates()` — same shape, wrapping
+  `startRelativeAltitudeUpdates(to: .main)` into an `AsyncStream<AltitudeModel>`
+  via `altitudeContinuation`.
+- `stopMotionUpdates()` — stops both CMMotionManager and CMAltimeter, and
+  `finish()`es both continuations so their consuming `Task`s end.
 - `resetMotionUpdates()` — clears all arrays and resets counters to 1.
-- `sensorUpdateInterval` — `didSet` restarts both update loops.
+- `sensorUpdateInterval` — `didSet` restarts both update loops (exercises the
+  same finish-before-restart path as an explicit stop/start).
+
+Producer (CoreMotion closures) and consumer (`Task`) both run on MainActor —
+this `AsyncStream` bridge is structural parity with `LocationManager`'s
+async/await style, not a concurrency fix.
 
 `statistics(for: GraphDetail) -> AxisStatistics?` — returns min/max/average across
 the full `altitudeArray` (pressure/relative altitude cases) or `motionArray`
@@ -268,7 +284,8 @@ directly, by views that need converted values (e.g. speed display in
 **File:** `API/ExportManager.swift`
 
 Stateless CSV helper. `getFile(exportText:filename:)` writes the string to a
-temp file and returns the URL. The URL is force-unwrapped (known tech debt).
+temp file and returns the URL, built via `URL.temporaryDirectory.appending(path:)`
+(non-optional — no force-unwrapping needed).
 
 ---
 
@@ -350,8 +367,4 @@ via `.previewLocalization(.german)`.
 
 | Location | Issue |
 |---|---|
-| `LocationModel` computed properties | Instantiate `CalculationManager()` + `SettingsManager()` on every access |
-| `AltitudeModel` computed properties | Same as above |
-| `Extension+LocationMeasurement.swift` | Same as above — copied onto the persisted `LocationMeasurement` model |
-| `Extension+AltitudeMeasurement.swift` | Same as above — copied onto the persisted `AltitudeMeasurement` model |
-| `ExportManager.getFile` | Force-unwraps the temp-file URL |
+| `LocationModel` / `AltitudeModel` computed properties, `Extension+LocationMeasurement.swift`, `Extension+AltitudeMeasurement.swift` | Previously instantiated `CalculationManager()` + `SettingsManager()` per access; now use `.shared` singletons. Full DI (methods + threaded-in managers) still deferred — see note above. |

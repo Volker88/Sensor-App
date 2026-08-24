@@ -16,7 +16,6 @@ struct NavEmbedded: PreviewModifier {
                     .environment(AppState())
                 #endif
                 .environment(SettingsManager())
-                .environment(CalculationManager())
                 .environment(MotionManager())
                 .environment(LocationManager())
                 .environment(RecordingManager())

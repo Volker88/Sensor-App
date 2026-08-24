@@ -70,8 +70,19 @@ watchOS uses a single `*View` per sensor (no Screen/List split).
 
 ### Sensors
 
-- **MotionManager** wraps `CMMotionManager` + `CMAltimeter` using
-  **closure callbacks** delivered to `.main`.
+- **MotionManager** wraps `CMMotionManager` + `CMAltimeter`. Both only expose
+  closure callbacks (no native async sequence like `CLLocationUpdate`), so each
+  is bridged into an `AsyncStream<MotionModel>` / `AsyncStream<AltitudeModel>`:
+  the CoreMotion closure (delivered to `.main`) builds the model and
+  `continuation.yield`s it; a `Task { for await model in stream { ... } }`
+  applies it to `motion`/`motionArray`/`motionChart` (same shape as
+  `LocationManager` below). The `Continuation` is stored per-stream so
+  `stopMotionUpdates()` — and a restart via `sensorUpdateInterval`'s `didSet`
+  calling `start...Updates()` again — can `finish()` the old stream before
+  starting a new one (CMMotionManager just replaces the handler in place on a
+  second `start` call, so without this the old stream's consuming `Task` would
+  leak). Producer and consumer both run on MainActor, so this is structural
+  parity with `LocationManager`, not a race fix.
 - **LocationManager** wraps `CLLocationManager` using **modern async/await**
   (`for try await update in CLLocationUpdate.liveUpdates()`).
 - Both cap chart arrays at `UserSettings.graphMaxPoints`.
@@ -143,9 +154,9 @@ watchOS uses a single `*View` per sensor (no Screen/List split).
   pattern onto the SwiftData models so exported/reviewed sessions also honor
   current unit settings. `Extension+MotionMeasurement.swift` follows the same
   file-naming pattern but only converts stored radians to degrees for
-  attitude — no `UserSettings` involved (and its stored `attitudeRoll`/
-  `Pitch`/`Yaw` fields are actually radians despite their doc-comment saying
-  degrees — see `SwiftData/DataArchitecture.md`).
+  attitude — no `UserSettings` involved; the underlying `MotionMeasurementV1`
+  `attitudeRoll`/`Pitch`/`Yaw` fields are radians, and their doc-comments now
+  say so (previously mislabeled "degrees" — see `SwiftData/DataArchitecture.md`).
 
 ## Build, run, test
 
@@ -173,15 +184,16 @@ watchOS uses a single `*View` per sensor (no Screen/List split).
 
 ## Known tech debt (see Journal.md “The Journey”)
 
-- `LocationModel` / `AltitudeModel` computed properties instantiate fresh
-  `CalculationManager()` / `SettingsManager()` on every access (should be
-  injected). The same pattern was carried into the newer
-  `Extension+LocationMeasurement.swift` / `Extension+AltitudeMeasurement.swift`
-  (SwiftData persisted-model conversions) rather than fixed — the blast radius
-  is now wider, not smaller.
-- `ExportManager.getFile` force-unwraps the temp-file URL.
-- `MotionManager` closure callbacks should eventually be wrapped in an `AsyncStream`
-  to match `LocationManager`'s async/await model.
+- `LocationModel` / `AltitudeModel` computed properties (plus their SwiftData
+  mirrors `Extension+LocationMeasurement.swift` / `Extension+AltitudeMeasurement.swift`)
+  previously instantiated fresh `CalculationManager()` / `SettingsManager()` on
+  every access. Mitigated by adding `CalculationManager.shared` /
+  `SettingsManager.shared` singletons and switching all ~20 call sites to use
+  them — no more per-access allocation. Note this is a mitigation, not the full
+  fix: these are value types with no environment access, so properly injecting
+  the managers (rather than reaching for a shared instance) would require
+  turning the computed `var`s into methods and threading the managers through
+  every `*View`/`*List` call site — deferred as a larger follow-up refactor.
 - `AppState.onSizeClassChange` keeps a large commented-out block on purpose —
   it's the parked iPad navigation-restoration feature, not dead code.
 
@@ -189,8 +201,10 @@ watchOS uses a single `*View` per sensor (no Screen/List split).
 
 - **App Shortcuts not visible in Shortcuts.app:** The `SensorAppShortcuts`
   provider compiles and Siri phrases work, but the default shortcuts do not
-  appear automatically under the app's entry in the Shortcuts app. Root cause
-  is not yet determined — candidates include a missing `updateAppShortcutParameters()`
-  call in the app lifecycle, an iOS 27 beta registration timing issue, or a
-  requirement that the app be run on a physical device at least once post-install.
-  See Journal.md for the full investigation log.
+  appear automatically under the app's entry in the Shortcuts app. The
+  "missing `updateAppShortcutParameters()` call" candidate is ruled out — it's
+  already wired up (`AppState.updateShortcutParameter()`, called from
+  `SensorAppApp`'s `.onAppear`). Remaining candidates: an iOS 27 beta
+  registration timing issue, or a requirement that the app be run on a
+  physical device at least once post-install. See Journal.md for the full
+  investigation log.

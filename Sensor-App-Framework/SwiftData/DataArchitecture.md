@@ -88,7 +88,7 @@ One snapshot from `CMMotionManager`. Consolidates all motion sensor axes into a 
 | `gyroXAxis/YAxis/ZAxis` | `Double` | Rotation rate (rad/s) |
 | `magnetometerCalibration` | `Int` | Calibration accuracy level |
 | `magnetometerXAxis/YAxis/ZAxis` | `Double` | Magnetic field (µT) |
-| `attitudeRoll/Pitch/Yaw` | `Double` | Euler angles, stored in **radians** (copied verbatim from `MotionModel`; the field doc-comment says "degrees" but no conversion happens in `MotionMeasurement.init(from:)` — see `Extension+MotionMeasurement.swift` below) |
+| `attitudeRoll/Pitch/Yaw` | `Double` | Euler angles, stored in **radians** (copied verbatim from `MotionModel`; doc-comments correctly say "radians" — no conversion happens in `MotionMeasurement.init(from:)`; degrees are exposed separately via `Extension+MotionMeasurement.swift` below) |
 | `attitudeHeading` | `Double` | True heading (degrees) |
 | `session` | `SensorSession?` | Back-reference to owning session |
 
@@ -200,11 +200,11 @@ files add computed properties that convert at *read* time, mirroring the
 | `Extension+MotionMeasurement.swift` | `MotionMeasurement` | `attitudeRollDegrees`/`attitudePitchDegrees`/`attitudeYawDegrees` (radians → degrees; no `UserSettings` involved) |
 
 The `LocationMeasurement`/`AltitudeMeasurement` extensions call
-`CalculationManager()` and `SettingsManager().fetchUserSettings()` fresh on
-every access — the same instantiate-per-call pattern already flagged as tech
-debt on `LocationModel`/`AltitudeModel` (see `DataLayer-Architecture.md`).
+`CalculationManager.shared` and `SettingsManager.shared.fetchUserSettings()` —
+mitigating the instantiate-per-call pattern previously flagged as tech debt
+on `LocationModel`/`AltitudeModel` (see `DataLayer-Architecture.md`).
 `Extension+MotionMeasurement.swift` is the exception: it's a pure arithmetic
-conversion with no settings dependency, so it doesn't carry the same cost.
+conversion with no settings dependency, so it never had that cost.
 
 Net effect: a `SensorSession` recorded months ago, viewed today after the
 user changed their preferred speed/pressure/height/accuracy unit, displays

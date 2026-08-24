@@ -24,13 +24,18 @@ public nonisolated class SwiftDataContainer {
             if allowsSave {
                 // Only writable consumers (the main app) own schema migration. Running the
                 // migration plan performs file I/O on the persistent store to upgrade the schema.
-                // CloudKit mirroring stays enabled (.automatic) so the app keeps syncing.
+                // CloudKit mirroring stays enabled (.private) so the app keeps syncing — except
+                // when `inMemory` is requested (e.g. the `enable-testing` launch argument): an
+                // in-memory store can't mirror to CloudKit, and leaving cloudKitDatabase at
+                // `.private` there makes this initializer throw, silently downgrading UI tests to
+                // the read-only fallback container below instead of the writable in-memory store
+                // they asked for.
                 let configuration = ModelConfiguration(
                     schema: schema,
                     isStoredInMemoryOnly: inMemory,
                     allowsSave: true,
-                    groupContainer: .identifier(ContainerConfiguration.appGroupID),
-                    cloudKitDatabase: .private(ContainerConfiguration.cloudKitContainerID)
+                    groupContainer: inMemory ? .none : .identifier(ContainerConfiguration.appGroupID),
+                    cloudKitDatabase: inMemory ? .none : .private(ContainerConfiguration.cloudKitContainerID)
                 )
 
                 modelContainer = try ModelContainer(

@@ -71,57 +71,49 @@ extension LocationModel {
     }
 
     /// Speed converted to the unit selected in user settings (km/h, mph, knots, or m/s).
-    ///
-    /// - Note: Instantiates `CalculationManager` and `SettingsManager` on every access
-    ///   (known tech debt — these should be injected).
     public var calculatedSpeed: Double {
-        let calculation = CalculationManager()
-        let speedSettings = SettingsManager().fetchUserSettings().GPSSpeedSetting
+        let speedSettings = SettingsManager.shared.fetchUserSettings().GPSSpeedSetting
 
-        return calculation.calculateSpeed(ms: speed, to: speedSettings)
+        return CalculationManager.shared.calculateSpeed(ms: speed, to: speedSettings)
     }
 
     /// The localized abbreviation of the speed unit currently selected in settings (e.g. `"km/h"`).
     public var speedUnit: String {
-        let speedSettings = SettingsManager().fetchUserSettings().GPSSpeedSetting
+        let speedSettings = SettingsManager.shared.fetchUserSettings().GPSSpeedSetting
 
         return speedSettings
     }
 
     /// Altitude converted to the height unit selected in user settings (meters, feet, etc.).
-    ///
-    /// - Note: Instantiates `CalculationManager` and `SettingsManager` on every access
-    ///   (known tech debt — these should be injected).
     public var calculatedAltitude: Double {
-        let calculation = CalculationManager()
-        let heightSettings = SettingsManager().fetchUserSettings().altitudeHeightSetting
+        let heightSettings = SettingsManager.shared.fetchUserSettings().altitudeHeightSetting
 
-        return calculation.calculateHeight(height: altitude, to: heightSettings)
+        return CalculationManager.shared.calculateHeight(height: altitude, to: heightSettings)
     }
 
     /// The localized abbreviation of the altitude unit currently selected in settings (e.g. `"m"` or `"ft"`).
     public var heightUnit: String {
-        let heightSettings = SettingsManager().fetchUserSettings().altitudeHeightSetting
+        let heightSettings = SettingsManager.shared.fetchUserSettings().altitudeHeightSetting
 
         return heightSettings
     }
 
     /// Horizontal accuracy converted to the accuracy unit selected in user settings.
     public var calculatedHorizontalAccuracy: Double {
-        CalculationManager().calculateHeight(
+        CalculationManager.shared.calculateHeight(
             height: horizontalAccuracy,
-            to: SettingsManager().fetchUserSettings().locationAccuracySetting)
+            to: SettingsManager.shared.fetchUserSettings().locationAccuracySetting)
     }
 
     /// The localized abbreviation of the accuracy unit selected in settings (e.g. `"m"`, `"ft"`).
     public var horizontalAccuracyUnit: String {
-        SettingsManager().fetchUserSettings().locationAccuracySetting
+        SettingsManager.shared.fetchUserSettings().locationAccuracySetting
     }
 
     /// Vertical accuracy converted using the same altitude height unit as `calculatedAltitude`.
     public var calculatedVerticalAccuracy: Double {
-        CalculationManager().calculateHeight(
+        CalculationManager.shared.calculateHeight(
             height: verticalAccuracy,
-            to: SettingsManager().fetchUserSettings().altitudeHeightSetting)
+            to: SettingsManager.shared.fetchUserSettings().altitudeHeightSetting)
     }
 }
