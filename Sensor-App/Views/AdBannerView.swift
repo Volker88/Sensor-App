@@ -11,8 +11,10 @@ struct AdBannerView: View {
 
     // MARK: - Body
     var body: some View {
-        ExchangeBannerAdView(apiKey: apiKey)
-            .padding()
+        if !CommandLine.arguments.contains("enable-screenshot-testing") {
+            ExchangeBannerAdView(apiKey: apiKey)
+                .padding()
+        }
     }
 
     private var apiKey: String {

@@ -113,7 +113,6 @@
   },
   "testTargets" : [
     {
-      "parallelizable" : true,
       "selectedTests" : [
         "ScreenshotUITests\/testScreenshot()"
       ],

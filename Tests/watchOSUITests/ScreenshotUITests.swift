@@ -54,15 +54,35 @@ class ScreenshotUITests: BaseTestCase {
         sleep(delay)
 
         let fullScreenshot = XCUIScreen.main.screenshot()
+        let language = getLanguageISO()
+        let fileName = "\(String(language))_\(name)-AppleWatch.png"
 
         let screenshot = XCTAttachment(
             uniformTypeIdentifier: "public.png",
-            name: "\(String(getLanguageISO()))_\(name)-AppleWatch.png",
+            name: fileName,
             payload: fullScreenshot.pngRepresentation,
             userInfo: nil
         )
         screenshot.lifetime = .keepAlways
         add(screenshot)
+
+        // Uncomment when required to generate and save screenshots locally
+        // saveScreenshotLocally(fullScreenshot, fileName: fileName, language: language)
+    }
+
+    func saveScreenshotLocally(_ fullScreenshot: XCUIScreenshot, fileName: String, language: String) {
+        let folderPath = "/Users/volkerschmitt/Desktop/xcode_screenshots/\(language)"
+        let folderURL = URL(fileURLWithPath: folderPath)
+        let fileURL = folderURL.appendingPathComponent(fileName)
+
+        do {
+            try FileManager.default.createDirectory(at: folderURL, withIntermediateDirectories: true)
+            try fullScreenshot.pngRepresentation.write(to: fileURL)
+            print("Successfully saved screenshot to: \(fileURL.path)")
+        } catch {
+            // Force the test runner to log the exact error to terminal
+            XCTFail("Failed to save screenshot locally to \(fileURL.path) with error: \(error)")
+        }
     }
 
     func getLanguageISO() -> String {

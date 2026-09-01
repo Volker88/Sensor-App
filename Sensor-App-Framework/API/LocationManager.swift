@@ -97,7 +97,7 @@ public class LocationManager {
     public func mockData(preview: Bool = false) {
         #if DEBUG && targetEnvironment(simulator)
             if CommandLine.arguments.contains("enable-testing") || preview {
-                for index in 1...1000 {
+                for _ in 1...1000 {
                     let location = LocationModel(
                         counter: index,
                         longitude: getDouble(min: -122.109102, max: -122),
@@ -114,6 +114,7 @@ public class LocationManager {
                     locationArray.append(location)
                     locationChart.append(location)
                     self.location = location
+                    index += 1
                 }
 
                 func getDouble(min: Double = -1, max: Double = 1) -> Double {
