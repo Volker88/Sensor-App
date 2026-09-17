@@ -28,16 +28,43 @@ final class AppState {
 
     // MARK: - Navigation Stacks
     /// Stack for all Position Screens
-    var positionStack: [PositionStack] = []
+    ///
+    /// Uses the shared ``NavigationRoute`` element type (rather than `[PositionStack]`) so that
+    /// every tab's `NavigationStack` shares one path type. See ``NavigationRoute``.
+    var positionStack: [NavigationRoute] = []
 
     /// Stack for all Motion Screens
-    var motionStack: [MotionStack] = []
+    ///
+    /// Uses the shared ``NavigationRoute`` element type (rather than `[MotionStack]`) so that
+    /// every tab's `NavigationStack` shares one path type. See ``NavigationRoute``.
+    var motionStack: [NavigationRoute] = []
 
     /// Stack for Magnetometer Screens
-    var magnetometerStack: [MagnetometerStack] = []
+    ///
+    /// Uses the shared ``NavigationRoute`` element type (rather than `[MagnetometerStack]`) so that
+    /// every tab's `NavigationStack` shares one path type. See ``NavigationRoute``.
+    var magnetometerStack: [NavigationRoute] = []
 
     /// Stack for Recordings Screens
-    var recordingsStack: [RecordingsStack] = []
+    ///
+    /// Uses the shared ``NavigationRoute`` element type (rather than `[RecordingsStack]`) so that
+    /// every tab's `NavigationStack` shares one path type. See ``NavigationRoute``.
+    var recordingsStack: [NavigationRoute] = []
+
+    /// The chart currently presented full screen via `ExpandableChartView`, if any.
+    ///
+    /// Lives here rather than as local `@State` on each `*View` because a size-class change
+    /// swaps out the entire compact/regular branch of `ContentView`'s `TabView`, tearing down
+    /// and recreating the presenting view (and any local `@State` it held) even when the
+    /// underlying screen is conceptually unchanged. Presenting from `ContentView` itself, which
+    /// survives that swap, keeps the full-screen chart open across the transition.
+    var selectedChart: ChartSelection?
+
+    /// Set immediately before ``onSizeClassChange(_:)`` reassigns ``selectedTab``, so the
+    /// resulting `ContentView.onChange(of: selectedTab)` can skip its stop/reset side effects
+    /// for a layout-driven tab change, as opposed to a genuine user-initiated tab switch.
+    @ObservationIgnored
+    private var suppressNextSelectedTabChange = false
 
     /// Reset all Stacks
     func resetStack() {
@@ -47,102 +74,55 @@ final class AppState {
         recordingsStack.removeAll()
     }
 
+    /// Consumes (and clears) the size-class-change suppression flag. Called once from
+    /// `ContentView.onChangeOfSelectedTab()`.
+    func consumeSelectedTabChangeSuppression() -> Bool {
+        guard suppressNextSelectedTabChange else { return false }
+        suppressNextSelectedTabChange = false
+        return true
+    }
+
     // MARK: - Update Navigation
     /// Update Navigation when Size Class changes
+    ///
+    /// Compact layout nests granular screens under an umbrella tab (``RootTab/position``,
+    /// ``RootTab/motion``), pushing the granular screen as the first path entry followed by
+    /// however many detail screens are drilled into. Regular layout gives the granular screen
+    /// its own tab instead, so that first path entry is implicit in the tab selection and the
+    /// remaining entries (however many there are) carry over unchanged.
     func onSizeClassChange(_ newSize: UserInterfaceSizeClass?) {
         // If the device is an iPhone, we do not need to update the navigation
         guard !isIphone else { return }
 
-        // If the selectedTab is Magnetometer or Settings, we do not need to update the navigation
+        // If the selectedTab is Magnetometer, Settings or Recordings, we do not need to update the navigation
+        // Those tabs are not affected by size class changes and should remain as they are
         guard selectedTab != .magnetometer && selectedTab != .settings && selectedTab != .recordings else { return }
 
-        //        let prevMotionStack = self.motionStack
-        //        let prevPositionStack = self.positionStack
+        var newTab = selectedTab
 
-        resetStack()
-        selectedTab = .position
+        if newSize == .regular {
+            switch selectedTab {
+                case .position:
+                    newTab = positionStack.first?.rootTab ?? .location
+                    positionStack = Array(positionStack.dropFirst())
+                case .motion:
+                    newTab = motionStack.first?.rootTab ?? .acceleration
+                    motionStack = Array(motionStack.dropFirst())
+                default: break
+            }
+        } else if newSize == .compact, let parent = selectedTab.compactParent {
+            newTab = parent
+            if let root = selectedTab.positionStackRoot {
+                positionStack.insert(root, at: 0)
+            } else if let root = selectedTab.motionStackRoot {
+                motionStack.insert(root, at: 0)
+            }
+        }
 
-        //        if newSize == .regular {
-        //            // Position Stack
-        //            if prevPositionStack.contains(.location) {
-        //                selectedTab = .location
-        //            } else if prevPositionStack.contains(.altitude) {
-        //                selectedTab = .altitude
-        //            }
-        //
-        //            if prevPositionStack.contains(.locationMap) {
-        //                positionStack = [.locationMap]
-        //            } else if prevPositionStack.contains(.altitudeLog) {
-        //                positionStack = [.altitudeLog]
-        //            }
-        //
-        //            // Motion Stack
-        //            if prevMotionStack.contains(.acceleration) {
-        //                selectedTab = .acceleration
-        //            } else if prevMotionStack.contains(.gravity) {
-        //                selectedTab = .gravity
-        //            } else if prevMotionStack.contains(.gyroscope) {
-        //                selectedTab = .gyroscope
-        //            } else if prevMotionStack.contains(.attitude) {
-        //                selectedTab = .attitude
-        //            }
-        //
-        //            if prevMotionStack.contains(.accelerationLog) {
-        //                motionStack = [.accelerationLog]
-        //            } else if prevMotionStack.contains(.gravityLog) {
-        //                motionStack = [.gravityLog]
-        //            } else if prevMotionStack.contains(.gyroscopeLog) {
-        //                motionStack = [.gyroscopeLog]
-        //            } else if prevMotionStack.contains(.attitudeLog) {
-        //                motionStack = [.attitudeLog]
-        //            }
-        //        } else if newSize == .compact {
-        //            switch selectedTab {
-        //                case .location:
-        //                    selectedTab = .position
-        //                    positionStack = [.location]
-        //                    if prevPositionStack.contains(.locationMap) {
-        //                        positionStack.append(.locationMap)
-        //                    }
-        //                case .altitude:
-        //                    selectedTab = .position
-        //                    positionStack = [.altitude]
-        //                    if prevPositionStack.contains(.altitudeLog) {
-        //                        positionStack.append(.altitudeLog)
-        //                    }
-        //                case .acceleration:
-        //                    selectedTab = .motion
-        //                    motionStack = [.acceleration]
-        //                    if prevMotionStack.contains(.accelerationLog) {
-        //                        motionStack.append(.accelerationLog)
-        //                    }
-        //                case .gravity:
-        //                    selectedTab = .motion
-        //                    motionStack = [.gravity]
-        //                    if prevMotionStack.contains(.gravityLog) {
-        //                        motionStack.append(.gravityLog)
-        //                    }
-        //                case .gyroscope:
-        //                    selectedTab = .motion
-        //                    motionStack = [.gyroscope]
-        //                    if prevMotionStack.contains(.gyroscopeLog) {
-        //                        motionStack.append(.gyroscopeLog)
-        //                    }
-        //                case .attitude:
-        //                    selectedTab = .motion
-        //                    motionStack = [.attitude]
-        //                    if prevMotionStack.contains(.attitudeLog) {
-        //                        motionStack.append(.attitudeLog)
-        //                    }
-        //                default: break
-        //            }
-        //        }
-        //
-        //        print("Previous MotionStack: \(prevMotionStack)")
-        //        print("Previous PositionStack: \(prevPositionStack)")
-        //
-        //        print("MotionStck: \(motionStack)")
-        //        print("PositionStack: \(positionStack)")
+        if newTab != selectedTab {
+            suppressNextSelectedTabChange = true
+            selectedTab = newTab
+        }
     }
 
     /// Perform Navigation triggered by App Intent
@@ -178,17 +158,17 @@ final class AppState {
                 try? await Task.sleep(for: .seconds(0.5))
                 switch appIntentTab {
                     case .location:
-                        positionStack = [.location]
+                        positionStack = [.position(.location)]
                     case .altitude:
-                        positionStack = [.altitude]
+                        positionStack = [.position(.altitude)]
                     case .acceleration:
-                        motionStack = [.acceleration]
+                        motionStack = [.motion(.acceleration)]
                     case .gravity:
-                        motionStack = [.gravity]
+                        motionStack = [.motion(.gravity)]
                     case .gyroscope:
-                        motionStack = [.gyroscope]
+                        motionStack = [.motion(.gyroscope)]
                     case .attitude:
-                        motionStack = [.attitude]
+                        motionStack = [.motion(.attitude)]
                     default:
                         break
                 }

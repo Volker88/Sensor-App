@@ -44,7 +44,7 @@ struct ContentView: View {
                     ) {
                         NavigationStack(path: Bindable(appState).positionStack) {
                             LocationScreen()
-                                .navigationDestination(for: PositionStack.self) { $0 }
+                                .navigationDestination(for: NavigationRoute.self) { $0 }
                         }
                     }
                     .customizationID(RootTab.location.stringValue)
@@ -57,7 +57,7 @@ struct ContentView: View {
                     ) {
                         NavigationStack(path: Bindable(appState).positionStack) {
                             AltitudeScreen()
-                                .navigationDestination(for: PositionStack.self) { $0 }
+                                .navigationDestination(for: NavigationRoute.self) { $0 }
                         }
                     }
                     .customizationID(RootTab.altitude.stringValue)
@@ -85,7 +85,7 @@ struct ContentView: View {
                     ) {
                         NavigationStack(path: Bindable(appState).motionStack) {
                             AccelerationScreen()
-                                .navigationDestination(for: MotionStack.self) { $0 }
+                                .navigationDestination(for: NavigationRoute.self) { $0 }
                         }
                     }
                     .customizationID(RootTab.acceleration.stringValue)
@@ -98,7 +98,7 @@ struct ContentView: View {
                     ) {
                         NavigationStack(path: Bindable(appState).motionStack) {
                             GravityScreen()
-                                .navigationDestination(for: MotionStack.self) { $0 }
+                                .navigationDestination(for: NavigationRoute.self) { $0 }
                         }
                     }
                     .customizationID(RootTab.gravity.stringValue)
@@ -111,7 +111,7 @@ struct ContentView: View {
                     ) {
                         NavigationStack(path: Bindable(appState).motionStack) {
                             GyroscopeScreen()
-                                .navigationDestination(for: MotionStack.self) { $0 }
+                                .navigationDestination(for: NavigationRoute.self) { $0 }
                         }
                     }
                     .customizationID(RootTab.gyroscope.stringValue)
@@ -124,7 +124,7 @@ struct ContentView: View {
                     ) {
                         NavigationStack(path: Bindable(appState).motionStack) {
                             AttitudeScreen()
-                                .navigationDestination(for: MotionStack.self) { $0 }
+                                .navigationDestination(for: NavigationRoute.self) { $0 }
                         }
                     }
                     .customizationID(RootTab.attitude.stringValue)
@@ -140,7 +140,7 @@ struct ContentView: View {
             ) {
                 NavigationStack(path: Bindable(appState).magnetometerStack) {
                     MagnetometerScreen()
-                        .navigationDestination(for: MagnetometerStack.self) { $0 }
+                        .navigationDestination(for: NavigationRoute.self) { $0 }
                 }
             }
             .customizationID(RootTab.magnetometer.stringValue)
@@ -153,7 +153,7 @@ struct ContentView: View {
             ) {
                 NavigationStack(path: Bindable(appState).recordingsStack) {
                     RecordingsScreen()
-                        .navigationDestination(for: RecordingsStack.self) { $0 }
+                        .navigationDestination(for: NavigationRoute.self) { $0 }
                 }
             }
             .customizationID(RootTab.recordings.stringValue)
@@ -177,6 +177,9 @@ struct ContentView: View {
         .onChange(of: horizontalSizeClass) { _, newSize in appState.onSizeClassChange(newSize) }
         .onChange(of: appState.appIntentTab) { appState.appIntentDrivenNavigation(horizontalSizeClass) }
         .onChange(of: appState.selectedTab) { onChangeOfSelectedTab() }
+        .fullScreenCover(item: Bindable(appState).selectedChart) { selection in
+            FullScreenChartView(selection: selection)
+        }
     }
 
     // MARK: - Methods
@@ -189,6 +192,7 @@ struct ContentView: View {
     }
 
     private func onChangeOfSelectedTab() {
+        guard !appState.consumeSelectedTabChangeSuppression() else { return }
         motionManager.stopMotionUpdates()
         locationManager.stopLocationUpdates()
         appState.resetStack()

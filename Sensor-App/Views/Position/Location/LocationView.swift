@@ -18,7 +18,6 @@ struct LocationView: View {
     @State private var showAltitude = false
     @State private var showDirection = false
     @State private var showSpeed = false
-    @State private var selectedChart: ChartSelection?
 
     private let exportManager = ExportManager()
 
@@ -35,7 +34,7 @@ struct LocationView: View {
                     isExpanded: $showLatitude,
                     content: {
                         ExpandableChartView(
-                            graph: .location, showGraph: .latitude, title: "Latitude", selectedChart: $selectedChart)
+                            graph: .location, showGraph: .latitude, title: "Latitude")
                     },
                     label: {
                         Text(
@@ -54,7 +53,7 @@ struct LocationView: View {
                     isExpanded: $showLongitude,
                     content: {
                         ExpandableChartView(
-                            graph: .location, showGraph: .longitude, title: "Longitude", selectedChart: $selectedChart)
+                            graph: .location, showGraph: .longitude, title: "Longitude")
                     },
                     label: {
                         Text(
@@ -73,7 +72,7 @@ struct LocationView: View {
                     isExpanded: $showAltitude,
                     content: {
                         ExpandableChartView(
-                            graph: .location, showGraph: .altitude, title: "Altitude", selectedChart: $selectedChart)
+                            graph: .location, showGraph: .altitude, title: "Altitude")
                     },
                     label: {
                         Text(
@@ -92,7 +91,7 @@ struct LocationView: View {
                     isExpanded: $showDirection,
                     content: {
                         ExpandableChartView(
-                            graph: .location, showGraph: .course, title: "Direction", selectedChart: $selectedChart)
+                            graph: .location, showGraph: .course, title: "Direction")
                     },
                     label: {
                         Text("Direction: \(locationManager.location?.course ?? 0.0, specifier: "%.2f")°")
@@ -107,7 +106,7 @@ struct LocationView: View {
                     isExpanded: $showSpeed,
                     content: {
                         ExpandableChartView(
-                            graph: .location, showGraph: .speed, title: "Speed", selectedChart: $selectedChart)
+                            graph: .location, showGraph: .speed, title: "Speed")
                     },
                     label: {
                         Text(
@@ -122,7 +121,7 @@ struct LocationView: View {
                 .accessibilityAddTraits(.updatesFrequently)
                 .accessibilityRemoveTraits(.isHeader)
 
-                NavigationLink(value: PositionStack.locationMap) {
+                NavigationLink(value: NavigationRoute.position(.locationMap)) {
                     Text("Map")
                         .accessibilityIdentifier(UIIdentifiers.LocationView.mapButton)
                 }
@@ -142,9 +141,6 @@ struct LocationView: View {
         .listStyle(InsetGroupedListStyle())
         .onAppear(perform: onAppear)
         .onDisappear(perform: onDisappear)
-        .fullScreenCover(item: $selectedChart) { selection in
-            FullScreenChartView(selection: selection)
-        }
     }
 
     // MARK: - Methods

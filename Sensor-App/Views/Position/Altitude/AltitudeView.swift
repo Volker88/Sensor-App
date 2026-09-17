@@ -15,7 +15,6 @@ struct AltitudeView: View {
 
     @State private var showPressure = false
     @State private var showRelativeAltitudeChange = false
-    @State private var selectedChart: ChartSelection?
 
     // MARK: - Body
     var body: some View {
@@ -25,8 +24,7 @@ struct AltitudeView: View {
                     isExpanded: $showPressure,
                     content: {
                         ExpandableChartView(
-                            graph: .altitude, showGraph: .pressureValue, title: "Pressure",
-                            selectedChart: $selectedChart)
+                            graph: .altitude, showGraph: .pressureValue, title: "Pressure")
                     },
                     label: {
                         Text(
@@ -45,8 +43,7 @@ struct AltitudeView: View {
                     isExpanded: $showRelativeAltitudeChange,
                     content: {
                         ExpandableChartView(
-                            graph: .altitude, showGraph: .relativeAltitudeValue, title: "Altitude Change",
-                            selectedChart: $selectedChart)
+                            graph: .altitude, showGraph: .relativeAltitudeValue, title: "Altitude Change")
                     },
                     label: {
                         Text(
@@ -61,7 +58,7 @@ struct AltitudeView: View {
                 .accessibilityAddTraits(.updatesFrequently)
                 .accessibilityRemoveTraits(.isHeader)
 
-                NavigationLink(value: PositionStack.altitudeLog) {
+                NavigationLink(value: NavigationRoute.position(.altitudeLog)) {
                     Text("Log")
                         .accessibilityHint("View Altitude Log")
                         .accessibilityIdentifier(UIIdentifiers.AltitudeView.logButton)
@@ -76,9 +73,6 @@ struct AltitudeView: View {
             ])
         }
         .listStyle(.insetGrouped)
-        .fullScreenCover(item: $selectedChart) { selection in
-            FullScreenChartView(selection: selection)
-        }
     }
 }
 

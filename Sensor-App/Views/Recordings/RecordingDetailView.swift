@@ -37,7 +37,7 @@ struct RecordingDetailView: View {
                 let locationCount = session.locationMeasurements?.count ?? 0
 
                 if motionCount > 0 {
-                    NavigationLink(value: RecordingsStack.motionMeasurements(session)) {
+                    NavigationLink(value: NavigationRoute.recordings(.motionMeasurements(session))) {
                         LabeledContent("Motion", value: motionCount.formatted())
                     }
                 } else {
@@ -45,7 +45,7 @@ struct RecordingDetailView: View {
                 }
 
                 if altitudeCount > 0 {
-                    NavigationLink(value: RecordingsStack.altitudeMeasurements(session)) {
+                    NavigationLink(value: NavigationRoute.recordings(.altitudeMeasurements(session))) {
                         LabeledContent("Altitude", value: altitudeCount.formatted())
                     }
                 } else {
@@ -53,7 +53,7 @@ struct RecordingDetailView: View {
                 }
 
                 if locationCount > 0 {
-                    NavigationLink(value: RecordingsStack.locationMeasurements(session)) {
+                    NavigationLink(value: NavigationRoute.recordings(.locationMeasurements(session))) {
                         LabeledContent("Location", value: locationCount.formatted())
                     }
                 } else {

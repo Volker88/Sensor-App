@@ -37,29 +37,78 @@ into the environment and accessed in views with `@Environment(AppState.self)`.
 |---|---|---|
 | `selectedTab` | `RootTab` | Active tab in the `TabView` |
 | `appIntentTab` | `RootTab?` | Set by Siri; triggers deferred navigation |
-| `positionStack` | `[PositionStack]` | Path for Location / Altitude navigator |
-| `motionStack` | `[MotionStack]` | Path for all Motion navigators |
-| `magnetometerStack` | `[MagnetometerStack]` | Path for Magnetometer navigator |
+| `positionStack` | `[NavigationRoute]` | Path for Location / Altitude navigator |
+| `motionStack` | `[NavigationRoute]` | Path for all Motion navigators |
+| `magnetometerStack` | `[NavigationRoute]` | Path for Magnetometer navigator |
+| `recordingsStack` | `[NavigationRoute]` | Path for Recordings navigator |
+| `selectedChart` | `ChartSelection?` | Chart presented full screen, if any |
+
+All four stacks share the single ``NavigationRoute`` element type rather than each having
+its own distinct path type — see `NavigationRoute` below for why.
 
 **Key behaviours:**
 
 - `onSizeClassChange(_:)` — called by `ContentView.onChange(of: horizontalSizeClass)`.
-  On iPad ↔ iPhone rotation it resets all stacks and returns to `.position`.
-  Navigation restoration is stubbed out in the commented block (parked feature).
+  Compact layout nests a granular screen under an umbrella tab (`.position`/
+  `.motion`), pushing it as the first `positionStack`/`motionStack` entry;
+  regular layout gives the granular screen its own tab instead, so that first
+  entry is implicit in `selectedTab` and everything after it carries over
+  unchanged. The method translates between the two representations using
+  `PositionStack.rootTab`/`MotionStack.rootTab` (which owning tab a stack entry
+  belongs to, regardless of nesting depth) and `RootTab.compactParent`/
+  `positionStackRoot`/`motionStackRoot` (the reverse mapping) — `first`/
+  `dropFirst()` on the way to regular, prepending the root on the way to
+  compact. This works at any stack depth, not just today's two levels. It sets
+  a one-shot `suppressNextSelectedTabChange` flag before reassigning
+  `selectedTab` so the resulting `ContentView.onChange(of: selectedTab)` skips
+  its stop-sensors/reset-stack side effects for this layout-driven change (a
+  genuine tab switch still triggers them normally). Tabs identical in both
+  layouts (`.magnetometer`/`.settings`/`.recordings`) are left untouched.
 - `appIntentDrivenNavigation(_:)` — converts a `RootTab` app-intent value into
   concrete tab + stack-push navigation. On compact layout it uses
   `Task { try await Task.sleep(for: .seconds(0.5)) }` to defer the stack push
-  until after the tab switch animation.
-- `resetStack()` — called by `ContentView` on every tab change, stopping stale
-  sensor sessions from persisting across tabs.
+  until after the tab switch animation. Orthogonal to `onSizeClassChange`; it
+  never sets the suppression flag, since a Siri-driven jump is a genuine
+  navigation event.
+- `resetStack()` — called by `ContentView` on every genuine tab change,
+  stopping stale sensor sessions from persisting across tabs.
+- `selectedChart` — backs the full-screen chart cover presented by
+  `ContentView`; see `ExpandableChartView` / `FullScreenChartView` /
+  `ChartSelection` below for why it lives here instead of local `@State`.
 
 ---
 
 ## Route Enums
 
-Each route enum conforms to both `Hashable` (so it can serve as a
-`NavigationStack` path element) and `View` (so `navigationDestination(for:)`
-can simply render `$0` without a separate switch at each call site).
+Each route enum conforms to both `Hashable` and `View` (so
+`navigationDestination(for:)` can simply render `$0` without a separate
+switch at each call site). Only `NavigationRoute` itself is ever used as a
+`NavigationStack` path element or `NavigationLink(value:)` payload — the
+four per-tab enums below are wrapped inside it.
+
+### `NavigationRoute`
+**File:** `Layout/Navigation/NavigationStacks/NavigationRoute.swift`
+
+```
+.position(PositionStack)
+.motion(MotionStack)
+.magnetometer(MagnetometerStack)
+.recordings(RecordingsStack)
+```
+
+Unifies every tab's path element type into one `Hashable`. This matters
+because `.tabViewStyle(.sidebarAdaptable)` renders the `TabView` as a
+`NavigationSplitView` with one shared detail column on iPad — binding two
+tabs to differently-typed paths makes SwiftUI's `NavigationColumnState`
+compare one stack's element against another's when switching tabs, which
+crashes with `AnyNavigationPath.Error.comparisonTypeMismatch`. Sharing one
+element type lets that comparison resolve to "not equal" instead of
+trapping.
+
+Also carries `rootTab: RootTab?` — the regular-layout tab a route promotes to
+when it's the first entry in a stack (delegates to `PositionStack.rootTab` /
+`MotionStack.rootTab`; `nil` for `.magnetometer` / `.recordings`, which have
+no compact/regular translation). Used by `AppState.onSizeClassChange(_:)`.
 
 ### `RootTab`
 **File:** `Layout/Navigation/RootTab.swift`
@@ -83,6 +132,11 @@ Top-level tabs. Also carries `symbolImage` (SF Symbol name) and
 .altitudeLog → AltitudeList
 ```
 
+Also carries `rootTab: RootTab`, mapping every case (however deeply nested) to
+the regular-layout tab it lives under — surfaced through `NavigationRoute.rootTab`
+and used by `AppState.onSizeClassChange(_:)` to translate the compact/regular
+navigation representations.
+
 ### `MotionStack`
 **File:** `Layout/Navigation/NavigationStacks/MotionStack.swift`
 
@@ -92,6 +146,15 @@ Top-level tabs. Also carries `symbolImage` (SF Symbol name) and
 .gyroscope       → GyroscopeScreen       .gyroscopeLog    → GyroscopeList
 .attitude        → AttitudeScreen        .attitudeLog     → AttitudeList
 ```
+
+Carries the same `rootTab: RootTab` computed property as `PositionStack`.
+
+These per-tab enums (`PositionStack`, `MotionStack`, `MagnetometerStack`,
+`RecordingsStack`) are unchanged from before the `NavigationRoute` refactor —
+they still define the concrete cases and their `View` bodies. They're just no
+longer used directly as a `NavigationStack` path or `NavigationLink(value:)`
+payload; call sites wrap them as `.position(...)` / `.motion(...)` /
+`.magnetometer(...)` / `.recordings(...)`.
 
 ### `MagnetometerStack`
 **File:** `Layout/Navigation/NavigationStacks/MagnetometerStack.swift`
@@ -138,14 +201,17 @@ ContentView
             Tab: Gyroscope    → NavigationStack(motionStack) { GyroscopeScreen }
             Tab: Attitude     → NavigationStack(motionStack) { AttitudeScreen }
           Tab: Magnetometer → NavigationStack(magnetometerStack) { MagnetometerScreen }
-          Tab: Recordings   → NavigationStack { RecordingsScreen }
+          Tab: Recordings   → NavigationStack(recordingsStack) { RecordingsScreen }
           Tab: Settings     → NavigationStack { SettingsScreen }
 ```
 
 On **compact** layout, `PositionScreen` and `MotionScreen` each own their own
 `NavigationStack` internally. On **regular** layout, the `NavigationStack` is
 lifted to the `ContentView` level so the sidebar can share path state across
-sub-tabs within a section.
+sub-tabs within a section. Every one of these `NavigationStack`s is bound to
+a `[NavigationRoute]` and declares a single
+`.navigationDestination(for: NavigationRoute.self)` — see `NavigationRoute`
+above.
 
 `onChangeOfSelectedTab()` stops both managers and resets all stacks on every
 tab switch, preventing background sensor activity.
@@ -172,7 +238,7 @@ Acceleration is shown below as the reference implementation.
 AccelerationScreen       (Layout/Lifecycle)
 ├── AccelerationView     (Live readouts + inline graphs)
 └── CustomControlsView   (Floating controls, overlaid)
-    └── [NavigationLink → MotionStack.accelerationLog]
+    └── [NavigationLink → NavigationRoute.motion(.accelerationLog)]
                                │
                         AccelerationList   (History + export)
                         └── CustomControlsView
@@ -189,7 +255,7 @@ AccelerationScreen       (Layout/Lifecycle)
 - Renders a `List` with `Section`s of live-updating values.
 - Each axis row is a `DisclosureGroup` whose content is a `LineGraphSubView`
   (see Shared Components below).
-- Contains a `NavigationLink(value: MotionStack.*Log)` to push the history list.
+- Contains a `NavigationLink(value: NavigationRoute.motion(.*Log))` to push the history list.
 - Includes `RefreshRateView` sections where applicable.
 
 ### `*List`
@@ -259,7 +325,9 @@ showNotification("Started")
 ### `ExpandableChartView` / `FullScreenChartView` / `ChartSelection`
 **Files:** `Views/LineGraph/ExpandableChartView.swift`, `Views/LineGraph/FullScreenChartView.swift`, `Views/LineGraph/ChartSelection.swift`
 
-`ExpandableChartView` wraps `LineGraphSubView` with an expand-button overlay. Tapping the button sets a `@Binding<ChartSelection?>` which the parent presents as a `FullScreenChartView` sheet.
+`ExpandableChartView` wraps `LineGraphSubView` with an expand-button overlay. Tapping the button reads `@Environment(AppState.self)` and sets `appState.selectedChart`. `ContentView` presents `FullScreenChartView` from that same property via `.fullScreenCover(item:)`, applied on the `TabView` itself rather than inside any individual `*View`.
+
+This used to be a `@Binding<ChartSelection?>` backed by local `@State` on each `*View`, with `.fullScreenCover` attached there too — but a size-class change swaps the `if isCompact { … } else { … }` branch in `ContentView`, tearing down and recreating whichever `*View` was presenting, which dismissed the cover mid-use. Hoisting the state onto `AppState` and the modifier onto `ContentView` (neither of which are torn down by that branch swap) keeps the full-screen chart open across the transition.
 
 `ChartSelection` is a simple value type holding `graph: Graph`, `detail: GraphDetail`, and `title: LocalizedStringResource` — enough to reconstruct the full-screen chart from any call site.
 

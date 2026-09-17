@@ -47,16 +47,28 @@ Three first-party modules plus tests:
   with `@Bindable`. **No `ObservableObject` / `@Published` / `@StateObject`.**
 - Navigation state is `AppState` (`@MainActor @Observable`): `selectedTab`,
   per-tab navigation-path arrays (`positionStack`, `motionStack`,
-  `magnetometerStack`), and `appIntentTab` for Siri-driven navigation.
+  `magnetometerStack`), `appIntentTab` for Siri-driven navigation, and
+  `selectedChart` (which chart, if any, is presented full screen).
 
 ### Navigation
 
-- `ContentView` uses a `TabView(.sidebarAdaptable)`. Compact (iPhone) nests
-  sensor screens inside per-tab `NavigationStack`s; regular (iPad) flattens
-  them into `TabSection`s in the sidebar.
+- `ContentView` uses a `TabView(.sidebarAdaptable)`. Compact (iPhone/iPad
+  narrow) nests sensor screens inside per-tab `NavigationStack`s; regular
+  (iPad wide) flattens them into `TabSection`s in the sidebar.
 - Routes are **enum-based** and type-safe: `RootTab`, `MotionStack`,
   `PositionStack`, `MagnetometerStack` each conform to `View` (or supply a
   destination view) and back `navigationDestination(for:)`.
+- `AppState.onSizeClassChange(_:)` preserves the current tab/screen across
+  iPad compact↔regular layout changes (Split View, Stage Manager) instead of
+  resetting to the Position tab. It translates between the compact
+  (umbrella-tab + pushed stack) and regular (dedicated tab per screen)
+  representations via `PositionStack`/`MotionStack.rootTab` and
+  `RootTab.compactParent`/`positionStackRoot`/`motionStackRoot` — see
+  `Navigation-Architecture.md` for the full algorithm. Because that same
+  `if isCompact { … } else { … }` branch swap also tears down local `@State`
+  in whichever `*View` was presenting, `selectedChart` (full-screen chart
+  cover) is hoisted onto `AppState` rather than kept per-screen, so it isn't
+  dismissed by the transition.
 
 ### View naming convention (iOS)
 
@@ -109,9 +121,13 @@ watchOS uses a single `*View` per sensor (no Screen/List split).
   recordings navigation (`RecordingsScreen` → `RecordingDetailScreen` →
   individual measurement views). See `Sensor-App-Framework/SwiftData/DataArchitecture.md`.
 - **Full Screen Charts:** `ExpandableChartView` wraps each `LineGraphSubView`
-  with an expand-button overlay; tapping it presents `FullScreenChartView` as a
-  sheet. The full-screen view shows the same chart maximised with a statistics bar
-  (Min/Max/Avg) in a `.safeAreaInset(edge: .bottom)`.
+  with an expand-button overlay; tapping it sets `AppState.selectedChart`,
+  which `ContentView` presents as a `FullScreenChartView` via
+  `.fullScreenCover(item:)`. The presentation is anchored on `ContentView`
+  (not on the individual `*View`) specifically so it survives the iPad
+  compact↔regular branch swap — see `onSizeClassChange` above. The full-screen
+  view shows the same chart maximised with a statistics bar (Min/Max/Avg) in a
+  `.safeAreaInset(edge: .bottom)`.
 - **Notifications (toasts):** custom environment key (`showNotification`) +
   `NotificationModifier` applied globally with `.withNotificationView()`.
 - **iOS 27 Liquid Glass:** `.glassEffect`, `GlassEffectContainer`,
@@ -194,8 +210,6 @@ watchOS uses a single `*View` per sensor (no Screen/List split).
   the managers (rather than reaching for a shared instance) would require
   turning the computed `var`s into methods and threading the managers through
   every `*View`/`*List` call site — deferred as a larger follow-up refactor.
-- `AppState.onSizeClassChange` keeps a large commented-out block on purpose —
-  it's the parked iPad navigation-restoration feature, not dead code.
 
 ## Known issues
 

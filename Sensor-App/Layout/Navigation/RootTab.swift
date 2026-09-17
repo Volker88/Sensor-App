@@ -76,6 +76,48 @@ enum RootTab: Hashable {
         }
     }
 
+    /// The umbrella tab this granular tab is nested under in compact layout, or `nil` for tabs
+    /// that exist standalone in both layouts (``position``, ``motion``, ``magnetometer``,
+    /// ``recordings``, ``settings``).
+    var compactParent: RootTab? {
+        switch self {
+            case .location, .altitude:
+                .position
+            case .acceleration, .gravity, .gyroscope, .attitude:
+                .motion
+            default:
+                nil
+        }
+    }
+
+    /// This tab's corresponding root ``NavigationRoute`` in the position stack, if it belongs to the Position group.
+    var positionStackRoot: NavigationRoute? {
+        switch self {
+            case .location:
+                .position(.location)
+            case .altitude:
+                .position(.altitude)
+            default:
+                nil
+        }
+    }
+
+    /// This tab's corresponding root ``NavigationRoute`` in the motion stack, if it belongs to the Motion group.
+    var motionStackRoot: NavigationRoute? {
+        switch self {
+            case .acceleration:
+                .motion(.acceleration)
+            case .gravity:
+                .motion(.gravity)
+            case .gyroscope:
+                .motion(.gyroscope)
+            case .attitude:
+                .motion(.attitude)
+            default:
+                nil
+        }
+    }
+
     var symbolImage: String {
         switch self {
             case .position:

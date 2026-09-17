@@ -13,6 +13,16 @@ enum PositionStack: String, Hashable {
     case locationMap
     case altitude
     case altitudeLog
+
+    /// The regular-layout tab this entry's screen lives under, regardless of how deep it's nested.
+    var rootTab: RootTab {
+        switch self {
+            case .location, .locationMap:
+                .location
+            case .altitude, .altitudeLog:
+                .altitude
+        }
+    }
 }
 
 // MARK: - View Extension

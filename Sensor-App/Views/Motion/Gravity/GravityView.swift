@@ -16,7 +16,6 @@ struct GravityView: View {
     @State private var showXAxis = false
     @State private var showYAxis = false
     @State private var showZAxis = false
-    @State private var selectedChart: ChartSelection?
 
     // MARK: - Body
     var body: some View {
@@ -26,7 +25,7 @@ struct GravityView: View {
                     isExpanded: $showXAxis,
                     content: {
                         ExpandableChartView(
-                            graph: .motion, showGraph: .gravityXAxis, title: "X-Axis", selectedChart: $selectedChart)
+                            graph: .motion, showGraph: .gravityXAxis, title: "X-Axis")
                     },
                     label: {
                         Text("X-Axis: \(motionManager.motion?.gravityXAxis ?? 0.0, specifier: "%.5f") g (9,81 m/s^2)")
@@ -43,7 +42,7 @@ struct GravityView: View {
                     isExpanded: $showYAxis,
                     content: {
                         ExpandableChartView(
-                            graph: .motion, showGraph: .gravityYAxis, title: "Y-Axis", selectedChart: $selectedChart)
+                            graph: .motion, showGraph: .gravityYAxis, title: "Y-Axis")
                     },
                     label: {
                         Text("Y-Axis: \(motionManager.motion?.gravityYAxis ?? 0.0, specifier: "%.5f") g (9,81 m/s^2)")
@@ -60,7 +59,7 @@ struct GravityView: View {
                     isExpanded: $showZAxis,
                     content: {
                         ExpandableChartView(
-                            graph: .motion, showGraph: .gravityZAxis, title: "Z-Axis", selectedChart: $selectedChart)
+                            graph: .motion, showGraph: .gravityZAxis, title: "Z-Axis")
                     },
                     label: {
                         Text("Z-Axis: \(motionManager.motion?.gravityZAxis ?? 0.0, specifier: "%.5f") g (9,81 m/s^2)")
@@ -73,7 +72,7 @@ struct GravityView: View {
                 .accessibilityAddTraits(.updatesFrequently)
                 .accessibilityRemoveTraits(.isHeader)
 
-                NavigationLink(value: MotionStack.gravityLog) {
+                NavigationLink(value: NavigationRoute.motion(.gravityLog)) {
                     Text("Log")
                         .accessibilityHint("View Gravity Log")
                         .accessibilityIdentifier(UIIdentifiers.GravityView.logButton)
@@ -95,9 +94,6 @@ struct GravityView: View {
             }
         }
         .listStyle(.insetGrouped)
-        .fullScreenCover(item: $selectedChart) { selection in
-            FullScreenChartView(selection: selection)
-        }
     }
 }
 

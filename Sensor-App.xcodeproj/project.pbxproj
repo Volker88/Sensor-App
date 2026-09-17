@@ -260,6 +260,7 @@
 				iOSUnitTests/API/SettingsManagerTests.swift,
 				iOSUnitTests/Customization/ExtensionTests.swift,
 				iOSUnitTests/Helper/BaseTestCase.swift,
+				iOSUnitTests/Navigation/AppStateTests.swift,
 				watchOSUITests/Helper/BaseTestCase.swift,
 				watchOSUITests/ScreenshotUITests.swift,
 			);
@@ -293,6 +294,7 @@
 				iOSUnitTests/API/SettingsManagerTests.swift,
 				iOSUnitTests/Customization/ExtensionTests.swift,
 				iOSUnitTests/Helper/BaseTestCase.swift,
+				iOSUnitTests/Navigation/AppStateTests.swift,
 				watchOSUITests/Helper/BaseTestCase.swift,
 				watchOSUITests/ScreenshotUITests.swift,
 			);
@@ -326,6 +328,7 @@
 				iOSUnitTests/API/SettingsManagerTests.swift,
 				iOSUnitTests/Customization/ExtensionTests.swift,
 				iOSUnitTests/Helper/BaseTestCase.swift,
+				iOSUnitTests/Navigation/AppStateTests.swift,
 				watchOSUITests/Helper/BaseTestCase.swift,
 				watchOSUITests/ScreenshotUITests.swift,
 			);
@@ -340,6 +343,7 @@
 				iOSUnitTests/API/SettingsManagerTests.swift,
 				iOSUnitTests/Customization/ExtensionTests.swift,
 				iOSUnitTests/Helper/BaseTestCase.swift,
+				iOSUnitTests/Navigation/AppStateTests.swift,
 			);
 			target = 1527B02724C4AA240024DD78 /* Sensor-AppiOSUnitTests */;
 		};
@@ -1172,7 +1176,9 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/Sensor-App/Miscellaneous/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Sensor-App";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "© 2026, Volker Schmitt";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Location access is needed to display your current position, travel direction, and speed in real time";
 				INFOPLIST_KEY_NSMotionUsageDescription = "Motion sensor access is required to display real-time movement data";
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1202,7 +1208,9 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/Sensor-App/Miscellaneous/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Sensor-App";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "© 2026, Volker Schmitt";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Location access is needed to display your current position, travel direction, and speed in real time";
 				INFOPLIST_KEY_NSMotionUsageDescription = "Motion sensor access is required to display real-time movement data";
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

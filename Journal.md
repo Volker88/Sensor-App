@@ -106,6 +106,77 @@ Configuration/               *.xcconfig (targets, version, signing secrets)
 
 ## The Journey
 
+### 🧩 Finishing the parked iPad-restoration feature (2026-09-15)
+
+**The ask:** resizing the app on iPad (Split View, Stage Manager) was dumping
+users back to the Position tab's root, no matter what they'd been looking at.
+`AppState.onSizeClassChange` had the fix already half-written — a full
+compact↔regular mapping sitting commented out, with a "pick this up when it's
+worth shipping" TODO in *If I Were Starting Over*.
+
+**Uncommenting it wasn't enough.** Two bugs would have shipped if the block
+had just been flipped back on: no fallback for when the user was sitting on
+the bare `.position`/`.motion` hub screen (regular layout has no tab for
+that, so `selectedTab` would've ended up pointing at nothing), and missing
+`else` branches that left a single-level drill (`positionStack == [.location]`)
+untouched instead of clearing it — which double-pushes `LocationScreen` under
+regular layout, where `.location` is now the tab's own root. There was also a
+second, unrelated bug hiding behind it: `ContentView.onChangeOfSelectedTab()`
+fires on *any* `selectedTab` mutation and unconditionally stops sensors and
+wipes every stack, so the restoration would've undone itself the instant it
+ran. Fixed with a one-shot `suppressNextSelectedTabChange` flag on `AppState`
+— set right before the tab reassignment, consumed (and cleared) by
+`ContentView`, so a genuine user-initiated tab switch still gets the full
+stop/reset treatment.
+
+**The simplification that mattered more than the fix.** The first working
+version was a straight port of the parked logic: a wall of
+`if stack.contains(.location) { … } else if stack.contains(.altitude) { … }`
+repeated for every sensor, in both directions. It worked, but it was exactly
+the kind of code that grows a new `else if` every time someone adds a screen.
+The insight that collapsed it: compact-mode stacks are always ordered
+`[root, leaf?, …]` by construction — you can only push a detail screen onto
+one that's already showing — so `stack.first` *is* the tab to switch to, and
+`stack.dropFirst()` *is* the regular-mode stack, at any depth. Going the other
+way, prepending the tab's own root case back onto the stack does the same job
+in reverse. That turned into two small, reusable properties instead of a
+combinatorial matrix: `PositionStack`/`MotionStack.rootTab` (which tab a stack
+entry belongs to, however deep) and `RootTab.compactParent` /
+`positionStackRoot` / `motionStackRoot` (the reverse lookup).
+`onSizeClassChange` dropped from ~100 lines to ~25 — and, as a bonus, it now
+handles a hypothetical 3rd-level drill (Map → pin detail, say) with zero
+changes to the transition logic, just one new line in `rootTab`'s switch.
+
+### 🖼️ The full-screen chart that kept closing itself (2026-09-15)
+
+**The report:** open a chart full screen (say, Acceleration → X-Axis), resize
+the iPad window, and the cover slams shut. Same day as the restoration fix
+above, same underlying cause, different symptom.
+
+**Why the tab fix didn't cover this one too.** `onSizeClassChange` correctly
+preserves `selectedTab` and the stacks now — but `selectedChart`, the state
+driving the full-screen cover, lived as local `@State` on each `*View`
+(`AccelerationView`, `LocationView`, and five more), with `.fullScreenCover`
+attached right there. The problem isn't navigation *state*, it's view
+*identity*: `ContentView`'s `if isCompact { Tab(.motion) { MotionScreen() } }
+else { TabSection { Tab(.acceleration) { AccelerationScreen() } } }` is two
+structurally different branches. SwiftUI has no way to carry `@State` across
+an `if/else` swap like that — it tears down whichever branch stops being
+active and builds the other from scratch, no matter how well `AppState`
+remembers what *should* be showing. Any cover or sheet presented from state
+inside the torn-down branch dies with it.
+
+**The fix:** move `selectedChart` onto `AppState` and the `.fullScreenCover`
+modifier onto `ContentView` itself — the one thing in this tree that *isn't*
+torn down when the compact/regular branch swaps, since it's the view holding
+the `if/else`, not a subject of it. `ExpandableChartView` now reads
+`@Environment(AppState.self)` and sets `appState.selectedChart` directly
+instead of threading a `@Binding` down from each screen, which also deleted
+seven copies of the same `@State` + `.fullScreenCover` pair. General lesson
+for this codebase: state that must outlive a compact/regular branch swap
+belongs on `AppState`, not locally — the same rule `selectedChart` now
+follows alongside `selectedTab` and the nav stacks.
+
 ### 🧹 Pre-ship housekeeping — force-unwraps, singletons, and MotionManager catches up (2026-08-24)
 
 **The ask:** before cutting the 7.0.0 update, a pass through the known-tech-debt
@@ -170,9 +241,8 @@ already be wired up (`AppState.updateShortcutParameter()`, called from
 `SensorAppApp`'s `.onAppear`) — CLAUDE.md's known-issues note was stale on
 this point and has been corrected.
 
-**What's still open:** the full DI refactor (see *If I Were Starting Over*),
-the parked iPad-restoration feature in `AppState.onSizeClassChange`, and the
-narrowed Shortcuts-visibility investigation.
+**What's still open:** the full DI refactor (see *If I Were Starting Over*)
+and the narrowed Shortcuts-visibility investigation.
 
 ---
 
@@ -621,10 +691,9 @@ was designed.
   uses `URL.temporaryDirectory.appending(path:)` (non-optional, no unwrap
   needed), and the two `Bundle.main.bundleIdentifier!` sites got a
   nil-coalesce / `guard let`.
-- **Finish the parked iPad-restoration feature.** `AppState.onSizeClassChange`
-  carries a big block of intentionally-disabled logic that would preserve the
-  navigation stack across iPhone↔iPad size-class changes. It's a deliberate
-  TODO, not dead code — pick it up when the feature's worth shipping.
+- ~~**Finish the parked iPad-restoration feature.**~~ Done 2026-09-15 — see
+  the Journey entry above. Turned into a depth-agnostic `first`/`dropFirst()`
+  translation instead of the originally-parked combinatorial mapping.
 
 ---
 *Keep this file alive: every non-trivial bug, architectural fork, or "huh,

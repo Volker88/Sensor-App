@@ -16,7 +16,6 @@ struct GyroscopeView: View {
     @State private var showXAxis = false
     @State private var showYAxis = false
     @State private var showZAxis = false
-    @State private var selectedChart: ChartSelection?
 
     // MARK: - Body
     var body: some View {
@@ -26,7 +25,7 @@ struct GyroscopeView: View {
                     isExpanded: $showXAxis,
                     content: {
                         ExpandableChartView(
-                            graph: .motion, showGraph: .gyroXAxis, title: "X-Axis", selectedChart: $selectedChart)
+                            graph: .motion, showGraph: .gyroXAxis, title: "X-Axis")
                     },
                     label: {
                         Text("X-Axis: \(motionManager.motion?.gyroXAxis ?? 0.0, specifier: "%.5f") rad/s")
@@ -43,7 +42,7 @@ struct GyroscopeView: View {
                     isExpanded: $showYAxis,
                     content: {
                         ExpandableChartView(
-                            graph: .motion, showGraph: .gyroYAxis, title: "Y-Axis", selectedChart: $selectedChart)
+                            graph: .motion, showGraph: .gyroYAxis, title: "Y-Axis")
                     },
                     label: {
                         Text("Y-Axis: \(motionManager.motion?.gyroYAxis ?? 0.0, specifier: "%.5f") rad/s")
@@ -60,7 +59,7 @@ struct GyroscopeView: View {
                     isExpanded: $showZAxis,
                     content: {
                         ExpandableChartView(
-                            graph: .motion, showGraph: .gyroZAxis, title: "Z-Axis", selectedChart: $selectedChart)
+                            graph: .motion, showGraph: .gyroZAxis, title: "Z-Axis")
                     },
                     label: {
                         Text("Z-Axis: \(motionManager.motion?.gyroZAxis ?? 0.0, specifier: "%.5f") rad/s")
@@ -73,7 +72,7 @@ struct GyroscopeView: View {
                 .accessibilityAddTraits(.updatesFrequently)
                 .accessibilityRemoveTraits(.isHeader)
 
-                NavigationLink(value: MotionStack.gyroscopeLog) {
+                NavigationLink(value: NavigationRoute.motion(.gyroscopeLog)) {
                     Text("Log")
                         .accessibilityHint("View Gyroscope Log")
                         .accessibilityIdentifier(UIIdentifiers.GyroscopeView.logButton)
@@ -94,9 +93,6 @@ struct GyroscopeView: View {
             }
         }
         .listStyle(.insetGrouped)
-        .fullScreenCover(item: $selectedChart) { selection in
-            FullScreenChartView(selection: selection)
-        }
     }
 }
 

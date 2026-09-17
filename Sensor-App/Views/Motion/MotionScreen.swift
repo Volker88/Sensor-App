@@ -20,7 +20,7 @@ struct MotionScreen: View {
         NavigationStack(path: Bindable(appState).motionStack) {
             ScrollView {
                 LazyVGrid(columns: columns, spacing: 20) {
-                    NavigationLink(value: MotionStack.acceleration) {
+                    NavigationLink(value: NavigationRoute.motion(.acceleration)) {
                         CardView {
                             Image(systemName: RootTab.acceleration.symbolImage)
                             Text(RootTab.acceleration.localizedString)
@@ -29,7 +29,7 @@ struct MotionScreen: View {
                     }
                     .accessibilityIdentifier(UIIdentifiers.MotionScreen.accelerationButton)
 
-                    NavigationLink(value: MotionStack.gravity) {
+                    NavigationLink(value: NavigationRoute.motion(.gravity)) {
                         CardView {
                             Image(systemName: RootTab.gravity.symbolImage)
                             Text(RootTab.gravity.localizedString)
@@ -38,7 +38,7 @@ struct MotionScreen: View {
                     }
                     .accessibilityIdentifier(UIIdentifiers.MotionScreen.gravityButton)
 
-                    NavigationLink(value: MotionStack.gyroscope) {
+                    NavigationLink(value: NavigationRoute.motion(.gyroscope)) {
                         CardView {
                             Image(systemName: RootTab.gyroscope.symbolImage)
                             Text(RootTab.gyroscope.localizedString)
@@ -47,7 +47,7 @@ struct MotionScreen: View {
                     }
                     .accessibilityIdentifier(UIIdentifiers.MotionScreen.gyroscopeButton)
 
-                    NavigationLink(value: MotionStack.attitude) {
+                    NavigationLink(value: NavigationRoute.motion(.attitude)) {
                         CardView {
                             Image(systemName: RootTab.attitude.symbolImage)
                             Text(RootTab.attitude.localizedString)
@@ -61,7 +61,7 @@ struct MotionScreen: View {
             }
             .navigationTitle(RootTab.motion.localizedString)
             .navigationSubtitle("Select a motion type")
-            .navigationDestination(for: MotionStack.self) { $0 }
+            .navigationDestination(for: NavigationRoute.self) { $0 }
         }
     }
 }

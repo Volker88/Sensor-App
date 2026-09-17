@@ -14,14 +14,14 @@ struct ExpandableChartView: View {
     let graph: Graph
     let showGraph: GraphDetail
     let title: LocalizedStringResource
-    @Binding var selectedChart: ChartSelection?
+    @Environment(AppState.self) private var appState
 
     var body: some View {
         LineGraphSubView(graph: graph, showGraph: showGraph)
             .frame(height: 100, alignment: .leading)
             .overlay(alignment: .topTrailing) {
                 Button {
-                    selectedChart = ChartSelection(graph: graph, detail: showGraph, title: title)
+                    appState.selectedChart = ChartSelection(graph: graph, detail: showGraph, title: title)
                 } label: {
                     Image(systemName: "arrow.up.left.and.arrow.down.right.circle.fill")
                         .imageScale(.medium)

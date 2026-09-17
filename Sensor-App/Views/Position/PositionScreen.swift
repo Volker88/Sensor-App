@@ -20,7 +20,7 @@ struct PositionScreen: View {
         NavigationStack(path: Bindable(appState).positionStack) {
             ScrollView {
                 LazyVGrid(columns: columns, spacing: 20) {
-                    NavigationLink(value: PositionStack.location) {
+                    NavigationLink(value: NavigationRoute.position(.location)) {
                         CardView {
                             Image(systemName: RootTab.location.symbolImage)
                             Text(RootTab.location.localizedString)
@@ -29,7 +29,7 @@ struct PositionScreen: View {
                     }
                     .accessibilityIdentifier(UIIdentifiers.PositionScreen.locationButton)
 
-                    NavigationLink(value: PositionStack.altitude) {
+                    NavigationLink(value: NavigationRoute.position(.altitude)) {
                         CardView {
                             Image(systemName: RootTab.altitude.symbolImage)
                             Text(RootTab.altitude.localizedString)
@@ -47,7 +47,7 @@ struct PositionScreen: View {
             }
             .navigationTitle(RootTab.position.localizedString)
             .navigationSubtitle("Select a position type")
-            .navigationDestination(for: PositionStack.self) { $0 }
+            .navigationDestination(for: NavigationRoute.self) { $0 }
         }
     }
 }

@@ -16,7 +16,6 @@ struct AccelerationView: View {
     @State private var showXAxis = false
     @State private var showYAxis = false
     @State private var showZAxis = false
-    @State private var selectedChart: ChartSelection?
 
     // MARK: - Body
     var body: some View {
@@ -26,8 +25,7 @@ struct AccelerationView: View {
                     isExpanded: $showXAxis,
                     content: {
                         ExpandableChartView(
-                            graph: .motion, showGraph: .accelerationXAxis, title: "X-Axis",
-                            selectedChart: $selectedChart)
+                            graph: .motion, showGraph: .accelerationXAxis, title: "X-Axis")
                     },
                     label: {
                         Text("X-Axis: \(motionManager.motion?.accelerationXAxis ?? 0.0, specifier: "%.5f") m/s^2")
@@ -44,8 +42,7 @@ struct AccelerationView: View {
                     isExpanded: $showYAxis,
                     content: {
                         ExpandableChartView(
-                            graph: .motion, showGraph: .accelerationYAxis, title: "Y-Axis",
-                            selectedChart: $selectedChart)
+                            graph: .motion, showGraph: .accelerationYAxis, title: "Y-Axis")
                     },
                     label: {
                         Text("Y-Axis: \(motionManager.motion?.accelerationYAxis ?? 0.0, specifier: "%.5f") m/s^2")
@@ -62,8 +59,7 @@ struct AccelerationView: View {
                     isExpanded: $showZAxis,
                     content: {
                         ExpandableChartView(
-                            graph: .motion, showGraph: .accelerationZAxis, title: "Z-Axis",
-                            selectedChart: $selectedChart)
+                            graph: .motion, showGraph: .accelerationZAxis, title: "Z-Axis")
                     },
                     label: {
                         Text("Z-Axis: \(motionManager.motion?.accelerationZAxis ?? 0.0, specifier: "%.5f") m/s^2")
@@ -76,7 +72,7 @@ struct AccelerationView: View {
                 .accessibilityAddTraits(.updatesFrequently)
                 .accessibilityRemoveTraits(.isHeader)
 
-                NavigationLink(value: MotionStack.accelerationLog) {
+                NavigationLink(value: NavigationRoute.motion(.accelerationLog)) {
                     Text("Log")
                         .accessibilityHint("View Acceleration Log")
                         .accessibilityIdentifier(UIIdentifiers.AccelerationView.logButton)
@@ -99,9 +95,6 @@ struct AccelerationView: View {
             }
         }
         .listStyle(.insetGrouped)
-        .fullScreenCover(item: $selectedChart) { selection in
-            FullScreenChartView(selection: selection)
-        }
     }
 }
 

@@ -17,7 +17,6 @@ struct AttitudeView: View {
     @State private var showPitch = false
     @State private var showYaw = false
     @State private var showHeading = false
-    @State private var selectedChart: ChartSelection?
 
     // MARK: - Body
     var body: some View {
@@ -27,7 +26,7 @@ struct AttitudeView: View {
                     isExpanded: $showRoll,
                     content: {
                         ExpandableChartView(
-                            graph: .motion, showGraph: .attitudeRoll, title: "Roll", selectedChart: $selectedChart)
+                            graph: .motion, showGraph: .attitudeRoll, title: "Roll")
                     },
                     label: {
                         Text("Roll: \((motionManager.motion?.attitudeRoll ?? 0.0) * 180 / .pi, specifier: "%.5f")°")
@@ -44,7 +43,7 @@ struct AttitudeView: View {
                     isExpanded: $showPitch,
                     content: {
                         ExpandableChartView(
-                            graph: .motion, showGraph: .attitudePitch, title: "Pitch", selectedChart: $selectedChart)
+                            graph: .motion, showGraph: .attitudePitch, title: "Pitch")
                     },
                     label: {
                         Text("Pitch: \((motionManager.motion?.attitudePitch ?? 0.0) * 180 / .pi, specifier: "%.5f")°")
@@ -61,7 +60,7 @@ struct AttitudeView: View {
                     isExpanded: $showYaw,
                     content: {
                         ExpandableChartView(
-                            graph: .motion, showGraph: .attitudeYaw, title: "Yaw", selectedChart: $selectedChart)
+                            graph: .motion, showGraph: .attitudeYaw, title: "Yaw")
                     },
                     label: {
                         Text("Yaw: \((motionManager.motion?.attitudeYaw ?? 0.0) * 180 / .pi, specifier: "%.5f")°")
@@ -78,7 +77,7 @@ struct AttitudeView: View {
                     isExpanded: $showHeading,
                     content: {
                         ExpandableChartView(
-                            graph: .motion, showGraph: .attitudeHeading, title: "Heading", selectedChart: $selectedChart
+                            graph: .motion, showGraph: .attitudeHeading, title: "Heading"
                         )
                     },
                     label: {
@@ -92,7 +91,7 @@ struct AttitudeView: View {
                 .accessibilityAddTraits(.updatesFrequently)
                 .accessibilityRemoveTraits(.isHeader)
 
-                NavigationLink(value: MotionStack.attitudeLog) {
+                NavigationLink(value: NavigationRoute.motion(.attitudeLog)) {
                     Text("Log")
                         .accessibilityHint("View Attitude Log")
                         .accessibilityIdentifier(UIIdentifiers.AttitudeView.logButton)
@@ -114,9 +113,6 @@ struct AttitudeView: View {
             }
         }
         .listStyle(.insetGrouped)
-        .fullScreenCover(item: $selectedChart) { selection in
-            FullScreenChartView(selection: selection)
-        }
     }
 }
 

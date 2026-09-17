@@ -24,7 +24,7 @@ struct RecordingsScreen: View {
                 .listRowBackground(Color.clear)
             } else {
                 ForEach(sessions) { session in
-                    NavigationLink(value: RecordingsStack.detail(session)) {
+                    NavigationLink(value: NavigationRoute.recordings(.detail(session))) {
                         RecordingRow(session: session)
                     }
                 }

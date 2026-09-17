@@ -17,6 +17,20 @@ enum MotionStack: String, Hashable {
     case gyroscopeLog
     case attitude
     case attitudeLog
+
+    /// The regular-layout tab this entry's screen lives under, regardless of how deep it's nested.
+    var rootTab: RootTab {
+        switch self {
+            case .acceleration, .accelerationLog:
+                .acceleration
+            case .gravity, .gravityLog:
+                .gravity
+            case .gyroscope, .gyroscopeLog:
+                .gyroscope
+            case .attitude, .attitudeLog:
+                .attitude
+        }
+    }
 }
 
 extension MotionStack: View {

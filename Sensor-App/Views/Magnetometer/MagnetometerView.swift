@@ -16,7 +16,6 @@ struct MagnetometerView: View {
     @State private var showXAxis = false
     @State private var showYAxis = false
     @State private var showZAxis = false
-    @State private var selectedChart: ChartSelection?
 
     // MARK: - Body
     var body: some View {
@@ -26,8 +25,7 @@ struct MagnetometerView: View {
                     isExpanded: $showXAxis,
                     content: {
                         ExpandableChartView(
-                            graph: .motion, showGraph: .magnetometerXAxis, title: "X-Axis",
-                            selectedChart: $selectedChart)
+                            graph: .motion, showGraph: .magnetometerXAxis, title: "X-Axis")
                     },
                     label: {
                         Text("X-Axis: \(motionManager.motion?.magnetometerXAxis ?? 0.0, specifier: "%.5f") µT")
@@ -44,8 +42,7 @@ struct MagnetometerView: View {
                     isExpanded: $showYAxis,
                     content: {
                         ExpandableChartView(
-                            graph: .motion, showGraph: .magnetometerYAxis, title: "Y-Axis",
-                            selectedChart: $selectedChart)
+                            graph: .motion, showGraph: .magnetometerYAxis, title: "Y-Axis")
                     },
                     label: {
                         Text("Y-Axis: \(motionManager.motion?.magnetometerYAxis ?? 0.0, specifier: "%.5f") µT")
@@ -62,8 +59,7 @@ struct MagnetometerView: View {
                     isExpanded: $showZAxis,
                     content: {
                         ExpandableChartView(
-                            graph: .motion, showGraph: .magnetometerZAxis, title: "Z-Axis",
-                            selectedChart: $selectedChart)
+                            graph: .motion, showGraph: .magnetometerZAxis, title: "Z-Axis")
                     },
                     label: {
                         Text("Z-Axis: \(motionManager.motion?.magnetometerZAxis ?? 0.0, specifier: "%.5f") µT")
@@ -76,7 +72,7 @@ struct MagnetometerView: View {
                 .accessibilityAddTraits(.updatesFrequently)
                 .accessibilityRemoveTraits(.isHeader)
 
-                NavigationLink(value: MagnetometerStack.magnetometerLog) {
+                NavigationLink(value: NavigationRoute.magnetometer(.magnetometerLog)) {
                     Text("Log")
                         .accessibilityHint("View Magnetometer Log")
                         .accessibilityIdentifier(UIIdentifiers.MagnetometerView.logButton)
@@ -97,9 +93,6 @@ struct MagnetometerView: View {
             }
         }
         .listStyle(.insetGrouped)
-        .fullScreenCover(item: $selectedChart) { selection in
-            FullScreenChartView(selection: selection)
-        }
     }
 }
 
