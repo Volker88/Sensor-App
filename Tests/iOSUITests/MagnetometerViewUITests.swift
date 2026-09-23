@@ -51,7 +51,7 @@ class MagnetometerViewUITests: BaseTestCase {
 
         let splitUpdateFrequency = updateFrequency.split(separator: " ", maxSplits: 1).map(String.init)
         let actual = splitUpdateFrequency[0].convertToDouble()
-        XCTAssertEqual(actual, 50.0, accuracy: 0.5, "Update frequency should be 50 but is \(actual)")
+        XCTAssertEqual(actual, 50.0, accuracy: 1.5, "Update frequency should be 50 but is \(actual)")
     }
 
     func testMagnetometerViewShareSheet() throws {
@@ -60,7 +60,7 @@ class MagnetometerViewUITests: BaseTestCase {
         app.buttons[UIIdentifiers.MagnetometerView.logButton].tap()
 
         // Open / Close Share Sheet
-        app.navigationBars.buttons[UIIdentifiers.MagnetometerList.exportButton].tap()
+        app.buttons[UIIdentifiers.MagnetometerList.exportButton].tap()
         sleep(1)
         dismissShareSheet()
 

@@ -36,11 +36,6 @@
   },
   "testTargets" : [
     {
-      "parallelizable" : true,
-      "skippedTests" : [
-        "ScreenshotUITests",
-        "ScreenshotUITests\/testScreenshot()"
-      ],
       "target" : {
         "containerPath" : "container:Sensor-App.xcodeproj",
         "identifier" : "15F1BBA82CAFCF1E00C80A1F",

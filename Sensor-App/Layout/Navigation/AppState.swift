@@ -13,8 +13,13 @@ import SwiftUI
 final class AppState {
 
     #if os(iOS)
+        /// Overrides ``isIphone`` when non-`nil`, so tests can force phone/pad behavior
+        /// independent of the simulator/device actually running them.
+        @ObservationIgnored
+        private let isIphoneOverride: Bool?
+
         var isIphone: Bool {
-            UIDevice.current.userInterfaceIdiom == .phone
+            isIphoneOverride ?? (UIDevice.current.userInterfaceIdiom == .phone)
         }
     #else
         let isIphone = false
@@ -65,6 +70,15 @@ final class AppState {
     /// for a layout-driven tab change, as opposed to a genuine user-initiated tab switch.
     @ObservationIgnored
     private var suppressNextSelectedTabChange = false
+
+    #if os(iOS)
+        /// - Parameter isIphone: Overrides device-idiom detection; leave `nil` in production
+        ///   so it falls back to `UIDevice.current.userInterfaceIdiom`. Tests pass an explicit
+        ///   value so `onSizeClassChange(_:)` behaves the same on any simulator/device.
+        init(isIphone: Bool? = nil) {
+            self.isIphoneOverride = isIphone
+        }
+    #endif
 
     /// Reset all Stacks
     func resetStack() {

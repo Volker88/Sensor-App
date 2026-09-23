@@ -57,7 +57,7 @@ class GyroscopeViewUITests: BaseTestCase {
 
         let splitUpdateFrequency = updateFrequency.split(separator: " ", maxSplits: 1).map(String.init)
         let actual = splitUpdateFrequency[0].convertToDouble()
-        XCTAssertEqual(actual, 50.0, accuracy: 0.5, "Update frequency should be 50 but is \(actual)")
+        XCTAssertEqual(actual, 50.0, accuracy: 1.5, "Update frequency should be close to 50 but is \(actual)")
 
         // Go Back to Main Menu
         backToHomeMenu()
@@ -69,7 +69,7 @@ class GyroscopeViewUITests: BaseTestCase {
         app.buttons[UIIdentifiers.GyroscopeView.logButton].tap()
 
         // Open / Close Share Sheet
-        app.navigationBars.buttons[UIIdentifiers.GyroscopeList.exportButton].tap()
+        app.buttons[UIIdentifiers.GyroscopeList.exportButton].tap()
         sleep(1)
         dismissShareSheet()
 

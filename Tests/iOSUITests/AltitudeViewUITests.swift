@@ -45,7 +45,7 @@ class AltitudeViewUITests: BaseTestCase {
         app.buttons[UIIdentifiers.AltitudeView.logButton].tap()
 
         // Open / Close Share Sheet
-        app.navigationBars.buttons[UIIdentifiers.AltitudeList.exportButton].tap()
+        app.buttons[UIIdentifiers.AltitudeList.exportButton].tap()
         sleep(1)
         dismissShareSheet()
 

@@ -55,7 +55,7 @@ class BaseTestCase: XCTestCase {
 
     func backToHomeMenu() {
         if isIPhone() {
-            app.navigationBars.buttons.element(boundBy: 0).tap()
+            app.buttons["BackButton"].tapWhenReady()
         }
     }
 

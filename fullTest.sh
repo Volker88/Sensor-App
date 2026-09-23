@@ -25,11 +25,12 @@ xcrun simctl ui $iPhone appearance $APPEARANCE
 xcrun simctl ui $iPhoneDuo appearance $APPEARANCE
 xcrun simctl ui $iPad appearance $APPEARANCE
 
+
 #xcodebuild clean -project 'Sensor-App.xcodeproj'
 
 
 # Run xcodebuild with the OS version variable
-xcodebuild test -testPlan iOS_ScreenshotTest -project 'Sensor-App.xcodeproj' -scheme 'Sensor-App' \
+xcodebuild test -testPlan iOS_FullTest -project 'Sensor-App.xcodeproj' -scheme 'Sensor-App' \
 -destination "platform=iOS Simulator,name=iPhone 18 Pro Max,OS=$OS_VERSION" \
 -destination "platform=iOS Simulator,name=iPhone Duo,OS=$OS_VERSION" \
 -destination "platform=iOS Simulator,name=iPad Pro 13-inch (M5) (16GB),OS=$OS_VERSION" \

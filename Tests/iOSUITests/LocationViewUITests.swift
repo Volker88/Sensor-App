@@ -51,7 +51,7 @@ class LocationViewUITests: BaseTestCase {
         goToLocationScreen()
 
         // Open / Close Share Sheet
-        app.collectionViews.buttons[UIIdentifiers.LocationView.exportButton].tap()
+        app.buttons[UIIdentifiers.LocationView.exportButton].tap()
         sleep(1)
         dismissShareSheet()
 
