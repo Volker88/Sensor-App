@@ -106,6 +106,43 @@ Configuration/               *.xcconfig (targets, version, signing secrets)
 
 ## The Journey
 
+### 📱 Getting ready for the iPhone Duo (2026-10-10)
+
+**The ask:** make the app behave on the foldable iPhone Duo.
+
+**The trap was an idiom check doing a size class's job.** `ContentView.isCompact`
+was `horizontalSizeClass == .compact || idiom == .phone`, and `AppState` skipped
+`onSizeClassChange` entirely on iPhones. That was fine while no phone ever
+changed shape. A Duo is still `.phone`, so it would have been pinned to the
+narrow layout when unfolded and its state never translated.
+
+**Fix #1 went too far.** Dropping the idiom check and keying off size class
+alone looked like the textbook answer, and it worked: until we looked at what
+"regular" means on a phone. A Plus/Max in landscape is regular-wide but short,
+and the flat sidebar layout has about nine tabs. On the Max it was merely
+cramped. Adding a vertical-size-class check fixed that.
+
+**The aha moment came from the Duo itself.** Unfolded, it reports regular width
+*and* regular height, so every size-class rule said "flat layout", and the
+adaptable `TabView` rendered those nine tabs as a bottom tab bar with a More
+overflow menu (the sidebar presentation only happens on iPad). No size class can
+tell a Duo from an iPad. The honest rule is a product decision: sidebar on iPad
+only, phones always grouped. That put the idiom check back, deliberately this
+time, in a small pure function (`NavigationLayout.usesCompactLayout`) with unit
+tests, and the answer is published as a `usesCompactLayout` environment value so
+`LocationScreen`'s ad banner can't drift out of sync with it (it was showing a
+second banner on the Duo).
+
+**Side effects worth knowing.** `AppState.isIphone` and its test-only init
+parameter are gone, since phones never change layout `onSizeClassChange` has
+nothing to do there, and the nine `AppStateTests` no longer need the override.
+The layout switch and the state translation now share one decision
+(`isCompact`), fed to `AppState` as a derived `.compact`/`.regular`.
+
+**Lesson:** size classes describe space, not device capability or product
+intent. When the real rule is "iPad only", say so in one tested place instead of
+approximating it with size classes.
+
 ### 🧩 Finishing the parked iPad-restoration feature (2026-09-15)
 
 **The ask:** resizing the app on iPad (Split View, Stage Manager) was dumping

@@ -11,6 +11,7 @@ import SwiftUI
 struct ContentView: View {
 
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+    @Environment(\.verticalSizeClass) private var verticalSizeClass
     @Environment(MotionManager.self) private var motionManager
     @Environment(LocationManager.self) private var locationManager
     @Environment(AppState.self) private var appState
@@ -19,7 +20,16 @@ struct ContentView: View {
     private var customization: TabViewCustomization
 
     private var isCompact: Bool {
-        horizontalSizeClass == .compact || UIDevice.current.userInterfaceIdiom == .phone
+        NavigationLayout.usesCompactLayout(
+            horizontalSizeClass: horizontalSizeClass,
+            verticalSizeClass: verticalSizeClass,
+            isPhone: UIDevice.current.userInterfaceIdiom == .phone
+        )
+    }
+
+    /// The size class the navigation state is translated for, derived from ``isCompact``.
+    private var layoutSizeClass: UserInterfaceSizeClass {
+        isCompact ? .compact : .regular
     }
 
     // MARK: - Body
@@ -173,9 +183,10 @@ struct ContentView: View {
         }
         .tabViewStyle(.sidebarAdaptable)
         .tabViewCustomization($customization)
+        .environment(\.usesCompactLayout, isCompact)
         .onAppear(perform: onAppear)
-        .onChange(of: horizontalSizeClass) { _, newSize in appState.onSizeClassChange(newSize) }
-        .onChange(of: appState.appIntentTab) { appState.appIntentDrivenNavigation(horizontalSizeClass) }
+        .onChange(of: isCompact) { appState.onSizeClassChange(layoutSizeClass) }
+        .onChange(of: appState.appIntentTab) { appState.appIntentDrivenNavigation(layoutSizeClass) }
         .onChange(of: appState.selectedTab) { onChangeOfSelectedTab() }
         .fullScreenCover(item: Bindable(appState).selectedChart) { selection in
             FullScreenChartView(selection: selection)

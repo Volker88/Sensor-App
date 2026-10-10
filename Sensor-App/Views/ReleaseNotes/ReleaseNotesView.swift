@@ -14,6 +14,13 @@ struct ReleaseNotesView: View {
     var body: some View {
         List {
             Section {
+                Text("Optimized for iPhone Duo", tableName: "ReleaseNotes")
+            } header: {
+                Text(verbatim: "7.1.0")
+                    .accessibilityLabel(Text("Version 7.1.0", tableName: "ReleaseNotes"))
+            }
+
+            Section {
                 Text("Requires minimum iOS 27 and watchOS 27", tableName: "ReleaseNotes")
                 Text("Record sensor sessions with timestamps and review them anytime", tableName: "ReleaseNotes")
                 Text(

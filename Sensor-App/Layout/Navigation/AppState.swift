@@ -12,19 +12,6 @@ import SwiftUI
 @Observable
 final class AppState {
 
-    #if os(iOS)
-        /// Overrides ``isIphone`` when non-`nil`, so tests can force phone/pad behavior
-        /// independent of the simulator/device actually running them.
-        @ObservationIgnored
-        private let isIphoneOverride: Bool?
-
-        var isIphone: Bool {
-            isIphoneOverride ?? (UIDevice.current.userInterfaceIdiom == .phone)
-        }
-    #else
-        let isIphone = false
-    #endif
-
     /// Root tab selection for TabView Navigation
     var selectedTab: RootTab = .position
 
@@ -71,15 +58,6 @@ final class AppState {
     @ObservationIgnored
     private var suppressNextSelectedTabChange = false
 
-    #if os(iOS)
-        /// - Parameter isIphone: Overrides device-idiom detection; leave `nil` in production
-        ///   so it falls back to `UIDevice.current.userInterfaceIdiom`. Tests pass an explicit
-        ///   value so `onSizeClassChange(_:)` behaves the same on any simulator/device.
-        init(isIphone: Bool? = nil) {
-            self.isIphoneOverride = isIphone
-        }
-    #endif
-
     /// Reset all Stacks
     func resetStack() {
         positionStack.removeAll()
@@ -105,9 +83,6 @@ final class AppState {
     /// its own tab instead, so that first path entry is implicit in the tab selection and the
     /// remaining entries (however many there are) carry over unchanged.
     func onSizeClassChange(_ newSize: UserInterfaceSizeClass?) {
-        // If the device is an iPhone, we do not need to update the navigation
-        guard !isIphone else { return }
-
         // If the selectedTab is Magnetometer, Settings or Recordings, we do not need to update the navigation
         // Those tabs are not affected by size class changes and should remain as they are
         guard selectedTab != .magnetometer && selectedTab != .settings && selectedTab != .recordings else { return }

@@ -10,8 +10,8 @@ import Testing
 
 @testable import Sensor_App
 
-/// Every `AppState` here is constructed with `isIphone: false` so `onSizeClassChange(_:)`
-/// exercises its regular/compact logic regardless of which simulator/device runs the suite.
+/// `onSizeClassChange(_:)` depends only on the size class it is given, so these tests behave
+/// the same on any simulator/device.
 @MainActor
 final class AppStateTests: BaseTestCase {
 
@@ -19,7 +19,7 @@ final class AppStateTests: BaseTestCase {
 
     @Test("Compact to regular preserves a drilled-in Location/Map view")
     func compactToRegularPreservesLocationMap() throws {
-        let appState = AppState(isIphone: false)
+        let appState = AppState()
         appState.selectedTab = .position
         appState.positionStack = [.position(.location), .position(.locationMap)]
 
@@ -31,7 +31,7 @@ final class AppStateTests: BaseTestCase {
 
     @Test("Compact to regular with a bare Location drill drops the redundant root push")
     func compactToRegularBareLocationDrill() throws {
-        let appState = AppState(isIphone: false)
+        let appState = AppState()
         appState.selectedTab = .position
         appState.positionStack = [.position(.location)]
 
@@ -43,7 +43,7 @@ final class AppStateTests: BaseTestCase {
 
     @Test("Compact to regular on the bare Position hub defaults to Location")
     func compactToRegularPositionHubDefault() throws {
-        let appState = AppState(isIphone: false)
+        let appState = AppState()
         appState.selectedTab = .position
         appState.positionStack = []
 
@@ -55,7 +55,7 @@ final class AppStateTests: BaseTestCase {
 
     @Test("Compact to regular on the bare Motion hub defaults to Acceleration")
     func compactToRegularMotionHubDefault() throws {
-        let appState = AppState(isIphone: false)
+        let appState = AppState()
         appState.selectedTab = .motion
         appState.motionStack = []
 
@@ -69,7 +69,7 @@ final class AppStateTests: BaseTestCase {
 
     @Test("Regular to compact preserves a drilled-in Acceleration/Log view")
     func regularToCompactPreservesAccelerationLog() throws {
-        let appState = AppState(isIphone: false)
+        let appState = AppState()
         appState.selectedTab = .acceleration
         appState.motionStack = [.motion(.accelerationLog)]
 
@@ -81,7 +81,7 @@ final class AppStateTests: BaseTestCase {
 
     @Test("Regular to compact preserves a drilled-in Altitude/Log view")
     func regularToCompactPreservesAltitudeLog() throws {
-        let appState = AppState(isIphone: false)
+        let appState = AppState()
         appState.selectedTab = .altitude
         appState.positionStack = [.position(.altitudeLog)]
 
@@ -95,7 +95,7 @@ final class AppStateTests: BaseTestCase {
 
     @Test("Suppression flag fires once after a transition that changes the tab")
     func suppressionFlagFiresOnce() throws {
-        let appState = AppState(isIphone: false)
+        let appState = AppState()
         appState.selectedTab = .position
         appState.positionStack = [.position(.location)]
 
@@ -107,7 +107,7 @@ final class AppStateTests: BaseTestCase {
 
     @Test("Suppression flag is not set when the tab does not change")
     func suppressionFlagNotSetWithoutTabChange() throws {
-        let appState = AppState(isIphone: false)
+        let appState = AppState()
         appState.selectedTab = .magnetometer
 
         appState.onSizeClassChange(.regular)
@@ -122,7 +122,7 @@ final class AppStateTests: BaseTestCase {
         arguments: [RootTab.magnetometer, .settings, .recordings]
     )
     func guardedTabsUnaffected(tab: RootTab) throws {
-        let appState = AppState(isIphone: false)
+        let appState = AppState()
         appState.selectedTab = tab
         appState.positionStack = [.position(.location)]
         appState.motionStack = [.motion(.acceleration)]

@@ -13,7 +13,7 @@ struct LocationScreen: View {
 
     @Environment(\.requestReview) private var requestReview
     @Environment(\.showNotification) private var showNotification
-    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+    @Environment(\.usesCompactLayout) private var usesCompactLayout
     @Environment(LocationManager.self) private var locationManager
     @Environment(MotionManager.self) private var motionManager
 
@@ -28,7 +28,7 @@ struct LocationScreen: View {
                 CustomControlsView()
             }
             .safeAreaInset(edge: .bottom) {
-                if horizontalSizeClass != .compact {
+                if !usesCompactLayout {
                     AdBannerView()
                 }
             }

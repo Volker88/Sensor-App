@@ -52,13 +52,19 @@ Three first-party modules plus tests:
 
 ### Navigation
 
-- `ContentView` uses a `TabView(.sidebarAdaptable)`. Compact (iPhone/iPad
-  narrow) nests sensor screens inside per-tab `NavigationStack`s; regular
-  (iPad wide) flattens them into `TabSection`s in the sidebar.
+- `ContentView` uses a `TabView(.sidebarAdaptable)`. Compact nests sensor
+  screens inside per-tab `NavigationStack`s; regular flattens them into
+  `TabSection`s in the sidebar. The choice is `NavigationLayout.usesCompactLayout`:
+  the flat layout needs regular width *and* height and is **iPad-only**. Phones
+  always stay compact, because a Plus/Max in landscape or an unfolded iPhone
+  Duo reports regular size classes and the ~9 flat tabs would overflow into a
+  More menu. The result is exposed as the `usesCompactLayout` environment value
+  (don't re-derive it from size classes in views).
 - Routes are **enum-based** and type-safe: `RootTab`, `MotionStack`,
   `PositionStack`, `MagnetometerStack` each conform to `View` (or supply a
   destination view) and back `navigationDestination(for:)`.
-- `AppState.onSizeClassChange(_:)` preserves the current tab/screen across
+- `AppState.onSizeClassChange(_:)` (fed a size class derived from the layout
+  decision, not the raw environment one) preserves the current tab/screen across
   iPad compact↔regular layout changes (Split View, Stage Manager) instead of
   resetting to the Position tab. It translates between the compact
   (umbrella-tab + pushed stack) and regular (dedicated tab per screen)

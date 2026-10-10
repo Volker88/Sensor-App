@@ -48,7 +48,10 @@ its own distinct path type — see `NavigationRoute` below for why.
 
 **Key behaviours:**
 
-- `onSizeClassChange(_:)` — called by `ContentView.onChange(of: horizontalSizeClass)`.
+- `onSizeClassChange(_:)` — called by `ContentView.onChange(of: isCompact)` with a
+  size class derived from the layout decision (`.compact`/`.regular`), not the raw
+  environment size class. Phones always use the compact layout, so on an iPhone
+  (including a foldable Duo) this never fires; it only matters on iPad.
   Compact layout nests a granular screen under an umbrella tab (`.position`/
   `.motion`), pushing it as the first `positionStack`/`motionStack` entry;
   regular layout gives the granular screen its own tab instead, so that first
@@ -179,19 +182,28 @@ payload; call sites wrap them as `.position(...)` / `.motion(...)` /
 
 **File:** `Layout/ContentView.swift`
 
-`ContentView` renders a `TabView(.sidebarAdaptable)` whose structure adapts to
-`horizontalSizeClass`. Tab customisation is persisted with
-`@AppStorage("TabCustomizations")`.
+`ContentView` renders a `TabView(.sidebarAdaptable)` whose structure is chosen by
+`NavigationLayout.usesCompactLayout(...)` (`Layout/NavigationLayout.swift`). The flat
+sidebar layout needs a regular horizontal *and* vertical size class and is reserved
+for iPad; phones always get the grouped compact layout. A Plus/Max in landscape or an
+unfolded iPhone Duo can report regular size classes, but the flat layout has about
+nine tabs, which overflow into a More menu in a bottom tab bar. The result is
+published as the `usesCompactLayout` environment value
+(`Layout/EnvironmentValues+UsesCompactLayout.swift`) for views that depend on which
+layout hosts them (e.g. `LocationScreen`'s ad banner). The phone check reads
+`UIDevice.current.userInterfaceIdiom` because SwiftUI has no idiom environment value
+and this is a product decision, not a question of available space. Tab
+customisation is persisted with `@AppStorage("TabCustomizations")`.
 
 ```
 ContentView
 └── TabView(.sidebarAdaptable)
     │
-    ├── [compact — iPhone / narrow iPad]
+    ├── [compact — any iPhone (incl. Duo) / narrow or short iPad window]
     │     Tab: Position     → PositionScreen    (owns its NavigationStack)
     │     Tab: Motion       → MotionScreen      (owns its NavigationStack)
     │
-    └── [regular — iPad sidebar]
+    └── [regular — iPad sidebar, regular width and height]
           TabSection: "Position"
             Tab: Location  → NavigationStack(positionStack) { LocationScreen }
             Tab: Altitude  → NavigationStack(positionStack) { AltitudeScreen }
@@ -349,7 +361,7 @@ A thin wrapper around `ExchangeBannerAdView` (KickstartSDK). Not a manager —
 purely a `View` parameterized by an `apiKey` computed property (`"preview"`
 in DEBUG, else read from Info.plist). Inserted via
 `.safeAreaInset(edge: .bottom)` in `PositionScreen` and `LocationScreen`
-(compact-width only on the latter).
+(compact layout only on the latter, via the `usesCompactLayout` environment value).
 
 ---
 
@@ -376,7 +388,8 @@ Receives a `URL` (produced by `ExportManager`) and presents the share sheet.
 `NavigateIntent: AppIntent` accepts a `NavigationOption` parameter and sets
 `appState.appIntentTab` to the corresponding `RootTab`. `ContentView` reacts
 via `onChange(of: appState.appIntentTab)` and calls
-`appState.appIntentDrivenNavigation(horizontalSizeClass)`.
+`appState.appIntentDrivenNavigation(layoutSizeClass)`, where `layoutSizeClass` is
+derived from `isCompact`.
 
 `SensorAppShortcuts: AppShortcutsProvider` registers the Siri phrase set.
 `AppState.updateShortcutParameter()` is called on app launch to keep the
