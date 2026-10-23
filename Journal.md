@@ -106,6 +106,32 @@ Configuration/               *.xcconfig (targets, version, signing secrets)
 
 ## The Journey
 
+### 🗳️ Kickstart Signal — letting users vote on what's next (2026-10-23)
+
+**The ask:** give users a way to suggest features and upvote each other's ideas,
+without building a backend or a feedback form from scratch.
+
+**Same SDK, second product.** `KickstartSDK` bumped from 0.5.0 to 0.6.0, and
+the app target now links a second product, `KickstartSignal`, next to
+`KickstartExchange`. Just like the ad banner (see 2026-08-19), the integration
+surface is a single SwiftUI view: `SignalBoardView(apiKey:)`. `SignalBoardScreen`
+wraps it in a `NavigationStack` with a Close toolbar button, and
+`SettingsScreen` presents it as a sheet from a new **Feedback → Feature
+Requests** section.
+
+**No new secret.** The board uses the exact same key resolution as
+`AdBannerView`: `"preview"` in DEBUG, `KICKSTART_EXCHANGE_API_KEY` from
+Info.plist (populated from the gitignored `Secret.xcconfig`) in release. One
+Kickstart account, one key, two products.
+
+**Shipping it.** Marketing version is now 7.2.0 (build `20261023.1`), with a
+release-notes entry ("Added a feature request and voting board") and new
+strings in `Localizable.xcstrings` / `ReleaseNotes.xcstrings`.
+
+**Lesson:** when a vendor ships features as plain `View`s, adding the second
+one costs about as much as adding the first: a package product, a screen, and
+a button.
+
 ### 📱 Getting ready for the iPhone Duo (2026-10-10)
 
 **The ask:** make the app behave on the foldable iPhone Duo.

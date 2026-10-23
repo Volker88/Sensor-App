@@ -16,6 +16,8 @@ struct SettingsScreen: View {
 
     @AppStorage("showReleaseNotes") private var showReleaseNotes = true
 
+    @State private var showSignalBoard = false
+
     // MARK: - Body
     var body: some View {
         Form {
@@ -148,6 +150,16 @@ struct SettingsScreen: View {
                 }
             }
 
+            Section {
+                Button("Feature Requests", systemImage: "lightbulb") {
+                    showSignalBoard = true
+                }
+            } header: {
+                Text("Feedback")
+            } footer: {
+                Text("Suggest new features and vote on ideas from other users.")
+            }
+
             #if DEBUG
                 Section("Developer") {
                     NavigationLink("Diagnostics") {
@@ -155,10 +167,12 @@ struct SettingsScreen: View {
                     }
                 }
             #endif
-
         }
         .accessibilityIdentifier(UIIdentifiers.SettingScreen.collectionView)
         .navigationTitle(RootTab.settings.localizedString)
+        .sheet(isPresented: $showSignalBoard) {
+            SignalBoardScreen(showSignalBoard: $showSignalBoard)
+        }
         .toolbar {
             ToolbarItem(placement: .confirmationAction) {
                 Button("Save", systemImage: "checkmark") {

@@ -14,6 +14,13 @@ struct ReleaseNotesView: View {
     var body: some View {
         List {
             Section {
+                Text("Added a feature request and voting board", tableName: "ReleaseNotes")
+            } header: {
+                Text(verbatim: "7.2.0")
+                    .accessibilityLabel(Text("Version 7.2.0", tableName: "ReleaseNotes"))
+            }
+
+            Section {
                 Text("Optimized for iPhone Duo", tableName: "ReleaseNotes")
             } header: {
                 Text(verbatim: "7.1.0")

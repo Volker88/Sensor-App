@@ -9,8 +9,8 @@
 // https://help.apple.com/xcode/#/dev745c5c974
 
 // Versioning
-CURRENT_PROJECT_VERSION = 20261010.1
-MARKETING_VERSION = 7.1.0
+CURRENT_PROJECT_VERSION = 20261023.1
+MARKETING_VERSION = 7.2.0
 
 // Secrets
 //

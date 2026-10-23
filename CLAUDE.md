@@ -10,7 +10,7 @@ altitude/barometric pressure. Live values are shown as readouts and Swift
 Charts line graphs, can be logged into a reversed history list, and exported
 as CSV via the share sheet. Shipping on the App Store; source is public.
 
-- **Marketing version:** 7.0.0 · **Build:** date-based (`YYYYMMDD.N`)
+- **Marketing version:** 7.2.0 · **Build:** date-based (`YYYYMMDD.N`)
 - **Deployment target:** iOS / watchOS / tvOS / macOS / visionOS **27.0**
 - **Language:** Swift 6.2, strict concurrency, `@MainActor` default isolation, approachable concurrency
 - **License:** see `LICENSE.md`
@@ -165,6 +165,14 @@ watchOS uses a single `*View` per sensor (no Screen/List split).
   plain SwiftUI view, not a manager — no app-lifecycle SDK initialization.
   Shown via `.safeAreaInset(edge: .bottom)` in `PositionScreen` and
   `LocationScreen` (compact-width only on the latter).
+- **Kickstart Signal feature board:** `SignalBoardScreen`
+  (`Sensor-App/Views/Settings/`) wraps `SignalBoardView` from the same
+  `KickstartSDK` package (product `KickstartSignal`, SDK ≥ 0.6.0) in a
+  `NavigationStack` with a Close button. Presented as a sheet from the
+  "Feedback → Feature Requests" section in `SettingsScreen`, where users can
+  suggest features and vote. Reuses the same API-key logic as `AdBannerView`
+  (`"preview"` in DEBUG, `KICKSTART_EXCHANGE_API_KEY` otherwise) — no separate
+  secret.
 - **Unit conversion:** sensor values are stored internally in SI/default
   units (meters, m/s, kPa, radians) and converted only at the edges via
   `CalculationManager` (`calculateSpeed`/`calculatePressure`/`calculateHeight`,

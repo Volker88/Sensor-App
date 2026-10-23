@@ -436,6 +436,10 @@
           "package": "KickstartSDK",
           "product-name": "KickstartExchange",
           "build-phase": { "build-phase": "frameworks" },
+        }, {
+          "package": "KickstartSDK",
+          "product-name": "KickstartSignal",
+          "build-phase": { "build-phase": "frameworks" },
         },
       ],
       "build-settings": {
