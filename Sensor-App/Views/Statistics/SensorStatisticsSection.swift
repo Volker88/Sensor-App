@@ -9,9 +9,12 @@
 import Sensor_App_Framework
 import SwiftUI
 
-struct AxisEntry {
-    let label: String
+struct AxisEntry: Identifiable {
+    /// Localized row label. Using `LocalizedStringResource` (not `String`) so `Text` looks it up in the String Catalog.
+    let label: LocalizedStringResource
     let stats: AxisStatistics?
+
+    var id: String { label.key }
 }
 
 struct SensorStatisticsSection: View {
@@ -40,7 +43,7 @@ struct SensorStatisticsSection: View {
                         }
                         .font(.caption)
 
-                        ForEach(axes, id: \.label) { entry in
+                        ForEach(axes) { entry in
                             if let stats = entry.stats {
                                 GridRow {
                                     Text(entry.label)

@@ -106,6 +106,30 @@ Configuration/               *.xcconfig (targets, version, signing secrets)
 
 ## The Journey
 
+### 🌐 The statistics table that only spoke English (2026-10-25)
+
+**The report:** switch the app to German, open any sensor, scroll to
+Statistics — the header said "Statistiken", but every row read "Roll",
+"Pitch", "Lat", "Speed"… in English.
+
+**The culprit:** `AxisEntry.label` was a `String`. `Text("Min")` with a
+literal is a `LocalizedStringKey` and gets looked up; `Text(someString)` is
+treated as verbatim and never touches the String Catalog. So the header
+strings were translated while the row labels, the only ones passing through
+a stored property, were not. Making the property a `LocalizedStringResource`
+fixed it at the type level: every `AxisEntry(label: "X", …)` call site stays
+the same, but the literal now becomes a resource the compiler extracts.
+`AxisEntry` became `Identifiable` via `label.key`, since `ForEach(id: \.label)`
+no longer applied.
+
+**The bonus bug:** some keys (`Roll`, `Pitch`, `Heading`) were already in the
+catalog but had never been shown, and they'd been translated without context:
+German "Tonhöhe" (musical pitch) and "Überschrift" (a text heading), Italian
+"Pause attive", Korean "휠체어 주행" (wheelchair rolling). They now use the
+attitude terms (Nicken, Kurs, Rollio, 롤…) and carry a comment so the next
+translation pass knows they're about device attitude. **Lesson:** a
+translation done without a key comment is a guess.
+
 ### ✏️ Names worth remembering: renaming recordings (2026-10-25)
 
 Every session was named after its start time ("18 Oct 2026, 09:14"), because
