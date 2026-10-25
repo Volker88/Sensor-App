@@ -12,9 +12,6 @@ import SwiftUI
 struct LocationView: View {
 
     @Environment(LocationManager.self) private var locationManager
-    @Environment(SettingsManager.self) private var settingsManager
-
-    @State private var frequency = 1.0  // Default Frequency
 
     // MARK: - Body
     var body: some View {
@@ -43,18 +40,7 @@ struct LocationView: View {
         }
         .navigationTitle("Location")
         .font(.footnote)
-        .onAppear(perform: onAppear)
-        .onDisappear(perform: onDisappear)
-    }
-
-    // MARK: - Methods
-    func onAppear() {
-        locationManager.startLocationUpdates()
-    }
-
-    func onDisappear() {
-        locationManager.stopLocationUpdates()
-        locationManager.resetLocationUpdates()
+        .sensorScreen(.location)
     }
 }
 

@@ -30,7 +30,7 @@ struct GyroscopeView: View {
                     label: {
                         Text("X-Axis: \(motionManager.motion?.gyroXAxis ?? 0.0, specifier: "%.5f") rad/s")
                             .accessibilityHint("Tap to collapse graph", isEnabled: showXAxis)
-                            .accessibilityHint("Tap to expand  graph", isEnabled: !showXAxis)
+                            .accessibilityHint("Tap to expand graph", isEnabled: !showXAxis)
                             .accessibilityInputLabels(["X-Axis"])
                             .accessibilityIdentifier(UIIdentifiers.GyroscopeView.xAxisRow)
                     }
@@ -47,7 +47,7 @@ struct GyroscopeView: View {
                     label: {
                         Text("Y-Axis: \(motionManager.motion?.gyroYAxis ?? 0.0, specifier: "%.5f") rad/s")
                             .accessibilityHint("Tap to collapse graph", isEnabled: showYAxis)
-                            .accessibilityHint("Tap to expand  graph", isEnabled: !showYAxis)
+                            .accessibilityHint("Tap to expand graph", isEnabled: !showYAxis)
                             .accessibilityInputLabels(["Y-Axis"])
                             .accessibilityIdentifier(UIIdentifiers.GyroscopeView.yAxisRow)
                     }
@@ -64,7 +64,7 @@ struct GyroscopeView: View {
                     label: {
                         Text("Z-Axis: \(motionManager.motion?.gyroZAxis ?? 0.0, specifier: "%.5f") rad/s")
                             .accessibilityHint("Tap to collapse graph", isEnabled: showZAxis)
-                            .accessibilityHint("Tap to expand  graph", isEnabled: !showZAxis)
+                            .accessibilityHint("Tap to expand graph", isEnabled: !showZAxis)
                             .accessibilityInputLabels(["Z-Axis"])
                             .accessibilityIdentifier(UIIdentifiers.GyroscopeView.zAxisRow)
                     }

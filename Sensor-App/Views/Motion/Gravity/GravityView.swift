@@ -30,7 +30,7 @@ struct GravityView: View {
                     label: {
                         Text("X-Axis: \(motionManager.motion?.gravityXAxis ?? 0.0, specifier: "%.5f") g (9,81 m/s^2)")
                             .accessibilityHint("Tap to collapse graph", isEnabled: showXAxis)
-                            .accessibilityHint("Tap to expand  graph", isEnabled: !showXAxis)
+                            .accessibilityHint("Tap to expand graph", isEnabled: !showXAxis)
                             .accessibilityInputLabels(["X-Axis"])
                             .accessibilityIdentifier(UIIdentifiers.GravityView.xAxisRow)
                     }
@@ -47,7 +47,7 @@ struct GravityView: View {
                     label: {
                         Text("Y-Axis: \(motionManager.motion?.gravityYAxis ?? 0.0, specifier: "%.5f") g (9,81 m/s^2)")
                             .accessibilityHint("Tap to collapse graph", isEnabled: showYAxis)
-                            .accessibilityHint("Tap to expand  graph", isEnabled: !showYAxis)
+                            .accessibilityHint("Tap to expand graph", isEnabled: !showYAxis)
                             .accessibilityInputLabels(["Y-Axis"])
                             .accessibilityIdentifier(UIIdentifiers.GravityView.yAxisRow)
                     }
@@ -64,7 +64,7 @@ struct GravityView: View {
                     label: {
                         Text("Z-Axis: \(motionManager.motion?.gravityZAxis ?? 0.0, specifier: "%.5f") g (9,81 m/s^2)")
                             .accessibilityHint("Tap to collapse graph", isEnabled: showZAxis)
-                            .accessibilityHint("Tap to expand  graph", isEnabled: !showZAxis)
+                            .accessibilityHint("Tap to expand graph", isEnabled: !showZAxis)
                             .accessibilityInputLabels(["Z-Axis"])
                             .accessibilityIdentifier(UIIdentifiers.GravityView.zAxisRow)
                     }

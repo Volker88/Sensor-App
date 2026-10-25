@@ -17,11 +17,17 @@ public class LocationManager {
     public var locationChart: [LocationModel] = []
     public var authorizationStatus: CLAuthorizationStatus { locationManager.authorizationStatus }
 
-    public var updatesStarted: Bool = false
+    /// `true` while live location updates are actually being consumed (authorization
+    /// granted). Drives start/pause toggles.
+    public private(set) var isRunning: Bool = false
 
     private let settings = SettingsManager()
     private var locationManager = CLLocationManager()
     private var index = 1
+    private var updatesTask: Task<Void, Never>?
+
+    // Views that currently want location updates — see MotionManager's matching comment.
+    private var clients: Set<String> = []
 
     public init() {
         requestWhenInUseAuthorization()
@@ -33,20 +39,23 @@ public class LocationManager {
     }
 
     public func startLocationUpdates() {
-        updatesStarted = true
-
         // MARK: - Handle authorizationStatus
         guard locationManager.authorizationStatus == .authorizedWhenInUse else {
             Logger.coreLocation.debug("Location data authorization not granted.")
             return
         }
 
-        Task {
+        // Cancel any previous loop: it only checks for cancellation when the next update
+        // arrives, so a quick stop → start would otherwise leave two loops appending.
+        updatesTask?.cancel()
+        isRunning = true
+
+        updatesTask = Task {
             do {
                 let updates = CLLocationUpdate.liveUpdates()
 
                 for try await update in updates {
-                    if !self.updatesStarted { break }
+                    if Task.isCancelled { break }
 
                     if let loc = update.location {
                         let latestLocation = LocationModel(
@@ -80,10 +89,29 @@ public class LocationManager {
     }
 
     public func stopLocationUpdates() {
-        updatesStarted = false
+        isRunning = false
+        updatesTask?.cancel()
+        updatesTask = nil
+    }
+
+    /// Starts location updates on behalf of `client` (typically a screen).
+    /// Pair with `releaseLocationUpdates(for:)`; registering the same client twice is harmless.
+    public func startLocationUpdates(for client: String) {
+        clients.insert(client)
+        startLocationUpdates()
+    }
+
+    /// Drops `client`'s claim; updates are stopped and reset once no client needs them.
+    public func releaseLocationUpdates(for client: String) {
+        clients.remove(client)
+        guard clients.isEmpty else { return }
+
+        stopLocationUpdates()
+        resetLocationUpdates()
     }
 
     public func resetLocationUpdates() {
+        location = nil
         index = 1
         locationArray.removeAll()
         locationChart.removeAll()

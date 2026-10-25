@@ -11,10 +11,7 @@ import SwiftUI
 
 struct MagnetometerView: View {
 
-    @Environment(SettingsManager.self) private var settingsManager
     @Environment(MotionManager.self) private var motionManager
-
-    @State private var frequency = 1.0  // Default Frequency
 
     // MARK: - Body
     var body: some View {
@@ -29,23 +26,7 @@ struct MagnetometerView: View {
         }
         .navigationTitle("Magnetometer")
         .font(.footnote)
-        .onAppear(perform: onAppear)
-        .onDisappear(perform: onDisappear)
-    }
-
-    // MARK: - Methods
-    func onAppear() {
-        frequency = settingsManager.fetchUserSettings().frequencySetting
-        motionManager.sensorUpdateInterval = frequency
-
-        // Start updating motion
-        motionManager.sensorUpdateInterval = frequency
-        motionManager.startMotionUpdates()
-    }
-
-    func onDisappear() {
-        motionManager.stopMotionUpdates()
-        motionManager.resetMotionUpdates()
+        .sensorScreen(.motion)
     }
 }
 

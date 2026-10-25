@@ -16,7 +16,11 @@ public class MotionManager {
 
     private let settings = SettingsManager()
 
-    public var updatesStarted: Bool = false
+    /// `true` while device-motion updates are actually being delivered (i.e. the
+    /// availability/authorization guards passed). Drives start/pause toggles.
+    public private(set) var isMotionRunning: Bool = false
+    /// `true` while relative-altitude updates are actually being delivered.
+    public private(set) var isAltitudeRunning: Bool = false
 
     public var motion: MotionModel?
     public var motionArray: [MotionModel] = []
@@ -30,8 +34,12 @@ public class MotionManager {
 
     public var sensorUpdateInterval: Double = 1.0 {
         didSet {
-            startMotionUpdates()
-            startAltitudeUpdates()
+            guard oldValue != sensorUpdateInterval else { return }
+
+            // Only restart streams that are already running, so changing the rate
+            // never resumes updates the user paused (or starts sensors nobody asked for).
+            if isMotionRunning { startMotionUpdates() }
+            if isAltitudeRunning { startAltitudeUpdates() }
         }
     }
 
@@ -43,6 +51,13 @@ public class MotionManager {
     // never crosses actors — it's structural parity, not a race fix.
     private var motionContinuation: AsyncStream<MotionModel>.Continuation?
     private var altitudeContinuation: AsyncStream<AltitudeModel>.Continuation?
+
+    // Views that currently want each sensor running (see `startMotionUpdates(for:)`).
+    // Several screens share this manager, and during navigation the previous screen's
+    // onDisappear can fire *after* the next screen's onAppear — tracking owners stops
+    // the outgoing screen from tearing down updates the incoming one just started.
+    private var motionClients: Set<String> = []
+    private var altitudeClients: Set<String> = []
 
     public init() {
         mockData()
@@ -60,8 +75,6 @@ public class MotionManager {
     }
 
     public func startMotionUpdates() {
-        updatesStarted = true
-
         guard motionManager.isDeviceMotionAvailable else {
             Logger.coreMotion.info("Device motion is not available on this device.")
             return
@@ -75,13 +88,13 @@ public class MotionManager {
         // Tear down any previous stream first — sensorUpdateInterval's didSet calls this
         // again while updates may already be running, and CMMotionManager just replaces
         // the handler in place, so the old continuation would otherwise never finish.
-        motionManager.stopDeviceMotionUpdates()
-        motionContinuation?.finish()
+        stopDeviceMotionUpdates()
 
         motionManager.deviceMotionUpdateInterval = (1.0 / sensorUpdateInterval)
         let (stream, continuation) = AsyncStream.makeStream(of: MotionModel.self)
         motionContinuation = continuation
 
+        isMotionRunning = true
         motionManager.startDeviceMotionUpdates(using: .xTrueNorthZVertical, to: .main) { [weak self] data, _ in
             guard let self, let data else { return }
 
@@ -124,8 +137,6 @@ public class MotionManager {
     }
 
     public func startAltitudeUpdates() {
-        updatesStarted = true
-
         guard CMAltimeter.isRelativeAltitudeAvailable() else {
             Logger.coreMotion.info("Altimeter not available on this device.")
             return
@@ -137,13 +148,13 @@ public class MotionManager {
         }
 
         // Tear down any previous stream first — see the matching comment in startMotionUpdates().
-        altimeterManager.stopRelativeAltitudeUpdates()
-        altitudeContinuation?.finish()
+        stopAltitudeUpdates()
 
         motionManager.deviceMotionUpdateInterval = (1.0 / sensorUpdateInterval)
         let (stream, continuation) = AsyncStream.makeStream(of: AltitudeModel.self)
         altitudeContinuation = continuation
 
+        isAltitudeRunning = true
         altimeterManager.startRelativeAltitudeUpdates(to: .main) { [weak self] data, _ in
             guard let self, let data else { return }
 
@@ -173,26 +184,80 @@ public class MotionManager {
         }
     }
 
+    /// Stops both device-motion and relative-altitude updates.
     public func stopMotionUpdates() {
-        updatesStarted = false
+        stopDeviceMotionUpdates()
+        stopAltitudeUpdates()
+    }
 
+    /// Stops device-motion updates only (acceleration, gravity, gyroscope, attitude, magnetometer).
+    public func stopDeviceMotionUpdates() {
+        isMotionRunning = false
         motionManager.stopDeviceMotionUpdates()
-        altimeterManager.stopRelativeAltitudeUpdates()
-
         motionContinuation?.finish()
         motionContinuation = nil
+    }
+
+    /// Stops relative-altitude updates only.
+    public func stopAltitudeUpdates() {
+        isAltitudeRunning = false
+        altimeterManager.stopRelativeAltitudeUpdates()
         altitudeContinuation?.finish()
         altitudeContinuation = nil
     }
 
+    /// Starts device-motion updates on behalf of `client` (typically a screen).
+    /// Pair with `releaseMotionUpdates(for:)`; registering the same client twice is harmless.
+    public func startMotionUpdates(for client: String) {
+        motionClients.insert(client)
+        startMotionUpdates()
+    }
+
+    /// Starts relative-altitude updates on behalf of `client`.
+    /// Pair with `releaseAltitudeUpdates(for:)`.
+    public func startAltitudeUpdates(for client: String) {
+        altitudeClients.insert(client)
+        startAltitudeUpdates()
+    }
+
+    /// Drops `client`'s claim on device motion; updates are stopped and their values
+    /// reset once no client needs them anymore.
+    public func releaseMotionUpdates(for client: String) {
+        motionClients.remove(client)
+        guard motionClients.isEmpty else { return }
+
+        stopDeviceMotionUpdates()
+        resetDeviceMotionUpdates()
+    }
+
+    /// Drops `client`'s claim on relative altitude; see `releaseMotionUpdates(for:)`.
+    public func releaseAltitudeUpdates(for client: String) {
+        altitudeClients.remove(client)
+        guard altitudeClients.isEmpty else { return }
+
+        stopAltitudeUpdates()
+        resetAltitudeUpdates()
+    }
+
+    /// Clears both device-motion and relative-altitude values.
     public func resetMotionUpdates() {
+        resetDeviceMotionUpdates()
+        resetAltitudeUpdates()
+    }
+
+    /// Clears device-motion values only.
+    public func resetDeviceMotionUpdates() {
+        motion = nil
         motionArray.removeAll()
         motionChart.removeAll()
+        motionCounter = 1
+    }
 
+    /// Clears relative-altitude values only.
+    public func resetAltitudeUpdates() {
+        altitude = nil
         altitudeArray.removeAll()
         altitudeChart.removeAll()
-
-        motionCounter = 1
         altitudeCounter = 1
     }
 

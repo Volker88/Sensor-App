@@ -30,7 +30,7 @@ struct MagnetometerView: View {
                     label: {
                         Text("X-Axis: \(motionManager.motion?.magnetometerXAxis ?? 0.0, specifier: "%.5f") µT")
                             .accessibilityHint("Tap to collapse graph", isEnabled: showXAxis)
-                            .accessibilityHint("Tap to expand  graph", isEnabled: !showXAxis)
+                            .accessibilityHint("Tap to expand graph", isEnabled: !showXAxis)
                             .accessibilityInputLabels(["X-Axis"])
                             .accessibilityIdentifier(UIIdentifiers.MagnetometerView.xAxisRow)
                     }
@@ -47,7 +47,7 @@ struct MagnetometerView: View {
                     label: {
                         Text("Y-Axis: \(motionManager.motion?.magnetometerYAxis ?? 0.0, specifier: "%.5f") µT")
                             .accessibilityHint("Tap to collapse graph", isEnabled: showYAxis)
-                            .accessibilityHint("Tap to expand  graph", isEnabled: !showYAxis)
+                            .accessibilityHint("Tap to expand graph", isEnabled: !showYAxis)
                             .accessibilityInputLabels(["Y-Axis"])
                             .accessibilityIdentifier(UIIdentifiers.MagnetometerView.yAxisRow)
                     }
@@ -64,7 +64,7 @@ struct MagnetometerView: View {
                     label: {
                         Text("Z-Axis: \(motionManager.motion?.magnetometerZAxis ?? 0.0, specifier: "%.5f") µT")
                             .accessibilityHint("Tap to collapse graph", isEnabled: showZAxis)
-                            .accessibilityHint("Tap to expand  graph", isEnabled: !showZAxis)
+                            .accessibilityHint("Tap to expand graph", isEnabled: !showZAxis)
                             .accessibilityInputLabels(["Z-Axis"])
                             .accessibilityIdentifier(UIIdentifiers.MagnetometerView.zAxisRow)
                     }

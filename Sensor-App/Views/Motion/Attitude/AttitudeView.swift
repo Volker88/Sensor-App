@@ -31,7 +31,7 @@ struct AttitudeView: View {
                     label: {
                         Text("Roll: \((motionManager.motion?.attitudeRoll ?? 0.0) * 180 / .pi, specifier: "%.5f")°")
                             .accessibilityHint("Tap to collapse graph", isEnabled: showRoll)
-                            .accessibilityHint("Tap to expand  graph", isEnabled: !showRoll)
+                            .accessibilityHint("Tap to expand graph", isEnabled: !showRoll)
                             .accessibilityInputLabels(["Roll"])
                             .accessibilityIdentifier(UIIdentifiers.AttitudeView.rollRow)
                     }
@@ -48,7 +48,7 @@ struct AttitudeView: View {
                     label: {
                         Text("Pitch: \((motionManager.motion?.attitudePitch ?? 0.0) * 180 / .pi, specifier: "%.5f")°")
                             .accessibilityHint("Tap to collapse graph", isEnabled: showPitch)
-                            .accessibilityHint("Tap to expand  graph", isEnabled: !showPitch)
+                            .accessibilityHint("Tap to expand graph", isEnabled: !showPitch)
                             .accessibilityInputLabels(["Pitch"])
                             .accessibilityIdentifier(UIIdentifiers.AttitudeView.pitchRow)
                     }
@@ -65,7 +65,7 @@ struct AttitudeView: View {
                     label: {
                         Text("Yaw: \((motionManager.motion?.attitudeYaw ?? 0.0) * 180 / .pi, specifier: "%.5f")°")
                             .accessibilityHint("Tap to collapse graph", isEnabled: showYaw)
-                            .accessibilityHint("Tap to expand  graph", isEnabled: !showYaw)
+                            .accessibilityHint("Tap to expand graph", isEnabled: !showYaw)
                             .accessibilityInputLabels(["Yaw"])
                             .accessibilityIdentifier(UIIdentifiers.AttitudeView.yawRow)
                     }
@@ -83,7 +83,7 @@ struct AttitudeView: View {
                     label: {
                         Text("Heading: \(motionManager.motion?.attitudeHeading ?? 0.0, specifier: "%.5f")°")
                             .accessibilityHint("Tap to collapse graph", isEnabled: showHeading)
-                            .accessibilityHint("Tap to expand  graph", isEnabled: !showHeading)
+                            .accessibilityHint("Tap to expand graph", isEnabled: !showHeading)
                             .accessibilityInputLabels(["Heading"])
                             .accessibilityIdentifier(UIIdentifiers.AttitudeView.headingRow)
                     }

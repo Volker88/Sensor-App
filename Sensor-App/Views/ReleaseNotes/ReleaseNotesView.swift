@@ -15,6 +15,15 @@ struct ReleaseNotesView: View {
         List {
             Section {
                 Text("Added a feature request and voting board", tableName: "ReleaseNotes")
+                Text("Start and stop recordings directly from the Recordings tab", tableName: "ReleaseNotes")
+                Text("See live sample counts while a recording is running", tableName: "ReleaseNotes")
+                Text("Recordings keep running while you switch between sensors", tableName: "ReleaseNotes")
+                Text(
+                    "Each recording starts with a clean slate, so it only contains data captured after you tap Record",
+                    tableName: "ReleaseNotes")
+                Text(
+                    "Pause and Delete are disabled during a recording to prevent gaps or lost data",
+                    tableName: "ReleaseNotes")
             } header: {
                 Text(verbatim: "7.2.0")
                     .accessibilityLabel(Text("Version 7.2.0", tableName: "ReleaseNotes"))

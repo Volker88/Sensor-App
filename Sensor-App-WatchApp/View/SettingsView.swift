@@ -63,17 +63,16 @@ struct SettingsView: View {
                     .accessibilityLabel("Refresh Rate")
                     .accessibilityValue("\(Int(refreshRate)) Hz")
             }
-            Section {
-                Button(action: {
-                    discardChanges(dismiss: true)
-                }) {
-                    Text("Discard")
-                }
-
-                Button(action: {
+        }
+        .toolbar {
+            ToolbarItem(placement: .confirmationAction) {
+                Button("Save", systemImage: "checkmark") {
                     saveSettings()
-                }) {
-                    Text("Save")
+                }
+            }
+            ToolbarItem(placement: .cancellationAction) {
+                Button("Discard", systemImage: "xmark", role: .destructive) {
+                    discardChanges(dismiss: true)
                 }
             }
         }

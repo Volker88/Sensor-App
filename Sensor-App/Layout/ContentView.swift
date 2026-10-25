@@ -14,6 +14,7 @@ struct ContentView: View {
     @Environment(\.verticalSizeClass) private var verticalSizeClass
     @Environment(MotionManager.self) private var motionManager
     @Environment(LocationManager.self) private var locationManager
+    @Environment(RecordingManager.self) private var recordingManager
     @Environment(AppState.self) private var appState
 
     @AppStorage("TabCustomizations")
@@ -204,8 +205,12 @@ struct ContentView: View {
 
     private func onChangeOfSelectedTab() {
         guard !appState.consumeSelectedTabChangeSuppression() else { return }
-        motionManager.stopMotionUpdates()
-        locationManager.stopLocationUpdates()
+        // Switching tabs mid-recording must not stop the sensors, or the session
+        // would end up with gaps. Users can still pause explicitly via the controls.
+        if !recordingManager.isRecording {
+            motionManager.stopMotionUpdates()
+            locationManager.stopLocationUpdates()
+        }
         appState.resetStack()
     }
 }
@@ -216,6 +221,7 @@ struct ContentView: View {
         .environment(AppState())
         .environment(MotionManager())
         .environment(LocationManager())
+        .environment(RecordingManager())
 }
 
 #Preview("ContentView - German") {
@@ -224,4 +230,5 @@ struct ContentView: View {
         .environment(AppState())
         .environment(MotionManager())
         .environment(LocationManager())
+        .environment(RecordingManager())
 }

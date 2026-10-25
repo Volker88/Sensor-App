@@ -49,6 +49,8 @@ enum UIIdentifiers {
     enum RecordingsScreen {
         static let list = "RecordingsScreen.List"
         static let exportButton = "RecordingsScreen.Button.Export"
+        static let startRecordingButton = "RecordingsScreen.Button.StartRecording"
+        static let stopRecordingButton = "RecordingsScreen.Button.StopRecording"
     }
 
     enum RefreshRateView {

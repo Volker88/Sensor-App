@@ -106,6 +106,133 @@ Configuration/               *.xcconfig (targets, version, signing secrets)
 
 ## The Journey
 
+### ⏺️ Record from anywhere on the wrist (2026-10-24)
+
+Until now, recording on the watch meant backing out to Home and opening
+*Record Session*. Every sensor screen already had a bottom toolbar, so the
+obvious move was a third button: Record, which flips to a red
+`stop.circle.fill` mid-session, exactly like the iOS radial menu.
+
+The interesting bit wasn't the button, it was *who owns the sensors*.
+`WatchRecordingView` used to keep a stable client ID and skip its own release
+while recording. That works when there's one entry point, but now you can start
+a recording on Acceleration, wander to Location and stop it there. That
+"skip the release" trick would have turned into a guessing game about which
+screen was still holding what.
+
+**Aha:** the recording is a client too. `WatchRecordingController` (the watch
+twin of iOS's `RecordingController`) claims motion, altitude *and* location
+under one stable `"WatchRecording"` ID on `start()` and releases it on
+`stop()`. Screens go back to the boring rule: claim on appear, release on
+disappear, always. The client-set bookkeeping in the managers keeps the
+sensors alive for as long as *anyone* needs them. Since the recording's claim
+covers everything, `WatchRecordingView` lost its `onAppear`/`onDisappear`
+completely and is now a plain UI over the controller.
+
+A small SwiftLint side quest: adding the record branch pushed
+`SensorControls.perform(_:)` to cyclomatic complexity 11. Splitting the
+`(action, sensor)` tuple switch into `startUpdates()` / `pauseUpdates()` /
+`deleteValues()` reads better anyway.
+
+### 🧽 Same rules, one place: the post-recording cleanup (2026-10-24)
+
+**The ask:** a readability pass over the watch-controls and recording work
+from the day before.
+
+**The bug the refactor found.** iOS had two ways to start a recording, and
+they had quietly drifted apart. `RecordingControlSection` stopped and reset
+the sensors first; `CustomControlsView`'s Record button didn't, so a session
+started from a sensor screen also saved every sample collected *before* the
+tap, stamped with a `startedAt` that came after them. Both now call one
+`RecordingController` (`start()` / `stop()`), and the behavior follows the
+correct one: fresh buffers, then record. Hoisting duplicated code first and
+only then comparing the copies is how this showed up. Side by side in two
+files, the missing reset was easy to miss.
+
+**Seven watch screens, one modifier.** Every watch sensor view had the same
+static client string, the same `onAppear` / `onDisappear` pair and the same
+toolbar line. `.sensorScreen(.motion)` (`SensorScreenModifier`) now does all
+three. The client ID became a per-instance `UUID` in the modifier's `@State`,
+which is unique by construction, so nobody has to hand-type an ID that might
+collide. `WatchRecordingView` keeps its hand-written lifecycle on purpose: it
+*needs* a stable ID so its claim survives leaving mid-recording.
+
+**API that says what it does.** `MotionManager.releaseUpdates(for:)` was
+named differently from `LocationManager.releaseLocationUpdates(for:)` and
+released motion *and* altitude together. It's now
+`releaseMotionUpdates(for:)` / `releaseAltitudeUpdates(for:)`, backed by new
+single-sensor `stopDeviceMotionUpdates()` / `stopAltitudeUpdates()` /
+`resetDeviceMotionUpdates()` / `resetAltitudeUpdates()`. As a result, the
+watch Altitude screen's Pause and Delete no longer touch device motion. The
+public `updatesStarted` flag is gone: nothing outside the managers read it
+anymore. `MotionManager` only ever wrote it, and `LocationManager`'s loop now
+relies on task cancellation, which it already did.
+
+**Shared button vocabulary.** iOS `CustomControlsView.ButtonType` and watch
+`SensorControls.ButtonType` were copies of each other. They are now the
+framework's `SensorControlAction`, which holds the cases, symbols and
+localized keys. The localized keys still resolve, because the shared
+`Localizable.xcstrings` is a member of the framework target too. Each app
+keeps only what's genuinely per-target: accessibility identifiers (each
+target has its own `UIIdentifiers`) and, on iOS, the radial-menu offsets.
+
+**Lesson:** a duplicated code path is a bug that just hasn't happened yet. In
+this case it already had.
+
+### ⌚ Watch controls — and the screen that stopped its successor (2026-10-23)
+
+**The report:** on Apple Watch, values would sometimes just… freeze, and the
+only cure was backing out and re-entering the screen. There were no controls,
+because each watch `*View` drove the sensors purely from `onAppear` /
+`onDisappear`.
+
+**The war story:** every watch screen shares one `MotionManager`, and during
+navigation SwiftUI is free to fire the *outgoing* screen's `onDisappear`
+**after** the incoming screen's `onAppear`. So Gyroscope would start device
+motion, and a beat later Acceleration's `onDisappear` would stop and reset it.
+Two more gremlins were hiding in plain sight: `GravityView.onDisappear` called
+`startMotionUpdates()` (a copy-paste slip that never stopped anything), and
+`WatchRecordingView.onDisappear` stopped *and reset* all sensors even
+mid-recording, so wandering off during a session left you with an empty or
+truncated save.
+
+**The fix:** the managers now track *who* wants each sensor.
+`startMotionUpdates(for:)` / `startAltitudeUpdates(for:)` /
+`startLocationUpdates(for:)` add a client ID (a stable per-screen string) to a
+`Set`, and `releaseUpdates(for:)` / `releaseLocationUpdates(for:)` remove it,
+stopping a sensor only when its set is empty and resetting data only when
+nothing is left running. A `Set` rather than a counter makes a doubled
+`onAppear` harmless. The recording screen just skips its release while
+`isRecording`, and since its ID is stable across visits, the claim gets
+dropped cleanly the next time you leave with no recording active.
+
+**The "aha!":** the old `updatesStarted` flag was flipped to `true` *before*
+the authorization/availability guards, so it said nothing about whether data
+was flowing. The new `isMotionRunning` / `isAltitudeRunning` / `isRunning`
+flags are only set once a stream really starts, which keeps the new
+`SensorControls` toolbar (Start/Pause toggle + Delete, with `.click` haptics)
+honest. Pause and Delete are disabled mid-recording on both platforms (on iOS
+Start too): a session should be one unbroken capture, so the only way to stop
+it is Stop Recording. A small UI gotcha surfaced on iOS: `.disabled(true)` did
+block the taps, but the buttons still *looked* live, because the hard-coded
+`.foregroundStyle(Color.primary/.red)` overrides SwiftUI's automatic dimming
+and `.interactive()` glass still bounces on touch. The fix is a `.secondary`
+foreground plus `.interactive(!isDisabled)`. iOS also got the navigation half of this rule: switching tabs or
+leaving the Location screen no longer stops the sensors while a recording runs.
+Closing the loop, the iOS Recordings tab got a `RecordingControlSection`:
+Start Recording when idle, and while recording, the same live sample counters as
+the watch plus Stop Recording. With Pause and Delete locked during a session,
+there needed to be an obvious place to start and end it besides the floating
+record control. The subtle part was that no sensor runs on the Recordings tab
+(switching tabs stops them), so a naive `startRecording()` there would save an
+empty session. The button has to reset the buffers and start every sensor
+itself, the way `WatchRecordingView` does. Two cleanups fell out along the way:
+`sensorUpdateInterval`'s `didSet` now only restarts streams that are already
+running (before, it quietly resumed paused sensors and started the altimeter
+on every motion screen), and `LocationManager` now cancels its previous
+`liveUpdates()` loop, because a quick stop → start used to leave two loops
+appending the same fixes.
+
 ### 🗳️ Kickstart Signal — letting users vote on what's next (2026-10-23)
 
 **The ask:** give users a way to suggest features and upvote each other's ideas,

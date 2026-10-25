@@ -17,4 +17,12 @@ enum UIIdentifiers {
         static let accelerationButton = "ContentView.button.acceleration"
         static let settingsButton = "ContentView.button.settings"
     }
+
+    // Same identifier values as the iOS `CustomControlsView` so UI tests can share them.
+    enum SensorControls {
+        static let playButton = "CustomControlsView.Button.Play"
+        static let pauseButton = "CustomControlsView.Button.Pause"
+        static let deleteButton = "CustomControlsView.Button.Delete"
+        static let recordButton = "CustomControlsView.Button.Record"
+    }
 }

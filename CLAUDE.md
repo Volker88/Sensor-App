@@ -84,7 +84,25 @@ Per sensor, three layers:
 - `*View` — live readouts + inline `LineGraphSubView` + statistics section + links.
 - `*List` — statistics section at top, then full reversed history with CSV export.
 
-watchOS uses a single `*View` per sensor (no Screen/List split).
+watchOS uses a single `*View` per sensor (no Screen/List split). Each watch
+sensor view applies `.sensorScreen(.motion | .altitude | .location)`
+(`SensorScreenModifier`, `Sensor-App-WatchApp/View/Controls/`), which claims the
+sensor on appear with a per-instance UUID client ID, releases it on disappear,
+and adds `SensorControls`: a bottom-bar `ToolbarContent` with a Start/Pause
+toggle and Delete that act on that one sensor only, plus a Record/Stop toggle
+so a session can be started or ended from any sensor view. Start/Pause and
+Delete are disabled while a recording is active (same rule as iOS
+`CustomControlsView`). Both the Record button and `WatchRecordingView` go
+through `WatchRecordingController` (`View/Controls/`): `start()` clears the
+buffers and claims *all* sensors under a stable `"WatchRecording"` client ID,
+then starts the recording; `stop()` saves with source `"Apple Watch"`, clears
+the buffers and drops that claim. The recording's claim is what keeps sensors
+alive while you navigate mid-recording, so screens just release their own
+claims normally and `WatchRecordingView` has no sensor lifecycle of its own. The button cases,
+SF Symbols and localized strings come from the framework's
+`SensorControlAction` enum, shared by both apps; each target adds its own
+`accessibilityIdentifier` (and iOS the radial `offset`) in
+`Extension+SensorControlAction.swift`.
 
 ### Sensors
 
@@ -104,6 +122,28 @@ watchOS uses a single `*View` per sensor (no Screen/List split).
 - **LocationManager** wraps `CLLocationManager` using **modern async/await**
   (`for try await update in CLLocationUpdate.liveUpdates()`).
 - Both cap chart arrays at `UserSettings.graphMaxPoints`.
+- **Running state & client tracking:** `MotionManager.isMotionRunning` /
+  `isAltitudeRunning` and `LocationManager.isRunning` reflect whether a stream
+  actually started (the old `updatesStarted` flag is gone). Screens that share a
+  manager register via `start…Updates(for: clientID)` and release via
+  `releaseMotionUpdates(for:)` / `releaseAltitudeUpdates(for:)` /
+  `releaseLocationUpdates(for:)`; a sensor stops and resets only when no client
+  needs it, which prevents one screen's late `onDisappear` from undoing the
+  next screen's `onAppear`. The watch app uses this; iOS still calls the
+  client-less start/stop. `MotionManager` naming: `stopMotionUpdates()` /
+  `resetMotionUpdates()` act on *both* motion and altitude;
+  `stopDeviceMotionUpdates()` / `resetDeviceMotionUpdates()` and
+  `stopAltitudeUpdates()` / `resetAltitudeUpdates()` act on one.
+- **Recording keeps sensors alive across navigation:** while
+  `RecordingManager.isRecording`, iOS skips the stop in
+  `ContentView.onChangeOfSelectedTab()` and the stop/reset in
+  `LocationView.onDisappear()`; on the watch, `WatchRecordingController`'s own
+  sensor claim outlives any screen's release. Pause and
+  Delete are disabled during a recording on both platforms (on iOS Start too —
+  only Record/Stop stays enabled), so a session can't end up with gaps or lose
+  data. `CustomControlsView` dims disabled buttons itself (secondary foreground,
+  non-interactive glass) because its explicit colors override SwiftUI's
+  automatic disabled styling.
 - In `DEBUG && targetEnvironment(simulator)` (motion) or with the
   `enable-testing` launch argument (location), managers populate **mock data**
   so the simulator/UI tests have something to show.
@@ -119,11 +159,21 @@ watchOS uses a single `*View` per sensor (no Screen/List split).
   automatically in the Shortcuts app — root cause under investigation (see
   Journal.md).
 - **Recordings (SwiftData + CloudKit):** `RecordingManager` is the sole write
-  path. Tapping Stop in `CustomControlsView` calls `stopRecording(motionArray:altitudeArray:locationArray:source:)`,
+  path. On iOS, both entry points (`CustomControlsView`'s Record button and
+  `RecordingControlSection`) go through `RecordingController`
+  (`Sensor-App/Views/Recordings/`): `start()` stops and resets every sensor,
+  restarts them all, then calls `startRecording()`, so a session never contains
+  data from before the tap; `stop()` calls `stopRecording(motionArray:altitudeArray:locationArray:source:)`,
   which converts in-memory models to `MotionMeasurement` / `AltitudeMeasurement` /
-  `LocationMeasurement` rows inside a `SensorSession` and saves in one batch.
+  `LocationMeasurement` rows inside a `SensorSession` and saves in one batch,
+  then stops and resets the sensors.
   The schema is versioned (`ModelsSchemaV1` → `DatabaseMigrationPlan`) and
-  synced via CloudKit private database. A `RecordingsStack` enum drives the
+  synced via CloudKit private database. `RecordingsScreen` has a
+  `RecordingControlSection` at the top: Start Recording when idle (no sensors
+  run on that tab, so `RecordingController.start()` starting all of them is
+  what makes this work), and while active, live motion/altitude/location
+  sample counts (mirroring `WatchRecordingView`) plus Stop Recording. A
+  `RecordingsStack` enum drives the
   recordings navigation (`RecordingsScreen` → `RecordingDetailScreen` →
   individual measurement views). See `Sensor-App-Framework/SwiftData/DataArchitecture.md`.
 - **Full Screen Charts:** `ExpandableChartView` wraps each `LineGraphSubView`

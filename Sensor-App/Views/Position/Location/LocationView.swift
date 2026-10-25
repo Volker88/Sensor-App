@@ -12,6 +12,7 @@ import SwiftUI
 struct LocationView: View {
 
     @Environment(LocationManager.self) private var locationManager
+    @Environment(RecordingManager.self) private var recordingManager
 
     @State private var showLatitude = false
     @State private var showLongitude = false
@@ -41,7 +42,7 @@ struct LocationView: View {
                             "Latitude: \(locationManager.location?.latitude ?? 0.0, specifier: "%.6f")° ± \(locationManager.location?.calculatedHorizontalAccuracy ?? 0.0, specifier: "%.2f") \(locationManager.location?.horizontalAccuracyUnit ?? "m")"
                         )
                         .accessibilityHint("Tap to collapse graph", isEnabled: showLatitude)
-                        .accessibilityHint("Tap to expand  graph", isEnabled: !showLatitude)
+                        .accessibilityHint("Tap to expand graph", isEnabled: !showLatitude)
                         .accessibilityInputLabels(["Latitude"])
                         .accessibilityIdentifier(UIIdentifiers.LocationView.latitudeRow)
                     }
@@ -60,7 +61,7 @@ struct LocationView: View {
                             "Longitude: \(locationManager.location?.longitude ?? 0.0, specifier: "%.6f")° ± \(locationManager.location?.calculatedHorizontalAccuracy ?? 0.0, specifier: "%.2f") \(locationManager.location?.horizontalAccuracyUnit ?? "m")"
                         )
                         .accessibilityHint("Tap to collapse graph", isEnabled: showLongitude)
-                        .accessibilityHint("Tap to expand  graph", isEnabled: !showLongitude)
+                        .accessibilityHint("Tap to expand graph", isEnabled: !showLongitude)
                         .accessibilityInputLabels(["Longitude"])
                         .accessibilityIdentifier(UIIdentifiers.LocationView.longitudeRow)
                     }
@@ -79,7 +80,7 @@ struct LocationView: View {
                             "Altitude: \(locationManager.location?.calculatedAltitude ?? 0.0, specifier: "%.2f") \(locationManager.location?.heightUnit ?? "m") ± \(locationManager.location?.calculatedVerticalAccuracy ?? 0.0, specifier: "%.2f") \(locationManager.location?.heightUnit ?? "m")"
                         )
                         .accessibilityHint("Tap to collapse graph", isEnabled: showDirection)
-                        .accessibilityHint("Tap to expand  graph", isEnabled: !showDirection)
+                        .accessibilityHint("Tap to expand graph", isEnabled: !showDirection)
                         .accessibilityInputLabels(["Altitude"])
                         .accessibilityIdentifier(UIIdentifiers.LocationView.altitudeRow)
                     }
@@ -96,7 +97,7 @@ struct LocationView: View {
                     label: {
                         Text("Direction: \(locationManager.location?.course ?? 0.0, specifier: "%.2f")°")
                             .accessibilityHint("Tap to collapse graph", isEnabled: showLatitude)
-                            .accessibilityHint("Tap to expand  graph", isEnabled: !showLatitude)
+                            .accessibilityHint("Tap to expand graph", isEnabled: !showLatitude)
                             .accessibilityInputLabels(["Direction"])
                             .accessibilityIdentifier(UIIdentifiers.LocationView.courseRow)
                     }
@@ -113,7 +114,7 @@ struct LocationView: View {
                             "Speed: \(locationManager.location?.calculatedSpeed ?? 0.0, specifier: "%.1f") \(locationManager.location?.speedUnit ?? "")"
                         )
                         .accessibilityHint("Tap to collapse graph", isEnabled: showSpeed)
-                        .accessibilityHint("Tap to expand  graph", isEnabled: !showSpeed)
+                        .accessibilityHint("Tap to expand graph", isEnabled: !showSpeed)
                         .accessibilityInputLabels(["Speed"])
                         .accessibilityIdentifier(UIIdentifiers.LocationView.speedRow)
                     }
@@ -186,6 +187,9 @@ struct LocationView: View {
     }
 
     func onDisappear() {
+        // Leaving the screen mid-recording must not stop or reset location updates.
+        guard !recordingManager.isRecording else { return }
+
         locationManager.stopLocationUpdates()
         locationManager.resetLocationUpdates()
     }

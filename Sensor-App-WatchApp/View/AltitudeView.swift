@@ -11,10 +11,7 @@ import SwiftUI
 
 struct AltitudeView: View {
 
-    @Environment(SettingsManager.self) private var settingsManager
     @Environment(MotionManager.self) private var motionManager
-
-    @State private var frequency = 1.0  // Default Frequency
 
     // MARK: - Body
     var body: some View {
@@ -32,22 +29,7 @@ struct AltitudeView: View {
         }
         .navigationTitle("Altitude")
         .font(.footnote)
-        .onAppear(perform: onAppear)
-        .onDisappear(perform: onDisappear)
-    }
-
-    // MARK: - Methods
-    func onAppear() {
-        frequency = settingsManager.fetchUserSettings().frequencySetting
-        motionManager.sensorUpdateInterval = frequency
-
-        // Start updating motion
-        motionManager.startAltitudeUpdates()
-    }
-
-    func onDisappear() {
-        motionManager.stopMotionUpdates()
-        motionManager.resetMotionUpdates()
+        .sensorScreen(.altitude)
     }
 }
 

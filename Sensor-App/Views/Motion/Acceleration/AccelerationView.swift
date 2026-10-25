@@ -30,7 +30,7 @@ struct AccelerationView: View {
                     label: {
                         Text("X-Axis: \(motionManager.motion?.accelerationXAxis ?? 0.0, specifier: "%.5f") m/s^2")
                             .accessibilityHint("Tap to collapse graph", isEnabled: showXAxis)
-                            .accessibilityHint("Tap to expand  graph", isEnabled: !showXAxis)
+                            .accessibilityHint("Tap to expand graph", isEnabled: !showXAxis)
                             .accessibilityInputLabels(["Latitude"])
                             .accessibilityIdentifier(UIIdentifiers.AccelerationView.xAxisRow)
                     }
@@ -47,7 +47,7 @@ struct AccelerationView: View {
                     label: {
                         Text("Y-Axis: \(motionManager.motion?.accelerationYAxis ?? 0.0, specifier: "%.5f") m/s^2")
                             .accessibilityHint("Tap to collapse graph", isEnabled: showYAxis)
-                            .accessibilityHint("Tap to expand  graph", isEnabled: !showYAxis)
+                            .accessibilityHint("Tap to expand graph", isEnabled: !showYAxis)
                             .accessibilityInputLabels(["Latitude"])
                             .accessibilityIdentifier(UIIdentifiers.AccelerationView.yAxisRow)
                     }
@@ -64,7 +64,7 @@ struct AccelerationView: View {
                     label: {
                         Text("Z-Axis: \(motionManager.motion?.accelerationZAxis ?? 0.0, specifier: "%.5f") m/s^2")
                             .accessibilityHint("Tap to collapse graph", isEnabled: showZAxis)
-                            .accessibilityHint("Tap to expand  graph", isEnabled: !showZAxis)
+                            .accessibilityHint("Tap to expand graph", isEnabled: !showZAxis)
                             .accessibilityInputLabels(["Latitude"])
                             .accessibilityIdentifier(UIIdentifiers.AccelerationView.zAxisRow)
                     }

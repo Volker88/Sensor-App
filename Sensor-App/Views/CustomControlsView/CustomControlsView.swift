@@ -7,7 +7,6 @@
 
 import Sensor_App_Framework
 import SwiftUI
-import UIKit
 
 struct CustomControlsView: View {
 
@@ -15,6 +14,7 @@ struct CustomControlsView: View {
     @Environment(LocationManager.self) private var locationManager
     @Environment(MotionManager.self) private var motionManager
     @Environment(RecordingManager.self) private var recordingManager
+    @Environment(SettingsManager.self) private var settingsManager
 
     @State private var isExpanded = false
     @Namespace var glassEffect
@@ -53,8 +53,11 @@ struct CustomControlsView: View {
     }
 
     // MARK: - Methods
-    private func button(type: ButtonType) -> some View {
+    private func button(type: SensorControlAction) -> some View {
         let isRecordActive = type == .record && recordingManager.isRecording
+        // Only Record (Stop) stays usable mid-recording: starting, pausing or deleting
+        // would leave gaps in (or wipe) the session's data.
+        let isDisabled = type != .record && recordingManager.isRecording
         return Button {
             switch type {
                 case .start:
@@ -71,40 +74,69 @@ struct CustomControlsView: View {
                     locationManager.resetLocationUpdates()
                     motionManager.resetMotionUpdates()
                 case .record:
-                    if recordingManager.isRecording {
-                        recordingManager.stopRecording(
-                            motionArray: motionManager.motionArray,
-                            altitudeArray: motionManager.altitudeArray,
-                            locationArray: locationManager.locationArray,
-                            source: UIDevice.current.userInterfaceIdiom == .pad ? "iPad" : "iPhone"
-                        )
-                        showNotification("Recording Saved")
-                    } else {
-                        recordingManager.startRecording()
-                        showNotification("Recording Started")
-                    }
+                    recording()
             }
         } label: {
             Label(type.localizedString, systemImage: isRecordActive ? "stop.circle.fill" : type.systemImage)
                 .labelStyle(.iconOnly)
                 .frame(width: 50, height: 50)
-                .foregroundStyle(type == .delete || isRecordActive ? Color.red : Color.primary)
+                .foregroundStyle(foregroundColor(type: type, isRecordActive: isRecordActive, isDisabled: isDisabled))
         }
+        .disabled(isDisabled)
         .opacity(isExpanded ? 1 : 0)
-        .glassEffect(.regular.tint(.white.opacity(0.8)).interactive())
+        // Explicit foreground colors override SwiftUI's automatic disabled dimming, and
+        // interactive glass keeps reacting to touches, so reflect the state manually.
+        .glassEffect(.regular.tint(.white.opacity(0.8)).interactive(!isDisabled))
         .glassEffectID(type.rawValue, in: glassEffect)
         .offset(type.offset(expanded: isExpanded))
         .animation(.spring(duration: 0.3, bounce: 0.3), value: isExpanded)
         .accessibilityHidden(!isExpanded)
         .accessibilityLabel(Text(type.localizedString))
-        .accessibilityHint(Text(isRecordActive ? LocalizedStringKey("Tap to stop recording") : type.accessibilityHint))
+        .accessibilityHint(Text(accessibilityHint(type: type, isRecordActive: isRecordActive, isDisabled: isDisabled)))
         .accessibilityIdentifier(type.accessibilityIdentifier)
+    }
+
+    private func foregroundColor(type: SensorControlAction, isRecordActive: Bool, isDisabled: Bool) -> Color {
+        if isDisabled {
+            return .secondary
+        }
+        return type == .delete || isRecordActive ? .red : .primary
+    }
+
+    private func accessibilityHint(
+        type: SensorControlAction,
+        isRecordActive: Bool,
+        isDisabled: Bool
+    ) -> LocalizedStringKey {
+        if isDisabled {
+            return LocalizedStringKey("Unavailable while recording")
+        }
+        return isRecordActive ? LocalizedStringKey("Tap to stop recording") : type.accessibilityHint
     }
 
     private func toggleButton() {
         withAnimation {
             isExpanded.toggle()
         }
+    }
+
+    private func recording() {
+        if recordingManager.isRecording {
+            recordingController.stop()
+            showNotification("Recording Saved")
+        } else {
+            recordingController.start()
+            showNotification("Recording Started")
+        }
+    }
+
+    private var recordingController: RecordingController {
+        RecordingController(
+            recordingManager: recordingManager,
+            motionManager: motionManager,
+            locationManager: locationManager,
+            settingsManager: settingsManager
+        )
     }
 }
 

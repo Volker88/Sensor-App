@@ -15,11 +15,13 @@ struct RecordingsScreen: View {
     // MARK: - Body
     var body: some View {
         List {
+            RecordingControlSection()
+
             if sessions.isEmpty {
                 ContentUnavailableView(
                     "No Recordings Yet",
                     systemImage: "record.circle",
-                    description: Text("Start a recording using the controls on any sensor screen.")
+                    description: Text("Tap Start Recording above, or use the controls on any sensor screen.")
                 )
                 .listRowBackground(Color.clear)
             } else {

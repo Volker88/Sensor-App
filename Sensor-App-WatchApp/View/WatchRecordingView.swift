@@ -33,13 +33,7 @@ struct WatchRecordingView: View {
                     .foregroundStyle(.secondary)
 
                     Button("Stop Recording") {
-                        recordingManager.stopRecording(
-                            motionArray: motionManager.motionArray,
-                            altitudeArray: motionManager.altitudeArray,
-                            locationArray: locationManager.locationArray,
-                            source: "Apple Watch"
-                        )
-                        stopSensors()
+                        recordingController.stop()
                     }
                     .buttonStyle(.borderedProminent)
                     .tint(.red)
@@ -49,9 +43,7 @@ struct WatchRecordingView: View {
                         .foregroundStyle(.secondary)
 
                     Button("Start Recording") {
-                        motionManager.resetMotionUpdates()
-                        locationManager.resetLocationUpdates()
-                        recordingManager.startRecording()
+                        recordingController.start()
                     }
                     .buttonStyle(.borderedProminent)
                 }
@@ -59,24 +51,18 @@ struct WatchRecordingView: View {
             .padding()
         }
         .navigationTitle("Record Session")
-        .onAppear { startSensors() }
-        .onDisappear { stopSensors() }
     }
 
-    // MARK: - Methods
-    private func startSensors() {
-        let frequency = settingsManager.fetchUserSettings().frequencySetting
-        motionManager.sensorUpdateInterval = frequency
-        motionManager.startMotionUpdates()
-        motionManager.startAltitudeUpdates()
-        locationManager.startLocationUpdates()
-    }
-
-    private func stopSensors() {
-        motionManager.stopMotionUpdates()
-        motionManager.resetMotionUpdates()
-        locationManager.stopLocationUpdates()
-        locationManager.resetLocationUpdates()
+    // MARK: - Properties
+    /// Owns the sensors for the length of a recording, so this screen needs no
+    /// lifecycle of its own and leaving it mid-recording doesn't stop anything.
+    private var recordingController: WatchRecordingController {
+        WatchRecordingController(
+            recordingManager: recordingManager,
+            motionManager: motionManager,
+            locationManager: locationManager,
+            settingsManager: settingsManager
+        )
     }
 }
 

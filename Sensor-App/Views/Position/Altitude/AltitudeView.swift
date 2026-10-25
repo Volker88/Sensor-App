@@ -31,7 +31,7 @@ struct AltitudeView: View {
                             "Pressure: \(motionManager.altitude?.calculatedPressure ?? 0.0, specifier: "%.5f") \(motionManager.altitude?.pressureUnit ?? "")"
                         )
                         .accessibilityHint("Tap to collapse graph", isEnabled: showPressure)
-                        .accessibilityHint("Tap to expand  graph", isEnabled: !showPressure)
+                        .accessibilityHint("Tap to expand graph", isEnabled: !showPressure)
                         .accessibilityInputLabels(["Pressure"])
                         .accessibilityIdentifier(UIIdentifiers.AltitudeView.pressureRow)
                     }
@@ -50,7 +50,7 @@ struct AltitudeView: View {
                             "Altitude Change: \(motionManager.altitude?.calculatedAltitude ?? 0.0, specifier: "%.5f") \(motionManager.altitude?.altitudeUnit ?? "")"
                         )
                         .accessibilityHint("Tap to collapse graph", isEnabled: showRelativeAltitudeChange)
-                        .accessibilityHint("Tap to expand  graph", isEnabled: !showRelativeAltitudeChange)
+                        .accessibilityHint("Tap to expand graph", isEnabled: !showRelativeAltitudeChange)
                         .accessibilityInputLabels(["Altitude Change"])
                         .accessibilityIdentifier(UIIdentifiers.AltitudeView.altitudeRow)
                     }
