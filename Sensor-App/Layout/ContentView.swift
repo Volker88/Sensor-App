@@ -15,6 +15,7 @@ struct ContentView: View {
     @Environment(MotionManager.self) private var motionManager
     @Environment(LocationManager.self) private var locationManager
     @Environment(RecordingManager.self) private var recordingManager
+    @Environment(SettingsManager.self) private var settingsManager
     @Environment(AppState.self) private var appState
 
     @AppStorage("TabCustomizations")
@@ -31,6 +32,11 @@ struct ContentView: View {
     /// The size class the navigation state is translated for, derived from ``isCompact``.
     private var layoutSizeClass: UserInterfaceSizeClass {
         isCompact ? .compact : .regular
+    }
+
+    /// Keeps the screen awake for the whole session, regardless of which tab is shown.
+    private var keepsScreenAwake: Bool {
+        recordingManager.isRecording && settingsManager.userSettings.keepScreenOnWhileRecording
     }
 
     // MARK: - Body
@@ -185,6 +191,7 @@ struct ContentView: View {
         .tabViewStyle(.sidebarAdaptable)
         .tabViewCustomization($customization)
         .environment(\.usesCompactLayout, isCompact)
+        .idleTimerDisabled(keepsScreenAwake)
         .onAppear(perform: onAppear)
         .onChange(of: isCompact) { appState.onSizeClassChange(layoutSizeClass) }
         .onChange(of: appState.appIntentTab) { appState.appIntentDrivenNavigation(layoutSizeClass) }
@@ -222,6 +229,7 @@ struct ContentView: View {
         .environment(MotionManager())
         .environment(LocationManager())
         .environment(RecordingManager())
+        .environment(SettingsManager())
 }
 
 #Preview("ContentView - German") {
@@ -231,4 +239,5 @@ struct ContentView: View {
         .environment(MotionManager())
         .environment(LocationManager())
         .environment(RecordingManager())
+        .environment(SettingsManager())
 }

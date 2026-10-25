@@ -171,7 +171,8 @@ SF Symbols and localized strings come from the framework's
   synced via CloudKit private database. `RecordingsScreen` has a
   `RecordingControlSection` at the top: Start Recording when idle (no sensors
   run on that tab, so `RecordingController.start()` starting all of them is
-  what makes this work), and while active, live motion/altitude/location
+  what makes this work), and while active, a live elapsed-time stopwatch
+  (from `RecordingManager.startedAt`), live motion/altitude/location
   sample counts (mirroring `WatchRecordingView`) plus Stop Recording. A
   `RecordingsStack` enum drives the
   recordings navigation (`RecordingsScreen` → `RecordingDetailScreen` →
@@ -183,6 +184,19 @@ SF Symbols and localized strings come from the framework's
   one, so Delete is declared explicitly there. `ExportManager.getFile` passes
   every filename through `sanitizedFilename(_:)`, so `/`, `:` etc. never reach
   the file system. See `Sensor-App-Framework/SwiftData/DataArchitecture.md`.
+- **Keep screen on while recording (iOS only):** `ContentView` applies
+  `.idleTimerDisabled(isRecording && userSettings.keepScreenOnWhileRecording)`
+  (`IdleTimerModifier`, `Sensor-App/Views/ViewModifier/`). The modifier mirrors
+  the value into `UIApplication.shared.isIdleTimerDisabled`, so the flag clears
+  whenever `isRecording` goes false (whatever the cause) and when the view
+  disappears. The setting defaults to on and is toggled in `SettingsScreen` →
+  Recording. Like the Graph stepper, it binds to `userSettings` directly, so a change takes effect right away; Save persists it and Discard reverts it. While recording,
+  `RecordingControlSection` shows a "Screen Stays On" hint when the setting is
+  on. It only prevents
+  auto-lock: a manual lock or leaving the app still suspends sensors.
+  `UserSettings` has a custom `init(from:)` that uses `decodeIfPresent` for
+  keys added after launch. **Add new settings fields the same way**, or old
+  saved JSON fails to decode and every setting resets to defaults.
 - **Full Screen Charts:** `ExpandableChartView` wraps each `LineGraphSubView`
   with an expand-button overlay; tapping it sets `AppState.selectedChart`,
   which `ContentView` presents as a `FullScreenChartView` via

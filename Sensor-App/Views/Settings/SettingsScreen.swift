@@ -151,6 +151,22 @@ struct SettingsScreen: View {
             }
 
             Section {
+                Toggle(
+                    "Keep Screen On While Recording",
+                    isOn: Bindable(settingsManager).userSettings.keepScreenOnWhileRecording
+                )
+                .accessibilityRemoveTraits(.isButton)
+                .accessibilityIdentifier(UIIdentifiers.SettingScreen.keepScreenOnToggle)
+            } header: {
+                Text("Recording")
+                    .accessibilityIdentifier(UIIdentifiers.SettingScreen.recordingHeader)
+            } footer: {
+                Text(
+                    "Prevents auto-lock so sensor data keeps being captured. Locking the device manually or leaving the app still pauses the recording. Keeping the display on increases battery usage." // swiftlint:disable:this line_length
+                )
+            }
+
+            Section {
                 Button("Feature Requests", systemImage: "lightbulb") {
                     showSignalBoard = true
                 }

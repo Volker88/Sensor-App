@@ -25,6 +25,7 @@ struct ReleaseNotesView: View {
                     "Pause and Delete are disabled during a recording to prevent gaps or lost data",
                     tableName: "ReleaseNotes")
                 Text("Recorded Sessions can be renamed", tableName: "ReleaseNotes")
+                Text("Keep the screen on while recording (can be turned off in Settings)", tableName: "ReleaseNotes")
             } header: {
                 Text(verbatim: "7.2.0")
                     .accessibilityLabel(Text("Version 7.2.0", tableName: "ReleaseNotes"))

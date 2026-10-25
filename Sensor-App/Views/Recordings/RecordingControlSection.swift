@@ -22,9 +22,19 @@ struct RecordingControlSection: View {
     var body: some View {
         Section {
             if recordingManager.isRecording {
-                Label("Recording…", systemImage: "record.circle.fill")
-                    .foregroundStyle(.red)
-                    .font(.headline)
+                LabeledContent {
+                    // Live elapsed time; SwiftUI schedules the updates, no timer needed.
+                    Text(
+                        .currentDate,
+                        format: .stopwatch(startingAt: recordingManager.startedAt, maxPrecision: .seconds(1))
+                    )
+                    .monospacedDigit()
+                    .accessibilityAddTraits(.updatesFrequently)
+                } label: {
+                    Label("Recording…", systemImage: "record.circle.fill")
+                        .foregroundStyle(.red)
+                }
+                .font(.headline)
 
                 VStack(alignment: .leading) {
                     Text("\(motionManager.motionArray.count) motion")
@@ -36,6 +46,14 @@ struct RecordingControlSection: View {
                 .monospacedDigit()
                 .accessibilityElement(children: .combine)
                 .accessibilityAddTraits(.updatesFrequently)
+
+                // Mirrors the condition `ContentView` uses to disable the idle timer.
+                if settingsManager.userSettings.keepScreenOnWhileRecording {
+                    Label("Screen Stays On", systemImage: "sun.max")
+                        .font(.footnote)
+                        .foregroundStyle(.secondary)
+                        .accessibilityIdentifier(UIIdentifiers.RecordingsScreen.screenStaysOnLabel)
+                }
 
                 Button(role: .destructive, action: stopRecording) {
                     Label("Stop Recording", systemImage: "stop.circle.fill")

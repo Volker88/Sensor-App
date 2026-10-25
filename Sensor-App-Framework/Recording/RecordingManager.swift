@@ -13,7 +13,8 @@ public class RecordingManager {
     public var modelContext: ModelContext?
 
     private var sessionName: String = ""
-    private var startedAt: Date = .distantPast
+    /// When the current (or most recent) recording started. `.distantPast` before the first recording.
+    public private(set) var startedAt: Date = .distantPast
 
     public init(
         isRecording: Bool = false, modelContext: ModelContext? = nil, sessionName: String = "",

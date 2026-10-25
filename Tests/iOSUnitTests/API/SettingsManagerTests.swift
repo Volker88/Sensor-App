@@ -81,4 +81,35 @@ final class SettingsManagerTests: BaseTestCase {
 
         #expect(unit == UnitLength.feet.symbol)
     }
+
+    @Test("Save and read keep screen on while recording setting")
+    func keepScreenOnWhileRecordingSetting() throws {
+        var settings = settingsManager.fetchUserSettings()
+        settings.keepScreenOnWhileRecording = false
+        settingsManager.saveUserSettings(userSettings: settings)
+
+        #expect(settingsManager.fetchUserSettings().keepScreenOnWhileRecording == false)
+    }
+
+    @Test("Settings saved before newer keys existed decode with defaults")
+    func decodeLegacySettings() throws {
+        let legacyJSON = """
+            {
+                "showReleaseNotes": false,
+                "GPSSpeedSetting": "km/h",
+                "GPSAccuracySetting": "Best",
+                "frequencySetting": 2.0,
+                "pressureSetting": "kPa",
+                "altitudeHeightSetting": "m",
+                "graphMaxPoints": 300
+            }
+            """
+
+        let settings = try JSONDecoder().decode(UserSettings.self, from: Data(legacyJSON.utf8))
+
+        #expect(settings.GPSSpeedSetting == "km/h")
+        #expect(settings.graphMaxPoints == 300)
+        #expect(settings.locationAccuracySetting == UnitLength.meters.symbol)
+        #expect(settings.keepScreenOnWhileRecording == true)
+    }
 }

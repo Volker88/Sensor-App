@@ -106,6 +106,33 @@ Configuration/               *.xcconfig (targets, version, signing secrets)
 
 ## The Journey
 
+### 💡 Keeping the lights on during a recording (2026-10-25)
+
+A long recording had a quiet enemy: Auto-Lock. Once the screen went dark the
+app was suspended, CoreMotion and the barometer went silent, and the session
+just… ended early. The fix is a single UIKit flag,
+`UIApplication.shared.isIdleTimerDisabled`, but *where* it gets flipped matters.
+Setting it in `RecordingController.start()` and clearing it in `stop()` would
+have meant tracking every way a session can end. Instead `ContentView` derives
+`isRecording && keepScreenOnWhileRecording` and hands it to a tiny
+`IdleTimerModifier`, which mirrors that value into the flag with
+`onChange(of:initial:)` and resets it on disappear. Because it follows state
+instead of reacting to events, any path that drops `isRecording` back to
+`false` also lets the screen sleep again. It sits on the root view, so tab
+switches don't touch it, and the watch never sees it.
+
+The new "Keep Screen On While Recording" setting (default on) turned up a
+latent bug. `UserSettings` used synthesized `Codable`, so adding a non-optional
+field would have made every existing user's saved JSON fail to decode, and
+`fetchUserSettings()` would have quietly reset *all* their settings to
+defaults. (`locationAccuracySetting` had the same hidden trap.) `UserSettings`
+now has a hand-written `init(from:)` that uses `decodeIfPresent` for the
+newer keys. A unit test decodes an old payload to keep it that way.
+
+To make the behaviour visible, the Recordings tab now shows a quiet "Screen
+Stays On" line under the live sample counters while it applies. All the new
+strings ship in all ten languages.
+
 ### 🌐 The statistics table that only spoke English (2026-10-25)
 
 **The report:** switch the app to German, open any sensor, scroll to

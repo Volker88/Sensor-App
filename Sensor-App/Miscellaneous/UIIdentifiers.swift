@@ -57,6 +57,7 @@ enum UIIdentifiers {
         static let renameContextMenuButton = "RecordingsScreen.Button.RenameContextMenu"
         static let renameTextField = "RecordingsScreen.TextField.Rename"
         static let renameConfirmButton = "RecordingsScreen.Button.RenameConfirm"
+        static let screenStaysOnLabel = "RecordingsScreen.Label.ScreenStaysOn"
     }
 
     enum RefreshRateView {
@@ -179,6 +180,7 @@ enum UIIdentifiers {
         static let mapHeader = "SettingScreen.Header.Map"
         static let altitudeHeader = "SettingScreen.Header.Altitude"
         static let graphHeader = "SettingScreen.Header.Graph"
+        static let recordingHeader = "SettingScreen.Header.Recording"
 
         // Picker
         static let speedPicker = "SettingScreen.Picker.Speed"
@@ -189,6 +191,7 @@ enum UIIdentifiers {
         static let altitudePicker = "SettingScreen.Picker.Altitude"
 
         // Toggle
+        static let keepScreenOnToggle = "SettingScreen.Toggle.KeepScreenOn"
         static let compassToggle = "SettingScreen.Toggle.Compass"
         static let scaleToggle = "SettingScreen.Toggle.Scale"
         static let buildingsToggle = "SettingScreen.Toggle.Buildings"
