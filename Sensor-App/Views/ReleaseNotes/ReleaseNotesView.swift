@@ -26,6 +26,7 @@ struct ReleaseNotesView: View {
                     tableName: "ReleaseNotes")
                 Text("Recorded Sessions can be renamed", tableName: "ReleaseNotes")
                 Text("Keep the screen on while recording (can be turned off in Settings)", tableName: "ReleaseNotes")
+                Text("Choose a Light, Dark, or System color theme in Settings", tableName: "ReleaseNotes")
             } header: {
                 Text(verbatim: "7.2.0")
                     .accessibilityLabel(Text("Version 7.2.0", tableName: "ReleaseNotes"))

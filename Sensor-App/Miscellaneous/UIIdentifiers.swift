@@ -181,6 +181,7 @@ enum UIIdentifiers {
         static let altitudeHeader = "SettingScreen.Header.Altitude"
         static let graphHeader = "SettingScreen.Header.Graph"
         static let recordingHeader = "SettingScreen.Header.Recording"
+        static let appearanceHeader = "SettingScreen.Header.Appearance"
 
         // Picker
         static let speedPicker = "SettingScreen.Picker.Speed"
@@ -189,6 +190,7 @@ enum UIIdentifiers {
         static let mapTypePicker = "SettingScreen.Picker.MapType"
         static let pressurePicker = "SettingScreen.Picker.Pressure"
         static let altitudePicker = "SettingScreen.Picker.Altitude"
+        static let colorSchemePicker = "SettingScreen.Picker.ColorScheme"
 
         // Toggle
         static let keepScreenOnToggle = "SettingScreen.Toggle.KeepScreenOn"

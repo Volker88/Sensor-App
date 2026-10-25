@@ -24,6 +24,8 @@ struct SensorAppApp: App {
     @State private var recordingManager = RecordingManager()
     @State private var metricKitManager = MetricKitManager()
 
+    @AppStorage(AppColorScheme.storageKey) private var appColorScheme: AppColorScheme = .system
+
     let modelContainer: ModelContainer
 
     init() {
@@ -71,6 +73,7 @@ struct SensorAppApp: App {
                 .environment(settingsManager)
                 .environment(recordingManager)
                 .environment(metricKitManager)
+                .preferredColorScheme(appColorScheme.colorScheme)
                 .modelContainer(modelContainer)
                 .task { recordingManager.modelContext = modelContainer.mainContext }
                 .onChange(of: scenePhase) { _, phase in

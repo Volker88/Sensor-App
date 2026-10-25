@@ -15,6 +15,7 @@ struct SettingsScreen: View {
     @Environment(SettingsManager.self) private var settingsManager
 
     @AppStorage("showReleaseNotes") private var showReleaseNotes = true
+    @AppStorage(AppColorScheme.storageKey) private var appColorScheme: AppColorScheme = .system
 
     @State private var showSignalBoard = false
 
@@ -24,6 +25,22 @@ struct SettingsScreen: View {
             Section("General") {
                 Toggle("Show Release Notes", isOn: $showReleaseNotes)
                     .accessibilityRemoveTraits(.isButton)
+            }
+
+            Section {
+                // Stored in @AppStorage (not UserSettings) so the theme applies and persists
+                // immediately, untouched by Save/Discard and the onAppear reload.
+                Picker("Color Theme", selection: $appColorScheme) {
+                    ForEach(AppColorScheme.allCases) { scheme in
+                        Text(scheme.localizedString)
+                            .tag(scheme)
+                    }
+                }
+                .pickerStyle(.menu)
+                .accessibilityIdentifier(UIIdentifiers.SettingScreen.colorSchemePicker)
+            } header: {
+                Text("Appearance")
+                    .accessibilityIdentifier(UIIdentifiers.SettingScreen.appearanceHeader)
             }
 
             Section(
