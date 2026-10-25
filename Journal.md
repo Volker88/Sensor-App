@@ -106,6 +106,42 @@ Configuration/               *.xcconfig (targets, version, signing secrets)
 
 ## The Journey
 
+### ✏️ Names worth remembering: renaming recordings (2026-10-25)
+
+Every session was named after its start time ("18 Oct 2026, 09:14"), because
+nothing in the UI ever passed a name to `startRecording(name:)`. Five of those
+in a row and the list reads like a timestamp log. Now you can rename a session
+after the fact: tap the title on the detail screen (`.navigationTitle(_:)` with
+a `Binding<String>` plus `.toolbarRole(.editor)` gives you the system Rename
+action for free), or swipe/long-press a row in the list for an alert with a
+pre-filled text field.
+
+Both routes go through the new `RecordingManager.rename(_:to:)`, next to
+`delete(_:)`, so trimming, the "empty name is rejected" rule and save-error
+logging all live in one place. The detail screen's title binding reads
+`session.name` and writes through `rename`, so a rejected empty name just
+falls back to the stored one on the next read. No schema change: `name`
+already existed, and CloudKit syncs the edit like any other.
+
+**Gotcha #1:** custom `.swipeActions` stop SwiftUI from synthesizing the
+`onDelete` swipe. Adding Rename silently removed swipe-to-delete, so Delete is
+now declared explicitly next to Rename and `onDelete` is gone.
+
+**Gotcha #2:** the default name has a colon in it, which is a terrible thing
+to hand to a file system. `ExportManager.getFile` now runs every name through
+`sanitizedFilename(_:)` (`/ \ : * ? " < > |` and newlines become `-`, leading
+dots are dropped, empty falls back to `export`). The display name stays as
+typed; only the exported file gets cleaned up.
+
+**Gotcha #3, in the tests:** the first `RecordingManagerTests` crashed the
+host with "This model instance was destroyed by calling ModelContext.reset".
+The in-memory `ModelContainer` was a local in `init`. It deallocated as soon
+as setup returned, took the context with it, and left the inserted session
+unusable. The suite now keeps the container as a stored property. Also
+remember that `Tests/` is synced into *every* target with explicit
+exclusion/inclusion lists in `project.xcproj`. A new test file lands in the
+app, watch and framework targets until you add it to all four lists.
+
 ### ⏺️ Record from anywhere on the wrist (2026-10-24)
 
 Until now, recording on the watch meant backing out to Home and opening

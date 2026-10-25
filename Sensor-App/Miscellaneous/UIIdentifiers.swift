@@ -51,6 +51,12 @@ enum UIIdentifiers {
         static let exportButton = "RecordingsScreen.Button.Export"
         static let startRecordingButton = "RecordingsScreen.Button.StartRecording"
         static let stopRecordingButton = "RecordingsScreen.Button.StopRecording"
+        static let deleteSwipeButton = "RecordingsScreen.Button.DeleteSwipe"
+        static let deleteContextMenuButton = "RecordingsScreen.Button.DeleteContextMenu"
+        static let renameSwipeButton = "RecordingsScreen.Button.RenameSwipe"
+        static let renameContextMenuButton = "RecordingsScreen.Button.RenameContextMenu"
+        static let renameTextField = "RecordingsScreen.TextField.Rename"
+        static let renameConfirmButton = "RecordingsScreen.Button.RenameConfirm"
     }
 
     enum RefreshRateView {

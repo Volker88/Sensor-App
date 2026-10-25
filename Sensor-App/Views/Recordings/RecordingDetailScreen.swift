@@ -21,7 +21,16 @@ struct RecordingDetailScreen: View {
     // MARK: - Body
     var body: some View {
         RecordingDetailView(session: session)
-            .navigationTitle(session.name)
+            // A title binding adds the system "Rename" action to the title menu. Writes go through
+            // RecordingManager, which trims and rejects empty names; the getter then re-reads the
+            // stored name, so a rejected edit falls back to the previous title.
+            .navigationTitle(
+                Binding(
+                    get: { session.name },
+                    set: { recordingManager.rename(session, to: $0) }
+                )
+            )
+            .toolbarRole(.editor)
             .toolbar {
                 ToolbarItem(placement: .destructiveAction) {
                     Button("Delete", systemImage: "trash", role: .destructive) {

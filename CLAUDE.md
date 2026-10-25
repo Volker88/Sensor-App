@@ -24,7 +24,7 @@ Three first-party modules plus tests:
 | `Sensor-App/` | iOS/iPadOS app — TabView UI, navigation, views, App Intents |
 | `Sensor-App-WatchApp/` | watchOS app — simpler `List`/`NavigationStack`, one `*View` per sensor |
 | `Sensor-App-Framework/` | Shared logic: sensor managers, models, SwiftData schema, RecordingManager, extensions, localization enum |
-| `Tests/` | `iOSUnitTests` (Swift Testing), `iOSUITests` & `watchOSUITests` (XCTest), `0_Test Plans/`, screenshot tests |
+| `Tests/` | `iOSUnitTests` (Swift Testing), `iOSUITests` & `watchOSUITests` (XCTest), `0_Test Plans/`, screenshot tests. **New test files must be added by hand** to the exclusion lists (app, watch, framework) and the right test target's inclusion list in `project.xcproj`, or they compile into the app targets |
 | `Configuration/` | `.xcconfig` build settings (`General`, `Debug`, `Release`, `Secret`) |
 | `fastlane/`, `screenshots/` | Screenshot automation |
 
@@ -175,7 +175,14 @@ SF Symbols and localized strings come from the framework's
   sample counts (mirroring `WatchRecordingView`) plus Stop Recording. A
   `RecordingsStack` enum drives the
   recordings navigation (`RecordingsScreen` → `RecordingDetailScreen` →
-  individual measurement views). See `Sensor-App-Framework/SwiftData/DataArchitecture.md`.
+  individual measurement views). Saved sessions can be renamed (iOS only) via
+  `RecordingManager.rename(_:to:)`, which trims and rejects empty names. It's
+  reached from the detail screen's editable title (`.navigationTitle(Binding)`
+  + `.toolbarRole(.editor)`) and from a swipe action / context menu + alert on
+  `RecordingsScreen`. Custom swipe actions replace `onDelete`'s synthesized
+  one, so Delete is declared explicitly there. `ExportManager.getFile` passes
+  every filename through `sanitizedFilename(_:)`, so `/`, `:` etc. never reach
+  the file system. See `Sensor-App-Framework/SwiftData/DataArchitecture.md`.
 - **Full Screen Charts:** `ExpandableChartView` wraps each `LineGraphSubView`
   with an expand-button overlay; tapping it sets `AppState.selectedChart`,
   which `ContentView` presents as a `FullScreenChartView` via

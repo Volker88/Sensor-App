@@ -75,6 +75,23 @@ public class RecordingManager {
         save(context)
     }
 
+    /// Renames a saved session.
+    ///
+    /// Leading and trailing whitespace is trimmed. An empty (or whitespace-only) name is rejected and
+    /// the session keeps its previous name.
+    /// - Returns: `true` if the session now carries the trimmed name, `false` if the input was rejected.
+    @discardableResult
+    public func rename(_ session: SensorSession, to newName: String) -> Bool {
+        guard let context = modelContext else { return false }
+        let trimmedName = newName.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmedName.isEmpty else { return false }
+        guard trimmedName != session.name else { return true }
+
+        session.name = trimmedName
+        save(context)
+        return true
+    }
+
     private func save(_ context: ModelContext) {
         do {
             try context.save()
