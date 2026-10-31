@@ -13,6 +13,8 @@ struct WatchRecordingView: View {
     @Environment(LocationManager.self) private var locationManager
     @Environment(SettingsManager.self) private var settingsManager
 
+    @State private var saveFailed = false
+
     // MARK: - Body
     var body: some View {
         ScrollView {
@@ -32,17 +34,27 @@ struct WatchRecordingView: View {
                     }
                     .foregroundStyle(.secondary)
 
-                    Button("Stop Recording") {
-                        recordingController.stop()
-                    }
-                    .buttonStyle(.borderedProminent)
-                    .tint(.red)
+                    Button("Stop Recording", action: stopRecording)
+                        .buttonStyle(.borderedProminent)
+                        .tint(.red)
+                } else if recordingManager.isSaving {
+                    ProgressView()
+
+                    Text("Saving…")
+                        .foregroundStyle(.secondary)
                 } else {
+                    if saveFailed {
+                        Label("Recording Could Not Be Saved", systemImage: "exclamationmark.triangle")
+                            .font(.footnote)
+                            .foregroundStyle(.red)
+                    }
+
                     Image(systemName: "record.circle")
                         .font(.largeTitle)
                         .foregroundStyle(.secondary)
 
                     Button("Start Recording") {
+                        saveFailed = false
                         recordingController.start()
                     }
                     .buttonStyle(.borderedProminent)
@@ -51,6 +63,13 @@ struct WatchRecordingView: View {
             .padding()
         }
         .navigationTitle("Record Session")
+    }
+
+    // MARK: - Methods
+    private func stopRecording() {
+        Task {
+            saveFailed = !(await recordingController.stop())
+        }
     }
 
     // MARK: - Properties

@@ -9,7 +9,7 @@
 import Foundation
 
 /// A snapshot of barometric altitude data captured at a single point in time.
-public struct AltitudeModel: Hashable {
+nonisolated public struct AltitudeModel: Hashable, Sendable, Codable {
 
     /// Sequential index of this measurement sample within the current session.
     public let counter: Int
@@ -22,8 +22,20 @@ public struct AltitudeModel: Hashable {
 
     /// Altitude change in meters relative to the starting point of the session.
     public let relativeAltitudeValue: Double
+
+    /// The keys of this sample in a recording's `SampleArchive`. They are a persisted format: never
+    /// change or remove a key, and make new properties optional (see `SampleArchive`). Declaring them
+    /// explicitly means renaming a property doesn't compile until its case keeps the old key, e.g.
+    /// `case newName = "oldName"`.
+    enum CodingKeys: String, CodingKey {
+        case counter
+        case timestamp
+        case pressureValue
+        case relativeAltitudeValue
+    }
 }
 
+@MainActor
 extension AltitudeModel {
     /// Returns the raw sensor value for the given graph axis.
     public func graphValue(for graph: GraphDetail) -> Double {

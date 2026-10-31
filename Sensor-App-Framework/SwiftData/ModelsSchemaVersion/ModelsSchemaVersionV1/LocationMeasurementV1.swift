@@ -22,7 +22,7 @@ extension ModelsSchemaV1 {
     /// `SensorSession.locationMeasurements`. It is optional to satisfy CloudKit's
     /// requirement that all relationships be optional.
     @Model
-    public class LocationMeasurement {
+    nonisolated public class LocationMeasurement {
 
         /// Stable identifier for this measurement.
         public var id = UUID()

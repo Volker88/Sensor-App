@@ -106,6 +106,194 @@ Configuration/               *.xcconfig (targets, version, signing secrets)
 
 ## The Journey
 
+### 🧪 The settings test that only passed on one screen size (2026-10-31)
+
+**The symptom:** `SettingsViewUITests` tapped pickers that were sometimes still
+below the fold. It scrolled with blind `swipeUp()` calls on section headers,
+which assumed a particular screen height: too few swipes on a small phone, and
+an overshoot past the picker on a tall iPad.
+
+**The fix:** a small `XCUIElement.scrollTo(_:maxSwipes:)` helper that swipes
+the collection view slowly and re-checks `exists && isHittable` after each
+swipe. On a tall screen it doesn't swipe at all; on a small one it stops as
+soon as the element can be tapped. The picker options are now tapped with
+`tapWhenReady()`, so the menu's appear animation can't race the tap.
+
+**Lesson:** scroll *until* a condition holds, not *by* a fixed amount. UI
+tests that encode a screen size break on the next device you add to the plan.
+
+### 🧩 Trading speed for a format we can read (2026-10-29)
+
+**The question:** "Can I just append new sensors to the archive?" It turned up
+a trap in the hand-written binary format: the decoder demanded the exact
+format version and column counts, so adding one column later would have made
+every installed V2 app reject new archives. We made it skip unknown columns
+and tolerate missing optional ones, and hardened it against 32-bit overflow on
+the watch.
+
+**Then the real question:** the bytes carry no labels, so the meaning of
+"the second double column" lives only in the agreement between writer and
+reader. Swapping two same-typed columns would show *wrong values with no
+error*, which no round-trip test catches. For code maintained by one person,
+that's a lot of invisible rules.
+
+**Measured, not guessed** (Mac, 30,000 motion samples): JSON + LZFSE takes
+about 1.1 s to save and 5.8 MB, binary 0.32 s and 3.6 MB. With recordings
+capped at about 15 minutes in practice, JSON's cost is noticeable but
+acceptable, and it runs in the background anyway. So V2 ships JSON: the models
+are `Codable` with explicit `CodingKeys`, unknown keys are ignored, and new
+properties must be optional.
+
+**Gotchas worth remembering:**
+
+- `JSONEncoder` *throws* on NaN and ±infinity by default, so a single one would
+  fail the whole save. We first assumed the sensors produce them; the docs say
+  otherwise: CoreMotion and Core Location mark invalid values with negative
+  numbers (`speed`/`course` `-1`, a negative `heading`). Filtering them out would
+  mean inventing data or leaving gaps, so they're kept as a safety net, stored as
+  `"nan"`/`"inf"`/`"-inf"`, forever.
+- A negative NaN comes back positive. Harmless, but the bit-exact test had to
+  learn that NaN is NaN.
+- Keys are a persisted format too, so `SampleArchiveTests` decodes hard-coded
+  JSON for every model. That's the golden-file test the binary format never
+  had.
+
+The binary version lives on in a git stash ("performance fix binary") in case
+speed ever matters more than readability.
+
+### 📦 22,615 rows walk into a session (2026-10-26)
+
+**The report:** with the background save in place, the UI stayed smooth, but a
+10-minute recording still took over a minute to save on an iPad.
+
+**Measure, don't guess.** Timing logs split the save into "building" and
+"writing": **64 s building, 2.5 s writing** for 22,615 motion samples. The
+first two theories died quickly. CloudKit lock contention? A test running a
+second context hammering the same store changed nothing. Store size? Build
+time didn't depend on it. Running the same unit test *on the iPad* with a
+local, CloudKit-free store reproduced it: 51 s on device, 0.6 s on the
+simulator. Time Profiler then showed almost no CPU during those 51 s.
+
+**The culprit:** splitting "building" into steps on the device. Creating the
+`MotionMeasurement` objects took 25 ms per 2,000; inserting them 12 ms;
+**linking them to the session took 563 ms** (45 ms on the simulator), and
+10× the samples cost ~90× the time: SwiftData's relationship bookkeeping grows
+roughly quadratically on device. Linking in fresh-context chunks only cut it to
+16 s, with every chunk slower than the last.
+
+**The fix: stop storing samples as rows.** Schema V2 keeps each sensor's
+samples as one LZFSE-compressed `SampleArchive` on `SensorSession` (originally a
+binary column format; switched to JSON on 2026-10-29, see above). Result on the iPad: **30,000
+motion samples save in ~120 ms** (117 ms encoding, 2 ms writing), delete is
+milliseconds, and iCloud syncs a few records plus assets instead of tens of
+thousands of records (we'd been seeing "Request Rate Limited" from CloudKit).
+
+**Design choices worth remembering:**
+
+- *Additive, not destructive.* V2 only adds optional/defaulted attributes, so
+  V1 → V2 is a lightweight migration and CloudKit's production schema (which
+  can never drop record types) only gains fields. Old sessions keep their rows
+  and are read through them; converting them would have deleted the data that
+  older app versions on other devices still read.
+- *One read path.* `session.loadMotionSamples()` etc. decode archives off the
+  main thread or map legacy rows, returning the same `MotionModel` structs the
+  live screens use, so the views and the CSV export reuse the models' unit
+  conversion instead of the `…Measurement` mirrors.
+- *Test the edges a real device produces.* Timestamps come from a
+  locale-dependent format style (hello, Arabic-Indic digits), an archive must
+  survive ±infinity and NaN should one ever appear (the sensor APIs mark invalid
+  values with negative numbers instead), and it must reject corrupt input instead of
+  trapping. `SampleArchiveTests` covers those, `DatabaseMigrationTests` opens a
+  real V1 store through the migration plan.
+
+**Verified on device (2026-10-26):** a 16,793-sample recording saved 234 ms
+after Stop, and the same build shows recordings made before and after the
+change side by side, each read through its own path.
+
+**Cleaning up the old rows:** a one-time `LegacyRecordingConverter` ships
+with V2 and runs at launch, but converts nothing until the account's newest
+old-format recording is 90 days old. Old-format recordings can only come from
+pre-V2 app versions, so a recent one means a device that hasn't updated and
+would lose access to converted samples. Because recordings only shipped in
+September, that gate alone pushes the first conversions to late December.
+It's marked `@available(iOS, deprecated: 28.0)` so the compiler reminds us to
+remove it with iOS 28, together with the legacy read fallback (marked the same
+way): by then every device should be on archives, and the remaining accounts
+that never converted are an accepted loss.
+
+**Before shipping:** deploy the new CloudKit fields to production, and note
+that older app versions show new sessions without their samples.
+
+### 🐢 The save button that froze the world (2026-10-25)
+
+**The report:** stop a long recording and the app goes dead for seconds —
+no animations, no taps, nothing. Delete that session from the list and it
+happens again. On a big enough session it looks exactly like a crash, and
+MetricKit dutifully files it as an `MXHangDiagnostic`.
+
+**Measure first.** Before touching anything we wrote
+`RecordingPerformanceTests` — XCTest on purpose, because Swift Testing still
+has no `measure {}`, no CPU/memory metrics and no baselines (the
+correctness checks went into the Swift Testing `RecordingManagerTests`
+instead). It saves and deletes a 5,000/500/500-sample session against a real
+on-disk SQLite store. The baseline was damning: **3.56 s to save, 6.5–6.9 s
+to delete**, and CPU time matched wall-clock time almost exactly. This wasn't
+the disk — it was SwiftData's per-object bookkeeping, all on the main actor.
+
+**Two surprises in those numbers.** Delete was *twice as slow* as save while
+touching the same 6,000 rows: the cascade rule faults in and deletes every
+measurement one by one. And 3.5 s for 6,000 inserts is absurd for SQLite —
+the loop set `measurement.session = session` on every row, and each
+assignment updates the inverse array one element at a time.
+
+**The fix:** a background `RecordingStore` actor on the same container.
+`RecordingManager` keeps its API but `stopRecording`/`delete` became `async`.
+Saving now assigns each relationship once (`session.motionMeasurements =
+[...]`) and saves once; deleting runs one `delete(model:where:)` per
+measurement type, keyed on the session's `UUID` through the to-one
+relationship, then deletes the session. Result: **save 0.6 s, delete
+0.02 s**, and neither touches the main thread.
+
+**The "aha!" moments:**
+
+- *Default `@MainActor` isolation reaches into your models.* With
+  `SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor`, every `@Model` class and the
+  `MotionModel`/`AltitudeModel`/`LocationModel` structs were silently
+  main-actor types, so the background actor couldn't create a single
+  measurement. They're now `nonisolated` (and the structs `Sendable`); only
+  the unit-conversion helpers that read `SettingsManager.shared` are
+  explicitly `@MainActor`. No schema change, no migration.
+- *A `@ModelActor` isn't necessarily off the main thread.* The first version
+  was a `@ModelActor`, created from a `@concurrent` factory, with a test
+  asserting its work ran off the main thread. That test passed, and on device
+  stopping a few-minute recording still froze the UI for a second. A new test
+  that kept a main-actor ticker running through a 30,000-sample save showed a
+  **3.35 s** gap: the entire save. A thread probe settled it: the factory ran
+  in the background, but every call from main-actor code ran on the main
+  thread, because the macro's `DefaultSerialModelExecutor` runs each job on
+  whichever thread enqueues it. The old test passed only because its `await`
+  sat inside `#expect`, whose closure isn't main-actor isolated, so the call
+  happened to come from a background thread. `RecordingStore` is now a plain
+  `actor` with a fresh `ModelContext` per operation, and the longest
+  main-thread gap during that save is **7–20 ms**. Lesson: assert the thing
+  users feel (main-thread responsiveness), not a proxy for it.
+- *Synced folders aren't just a test-file trap.* The new framework file
+  compiled straight into the iOS and watch app targets ("Cannot find type
+  'MotionModel' in scope") until it joined `RecordingManager.swift` in their
+  exclusion lists. CLAUDE.md now says so.
+
+**UX:** after Stop, the Recordings tab shows "Saving…" and every recording
+control is disabled until the save lands (`isSaving` also blocks
+`startRecording`, so two sessions can't interleave). Deleted rows vanish
+immediately via `isPendingDeletion(_:)` — IDs are never removed on success,
+so a row can't flash back before `@Query` catches up. Failures are logged
+and surfaced as a toast on iOS or a label/haptic on the watch.
+
+**Verified on device (2026-10-26):** stopping a multi-minute recording
+shows "Saving…" immediately on iPhone and Apple Watch, `@Query` picks up the
+background save on its own, and both saves and the predicate deletes from
+the background context sync across devices through iCloud.
+
 ### 💡 Keeping the lights on during a recording (2026-10-25)
 
 A long recording had a quiet enemy: Auto-Lock. Once the screen went dark the

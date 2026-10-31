@@ -9,6 +9,7 @@ import SwiftUI
 
 struct RecordingsScreen: View {
 
+    @Environment(\.showNotification) private var showNotification
     @Environment(RecordingManager.self) private var recordingManager
     @Query(sort: \SensorSession.startedAt, order: .reverse) private var sessions: [SensorSession]
     @State private var sessionToRename: SensorSession?
@@ -16,10 +17,13 @@ struct RecordingsScreen: View {
 
     // MARK: - Body
     var body: some View {
+        // Sessions being deleted disappear immediately; the delete finishes in the background.
+        let visibleSessions = sessions.filter { !recordingManager.isPendingDeletion($0) }
+
         List {
             RecordingControlSection()
 
-            if sessions.isEmpty {
+            if visibleSessions.isEmpty {
                 ContentUnavailableView(
                     "No Recordings Yet",
                     systemImage: "record.circle",
@@ -27,7 +31,7 @@ struct RecordingsScreen: View {
                 )
                 .listRowBackground(Color.clear)
             } else {
-                ForEach(sessions) { session in
+                ForEach(visibleSessions) { session in
                     NavigationLink(value: NavigationRoute.recordings(.detail(session))) {
                         RecordingRow(session: session)
                     }
@@ -35,7 +39,7 @@ struct RecordingsScreen: View {
                     // declared explicitly here.
                     .swipeActions {
                         Button("Delete", systemImage: "trash", role: .destructive) {
-                            recordingManager.delete(session)
+                            delete(session)
                         }
                         .accessibilityIdentifier(UIIdentifiers.RecordingsScreen.deleteSwipeButton)
 
@@ -52,7 +56,7 @@ struct RecordingsScreen: View {
                         .accessibilityIdentifier(UIIdentifiers.RecordingsScreen.renameContextMenuButton)
 
                         Button("Delete", systemImage: "trash", role: .destructive) {
-                            recordingManager.delete(session)
+                            delete(session)
                         }
                         .accessibilityIdentifier(UIIdentifiers.RecordingsScreen.deleteContextMenuButton)
                     }
@@ -76,6 +80,14 @@ struct RecordingsScreen: View {
     }
 
     // MARK: - Methods
+    private func delete(_ session: SensorSession) {
+        Task {
+            if !(await recordingManager.delete(session)) {
+                showNotification("Recording Could Not Be Deleted")
+            }
+        }
+    }
+
     private func beginRename(_ session: SensorSession) {
         renameText = session.name
         sessionToRename = session

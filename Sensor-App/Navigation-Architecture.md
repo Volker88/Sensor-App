@@ -176,6 +176,11 @@ payload; call sites wrap them as `.position(...)` / `.motion(...)` /
 .locationMeasurements(SensorSession) → RecordingLocationMeasurementsView
 ```
 
+The three measurement views wrap `RecordingSampleList`
+(`Views/Recordings/RecordingSampleList.swift`), which loads the samples once via
+`session.load…Samples()` (decoded off the main thread), shows a `ProgressView`
+meanwhile and a `ContentUnavailableView` if loading fails.
+
 ---
 
 ## `ContentView` — Adaptive Tab Layout

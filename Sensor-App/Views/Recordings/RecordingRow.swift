@@ -11,10 +11,19 @@ struct RecordingRow: View {
 
     let session: SensorSession
 
+    /// SF Symbol matching the device that recorded the session.
+    private var sourceSymbol: String {
+        switch session.source {
+        case "Apple Watch": "applewatch"
+        case "iPad": "ipad.landscape"
+        default: "iphone"
+        }
+    }
+
     // MARK: - Body
     var body: some View {
         HStack {
-            Image(systemName: session.source == "Apple Watch" ? "applewatch" : "iphone")
+            Image(systemName: sourceSymbol)
                 .foregroundStyle(.secondary)
                 .frame(width: 28)
 

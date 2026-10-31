@@ -3,6 +3,7 @@
 //  Sensor-App
 //
 
+import OSLog
 import Sensor_App_Framework
 import SwiftData
 import SwiftUI
@@ -11,10 +12,13 @@ struct RecordingDetailScreen: View {
 
     let session: SensorSession
 
+    @Environment(\.showNotification) private var showNotification
     @Environment(RecordingManager.self) private var recordingManager
     @Environment(SettingsManager.self) private var settingsManager
     @Environment(\.dismiss) private var dismiss
     @State private var showDeleteConfirmation = false
+    /// The CSV export, prepared in the background once the samples are loaded.
+    @State private var exportURL: URL?
 
     private let exportManager = ExportManager()
 
@@ -39,64 +43,100 @@ struct RecordingDetailScreen: View {
                 }
 
                 ToolbarItem(placement: .primaryAction) {
-                    ShareSheet(url: exportManager.getFile(exportText: buildCSV(), filename: session.name))
-                        .accessibilityIdentifier(UIIdentifiers.RecordingsScreen.exportButton)
+                    if let exportURL {
+                        ShareSheet(url: exportURL)
+                            .accessibilityIdentifier(UIIdentifiers.RecordingsScreen.exportButton)
+                    } else {
+                        ProgressView()
+                    }
                 }
             }
             .confirmationDialog("Delete Recording", isPresented: $showDeleteConfirmation, titleVisibility: .visible) {
                 Button("Delete", role: .destructive) {
-                    recordingManager.delete(session)
+                    // Leave right away; the list already hides the session while the delete
+                    // finishes in the background.
                     dismiss()
+                    Task {
+                        if !(await recordingManager.delete(session)) {
+                            showNotification("Recording Could Not Be Deleted")
+                        }
+                    }
                 }
             } message: {
                 Text("This will permanently delete the recording.")
             }
+            // Rebuilt when the session is renamed, so the file name follows the title.
+            .task(id: session.name) {
+                exportURL = await makeExport()
+            }
     }
 
     // MARK: - Methods
-    private func buildCSV() -> String {
+    /// Writes the session's samples to a CSV file and returns its URL, or `nil` if loading failed.
+    private func makeExport() async -> URL? {
+        do {
+            let motion = try await session.loadMotionSamples()
+            let altitude = try await session.loadAltitudeSamples()
+            let location = try await session.loadLocationSamples()
+
+            // Motion is by far the largest part and needs no unit settings, so it's formatted off the
+            // main thread. Altitude and location convert units from the current settings.
+            var lines = await Self.motionCSVLines(motion)
+            lines += altitudeCSVLines(altitude)
+            lines += locationCSVLines(location)
+
+            return exportManager.getFile(exportText: lines.joined(separator: "\n"), filename: session.name)
+        } catch {
+            Logger.recording.error("Preparing the export failed: \(error)")
+            return nil
+        }
+    }
+
+    @concurrent
+    nonisolated private static func motionCSVLines(_ samples: [MotionModel]) async -> [String] {
+        guard !samples.isEmpty else { return [] }
+        let degrees = 180 / Double.pi
+        var lines = [
+            "# Motion",
+            "Counter,Timestamp,Acc X,Acc Y,Acc Z,Gravity X,Gravity Y,Gravity Z,Gyro X,Gyro Y,Gyro Z,Mag Cal,Mag X,Mag Y,Mag Z,Roll (°),Pitch (°),Yaw (°),Heading (°)"  // swiftlint:disable:this line_length
+        ]
+        lines.reserveCapacity(samples.count + 2)
+        for sample in samples {
+            lines.append(
+                "\(sample.counter),\(sample.timestamp),\(sample.accelerationXAxis),\(sample.accelerationYAxis),\(sample.accelerationZAxis),\(sample.gravityXAxis),\(sample.gravityYAxis),\(sample.gravityZAxis),\(sample.gyroXAxis),\(sample.gyroYAxis),\(sample.gyroZAxis),\(sample.magnetometerCalibration),\(sample.magnetometerXAxis),\(sample.magnetometerYAxis),\(sample.magnetometerZAxis),\(sample.attitudeRoll * degrees),\(sample.attitudePitch * degrees),\(sample.attitudeYaw * degrees),\(sample.attitudeHeading)"
+            )
+        }
+        return lines
+    }
+
+    private func altitudeCSVLines(_ samples: [AltitudeModel]) -> [String] {
+        guard !samples.isEmpty else { return [] }
         let settings = settingsManager.fetchUserSettings()
-        let speedUnit = settings.GPSSpeedSetting
-        let heightUnit = settings.altitudeHeightSetting
-        let pressureUnit = settings.pressureSetting
-
-        var lines: [String] = []
-
-        if let measurements = session.motionMeasurements, !measurements.isEmpty {
-            lines.append("# Motion")
+        var lines = [
+            "# Altitude",
+            "Counter,Timestamp,Pressure (\(settings.pressureSetting)),Rel. Altitude (\(settings.altitudeHeightSetting))"
+        ]
+        for sample in samples {
             lines.append(
-                "Counter,Timestamp,Acc X,Acc Y,Acc Z,Gravity X,Gravity Y,Gravity Z,Gyro X,Gyro Y,Gyro Z,Mag Cal,Mag X,Mag Y,Mag Z,Roll (°),Pitch (°),Yaw (°),Heading (°)"  // swiftlint:disable:this line_length
+                "\(sample.counter),\(sample.timestamp),\(sample.calculatedPressure),\(sample.calculatedAltitude)"
             )
-            for measurement in measurements.sorted(by: { $0.counter < $1.counter }) {
-                lines.append(
-                    "\(measurement.counter),\(measurement.timestamp),\(measurement.accelerationXAxis),\(measurement.accelerationYAxis),\(measurement.accelerationZAxis),\(measurement.gravityXAxis),\(measurement.gravityYAxis),\(measurement.gravityZAxis),\(measurement.gyroXAxis),\(measurement.gyroYAxis),\(measurement.gyroZAxis),\(measurement.magnetometerCalibration),\(measurement.magnetometerXAxis),\(measurement.magnetometerYAxis),\(measurement.magnetometerZAxis),\(measurement.attitudeRollDegrees),\(measurement.attitudePitchDegrees),\(measurement.attitudeYawDegrees),\(measurement.attitudeHeading)"
-                )
-            }
         }
+        return lines
+    }
 
-        if let measurements = session.altitudeMeasurements, !measurements.isEmpty {
-            lines.append("# Altitude")
-            lines.append("Counter,Timestamp,Pressure (\(pressureUnit)),Rel. Altitude (\(heightUnit))")
-            for measurement in measurements.sorted(by: { $0.counter < $1.counter }) {
-                lines.append(
-                    "\(measurement.counter),\(measurement.timestamp),\(measurement.calculatedPressure),\(measurement.calculatedAltitude)"
-                )
-            }
-        }
-
-        if let measurements = session.locationMeasurements, !measurements.isEmpty {
-            lines.append("# Location")
+    private func locationCSVLines(_ samples: [LocationModel]) -> [String] {
+        guard !samples.isEmpty else { return [] }
+        let settings = settingsManager.fetchUserSettings()
+        var lines = [
+            "# Location",
+            "Counter,Timestamp,Longitude,Latitude,Altitude (\(settings.altitudeHeightSetting)),Speed (\(settings.GPSSpeedSetting)),Course (°),H.Accuracy (m),V.Accuracy (m),GPS Accuracy"
+        ]
+        for sample in samples {
             lines.append(
-                "Counter,Timestamp,Longitude,Latitude,Altitude (\(heightUnit)),Speed (\(speedUnit)),Course (°),H.Accuracy (m),V.Accuracy (m),GPS Accuracy"
+                "\(sample.counter),\(sample.timestamp),\(sample.longitude),\(sample.latitude),\(sample.calculatedAltitude),\(sample.calculatedSpeed),\(sample.course),\(sample.horizontalAccuracy),\(sample.verticalAccuracy),\(sample.GPSAccuracy)"
             )
-            for measurement in measurements.sorted(by: { $0.counter < $1.counter }) {
-                lines.append(
-                    "\(measurement.counter),\(measurement.timestamp),\(measurement.longitude),\(measurement.latitude),\(measurement.calculatedAltitude),\(measurement.calculatedSpeed),\(measurement.course),\(measurement.horizontalAccuracy),\(measurement.verticalAccuracy),\(measurement.GPSAccuracy)"
-                )
-            }
         }
-
-        return lines.joined(separator: "\n")
+        return lines
     }
 }
 

@@ -76,6 +76,12 @@ struct SensorAppApp: App {
                 .preferredColorScheme(appColorScheme.colorScheme)
                 .modelContainer(modelContainer)
                 .task { recordingManager.modelContext = modelContainer.mainContext }
+                // One-time conversion of pre-V2 recordings into sample archives, gated until the
+                // account has had no new old-format recording for 90 days. Remove with the iOS 28
+                // release (see LegacyRecordingConverter).
+                .task(priority: .background) {
+                    await LegacyRecordingConverter(modelContainer: modelContainer).run()
+                }
                 .onChange(of: scenePhase) { _, phase in
                     switch phase {
                         case .active:

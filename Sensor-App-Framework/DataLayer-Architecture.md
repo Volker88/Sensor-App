@@ -322,13 +322,13 @@ opened). Holds minimal recording state: `isRecording`, `startedAt`, `sessionName
 | Method | Description |
 |---|---|
 | `startRecording(name:)` | Sets `isRecording = true`; captures start time and optional name |
-| `stopRecording(motionArray:altitudeArray:locationArray:source:)` | Converts live-data models to persistent `@Model` instances, inserts them plus the parent `SensorSession`, calls `context.save()` |
-| `delete(_:)` | Deletes a `SensorSession` (cascade removes all measurements) and saves |
+| `stopRecording(motionArray:altitudeArray:locationArray:source:) async` | Archives the live-data models (one `SampleArchive` per sensor) on a new `SensorSession` and saves it in the background `RecordingStore` |
+| `delete(_:) async` | Deletes a `SensorSession` and any legacy per-sample rows in the background |
 
 Live sensor data is **not** written to the store during recording — it remains
 in the managers' in-memory arrays. Persistence happens only when `stopRecording`
-is called, converting `MotionModel` / `AltitudeModel` / `LocationModel` values
-to `MotionMeasurement` / `AltitudeMeasurement` / `LocationMeasurement` at once.
+is called, archiving the `MotionModel` / `AltitudeModel` / `LocationModel` values
+in one go (schema V2; see `SwiftData/DataArchitecture.md`).
 
 ---
 

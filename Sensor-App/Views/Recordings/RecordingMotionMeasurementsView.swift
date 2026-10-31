@@ -11,83 +11,79 @@ struct RecordingMotionMeasurementsView: View {
 
     let session: SensorSession
 
-    private var sorted: [MotionMeasurement] {
-        (session.motionMeasurements ?? []).sorted { $0.counter < $1.counter }
-    }
-
     // MARK: - Body
     var body: some View {
-        List(sorted) { measurement in
+        RecordingSampleList(load: { try await session.loadMotionSamples() }, id: \.counter) { sample in
             DisclosureGroup {
                 Group {
                     LabeledContent(
-                        "Acc X", value: measurement.accelerationXAxis.formatted(.number.precision(.fractionLength(5))))
+                        "Acc X", value: sample.accelerationXAxis.formatted(.number.precision(.fractionLength(5))))
 
                     LabeledContent(
-                        "Acc Y", value: measurement.accelerationYAxis.formatted(.number.precision(.fractionLength(5))))
+                        "Acc Y", value: sample.accelerationYAxis.formatted(.number.precision(.fractionLength(5))))
 
                     LabeledContent(
-                        "Acc Z", value: measurement.accelerationZAxis.formatted(.number.precision(.fractionLength(5))))
+                        "Acc Z", value: sample.accelerationZAxis.formatted(.number.precision(.fractionLength(5))))
 
                 }
                 Group {
                     LabeledContent(
-                        "Gravity X", value: measurement.gravityXAxis.formatted(.number.precision(.fractionLength(5))))
+                        "Gravity X", value: sample.gravityXAxis.formatted(.number.precision(.fractionLength(5))))
 
                     LabeledContent(
-                        "Gravity Y", value: measurement.gravityYAxis.formatted(.number.precision(.fractionLength(5))))
+                        "Gravity Y", value: sample.gravityYAxis.formatted(.number.precision(.fractionLength(5))))
 
                     LabeledContent(
-                        "Gravity Z", value: measurement.gravityZAxis.formatted(.number.precision(.fractionLength(5))))
+                        "Gravity Z", value: sample.gravityZAxis.formatted(.number.precision(.fractionLength(5))))
 
                 }
                 Group {
                     LabeledContent(
-                        "Gyro X", value: measurement.gyroXAxis.formatted(.number.precision(.fractionLength(5))))
+                        "Gyro X", value: sample.gyroXAxis.formatted(.number.precision(.fractionLength(5))))
 
                     LabeledContent(
-                        "Gyro Y", value: measurement.gyroYAxis.formatted(.number.precision(.fractionLength(5))))
+                        "Gyro Y", value: sample.gyroYAxis.formatted(.number.precision(.fractionLength(5))))
 
                     LabeledContent(
-                        "Gyro Z", value: measurement.gyroZAxis.formatted(.number.precision(.fractionLength(5))))
+                        "Gyro Z", value: sample.gyroZAxis.formatted(.number.precision(.fractionLength(5))))
 
                 }
                 Group {
-                    LabeledContent("Mag Cal", value: measurement.magnetometerCalibration.formatted())
+                    LabeledContent("Mag Cal", value: sample.magnetometerCalibration.formatted())
 
                     LabeledContent(
-                        "Mag X", value: measurement.magnetometerXAxis.formatted(.number.precision(.fractionLength(5))))
+                        "Mag X", value: sample.magnetometerXAxis.formatted(.number.precision(.fractionLength(5))))
 
                     LabeledContent(
-                        "Mag Y", value: measurement.magnetometerYAxis.formatted(.number.precision(.fractionLength(5))))
+                        "Mag Y", value: sample.magnetometerYAxis.formatted(.number.precision(.fractionLength(5))))
 
                     LabeledContent(
-                        "Mag Z", value: measurement.magnetometerZAxis.formatted(.number.precision(.fractionLength(5))))
+                        "Mag Z", value: sample.magnetometerZAxis.formatted(.number.precision(.fractionLength(5))))
 
                 }
                 Group {
                     LabeledContent(
                         "Roll (°)",
-                        value: measurement.attitudeRollDegrees.formatted(.number.precision(.fractionLength(5))))
+                        value: sample.graphValue(for: .attitudeRoll).formatted(.number.precision(.fractionLength(5))))
 
                     LabeledContent(
                         "Pitch (°)",
-                        value: measurement.attitudePitchDegrees.formatted(.number.precision(.fractionLength(5))))
+                        value: sample.graphValue(for: .attitudePitch).formatted(.number.precision(.fractionLength(5))))
 
                     LabeledContent(
                         "Yaw (°)",
-                        value: measurement.attitudeYawDegrees.formatted(.number.precision(.fractionLength(5))))
+                        value: sample.graphValue(for: .attitudeYaw).formatted(.number.precision(.fractionLength(5))))
 
                     LabeledContent(
                         "Heading (°)",
-                        value: measurement.attitudeHeading.formatted(.number.precision(.fractionLength(5))))
+                        value: sample.attitudeHeading.formatted(.number.precision(.fractionLength(5))))
                 }
             } label: {
                 HStack {
-                    Text(verbatim: "#\(measurement.counter)")
+                    Text(verbatim: "#\(sample.counter)")
                         .monospacedDigit()
                     Spacer()
-                    Text(measurement.timestamp)
+                    Text(sample.timestamp)
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 }

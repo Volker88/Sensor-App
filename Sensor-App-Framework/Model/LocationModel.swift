@@ -15,7 +15,7 @@ import Foundation
 /// SI units; use the computed properties (`calculatedSpeed`, `calculatedAltitude`,
 /// `calculatedHorizontalAccuracy`, `calculatedVerticalAccuracy`) to obtain
 /// user-preferred units at display time.
-public struct LocationModel: Hashable {
+nonisolated public struct LocationModel: Hashable, Sendable, Codable {
 
     /// Sequential index of this measurement within the current session.
     public let counter: Int
@@ -46,8 +46,26 @@ public struct LocationModel: Hashable {
 
     /// Desired GPS accuracy setting in effect when this measurement was taken.
     public var GPSAccuracy: Double
+
+    /// The keys of this sample in a recording's `SampleArchive`. They are a persisted format: never
+    /// change or remove a key, and make new properties optional (see `SampleArchive`). Declaring them
+    /// explicitly means renaming a property doesn't compile until its case keeps the old key, e.g.
+    /// `case newName = "oldName"`.
+    enum CodingKeys: String, CodingKey {
+        case counter
+        case longitude
+        case latitude
+        case altitude
+        case speed
+        case course
+        case horizontalAccuracy
+        case verticalAccuracy
+        case timestamp
+        case GPSAccuracy
+    }
 }
 
+@MainActor
 extension LocationModel {
 
     /// Returns the raw Double value for the given `GraphDetail` axis.

@@ -9,7 +9,7 @@ import Foundation
 
 /// Points to the active schema so a single change here updates all consumers
 /// when the schema is bumped to a new version.
-public typealias LatestModelSchema = ModelsSchemaV1
+public typealias LatestModelSchema = ModelsSchemaV2
 
 /// The root recording entity grouping all sensor measurements for one session.
 public typealias SensorSession = LatestModelSchema.SensorSession

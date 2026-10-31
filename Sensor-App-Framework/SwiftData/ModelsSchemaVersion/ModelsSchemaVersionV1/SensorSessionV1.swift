@@ -23,7 +23,7 @@ extension ModelsSchemaV1 {
     /// relationships are optional — required by the CloudKit constraint that
     /// disallows non-optional relationships.
     @Model
-    public class SensorSession {
+    nonisolated public class SensorSession {
 
         /// Stable identifier for this session.
         public var id = UUID()

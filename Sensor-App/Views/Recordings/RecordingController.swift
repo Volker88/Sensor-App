@@ -34,18 +34,25 @@ struct RecordingController {
         recordingManager.startRecording()
     }
 
-    /// Saves the session, then stops and clears the sensors.
-    func stop() {
-        recordingManager.stopRecording(
+    /// Stops the sensors, saves the session in the background, then clears the sensors.
+    ///
+    /// The sensor arrays are copied when the save starts, so the buffers stay on screen until the
+    /// save has finished.
+    /// - Returns: `true` if the session was saved.
+    @discardableResult
+    func stop() async -> Bool {
+        motionManager.stopMotionUpdates()
+        locationManager.stopLocationUpdates()
+
+        let saved = await recordingManager.stopRecording(
             motionArray: motionManager.motionArray,
             altitudeArray: motionManager.altitudeArray,
             locationArray: locationManager.locationArray,
             source: UIDevice.current.userInterfaceIdiom == .pad ? "iPad" : "iPhone"
         )
 
-        motionManager.stopMotionUpdates()
-        locationManager.stopLocationUpdates()
         motionManager.resetMotionUpdates()
         locationManager.resetLocationUpdates()
+        return saved
     }
 }

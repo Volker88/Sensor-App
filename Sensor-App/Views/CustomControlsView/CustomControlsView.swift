@@ -56,8 +56,9 @@ struct CustomControlsView: View {
     private func button(type: SensorControlAction) -> some View {
         let isRecordActive = type == .record && recordingManager.isRecording
         // Only Record (Stop) stays usable mid-recording: starting, pausing or deleting
-        // would leave gaps in (or wipe) the session's data.
-        let isDisabled = type != .record && recordingManager.isRecording
+        // would leave gaps in (or wipe) the session's data. While the stopped session is
+        // still being saved, nothing can be used, so a new recording can't start yet.
+        let isDisabled = (type != .record && recordingManager.isRecording) || recordingManager.isSaving
         return Button {
             switch type {
                 case .start:
@@ -109,7 +110,9 @@ struct CustomControlsView: View {
         isDisabled: Bool
     ) -> LocalizedStringKey {
         if isDisabled {
-            return LocalizedStringKey("Unavailable while recording")
+            return recordingManager.isSaving
+                ? LocalizedStringKey("Unavailable while saving")
+                : LocalizedStringKey("Unavailable while recording")
         }
         return isRecordActive ? LocalizedStringKey("Tap to stop recording") : type.accessibilityHint
     }
@@ -122,8 +125,18 @@ struct CustomControlsView: View {
 
     private func recording() {
         if recordingManager.isRecording {
-            recordingController.stop()
-            showNotification("Recording Saved")
+            Task {
+                let saved = await recordingController.stop()
+                showNotification(saved ? "Recording Saved" : "Recording Could Not Be Saved")
+            }
+            // Only announce the save if it takes noticeable time, so short sessions don't flash
+            // two toasts in a row.
+            Task {
+                try? await Task.sleep(for: .milliseconds(500))
+                if recordingManager.isSaving {
+                    showNotification("Saving…")
+                }
+            }
         } else {
             recordingController.start()
             showNotification("Recording Started")

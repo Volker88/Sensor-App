@@ -19,13 +19,22 @@ public enum DatabaseMigrationPlan: SchemaMigrationPlan {
     /// All schema versions in chronological order, oldest first.
     public static var schemas: [any VersionedSchema.Type] {
         [
-            ModelsSchemaV1.self
+            ModelsSchemaV1.self,
+            ModelsSchemaV2.self
         ]
     }
 
-    /// Migration stages between consecutive schema versions. Empty while only
-    /// one schema version exists.
+    /// Migration stages between consecutive schema versions.
     public static var stages: [MigrationStage] {
-        []
+        [
+            migrateV1toV2
+        ]
     }
+
+    /// V2 only adds optional sample archives and defaulted counts to `SensorSession`,
+    /// so the store migrates in place. Existing sessions keep their per-sample rows.
+    static let migrateV1toV2 = MigrationStage.lightweight(
+        fromVersion: ModelsSchemaV1.self,
+        toVersion: ModelsSchemaV2.self
+    )
 }

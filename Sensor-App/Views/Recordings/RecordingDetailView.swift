@@ -32,9 +32,9 @@ struct RecordingDetailView: View {
             }
 
             Section("Measurements") {
-                let motionCount = session.motionMeasurements?.count ?? 0
-                let altitudeCount = session.altitudeMeasurements?.count ?? 0
-                let locationCount = session.locationMeasurements?.count ?? 0
+                let motionCount = session.motionSampleTotal
+                let altitudeCount = session.altitudeSampleTotal
+                let locationCount = session.locationSampleTotal
 
                 if motionCount > 0 {
                     NavigationLink(value: NavigationRoute.recordings(.motionMeasurements(session))) {

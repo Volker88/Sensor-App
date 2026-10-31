@@ -36,10 +36,15 @@ struct WatchRecordingController {
         recordingManager.startRecording()
     }
 
-    /// Saves the session, clears the buffers and drops the recording's sensor claim.
-    /// Sensors a visible screen still claims keep running.
-    func stop() {
-        recordingManager.stopRecording(
+    /// Saves the session in the background, then clears the buffers and drops the recording's
+    /// sensor claim. Sensors a visible screen still claims keep running.
+    ///
+    /// The sensor arrays are copied when the save starts, so samples arriving during the save
+    /// aren't part of the session.
+    /// - Returns: `true` if the session was saved.
+    @discardableResult
+    func stop() async -> Bool {
+        let saved = await recordingManager.stopRecording(
             motionArray: motionManager.motionArray,
             altitudeArray: motionManager.altitudeArray,
             locationArray: locationManager.locationArray,
@@ -52,5 +57,6 @@ struct WatchRecordingController {
         motionManager.releaseMotionUpdates(for: Self.client)
         motionManager.releaseAltitudeUpdates(for: Self.client)
         locationManager.releaseLocationUpdates(for: Self.client)
+        return saved
     }
 }

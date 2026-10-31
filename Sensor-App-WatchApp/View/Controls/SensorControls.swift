@@ -45,9 +45,10 @@ struct SensorControls: ToolbarContent {
     }
 
     /// Only Record (Stop) stays usable mid-recording: pausing or deleting would leave
-    /// gaps in (or wipe) the session's data.
+    /// gaps in (or wipe) the session's data. While the stopped session is still being
+    /// saved, nothing can be used, so a new recording can't start yet.
     private func isDisabled(_ type: SensorControlAction) -> Bool {
-        type != .record && recordingManager.isRecording
+        (type != .record && recordingManager.isRecording) || recordingManager.isSaving
     }
 
     private func isRecordActive(_ type: SensorControlAction) -> Bool {
@@ -56,7 +57,9 @@ struct SensorControls: ToolbarContent {
 
     private func accessibilityHint(_ type: SensorControlAction) -> LocalizedStringKey {
         if isDisabled(type) {
-            return LocalizedStringKey("Unavailable while recording")
+            return recordingManager.isSaving
+                ? LocalizedStringKey("Unavailable while saving")
+                : LocalizedStringKey("Unavailable while recording")
         }
         return isRecordActive(type) ? LocalizedStringKey("Tap to stop recording") : type.accessibilityHint
     }
@@ -137,7 +140,11 @@ struct SensorControls: ToolbarContent {
     private func toggleRecording() {
         if recordingManager.isRecording {
             WKInterfaceDevice.current().play(.stop)
-            recordingController.stop()
+            Task {
+                if !(await recordingController.stop()) {
+                    WKInterfaceDevice.current().play(.failure)
+                }
+            }
         } else {
             WKInterfaceDevice.current().play(.start)
             recordingController.start()

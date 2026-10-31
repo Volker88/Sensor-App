@@ -1559,7 +1559,7 @@
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Acesso ao Serviço de Localização é necessário"
+            "value" : "Acesso ao serviço de localização é necessário"
           }
         },
         "zh-Hans" : {
@@ -1624,7 +1624,7 @@
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Acesso ao Sensor de Movimento é necessário"
+            "value" : "Acesso ao sensor de movimento é necessário"
           }
         },
         "zh-Hans" : {
@@ -1753,7 +1753,7 @@
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Unidade de Precisão"
+            "value" : "Unidade de precisão"
           }
         },
         "zh-Hans" : {
@@ -2015,7 +2015,7 @@
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Variação de Altitude"
+            "value" : "Variação de altitude"
           }
         },
         "zh-Hans" : {
@@ -2081,7 +2081,7 @@
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Variação de Altitude: %1$.5f %2$@"
+            "value" : "Variação de altitude: %1$.5f %2$@"
           }
         },
         "zh-Hans" : {
@@ -2147,7 +2147,7 @@
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Medições de Altitude"
+            "value" : "Medições de altitude"
           }
         },
         "zh-Hans" : {
@@ -2276,7 +2276,7 @@
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ícone do Aplicativo"
+            "value" : "Ícone da app"
           }
         },
         "zh-Hans" : {
@@ -2600,7 +2600,7 @@
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Estilo Base"
+            "value" : "Estilo base"
           }
         },
         "zh-Hans" : {
@@ -2730,7 +2730,7 @@
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Alterações Descargadas"
+            "value" : "Alterações descartadas"
           }
         },
         "zh-Hans" : {
@@ -3384,7 +3384,7 @@
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Apagar Gravação"
+            "value" : "Apagar gravação"
           }
         },
         "zh-Hans" : {
@@ -4579,7 +4579,7 @@
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Exportar Dados de Aceleração para CSV"
+            "value" : "Exportar dados de aceleração para CSV"
           }
         },
         "zh-Hans" : {
@@ -4644,7 +4644,7 @@
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Exportar Dados de Altitude para CSV"
+            "value" : "Exportar dados de altitude para CSV"
           }
         },
         "zh-Hans" : {
@@ -4709,7 +4709,7 @@
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Exportar Dados de Atitude para CSV"
+            "value" : "Exportar dados de atitude para CSV"
           }
         },
         "zh-Hans" : {
@@ -4774,7 +4774,7 @@
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Exportar Dados de Gravidade para CSV"
+            "value" : "Exportar dados de gravidade para CSV"
           }
         },
         "zh-Hans" : {
@@ -4839,7 +4839,7 @@
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Exportar Dados do Giroscópio para CSV"
+            "value" : "Exportar dados do giroscópio para CSV"
           }
         },
         "zh-Hans" : {
@@ -4904,7 +4904,7 @@
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Exportar Dados de Localização para CSV"
+            "value" : "Exportar dados de localização para CSV"
           }
         },
         "zh-Hans" : {
@@ -4969,7 +4969,7 @@
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Exportar Dados do Magnetômetro para CSV"
+            "value" : "Exportar dados do magnetómetro para CSV"
           }
         },
         "zh-Hans" : {
@@ -6665,7 +6665,7 @@
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ID;Tempo;Pressão;Variação de Altitude"
+            "value" : "ID;Tempo;Pressão;Variação de altitude"
           }
         },
         "zh-Hans" : {
@@ -7132,65 +7132,13 @@
       }
     },
     "Latitude: %.6f° ± %.2f %@" : {
+      "comment" : "A label displaying the latitude, latitude accuracy, and longitude, longitude accuracy. The",
+      "isCommentAutoGenerated" : true,
       "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zeměpisná šířka: %1$.6f° ± %2$.2f %3$@"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Breitengrad: %1$.6f° ± %2$.2f %3$@"
-          }
-        },
         "en" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "new",
             "value" : "Latitude: %1$.6f° ± %2$.2f %3$@"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Latitud: %1$.6f° ± %2$.2f %3$@"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Latitude : %1$.6f° ± %2$.2f %3$@"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Latitudine: %1$.6f° ± %2$.2f %3$@"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "緯度: %1$.6f° ± %2$.2f %3$@"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "위도: %1$.6f° ± %2$.2f %3$@"
-          }
-        },
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Latitude: %1$.6f° ± %2$.2f %3$@"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "纬度：%1$.6f° ± %2$.2f %3$@"
           }
         }
       }
@@ -7511,7 +7459,7 @@
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Medições de Localização"
+            "value" : "Medições de localização"
           }
         },
         "zh-Hans" : {
@@ -7718,65 +7666,13 @@
       }
     },
     "Longitude: %.6f° ± %.2f %@" : {
+      "comment" : "A description of the user's location, including the latitude and longitude, and",
+      "isCommentAutoGenerated" : true,
       "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zeměpisná délka: %1$.6f° ± %2$.2f %3$@"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Längengrad: %1$.6f° ± %2$.2f %3$@"
-          }
-        },
         "en" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "new",
             "value" : "Longitude: %1$.6f° ± %2$.2f %3$@"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Longitud: %1$.6f° ± %2$.2f %3$@"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Longitude : %1$.6f° ± %2$.2f %3$@"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Longitudine: %1$.6f° ± %2$.2f %3$@"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "経度: %1$.6f° ± %2$.2f %3$@"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "경도: %1$.6f° ± %2$.2f %3$@"
-          }
-        },
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Longitude: %1$.6f° ± %2$.2f %3$@"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "经度：%1$.6f° ± %2$.2f %3$@"
           }
         }
       }
@@ -8293,7 +8189,7 @@
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Estilo de Mapa"
+            "value" : "Estilo de mapa"
           }
         },
         "zh-Hans" : {
@@ -8423,7 +8319,7 @@
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Máximo de Pontos: %.0f"
+            "value" : "Máximo de pontos: %.0f"
           }
         },
         "zh-Hans" : {
@@ -8626,6 +8522,72 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "测量值"
+          }
+        }
+      }
+    },
+    "Measurements Could Not Be Loaded" : {
+      "comment" : "A title for a view that displays a message that measurements could not be loaded.",
+      "isCommentAutoGenerated" : true,
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Měření se nepodařilo načíst"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Messungen konnten nicht geladen werden"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Measurements Could Not Be Loaded"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No se han podido cargar las mediciones"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impossible de charger les mesures"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impossibile caricare le misurazioni"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "測定値を読み込めませんでした"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "측정값을 불러올 수 없음"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Não foi possível carregar as medições"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "无法载入测量值"
           }
         }
       }
@@ -8945,7 +8907,7 @@
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Medições de Movimento"
+            "value" : "Medições de movimento"
           }
         },
         "zh-Hans" : {
@@ -9140,7 +9102,7 @@
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Navegar para a Secção"
+            "value" : "Navegar para a secção"
           }
         },
         "zh-Hans" : {
@@ -9270,7 +9232,7 @@
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Opção de Navegação"
+            "value" : "Opção de navegação"
           }
         },
         "zh-Hans" : {
@@ -9533,7 +9495,7 @@
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sem Gravações Ainda"
+            "value" : "Ainda sem gravações"
           }
         },
         "zh-Hans" : {
@@ -10251,7 +10213,7 @@
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sensor Piezoelétrico"
+            "value" : "Sensor piezoelétrico"
           }
         },
         "zh-Hans" : {
@@ -11034,7 +10996,7 @@
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Gravar Sessão"
+            "value" : "Gravar sessão"
           }
         },
         "zh-Hans" : {
@@ -11105,6 +11067,138 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "录制"
+          }
+        }
+      }
+    },
+    "Recording Could Not Be Deleted" : {
+      "comment" : "Error message displayed when a recording cannot be deleted.",
+      "isCommentAutoGenerated" : true,
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Záznam se nepodařilo smazat"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aufzeichnung konnte nicht gelöscht werden"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recording Could Not Be Deleted"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No se ha podido eliminar la grabación"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impossible de supprimer l’enregistrement"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impossibile eliminare la registrazione"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "記録を削除できませんでした"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "기록을 삭제할 수 없음"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Não foi possível apagar a gravação"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "无法删除录制"
+          }
+        }
+      }
+    },
+    "Recording Could Not Be Saved" : {
+      "comment" : "A label displayed when a recording fails to be saved.",
+      "isCommentAutoGenerated" : true,
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Záznam se nepodařilo uložit"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aufzeichnung konnte nicht gespeichert werden"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recording Could Not Be Saved"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No se ha podido guardar la grabación"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impossible de sauvegarder l’enregistrement"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impossibile salvare la registrazione"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "記録を保存できませんでした"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "기록을 저장할 수 없음"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Não foi possível guardar a gravação"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "无法保存录制"
           }
         }
       }
@@ -11295,7 +11389,7 @@
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Gravação Iniciada"
+            "value" : "Gravação iniciada"
           }
         },
         "zh-Hans" : {
@@ -11492,7 +11586,7 @@
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Taxa de Atualização"
+            "value" : "Taxa de atualização"
           }
         },
         "zh-Hans" : {
@@ -11623,7 +11717,7 @@
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Notas de Lançamento"
+            "value" : "Notas de lançamento"
           }
         },
         "zh-Hans" : {
@@ -12286,6 +12380,72 @@
         }
       }
     },
+    "Saving…" : {
+      "comment" : "A label displayed when a recording is being saved.",
+      "isCommentAutoGenerated" : true,
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ukládání…"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wird gespeichert …"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saving…"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Guardando…"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sauvegarde…"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Salvataggio in corso…"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "保存中…"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "저장 중…"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A guardar…"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "正在保存…"
+          }
+        }
+      }
+    },
     "Screen Stays On" : {
       "localizations" : {
         "cs" : {
@@ -12600,7 +12760,7 @@
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Informações da Sessão"
+            "value" : "Informações da sessão"
           }
         },
         "zh-Hans" : {
@@ -12795,7 +12955,7 @@
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mostrar Notas de Lançamento"
+            "value" : "Mostrar notas de lançamento"
           }
         },
         "zh-Hans" : {
@@ -12860,7 +13020,7 @@
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mostrar Trânsito"
+            "value" : "Mostrar trânsito"
           }
         },
         "zh-Hans" : {
@@ -13122,7 +13282,7 @@
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Configuração de Velocidade"
+            "value" : "Configuração de velocidade"
           }
         },
         "zh-Hans" : {
@@ -13383,7 +13543,7 @@
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Iniciar Gravação"
+            "value" : "Iniciar gravação"
           }
         },
         "zh-Hans" : {
@@ -13645,7 +13805,7 @@
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Parar Gravação"
+            "value" : "Parar gravação"
           }
         },
         "zh-Hans" : {
@@ -13710,7 +13870,7 @@
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Guardado com Sucesso"
+            "value" : "Guardado com sucesso"
           }
         },
         "zh-Hans" : {
@@ -13971,7 +14131,7 @@
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Toque em «Iniciar Gravação» acima ou use os controlos em qualquer ecrã de sensor."
+            "value" : "Toque em «Iniciar gravação» acima ou use os controlos em qualquer ecrã de sensor."
           }
         },
         "zh-Hans" : {
@@ -14362,7 +14522,7 @@
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Toque para definir como Ícone da App"
+            "value" : "Toque para definir como ícone da app"
           }
         },
         "zh-Hans" : {
@@ -14697,6 +14857,72 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "录制期间不可用"
+          }
+        }
+      }
+    },
+    "Unavailable while saving" : {
+      "comment" : "Accessibility hint for a button that is unavailable while saving a recording.",
+      "isCommentAutoGenerated" : true,
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Během ukládání nedostupné"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Während des Speicherns nicht verfügbar"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unavailable while saving"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No disponible durante el guardado"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Indisponible pendant la sauvegarde"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Non disponibile durante il salvataggio"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "保存中は使用できません"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "저장 중에는 사용할 수 없음"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Indisponível ao guardar"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "保存期间不可用"
           }
         }
       }
@@ -15081,7 +15307,7 @@
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Visualizar registo de Aceleração"
+            "value" : "Visualizar registo de aceleração"
           }
         },
         "zh-Hans" : {
@@ -15211,7 +15437,7 @@
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Visualizar registo de Altitude"
+            "value" : "Visualizar registo de altitude"
           }
         },
         "zh-Hans" : {
@@ -15341,7 +15567,7 @@
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Visualizar registo de Atitude"
+            "value" : "Visualizar registo de atitude"
           }
         },
         "zh-Hans" : {
@@ -15471,7 +15697,7 @@
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Visualizar registo de Gravidade"
+            "value" : "Visualizar registo de gravidade"
           }
         },
         "zh-Hans" : {
@@ -15601,7 +15827,7 @@
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Visualizar registo do Giroscópio"
+            "value" : "Visualizar registo do giroscópio"
           }
         },
         "zh-Hans" : {
@@ -15796,7 +16022,7 @@
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Visualizar registo do Magnetómetro"
+            "value" : "Visualizar registo do magnetómetro"
           }
         },
         "zh-Hans" : {

@@ -61,6 +61,15 @@ struct RecordingControlSection: View {
                 }
                 .accessibilityHint(Text("Tap to stop recording"))
                 .accessibilityIdentifier(UIIdentifiers.RecordingsScreen.stopRecordingButton)
+            } else if recordingManager.isSaving {
+                // The new session appears in the list below once the save has finished.
+                Label {
+                    Text("Saving…")
+                } icon: {
+                    ProgressView()
+                }
+                .foregroundStyle(.secondary)
+                .accessibilityIdentifier(UIIdentifiers.RecordingsScreen.savingLabel)
             } else {
                 Button(action: startRecording) {
                     Label("Start Recording", systemImage: "record.circle")
@@ -82,8 +91,10 @@ struct RecordingControlSection: View {
     /// Nothing on this tab displays the sensors, and sensor screens restart their own
     /// updates on appear, so stopping them after saving is safe.
     private func stopRecording() {
-        recordingController.stop()
-        showNotification("Recording Saved")
+        Task {
+            let saved = await recordingController.stop()
+            showNotification(saved ? "Recording Saved" : "Recording Could Not Be Saved")
+        }
     }
 
     private var recordingController: RecordingController {

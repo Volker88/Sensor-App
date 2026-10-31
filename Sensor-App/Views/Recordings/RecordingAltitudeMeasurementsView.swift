@@ -11,29 +11,25 @@ struct RecordingAltitudeMeasurementsView: View {
 
     let session: SensorSession
 
-    private var sorted: [AltitudeMeasurement] {
-        (session.altitudeMeasurements ?? []).sorted { $0.counter < $1.counter }
-    }
-
     // MARK: - Body
     var body: some View {
-        List(sorted) { measurement in
+        RecordingSampleList(load: { try await session.loadAltitudeSamples() }, id: \.counter) { sample in
             DisclosureGroup {
                 LabeledContent(
-                    "Pressure (\(measurement.pressureUnit))",
-                    value: measurement.calculatedPressure.formatted(.number.precision(.fractionLength(5))))
+                    "Pressure (\(sample.pressureUnit))",
+                    value: sample.calculatedPressure.formatted(.number.precision(.fractionLength(5))))
 
                 LabeledContent(
-                    "Rel. Altitude (\(measurement.altitudeUnit))",
-                    value: measurement.calculatedAltitude.formatted(.number.precision(.fractionLength(5))))
+                    "Rel. Altitude (\(sample.altitudeUnit))",
+                    value: sample.calculatedAltitude.formatted(.number.precision(.fractionLength(5))))
             } label: {
                 HStack {
-                    Text(verbatim: "#\(measurement.counter)")
+                    Text(verbatim: "#\(sample.counter)")
                         .monospacedDigit()
 
                     Spacer()
 
-                    Text(measurement.timestamp)
+                    Text(sample.timestamp)
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 }

@@ -11,48 +11,44 @@ struct RecordingLocationMeasurementsView: View {
 
     let session: SensorSession
 
-    private var sorted: [LocationMeasurement] {
-        (session.locationMeasurements ?? []).sorted { $0.counter < $1.counter }
-    }
-
     // MARK: - Body
     var body: some View {
-        List(sorted) { measurement in
+        RecordingSampleList(load: { try await session.loadLocationSamples() }, id: \.counter) { sample in
             DisclosureGroup {
                 LabeledContent(
-                    "Longitude", value: measurement.longitude.formatted(.number.precision(.fractionLength(6))))
+                    "Longitude", value: sample.longitude.formatted(.number.precision(.fractionLength(6))))
 
-                LabeledContent("Latitude", value: measurement.latitude.formatted(.number.precision(.fractionLength(6))))
-
-                LabeledContent(
-                    "Altitude (\(measurement.heightUnit))",
-                    value: measurement.calculatedAltitude.formatted(.number.precision(.fractionLength(2))))
+                LabeledContent("Latitude", value: sample.latitude.formatted(.number.precision(.fractionLength(6))))
 
                 LabeledContent(
-                    "Speed (\(measurement.speedUnit))",
-                    value: measurement.calculatedSpeed.formatted(.number.precision(.fractionLength(2))))
-
-                LabeledContent("Course (°)", value: measurement.course.formatted(.number.precision(.fractionLength(2))))
+                    "Altitude (\(sample.heightUnit))",
+                    value: sample.calculatedAltitude.formatted(.number.precision(.fractionLength(2))))
 
                 LabeledContent(
-                    "H. Accuracy (\(measurement.horizontalAccuracyUnit))",
-                    value: measurement.calculatedHorizontalAccuracy.formatted(.number.precision(.fractionLength(2))))
+                    "Speed (\(sample.speedUnit))",
+                    value: sample.calculatedSpeed.formatted(.number.precision(.fractionLength(2))))
+
+                LabeledContent("Course (°)", value: sample.course.formatted(.number.precision(.fractionLength(2))))
 
                 LabeledContent(
-                    "V. Accuracy (\(measurement.heightUnit))",
-                    value: measurement.calculatedVerticalAccuracy.formatted(.number.precision(.fractionLength(2))))
+                    "H. Accuracy (\(sample.horizontalAccuracyUnit))",
+                    value: sample.calculatedHorizontalAccuracy.formatted(.number.precision(.fractionLength(2))))
 
                 LabeledContent(
-                    "GPS Accuracy", value: measurement.GPSAccuracy.formatted(.number.precision(.fractionLength(2))))
+                    "V. Accuracy (\(sample.heightUnit))",
+                    value: sample.calculatedVerticalAccuracy.formatted(.number.precision(.fractionLength(2))))
+
+                LabeledContent(
+                    "GPS Accuracy", value: sample.GPSAccuracy.formatted(.number.precision(.fractionLength(2))))
 
             } label: {
                 HStack {
-                    Text(verbatim: "#\(measurement.counter)")
+                    Text(verbatim: "#\(sample.counter)")
                         .monospacedDigit()
 
                     Spacer()
 
-                    Text(measurement.timestamp)
+                    Text(sample.timestamp)
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 }

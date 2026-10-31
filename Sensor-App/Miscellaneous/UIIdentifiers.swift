@@ -58,6 +58,7 @@ enum UIIdentifiers {
         static let renameTextField = "RecordingsScreen.TextField.Rename"
         static let renameConfirmButton = "RecordingsScreen.Button.RenameConfirm"
         static let screenStaysOnLabel = "RecordingsScreen.Label.ScreenStaysOn"
+        static let savingLabel = "RecordingsScreen.Label.Saving"
     }
 
     enum RefreshRateView {

@@ -15,27 +15,35 @@ class SettingsViewUITests: BaseTestCase {
 
         // Select Speed Setting
         let collection = app.collectionViews[UIIdentifiers.SettingScreen.collectionView]
-        collection.buttons[UIIdentifiers.SettingScreen.speedPicker].tap()
-        app.buttons["km/h"].tap()
+        XCTAssertTrue(collection.waitForExistence(timeout: 10))
+        let speedPicker = collection.buttons[UIIdentifiers.SettingScreen.speedPicker]
+        collection.scrollTo(speedPicker)
+        speedPicker.tap()
+        app.buttons["km/h"].tapWhenReady()
 
         // Select GPS Accuracy Setting
-        collection.buttons[UIIdentifiers.SettingScreen.accuracyPicker].tap()
-        app.buttons["3 Kilometer"].tap()
-
-        collection.staticTexts[UIIdentifiers.SettingScreen.locationHeader].swipeUp()
-        collection.staticTexts[UIIdentifiers.SettingScreen.altitudeHeader].swipeUp()
+        let accuracyPicker = collection.buttons[UIIdentifiers.SettingScreen.accuracyPicker]
+        collection.scrollTo(accuracyPicker)
+        accuracyPicker.tap()
+        app.buttons["3 Kilometer"].tapWhenReady()
 
         // Select Pressure Setting
-        collection.buttons[UIIdentifiers.SettingScreen.pressurePicker].tap()
-        app.buttons["bar"].tap()
+        let pressurePicker = collection.buttons[UIIdentifiers.SettingScreen.pressurePicker]
+        collection.scrollTo(pressurePicker)
+        pressurePicker.tap()
+        app.buttons["bar"].tapWhenReady()
 
         // Select Height Setting
-        collection.buttons[UIIdentifiers.SettingScreen.altitudePicker].tap()
-        app.buttons["ft"].tap()
+        let altitudePicker = collection.buttons[UIIdentifiers.SettingScreen.altitudePicker]
+        collection.scrollTo(altitudePicker)
+        altitudePicker.tap()
+        app.buttons["ft"].tapWhenReady()
 
         // Graph Settings
-        collection.steppers[UIIdentifiers.SettingScreen.maxPointsStepper].buttons.element(boundBy: 0).tap()
-        collection.steppers[UIIdentifiers.SettingScreen.maxPointsStepper].buttons.element(boundBy: 1).tap()
+        let maxPointsStepper = collection.steppers[UIIdentifiers.SettingScreen.maxPointsStepper]
+        collection.scrollTo(maxPointsStepper)
+        maxPointsStepper.buttons.element(boundBy: 0).tap()
+        maxPointsStepper.buttons.element(boundBy: 1).tap()
 
         // Save Settings
         app.buttons[UIIdentifiers.SettingScreen.saveButton].tap()

@@ -9,7 +9,7 @@
 import Foundation
 
 /// A snapshot of all motion sensor data captured at a single point in time.
-public struct MotionModel: Hashable {
+nonisolated public struct MotionModel: Hashable, Sendable, Codable {
 
     /// Sequential index of this measurement sample within the current session.
     public let counter: Int
@@ -73,6 +73,32 @@ public struct MotionModel: Hashable {
 
     /// Device heading relative to magnetic north, in degrees (0–360).
     public let attitudeHeading: Double
+
+    /// The keys of this sample in a recording's `SampleArchive`. They are a persisted format: never
+    /// change or remove a key, and make new properties optional (see `SampleArchive`). Declaring them
+    /// explicitly means renaming a property doesn't compile until its case keeps the old key, e.g.
+    /// `case newName = "oldName"`.
+    enum CodingKeys: String, CodingKey {
+        case counter
+        case timestamp
+        case accelerationXAxis
+        case accelerationYAxis
+        case accelerationZAxis
+        case gravityXAxis
+        case gravityYAxis
+        case gravityZAxis
+        case gyroXAxis
+        case gyroYAxis
+        case gyroZAxis
+        case magnetometerCalibration
+        case magnetometerXAxis
+        case magnetometerYAxis
+        case magnetometerZAxis
+        case attitudeRoll
+        case attitudePitch
+        case attitudeYaw
+        case attitudeHeading
+    }
 }
 
 extension MotionModel {
